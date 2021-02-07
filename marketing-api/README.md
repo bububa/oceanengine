@@ -26,5 +26,13 @@
     - 视频素材报表 [ Video(clt *core.SDKClient, accessToken string, req *report.IntegratedRequest) (*report.IntegratedResponse, error) ]
     - 视频互动流失数据 [ VideoFrame(clt *core.SDKClient, accessToken string, req *report.VideoFrameRequest) (*report.VideoFrameResponse, error) ]
     - 分级模糊数据 [ Misty(clt *core.SDKClient, accessToken string, req *report.VideoFrameRequest) (*report.VideoFrameResponse, error) ]
+  - 受众分析数据报表 (api/report/audience)
+    - 行为兴趣数据 [ InterestActionList(clt *core.SDKClient, accessToken string, req *audience.ListRequest) (*audience.ListResponse, error) ]
+    - 抖音达人数据 [ AwemeList(clt *core.SDKClient, accessToken string, req *audience.ListRequest) (*audience.ListResponse, error) ] 
+    - 省级数据 [ Province(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+    - 市级数据 [ City(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+    - 性别数据 [ Gender(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+    - 兴趣数据 [ Tag(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+    - 年龄数据 [ Age(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
