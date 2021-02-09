@@ -1,0 +1,9 @@
+package enum
+
+type CampaignDPA string
+
+const (
+	CAMPAIGN_DPA_DEFAULT_NOT     CampaignDPA = "CAMPAIGN_DPA_DEFAULT_NOT"     // 非 DPA 推广目的
+	CAMPAIGN_DPA_SINGLE_DELIVERY CampaignDPA = "CAMPAIGN_DPA_SINGLE_DELIVERY" // DPA 推广目的，SDPA 单商品推广
+	CAMPAIGN_DPA_MULTI_DELIVERY  CampaignDPA = "CAMPAIGN_DPA_MULTI_DELIVERY"  // DPA 推广目的，DPA 商品推广
+)

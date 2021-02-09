@@ -24,6 +24,20 @@
     - 查询账号流水明细 [ advertiser.FundTransaction(clt *core.SDKClient, accessToken string, req *advertiser.FundTransactionGetRequest) (*advertiser.FundTransactionGetResponse, error) ]
     - 代理商转账 [ agent.AdvertiserRecharge(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRechargeRequest) (*agent.AdvertiserRechargeResponse, error) ]
     - 代理商退款 [ agent.AdvertiserRefund(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRefundRequest) (*agent.AdvertiserRefundResponse, error) ]
+- 广告投放
+  - 广告账户预算 (api)
+    - 获取账户日预算 [ advertiser.BudgetGet(clt *core.SDKClient, accessToken string, req *advertiser.BudgetGetRequest) (*advertiser.BudgetGetResponse, error) ]
+    - 更新账户日预算 [ advertiser.UpdateBudget(clt *core.SDKClient, accessToken string, req *advertiser.UpdateBudgetRequest) (*model.BaseResponse, error) ]
+  - 广告组 (api/campaign)
+    - 获取广告组 [ Get(clt *core.SDKClient, accessToken string, req *campaign.GetRequest) (*campaign.GetResponse, error) ]
+    - 创建广告组 [ Create(clt *core.SDKClient, accessToken string, req *campaign.CreateRequest) (*campaign.CreateResponse, error) ]
+    - 修改广告组 [ Update(clt *core.SDKClient, accessToken string, req *campaign.UpdateRequest) (*campaign.UpdateResponse, error) ]
+    - 广告组更新状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *campaign.UpdateStatusRequest) (*campaign.UpdateStatusResponse, error) ]
+  - 广告计划模块 (api/ad)
+    - 获取广告计划 [ Get(clt *core.SDKClient, accessToken string, req *ad.GetRequest) (*ad.GetResponse, error) ]
+    - 更新计划状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *ad.UpdateStatusRequest) (*ad.UpdateResponse, error) ]
+    - 更新计划预算 [ UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateBudgetResponse, error) ]
+    - 更新计划出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateBidResponse, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ Advertiser(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponse, error) ]

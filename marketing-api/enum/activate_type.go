@@ -1,0 +1,9 @@
+package enum
+
+type ActivateType string
+
+const (
+	ActivateType_WITH_IN_A_MONTH         ActivateType = "WITH_IN_A_MONTH"         // 一个月以内
+	ActivateType_ONE_MONTH_2_THREE_MONTH ActivateType = "ONE_MONTH_2_THREE_MONTH" // 一个月到三个月
+	ActivateType_THREE_MONTH_EAILIER     ActivateType = "THREE_MONTH_EAILIER"     // 三个月或更早
+)
