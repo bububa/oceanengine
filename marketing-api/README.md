@@ -16,6 +16,8 @@
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponse, error) ]
     - 二级代理商列表 [ ChildAgentSelect(clt *core.SDKClient, accessToken string, req *agent.ChildAgentSelectRequest) (*agent.ChildAgentSelectResponse, error) ]
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) (*agent.InfoResponse, error) ] 
+  - 账号管家管理 (api/majordomo)
+    - 广告主列表 [ MajordomoSelect(clt *core.SDKClient, accessToken string, req *majordomo.AdvertiserSelectRequest) (*majordomo.AdvertiserSelectResponse, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ Advertiser(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponse, error) ]
