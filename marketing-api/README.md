@@ -34,5 +34,11 @@
     - 性别数据 [ Gender(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
     - 兴趣数据 [ Tag(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
     - 年龄数据 [ Age(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+  - 电商直播数据报表 (api/report/liveroom)
+    - 直播间属性报表 [ Attribute(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+    - 直播间分析报表 [ Analysis(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+    - 直播间流量来源报表 [ FlowCategory(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+    - 直播间商品分析报表 [ Product(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+    - 直播受众分析报表 [ AudiencePortrait(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]

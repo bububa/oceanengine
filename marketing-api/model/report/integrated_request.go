@@ -57,7 +57,7 @@ func (r IntegratedRequest) Encode() string {
 		values.Set("group_by", string(groupBy))
 	}
 	if r.OrderField != "" {
-		values.Set("order_field", string(r.OrderField))
+		values.Set("order_field", r.OrderField)
 	}
 	if r.OrderType != "" {
 		values.Set("order_type", string(r.OrderType))
