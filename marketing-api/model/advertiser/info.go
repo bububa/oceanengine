@@ -43,5 +43,4 @@ type Info struct {
 	Brand           string                `json:"brand,omitempty"`            // 经营类别
 	Role            enum.AdvertiserRole   `json:"role,omitempty"`             // 角色
 	Status          enum.AdvertiserStatus `json:"status,omitempty"`           // 状态
-
 }
