@@ -63,7 +63,7 @@ func (r GetRequest) Encode() string {
 		values.Set("time_granularity", string(r.TimeGranularity))
 	}
 	if r.OrderField != "" {
-		values.Set("order_field", string(r.OrderField))
+		values.Set("order_field", r.OrderField)
 	}
 	if r.OrderType != "" {
 		values.Set("order_type", string(r.OrderType))

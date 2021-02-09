@@ -16,6 +16,14 @@
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponse, error) ]
     - 二级代理商列表 [ ChildAgentSelect(clt *core.SDKClient, accessToken string, req *agent.ChildAgentSelectRequest) (*agent.ChildAgentSelectResponse, error) ]
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) (*agent.InfoResponse, error) ] 
+  - 账号管家管理 (api/majordomo)
+    - 广告主列表 [ MajordomoSelect(clt *core.SDKClient, accessToken string, req *majordomo.AdvertiserSelectRequest) (*majordomo.AdvertiserSelectResponse, error) ]
+  - 资金和流水管理 (api)
+    - 查询账号余额 [ advertiser.Fund(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.FundGetResponse, error) ]
+    - 查询账号日流水 [ advertiser.FundDailyStat(clt *core.SDKClient, accessToken string, req *advertiser.FundDailyStatRequest) (*advertiser.FundDailyStatResponse, error) ]
+    - 查询账号流水明细 [ advertiser.FundTransaction(clt *core.SDKClient, accessToken string, req *advertiser.FundTransactionGetRequest) (*advertiser.FundTransactionGetResponse, error) ]
+    - 代理商转账 [ agent.AdvertiserRecharge(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRechargeRequest) (*agent.AdvertiserRechargeResponse, error) ]
+    - 代理商退款 [ agent.AdvertiserRefund(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRefundRequest) (*agent.AdvertiserRefundResponse, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ Advertiser(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponse, error) ]
@@ -26,5 +34,19 @@
     - 视频素材报表 [ Video(clt *core.SDKClient, accessToken string, req *report.IntegratedRequest) (*report.IntegratedResponse, error) ]
     - 视频互动流失数据 [ VideoFrame(clt *core.SDKClient, accessToken string, req *report.VideoFrameRequest) (*report.VideoFrameResponse, error) ]
     - 分级模糊数据 [ Misty(clt *core.SDKClient, accessToken string, req *report.VideoFrameRequest) (*report.VideoFrameResponse, error) ]
+  - 受众分析数据报表 (api/report/audience)
+    - 行为兴趣数据 [ InterestActionList(clt *core.SDKClient, accessToken string, req *audience.ListRequest) (*audience.ListResponse, error) ]
+    - 抖音达人数据 [ AwemeList(clt *core.SDKClient, accessToken string, req *audience.ListRequest) (*audience.ListResponse, error) ] 
+    - 省级数据 [ Province(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+    - 市级数据 [ City(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+    - 性别数据 [ Gender(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+    - 兴趣数据 [ Tag(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+    - 年龄数据 [ Age(clt *core.SDKClient, accessToken string, req *audience.Request) (*audience.Response, error) ]
+  - 电商直播数据报表 (api/report/liveroom)
+    - 直播间属性报表 [ Attribute(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+    - 直播间分析报表 [ Analysis(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+    - 直播间流量来源报表 [ FlowCategory(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+    - 直播间商品分析报表 [ Product(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+    - 直播受众分析报表 [ AudiencePortrait(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
