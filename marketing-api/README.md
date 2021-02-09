@@ -18,6 +18,12 @@
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) (*agent.InfoResponse, error) ] 
   - 账号管家管理 (api/majordomo)
     - 广告主列表 [ MajordomoSelect(clt *core.SDKClient, accessToken string, req *majordomo.AdvertiserSelectRequest) (*majordomo.AdvertiserSelectResponse, error) ]
+  - 资金和流水管理 (api)
+    - 查询账号余额 [ advertiser.Fund(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.FundGetResponse, error) ]
+    - 查询账号日流水 [ advertiser.FundDailyStat(clt *core.SDKClient, accessToken string, req *advertiser.FundDailyStatRequest) (*advertiser.FundDailyStatResponse, error) ]
+    - 查询账号流水明细 [ advertiser.FundTransaction(clt *core.SDKClient, accessToken string, req *advertiser.FundTransactionGetRequest) (*advertiser.FundTransactionGetResponse, error) ]
+    - 代理商转账 [ agent.AdvertiserRecharge(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRechargeRequest) (*agent.AdvertiserRechargeResponse, error) ]
+    - 代理商退款 [ agent.AdvertiserRefund(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRefundRequest) (*agent.AdvertiserRefundResponse, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ Advertiser(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponse, error) ]
