@@ -3,13 +3,15 @@ package enum
 type TrackEventType = int
 
 const (
-	Track_ACTIVE               TrackEventType = 0   // 激活;用户下载安装完毕应用之后，在联网环境下打开应用
-	Track_REGISTER             TrackEventType = 1   // 注册; 完成应用下载并且在联网环境打开应用后，完成个人账号/游戏角色注册信息提交
-	Track_PAY                  TrackEventType = 2   // 付费; 用户在推广的落地页场景下发生交易并完成至少一笔付款，具体支付形式取决于广告主业务模式
-	Track_FORM                 TrackEventType = 3   // 表单; 页面内完成表单填写并提交
-	Track_CONSULT              TrackEventType = 4   // 在线咨询; 用户点击在线咨询按钮
-	Track_CONSULT_EFFECTIVE    TrackEventType = 5   // 有效咨询; 点击页面“在线咨询”，且在咨询对话框中内容达到≥1条以上对话记录的，记录一次转化。广告主可自定义有效的标准。
-	Track_NEXT_DAY_ACTIVE      TrackEventType = 6   // 次留; 用户激活后次日联网环境下打开应用;
+	Track_ACTIVE            TrackEventType = 0 // 激活;用户下载安装完毕应用之后，在联网环境下打开应用
+	Track_REGISTER          TrackEventType = 1 // 注册; 完成应用下载并且在联网环境打开应用后，完成个人账号/游戏角色注册信息提交
+	Track_PAY               TrackEventType = 2 // 付费; 用户在推广的落地页场景下发生交易并完成至少一笔付款，具体支付形式取决于广告主业务模式
+	Track_FORM              TrackEventType = 3 // 表单; 页面内完成表单填写并提交
+	Track_CONSULT           TrackEventType = 4 // 在线咨询; 用户点击在线咨询按钮
+	Track_CONSULT_EFFECTIVE TrackEventType = 5 // 有效咨询; 点击页面“在线咨询”，且在咨询对话框中内容达到≥1条以上对话记录的，记录一次转化。广告主可自定义有效的标准。
+	Track_NEXT_DAY_ACTIVE   TrackEventType = 6 // 次留; 用户激活后次日联网环境下打开应用;
+	// 关键页面浏览
+	Track_VIEW_CONTENT         TrackEventType = 7
 	Track_LEADS                TrackEventType = 19  // 有效获客; 用户完成了一次有价值的动作，如预约到店，完成授权等，支持广告主根据业务场景自定义
 	Track_IN_APP_PURCHASE      TrackEventType = 20  // app内下单; 在应用内完成一次订单提交，例如：点击“立即下单”
 	Track_IN_APP_VISIT         TrackEventType = 21  // app内访问;用户成功打开访问应用
