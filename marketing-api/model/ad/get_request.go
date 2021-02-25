@@ -29,6 +29,7 @@ func (r GetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
+	return values.Encode()
 }
 
 type GetFiltering struct {
