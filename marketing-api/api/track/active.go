@@ -12,7 +12,7 @@ import (
 )
 
 // API上报数据(new)
-func Active(req *track.ActiveRequest) error {
+func Active(req *track.ActiveRequest) (string, error) {
 	values := &url.Values{}
 	if req.Callback != "" {
 		values.Set("callback", req.Callback)
@@ -49,13 +49,13 @@ func Active(req *track.ActiveRequest) error {
 	reqUrl := fmt.Sprintf("https://ad.oceanengine.com/track/active/?%s", values.Encode())
 	resp, err := http.DefaultClient.Get(reqUrl)
 	if err != nil {
-		return err
+		return reqUrl, err
 	}
 	defer resp.Body.Close()
 	var ret track.Response
 	err = json.NewDecoder(resp.Body).Decode(&ret)
 	if ret.IsError() {
-		return ret
+		return reqUrl, ret
 	}
-	return nil
+	return reqUrl, nil
 }
