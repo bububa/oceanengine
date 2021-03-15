@@ -46,7 +46,7 @@ func Active(req *track.ActiveRequest) (string, error) {
 	for k, v := range req.Ext {
 		values.Set(k, v)
 	}
-	reqUrl := fmt.Sprintf("https://ad.oceanengine.com/track/active/?%s", values.Encode())
+	reqUrl := fmt.Sprintf("https://ad.oceanengine.com/track/activate/?%s", values.Encode())
 	resp, err := http.DefaultClient.Get(reqUrl)
 	if err != nil {
 		return reqUrl, err
