@@ -29,7 +29,7 @@ type GetResponseList struct {
 	UniqueFk                string                 `json:"unique_fk,omitempty"`                  // 第三方唯一键，传该值时保证接口重试的幂等性，带有相同unique_fk的请求服务端会视为同一个广告处理。仅在创建接口传入且无法修改，如果创建时传入了已存在的唯一键值，那么会返回该唯一键值所对应的广告计划ID。该值可用于内部系统会生成的唯一ID与头条ID做关联的场景，避免超时重试实际上一次创建请求又成功导致的重复创建问题，通过unique_fk可与内部系统ID实现关联并避免重复创建，可结合实际场景选择使用，广告计划中的unique_fk要求不重复，与广告组中的unique_fk无相关。
 	Status                  enum.AdStatus          `json:"status,omitempty"`                     // 广告计划投放状态; (进入投放之前,优先披露审核状态,此时优先于启用暂停,启用暂停信息以opt_status为准)
 	LearningPhrase          string                 `json:"learning_phrase,omitempty"`            // 学习期状态; 许值：DEFAULT（默认，不在学习期中）、LEARNING（学习中）、LEARNED（学习成功）、LEARN_FAILED（学习失败）;关于学习期，此字段即将废弃关于学习期，此字段即将废弃
-	OpStatus                enum.AdOpStatus        `json:"op_status,omitempty"`                  // 广告计划操作状态, 允许值: "AD_STATUS_ENABLE","AD_STATUS_DISABLE"
+	OptStatus               enum.AdOptStatus       `json:"opt_status,omitempty"`                 // 广告计划操作状态, 允许值: "AD_STATUS_ENABLE","AD_STATUS_DISABLE"
 	DeliveryRange           enum.AdDeliveryRange   `json:"delivery_range,omitempty"`             // 投放范围
 	UnionVideoType          enum.UnionVideoType    `json:"union_video_type,omitempty"`           // 投放形式（穿山甲视频创意类型）;默认值: ORIGINAL_VIDEO原生
 	DownloadUrl             string                 `json:"download_url,omitempty"`               // 应用下载方式，推广目的为APP时有值。返回值：DOWNLOAD_URL下载链接，QUICK_APP_URL快应用+下载链接，EXTERNAL_URL落地页链接
