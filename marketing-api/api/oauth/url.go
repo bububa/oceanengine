@@ -15,5 +15,5 @@ func Url(clt *core.SDKClient, redirectUrl string, state string) string {
 		values.Set("state", state)
 	}
 	values.Set("redirect_url", redirectUrl)
-	return fmt.Sprintf("%s?%s", core.BASE_URL, values.Encode())
+	return fmt.Sprintf("%saudit/oauth.html?%s", core.BASE_URL, values.Encode())
 }
