@@ -12,7 +12,7 @@ func RefreshToken(clt *core.SDKClient, refreshToken string) (*oauth.AccessTokenR
 	req := &oauth.AccessTokenRequest{
 		AppId:        clt.AppID,
 		Secret:       clt.Secret,
-		GrandType:    "refresh_token",
+		GrantType:    "refresh_token",
 		RefreshToken: refreshToken,
 	}
 	var resp oauth.AccessTokenResponse

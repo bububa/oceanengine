@@ -9,7 +9,7 @@ import (
 type AccessTokenRequest struct {
 	AppId        string `json:"app_id,omitempty"`
 	Secret       string `json:"secret,omitempty"`
-	GrandType    string `json:"grand_type,omitempty"`
+	GrantType    string `json:"grant_type,omitempty"`
 	AuthCode     string `json:"auth_code,omitempty"`
 	RefreshToken string `json:"refresh_token,omitempty"`
 }

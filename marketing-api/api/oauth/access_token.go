@@ -12,7 +12,7 @@ func AccessToken(clt *core.SDKClient, authCode string) (*oauth.AccessTokenRespon
 	req := &oauth.AccessTokenRequest{
 		AppId:     clt.AppID,
 		Secret:    clt.Secret,
-		GrandType: "auth_code",
+		GrantType: "auth_code",
 		AuthCode:  authCode,
 	}
 	var resp oauth.AccessTokenResponse
