@@ -1,5 +1,5 @@
 package core
 
 const (
-	BASE_URL = "https://ad.oceanengine.com/openapi/"
+	BASE_URL = "https://ad.oceanengine.com/open_api/"
 )
