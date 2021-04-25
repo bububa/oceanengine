@@ -117,7 +117,7 @@ type Audience struct {
 	Geolocation               []model.Geolocation     `json:"geolocation,omitempty"`                  // 从地图添加(地图位置)
 	LocationType              string                  `json:"location_type,omitempty"`                // 位置类型;取值：CURRENT正在该地区的用户，HOME居住在该地区的用户，TRAVEL到该地区旅行的用户，ALL该地区内的所有用户;当city和district有值时返回值
 	Gender                    enum.AudienceGender     `json:"gender,omitempty"`                       // 性别
-	Age                       enum.AudienceAge        `json:"age,omitempty"`                          // 年龄
+	Age                       []enum.AudienceAge      `json:"age,omitempty"`                          // 年龄
 	RetargetingTagsInclude    []uint64                `json:"retargeting_tags_include,omitempty"`     // 定向人群包列表（自定义人群），内容为人群包id。如果选择"同时定向与排除"，需传入retargeting_tags_include和retargeting_tags_exclude
 	RetargetingTagsExclude    []uint64                `json:"retargeting_tags_exclude,omitempty"`     // 排除人群包列表（自定义人群），内容为人群包id。如果选择"同时定向与排除"，需传入retargeting_tags_include和retargeting_tags_exclude
 	InterestActionMode        string                  `json:"interest_action_mode,omitempty"`         // 行为兴趣;取值："UNLIMITED"不限,"CUSTOM"自定义,"RECOMMEND"系统推荐。若与自定义人群同时使用，系统推荐("RECOMMEND")不生效;仅推广范围为默认时可填，且不可与老版行为兴趣定向同时填写，否则会报错
