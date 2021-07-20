@@ -64,3 +64,5 @@
     - 直播受众分析报表 [ AudiencePortrait(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
+- 事件管理(api/conversion)
+  - 转化回传 [ Conversion(req *conversion.Request) error ]

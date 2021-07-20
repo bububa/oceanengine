@@ -2,6 +2,7 @@ package core
 
 import (
 	"bytes"
+	"crypto/sha256"
 	"fmt"
 	"net/http"
 
@@ -81,6 +82,38 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
 	}
+	if c.sandbox {
+		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+	if err != nil {
+		return err
+	}
+
+	httpResp, err := http.DefaultClient.Do(httpReq)
+	if err != nil {
+		return err
+	}
+	defer httpResp.Body.Close()
+	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
+	if err != nil {
+		debug.PrintError(err, c.debug)
+		return err
+	}
+	if resp.IsError() {
+		return resp
+	}
+	return nil
+}
+
+func (c *SDKClient) AnalyticsPost(gw string, req model.PostRequest, resp model.Response) error {
+	reqBuf := bytes.NewBuffer(req.Encode())
+	reqBuf.WriteString(c.Secret)
+	sign := fmt.Sprintf("%x", sha256.Sum256(reqBuf.Bytes()))
+	reqUrl := fmt.Sprintf("%s%s", ANALYTICS_URL, gw)
+	debug.PrintPostJSONRequest(reqUrl, reqBuf.Bytes(), c.debug)
+	httpReq, err := http.NewRequest("POST", reqUrl, reqBuf)
+	httpReq.Header.Add("Content-Type", "application/json")
+	httpReq.Header.Add("x-signature", sign)
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
