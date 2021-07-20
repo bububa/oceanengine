@@ -106,12 +106,13 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 }
 
 func (c *SDKClient) AnalyticsPost(gw string, req model.PostRequest, resp model.Response) error {
-	reqBuf := bytes.NewBuffer(req.Encode())
+	reqBytes := req.Encode()
+	reqBuf := bytes.NewBuffer(reqBytes)
 	reqBuf.WriteString(c.Secret)
 	sign := fmt.Sprintf("%x", sha256.Sum256(reqBuf.Bytes()))
 	reqUrl := fmt.Sprintf("%s%s", ANALYTICS_URL, gw)
 	debug.PrintPostJSONRequest(reqUrl, reqBuf.Bytes(), c.debug)
-	httpReq, err := http.NewRequest("POST", reqUrl, reqBuf)
+	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	httpReq.Header.Add("Content-Type", "application/json")
 	httpReq.Header.Add("x-signature", sign)
 	if c.sandbox {
