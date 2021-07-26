@@ -5,7 +5,7 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model/advertiser"
 )
 
-// 获取账户日预算
+// Budget 获取账户日预算
 // 此接口可以获取广告主账号设置的预算类型与预算，可以一次查询100个广告主账号预算；
 func Budget(clt *core.SDKClient, accessToken string, advertiserIDs []uint64) (*advertiser.BudgetGetResponse, error) {
 	req := &advertiser.BudgetGetRequest{

@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package toutiao.dmp;
+option java_outer_classname = "DmpDataProto";
+option go_package="github.com/bububa/oceanengine/marketing-api/model/dmp/datasource";
+message DmpData { //上传文件每行一个base64编码的字符串，每个字符串包含一个完整的DmpData消息二进制字节串
+  repeated IdItem idList         = 1; // 每行数据包含的idList大小不能超过10000
+}
+message IdItem {
+    optional uint32 timestamp  = 1;  //若不设置，默认以上传文件的创建时间为此条记录的创建时间
+    required DataType dataType = 2;  //指定此id的类型，如IMEI、IDFA等
+    required string id         = 3;  //根据dataType字段的类型，放置对应类型的id的字符串，需要小写
+    repeated string tags       = 4;  //标识此id的业务标签字符串
+    enum DataType {
+        IMEI               = 0;
+        IDFA               = 1;
+        UID                = 2;
+        IMEI_MD5           = 4;
+        IDFA_MD5           = 5;
+        MOBILE_HASH_SHA256 = 6;
+        OAID               = 7;
+        OAID_MD5           = 8;
+    }
+}

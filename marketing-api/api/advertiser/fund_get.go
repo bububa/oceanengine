@@ -5,6 +5,8 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model/advertiser"
 )
 
+// Fund 查询账号余额
+// 获取广告主或代理商账户余额信息。
 func Fund(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.FundGetResponse, error) {
 	req := &advertiser.FundGetRequest{
 		AdvertiserID: advertiserID,

@@ -1,13 +1,23 @@
 package model
 
+// Geolocation 地理位置信息
 type Geolocation struct {
-	Radius       int64   `json:"radius,omitempty"`        // 半径
-	Name         string  `json:"name,omitempty"`          // 地点名称
-	Long         float64 `json:"long,omitempty"`          // 经度
-	Lat          float64 `json:"lat,omitempty"`           // 纬度
-	City         string  `json:"city,omitempty"`          // 城市名
-	StreetNumber string  `json:"street_number,omitempty"` // 街道号
-	Street       string  `json:"street,omitempty"`        // 街道名
-	District     string  `json:"district,omitempty"`      // 区域名
-	Province     string  `json:"province,omitempty"`      // 省份名
+	// Radius 半径
+	Radius int64 `json:"radius,omitempty"`
+	// Name 地点名称
+	Name string `json:"name,omitempty"`
+	// Long 经度
+	Long float64 `json:"long,omitempty"`
+	// Lat 纬度
+	Lat float64 `json:"lat,omitempty"`
+	// City 城市名
+	City string `json:"city,omitempty"`
+	// StreetNumber 街道号
+	StreetNumber string `json:"street_number,omitempty"`
+	// Street 街道名
+	Street string `json:"street,omitempty"`
+	// District 区域名
+	District string `json:"district,omitempty"`
+	// Province 省份名
+	Province string `json:"province,omitempty"`
 }

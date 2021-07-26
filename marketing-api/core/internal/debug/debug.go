@@ -8,6 +8,7 @@ import (
 	"log"
 )
 
+// PrintError print error with debug
 func PrintError(err error, debug bool) {
 	if !debug {
 		return
@@ -15,6 +16,7 @@ func PrintError(err error, debug bool) {
 	log.Println("[DEBUG] [ERROR]", err)
 }
 
+// PrintStringResponse print string response with debug
 func PrintStringResponse(str string, debug bool) {
 	if !debug {
 		return
@@ -22,6 +24,7 @@ func PrintStringResponse(str string, debug bool) {
 	log.Println("[DEBUG] [RESPONSE]", str)
 }
 
+// PrintGetRequest print get request with debug
 func PrintGetRequest(url string, debug bool) {
 	if !debug {
 		return
@@ -29,6 +32,7 @@ func PrintGetRequest(url string, debug bool) {
 	log.Println("[DEBUG] [API] GET", url)
 }
 
+// PrintPostJSONRequest print json request with debug
 func PrintPostJSONRequest(url string, body []byte, debug bool) {
 	if !debug {
 		return
@@ -43,13 +47,23 @@ func PrintPostJSONRequest(url string, body []byte, debug bool) {
 	log.Printf(format, url, body)
 }
 
-func PrintPostMultipartRequest(url string, body []byte, debug bool) {
+// PrintPostMultipartRequest print multipart/form-data post request with debug
+func PrintPostMultipartRequest(url string, mp map[string]string, debug bool) {
 	if !debug {
 		return
 	}
-	log.Println("[DEBUG] [API] multipart/form-data POST", url)
+	body, _ := json.Marshal(mp)
+	const format = "[DEBUG] [API] multipart/form-data POST %s\n" +
+		"http request body:\n%s\n"
+
+	buf := bytes.NewBuffer(make([]byte, 0, len(body)+1024))
+	if err := json.Indent(buf, body, "", "    "); err == nil {
+		body = buf.Bytes()
+	}
+	log.Printf(format, url, body)
 }
 
+// DecodeJSONHttpResponse decode json response with debug
 func DecodeJSONHttpResponse(r io.Reader, v interface{}, debug bool) error {
 	if !debug {
 		return json.NewDecoder(r).Decode(v)
