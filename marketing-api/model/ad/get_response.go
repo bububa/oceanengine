@@ -7,19 +7,27 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
+// GetResponse 获取广告计划 API Response
 type GetResponse struct {
 	model.BaseResponse
+	// Data json返回值
 	Data *GetResponseData `json:"data,omitempty"`
 }
 
+// GetResponseData json返回值
 type GetResponseData struct {
-	List     []GetResponseList `json:"list,omitempty"`
-	PageInfo *model.PageInfo   `json:"page_info,omitempty"`
+	// List 广告数组
+	List []GetResponseList `json:"list,omitempty"`
+	// PageInfo 分页信息
+	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
 
+// GetResponseList 广告信息
 type GetResponseList struct {
-	ID                      uint64                   `json:"id,omitempty"`                         // 计划ID
-	AdID                    uint64                   `json:"ad_id,omitempty"`                      // 计划ID,返回值同id
+	// ID 计划ID
+	ID uint64 `json:"id,omitempty"`
+	// AdID 计划ID,返回值同id
+	AdID                    uint64                   `json:"ad_id,omitempty"`
 	Name                    string                   `json:"name,omitempty"`                       // 计划名称
 	AdvertiserID            uint64                   `json:"advertiser_id,omitempty"`              // 广告主ID
 	CampaignID              uint64                   `json:"campaign_id,omitempty"`                // 广告组ID

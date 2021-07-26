@@ -9,7 +9,8 @@ import (
 )
 
 type GetRequest struct {
-	AdvertiserID uint64        `json:'advertiser_id,omitempty'`
+	// AdvertiserID 广告主ID
+	AdvertiserID uint64        `json:"advertiser_id,omitempty"`
 	Filtering    *GetFiltering `json:"filtering,omitempty"` // 过滤条件，若此字段不传，或传空则视为无限制条件
 	Fields       []string      `json:"fields,omitempty"`    // 查询字段集合, 如果指定, 则返回结果数组中, 每个元素是包含所查询字段的字典；允许值:"id", "name","budget", "budget_mode","landing_type","status","modify_time", "status","modify_time","campaign_modify_time","campaign_create_time"一定会返回
 	Page         int           `json:"page,omitempty"`      // 当前页码: 1

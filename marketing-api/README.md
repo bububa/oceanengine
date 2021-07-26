@@ -1,5 +1,13 @@
 # 巨量引擎MarketingAPI Golang SDK
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/bububa/oceanengine.svg)](https://pkg.go.dev/github.com/bububa/oceanengine)
+[![Go](https://github.com/bububa/oceanengine/actions/workflows/go.yml/badge.svg)](https://github.com/bububa/oceanengine/actions/workflows/go.yml)
+[![goreleaser](https://github.com/bububa/oceanengine/actions/workflows/goreleaser.yml/badge.svg)](https://github.com/bububa/oceanengine/actions/workflows/goreleaser.yml)
+[![GitHub go.mod Go version of a Go module](https://img.shields.io/github/go-mod/go-version/bububa/oceanengine.svg)](https://github.com/bububa/oceanengine)
+[![GoReportCard](https://goreportcard.com/badge/github.com/bububa/oceanengine)](https://goreportcard.com/report/github.com/bububa/oceanengine)
+[![GitHub license](https://img.shields.io/github/license/bububa/oceanengine.svg)](https://github.com/bububa/oceanengine/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/bububa/oceanengine.svg)](https://GitHub.com/bububa/oceanengine/releases/)
+
 - Oauth2 授权 (api/oauth)
   - 生成授权链接 [ Url(clt *core.SDKClient, redirectUrl string, state string) string ]
   - 获取AccessToken [ AccessToken(clt *core.SDKClient, authCode String) (*oauth.AccessTokenResponse, error) ]
@@ -62,6 +70,11 @@
     - 直播间流量来源报表 [ FlowCategory(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
     - 直播间商品分析报表 [ Product(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
     - 直播受众分析报表 [ AudiencePortrait(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.Response, error) ]
+- DMP人群管理 (api/dmp)
+  - 数据源文件上传 [ datasource.FileUpload(clt *core.SDKClient, accessToken string, req *datasource.FileUploadRequest) (string, error) ]
+  - 数据源创建 [ datasource.Create(clt *core.SDKClient, accessToken string, req *datasource.CreateRequest) (string, error) ] 
+  - 数据源更新 [ datasource.Update(clt *core.SDKClient, accessToken string, req *datasource.UpdateRequest) error ] 
+  - 数据源详细信息 [ datasource.Read(clt *core.SDKClient, accessToken string, req *datasource.ReadRequest) ([]datasource.DataSource, error) ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
 - 事件管理(api/conversion)
