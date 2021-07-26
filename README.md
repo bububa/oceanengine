@@ -75,6 +75,11 @@
   - 数据源创建 [ datasource.Create(clt *core.SDKClient, accessToken string, req *datasource.CreateRequest) (string, error) ] 
   - 数据源更新 [ datasource.Update(clt *core.SDKClient, accessToken string, req *datasource.UpdateRequest) error ] 
   - 数据源详细信息 [ datasource.Read(clt *core.SDKClient, accessToken string, req *datasource.ReadRequest) ([]datasource.DataSource, error) ]
+  - 人群包列表 [ customaudience.Select(clt *core.SDKClient, accessToken string, req *customaudience.SelectRequest) (*customaudience.SelectResponseData, error) ]
+  - 人群包详细信息 [ customaudience.Read(clt *core.SDKClient, accessToken string, req *customaudience.ReadRequest) ([]customaudience.CustomAudience, error) ]
+  - 发布人群包 [ customaudience.Publish(clt *core.SDKClient, accessToken string, req *customaudience.PublishRequest) error ]
+  - 推送人群包 [ customaudience.Push(clt *core.SDKClient, accessToken string, req *customaudience.PushRequest) error ]
+  - 删除人群包 [ customaudience.Delete(clt *core.SDKClient, accessToken string, req *customaudience.DeleteRequest) error ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
 - 事件管理(api/conversion)
