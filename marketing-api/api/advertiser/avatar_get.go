@@ -5,8 +5,8 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model/advertiser"
 )
 
-// 获取广告主头像信息
-func Avatar(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.AvatarGetResponse, error) {
+// AvatarGet 获取广告主头像信息
+func AvatarGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.AvatarGetResponseData, error) {
 	req := &advertiser.AvatarGetRequest{
 		AdvertiserID: advertiserID,
 	}
@@ -15,5 +15,5 @@ func Avatar(clt *core.SDKClient, accessToken string, advertiserID uint64) (*adve
 	if err != nil {
 		return nil, err
 	}
-	return &resp, nil
+	return resp.Data, nil
 }

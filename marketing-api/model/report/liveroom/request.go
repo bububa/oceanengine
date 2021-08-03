@@ -9,23 +9,37 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/enum"
 )
 
+// Request 直播分析数据报表 API Request
 type Request struct {
-	AdvertiserID uint64         `json:"advertiser_id,omitempty"`
-	StartTime    time.Time      `json:"start_time,omitempty"`  // 报表开始时间，格式为%Y-%m-%d %H:%M:%S，默认从7天前开始
-	EndTime      time.Time      `json:"end_time,omitempty"`    // 报表结束时间，格式为%Y-%m-%d %H:%M:%S，默认为今天，最大时间范围30天
-	Fields       []string       `json:"fields,omitempty"`      // 指标字段，默认传入指标"click_product_count", "live_orders_count", "pay_order_gmv", "pay_order_count", "order_convert_rate"
-	Filtering    *Filtering     `json:"filtering,omitempty"`   // 筛选字段
-	OrderField   string         `json:"order_field,omitempty"` // 排序指标字段，不传默认填空
-	OrderType    enum.OrderType `json:"order_type,omitempty"`  // 排序类型；默认值: DESC；允许值: ASC, DESC，不传入order_field时不保证顺序
-	Page         int            `json:"page,omitempty"`
-	PageSize     int            `json:"page_size,omitempty"` // 页面大小，默认20，不超过100
+	// AdvertiserID 广告主ID
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// StartTime 报表开始时间，格式为%Y-%m-%d %H:%M:%S，默认从7天前开始
+	StartTime time.Time `json:"start_time,omitempty"`
+	// EndTime 报表结束时间，格式为%Y-%m-%d %H:%M:%S，默认为今天，最大时间范围30天
+	EndTime time.Time `json:"end_time,omitempty"`
+	// Fields 指标字段，默认传入指标"click_product_count", "live_orders_count", "pay_order_gmv", "pay_order_count", "order_convert_rate"
+	Fields []string `json:"fields,omitempty"`
+	// Filtering 筛选字段
+	Filtering *Filtering `json:"filtering,omitempty"`
+	// OrderField 排序指标字段，不传默认填空
+	OrderField string `json:"order_field,omitempty"`
+	// OrderType 排序类型；默认值: DESC；允许值: ASC, DESC，不传入order_field时不保证顺序
+	OrderType enum.OrderType `json:"order_type,omitempty"`
+	// Page 页码，默认1
+	Page int `json:"page,omitempty"`
+	// PageSize 页面大小，默认20，不超过100
+	PageSize int `json:"page_size,omitempty"`
 }
 
+// Filtering 筛选字段
 type Filtering struct {
-	ProductIDs []uint64 `json:"product_ids,omitempty"` // 商品id列表，最多传入100
-	RoomIDs    []uint64 `json:"room_ids,omitempty"`    // 直播间id列表，最多传入100
+	// ProductIDs 商品id列表，最多传入100
+	ProductIDs []uint64 `json:"product_ids,omitempty"`
+	// RoomIDs 直播间id列表，最多传入100
+	RoomIDs []uint64 `json:"room_ids,omitempty"`
 }
 
+// Encode implement GetRequest interface
 func (r Request) Encode() string {
 	values := &url.Values{}
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))

@@ -4,13 +4,19 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
+// UserInfoResponse 获取授权User信息 API Response
 type UserInfoResponse struct {
 	model.BaseResponse
+	// Data json返回值
 	Data *UserInfoResponseData `json:"data,omitempty"`
 }
 
+// UserInfoResponseData userinfo
 type UserInfoResponseData struct {
-	ID          uint64 `json:"id,omitempty"`           // 用户id
-	Email       string `json:"email,omitempty"`        // 邮箱（已经脱敏处理）
-	DisplayName string `json:"display_name,omitempty"` // 用户名
+	// ID 用户id
+	ID uint64 `json:"id,omitempty"`
+	// Email 邮箱（已经脱敏处理）
+	Email string `json:"email,omitempty"`
+	// DisplayName 用户名
+	DisplayName string `json:"display_name,omitempty"`
 }

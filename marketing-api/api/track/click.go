@@ -4,6 +4,7 @@ import (
 	"net/url"
 )
 
+// DEFAULT_CLICK_FIELDS 默认点击检测字段
 var DEFAULT_CLICK_FIELDS = []string{
 	"request_id",
 	"aid",
@@ -30,7 +31,7 @@ var DEFAULT_CLICK_FIELDS = []string{
 	"caid1",
 }
 
-// 点击检测链接
+// Click 生成击检测链接
 func Click(baseUrl string, fields []string) string {
 	if fields == nil {
 		fields = DEFAULT_CLICK_FIELDS

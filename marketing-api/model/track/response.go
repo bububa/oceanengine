@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Response 线索-API上报数据 API Response
 type Response struct {
 	Code int    `json:"code,omitempty"`
 	Msg  string `json:"msg,omitempty"`

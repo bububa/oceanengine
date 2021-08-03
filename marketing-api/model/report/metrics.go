@@ -1,5 +1,6 @@
 package report
 
+// Metrics 指标数据
 type Metrics struct {
 	Cost                              float64 `json:"cost,omitempty"`                                   // 展现数据-总花费; 表示广告在投放期内的预估花费金额,当天数据可能会有波动，次日稳定
 	Show                              int64   `json:"show,omitempty"`                                   // 展现数据-展示数; 广告展示给用户的次数。计算方式：经平台判定有效且被计费的展示次数
