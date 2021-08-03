@@ -80,6 +80,14 @@
   - 发布人群包 [ customaudience.Publish(clt *core.SDKClient, accessToken string, req *customaudience.PublishRequest) error ]
   - 推送人群包 [ customaudience.Push(clt *core.SDKClient, accessToken string, req *customaudience.PushRequest) error ]
   - 删除人群包 [ customaudience.Delete(clt *core.SDKClient, accessToken string, req *customaudience.DeleteRequest) error ]
+- 搜索广告
+  - 广告组 [ campaign.Create(clt *core.SDKClient, accessToken string, req *campaign.CreateRequest) (uint64, error) ]
+  - 关键词管理 (api/keyword)
+    - 获取关键词列表 [ Get(clt *core.SDKClient, accessToken string, req *keyword.GetRequest) ([]keyword.Keyword, error) ]
+    - 创建关键词 [ Create(clt *core.SDKClient, accessToken string, req *keyword.CreateRequest) (*keyword.ResponseData, error) ]
+    - 更新关键词 [ Update(clt *core.SDKClient, accessToken string, req *keyword.UpdateRequest) (*keyword.ResponseData, error) ]
+    - 删除关键词 [ Delete(clt *core.SDKClient, accessToken string, req *keyword.DeleteRequest) (*keyword.ResponseData, error) ]
+    - 搜索快投关键词推荐 [ Suggest(clt *core.SDKClient, accessToken string, req *keyword.SuggestRequest) ([]keyword.SuggestKeyword, error) ]
 - 素材管理 (api/file)
   - 上传广告主图片 [ ImageAdvertiser(clt *core.SDKClient, accessToken string, req *file.ImageAdvertiserRequest) (*file.Image, error) ]
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]

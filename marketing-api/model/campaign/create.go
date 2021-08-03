@@ -28,6 +28,8 @@ type CreateRequest struct {
 	MarketingPurpose enum.MarketingPurpose `json:"marketing_purpose,omitempty"`
 	// DeliveryRelatedNum 广告组商品类型
 	DeliveryRelatedNum enum.CampaignDPA `json:"delivery_related_num,omitempty"`
+	// UniqueFk 第三方唯一键，传该值时保证接口重试的幂等性，请注意，带有相同unique_fk的请求服务端会视为同一个广告处理。仅在创建接口传入且无法修改，如果创建时传入了已存在的唯一键值，那么会返回该唯一键值所对应的广告组ID。该值可用于内部系统会生成的唯一ID与头条ID做关联的场景，避免超时重试实际上一次创建请求又成功导致的重复创建问题，通过unique_fk可与内部系统ID实现关联并避免重复创建，可结合实际场景选择使用，广告组中的unique_fk要求不重复，与计划中的unique_fk无相关。
+	UniqueFk string `json:"unique_fk,omitempty"`
 }
 
 // Encode implement PostRequest interface
