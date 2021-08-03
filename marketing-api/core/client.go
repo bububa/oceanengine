@@ -69,6 +69,9 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 		return err
 	}
 	defer httpResp.Body.Close()
+	if resp == nil {
+		resp = &model.BaseResponse{}
+	}
 	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
 	if err != nil {
 		debug.PrintError(err, c.debug)
@@ -104,6 +107,9 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 		return err
 	}
 	defer httpResp.Body.Close()
+	if resp == nil {
+		resp = &model.BaseResponse{}
+	}
 	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
 	if err != nil {
 		debug.PrintError(err, c.debug)
@@ -165,6 +171,9 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 		return err
 	}
 	defer httpResp.Body.Close()
+	if resp == nil {
+		resp = &model.BaseResponse{}
+	}
 	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
 	if err != nil {
 		debug.PrintError(err, c.debug)
@@ -199,6 +208,9 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.PostRequest, resp model.R
 		return err
 	}
 	defer httpResp.Body.Close()
+	if resp == nil {
+		resp = &model.BaseResponse{}
+	}
 	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
 	if err != nil {
 		debug.PrintError(err, c.debug)

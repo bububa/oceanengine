@@ -11,7 +11,7 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model/track"
 )
 
-// API上报数据(new)
+// Active API上报数据(new)
 func Active(req *track.ActiveRequest) (string, error) {
 	values := &url.Values{}
 	if req.Callback != "" {
