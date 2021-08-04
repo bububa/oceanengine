@@ -88,6 +88,12 @@
     - 更新关键词 [ Update(clt *core.SDKClient, accessToken string, req *keyword.UpdateRequest) (*keyword.ResponseData, error) ]
     - 删除关键词 [ Delete(clt *core.SDKClient, accessToken string, req *keyword.DeleteRequest) (*keyword.ResponseData, error) ]
     - 搜索快投关键词推荐 [ Suggest(clt *core.SDKClient, accessToken string, req *keyword.SuggestRequest) ([]keyword.SuggestKeyword, error) ]
+  - 否定词管理 (api/privativeword)
+    - 批量新增计划否定词 [ AdAdd(clt *core.SDKClient, accessToken string, req *privativeword.AdAddRequest) (*privativeword.AdAddResponseData, error) ]
+    - 设置计划否定词 [ AdUpdate(clt *core.SDKClient, accessToken string, req *privativeword.AdUpdateRequest) (uint64, error) ]
+    - 批量新增组否定词 [ CampaignAdd(clt *core.SDKClient, accessToken string, req *privativeword.CampaignAddRequest) (*privativeword.CampaignAddResponseData, error) ]
+    - 设置组否定词 [ CampaignUpdate(clt *core.SDKClient, accessToken string, req *privativeword.AdUpdateRequest) (uint64, error) ] 
+    - 获取否定词列表 [ Get(clt *core.SDKClient, accessToken string, req *privativeword.GetRequest) (*privativeword.GetResponseData, error) ]
 - 素材管理 (api/file)
   - 上传广告主图片 [ ImageAdvertiser(clt *core.SDKClient, accessToken string, req *file.ImageAdvertiserRequest) (*file.Image, error) ]
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
