@@ -30,6 +30,10 @@ func (r GetRequest) Encode() string {
 		filtering, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(filtering))
 	}
+	if len(r.Fields) > 0 {
+		fields, _ := json.Marshal(r.Fields)
+		values.Set("fields", string(fields))
+	}
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
 	}
