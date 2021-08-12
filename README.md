@@ -113,7 +113,14 @@
     - 修改第三方落地页站点 [ tools/thirdsite.Update(clt *core.SDKClient, accessToken string, req *thirdsite.UpdateRequest) (uint64, error) ]
     - 删除第三方落地页站点 [ tools/thirdsite.Delete(clt *core.SDKClient, accessToken string, req *thirdsite.DeleteRequest) (uint64, error) ]
     - 获取第三方落地页预览地址 [ tools/thirdsite.Preview(clt *core.SDKClient, accessToken string, req *thirdsite.PreviewRequest) (*thirdsite.PreviewResponseData, error) ]
+- 资产
+  - 事件管理
+    - 获取推广内容 [ tools/event.AssetsGet(clt *core.SDKClient, accessToken string, req *event.AssetsGetRequest) (*event.AssetsGetResponseData, error) ]
+    - 获取优化目标 [ tools/event.ConvertOptimizedGoalGet(clt *core.SDKClient, accessToken string, req *event.ConvertOptimizedGoalGetRequest) (*event.ConvertOptimizedGoalGetResponseData, error) ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
 - 事件管理(api/conversion)
   - 转化回传 [ Conversion(req *conversion.Request) error ]
+- 工具
+  - 查询工具
+    - 日志查询 [ tools/log.Search(clt *core.SDKClient, accessToken string, req *log.SearchRequest) (*log.SearchResponseData, error) ]
