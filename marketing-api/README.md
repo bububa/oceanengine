@@ -121,3 +121,6 @@
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
 - 事件管理(api/conversion)
   - 转化回传 [ Conversion(req *conversion.Request) error ]
+- 工具
+  - 查询工具
+    - 日志查询 [ tools/log.Search(clt *core.SDKClient, accessToken string, req *log.SearchRequest) (*log.SearchResponseData, error) ]
