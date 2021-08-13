@@ -28,7 +28,7 @@ type Video struct {
 	// BitRate 码率，单位bps
 	BitRate int64 `json:"bit_rate,omitempty"`
 	// Duration 视频时长
-	Duration int64 `json:"duration,omitempty"`
+	Duration float64 `json:"duration,omitempty"`
 	// MaterialID 素材id，即多合一报表中的素材id，一个素材唯一对应一个素材id
 	MaterialID uint64 `json:"material_id,omitempty"`
 	// Source 素材来源，详见【附录-素材来源】
