@@ -9,7 +9,7 @@
 [![GitHub release](https://img.shields.io/github/release/bububa/oceanengine.svg)](https://GitHub.com/bububa/oceanengine/releases/)
 
 - Oauth2 授权 (api/oauth)
-  - 生成授权链接 [ Url(clt *core.SDKClient, redirectUrl string, state string) string ]
+  - 生成授权链接 [ Url(clt *core.SDKClient, redirectUrl string, state string, materialAuth bool) string ]
   - 获取 AccessToken [ AccessToken(clt *core.SDKClient, authCode String) (*oauth.AccessTokenResponseData, error) ]
   - 刷新 Token [ RefreshToken(clt *core.SDKClient, refreshToken string) (*oauth.AccessTokenResponseData, error)]
   - 获取已授权账户 [ AdvertiserGet(clt \*core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
