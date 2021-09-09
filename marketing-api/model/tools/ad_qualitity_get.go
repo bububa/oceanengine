@@ -39,8 +39,8 @@ type AdQualityGetResponseData struct {
 
 // AdQuality 广告质量度
 type AdQuality struct {
-	// AppID app的id，可在应用下载广告中使用
-	AppID uint64 `json:"app_id,omitempty"`
+	// AdID 计划ID
+	AdID uint64 `json:"ad_id,omitempty"`
 	// QualityScore 计划综合质量得分
 	QualityScore float64 `json:"quality_score,omitempty"`
 	// CtrScore 创意质量得分
