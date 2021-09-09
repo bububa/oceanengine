@@ -37,6 +37,6 @@ type AdStatExtraInfoGetResponse struct {
 type AdStatExtraInfo struct {
 	// AdID 计划ID
 	AdID uint64 `json:"ad_id,omitempty"`
-	// LearningPhrase  学习期状态
-	LearningPhrase enum.LearningPhrase `json:"learning_phrase,omitempty"`
+	// LearningPhase  学习期状态
+	LearningPhase enum.LearningPhase `json:"learning_phase,omitempty"`
 }
