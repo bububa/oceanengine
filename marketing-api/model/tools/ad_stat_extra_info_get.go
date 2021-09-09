@@ -30,12 +30,7 @@ func (r AdStatExtraInfoGetRequest) Encode() string {
 type AdStatExtraInfoGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *AdStatExtraInfoGetResponseData `json:"data,omitempty"`
-}
-
-// AdStatExtraInfoGetResponseData json返回值
-type AdStatExtraInfoGetResponseData struct {
-	List []AdStatExtraInfo `json:"list,omitempty"`
+	Data []AdStatExtraInfo `json:"data,omitempty"`
 }
 
 // AdStatExtraInfo 广告计划学习期

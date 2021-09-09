@@ -12,8 +12,5 @@ func AdStatExtraInfoGet(clt *core.SDKClient, accessToken string, req *tools.AdSt
 	if err != nil {
 		return nil, err
 	}
-	if resp.Data == nil {
-		return nil, nil
-	}
-	return resp.Data.List, nil
+	return resp.Data, nil
 }
