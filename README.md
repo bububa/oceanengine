@@ -124,3 +124,5 @@
 - 工具
   - 查询工具
     - 日志查询 [ tools/log.Search(clt *core.SDKClient, accessToken string, req *log.SearchRequest) (*log.SearchResponseData, error) ]
+    - 查询广告质量度 [ tools.AdQualityGet(clt *core.SDKClient, accessToken string, req *tools.AdQualityGetRequest) ([]tools.AdQuality, error) ]
+    - 查询广告计划学习期状态 [ tools.AdStatExtraInfoGet(clt *core.SDKClient, accessToken string, req *tools.AdStatExtraInfoGetRequest) ([]tools.AdStatExtraInfo, error) ]
