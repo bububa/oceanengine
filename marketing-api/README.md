@@ -46,6 +46,10 @@
     - 更新计划状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *ad.UpdateStatusRequest) (*ad.UpdateResponseData, error) ]
     - 更新计划预算 [ UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) ]
     - 更新计划出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) ]
+  - 广告创意模块 (api/creative)
+    - 获取广告创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
+    - 创意详细信息 [ Read(clt *core.SDKClient, accessToken string, req *creative.ReadRequest) (*creative.CreativeDetail, error) ]
+    - 创意素材信息 [ MaterialRead(clt *core.SDKClient, accessToken string, req *creative.MaterialReadRequest) ([]creative.Material, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ AdvertiserGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
