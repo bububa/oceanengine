@@ -97,7 +97,7 @@ type GetResponseList struct {
 	// DpaProducts 商品列表，category_type为PRODUCT时有值
 	DpaProducts []uint64 `json:"dpa_products,omitempty"`
 	// DpaProductTarget 自定义筛选条件（商品投放条件）。用于圈定商品投放范围，结合商品库字段搭配判断条件，圈定商品投放范围。
-	DpaProductTarget *DpaProductTarget `json:"dpa_product_target,omitempty"`
+	DpaProductTarget []DpaProductTarget `json:"dpa_product_target,omitempty"`
 	// DpaAdtype dpa广告类型，取值范围："DPA_LINK"落地页, "DPA_APP"应用下载
 	DpaAdtype []string `json:"dpa_adtype,omitempty"`
 	// ParamsType 链接类型(落地页)，当dpa_adtype为"DPA_LINK"时有值，取值: "DPA"商品库所含链接, "CUSTOM"自定义链接
