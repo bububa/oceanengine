@@ -58,14 +58,36 @@ type GetResponseList struct {
 	QuickAppUrl string `json:"quick_app_url,omimtepty"`
 	// ExternalUrl 落地页链接，投放内容或下载方式为落地页时有值
 	ExternalUrl string `json:"external_url,omitempty"`
+	// TrackUrl 展示（监测链接）
+	TrackUrl []string `json:"track_url,omitempty"`
+	// ActionTrackUrl 点击（监测链接）
+	ActionTrackUrl []string `json:"action_track_url,omitempty"`
+	// VideoPlayEffectTrackUrl 视频有效播放（监测链接）
+	VideoPlayEffectTrackUrl []string `json:"video_play_effect_track_url,omitempty"`
+	// VideoPlayDoneTrackUrl 视频播完（监测链接）
+	VideoPlayDoneTrackUrl []string `json:"video_play_done_track_url,omitempty"`
+	// VideoPlayTrackUrl 视频播放（监测链接）
+	VideoPlayTrackUrl []string `json:"video_play_track_url,omitempty"`
+	// TrackUrlSendType 数据发送方式; 允许值: SERVER_SEND(服务器端上传), CLIENT_SEND(客户端上传)
+	TrackUrlSendType string `json:"track_url_send_type,omitempty"`
+	// DownloadType 应用下载方式，推广目的为APP时有值。返回值：DOWNLOAD_URL下载链接，QUICK_APP_URL快应用+下载链接，EXTERNAL_URL落地页链接
+	DownloadType string `json:"download_type,omitempty"`
 	// AppType 下载类型，当推广类型为应用推广且download_type为DOWNLOAD_URL或者QUICK_APP_URL时或当推广类型为DPA(商品目录推广)且dpa_adtype为DPA_APP有值
 	AppType string `json:"app_type,omitempty"`
 	// DonwloadMode 优先从系统应用商店下载（下载模式）;允许值：APP_STORE_DELIVERY（仅安卓应用下载支持）、 DEFAULT当应用下载时，默认default下载，可选用APP_STORE_DELIVERY（应用商店直投），当为该值时，将优先跳转目标应用对应手机系统应用商店安装详情页，跳转失败则使用下载链接下载。请确保投放的应用在应用商店内已上架
 	DownloadMode string `json:"download_mode,omitempty"`
 	// ConvertID 转化目标，其中convert_id数值较小时为预定义转化
 	ConvertID int `json:"convert_id,omitempty"`
+	// ExternalAction 转化类型，目前当推广类型为抖音时有值，允许值："AD_CONVERT_TYPE_FOLLOW_ACTION", "AD_CONVERT_TYPE_MESSAGE_ACTION", "AD_CONVERT_TYPE_INTERACTION"
+	ExternalAction string `json:"external_action,omitempty"`
 	// ExternalActions 转化类型，目前当推广类型为抖音时有值，允许值："AD_CONVERT_TYPE_FOLLOW_ACTION", "AD_CONVERT_TYPE_MESSAGE_ACTION", "AD_CONVERT_TYPE_INTERACTION"
 	ExternalActions []string `json:"external_actions,omitempty"`
+	// DeepExternalAction 深度转化目标
+	DeepExternalAction string `json:"deep_external_action,omitempty"`
+	// FeedDeliverySearch 搜索快投关键词，HAS_OPEN:启用，DISABLE:不启用
+	FeedDeliverySearch string `json:"feed_delivery_search,omitempty"`
+	// IntelligentFlowSwitch 智能流量开关，ON:开启，OFF:关闭
+	IntelligentFlowSwitch string `json:"intelligent_flow_switch,omitempty"`
 	// OpenUrl 直达链接(点击唤起APP)
 	OpenUrl string `json:"open_url,omitempty"`
 	// AdvancedCreativeType 附加创意类型; 允许值: ATTACHED_CREATIVE_GAME_PACKAGE游戏礼包码,ATTACHED_CREATIVE_GAME_FORM游戏表单收集,ATTACHED_CREATIVE_GAME_SUBSCRIBE游戏预约,ATTACHED_CREATIVE_NONE无推广目的为应用推广类型、下载方式选择下载链接且下载链接为安卓应用下载时才可以设置
@@ -90,6 +112,8 @@ type GetResponseList struct {
 	ProductPlatformID int64 `json:"product_platform_id,omitempty"`
 	// ProductID 商品id，当推广目的为 DPA 广告组商品类型为 SDPA 时有值
 	ProductID string `json:"product_id,omitempty"`
+	// AssetID 物件id，当广告组商品类型为 SDPA 且商品库为汽车商品库时有值
+	AssetID uint64 `json:"asset_id,omitempty"`
 	// CategoryType DPA投放范围，取值：NONE不限，"CATEGORY"选择分类，"PRODUCT"指定商品
 	CategoryType string `json:"category_type,omitempty"`
 	// DpaCategories 分类列表，category_type取值范围为CATEGORY时有值
@@ -108,8 +132,14 @@ type GetResponseList struct {
 	DpaExternalUrls []string `json:"dpa_external_urls,omitempty"`
 	// Package 应用包名，当推广类型为应用推广且download_type为DOWNLOAD_URL时或当推广类型为DPA(商品目录推广)且dpa_adtype为DPA_APP有值
 	Package string `json:"package,omitempty"`
+	// InventoryCatalog 广告位大类。 MANUAL首选媒体 SCENE场景广告位，SMART优选广告位，UNIVERSAL通投智选
+	InventoryCatalog string `json:"inventory_catalog,omitempty"`
 	// InventoryType 创意投放位置; 创建选择优选广告位时，此字段回会返回对应的优选广告位
 	InventoryType []enum.StatInventoryType `json:"inventory_type,omitempty"`
+	// SmartInventory 优选广告位，NORMAL表示不使用优选，SMART表示使用优选，UNIVERSAL表示通投
+	SmartInventory string `json:"smart_inventory,omitempty"`
+	// SceneInventory 首选场景广告位
+	SceneInventory string `json:"scene_inventory,omitempty"`
 	// PromotionType 投放内容; GOODS：商品推广;LIVE：直播; AWEME_HOME_PAGE：抖音主页;LANDING_PAGE_LINK：落地页
 	PromotionType string `json:"promotion_type,omitempty"`
 	// AwemeAccount 抖音号
@@ -154,6 +184,12 @@ type GetResponseList struct {
 	DpaProvince int `json:"dpa_province,omitempty"`
 	// DpaLocationAudience DPA行为重定向，0:不启用，1：启用
 	DpaLocationAudience int `json:"dap_location_audience,omitempty"`
+	// AssetIDs 事件管理下资产 id
+	AssetIDs []uint64 `json:"asset_ids,omitempty"`
+	// ValueOptimizedType 目标优化类型，0表示行为优化，1表示价值优化
+	ValueOptimizedType int `json:"value_optimized_type,omitempty"`
+	// ValueOptimizedOpen 价值优选，0表示关闭，1表示开启
+	ValueOptimizedOpen int `json:"value_optimized_open,omitempty"`
 	// IncludeCustomActions 包含人群包((DPA推广目的特有,格式举例[{"days": 7, "code": 1001},]， dpa_local_audience为1时有值; day可选范围:1, 7, 14, 28, 60, 90, 120, 180。
 	IncludeCustomActions json.RawMessage `json:"include_custom_actions,omitempty"`
 	// ExcludeCustomActions 排除人群包((DPA推广目的特有,格式举例{"days": 7, "code": 1002},]，day可选范围: 1, 7, 14, 28, 60, 90, 120, 180。
@@ -168,6 +204,8 @@ type GetResponseList struct {
 	FlowControlMode enum.FlowControlMode `json:"flow_control_mode,omitempty"`
 	// BudgetMode 预算类型(创建后不可修改),
 	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
+	// Budget 预算
+	Budget float64 `json:"budget,omitempty"`
 	// ScheduleType 投放时间类型
 	ScheduleType enum.ScheduleType `json:"schedule_type,omitempty"`
 	// StartTime 投放起始时间，当schedule_type为"SCHEDULE_START_END"时取值，形式如：2017-01-01 00:00
@@ -178,7 +216,7 @@ type GetResponseList struct {
 	ScheduleTime string `json:"schedule_time,omitempty"`
 	// Pricing 付费方式（计划出价类型）
 	Pricing enum.PricingType `json:"pricing,omitempty"`
-	// Bid 点击出价/展示出价，当pricing为"CPC"、"CPM"、"CPV"出价方式时有值
+	// Bid 出价
 	Bid float64 `json:"bid,omitempty"`
 	// CpaBid 目标转化出价/预期成本， 当pricing为"OCPM"、"OCPC"出价方式时有值
 	CpaBid float64 `json:"cpa_bid,omitempty"`
