@@ -88,6 +88,10 @@ func (r IntegratedRequest) Encode() string {
 		groupBy, _ := json.Marshal(r.GroupBy)
 		values.Set("group_by", string(groupBy))
 	}
+	if r.Fields != nil {
+		fields, _ := json.Marshal(r.Fields)
+		values.Set("fields", string(fields))
+	}
 	if r.OrderField != "" {
 		values.Set("order_field", r.OrderField)
 	}
