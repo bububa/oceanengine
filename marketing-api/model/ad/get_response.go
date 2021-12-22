@@ -39,7 +39,7 @@ type GetResponseList struct {
 	// AdModifyTime 计划上次修改时间
 	AdModifyTime string `json:"ad_modify_time,omitempty"`
 	// AdCreateTime 计划创建时间
-	AdCreateTime string `json:"ad_create_time,omteimpty"`
+	AdCreateTime string `json:"ad_create_time,omitempty"`
 	// UniqueFk 第三方唯一键，传该值时保证接口重试的幂等性，带有相同unique_fk的请求服务端会视为同一个广告处理。仅在创建接口传入且无法修改，如果创建时传入了已存在的唯一键值，那么会返回该唯一键值所对应的广告计划ID。该值可用于内部系统会生成的唯一ID与头条ID做关联的场景，避免超时重试实际上一次创建请求又成功导致的重复创建问题，通过unique_fk可与内部系统ID实现关联并避免重复创建，可结合实际场景选择使用，广告计划中的unique_fk要求不重复，与广告组中的unique_fk无相关。
 	UniqueFk string `json:"unique_fk,omitempty"`
 	// Status 广告计划投放状态; (进入投放之前,优先披露审核状态,此时优先于启用暂停,启用暂停信息以opt_status为准)
@@ -55,7 +55,7 @@ type GetResponseList struct {
 	// DownloadUrl 应用下载方式，推广目的为APP时有值。返回值：DOWNLOAD_URL下载链接，QUICK_APP_URL快应用+下载链接，EXTERNAL_URL落地页链接
 	DownloadUrl string `json:"download_url,omitempty"`
 	// QuickAppUrl 快应用链接，当推广类型为应用推广，且download_type为QUICK_APP_URL时有值
-	QuickAppUrl string `json:"quick_app_url,omimtepty"`
+	QuickAppUrl string `json:"quick_app_url,omitempty"`
 	// ExternalUrl 落地页链接，投放内容或下载方式为落地页时有值
 	ExternalUrl string `json:"external_url,omitempty"`
 	// TrackUrl 展示（监测链接）

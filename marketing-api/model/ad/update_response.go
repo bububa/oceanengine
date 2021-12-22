@@ -11,6 +11,10 @@ type UpdateResponse struct {
 
 // UpdateResponseData json返回值
 type UpdateResponseData struct {
+	// AdID 广告计划ID
+	AdID uint64 `json:"ad_id,omitempty"`
+	// NeedAudit 此次修改是否触发进入待审状态(1表示进入待审状态,0表示不进入待审状态)
+	NeedAudit int `json:"need_audit,omitempty"`
 	// AdIDs 广告计划ID集合
 	AdIDs []uint64 `json:"ad_ids,omitempty"`
 	// Errors 更新失败的广告计划列表

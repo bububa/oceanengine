@@ -43,6 +43,7 @@
     - 广告组更新状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *campaign.UpdateStatusRequest) (*campaign.UpdateResponseData, error) ]
   - 广告计划模块 (api/ad)
     - 获取广告计划 [ Get(clt *core.SDKClient, accessToken string, req *ad.GetRequest) (*ad.GetResponseData, error) ]
+    - 修改计划 [ Update(clt *core.SDKClient, accessToken string, req *ad.UpdateRequest) (*ad.UpdateResponseData, error) ]
     - 更新计划状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *ad.UpdateStatusRequest) (*ad.UpdateResponseData, error) ]
     - 更新计划预算 [ UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) ]
     - 更新计划出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) ]
