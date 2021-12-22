@@ -10,7 +10,7 @@ import (
 // 未展示的字段，表示不可以进行修改（修改时注意字段的描述）
 func Update(clt *core.SDKClient, accessToken string, req *ad.UpdateRequest) (*ad.UpdateResponseData, error) {
 	var resp ad.UpdateResponse
-	err := clt.Post("2/ad/update", req, &resp, accessToken)
+	err := clt.Post("2/ad/update/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}
