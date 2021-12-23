@@ -1,4 +1,4 @@
-package spda 
+package spda
 
 import (
 	"encoding/xml"
@@ -102,7 +102,11 @@ type Delivery struct {
 
 // File 商品信息文件
 type File struct {
-	XMLName xml.Name `xml:"dataset"`
+	XMLName xml.Name   `xml:"dataset"`
+	Items   []FileData `xml:"data"`
+}
+
+type FileData struct {
 	// ID 商品ID, 主键，用于区别商品
 	ID uint64 `xml:"id"`
 	// Name 商品名,
