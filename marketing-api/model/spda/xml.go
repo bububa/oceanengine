@@ -42,6 +42,11 @@ type Image struct {
 	Desc *CDATA `xml:"description,omitempty"`
 }
 
+// ImageList
+type ImageList struct {
+	Items []Image `xml:"e,omitempty"`
+}
+
 // Video 视频
 type Video struct {
 	// Url 视频链接
@@ -62,6 +67,10 @@ type Ext struct {
 	Name CDATA `xml:"name"`
 	// Value
 	Value CDATA `xml:"value"`
+}
+
+type ExtList struct {
+	Items []Ext `xml:"e"`
 }
 
 // GPS 投放范围
@@ -124,7 +133,7 @@ type FileData struct {
 	// Image 商品主图, 基础商品图，展示在信息流中的原始素材
 	Image Image `xml:"image"`
 	// Images 图片列表, 扩展商品图，商品图片的补充, "和image不一致的最好大于3张的商品图片，如果要投放视频广告建议至少5张图片，像素大小690*388以上（5K以上），图片的顺序默认为广告主认为按重要性传输的，与image比例一致，不超过10张"
-	Images []Image `xml:"images>e"`
+	Images *ImageList `xml:"images,omitempty"`
 	// Video 视频内容，7-30s之间, {""url"":""www.xxx.com"",""width"":1280,""height"":720,""duration"":15,""ratio"":4818//码率,单位kps}，抖音：1280*720（横板）或720*1280（竖版）URL应保证可用，浏览器可打开，比例一致，链接要保持长久有效，不能是临时链接"
 	Video *Video `xml:"video,omitempty"`
 	// BrandID 品牌ID, "应保证每一种品牌的id唯一性，用于相似商品推荐时强烈建议传，否则影响投放效果，如组图"
@@ -210,7 +219,7 @@ type FileData struct {
 	// Tag 商品标签
 	Tag *CDATA `xml:"tag,omitempty"`
 	// Ext 扩展字段; 广告主定制，通知头条方
-	Ext []Ext `xml:"ext>e"`
+	Ext *ExtList `xml:"ext,omitempty"`
 	// Target 定向字段
 	Target *Target `xml:"target,omitempty"`
 	// Delivery 投放控制字段
