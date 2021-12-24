@@ -42,5 +42,5 @@ type SuggestionGetResponseData struct {
 	// ExpireTimestamp 诊断id的过期时间，格式：YYYY-MM-DD HH:mm:ss
 	ExpireTimestamp string `json:"expire_timestamp,omitempty"`
 	// SuggestList 获取的诊断建议列表
-	SuggestList []Suggest `json:"suggest_list,omitempty"`
+	SuggestionList []AdSuggestion `json:"suggestion_list,omitempty"`
 }

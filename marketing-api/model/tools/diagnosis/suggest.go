@@ -1,7 +1,7 @@
 package diagnosis
 
-// Suggest 诊断建议
-type Suggest struct {
+// AdSuggestion 诊断建议
+type AdSuggestion struct {
 	// AdID 计划id
 	AdID uint64 `json:"ad_id,omitempty"`
 	// SceneList 计划对应的场景列表
