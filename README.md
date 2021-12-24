@@ -134,6 +134,7 @@
     - 获取广告预览二维码 [ tools/adpreview.QrcodeGet(clt *core.SDKClient, accessToken string, req *adpreview.QrcodeGetRequest) (*adpreview.QrcodeGetResponseData, error) ]
     - 获取地域列表 [ tools.RegionGet(clt *core.SDKClient, accessToken string, req *tools.RegionGetRequest) ([]tools.Region, error) ]
     - 获取行业列表 [ tools.IndustryGet(clt *core.SDKClient, accessToken string, req *tools.IndustryGetRequest) ([]tools.Industry, error) ]
+    - 获取预估点击成本 [ tools.EstimatedPriceGet(clt *core.SDKClient, accessToken string, req *tools.EstimatedPriceGetRequest) (*tools.EstimatedPrice, error) ]
   - 行为兴趣词管理 (tools/interestaction)
     - 行为类目查询 [ ActionCategory(clt *core.SDKClient, accessToken string, req *interestaction.ActionCategoryRequest) ([]interestaction.Object, error) ]
     - 行为关键词查询 [ ActionKeyword(clt *core.SDKClient, accessToken string, req *interestaction.ActionKeywordRequest) ([]interestaction.Object, error) ]
