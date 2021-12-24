@@ -25,7 +25,7 @@ func (r SuggestionGetRequest) Encode() string {
 	ids, _ := json.Marshal(r.AdIDs)
 	values.Set("ad_ids", string(ids))
 	scenes, _ := json.Marshal(r.Scenes)
-	values.Set("scene", string(scenes))
+	values.Set("scenes", string(scenes))
 	return values.Encode()
 }
 
