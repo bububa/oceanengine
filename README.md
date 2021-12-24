@@ -139,3 +139,10 @@
     - 兴趣关键词查询 [ InterestKeyword(clt *core.SDKClient, accessToken string, req *interestaction.InterestKeywordRequest) ([]interestaction.Object, error) ]
     - 兴趣行为类目关键词ID转词 [ Id2Word(clt *core.SDKClient, accessToken string, req *interestaction.Id2WordRequest) (*interestaction.Id2WordResponseData, error) ]
     - 获取行为兴趣推荐关键词 [ KeywordSuggest(clt *core.SDKClient, accessToken string, req *interestaction.KeywordSuggestRequest) ([]interestaction.Object, error) ]
+  - 定向包管理 (audiencepackage)
+    - 获取定向包 [ Get(clt *core.SDKClient, accessToken string, req *audiencepackage.GetRequest) (*audiencepackage.GetResponseData, error) ]
+    - 创建定向包 [ Create(clt *core.SDKClient, accessToken string, req *audiencepackage.CreateRequest) (uint64, error) ]
+    - 更新定向包 [ Update(clt *core.SDKClient, accessToken string, req *audiencepackage.UpdateRequest) (uint64, error) ]
+    - 删除定向包 [ Delete(clt *core.SDKClient, accessToken string, req *audiencepackage.DeleteRequest) (uint64, error) ]
+    - 计划绑定定向包 [ AdBind(clt *core.SDKClient, accessToken string, req *audiencepackage.AdBindRequest) (uint64, error) ]
+    - 定向包解绑 [ AdUnbind(clt *core.SDKClient, accessToken string, req *audiencepackage.AdBindRequest) (uint64, error) ]
