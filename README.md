@@ -135,6 +135,9 @@
     - 获取地域列表 [ tools.RegionGet(clt *core.SDKClient, accessToken string, req *tools.RegionGetRequest) ([]tools.Region, error) ]
     - 获取行业列表 [ tools.IndustryGet(clt *core.SDKClient, accessToken string, req *tools.IndustryGetRequest) ([]tools.Industry, error) ]
     - 获取预估点击成本 [ tools.EstimatedPriceGet(clt *core.SDKClient, accessToken string, req *tools.EstimatedPriceGetRequest) (*tools.EstimatedPrice, error) ]
+  - 获取计划诊断信息 (tools/diagnosis)
+    - 获取计划诊断建议 [ SuggestionGet(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionGetRequest) (*diagnosis.SuggestionGetResponseData, error) ]
+    - 采纳计划诊断建议 [ SuggestionAccept(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionAcceptRequest) (*diagnosis.SuggestionAcceptResponseData, error) ]
   - 行为兴趣词管理 (tools/interestaction)
     - 行为类目查询 [ ActionCategory(clt *core.SDKClient, accessToken string, req *interestaction.ActionCategoryRequest) ([]interestaction.Object, error) ]
     - 行为关键词查询 [ ActionKeyword(clt *core.SDKClient, accessToken string, req *interestaction.ActionKeywordRequest) ([]interestaction.Object, error) ]
