@@ -14,8 +14,8 @@ type SuggestionGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// AdIDs 广告计划ID列表，最多100个
 	AdIDs []uint64 `json:"ad_ids,omitempty"`
-	// Scene 希望获取建议的场景，允许值：CLEAN 清理低质计划场景、POTENTIAL 获取潜力计划场景
-	Scene string `json:"scene,omitempty"`
+	// Scenes 希望获取建议的场景，允许值：CLEAN 清理低质计划场景、POTENTIAL 获取潜力计划场景
+	Scenes []string `json:"scenes,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -24,7 +24,8 @@ func (r SuggestionGetRequest) Encode() string {
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.AdIDs)
 	values.Set("ad_ids", string(ids))
-	values.Set("scene", r.Scene)
+	scenes, _ := json.Marshal(r.Scenes)
+	values.Set("scene", string(scenes))
 	return values.Encode()
 }
 
