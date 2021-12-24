@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"strconv"
 
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
@@ -25,7 +26,7 @@ type GetFiltering struct {
 	// LandingType 定向包类型
 	LandingType string `json:"landing_type,omitempty"`
 	// DeliveryRange 广告投放范围
-	DeliveryRange string `json:"delivery_range,omitempty"`
+	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
 }
 
 // Encode implement GetRequest interface
