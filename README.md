@@ -132,3 +132,10 @@
     - 查询广告质量度 [ tools.AdQualityGet(clt *core.SDKClient, accessToken string, req *tools.AdQualityGetRequest) ([]tools.AdQuality, error) ]
     - 查询广告计划学习期状态 [ tools.AdStatExtraInfoGet(clt *core.SDKClient, accessToken string, req *tools.AdStatExtraInfoGetRequest) ([]tools.AdStatExtraInfo, error) ]
     - 获取广告预览二维码 [ tools/adpreview.QrcodeGet(clt *core.SDKClient, accessToken string, req *adpreview.QrcodeGetRequest) (*adpreview.QrcodeGetResponseData, error) ]
+  - 行为兴趣词管理 (tools/interestaction)
+    - 行为类目查询 [ ActionCategory(clt *core.SDKClient, accessToken string, req *interestaction.ActionCategoryRequest) ([]interestaction.Object, error) ]
+    - 行为关键词查询 [ ActionKeyword(clt *core.SDKClient, accessToken string, req *interestaction.ActionKeywordRequest) ([]interestaction.Object, error) ]
+    - 兴趣类目查询 [ InterestCategory(clt *core.SDKClient, accessToken string, req *interestaction.InterestCategoryRequest) ([]interestaction.Object, error) ]
+    - 兴趣关键词查询 [ InterestKeyword(clt *core.SDKClient, accessToken string, req *interestaction.InterestKeywordRequest) ([]interestaction.Object, error) ]
+    - 兴趣行为类目关键词ID转词 [ Id2Word(clt *core.SDKClient, accessToken string, req *interestaction.Id2WordRequest) (*interestaction.Id2WordResponseData, error) ]
+    - 获取行为兴趣推荐关键词 [ KeywordSuggest(clt *core.SDKClient, accessToken string, req *interestaction.KeywordSuggestRequest) ([]interestaction.Object, error) ]
