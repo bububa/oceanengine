@@ -11,7 +11,7 @@ type CreateRequest struct {
 	// AdID 待创建搜索关键词的计划ID
 	AdID uint64 `json:"ad_id,omitempty"`
 	// Keywords 待添加搜索关键词列表，一次最多添加100个关键词，一个计划最多可添加1000
-	Keywords []Keyword `json:"keyword,omitempty"`
+	Keywords []Keyword `json:"keywords,omitempty"`
 }
 
 // Encode implement PostRequest interface
