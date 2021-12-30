@@ -9,7 +9,7 @@ type Object struct {
 	// Name 名称
 	Name string `json:"name,omitempty"`
 	// Num 覆盖人数
-	Num json.Number `json:"num,omitempty"`
+	Num string `json:"num,omitempty"`
 	// Children 子类目
 	Children []Object `json:"children,omitempty"`
 }
