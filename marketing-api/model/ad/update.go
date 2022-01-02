@@ -92,7 +92,7 @@ type UpdateRequest struct {
 	// ActionWords 行为关键词，当interest_action_mode传CUSTOM时有效
 	ActionWords []uint64 `json:"action_words,omitempty"`
 	// InterestCategories 兴趣类目词，当interest_action_mode传CUSTOM时有效
-	InterestCategories []uint64 `json:"Interest_categories,omitempty"`
+	InterestCategories []uint64 `json:"interest_categories,omitempty"`
 	// InterestWords 兴趣关键词, 传入具体的词id，非兴趣词包id，可以通过词包相关接口或者兴趣关键词word2id接口获取词id，一个计划下最多创建1000个关键词。当interest_action_mode传CUSTOM时有效
 	InterestWords []uint64 `json:"interest_words,omitempty"`
 	// AwemeFanBehaviors 抖音达人互动用户行为类型
