@@ -17,6 +17,8 @@ type Id2WordRequest struct {
 	IDs []uint64 `json:"ids,omitempty"`
 	// TagType 查询类型：类目还是关键词; 允许值：CATEGORY（类目）、KEYWORD（关键词）
 	TagType string `json:"tag_type,omitempty"`
+	// TargetingType 查询目标：兴趣还是行为; 允许值：ACTION（行为）、INTEREST（兴趣）
+	TargetingType string `json:"targeting_type,omitempty"`
 	// ActionScene 行为场景，查询目标为行为时必填，兴趣不生效;允许值：E-COMMERCE、NEWS、APP
 	ActionScene enum.ActionScene `json:"action_scene,omitempty"`
 	// ActionDays 行为天数，查询目标为行为时必填，兴趣不生效; 允许值：7, 15, 30, 60, 90, 180, 365
@@ -30,6 +32,7 @@ func (r Id2WordRequest) Encode() string {
 	ids, _ := json.Marshal(r.IDs)
 	values.Set("ids", string(ids))
 	values.Set("tag_type", r.TagType)
+	values.Set("targeting_type", r.TargetingType)
 	if r.ActionScene != enum.UNKNOWN_SCENE {
 		values.Set("action_scene", string(r.ActionScene))
 	}
