@@ -1,6 +1,7 @@
 package interestaction
 
 import (
+	"encoding/json"
 	"net/url"
 	"strconv"
 
@@ -13,7 +14,7 @@ type ActionCategoryRequest struct {
 	// AdvertiserID 广告主id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// ActionScene 行为场景，查询目标为行为时必填，兴趣不生效;允许值：E-COMMERCE、NEWS、APP
-	ActionScene enum.ActionScene `json:"action_scene,omitempty"`
+	ActionScene []enum.ActionScene `json:"action_scene,omitempty"`
 	// ActionDays 行为天数，查询目标为行为时必填，兴趣不生效; 允许值：7, 15, 30, 60, 90, 180, 365
 	ActionDays int `json:"action_days,omitempty"`
 }
@@ -22,7 +23,8 @@ type ActionCategoryRequest struct {
 func (r ActionCategoryRequest) Encode() string {
 	values := &url.Values{}
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	values.Set("action_scene", string(r.ActionScene))
+	scene, _ := json.Marshal(r.ActionScene)
+	values.Set("action_scene", string(scene))
 	values.Set("action_days", strconv.Itoa(r.ActionDays))
 	return values.Encode()
 }
