@@ -264,14 +264,8 @@ type Audience struct {
 	RetargetingTagsExclude []uint64 `json:"retargeting_tags_exclude,omitempty"`
 	// InterestActionMode 行为兴趣;取值："UNLIMITED"不限,"CUSTOM"自定义,"RECOMMEND"系统推荐。若与自定义人群同时使用，系统推荐("RECOMMEND")不生效;仅推广范围为默认时可填，且不可与老版行为兴趣定向同时填写，否则会报错
 	InterestActionMode string `json:"interest_action_mode,omitempty"`
-	// ActionScene 行为场景
-	ActionScene []enum.ActionScene `json:"action_scene,omitempty"`
-	// ActionDays 用户发生行为天数，当interest_action_mode传CUSTOM时有效
-	ActionDays uint `json:"action_days,omitempty"`
-	// ActionCategories 行为类目词，当interest_action_mode传CUSTOM时有效
-	ActionCategories []uint64 `json:"action_categories,omitempty"`
-	// ActionWords 行为关键词，当interest_action_mode传CUSTOM时有效
-	ActionWords []uint64 `json:"action_words,omitempty"`
+	// Action 行为内容
+	Action *AudienceAction `json:"action,omitempty"`
 	// InterestCategories 兴趣类目词，当interest_action_mode传CUSTOM时有效
 	InterestCategories []uint64 `json:"Interest_categories,omitempty"`
 	// InterestWords 兴趣关键词, 传入具体的词id，非兴趣词包id，可以通过词包相关接口或者兴趣关键词word2id接口获取词id，一个计划下最多创建1000个关键词。当interest_action_mode传CUSTOM时有效
@@ -330,4 +324,16 @@ type Audience struct {
 	AutoExtendEnabled int `json:"auto_extend_enabled,omitempty"`
 	// AutoExtendTarget 可放开定向。当auto_extend_enabled=1 时选填。详见：【附录-可开放定向】。缺省为全不选。
 	AutoExtendTarget []string `json:"auto_extend_targets,omitempty"`
+}
+
+// AudienceAction 行为内容
+type AudienceAction struct {
+	// ActionScene 行为场景
+	ActionScene []enum.ActionScene `json:"action_scene,omitempty"`
+	// ActionDays 用户发生行为天数，当interest_action_mode传CUSTOM时有效
+	ActionDays uint `json:"action_days,omitempty"`
+	// ActionCategories 行为类目词，当interest_action_mode传CUSTOM时有效
+	ActionCategories []uint64 `json:"action_categories,omitempty"`
+	// ActionWords 行为关键词，当interest_action_mode传CUSTOM时有效
+	ActionWords []uint64 `json:"action_words,omitempty"`
 }
