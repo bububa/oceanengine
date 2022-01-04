@@ -19,6 +19,8 @@ type GetRequest struct {
 	StartDate time.Time `json:"start_date,omitempty"`
 	// EndDate 结束日期,格式YYYY-MM-DD,只支持查询2016-10-26及以后的日期，时间跨度不能超过30天
 	EndDate time.Time `json:"end_date,omitempty"`
+	// Fields 指定需要的指标名称
+	Fields []string `json:"fields,omitempty"`
 	// GroupBy 分组条件默认为 STAT_GROUP_BY_FIELD_STAT_TIME
 	GroupBy []enum.StatGroupBy `json:"group_by,omitempty"`
 	// TimeGranularity 时间粒度, 默认值: STAT_TIME_GRANULARITY_DAILY
@@ -87,6 +89,10 @@ func (r GetRequest) Encode() string {
 	}
 	if r.AdvertiserID > 0 {
 		values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	}
+	if len(r.Fields) > 0 {
+		fields, _ := json.Marshal(r.Fields)
+		values.Set("fields", string(fields))
 	}
 	if r.GroupBy != nil {
 		groupBy, _ := json.Marshal(r.GroupBy)
