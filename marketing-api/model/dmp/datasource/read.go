@@ -102,7 +102,7 @@ type Audience struct {
 	// CustomType 人群类型，枚举值见【DMP相关-人群类型】
 	CustomType enum.DmpCustomType `json:"custom_type,omitempty"`
 	// Source 来源，枚举值见【DMP相关-人群包来源】
-	Source enum.DmpSource `json:"source,omitempty"`
+	Source int `json:"source,omitempty"`
 	// Status 人群包状态，枚举值见【DMP相关-人群包状态】
 	Status int `json:"status,omitempty"`
 	// PushStatus 推送状态，枚举值见【DMP相关-DMP推送状态】
