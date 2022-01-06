@@ -153,3 +153,10 @@
     - 删除定向包 [ Delete(clt *core.SDKClient, accessToken string, req *audiencepackage.DeleteRequest) (uint64, error) ]
     - 计划绑定定向包 [ AdBind(clt *core.SDKClient, accessToken string, req *audiencepackage.AdBindRequest) (uint64, error) ]
     - 定向包解绑 [ AdUnbind(clt *core.SDKClient, accessToken string, req *audiencepackage.AdBindRequest) (uint64, error) ]
+  - 一键起量管理 (tools/adraise)
+    - 启动一键起量 [ Set(clt *core.SDKClient, accessToken string, req *adraise.SetRequest) (enum.AdRaiseStatus, error) ]
+    - 获取当前起量预估值 [ Estimate(clt *core.SDKClient, accessToken string, req *adraise.EstimateRequest) (int64, error) ]
+    - 获取当前起量状态 [ Status(clt *core.SDKClient, accessToken string, req *adraise.StatusRequest) (map[uint64]enum.AdRaiseStatus, error) ]
+    - 获取起量的后验数据 [ Result(clt *core.SDKClient, accessToken string, req *adraise.ResultRequest) (*adraise.Result, error) ]
+    - 获取一键起量报告 [ Report(clt *core.SDKClient, accessToken string, req *adraise.ReportRequest) (*adraise.ReportResponseData, error) ]
+    - 获取起量版本信息 [ Version(clt *core.SDKClient, accessToken string, req *adraise.VersionRequest) (*adraise.VersionResponseData, error) ]
