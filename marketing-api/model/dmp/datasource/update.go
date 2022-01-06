@@ -17,7 +17,7 @@ type UpdateRequest struct {
 	// DataFormat 数据格式, 枚举值:"0"：ProtocolBuffer
 	DataFormat int `json:"data_format"`
 	// FileStorageType 数据存储类型, 枚举值:"0"：API
-	FileStorageType int `json:"file_storate_type"`
+	FileStorageType int `json:"file_storage_type"`
 	// FilePaths 通过【数据源文件上传】接口得到的文件路径，注意：一次上传最多1000个
 	FilePaths []string `json:"file_paths,omitempty"`
 }
