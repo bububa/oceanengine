@@ -1,6 +1,10 @@
 package comment
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/bububa/oceanengine/marketing-api/model"
+)
 
 // Reply 评论回复
 type Reply struct {
@@ -9,7 +13,7 @@ type Reply struct {
 	// ReplyID 回复ID
 	ReplyID json.Number `json:"reply_id,omitempty"`
 	// ReplyToReplyID 二级回复所属的上级回复ID，只有二级回复才有。二级回复：表示回复“评论中其他回复内容”
-	ReplyToReplyID string `json:"reply_to_reply_id,omitempty"`
+	ReplyToReplyID model.FlexUint64 `json:"reply_to_reply_id,omitempty"`
 	// UserInfo 回复用户信息
 	UserInfo ReplyUserInfo `json:"user_info,omitempty"`
 	// ReplyText 回复内容
