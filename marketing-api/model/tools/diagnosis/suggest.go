@@ -1,9 +1,11 @@
 package diagnosis
 
+import "github.com/bububa/oceanengine/marketing-api/model"
+
 // AdSuggestion 诊断建议
 type AdSuggestion struct {
 	// AdID 计划id
-	AdID uint64 `json:"ad_id,omitempty"`
+	AdID model.FlexUint64 `json:"ad_id,omitempty"`
 	// SceneList 计划对应的场景列表
 	SceneList []SuggestScene `json:"scene_list,omitempty"`
 }
