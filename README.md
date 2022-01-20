@@ -112,6 +112,12 @@
   - 素材推送 [ MaterialBind(clt *core.SDKClient, accessToken string, req *file.MaterialBindRequest) ([]file.FailedMaterialBind, error) ]
   - 批量删除视频素材 [ VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) ]
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
+- 巨量星图 (api/star)
+  - 获取星图客户任务列表 [ DemandList(clt *core.SDKClient, accessToken string, req *star.DemandListRequest) (*star.DemandListResponseData, error) ]
+  - 获取星图客户任务订单列表 [ DemandOrderList(clt *core.SDKClient, accessToken string, req *star.DemandOrderListRequest) (*star.DemandOrderListResponseData, error) ]
+  - 获取订单投后分析报表 [ ReportOrderOverviewGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResponseData, error) ]
+  - 获取订单投后受众报表 [ ReportOrderUserDistributionGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderUserDistributionGetRequest) (*star.ReportOrderUserDistributionGetResponseData, error) ]
+  - 获取星图订单投后线索 [ ClueList(clt *core.SDKClient, accessToken string, req *star.ClueListRequest) (*star.ClueListResponseData, error) ]
 - 建站管理
   - 第三方落地页管理
     - 获取第三方落地页站点列表 [ tools/thirdsite.Get(clt *core.SDKClient, accessToken string, req *thirdsite.GetRequest) (*thirdsite.GetResponseData, error) ]

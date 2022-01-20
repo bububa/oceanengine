@@ -100,6 +100,12 @@
     - 批量新增组否定词 [ CampaignAdd(clt *core.SDKClient, accessToken string, req *privativeword.CampaignAddRequest) (*privativeword.CampaignAddResponseData, error) ]
     - 设置组否定词 [ CampaignUpdate(clt *core.SDKClient, accessToken string, req *privativeword.AdUpdateRequest) (uint64, error) ]
     - 获取否定词列表 [ Get(clt *core.SDKClient, accessToken string, req *privativeword.GetRequest) (*privativeword.GetResponseData, error) ]
+- 巨量星图 (api/star)
+  - 获取星图客户任务列表 [ DemandList(clt *core.SDKClient, accessToken string, req *star.DemandListRequest) (*star.DemandListResponseData, error) ]
+  - 获取星图客户任务订单列表 [ DemandOrderList(clt *core.SDKClient, accessToken string, req *star.DemandOrderListRequest) (*star.DemandOrderListResponseData, error) ]
+  - 获取订单投后分析报表 [ ReportOrderOverviewGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResponseData, error) ]
+  - 获取订单投后受众报表 [ ReportOrderUserDistributionGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderUserDistributionGetRequest) (*star.ReportOrderUserDistributionGetResponseData, error) ]
+  - 获取星图订单投后线索 [ ClueList(clt *core.SDKClient, accessToken string, req *star.ClueListRequest) (*star.ClueListResponseData, error) ]
 - 素材管理 (api/file)
   - 上传广告主图片 [ ImageAdvertiser(clt *core.SDKClient, accessToken string, req *file.ImageAdvertiserRequest) (*file.Image, error) ]
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
