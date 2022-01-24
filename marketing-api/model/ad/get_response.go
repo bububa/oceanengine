@@ -46,7 +46,7 @@ type GetResponseList struct {
 	Status enum.AdStatus `json:"status,omitempty"`
 	// LearningPhase 学习期状态; 许值：DEFAULT（默认，不在学习期中）、LEARNING（学习中）、LEARNED（学习成功）、LEARN_FAILED（学习失败）;关于学习期，此字段即将废弃关于学习期，此字段即将废弃
 	LearningPhase enum.LearningPhase `json:"learning_phase,omitempty"`
-	// OpStatus 广告计划操作状态, 允许值: "AD_STATUS_ENABLE","AD_STATUS_DISABLE"
+	// OptStatus 广告计划操作状态, 允许值: "AD_STATUS_ENABLE","AD_STATUS_DISABLE"
 	OptStatus enum.AdOptStatus `json:"opt_status,omitempty"`
 	// DeliveryRange 投放范围
 	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`

@@ -14,8 +14,8 @@ type Material struct {
 	Title string `json:"title,omitempty"`
 	// Status 创意状态
 	Status enum.CreativeStatus `json:"status,omitempty"`
-	// OpStatus 创意操作状态
-	OpStatus enum.CreativeOpStatus `json:"op_status,omitempty"`
+	// OptStatus 创意操作状态
+	OptStatus enum.CreativeOptStatus `json:"op_status,omitempty"`
 	// ImageMode 创意类型
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// ImageInfo 图片素材信息
