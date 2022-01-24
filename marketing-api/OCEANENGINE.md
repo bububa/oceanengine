@@ -50,7 +50,11 @@
     - 更新计划出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) ]
   - 广告创意模块 (api/creative)
     - 获取广告创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
+    - 创建自定义创意 [ CustomCreativeCreate(clt *core.SDKClient, accessToken string, req *creative.CustomCreativeCreateRequest) (*creative.CustomCreativeCreateResponseData, error) ]
+    - 修改自定义创意 [ CustomCreativeUpdate(clt *core.SDKClient, accessToken string, req *creative.CustomCreativeUpdateRequest) (*creative.CustomCreativeCreateResponseData, error) ]
+    - 创建广告创意 [ Create(clt *core.SDKClient, accessToken string, req *creative.CreateRequest) (*creative.CreateResponseData, error) ]
     - 创意详细信息 [ Read(clt *core.SDKClient, accessToken string, req *creative.ReadRequest) (*creative.CreativeDetail, error) ]
+    - 更新创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 创意素材信息 [ MaterialRead(clt *core.SDKClient, accessToken string, req *creative.MaterialReadRequest) ([]creative.Material, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
