@@ -145,17 +145,7 @@ type CreativeDetail struct {
 	// CollocationType 云游戏类型，允许值"CLOUD_GAME"云游戏
 	CollocationType string `json:"collocation_type,omitempty"`
 	// Supplements 云游戏素材
-	Supplements []Supplement `json:'supplements,omitempty'`
-}
-
-// PlayableInfo 基础试玩素材信息，使用基础试玩素材时返回
-type PlayableInfo struct {
-	// PlayableUrlBasic 基础试玩素材url
-	PlayableUrlBasic string `json:"playable_url_basic,omitempty"`
-	// PlayableOrientation 基础试玩素材方向
-	PlayableOrientation enum.PlayableOrientation `json:"playable_orientation,omitempty"`
-	// PreviewUrl 基础试玩素材预览图
-	PreviewUrl string `json:"preview_url,omitempty"`
+	Supplements []Supplement `json:"supplements,omitempty"`
 }
 
 // Supplement 云游戏素材
