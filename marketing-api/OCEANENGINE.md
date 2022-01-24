@@ -1,4 +1,4 @@
-# 巨量引擎 MarketingAPI Golang SDK
+# 巨量引擎开放平台 Golang SDK
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/bububa/oceanengine.svg)](https://pkg.go.dev/github.com/bububa/oceanengine)
 [![Go](https://github.com/bububa/oceanengine/actions/workflows/go.yml/badge.svg)](https://github.com/bububa/oceanengine/actions/workflows/go.yml)
@@ -159,6 +159,11 @@
     - 兴趣关键词查询 [ InterestKeyword(clt *core.SDKClient, accessToken string, req *interestaction.InterestKeywordRequest) ([]interestaction.Object, error) ]
     - 兴趣行为类目关键词ID转词 [ Id2Word(clt *core.SDKClient, accessToken string, req *interestaction.Id2WordRequest) (*interestaction.Id2WordResponseData, error) ]
     - 获取行为兴趣推荐关键词 [ KeywordSuggest(clt *core.SDKClient, accessToken string, req *interestaction.KeywordSuggestRequest) ([]interestaction.Object, error) ]
+  - 动态创意词包管理 (tools/creativeword)
+    - 创建动态创意词包 [ Create(clt *core.SDKClient, accessToken string, req *creativeword.CreateRequest) (uint64, error) ]
+    - 查询动态创意词包 [ Select(clt *core.SDKClient, accessToken string, req *creativeword.SelectRequest) ([]creativeword.CreativeWord, error) ]
+    - 更新动态创意词包 [ Update(clt *core.SDKClient, accessToken string, req *creativeword.UpdateRequest) (uint64, error) ]
+    - 删除动态创意词包 [ Delete(clt *core.SDKClient, accessToken string, req *creativeword.DeleteRequest) (uint64, error) ]
   - 定向包管理 (audiencepackage)
     - 获取定向包 [ Get(clt *core.SDKClient, accessToken string, req *audiencepackage.GetRequest) (*audiencepackage.GetResponseData, error) ]
     - 创建定向包 [ Create(clt *core.SDKClient, accessToken string, req *audiencepackage.CreateRequest) (uint64, error) ]
