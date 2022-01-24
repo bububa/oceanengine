@@ -39,4 +39,10 @@ type Video struct {
 	Filename string `json:"filename,omitempty"`
 	// Labels 视频标签
 	Labels []string `json:"labels,omitempty"`
+	// AwemeItemID 抖音短视频 ID
+	AwemeItemID uint64 `json:"aweme_item_id,omitempty"`
+	// Title 抖音中的视频标题
+	Title string `json:"title,omitempty"`
+	// IsRecommend 是否推荐; 0 不推荐 1 推荐
+	IsRecommend int `json:"is_recommend,omitempty"`
 }
