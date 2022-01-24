@@ -34,8 +34,8 @@ type Creative struct {
 	CreativeWordIDs []uint64 `json:"creative_word_ids,omitempty"`
 	// Status 创意素材状态
 	Status enum.CreativeStatus `json:"status,omitempty"`
-	// OpStatus 创意素材操作状态
-	OpStatus enum.CreativeOpStatus `json:"op_status,omitempty"`
+	// OptStatus 创意素材操作状态
+	OptStatus enum.CreativeOptStatus `json:"opt_status,omitempty"`
 	// ImageMode 创意素材类型
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// ImageIDs 图片素材，图片ID列表
