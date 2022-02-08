@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net/http"
 )
 
 // PrintError print error with debug
@@ -45,6 +46,26 @@ func PrintPostJSONRequest(url string, body []byte, debug bool) {
 		body = buf.Bytes()
 	}
 	log.Printf(format, url, body)
+}
+
+// PrintJSONRequest print json request with debug
+func PrintJSONRequest(method string, url string, header http.Header, body []byte, debug bool) {
+	if !debug {
+		return
+	}
+
+	const format = "[DEBUG] [API] JSON %s %s\n" +
+		"http request header:\n%s\n" +
+		"http request body:\n%s\n"
+
+	buf := bytes.NewBuffer(make([]byte, 0, len(body)+1024))
+	if err := json.Indent(buf, body, "", "    "); err == nil {
+		body = buf.Bytes()
+	}
+
+	headerJson, _ := json.Marshal(header)
+
+	log.Printf(format, method, url, headerJson, body)
 }
 
 // PrintPostMultipartRequest print multipart/form-data post request with debug
