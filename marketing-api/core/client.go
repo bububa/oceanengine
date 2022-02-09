@@ -3,7 +3,7 @@ package core
 import (
 	"bytes"
 	"crypto/sha256"
-	"fmt"
+	"encoding/hex"
 	"io"
 	"mime/multipart"
 	"net/http"
@@ -50,9 +50,15 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	if req != nil {
 		reqBytes = req.Encode()
 	}
-	reqUrl := fmt.Sprintf("%s%s", BASE_URL, gw)
+	var builder strings.Builder
+	builder.WriteString(BASE_URL)
+	builder.WriteString(gw)
+	reqUrl := builder.String()
 	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
+	if err != nil {
+		return err
+	}
 	httpReq.Header.Add("Content-Type", "application/json")
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
@@ -60,76 +66,47 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
-	if err != nil {
-		return err
-	}
-
-	httpResp, err := http.DefaultClient.Do(httpReq)
-	if err != nil {
-		return err
-	}
-	defer httpResp.Body.Close()
-	if resp == nil {
-		resp = &model.BaseResponse{}
-	}
-	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
-	if err != nil {
-		debug.PrintError(err, c.debug)
-		return err
-	}
-	if resp.IsError() {
-		return resp
-	}
-	return nil
+	return c.fetch(httpReq, resp)
 }
 
 // Get get api
 func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	var reqQuery string
+	var builder strings.Builder
+	builder.WriteString(BASE_URL)
+	builder.WriteString(gw)
 	if req != nil {
-		reqQuery = req.Encode()
+		builder.WriteString("?")
+		builder.WriteString(req.Encode())
 	}
-	reqUrl := fmt.Sprintf("%s%s?%s", BASE_URL, gw, reqQuery)
+	reqUrl := builder.String()
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
+	if err != nil {
+		return err
+	}
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
 	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
-	if err != nil {
-		return err
-	}
-
-	httpResp, err := http.DefaultClient.Do(httpReq)
-	if err != nil {
-		return err
-	}
-	defer httpResp.Body.Close()
-	if resp == nil {
-		resp = &model.BaseResponse{}
-	}
-	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
-	if err != nil {
-		debug.PrintError(err, c.debug)
-		return err
-	}
-	if resp.IsError() {
-		return resp
-	}
-	return nil
+	return c.fetch(httpReq, resp)
 }
 
-// GetWithJsonBody get api with json body
-func (c *SDKClient) GetWithJsonBody(gw string, req model.GetWithJsonBodyRequest, resp model.Response, accessToken string) error {
-	var jsonBody []byte
+// GetWithData get api with json body
+func (c *SDKClient) GetWithData(gw string, req model.GetWithDataRequest, resp model.Response, accessToken string) error {
+	var data []byte
 	if req != nil {
-		jsonBody = req.GetJsonBody()
+		data = req.Encode()
 	}
-
-	reqUrl := fmt.Sprintf("%s%s", BASE_URL, gw)
-	httpReq, err := http.NewRequest("GET", reqUrl, bytes.NewReader(jsonBody))
+	var builder strings.Builder
+	builder.WriteString(BASE_URL)
+	builder.WriteString(gw)
+	reqUrl := builder.String()
+	httpReq, err := http.NewRequest("GET", reqUrl, bytes.NewReader(data))
+	if err != nil {
+		return err
+	}
 	httpReq.Header.Add("Content-Type", "application/json")
 
 	if accessToken != "" {
@@ -139,31 +116,8 @@ func (c *SDKClient) GetWithJsonBody(gw string, req model.GetWithJsonBodyRequest,
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
 
-	debug.PrintJSONRequest("GET", reqUrl, httpReq.Header, jsonBody, c.debug)
-
-	if err != nil {
-		return err
-	}
-
-	httpResp, err := http.DefaultClient.Do(httpReq)
-	if err != nil {
-		return err
-	}
-	defer func(Body io.ReadCloser) {
-		_ = Body.Close()
-	}(httpResp.Body)
-	if resp == nil {
-		resp = &model.BaseResponse{}
-	}
-	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
-	if err != nil {
-		debug.PrintError(err, c.debug)
-		return err
-	}
-	if resp.IsError() {
-		return resp
-	}
-	return nil
+	debug.PrintJSONRequest("GET", reqUrl, httpReq.Header, data, c.debug)
+	return c.fetch(httpReq, resp)
 }
 
 // Upload multipart/form-data post
@@ -172,7 +126,9 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 	mw := multipart.NewWriter(&buf)
 	params := req.Encode()
 	mp := make(map[string]string, len(params))
+	var builder strings.Builder
 	for _, v := range params {
+		builder.Reset()
 		var (
 			fw  io.Writer
 			r   io.Reader
@@ -183,7 +139,9 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 				return err
 			}
 			r = v.Reader
-			mp[v.Key] = fmt.Sprintf("@%s", v.Value)
+			builder.WriteString("@")
+			builder.WriteString(v.Value)
+			mp[v.Key] = builder.String()
 		} else {
 			if fw, err = mw.CreateFormField(v.Key); err != nil {
 				return err
@@ -197,9 +155,15 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 		}
 	}
 	mw.Close()
-	reqUrl := fmt.Sprintf("%s%s", BASE_URL, gw)
+	builder.Reset()
+	builder.WriteString(BASE_URL)
+	builder.WriteString(gw)
+	reqUrl := builder.String()
 	debug.PrintPostMultipartRequest(reqUrl, mp, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, &buf)
+	if err != nil {
+		return err
+	}
 	httpReq.Header.Add("Content-Type", mw.FormDataContentType())
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
@@ -207,27 +171,7 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
-	if err != nil {
-		return err
-	}
-
-	httpResp, err := http.DefaultClient.Do(httpReq)
-	if err != nil {
-		return err
-	}
-	defer httpResp.Body.Close()
-	if resp == nil {
-		resp = &model.BaseResponse{}
-	}
-	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
-	if err != nil {
-		debug.PrintError(err, c.debug)
-		return err
-	}
-	if resp.IsError() {
-		return resp
-	}
-	return nil
+	return c.fetch(httpReq, resp)
 }
 
 // AnalyticsPost 转化回传API专用
@@ -235,19 +179,28 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.PostRequest, resp model.R
 	reqBytes := req.Encode()
 	reqBuf := bytes.NewBuffer(reqBytes)
 	reqBuf.WriteString(c.Secret)
-	sign := fmt.Sprintf("%x", sha256.Sum256(reqBuf.Bytes()))
-	reqUrl := fmt.Sprintf("%s%s", ANALYTICS_URL, gw)
+	sha256Sum := sha256.Sum256(reqBuf.Bytes())
+	sign := hex.EncodeToString(sha256Sum[:])
+
+	var builder strings.Builder
+	builder.WriteString(ANALYTICS_URL)
+	builder.WriteString(gw)
+	reqUrl := builder.String()
 	debug.PrintPostJSONRequest(reqUrl, reqBuf.Bytes(), c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
+	if err != nil {
+		return err
+	}
 	httpReq.Header.Add("Content-Type", "application/json")
 	httpReq.Header.Add("x-signature", sign)
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
-	if err != nil {
-		return err
-	}
+	return c.fetch(httpReq, resp)
+}
 
+// fetch execute http request
+func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	httpResp, err := http.DefaultClient.Do(httpReq)
 	if err != nil {
 		return err

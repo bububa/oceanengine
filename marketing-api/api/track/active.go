@@ -2,10 +2,10 @@ package track
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model/track"
@@ -46,14 +46,19 @@ func Active(req *track.ActiveRequest) (string, error) {
 	for k, v := range req.Ext {
 		values.Set(k, v)
 	}
-	reqUrl := fmt.Sprintf("https://ad.oceanengine.com/track/activate/?%s", values.Encode())
+	var builder strings.Builder
+	builder.WriteString("https://ad.oceanengine.com/track/activate/?")
+	builder.WriteString(values.Encode())
+	reqUrl := builder.String()
 	resp, err := http.DefaultClient.Get(reqUrl)
 	if err != nil {
 		return reqUrl, err
 	}
 	defer resp.Body.Close()
 	var ret track.Response
-	err = json.NewDecoder(resp.Body).Decode(&ret)
+	if err := json.NewDecoder(resp.Body).Decode(&ret); err != nil {
+		return reqUrl, err
+	}
 	if ret.IsError() {
 		return reqUrl, ret
 	}

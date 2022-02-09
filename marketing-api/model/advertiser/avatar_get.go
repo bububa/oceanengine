@@ -1,7 +1,8 @@
 package advertiser
 
 import (
-	"fmt"
+	"net/url"
+	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
@@ -14,7 +15,9 @@ type AvatarGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AvatarGetRequest) Encode() string {
-	return fmt.Sprintf("advertiser_id=%d", r.AdvertiserID)
+	values := url.Values{}
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	return values.Encode()
 }
 
 // AvatarGetResponse 获取广告主头像信息 API Response

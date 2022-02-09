@@ -1,6 +1,9 @@
 package model
 
-import "fmt"
+import (
+	"strconv"
+	"strings"
+)
 
 // Response api response interface
 type Response interface {
@@ -27,5 +30,9 @@ func (r BaseResponse) IsError() bool {
 
 // Error implement Response interface
 func (r BaseResponse) Error() string {
-	return fmt.Sprintf("%d:%s", r.Code, r.Message)
+	var builder strings.Builder
+	builder.WriteString(strconv.Itoa(r.Code))
+	builder.WriteString(":")
+	builder.WriteString(r.Message)
+	return builder.String()
 }

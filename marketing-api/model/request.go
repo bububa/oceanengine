@@ -14,9 +14,9 @@ type GetRequest interface {
 	Encode() string
 }
 
-type GetWithJsonBodyRequest interface {
+type GetWithDataRequest interface {
 	// GetJsonBody get json body
-	GetJsonBody() []byte
+	Encode() []byte
 }
 
 // UploadField multipart/form-data post request field struct

@@ -1,7 +1,8 @@
 package track
 
 import (
-	"fmt"
+	"strconv"
+	"strings"
 )
 
 // Response 线索-API上报数据 API Response
@@ -16,5 +17,9 @@ func (r Response) IsError() bool {
 }
 
 func (r Response) Error() string {
-	return fmt.Sprintf("%d:%s", r.Code, r.Msg)
+	var builder strings.Builder
+	builder.WriteString(strconv.Itoa(r.Code))
+	builder.WriteString(":")
+	builder.WriteString(r.Msg)
+	return builder.String()
 }
