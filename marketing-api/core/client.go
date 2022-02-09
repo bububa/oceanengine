@@ -121,6 +121,51 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 	return nil
 }
 
+// GetWithJsonBody get api with json body
+func (c *SDKClient) GetWithJsonBody(gw string, req model.GetWithJsonBodyRequest, resp model.Response, accessToken string) error {
+	var jsonBody []byte
+	if req != nil {
+		jsonBody = req.GetJsonBody()
+	}
+
+	reqUrl := fmt.Sprintf("%s%s", BASE_URL, gw)
+	httpReq, err := http.NewRequest("GET", reqUrl, bytes.NewReader(jsonBody))
+	httpReq.Header.Add("Content-Type", "application/json")
+
+	if accessToken != "" {
+		httpReq.Header.Add("Access-Token", accessToken)
+	}
+	if c.sandbox {
+		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+
+	debug.PrintJSONRequest("GET", reqUrl, httpReq.Header, jsonBody, c.debug)
+
+	if err != nil {
+		return err
+	}
+
+	httpResp, err := http.DefaultClient.Do(httpReq)
+	if err != nil {
+		return err
+	}
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(httpResp.Body)
+	if resp == nil {
+		resp = &model.BaseResponse{}
+	}
+	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
+	if err != nil {
+		debug.PrintError(err, c.debug)
+		return err
+	}
+	if resp.IsError() {
+		return resp
+	}
+	return nil
+}
+
 // Upload multipart/form-data post
 func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
 	var buf bytes.Buffer
