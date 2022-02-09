@@ -6,12 +6,10 @@ import (
 )
 
 // Update 更新组件 https://open.oceanengine.com/doc/index.html?key=ad&type=api&id=1696710673083407
-func Update(clt *core.SDKClient, accessToken string, req *creativecomponent.UpdateRequest) (*creativecomponent.PostResponseData, error) {
-	var resp creativecomponent.PostResponse
+func Update(clt *core.SDKClient, accessToken string, req *creativecomponent.UpdateRequest) (*creativecomponent.CreateResponseData, error) {
+	var resp creativecomponent.CreateResponse
 
-	err := clt.Post("2/assets/creative_component/update/", req, &resp, accessToken)
-
-	if err != nil {
+	if err := clt.Post("2/assets/creative_component/update/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 

@@ -130,6 +130,10 @@
     - 删除第三方落地页站点 [ tools/thirdsite.Delete(clt *core.SDKClient, accessToken string, req *thirdsite.DeleteRequest) (uint64, error) ]
     - 获取第三方落地页预览地址 [ tools/thirdsite.Preview(clt *core.SDKClient, accessToken string, req *thirdsite.PreviewRequest) (*thirdsite.PreviewResponseData, error) ]
 - 资产
+  - 创意组件(api/assets/creativecomponent)
+    - 创建组件 [ func Create(clt *core.SDKClient, accessToken string, req *creativecomponent.CreateRequest) (*creativecomponent.CreateResponseData, error) ]
+    - 更新组件 [ func Update(clt *core.SDKClient, accessToken string, req *creativecomponent.UpdateRequest) (*creativecomponent.CreateResponseData, error) ]
+    - 查询组件列表 [ func Get(clt *core.SDKClient, accessToken string, req *creativecomponent.GetRequest) (*creativecomponent.GetResponseData, error) ]
   - 事件管理
     - 获取推广内容 [ tools/event.AssetsGet(clt *core.SDKClient, accessToken string, req *event.AssetsGetRequest) (*event.AssetsGetResponseData, error) ]
     - 获取优化目标 [ tools/event.ConvertOptimizedGoalGet(clt *core.SDKClient, accessToken string, req *event.ConvertOptimizedGoalGetRequest) (*event.ConvertOptimizedGoalGetResponseData, error) ]
