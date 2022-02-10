@@ -11,7 +11,7 @@ type GetResponse struct {
 	Data *GetResponseData `json:"data,omitempty"`
 }
 
-// Data json返回值
+// GetResponseData 返回值
 type GetResponseData struct {
 	// List 数据列表
 	List []GetResponseList `json:"list,omitempty"`

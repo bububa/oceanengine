@@ -18,6 +18,7 @@ type TitleMaterial struct {
 	DpaDictIDs []uint64 `json:"dpa_dict_ids,omitempty"`
 }
 
+// WordListItem 动态词包
 type WordListItem struct {
 	WordID      uint64 `json:"word_id,omitempty"`
 	DefaultWord string `json:"default_word,omitempty"`

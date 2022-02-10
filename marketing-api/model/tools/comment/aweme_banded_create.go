@@ -31,6 +31,7 @@ type AwemeBandedCreateResponse struct {
 	Data *AwemeBandedCreateResponseData `json:"data,omitempty"`
 }
 
+// AwemeBandedCreateResponseData json返回值
 type AwemeBandedCreateResponseData struct {
 	// Success 屏蔽成功的昵称关键词列表或抖音id列表
 	Success []string `json:"success,omitempty"`
@@ -38,6 +39,7 @@ type AwemeBandedCreateResponseData struct {
 	Fail []FailItem `json:"fail,omitempty"`
 }
 
+// FailItem 失败信息
 type FailItem struct {
 	// Message 失败原因
 	Message string `json:"message,omitempty"`

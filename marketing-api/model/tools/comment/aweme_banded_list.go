@@ -20,6 +20,7 @@ type AwemeBandedListRequest struct {
 	PageSize int `json:"page_size,omitempty"`
 }
 
+// AwemeBandedListFiltering 筛选条件
 type AwemeBandedListFiltering struct {
 	// BandType 屏蔽类型，允许值：CUSTOM_TYPE：自定义规则，根据昵称关键词屏蔽；AWEME_TYPE：根据抖音id屏蔽。
 	BandType string `json:"band_type,omitempty"`

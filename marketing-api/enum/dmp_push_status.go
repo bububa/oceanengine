@@ -1,5 +1,6 @@
 package enum
 
+// DmpPushStatus 人群包推送状态
 type DmpPushStatus int
 
 const (

@@ -36,6 +36,7 @@ type SuggestionGetResponse struct {
 	Data *SuggestionGetResponseData `json:"data,omitempty"`
 }
 
+// SuggestionGetResponseData json返回值
 type SuggestionGetResponseData struct {
 	// DiagnosisID 诊断id
 	DiagnosisID string `json:"diagnosis_id,omitempty"`

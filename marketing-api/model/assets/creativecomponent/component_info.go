@@ -39,7 +39,7 @@ type Button struct {
 	ImageID string `json:"image_id,omitempty"`
 }
 
-// ChoiceMagne 选择磁贴的component_data
+// ChoiceMagnet 选择磁贴的component_data
 type ChoiceMagnet struct {
 	// Title 主标题。长度小于等于24。一个中文长度为2
 	Title string `json:"title,omitempty"`
@@ -49,6 +49,7 @@ type ChoiceMagnet struct {
 	ButtonList [2]Button `json:"button_list,omitempty"`
 }
 
+// Type implement ComponentData interface
 func (m ChoiceMagnet) Type() enum.ComponentType {
 	return enum.ComponentType_CHOICE_MAGNET
 }
@@ -67,6 +68,7 @@ type VoteMagnet struct {
 	ButtonList [2]Button `json:"button_list,omitempty"`
 }
 
+// Type implement ComponentData interface
 func (m VoteMagnet) Type() enum.ComponentType {
 	return enum.ComponentType_VOTE_MAGNET
 }
@@ -85,6 +87,7 @@ type ImageMagnet struct {
 	Duration int64 `json:"duration,omitempty"`
 }
 
+// Type implement ComponentData interface
 func (m ImageMagnet) Type() enum.ComponentType {
 	return enum.ComponentType_IMAGE_MAGNET
 }
@@ -131,6 +134,7 @@ type CouponMagnet struct {
 	CommerceCards [1]CommerceCard `json:"commerce_cards,omitempty"`
 }
 
+// Type implement ComponentData interface
 func (m CouponMagnet) Type() enum.ComponentType {
 	return enum.ComponentType_COUPON_MAGNET
 }
@@ -149,6 +153,7 @@ type PromotionCard struct {
 	EnablePersonalAction int `json:"enable_personal_action,omitempty"`
 }
 
+// Type implement ComponentData interface
 func (p PromotionCard) Type() enum.ComponentType {
 	return enum.ComponentType_PROMOTION_CARD
 }
@@ -171,6 +176,7 @@ type GamePack struct {
 	AppThumbnails []string `json:"app_thumbnails,omitempty"`
 }
 
+// Type implement ComponentData interface
 func (g GamePack) Type() enum.ComponentType {
 	return enum.ComponentType_GAME_PACK
 }

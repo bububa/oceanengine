@@ -25,9 +25,11 @@ func (r CreateRequest) Encode() []byte {
 // CreateResponse 创建组件 API Response
 type CreateResponse struct {
 	model.BaseResponse
+	// Data json返回值
 	Data *CreateResponseData `json:"data,omitempty"`
 }
 
+// CreateResponseData json返回值
 type CreateResponseData struct {
 	AdvertiserID uint64               `json:"advertiser_id,omitempty"`
 	ComponentID  uint64               `json:"component_id,omitempty"`

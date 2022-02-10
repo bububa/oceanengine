@@ -1,6 +1,6 @@
 package product
 
-// Product	商品
+// Product 商品
 type Product struct {
 	// ID 商品id
 	ID uint64 `json:"id,omitempty"`

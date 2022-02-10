@@ -22,6 +22,7 @@ type VideoAwemeGetRequest struct {
 	Count int `json:"count,omitempty"`
 }
 
+// VideoAwemeGetFiltering 筛选条件
 type VideoAwemeGetFiltering struct {
 	//ProductID 商品ID，查询关联商品的相应视频，仅短视频带货场景需入参
 	ProductID uint64 `json:"product_id,omitempty"`

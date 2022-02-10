@@ -1,9 +1,11 @@
 package enum
 
-// 行为兴趣类型
+// InterestActionType 行为兴趣类型
 type InterestActionType string
 
 const (
-	ACTION   InterestActionType = "ACTION"   // 行为
-	INTEREST InterestActionType = "INTEREST" // 兴趣
+	// ACTION 行为
+	ACTION InterestActionType = "ACTION"
+	// INTEREST 兴趣
+	INTEREST InterestActionType = "INTEREST"
 )

@@ -30,7 +30,7 @@ type InterestKeywordResponse struct {
 	Data InterestKeywordResponseData `json:"data,omitempty"`
 }
 
-// InterestKeywordResponseData
+// InterestKeywordResponseData json返回值
 type InterestKeywordResponseData struct {
 	List []Object `json:"list,omitempty"`
 }

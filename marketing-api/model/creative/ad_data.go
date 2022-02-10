@@ -32,6 +32,7 @@ type AdData struct {
 	Supplements []SupplementInfo `json:"supplements,omitempty"`
 }
 
+// SupplementInfo 云游戏列表
 type SupplementInfo struct {
 	// SupplementType 云游戏类型，允许值: CLOUD_GAME
 	SupplementType string `json:"supplement_type,omitempty"`
@@ -39,6 +40,7 @@ type SupplementInfo struct {
 	Games []GameInfo `json:"game,omitempty"`
 }
 
+// GameInfo 云游戏信息
 type GameInfo struct {
 	// ID 云游戏id，对应【获取云游戏试玩素材列表】中的game_id字段
 	ID string `json:"id,omitempty"`

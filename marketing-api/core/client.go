@@ -93,33 +93,6 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 	return c.fetch(httpReq, resp)
 }
 
-// GetWithData get api with json body
-func (c *SDKClient) GetWithData(gw string, req model.GetWithDataRequest, resp model.Response, accessToken string) error {
-	var data []byte
-	if req != nil {
-		data = req.Encode()
-	}
-	var builder strings.Builder
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
-	reqUrl := builder.String()
-	httpReq, err := http.NewRequest("GET", reqUrl, bytes.NewReader(data))
-	if err != nil {
-		return err
-	}
-	httpReq.Header.Add("Content-Type", "application/json")
-
-	if accessToken != "" {
-		httpReq.Header.Add("Access-Token", accessToken)
-	}
-	if c.sandbox {
-		httpReq.Header.Add("X-Debug-Mode", "1")
-	}
-
-	debug.PrintJSONRequest("GET", reqUrl, httpReq.Header, data, c.debug)
-	return c.fetch(httpReq, resp)
-}
-
 // Upload multipart/form-data post
 func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
 	var buf bytes.Buffer

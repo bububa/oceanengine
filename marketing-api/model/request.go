@@ -14,11 +14,6 @@ type GetRequest interface {
 	Encode() string
 }
 
-type GetWithDataRequest interface {
-	// GetJsonBody get json body
-	Encode() []byte
-}
-
 // UploadField multipart/form-data post request field struct
 type UploadField struct {
 	// Key field key

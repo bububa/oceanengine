@@ -1,5 +1,6 @@
 package enum
 
+// CustomAudienceDeliveryStatus 人群包可投放状态
 type CustomAudienceDeliveryStatus string
 
 const (

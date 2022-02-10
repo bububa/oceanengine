@@ -50,7 +50,7 @@ type Id2WordResponse struct {
 	Data *Id2WordResponseData `json:"data,omitempty"`
 }
 
-// Id2WordResponseData
+// Id2WordResponseData json返回值
 type Id2WordResponseData struct {
 	// Categories 类目列表
 	Categories []Object `json:"categories,omitempty"`

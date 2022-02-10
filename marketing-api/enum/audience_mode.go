@@ -1,5 +1,6 @@
 package enum
 
+// AudienceMode 人群定向模式
 type AudienceMode string
 
 const (
