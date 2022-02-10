@@ -14,6 +14,6 @@ type Aweme struct {
 	Name string `json:"aweme_name,omitempty"`
 	// Status 抖音号带货状态，返回值：NORMAL 可以正常投放;ANCHOR_FORBID 带货口碑分过低，暂时无法创建计划;ANCHOR_REACH_UPPER_LIMIT_TODAY 带货分过低或暂无带货分，可以创建计划，但无法产生消耗，带货分恢复正常后可正常消耗
 	Status enum.AwemeStatus `json:"aweme_status,omitempty"`
-	// BindingType 抖音号关系类型
-	BindingType []enum.AwemeBindingType `json:"binding_type,omitempty"`
+	// BindType 抖音号关系类型
+	BindType []enum.AwemeBindType `json:"bind_type,omitempty"`
 }
