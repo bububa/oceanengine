@@ -65,7 +65,7 @@ type ResponseList struct {
 	Fields *ResponseFields `json:"fields,omitempty"`
 }
 
-// ResposeFields 指标
+// ResponseFields 指标
 type ResponseFields struct {
 	// ClickCartCount 查看购物车数
 	ClickCartCount int64 `json:"click_cart_count,omitempty"`

@@ -2,7 +2,7 @@ package creative
 
 import "github.com/bububa/oceanengine/marketing-api/enum"
 
-// CreativeInfo
+// CreativeInfo 创意信息
 type CreativeInfo struct {
 	// ImageMode 素材类型
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`

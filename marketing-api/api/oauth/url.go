@@ -1,8 +1,8 @@
 package oauth
 
 import (
-	"fmt"
 	"net/url"
+	"strings"
 
 	"github.com/bububa/oceanengine/marketing-api/core"
 )
@@ -18,5 +18,8 @@ func Url(clt *core.SDKClient, redirectUrl string, state string, materialAuth boo
 	if materialAuth {
 		values.Set("material_auth", "1")
 	}
-	return fmt.Sprintf("https://ad.oceanengine.com/openapi/audit/oauth.html?%s", values.Encode())
+	var builder strings.Builder
+	builder.WriteString("https://ad.oceanengine.com/openapi/audit/oauth.html?")
+	builder.WriteString(values.Encode())
+	return builder.String()
 }

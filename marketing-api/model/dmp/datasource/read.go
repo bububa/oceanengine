@@ -73,7 +73,7 @@ type DataSource struct {
 	DefaultAudience *Audience `json:"default_audience,omitempty"`
 }
 
-// ChagneLog 每一次更新，会记录一次日志id
+// ChangeLog 每一次更新，会记录一次日志id
 type ChangeLog struct {
 	// Action 本次更新进行的操作，枚举值："0"：新建，"1"：添加，"2"：删除，"3"：重置
 	Action enum.DmpDatasourceOperationType `json:"action,omitempty"`

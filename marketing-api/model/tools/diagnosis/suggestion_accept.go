@@ -31,7 +31,7 @@ type SuggestionAcceptResponse struct {
 	Data *SuggestionAcceptResponseData `json:"data,omitempty"`
 }
 
-// SuggestionAcceptResponseData
+// SuggestionAcceptResponseData json返回值
 type SuggestionAcceptResponseData struct {
 	// SuggestionAccept 采纳成功的工具列表
 	SuggestionAccept []string `json:"suggestion_accept,omitempty"`

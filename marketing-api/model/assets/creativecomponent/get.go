@@ -53,6 +53,7 @@ type GetResponse struct {
 	Data *GetResponseData `json:"data,omitempty"`
 }
 
+// GetResponseData json返回值
 type GetResponseData struct {
 	List     []ComponentInfo `json:"list,omitempty"`
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`

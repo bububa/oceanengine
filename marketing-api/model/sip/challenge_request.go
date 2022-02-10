@@ -1,6 +1,6 @@
 package sip
 
-// ChallengeRequest
+// ChallengeRequest .
 type ChallengeRequest struct {
 	// Challenge 随机数
 	Challenge int64 `form:"challenge" binding:"required"`

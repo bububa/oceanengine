@@ -43,6 +43,7 @@ type LiveAuthorizeListResponse struct {
 	Data *LiveAuthorizeListResponseData `json:"data,omitempty"`
 }
 
+// LiveAuthorizeListResponseData json返回值
 type LiveAuthorizeListResponseData struct {
 	// PageInfo 分页信息
 	PageInfo model.PageInfo `json:"page_info,omitempty"`

@@ -31,7 +31,7 @@ func (r AwemeSimilarAuthorSearchRequest) Encode() string {
 	return values.Encode()
 }
 
-// AwemeAwemeSimilarAuthorSearchResponse 查询抖音帐号和类目信息  API Response
+// AwemeSimilarAuthorSearchResponse 查询抖音帐号和类目信息  API Response
 type AwemeSimilarAuthorSearchResponse struct {
 	model.BaseResponse
 	// Data json返回值

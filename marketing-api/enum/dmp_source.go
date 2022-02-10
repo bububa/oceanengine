@@ -1,5 +1,6 @@
 package enum
 
+// DmpSource 人群包来源
 type DmpSource = string
 
 const (

@@ -49,7 +49,7 @@ type KeywordSuggestResponse struct {
 	Data KeywordSuggestResponseData `json:"data,omitempty"`
 }
 
-// KeywordSuggestResponseData
+// KeywordSuggestResponseData json返回值
 type KeywordSuggestResponseData struct {
 	// Keywords 关键词列表
 	Keywords []Object `json:"keywords,omitempty"`

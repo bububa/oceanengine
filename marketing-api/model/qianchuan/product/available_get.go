@@ -52,7 +52,7 @@ type AvailableGetResponse struct {
 	Data *AvailableGetResponseData `json:"data,omitempty"`
 }
 
-// AvalialbeGetResponseData json返回值
+// AvailalbeGetResponseData json返回值
 type AvailableGetResponseData struct {
 	// PageInfo 分页信息
 	PageInfo model.PageInfo `json:"page_info,omitempty"`

@@ -1,8 +1,11 @@
 package enum
 
+// TransactionType 流水类型
 type TransactionType string
 
 const (
-	RECHARGE TransactionType = "RECHARGE" // 充值
-	TRANSFER TransactionType = "TRANSFER" // 转账
+	// RECHARGE 充值
+	RECHARGE TransactionType = "RECHARGE"
+	// TRANSFER 转账
+	TRANSFER TransactionType = "TRANSFER"
 )

@@ -39,7 +39,7 @@ type ActionKeywordResponse struct {
 	Data ActionKeywordResponseData `json:"data,omitempty"`
 }
 
-// ActionKeywordResponseData
+// ActionKeywordResponseData json返回值
 type ActionKeywordResponseData struct {
 	List []Object `json:"list,omitempty"`
 }

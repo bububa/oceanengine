@@ -15,6 +15,7 @@ type VideoUpdateRequest struct {
 	Videos []VideoForUpdate `json:"videos,omitempty"`
 }
 
+// VideoForUpdate 上传视频信息
 type VideoForUpdate struct {
 	// VideoID 视频id，更新必填
 	VideoID string `json:"video_id,omitempty"`

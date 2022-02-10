@@ -1,5 +1,6 @@
 package enum
 
+// VideoScheduleType 短视频投放日期选择方式
 type VideoScheduleType string
 
 const (

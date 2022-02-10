@@ -1,5 +1,6 @@
 package enum
 
+// DmpCustomType 人群类型
 type DmpCustomType int
 
 const (
