@@ -1,13 +1,13 @@
 package enum
 
-// AwemeBindingType 抖音号授权类型
-type AwemeBindingType string
+// AwemeBindType 抖音号授权类型
+type AwemeBindType string
 
 const (
-	// AwemeBindingType_OFFICIAL 官方
-	AwemeBindingType_OFFICIAL AwemeBindingType = "OFFICIAL"
-	// AwemeBindingType_SELF 自运营
-	AwemeBindingType_SELF AwemeBindingType = "SELF"
-	// AwemeBindingType_AWEME_COOPERATOR 合作达人
-	AwemeBindingType_AWEME_COOPERATOR AwemeBindingType = "AWEME_COOPERATOR"
+	// AwemeBindType_OFFICIAL 官方
+	AwemeBindType_OFFICIAL AwemeBindType = "OFFICIAL"
+	// AwemeBindType_SELF 自运营
+	AwemeBindType_SELF AwemeBindType = "SELF"
+	// AwemeBindType_AWEME_COOPERATOR 合作达人
+	AwemeBindType_AWEME_COOPERATOR AwemeBindType = "AWEME_COOPERATOR"
 )
