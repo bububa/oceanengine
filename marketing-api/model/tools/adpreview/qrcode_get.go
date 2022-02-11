@@ -7,6 +7,7 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
+// IDType 查询条件
 type IDType string
 
 const (

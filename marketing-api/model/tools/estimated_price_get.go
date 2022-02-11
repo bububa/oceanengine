@@ -7,7 +7,7 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
-// EstimatedPriceGet 获取预估点击成本 API Request
+// EstimatedPriceGetRequest 获取预估点击成本 API Request
 type EstimatedPriceGetRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`

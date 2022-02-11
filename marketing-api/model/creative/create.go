@@ -7,7 +7,7 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
-// CreativeRequest 创建广告创意 API Request
+// CreateRequest 创建广告创意 API Request
 type CreateRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
