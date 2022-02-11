@@ -27,7 +27,7 @@ func (r ListGetRequest) Encode() string {
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		filtering, _ := json.Marshal(r.Filtering)
-		values.Set("filtering", string(filtering))
+		values.Set("filter", string(filtering))
 	}
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
