@@ -123,12 +123,17 @@
   - 批量删除视频素材 [ VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) ]
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
 - 建站管理
-  - 第三方落地页管理
-    - 获取第三方落地页站点列表 [ tools/thirdsite.Get(clt *core.SDKClient, accessToken string, req *thirdsite.GetRequest) (*thirdsite.GetResponseData, error) ]
-    - 创建第三方落地页站点 [ tools/thirdsite.Create(clt *core.SDKClient, accessToken string, req *thirdsite.CreateRequest) (uint64, error) ]
-    - 修改第三方落地页站点 [ tools/thirdsite.Update(clt *core.SDKClient, accessToken string, req *thirdsite.UpdateRequest) (uint64, error) ]
-    - 删除第三方落地页站点 [ tools/thirdsite.Delete(clt *core.SDKClient, accessToken string, req *thirdsite.DeleteRequest) (uint64, error) ]
-    - 获取第三方落地页预览地址 [ tools/thirdsite.Preview(clt *core.SDKClient, accessToken string, req *thirdsite.PreviewRequest) (*thirdsite.PreviewResponseData, error) ]
+  - 第三方落地页管理 (tools/thirdsite)
+    - 获取第三方落地页站点列表 [ Get(clt *core.SDKClient, accessToken string, req *thirdsite.GetRequest) (*thirdsite.GetResponseData, error) ]
+    - 创建第三方落地页站点 [ Create(clt *core.SDKClient, accessToken string, req *thirdsite.CreateRequest) (uint64, error) ]
+    - 修改第三方落地页站点 [ Update(clt *core.SDKClient, accessToken string, req *thirdsite.UpdateRequest) (uint64, error) ]
+    - 删除第三方落地页站点 [ Delete(clt *core.SDKClient, accessToken string, req *thirdsite.DeleteRequest) (uint64, error) ]
+    - 获取第三方落地页预览地址 [ Preview(clt *core.SDKClient, accessToken string, req *thirdsite.PreviewRequest) (*thirdsite.PreviewResponseData, error) ]
+  - 程序化落地页管理 (tools/landinggroup)
+    - 创建落地页组 [ func Create(clt *core.SDKClient, accessToken string, req *landinggroup.CreateRequest) (*landinggroup.LandingGroup, error) ]
+    - 获取落地页组 [ func Get(clt *core.SDKClient, accessToken string, req *landinggroup.GetRequest) (*landinggroup.GetResponseData, error) ]
+    - 更新落地页组站点状态 [ func SiteOptStatusUpdate(clt *core.SDKClient, accessToken string, req *landinggroup.SiteOptStatusUpdateRequest) error ]
+    - 更新落地页组信息 [ func Update(clt *core.SDKClient, accessToken string, req *landinggroup.UpdateRequest) (*landinggroup.LandingGroup, error) ]
 - 资产
   - 创意组件(api/assets/creativecomponent)
     - 创建组件 [ func Create(clt *core.SDKClient, accessToken string, req *creativecomponent.CreateRequest) (*creativecomponent.CreateResponseData, error) ]
