@@ -147,6 +147,11 @@
     - 获取落地页组 [ func Get(clt *core.SDKClient, accessToken string, req *landinggroup.GetRequest) (*landinggroup.GetResponseData, error) ]
     - 更新落地页组站点状态 [ func SiteOptStatusUpdate(clt *core.SDKClient, accessToken string, req *landinggroup.SiteOptStatusUpdateRequest) error ]
     - 更新落地页组信息 [ func Update(clt *core.SDKClient, accessToken string, req *landinggroup.UpdateRequest) (*landinggroup.LandingGroup, error) ]
+  - 橙子建站模版管理 (tools/sitetemplate)
+    - 基于站点创建模板 [ func Create(clt *core.SDKClient, accessToken string, req *sitetemplate.CreateRequest) (*sitetemplate.Template, error) ]
+    - 基于模板创建站点 [ func SiteCreate(clt *core.SDKClient, accessToken string, req *sitetemplate.SiteCreateRequest) (uint64, error) ]
+    - 获取站点模版列表 [ func Get(clt *core.SDKClient, accessToken string, req *sitetemplate.GetRequest) (*sitetemplate.GetResponseData, error) ]
+    - 获取模版预览链接 [ func Preview(clt *core.SDKClient, accessToken string, req *sitetemplate.PreviewRequest) (string, error) ]
 - 资产
   - 创意组件(api/assets/creativecomponent)
     - 创建组件 [ func Create(clt *core.SDKClient, accessToken string, req *creativecomponent.CreateRequest) (*creativecomponent.CreateResponseData, error) ]
