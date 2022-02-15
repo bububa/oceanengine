@@ -123,6 +123,19 @@
   - 批量删除视频素材 [ VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) ]
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
 - 建站管理
+  - 橙子建站落地页管理 (tools/site)
+    - 创建橙子建站站点 [ func Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
+    - 修改橙子建站站点 [ func Update(clt *core.SDKClient, accessToken string, req *site.UpdateRequest) error ]
+    - 更改橙子建站站点状态 [ func UpdateStatus(clt *core.SDKClient, accessToken string, req *site.UpdateStatusRequest) (*site.UpdateStatusResponseData, error) ]
+    - 获取橙子建站站点预览地址 [ func Preview(clt *core.SDKClient, accessToken string, req *site.PreviewRequest) (string, error) ]
+    - 获取橙子建站站点详细信息 [ func Read(clt *core.SDKClient, accessToken string, req *site.ReadRequest) (*site.SiteDetail, error) ]
+    - 获取橙子建站站点列表 [ func Get(clt *core.SDKClient, accessToken string, req *site.GetRequest) (*site.GetResponseData, error) ]
+    - 建站工具——查询已有智能电话 [ tools/clue.func SmartPhoneGet(clt *core.SDKClient, accessToken string, req *clue.SmartPhoneGetRequest) (*clue.SmartPhoneGetResponseData, error)  ]
+    - 建站工具——查询已有表单列表 [ tools/clue.func FormGet(clt *core.SDKClient, accessToken string, req *clue.FormGetRequest) (*clue.FormGetResponseData, error) ]
+    - 建站工具——查询表单详情 [ tools/clue.func FormDetail(clt *core.SDKClient, accessToken string, req *clue.FormDetailRequest) (*clue.FormDetail, error) ]
+    - 获取落地页预约表单信息 [ func FormsList(clt *core.SDKClient, accessToken string, req *site.FormsListRequest) ([]site.Form, error) ]
+    - 建站工具-建站转赠 [ func Handsel(clt *core.SDKClient, accessToken string, req *site.HandselRequest) (*site.HandselResponseData, error) ]
+    - 建站工具-建站复制 [ func Copy(clt *core.SDKClient, accessToken string, req *site.CopyRequest) (*site.CopyResponseData, error) ]
   - 第三方落地页管理 (tools/thirdsite)
     - 获取第三方落地页站点列表 [ Get(clt *core.SDKClient, accessToken string, req *thirdsite.GetRequest) (*thirdsite.GetResponseData, error) ]
     - 创建第三方落地页站点 [ Create(clt *core.SDKClient, accessToken string, req *thirdsite.CreateRequest) (uint64, error) ]
