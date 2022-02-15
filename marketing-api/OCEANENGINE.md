@@ -152,6 +152,10 @@
     - 基于模板创建站点 [ func SiteCreate(clt *core.SDKClient, accessToken string, req *sitetemplate.SiteCreateRequest) (uint64, error) ]
     - 获取站点模版列表 [ func Get(clt *core.SDKClient, accessToken string, req *sitetemplate.GetRequest) (*sitetemplate.GetResponseData, error) ]
     - 获取模版预览链接 [ func Preview(clt *core.SDKClient, accessToken string, req *sitetemplate.PreviewRequest) (string, error) ]
+- 飞鱼线索管理 (tools/clue)
+  - 获取线索列表 [ func Get(clt *core.SDKClient, accessToken string, req *clue.GetRequest) (*clue.GetResponseData, error) ]
+  - 回传有效线索 [ func Callback(clt *core.SDKClient, accessToken string, req *clue.CallbackRequest) error ]
+  - 获取活动记录 [ func KeyActionGet(clt *core.SDKClient, accessToken string, req *clue.KeyActionGetRequest) (*clue.KeyActionGetResponseData, error) ]
 - 资产
   - 创意组件(api/assets/creativecomponent)
     - 创建组件 [ func Create(clt *core.SDKClient, accessToken string, req *creativecomponent.CreateRequest) (*creativecomponent.CreateResponseData, error) ]
