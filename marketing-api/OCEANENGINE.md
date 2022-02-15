@@ -156,6 +156,18 @@
   - 获取线索列表 [ func Get(clt *core.SDKClient, accessToken string, req *clue.GetRequest) (*clue.GetResponseData, error) ]
   - 回传有效线索 [ func Callback(clt *core.SDKClient, accessToken string, req *clue.CallbackRequest) error ]
   - 获取活动记录 [ func KeyActionGet(clt *core.SDKClient, accessToken string, req *clue.KeyActionGetRequest) (*clue.KeyActionGetResponseData, error) ]
+- 青鸟线索通
+  - 线索通表单组件管理 (clue/form)
+    - 获取表单详情 [ func Detail(clt *core.SDKClient, accessToken string, req *form.DetailRequest) (*form.Form, error) ]
+    - 获取表单列表 [ func List(clt *core.SDKClient, accessToken string, req *form.ListRequest) (*form.ListResponseData, error) ]
+    - 创建表单 [ func Create(clt *core.SDKClient, accessToken string, req *form.CreateRequest) (uint64, error) ]
+    - 更新表单 [ func Update(clt *core.SDKClient, accessToken string, req *form.UpdateRequest) (uint64, error) ]
+    - 删除表单 [ func Delete(clt *core.SDKClient, accessToken string, req *form.DeleteRequest) (bool, error) ]
+  - 线索通智能电话组件管理 (clue/smartphone)
+    - 创建智能电话 [ func Create(clt *core.SDKClient, accessToken string, req *smartphone.CreateRequest) (*smartphone.CreateResponseData, error) ]
+    - 获取智能电话列表 [ func Get(clt *core.SDKClient, accessToken string, req *smartphone.GetRequest) (*smartphone.GetResponseData, error) ]
+    - 删除智能电话 [ func Delete(clt *core.SDKClient, accessToken string, req *smartphone.DeleteRequest) error ]
+    - 查询智能电话拨打记录 [ func Record(clt *core.SDKClient, accessToken string, req *smartphone.RecordRequest) (*smartphone.RecordResponseData, error) ]
 - 资产
   - 创意组件(api/assets/creativecomponent)
     - 创建组件 [ func Create(clt *core.SDKClient, accessToken string, req *creativecomponent.CreateRequest) (*creativecomponent.CreateResponseData, error) ]
