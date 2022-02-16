@@ -163,6 +163,17 @@
     - 创建表单 [ func Create(clt *core.SDKClient, accessToken string, req *form.CreateRequest) (uint64, error) ]
     - 更新表单 [ func Update(clt *core.SDKClient, accessToken string, req *form.UpdateRequest) (uint64, error) ]
     - 删除表单 [ func Delete(clt *core.SDKClient, accessToken string, req *form.DeleteRequest) (bool, error) ]
+  - 线索通卡券组件管理 (clue/coupon)
+    - 创建卡券 [ func Create(clt *core.SDKClient, accessToken string, req *coupon.CreateRequest) (uint64, error) ]
+    - 上传券码 [ func CodeUpload(clt *core.SDKClient, accessToken string, req *coupon.CodeUploadRequest) (*coupon.CodeUploadResponseData, error) ]
+    - 获取卡券详情 [ func Detail(clt *core.SDKClient, accessToken string, req *coupon.DetailRequest) (*coupon.DetailResponseData, error) ]
+    - 获取卡券列表 [ func Get(clt *core.SDKClient, accessToken string, req *coupon.GetRequest) (*coupon.GetResponseData, error) ]
+    - 编辑卡券 [ func Update(clt *core.SDKClient, accessToken string, req *coupon.UpdateRequest) error ]
+    - 查询券码记录 [ func CodeGet(clt *core.SDKClient, accessToken string, req *coupon.CodeGetRequest) (*coupon.CodeGetResponseData, error) ]
+    - 核销券码 [ func CodeConsume(clt *core.SDKClient, accessToken string, req *coupon.CodeConsumeRequest) error ]
+    - 查询核销员 [ func EmployeeGet(clt *core.SDKClient, accessToken string, req *coupon.EmployeeGetRequest) (*coupon.EmployeeGetResponseData, error) ]
+    - 添加核销员 [ func EmployeeCreate(clt *core.SDKClient, accessToken string, req *coupon.EmployeeCreateRequest) (*coupon.EmployeeCreateResponseData, error) ]
+    - 删除核销员 [ func EmployeeDelete(clt *core.SDKClient, accessToken string, req *coupon.EmployeeDeleteRequest) error ]
   - 线索通智能电话组件管理 (clue/smartphone)
     - 创建智能电话 [ func Create(clt *core.SDKClient, accessToken string, req *smartphone.CreateRequest) (*smartphone.CreateResponseData, error) ]
     - 获取智能电话列表 [ func Get(clt *core.SDKClient, accessToken string, req *smartphone.GetRequest) (*smartphone.GetResponseData, error) ]

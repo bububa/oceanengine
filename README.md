@@ -8,5 +8,5 @@
 [![GitHub license](https://img.shields.io/github/license/bububa/oceanengine.svg)](https://github.com/bububa/oceanengine/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/bububa/oceanengine.svg)](https://GitHub.com/bububa/oceanengine/releases/)
 
-[巨量引擎开放平台SDK](https://github.com/bububa/oceanengine/blob/master/marketing-api/OCEANENGINE.md)
-[巨量千川开放平台SDK](https://github.com/bububa/oceanengine/blob/master/marketing-api/QIANCHUAN.md)
+- [巨量引擎开放平台SDK](https://github.com/bububa/oceanengine/blob/master/marketing-api/OCEANENGINE.md)
+- [巨量千川开放平台SDK](https://github.com/bububa/oceanengine/blob/master/marketing-api/QIANCHUAN.md)
