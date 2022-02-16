@@ -123,12 +123,62 @@
   - 批量删除视频素材 [ VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) ]
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
 - 建站管理
-  - 第三方落地页管理
-    - 获取第三方落地页站点列表 [ tools/thirdsite.Get(clt *core.SDKClient, accessToken string, req *thirdsite.GetRequest) (*thirdsite.GetResponseData, error) ]
-    - 创建第三方落地页站点 [ tools/thirdsite.Create(clt *core.SDKClient, accessToken string, req *thirdsite.CreateRequest) (uint64, error) ]
-    - 修改第三方落地页站点 [ tools/thirdsite.Update(clt *core.SDKClient, accessToken string, req *thirdsite.UpdateRequest) (uint64, error) ]
-    - 删除第三方落地页站点 [ tools/thirdsite.Delete(clt *core.SDKClient, accessToken string, req *thirdsite.DeleteRequest) (uint64, error) ]
-    - 获取第三方落地页预览地址 [ tools/thirdsite.Preview(clt *core.SDKClient, accessToken string, req *thirdsite.PreviewRequest) (*thirdsite.PreviewResponseData, error) ]
+  - 橙子建站落地页管理 (tools/site)
+    - 创建橙子建站站点 [ func Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
+    - 修改橙子建站站点 [ func Update(clt *core.SDKClient, accessToken string, req *site.UpdateRequest) error ]
+    - 更改橙子建站站点状态 [ func UpdateStatus(clt *core.SDKClient, accessToken string, req *site.UpdateStatusRequest) (*site.UpdateStatusResponseData, error) ]
+    - 获取橙子建站站点预览地址 [ func Preview(clt *core.SDKClient, accessToken string, req *site.PreviewRequest) (string, error) ]
+    - 获取橙子建站站点详细信息 [ func Read(clt *core.SDKClient, accessToken string, req *site.ReadRequest) (*site.SiteDetail, error) ]
+    - 获取橙子建站站点列表 [ func Get(clt *core.SDKClient, accessToken string, req *site.GetRequest) (*site.GetResponseData, error) ]
+    - 建站工具——查询已有智能电话 [ tools/clue.func SmartPhoneGet(clt *core.SDKClient, accessToken string, req *clue.SmartPhoneGetRequest) (*clue.SmartPhoneGetResponseData, error)  ]
+    - 建站工具——查询已有表单列表 [ tools/clue.func FormGet(clt *core.SDKClient, accessToken string, req *clue.FormGetRequest) (*clue.FormGetResponseData, error) ]
+    - 建站工具——查询表单详情 [ tools/clue.func FormDetail(clt *core.SDKClient, accessToken string, req *clue.FormDetailRequest) (*clue.FormDetail, error) ]
+    - 获取落地页预约表单信息 [ func FormsList(clt *core.SDKClient, accessToken string, req *site.FormsListRequest) ([]site.Form, error) ]
+    - 建站工具-建站转赠 [ func Handsel(clt *core.SDKClient, accessToken string, req *site.HandselRequest) (*site.HandselResponseData, error) ]
+    - 建站工具-建站复制 [ func Copy(clt *core.SDKClient, accessToken string, req *site.CopyRequest) (*site.CopyResponseData, error) ]
+  - 第三方落地页管理 (tools/thirdsite)
+    - 获取第三方落地页站点列表 [ Get(clt *core.SDKClient, accessToken string, req *thirdsite.GetRequest) (*thirdsite.GetResponseData, error) ]
+    - 创建第三方落地页站点 [ Create(clt *core.SDKClient, accessToken string, req *thirdsite.CreateRequest) (uint64, error) ]
+    - 修改第三方落地页站点 [ Update(clt *core.SDKClient, accessToken string, req *thirdsite.UpdateRequest) (uint64, error) ]
+    - 删除第三方落地页站点 [ Delete(clt *core.SDKClient, accessToken string, req *thirdsite.DeleteRequest) (uint64, error) ]
+    - 获取第三方落地页预览地址 [ Preview(clt *core.SDKClient, accessToken string, req *thirdsite.PreviewRequest) (*thirdsite.PreviewResponseData, error) ]
+  - 程序化落地页管理 (tools/landinggroup)
+    - 创建落地页组 [ func Create(clt *core.SDKClient, accessToken string, req *landinggroup.CreateRequest) (*landinggroup.LandingGroup, error) ]
+    - 获取落地页组 [ func Get(clt *core.SDKClient, accessToken string, req *landinggroup.GetRequest) (*landinggroup.GetResponseData, error) ]
+    - 更新落地页组站点状态 [ func SiteOptStatusUpdate(clt *core.SDKClient, accessToken string, req *landinggroup.SiteOptStatusUpdateRequest) error ]
+    - 更新落地页组信息 [ func Update(clt *core.SDKClient, accessToken string, req *landinggroup.UpdateRequest) (*landinggroup.LandingGroup, error) ]
+  - 橙子建站模版管理 (tools/sitetemplate)
+    - 基于站点创建模板 [ func Create(clt *core.SDKClient, accessToken string, req *sitetemplate.CreateRequest) (*sitetemplate.Template, error) ]
+    - 基于模板创建站点 [ func SiteCreate(clt *core.SDKClient, accessToken string, req *sitetemplate.SiteCreateRequest) (uint64, error) ]
+    - 获取站点模版列表 [ func Get(clt *core.SDKClient, accessToken string, req *sitetemplate.GetRequest) (*sitetemplate.GetResponseData, error) ]
+    - 获取模版预览链接 [ func Preview(clt *core.SDKClient, accessToken string, req *sitetemplate.PreviewRequest) (string, error) ]
+- 飞鱼线索管理 (tools/clue)
+  - 获取线索列表 [ func Get(clt *core.SDKClient, accessToken string, req *clue.GetRequest) (*clue.GetResponseData, error) ]
+  - 回传有效线索 [ func Callback(clt *core.SDKClient, accessToken string, req *clue.CallbackRequest) error ]
+  - 获取活动记录 [ func KeyActionGet(clt *core.SDKClient, accessToken string, req *clue.KeyActionGetRequest) (*clue.KeyActionGetResponseData, error) ]
+- 青鸟线索通
+  - 线索通表单组件管理 (clue/form)
+    - 获取表单详情 [ func Detail(clt *core.SDKClient, accessToken string, req *form.DetailRequest) (*form.Form, error) ]
+    - 获取表单列表 [ func List(clt *core.SDKClient, accessToken string, req *form.ListRequest) (*form.ListResponseData, error) ]
+    - 创建表单 [ func Create(clt *core.SDKClient, accessToken string, req *form.CreateRequest) (uint64, error) ]
+    - 更新表单 [ func Update(clt *core.SDKClient, accessToken string, req *form.UpdateRequest) (uint64, error) ]
+    - 删除表单 [ func Delete(clt *core.SDKClient, accessToken string, req *form.DeleteRequest) (bool, error) ]
+  - 线索通卡券组件管理 (clue/coupon)
+    - 创建卡券 [ func Create(clt *core.SDKClient, accessToken string, req *coupon.CreateRequest) (uint64, error) ]
+    - 上传券码 [ func CodeUpload(clt *core.SDKClient, accessToken string, req *coupon.CodeUploadRequest) (*coupon.CodeUploadResponseData, error) ]
+    - 获取卡券详情 [ func Detail(clt *core.SDKClient, accessToken string, req *coupon.DetailRequest) (*coupon.DetailResponseData, error) ]
+    - 获取卡券列表 [ func Get(clt *core.SDKClient, accessToken string, req *coupon.GetRequest) (*coupon.GetResponseData, error) ]
+    - 编辑卡券 [ func Update(clt *core.SDKClient, accessToken string, req *coupon.UpdateRequest) error ]
+    - 查询券码记录 [ func CodeGet(clt *core.SDKClient, accessToken string, req *coupon.CodeGetRequest) (*coupon.CodeGetResponseData, error) ]
+    - 核销券码 [ func CodeConsume(clt *core.SDKClient, accessToken string, req *coupon.CodeConsumeRequest) error ]
+    - 查询核销员 [ func EmployeeGet(clt *core.SDKClient, accessToken string, req *coupon.EmployeeGetRequest) (*coupon.EmployeeGetResponseData, error) ]
+    - 添加核销员 [ func EmployeeCreate(clt *core.SDKClient, accessToken string, req *coupon.EmployeeCreateRequest) (*coupon.EmployeeCreateResponseData, error) ]
+    - 删除核销员 [ func EmployeeDelete(clt *core.SDKClient, accessToken string, req *coupon.EmployeeDeleteRequest) error ]
+  - 线索通智能电话组件管理 (clue/smartphone)
+    - 创建智能电话 [ func Create(clt *core.SDKClient, accessToken string, req *smartphone.CreateRequest) (*smartphone.CreateResponseData, error) ]
+    - 获取智能电话列表 [ func Get(clt *core.SDKClient, accessToken string, req *smartphone.GetRequest) (*smartphone.GetResponseData, error) ]
+    - 删除智能电话 [ func Delete(clt *core.SDKClient, accessToken string, req *smartphone.DeleteRequest) error ]
+    - 查询智能电话拨打记录 [ func Record(clt *core.SDKClient, accessToken string, req *smartphone.RecordRequest) (*smartphone.RecordResponseData, error) ]
 - 资产
   - 创意组件(api/assets/creativecomponent)
     - 创建组件 [ func Create(clt *core.SDKClient, accessToken string, req *creativecomponent.CreateRequest) (*creativecomponent.CreateResponseData, error) ]
