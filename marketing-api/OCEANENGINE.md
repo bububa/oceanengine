@@ -32,6 +32,7 @@
     - 查询账号流水明细 [ advertiser.FundTransactionGet(clt *core.SDKClient, accessToken string, req *advertiser.FundTransactionGetRequest) ([]advertiser.FundTransactionGetResponseList, error) ]
     - 代理商转账 [ agent.AdvertiserRecharge(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRechargeRequest) (string, error) ]
     - 代理商退款 [ agent.AdvertiserRefund(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRefundRequest) (string, error) ]
+    - 查询账户可转余额 [ func TransferableFundGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.TransferableFund, error) ]
 - 广告投放
   - 广告账户预算 (api)
     - 获取账户日预算 [ advertiser.BudgetGet(clt *core.SDKClient, accessToken string, req *advertiser.BudgetGetRequest) ([]advertiser.BudgetGetResponseList, error) ]
