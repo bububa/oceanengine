@@ -33,4 +33,6 @@ type CustomAudience struct {
 	ModifyTime string `json:"modify_time,omitempty"`
 	// ThirdPartyInfo 是否为三方包，均返回“非三方包”
 	ThirdPartyInfo string `json:"third_party_info,omitempty"`
+	// ExistPullOffTag 人群包是否包含下线标签，0：不包含，1：包含
+	ExistPullOffTag int `json:"exist_pull_off_tag,omitempty"`
 }

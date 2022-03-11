@@ -228,6 +228,18 @@ type GetResponseList struct {
 	LubanRoiGoal float64 `json:"luban_roi_goal,omitempty"`
 	// RoiGoal 深度转化ROI系数, 范围(0,5]，精度：保留小数点后四位, deep_bid_type为"ROI_COEFFICIENT"时有值
 	RoiGoal float64 `json:"roi_goal,omitempty"`
+	// AutoInheritSwitch 一键继承开关，ON表示开启一键继承，OFF表示关闭一键继承
+	AutoInheritSwitch string `json:"auto_inherit_switch,omitempty"`
+	// InheritType 一键继承账户类型，auto_inherit_switch为ON时有意义，INHERIT_FROM_ACCOUNT表示从同账户下的优质计划中继承，INHERIT_FROM_CUSTOMER表示从同账户所在组织下的其他账户的优质计划中继承
+	InheritType string `json:"inherit_type,omitempty"`
+	// InheritedAdvertiserID 一键继承的同组织账户id的list，inherit_type等于INHERIT_FROM_CUSTOMER时有意义
+	InheritedAdvertiserID []uint64 `json:"inherited_advertiser_id,omitempty"`
+	// DeliveryPhase 计划所处阶段，允许值：FIRST_PHASE第一阶段，SECOND_PHASE第二阶段。当pricing为PRICING_CPC_OCPM时有值
+	DeliveryPhase string `json:"delivery_phase,omitempty"`
+	// LauhchTargetType 投放类型，LIVE_CONVERT：直播间转化、APP：应用下载、EXTERNAL：线索收集
+	LaunchTargetType string `json:"launch_target_type,omitempty"`
+	// AutoUpdateKeyword 是否开启自动加词，ON 开启、OFF 关闭
+	AutoUpdateKeyword string `json:"auto_update_keyword,omitempty"`
 }
 
 // DpaProductTarget 商品投放条件
@@ -324,6 +336,10 @@ type Audience struct {
 	AutoExtendEnabled int `json:"auto_extend_enabled,omitempty"`
 	// AutoExtendTarget 可放开定向。当auto_extend_enabled=1 时选填。详见：【附录-可开放定向】。缺省为全不选。
 	AutoExtendTarget []string `json:"auto_extend_targets,omitempty"`
+	// DpaRtaSwitch RTA重定向选项，值：ON:开启，OFF：关闭
+	DpaRtaSwitch string `json:"dpa_rta_switch,omitempty"`
+	// DpaRtaRecommendType RTA推荐逻辑，ONLY:仅RTA推荐商品，MORE：基于RTA推荐更多商品
+	DpaRtaRecommendType string `json:"dpa_rta_recommend_type,omitempty"`
 }
 
 // AudienceAction 行为内容
