@@ -20,6 +20,8 @@ const (
 	BrickType_SIMPLE_TEXT BrickType = "SIMPLE_TEXT"
 	// BrickType_VIDEO 视频组件
 	BrickType_VIDEO BrickType = "VIDEO"
+	// BrickType_WECHAT_GAME 微信小游戏组件
+	BrickType_WECHAT_GAME = "WECHAT_GAME"
 )
 
 // Brick 组件
@@ -42,6 +44,8 @@ type Brick struct {
 	Form *FormBrick `json:"form,omitempty"`
 	// Coupon 发券组件描述
 	Coupon *CouponBrick `json:"coupon,omitempty"`
+	// WechatGame 微信小游戏组件
+	WechatGame *WechatGameBrick `json:"wechat_game,omitempty"`
 }
 
 // VideoBrick 视频组件
@@ -110,4 +114,16 @@ type FormBrick struct {
 type CouponBrick struct {
 	// ActivityID 活动ID，当coupon不为空时，有返回值。用户可以通过【获取卡券列表】接口或【青鸟线索通平台】获取活动ID
 	ActivityID uint64 `json:"activity_id,omitempty"`
+}
+
+// WechatGameBrick 微信小游戏组件
+type WechatGameBrick struct {
+	// InstanceID 微信小游戏组件ID，当wechat_game不为空时，有返回值。用户可以通过【青鸟线索通平台】获取微信小游戏组件ID
+	InstanceID uint64 `json:"instance_id,omitempty"`
+	// Items 标签，个数不超过2，字数不超过5个中文字符
+	Items []string `json:"items,omitempty"`
+	// Introduction 简介，长度不超过40个中文字符
+	Introduction string `json:"introduction,omitempty"`
+	// Logo logo链接地址
+	Logo string `json:"logo,omitempty"`
 }
