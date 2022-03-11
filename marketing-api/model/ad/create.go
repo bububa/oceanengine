@@ -213,6 +213,14 @@ type CreateRequest struct {
 	LubanRoiGoal float64 `json:"luban_roi_goal,omitempty"`
 	// RoiGoal 深度转化ROI系数, 范围(0,5]，精度：保留小数点后四位, deep_bid_type为"ROI_COEFFICIENT"时有值
 	RoiGoal float64 `json:"roi_goal,omitempty"`
+	// AutoInheritSwitch 一键继承开关，ON表示开启一键继承，OFF表示关闭一键继承
+	AutoInheritSwitch string `json:"auto_inherit_switch,omitempty"`
+	// InheritType 一键继承账户类型，auto_inherit_switch为ON时有意义，INHERIT_FROM_ACCOUNT表示从同账户下的优质计划中继承，INHERIT_FROM_CUSTOMER表示从同账户所在组织下的其他账户的优质计划中继承
+	InheritType string `json:"inherit_type,omitempty"`
+	// InheritedAdvertiserID 一键继承的同组织账户id的list，inherit_type等于INHERIT_FROM_CUSTOMER时有意义
+	InheritedAdvertiserID []uint64 `json:"inherited_advertiser_id,omitempty"`
+	// AutoUpdateKeyword 是否开启自动加词，ON 开启、OFF 关闭
+	AutoUpdateKeyword string `json:"auto_update_keyword,omitempty"`
 }
 
 // Encode implement PostRequest interface
