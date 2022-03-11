@@ -12,7 +12,14 @@ type AdvertiserRefundRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// AgentID 代理商ID
 	AgentID uint64 `json:"agent_id,omitempty"`
-	// TransferType 转账类型（新增字段）. 枚举：CASH：现金，GRANT：赠款
+	// TransferType 转账类型，允许值：
+	// GRANT 赠款
+	// PREPAY_UNIVERSAL 通用预付
+	// PREPAY_BRAND 品牌预付
+	// PREPAY_BID 竞价预付
+	// CREDIT_UNIVERSAL 通用授信
+	// CREDIT_BRAND 品牌授信
+	// CREDIT_BID 竞价授信
 	TransferType string `json:"transfer_type,omitempty"`
 	// Amount 金额,单位(元),最低转账金额500元
 	Amount float64 `json:"amount,omitempty"`
