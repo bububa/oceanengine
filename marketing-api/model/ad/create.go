@@ -181,6 +181,10 @@ type CreateRequest struct {
 	ExcludeCustomActions interface{} `json:"exclude_custom_actions,omitempty"`
 	// DpaRecommendType dpa商品重定向推荐类型，dpa_local_audience为1时有值;取值：1（基于重定向推荐更多商品(根据重定向商品和行业特点，推荐更多相关商品投放，包含重定向商品），2仅重定向商品（仅根据重定向人群内定义的重定向行为商品进行投放）
 	DpaRecommendType int `json:"dpa_recommend_type,omitempty"`
+	// DpaRtaSwitch RTA重定向选项，值：ON:开启，OFF：关闭
+	DpaRtaSwitch string `json:"dpa_rta_switch,omitempty"`
+	// DpaRtaRecommendType RTA推荐逻辑，ONLY:仅RTA推荐商品，MORE：基于RTA推荐更多商品
+	DpaRtaRecommendType string `json:"dpa_rta_recommend_type,omitempty"`
 	// SmartBidType 投放场景(出价方式)，详见【附录-自动出价类型】;允许值: 常规投放"SMART_BID_CUSTOM", 放量投放"SMART_BID_CONSERVATIVE"; 概念解释：常规投放：控制成本，尽量消耗完预算；放量投放：接受成本上浮，尽量消耗更多预算
 	SmartBidType enum.SmartBidType `json:"smart_bid_type,omitempty"`
 	// AdjustCpa 是否调整自动出价，意味如果预期成本不在范围内将在此基础上调整，仅OCPM支持，当smart_bid_type=SMART_BID_CONSERVATIVE时选填。当smart_bid_type为"SMART_BID_CONSERVATIVE"且adjust_cpa=0时，cpa_bid由系统自动计算；;当smart_bid_type为"SMART_BID_CONSERVATIVE" 且adjust_cpa=1时，cpa_bid必填

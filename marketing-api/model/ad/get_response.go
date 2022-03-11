@@ -336,6 +336,10 @@ type Audience struct {
 	AutoExtendEnabled int `json:"auto_extend_enabled,omitempty"`
 	// AutoExtendTarget 可放开定向。当auto_extend_enabled=1 时选填。详见：【附录-可开放定向】。缺省为全不选。
 	AutoExtendTarget []string `json:"auto_extend_targets,omitempty"`
+	// DpaRtaSwitch RTA重定向选项，值：ON:开启，OFF：关闭
+	DpaRtaSwitch string `json:"dpa_rta_switch,omitempty"`
+	// DpaRtaRecommendType RTA推荐逻辑，ONLY:仅RTA推荐商品，MORE：基于RTA推荐更多商品
+	DpaRtaRecommendType string `json:"dpa_rta_recommend_type,omitempty"`
 }
 
 // AudienceAction 行为内容
