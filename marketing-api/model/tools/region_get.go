@@ -19,7 +19,9 @@ type RegionGetRequest struct {
 func (r RegionGetRequest) Encode() string {
 	values := &url.Values{}
 	values.Set("region_type", r.RegionType)
-	values.Set("region_level", string(r.RegionLevel))
+	if r.RegionLevel != "" {
+		values.Set("region_level", string(r.RegionLevel))
+	}
 	return values.Encode()
 }
 
