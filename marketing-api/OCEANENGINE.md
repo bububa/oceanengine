@@ -249,3 +249,5 @@
     - 获取屏蔽用户列表 [ AwemeBandedList(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedListRequest) (*comment.AwemeBandedListResponseData, error) ]
     - 添加屏蔽用户 [ AwemeBandedCreate(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedCreateRequest) (*comment.AwemeBandedCreateResponseData, error) ]
     - 删除屏蔽用户 [ AwemeBandedDelete(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedCreateRequest) (*comment.AwemeBandedCreateResponseData, error) ]
+  - 地域信息管理
+    - 获取行政信息 [ tools.AdminInfo(clt *core.SDKClient, accessToken string, req *tools.AdminInfoRequest) (*tools.AdminInfoResponseData, error) ]
