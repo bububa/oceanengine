@@ -3,6 +3,7 @@ package tools
 import (
 	"net/url"
 
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
@@ -11,14 +12,14 @@ type RegionGetRequest struct {
 	// RegionType 地域类型，目前只支持：BUSINESS_DISTRICT(商圈);允许值:"BUSINESS_DISTRICT"
 	RegionType string `json:"region_type,omitempty"`
 	// RegionLevel 只获取某层级数据，详见【附录-地域层级】
-	RegionLevel string `json:"region_level,omitempty"`
+	RegionLevel enum.RegionLevel `json:"region_level,omitempty"`
 }
 
 // Encode implement GetRequest interface
 func (r RegionGetRequest) Encode() string {
 	values := &url.Values{}
 	values.Set("region_type", r.RegionType)
-	values.Set("region_level", r.RegionLevel)
+	values.Set("region_level", string(r.RegionLevel))
 	return values.Encode()
 }
 
