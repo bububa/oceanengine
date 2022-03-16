@@ -33,6 +33,6 @@ type AwemeMultiLevelCategoryGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
 	Data struct {
-		List []Category `json:"categories"`
+		List []Category `json:"categories,omitempty"`
 	} `json:"data,omitempty"`
 }
