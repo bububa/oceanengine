@@ -36,6 +36,6 @@ type AwemeCategoryTopAuthorGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
 	Data struct {
-		List []Author `json:"list,omitempty"`
+		List []Author `json:"list"`
 	} `json:"data,omitempty"`
 }
