@@ -37,6 +37,6 @@ type AwemeAuthorInfoGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
 	Data struct {
-		List []Author `json:"authors"`
+		List []Author `json:"authors,omitempty"`
 	} `json:"data,omitempty"`
 }
