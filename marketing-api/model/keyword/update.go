@@ -1,7 +1,7 @@
 package keyword
 
 import (
-	"encoding/json"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // UpdateRequest 更新关键词 API Request
@@ -16,6 +16,5 @@ type UpdateRequest struct {
 
 // Encode implement PostRequest interface
 func (r UpdateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }

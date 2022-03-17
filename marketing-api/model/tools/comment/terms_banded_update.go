@@ -1,7 +1,7 @@
 package comment
 
 import (
-	"encoding/json"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // TermsBandedUpdateRequest 更新屏蔽词 API Request
@@ -16,6 +16,5 @@ type TermsBandedUpdateRequest struct {
 
 // Encode implement PostRequest interface
 func (r TermsBandedUpdateRequest) Encode() []byte {
-	js, _ := json.Marshal(r)
-	return js
+	return util.JSONMarshal(r)
 }

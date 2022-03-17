@@ -1,9 +1,8 @@
 package campaign
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // UpdateRequest 修改广告组 API Request
@@ -24,6 +23,5 @@ type UpdateRequest struct {
 
 // Encode implement PostRequest interface
 func (r UpdateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }

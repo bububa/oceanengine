@@ -1,9 +1,8 @@
 package agent
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdvertiserRechargeRequest 代理商转账 API Request
@@ -27,8 +26,7 @@ type AdvertiserRechargeRequest struct {
 
 // Encode implement PostRequest interface
 func (r AdvertiserRechargeRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // AdvertiserRechargeResponse 代理商转账 API Response

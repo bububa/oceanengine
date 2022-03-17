@@ -1,9 +1,8 @@
 package agent
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdvertiserRefundRequest 代理商退款 API Request
@@ -27,8 +26,7 @@ type AdvertiserRefundRequest struct {
 
 // Encode implement PostRequest interface
 func (r AdvertiserRefundRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // AdvertiserRefundResponse 代理商退款 API Response

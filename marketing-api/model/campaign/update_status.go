@@ -1,7 +1,7 @@
 package campaign
 
 import (
-	"encoding/json"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // UpdateStatusRequest 广告组更新状态 API Request
@@ -16,6 +16,5 @@ type UpdateStatusRequest struct {
 
 // Encode implement PostRequest interface
 func (r UpdateStatusRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }

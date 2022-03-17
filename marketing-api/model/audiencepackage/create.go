@@ -1,10 +1,9 @@
 package audiencepackage
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CreateRequest 创建定向包 API Request
@@ -26,8 +25,7 @@ type CreateRequest struct {
 
 // Encode implement PostRequest interface
 func (r CreateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // CreateResponse 创建定向包 API Response

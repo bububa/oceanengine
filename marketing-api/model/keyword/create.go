@@ -1,7 +1,7 @@
 package keyword
 
 import (
-	"encoding/json"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CreateRequest 创建关键词 API Request
@@ -16,6 +16,5 @@ type CreateRequest struct {
 
 // Encode implement PostRequest interface
 func (r CreateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }

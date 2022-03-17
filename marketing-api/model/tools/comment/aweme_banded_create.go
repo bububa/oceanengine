@@ -1,9 +1,8 @@
 package comment
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AwemeBandedCreateRequest 添加屏蔽用户 API Request
@@ -20,8 +19,7 @@ type AwemeBandedCreateRequest struct {
 
 // Encode implement PostRequest interface
 func (r AwemeBandedCreateRequest) Encode() []byte {
-	js, _ := json.Marshal(r)
-	return js
+	return util.JSONMarshal(r)
 }
 
 // AwemeBandedCreateResponse 添加屏蔽用户 API Response

@@ -1,10 +1,9 @@
 package site
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // UpdateStatusRequest 修改橙子建站站点状态 API Request
@@ -19,8 +18,7 @@ type UpdateStatusRequest struct {
 
 // Encode implement PostRequest interface
 func (r UpdateStatusRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // UpdateStatusResponse 更改橙子建站站点状态 API Response

@@ -1,6 +1,8 @@
 package adconvert
 
-import "encoding/json"
+import (
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // PushRequest 转化目标推送 API Request
 type PushRequest struct {
@@ -14,6 +16,5 @@ type PushRequest struct {
 
 // Encode implement PostRequest interface
 func (r PushRequest) Encode() []byte {
-	buf, _ := json.Marshal(r)
-	return buf
+	return util.JSONMarshal(r)
 }

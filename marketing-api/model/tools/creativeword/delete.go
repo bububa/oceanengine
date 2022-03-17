@@ -1,9 +1,8 @@
 package creativeword
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DeleteRequest 删除动态创意词包 API Request
@@ -16,8 +15,7 @@ type DeleteRequest struct {
 
 // Encode implement PostRequest interface
 func (r DeleteRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // DeleteResponse 删除动态创意词包 API Response

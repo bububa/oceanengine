@@ -1,9 +1,8 @@
 package landinggroup
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // UpdateRequest 更新落地页组信息 API Request
@@ -20,8 +19,7 @@ type UpdateRequest struct {
 
 // Encode implement PostRequest interface
 func (r UpdateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // UpdateResponse 更新落地页组信息 API Response

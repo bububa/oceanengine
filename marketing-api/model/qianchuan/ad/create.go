@@ -1,11 +1,10 @@
 package ad
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/creative"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CreateRequest 创建计划（含创意生成规则）
@@ -54,8 +53,7 @@ type CreateRequest struct {
 
 // Encode implement PostRequest interface
 func (r CreateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // CreateResponse 创建计划（含创意生成规则）

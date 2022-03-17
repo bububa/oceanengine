@@ -1,9 +1,8 @@
 package landinggroup
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SiteOptStatusUpdateRequest 更新落地页组站点状态 API Request
@@ -25,6 +24,5 @@ type SiteOptStatusUpdateItem struct {
 
 // Encode implement PostRequest interface
 func (r SiteOptStatusUpdateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }

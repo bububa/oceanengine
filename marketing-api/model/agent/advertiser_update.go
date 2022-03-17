@@ -1,9 +1,8 @@
 package agent
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdvertiserUpdateRequest 修改广告主 API Request
@@ -22,8 +21,7 @@ type AdvertiserUpdateRequest struct {
 
 // Encode implement PostRequest interface
 func (r AdvertiserUpdateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // AdvertiserUpdateResponse 修改广告主 API Response

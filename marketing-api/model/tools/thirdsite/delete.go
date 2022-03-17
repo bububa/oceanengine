@@ -1,9 +1,8 @@
 package thirdsite
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DeleteRequest 删除第三方落地页站点 API Request
@@ -16,8 +15,7 @@ type DeleteRequest struct {
 
 // Encode implement PostRequest interface
 func (r DeleteRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // DeleteResponse 删除第三方落地页站点 API Response

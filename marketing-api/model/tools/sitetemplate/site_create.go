@@ -1,9 +1,8 @@
 package sitetemplate
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SiteCreateRequest 基于模板创建站点 API Request
@@ -22,8 +21,7 @@ type SiteCreateRequest struct {
 
 // Encode implement PostRequest interface
 func (r SiteCreateRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }
 
 // SiteCreateResponse 基于模板创建站点 API Response

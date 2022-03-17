@@ -1,6 +1,8 @@
 package clue
 
-import "encoding/json"
+import (
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // CallbackReqeust 回传有效线索 API Request
 type CallbackRequest struct {
@@ -16,6 +18,5 @@ type CallbackRequest struct {
 
 // Encode implement PostRequest interface
 func (r CallbackRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }

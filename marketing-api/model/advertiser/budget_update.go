@@ -1,9 +1,8 @@
 package advertiser
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // UpdateBudgetRequest 更新账户日预算 API Request
@@ -19,6 +18,5 @@ type UpdateBudgetRequest struct {
 
 // Encode implement PostRequest interface
 func (r UpdateBudgetRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }

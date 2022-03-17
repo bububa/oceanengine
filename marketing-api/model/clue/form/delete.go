@@ -1,9 +1,8 @@
 package form
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DeleteRequest 删除表单 API Request
@@ -16,8 +15,7 @@ type DeleteRequest struct {
 
 // Encode implement PostRequest interface
 func (r DeleteRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }
 
 // DeleteResponse 删除表单 API Response

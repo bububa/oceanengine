@@ -1,9 +1,8 @@
 package privativeword
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CampaignAddRequest 批量新增组否定词 API Request
@@ -16,8 +15,7 @@ type CampaignAddRequest struct {
 
 // Encode implement PostRequest interface
 func (r CampaignAddRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // CampaignAddResponse 批量新增组否定词 API Response
