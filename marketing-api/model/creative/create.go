@@ -56,7 +56,7 @@ type CreateRequest struct {
 	// AdDownloadStatus 允许客户端下载视频功能，0为开启，即允许客户端下载视频；1为关闭，即不允许客户端下载视频。默认不传值，表示允许客户端下载视频。关闭客户端下载视频功能仅对本地上传的视频有效。
 	AdDownloadStatus *int `json:"ad_download_status,omitempty"`
 	// AdvancedCreativeType 附加创意类型。直播创意枚举：ATTACHED_CREATIVE_LIVE_CARD（直播卡片）
-	AdvancedCreativeType string `json:"advanced_creative_type,omitempty"`
+	AdvancedCreativeType enum.AdvancedCreativeType `json:"advanced_creative_type,omitempty"`
 	// AdvancedCreativeTitle 副标题，最多24个字符
 	AdvancedCreativeTitle string `json:"advanced_creative_title,omitempty"`
 	// PhoneNumber 电话号码。当附加创意类型为"ATTACHED_CREATIVE_PHONE"时必填

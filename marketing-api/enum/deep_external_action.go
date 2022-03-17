@@ -1,0 +1,17 @@
+package enum
+
+// DeepExternalAction 深度转化的转化目标
+type DeepExternalAction string
+
+const (
+	// DeepExternalAction_AD_CONVERT_TYPE_ACTIVE_REGISTER 注册
+	DeepExternalAction_AD_CONVERT_TYPE_ACTIVE_REGISTER DeepExternalAction = "AD_CONVERT_TYPE_ACTIVE_REGISTER"
+	// DeepExternalAction_AD_CONVERT_TYPE_NEXT_DAY_OPEN 次留
+	DeepExternalAction_AD_CONVERT_TYPE_NEXT_DAY_OPEN DeepExternalAction = "AD_CONVERT_TYPE_NEXT_DAY_OPEN"
+	// DeepExternalAction_AD_CONVERT_TYPE_LT_ROI 广告变现ROI
+	DeepExternalAction_AD_CONVERT_TYPE_LT_ROI DeepExternalAction = "AD_CONVERT_TYPE_LT_ROI"
+	// DeepExternalAction_AD_CONVERT_TYPE_PURCHASE_ROI 付费ROI
+	DeepExternalAction_AD_CONVERT_TYPE_PURCHASE_ROI DeepExternalAction = "AD_CONVERT_TYPE_PURCHASE_ROI"
+	// DeepExternalAction_AD_CONVERT_TYPE_GAME_ADDICTION 关键行为
+	DeepExternalAction_AD_CONVERT_TYPE_GAME_ADDICTION DeepExternalAction = "AD_CONVERT_TYPE_GAME_ADDICTION"
+)

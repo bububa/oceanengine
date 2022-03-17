@@ -113,7 +113,7 @@ type CreativeDetail struct {
 	// CreativeDisplayMode 创意展现方式
 	CreativeDisplayMode enum.CreativeDisplayMode `json:"creative_display_mode,omitempty"`
 	// AdvancedCreativeType 附加创意类型
-	AdvancedCreativeType string `json:"advanced_creative_type,omitempty"`
+	AdvancedCreativeType enum.AdvancedCreativeType `json:"advanced_creative_type,omitempty"`
 	// AdvancedCreativeTitle 附加创意副标题
 	AdvancedCreativeTitle string `json:"advanced_creative_title,omitempty"`
 	// PhoneNumber 电话号码(当附加创意类型为ATTACHED_CREATIVE_PHONE时返回)
