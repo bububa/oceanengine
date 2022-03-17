@@ -91,7 +91,7 @@ type GetResponseList struct {
 	// OpenUrl 直达链接(点击唤起APP)
 	OpenUrl string `json:"open_url,omitempty"`
 	// AdvancedCreativeType 附加创意类型; 允许值: ATTACHED_CREATIVE_GAME_PACKAGE游戏礼包码,ATTACHED_CREATIVE_GAME_FORM游戏表单收集,ATTACHED_CREATIVE_GAME_SUBSCRIBE游戏预约,ATTACHED_CREATIVE_NONE无推广目的为应用推广类型、下载方式选择下载链接且下载链接为安卓应用下载时才可以设置
-	AdvancedCreativeType string `json:"advanced_creative_type,omitempty"`
+	AdvancedCreativeType enum.AdvancedCreativeType `json:"advanced_creative_type,omitempty"`
 	// GamePackageDesc 应用描述,最少1字，最多15字
 	GamePackageDesc string `json:"game_package_desc,omitempty"`
 	// GamePackageBatchID  游戏礼包码id，目前仅支持直接发券类型

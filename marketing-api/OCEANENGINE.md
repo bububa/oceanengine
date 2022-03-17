@@ -224,6 +224,16 @@
     - 查询动态创意词包 [ Select(clt *core.SDKClient, accessToken string, req *creativeword.SelectRequest) ([]creativeword.CreativeWord, error) ]
     - 更新动态创意词包 [ Update(clt *core.SDKClient, accessToken string, req *creativeword.UpdateRequest) (uint64, error) ]
     - 删除动态创意词包 [ Delete(clt *core.SDKClient, accessToken string, req *creativeword.DeleteRequest) (uint64, error) ]
+  - 转化目标管理 (tools/adconvert)
+    - 创建转化目标 [ func Create(clt *core.SDKClient, accessToken string, req *adconvert.CreateRequest) (*adconvert.Convert, error) ]
+    - 转化目标列表 [ func Select(clt *core.SDKClient, accessToken string, req *adconvert.SelectRequest) (*adconvert.SelectResponseData, error) ]
+    - 查询转化目标详细信息 [ func Read(clt *core.SDKClient, accessToken string, req *adconvert.ReadRequest) (*adconvert.Convert, error) ]
+    - 更新转化目标操作状态 [ func UpdateStatus(clt *core.SDKClient, accessToken string, req *adconvert.UpdateStatusRequest) error ]
+    - 查询广告计划可用转化目标 [ func Query(clt *core.SDKClient, accessToken string, req *adconvert.QueryRequest) ([]adconvert.AdConvert, error) ]
+    - 查询广告计划可用优化目标 [ func OptimizeTargetGet(clt *core.SDKClient, accessToken string, req *adconvert.OptimizeTargetGetRequest) ([]adconvert.OptimizeTarget, error) ]
+    - 转化目标推送 [ func Push(clt *core.SDKClient, accessToken string, req *adconvert.PushRequest) error ]
+    - 查询深度优化方式 [ func DeepbidRead(clt *core.SDKClient, accessToken string, req *adconvert.DeepbidReadRequest) ([]enum.DeepBidType, error) ]
+    - 修改转化监测链接 [ func TrackURLUpdateStatus(clt *core.SDKClient, accessToken string, req *adconvert.TrackURLUpdateRequest) error ]
   - 定向包管理 (audiencepackage)
     - 获取定向包 [ Get(clt *core.SDKClient, accessToken string, req *audiencepackage.GetRequest) (*audiencepackage.GetResponseData, error) ]
     - 创建定向包 [ Create(clt *core.SDKClient, accessToken string, req *audiencepackage.CreateRequest) (uint64, error) ]
