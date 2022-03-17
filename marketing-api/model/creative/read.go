@@ -66,7 +66,7 @@ type CreativeDetail struct {
 	// TitleList 标题信息，程序化创意标题列表。最多包含10个标题
 	TitleList []TitleMaterial `json:"title_list,omitempty"`
 	// Creatives 素材信息, 首选投放位置和创意类型决定素材规格。程序化创意只有在审核通过后才有值
-	Creatives []Creative `json:"creative,omitempty"`
+	Creatives []Creative `json:"creatives,omitempty"`
 	// Source 广告来源
 	Source string `json:"source,omitempty"`
 	// IesCoreUserID 广告主绑定的抖音ID
@@ -125,6 +125,12 @@ type CreativeDetail struct {
 	CollocationType string `json:"collocation_type,omitempty"`
 	// Supplements 云游戏素材
 	Supplements []Supplement `json:"supplements,omitempty"`
+	// IsSmartTitle
+	IsSmartTitle *int `json:"is_smart_title,omitempty"`
+	// AdCategory
+	AdCategory uint64 `json:"ad_category,omitempty"`
+	// PriorityTrial 是否优先调起试玩。当推广目的为应用推广且使用搭配试玩素材是可以开启该功能。允许值：ON开启，OFF关闭，默认关闭
+	PriorityTrial string `json:"priority_trial,omitempty"`
 }
 
 // Supplement 云游戏素材
