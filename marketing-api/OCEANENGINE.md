@@ -56,6 +56,7 @@
     - 修改自定义创意 [ CustomCreativeUpdate(clt *core.SDKClient, accessToken string, req *creative.CustomCreativeUpdateRequest) (*creative.CustomCreativeCreateResponseData, error) ]
     - 创建广告创意 [ Create(clt *core.SDKClient, accessToken string, req *creative.CreateRequest) (*creative.CreateResponseData, error) ]
     - 创意详细信息 [ Read(clt *core.SDKClient, accessToken string, req *creative.ReadRequest) (*creative.CreativeDetail, error) ]
+    - 修改创意信息 [ Update(clt *core.SDKClient, accessToken string, req *creative.UpdateRequest) (*creative.CreateResponseData, error) ]
     - 更新创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 创意素材信息 [ MaterialRead(clt *core.SDKClient, accessToken string, req *creative.MaterialReadRequest) ([]creative.Material, error) ]
 - 数据报表

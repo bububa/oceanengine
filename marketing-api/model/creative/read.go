@@ -44,14 +44,11 @@ type CreativeDetail struct {
 	// ExternalUrl 落地页链接，新版营销链路下创意支持
 	ExternalUrl string `json:"external_url,omitempty"`
 	// AdDownloadStatus 允许客户端下载视频功能，0为开启，即允许客户端下载视频；1为关闭，即不允许客户端下载视频，该字段为空与0效果一致，即表示允许客户端下载视频。关闭客户端下载视频功能仅对本地上传的视频有效
-	AdDownloadStatus int `json:"ad_download_status,omitempty"`
+	AdDownloadStatus *int `json:"ad_download_status,omitempty"`
 	// SmartInventory 是否使用优选广告位，0表示不使用优选，1表示使用，2表示标记该创意隶属的计划投放范围是通投智选
 	SmartInventory int `json:"smart_inventory,omitempty"`
 	// ComponentInfo 创意组件信息
-	ComponentInfo []struct {
-		// ComponentID 创意组件id
-		ComponentID string `json:"component_id,omitempty"`
-	} `json:"component_info,omitempty"`
+	ComponentInfo []ComponentMaterial `json:"component_info,omitempty"`
 	// SceneInventory 首选场景广告位，详见【附录-首选场景广告位】，使用首选场景广告位时默认忽略inventory_type字段，与scene_inventory不能同时传 允许值: "VIDEO_SCENE", "FEED_SCENE", "TAIL_SCENE"
 	SceneInventory string `json:"scene_inventory,omitempty"`
 	// CreativeMaterialMode 创意类型，该字段为STATIC_ASSEMBLE表示程序化创意，其他情况无该字段
@@ -61,31 +58,13 @@ type CreativeDetail struct {
 	// ProceduralPackageVersion 程序化创意包版本
 	ProceduralPackageVersion uint64 `json:"procedural_package_version,omitempty"`
 	// IsPresentedVideo 启用图片生成视频，允许值：0（不启用），1（启用）
-	IsPresentedVideo int `json:"is_presented_video,omitempty"`
+	IsPresentedVideo *int `json:"is_presented_video,omitempty"`
 	// GenerateDerivedAd 是否开启衍生计划，1为开启，0为不开启
 	GeneratedDerivedAd string `json:"generated_derived_ad,omitempty"`
 	// ImageList 素材信息，程序化创意素材列表。最多包含12张图和6个视频。
-	ImageList []struct {
-		// ImageMode 素材类型
-		ImageMode enum.ImageMode `json:"image_mode,omitempty"`
-		// ImageID 视频图片ID
-		ImageID string `json:"image_id,omitempty"`
-		// VideoID 视频ID
-		VideoID string `json:"video_id,omitempty"`
-		// ImageIDs 图片ID列表
-		ImageIDs []string `json:"image_ids,omitempty"`
-		// TemplateIDs 模版ID列表
-		TemplateIDs []uint64 `json:"template_ids,omitempty"`
-	} `json:"image_list,omitempty"`
+	ImageList []ImageInfo `json:"image_list,omitempty"`
 	// TitleList 标题信息，程序化创意标题列表。最多包含10个标题
-	TitleList []struct {
-		// Title 创意标题
-		Title string `json:"title,omitempty"`
-		// CreativeWordIDs 动态词包ID，可使用动态词包查询接口查询数据
-		CreativeWordIDs []uint64 `json:"creative_word_ids,omitempty"`
-		// DpaWordIDs DPA词包ID列表，针对DPA广告
-		DpaWordIDs []uint64 `json:"dpa_word_ids,omitempty"`
-	} `json:"title_list,omitempty"`
+	TitleList []TitleMaterial `json:"title_list,omitempty"`
 	// Creatives 素材信息, 首选投放位置和创意类型决定素材规格。程序化创意只有在审核通过后才有值
 	Creatives []Creative `json:"creative,omitempty"`
 	// Source 广告来源
@@ -93,9 +72,9 @@ type CreativeDetail struct {
 	// IesCoreUserID 广告主绑定的抖音ID
 	IesCoreUserID string `json:"ies_core_user_id,omitempty"`
 	// IsFeedAndFavSee 是否隐藏抖音主页，0：不隐藏，1：隐藏
-	IsFeedAndFavSee int `json:"is_feed_and_fav_see,omitempty"`
+	IsFeedAndFavSee *int `json:"is_feed_and_fav_see,omitempty"`
 	// CreativeAutoGenerateSwitch 是否开启自动生成素材，delivery_range为UNIVERSAL：通投智选时返回，0：不启用,1：启用
-	CreativeAutoGenerateSwitch int `json:"creative_auto_generate_switch,omitempty"`
+	CreativeAutoGenerateSwitch *int `json:"creative_auto_generate_switch,omitempty"`
 	// AppName 应用名
 	AppName string `json:"app_name,omitempty"`
 	// SubTitle APP 副标题。
@@ -107,9 +86,9 @@ type CreativeDetail struct {
 	// PlayableUrl 试玩素材URL
 	PlayableUrl string `json:"playable_url,omitempty"`
 	// IsCommentDisable 是否关闭评论
-	IsCommentDisable int `json:"is_comment_disable,omitempty"`
+	IsCommentDisable *int `json:"is_comment_disable,omitempty"`
 	// CloseVideoDetail 是否关闭视频详情页落地页(勾选该选项后,视频详情页中不默认弹出落地页,仅对视频广告生效)
-	CloseVideoDetail int `json:"close_video_detail,omitempty"`
+	CloseVideoDetail *int `json:"close_video_detail,omitempty"`
 	// CreativeDisplayMode 创意展现方式
 	CreativeDisplayMode enum.CreativeDisplayMode `json:"creative_display_mode,omitempty"`
 	// AdvancedCreativeType 附加创意类型
