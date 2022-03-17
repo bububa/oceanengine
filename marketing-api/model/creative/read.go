@@ -112,11 +112,11 @@ type CreativeDetail struct {
 	// ActionTrackUrl 点击（监测链接）（当推广目的为应用下载且创建计划传递了convert_id，系统会自动获取转化中的点击监测链接，且不可修改）
 	ActionTrackUrl string `json:"action_track_url,omitempty"`
 	// VideoPlayEffectTrackUrl 视频有效播放（监测链接）
-	VideoPlayEffectTrackUrl []string `json:"video_play_effect_track_url,omitempty"`
+	VideoPlayEffectTrackUrl string `json:"video_play_effect_track_url,omitempty"`
 	// VideoPlayDoneTrackUrl 视频播完（监测链接）
-	VideoPlayDoneTrackUrl []string `json:"video_play_done_track_url,omitempty"`
+	VideoPlayDoneTrackUrl string `json:"video_play_done_track_url,omitempty"`
 	// VideoPlayTrackUrl 视频播放（监测链接）
-	VideoPlayTrackUrl []string `json:"video_play_track_url,omitempty"`
+	VideoPlayTrackUrl string `json:"video_play_track_url,omitempty"`
 	// TrackUrlSendType 数据发送方式; 允许值: SERVER_SEND(服务器端上传), CLIENT_SEND(客户端上传)
 	TrackUrlSendType string `json:"track_url_send_type,omitempty"`
 	// PromotionCard 商品推广卡片
