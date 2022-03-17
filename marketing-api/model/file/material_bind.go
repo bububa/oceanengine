@@ -1,10 +1,9 @@
 package file
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // MaterialBindRequest 素材推送 API Request
@@ -21,8 +20,7 @@ type MaterialBindRequest struct {
 
 // Encode implement PostRequest interface
 func (r MaterialBindRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // MaterialBindResponse 素材推送 API Response

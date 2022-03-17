@@ -1,7 +1,7 @@
 package coupon
 
 import (
-	"encoding/json"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // EmployeeDeleteRequest 删除核销员 API Request
@@ -14,6 +14,5 @@ type EmployeeDeleteRequest struct {
 
 // Encode implement PostRequest interface
 func (r EmployeeDeleteRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }

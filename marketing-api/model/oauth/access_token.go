@@ -1,9 +1,8 @@
 package oauth
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AccessTokenRequest 获取Access Token API Request
@@ -22,8 +21,7 @@ type AccessTokenRequest struct {
 
 // Encode implement PostRequest interface
 func (r AccessTokenRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // AccessTokenResponse 获取Access Token API Response

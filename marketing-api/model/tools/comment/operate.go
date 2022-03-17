@@ -5,6 +5,7 @@ import (
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // OperateRequest 评论操作 API Request
@@ -25,8 +26,7 @@ type OperateRequest struct {
 
 // Encode implement PostRequest interface
 func (r OperateRequest) Encode() []byte {
-	js, _ := json.Marshal(r)
-	return js
+	return util.JSONMarshal(r)
 }
 
 // OperateResponse 评论操作 API Response

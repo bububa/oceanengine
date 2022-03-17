@@ -1,9 +1,8 @@
 package adconvert
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // UpdateStatusRequest 更新转化目标操作状态
@@ -18,6 +17,5 @@ type UpdateStatusRequest struct {
 
 // Encode implement PostRequest interface
 func (r UpdateStatusRequest) Encode() []byte {
-	buf, _ := json.Marshal(r)
-	return buf
+	return util.JSONMarshal(r)
 }

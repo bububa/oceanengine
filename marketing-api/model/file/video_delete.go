@@ -1,9 +1,8 @@
 package file
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VideoDeleteRequest 批量删除视频素材 API Request
@@ -16,8 +15,7 @@ type VideoDeleteRequest struct {
 
 // Encode implement PostRequest interface
 func (r VideoDeleteRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // VideoDeleteResponse 批量删除视频素材 API Response

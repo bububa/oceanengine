@@ -1,9 +1,8 @@
 package site
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CopyRequest 建站工具-建站复制 API Request
@@ -16,8 +15,7 @@ type CopyRequest struct {
 
 // implement PostRequest interface
 func (r CopyRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }
 
 // CopyResponse 建站工具-建站复制 API Response

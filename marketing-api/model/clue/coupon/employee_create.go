@@ -1,9 +1,8 @@
 package coupon
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // EmployeeCreateRequest 添加核销员 API Request
@@ -16,8 +15,7 @@ type EmployeeCreateRequest struct {
 
 // Encode implement PostRequest interface
 func (r EmployeeCreateRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }
 
 // EmployeeCreateResponse 添加核销员 API Response

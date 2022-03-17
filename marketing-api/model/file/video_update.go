@@ -1,10 +1,9 @@
 package file
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VideoUpdateRequest 更新视频API Request
@@ -28,8 +27,7 @@ type VideoForUpdate struct {
 
 // Encode implement PostRequest interface
 func (r VideoUpdateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // VideoUpdateResponse 更新视频API Response

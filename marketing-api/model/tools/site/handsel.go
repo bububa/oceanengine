@@ -1,9 +1,8 @@
 package site
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // HandselRequest 建站工具-建站转赠 API Request
@@ -18,8 +17,7 @@ type HandselRequest struct {
 
 // implement PostRequest interface
 func (r HandselRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }
 
 // HandselResponse 建站工具-建站转赠 API Response

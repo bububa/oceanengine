@@ -1,9 +1,8 @@
 package privativeword
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdAddRequest 批量新增计划否定词 API Request
@@ -16,8 +15,7 @@ type AdAddRequest struct {
 
 // Encode implement PostRequest interface
 func (r AdAddRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // AdAddResponse 批量新增计划否定词 API Response

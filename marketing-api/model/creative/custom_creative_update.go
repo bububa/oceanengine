@@ -1,7 +1,7 @@
 package creative
 
 import (
-	"encoding/json"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CustomCreativeUpdateRequest 修改自定义创意 API Request
@@ -18,6 +18,5 @@ type CustomCreativeUpdateRequest struct {
 
 // Encode implement PostRequest interface
 func (r CustomCreativeUpdateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }

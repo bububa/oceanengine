@@ -1,6 +1,8 @@
 package coupon
 
-import "encoding/json"
+import (
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // CodeConsumeRequest 核销券码
 type CodeConsumeRequest struct {
@@ -26,6 +28,5 @@ type CodeConsumeRequest struct {
 
 // Encode implemnent PostRequest interface
 func (r CodeConsumeRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }

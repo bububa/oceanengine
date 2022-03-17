@@ -1,10 +1,9 @@
 package adconvert
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CreateRequest 创建转化目标 API Request
@@ -60,8 +59,7 @@ type CreateRequest struct {
 
 // Encode implement PostRequest interface
 func (r CreateRequest) Encode() []byte {
-	buf, _ := json.Marshal(r)
-	return buf
+	return util.JSONMarshal(r)
 }
 
 // CreateResponse 创建转化目标 API Response

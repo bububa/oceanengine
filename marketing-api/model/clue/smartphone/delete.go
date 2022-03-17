@@ -1,7 +1,7 @@
 package smartphone
 
 import (
-	"encoding/json"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DeleteRequest 删除智能电话 API Request
@@ -14,6 +14,5 @@ type DeleteRequest struct {
 
 // Encode implenent PostRequest interface
 func (r DeleteRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }

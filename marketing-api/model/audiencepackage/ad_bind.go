@@ -1,9 +1,8 @@
 package audiencepackage
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdBindRequest 计划绑定定向包 API Request
@@ -18,8 +17,7 @@ type AdBindRequest struct {
 
 // Encode implement PostRequest interface
 func (r AdBindRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // AdBindResponse 绑定定向包 API Response

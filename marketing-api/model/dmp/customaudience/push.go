@@ -1,6 +1,8 @@
 package customaudience
 
-import "encoding/json"
+import (
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // PushRequest 推送人群包
 type PushRequest struct {
@@ -14,6 +16,5 @@ type PushRequest struct {
 
 // Encode implement PostRequest interface
 func (r PushRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }

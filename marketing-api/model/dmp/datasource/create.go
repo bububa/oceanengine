@@ -1,9 +1,8 @@
 package datasource
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CreateRequest 数据源创建API Request
@@ -26,8 +25,7 @@ type CreateRequest struct {
 
 // Encode implement PostRequest interface
 func (r CreateRequest) Encode() []byte {
-	ret, _ := json.Marshal(r)
-	return ret
+	return util.JSONMarshal(r)
 }
 
 // CreateResponse 数据源创建API Response

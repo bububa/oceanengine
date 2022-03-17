@@ -1,6 +1,8 @@
 package coupon
 
-import "encoding/json"
+import (
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // UpdateRequest 编辑卡券
 type UpdateRequest struct {
@@ -31,6 +33,5 @@ type UpdateRequest struct {
 
 // Encode implemnent PostRequest interface
 func (r UpdateRequest) Encode() []byte {
-	b, _ := json.Marshal(r)
-	return b
+	return util.JSONMarshal(r)
 }
