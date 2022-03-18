@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
 // GetRequest 获取广告计划 API Request
@@ -57,4 +58,19 @@ type GetFiltering struct {
 	AdCreateTime string `json:"ad_create_time,omitempty"`
 	// AdModifyTime 广告计划更新时间，格式"yyyy-mm-dd"，表示过滤出当天更新的广告计划
 	AdModifyTime string `json:"ad_modify_time,omitempty"`
+}
+
+// GetResponse 获取广告计划 API Response
+type GetResponse struct {
+	model.BaseResponse
+	// Data json返回值
+	Data *GetResponseData `json:"data,omitempty"`
+}
+
+// GetResponseData json返回值
+type GetResponseData struct {
+	// List 广告数组
+	List []Ad `json:"list,omitempty"`
+	// PageInfo 分页信息
+	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
