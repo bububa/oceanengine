@@ -1,6 +1,9 @@
 package creative
 
-import "github.com/bububa/oceanengine/marketing-api/enum"
+import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
+)
 
 // ComponentMaterial 组件信息
 type ComponentMaterial struct {
@@ -9,5 +12,5 @@ type ComponentMaterial struct {
 	// ComponentType 组件类型
 	ComponentType enum.ComponentType `json:"component_type,omitempty"`
 	// MaterialID
-	MaterialID string `json:"material_id,omitempty"`
+	MaterialID model.FlexUint64 `json:"material_id,omitempty"`
 }
