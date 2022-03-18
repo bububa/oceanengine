@@ -15,13 +15,13 @@ type GetResponse struct {
 // GetResponseData json返回值
 type GetResponseData struct {
 	// List campaign list
-	List []GetResponseList `json:"list,omitempty"`
+	List []Campaign `json:"list,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
 
-// GetResponseList 广告组信息
-type GetResponseList struct {
+// Campaign 广告组信息
+type Campaign struct {
 	// ID 广告组ID
 	ID uint64 `json:"id,omitempty"`
 	// Name 广告组名称
