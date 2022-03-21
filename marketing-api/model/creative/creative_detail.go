@@ -54,6 +54,8 @@ type CreativeDetail struct {
 	SubTitle string `json:"sub_title,omitempty"`
 	// WebUrl Android应用下载详情页
 	WebUrl string `json:"web_url,omitempty"`
+	// OpenUrl 直达链接，只在电商店铺推广推广目的下有效
+	OpenUrl string `json:"open_url,omitempty"`
 	// ActionText 行动号召
 	ActionText string `json:"action_text,omitempty"`
 	// PlayableUrl 试玩素材URL
@@ -104,6 +106,11 @@ type CreativeDetail struct {
 	AdCategory uint64 `json:"ad_category,omitempty"`
 	// PriorityTrial 是否优先调起试玩。当推广目的为应用推广且使用搭配试玩素材是可以开启该功能。允许值：ON开启，OFF关闭，默认关闭
 	PriorityTrial string `json:"priority_trial,omitempty"`
+	// DynamicCreativeSwitch 启用动态创意类型,详见【附录-动态创意类型】
+	// 允许值:DYNAMIC_CREATIVE_TITLE, DYNAMIC_CREATIVE_ABSTRACT，DYNAMIC_CREATIVE_SUBLINK，DYNAMIC_CREATIVE_ON，默认DYNAMIC_CREATIVE_ON当传入不为空时，等同于传入DYNAMIC_CREATIVE_ON启用动态创意，当传入[]时，关闭动态创意
+	// 不传时，不改变已有的值
+	// 注意：该字段为【增量更新】
+	DynamicCreativeSwitch []enum.DynamicCreativeType `json:"dynamic_creative_switch,omitempty"`
 }
 
 // Supplement 云游戏素材

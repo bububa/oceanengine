@@ -12,8 +12,14 @@ type Creative struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Title 创意素材标题
 	Title string `json:"title,omitempty"`
+	// BidwordList 关键词列表
+	BidwordList []WordListItem `json:"bidword_list,omitempty"`
 	// CreativeWordIDs 动态词包列表
 	CreativeWordIDs []uint64 `json:"creative_word_ids,omitempty"`
+	// TextAbstractInfo 文本摘要
+	TextAbstractInfo *TextAbstractInfo `json:"text_abstract_info,omitempty"`
+	// StructAbstractInfo 标签摘要列表
+	StructAbstractInfo *StructAbstractInfo `json:"struct_abstract_info,omitempty"`
 	// Status 创意素材状态
 	Status enum.CreativeStatus `json:"status,omitempty"`
 	// OptStatus 创意素材操作状态

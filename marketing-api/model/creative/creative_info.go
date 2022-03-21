@@ -16,6 +16,8 @@ type CreativeInfo struct {
 	ImageMaterials []ImageMaterial `json:"image_materials,omitempty"`
 	// VideoMaterials 视频素材信息，image_mode为视频素材时使用
 	VideoMaterials []VideoMaterial `json:"video_materials,omitempty"`
+	// VideoMaterial 视频素材信息，image_mode为视频素材时使用
+	VideoMaterial *VideoMaterial `json:"video_material,omitempty"`
 	// SubTitleMaterial 副标题素材
 	SubTitleMaterial *TitleMaterial `json:"sub_title_material,omitempty"`
 	// PlayableMaterial 基础试玩素材，image_mode为基础试玩素材时使用，不支持和image_materials同时传入
