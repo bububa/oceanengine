@@ -260,15 +260,15 @@ type CreateRequest struct {
 	// InheritedAdvertiserID 一键继承的同组织账户id的list，inherit_type等于INHERIT_FROM_CUSTOMER时有意义
 	InheritedAdvertiserID []uint64 `json:"inherited_advertiser_id,omitempty"`
 	// TrackURL 展示（监测链接）
-	TrackURL string `json:"track_url,omitempty"`
+	TrackURL *[]string `json:"track_url,omitempty"`
 	// ActionTrackURL 点击（监测链接）只允许传入1个（当推广目的为应用下载且创建计划传递了convert_id，系统会自动获取转化中的点击监测链接）
-	ActionTrackURL *string `json:"action_track_url,omitempty"`
+	ActionTrackURL *[]string `json:"action_track_url,omitempty"`
 	// VideoPlayEffectiveTrackURL 视频有效播放（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
-	VideoPlayEffectiveTrackURL *string `json:"video_play_effective_track_url,omitempty"`
+	VideoPlayEffectiveTrackURL *[]string `json:"video_play_effective_track_url,omitempty"`
 	// VideoPlayDoneTrackURL 视频播完（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
-	VideoPlayDoneTrackURL *string `json:"video_play_done_track_url,omitempty"`
+	VideoPlayDoneTrackURL *[]string `json:"video_play_done_track_url,omitempty"`
 	// VideoPlayTrackURL 视频播放（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
-	VideoPlayTrackURL *string `json:"video_play_track_url,omitempty"`
+	VideoPlayTrackURL *[]string `json:"video_play_track_url,omitempty"`
 	// TrackURLSendType 数据发送方式，不可修改,默认值: SERVER_SEND
 	// 允许值: SERVER_SEND(服务器端上传), CLIENT_SEND(客户端上传)
 	// 客户端上传是指由客户端直接上报给监测平台的服务器, 只有白名单用户才可使用CLIENT_SEND(客户端上传), 如果需要开通请找对接的销售、运营
