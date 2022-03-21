@@ -16,6 +16,8 @@ type TextAbstractInfo struct {
 	BidwordList []WordListItem `json:"bidword_list,omitempty"`
 	// WordList 动态词包ID，可使用 【查询动态词包接口】 获得，结合文本摘要内容中的词包格式您需要填写相同个数与顺序的词包ID，如果实际ID顺序与文本摘要内容中词包名顺序不一致我们将以词包ID顺序为准。
 	WordList []WordListItem `json:"word_list,omitempty"`
+	// CreativeWordIDs 动态词包ID
+	CreativeWordIDs []WordListItem `json:"creative_word_ids,omitempty"`
 }
 
 // StructAbstractInfo 标签摘要信息
