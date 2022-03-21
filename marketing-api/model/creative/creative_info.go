@@ -26,6 +26,10 @@ type CreativeInfo struct {
 	ComponentMaterials []ComponentMaterial `json:"component_materials,omitempty"`
 	// AbstractMaterials 摘要素材，使用标签摘要时必须要传入3个;使用搜索广告时必传
 	AbstractMaterials []AbstractMaterial `json:"abstract_materials,omitempty"`
+	// TextAbstractInfo 文本摘要
+	TextAbstractInfo *TextAbstractInfo `json:"text_abstract_info,omitempty"`
+	// StructAbstractInfo 标签摘要列表
+	StructAbstractInfo []StructAbstractInfo `json:"struct_abstract_info,omitempty"`
 	// DerivePosterCid 是否将视频的封面和标题同步到图片创意。视频素材可填写。在创建完视频创意后，在计划下同步新建图片创意，允许值：0（不开启），1（开启）
 	DerivePosterCid *int `json:"derive_poster_cid,omitempty"`
 	// ThirdPartyID 创意自定义参数，例如开发者可设定此参数为创意打标签，用于区分使用的素材
