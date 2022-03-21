@@ -19,7 +19,7 @@ type Creative struct {
 	// TextAbstractInfo 文本摘要
 	TextAbstractInfo *TextAbstractInfo `json:"text_abstract_info,omitempty"`
 	// StructAbstractInfo 标签摘要列表
-	StructAbstractInfo *StructAbstractInfo `json:"struct_abstract_info,omitempty"`
+	StructAbstractInfo []StructAbstractInfo `json:"struct_abstract_info,omitempty"`
 	// Status 创意素材状态
 	Status enum.CreativeStatus `json:"status,omitempty"`
 	// OptStatus 创意素材操作状态

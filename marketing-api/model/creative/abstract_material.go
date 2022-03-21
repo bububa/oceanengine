@@ -5,14 +5,6 @@ type AbstractMaterial struct {
 	// TextAbstractInfo 文本摘要信息; 注意：与标签摘要struct_abstract_info选其一
 	TextAbstractInfo *TextAbstractInfo `json:"text_abstract_info,omitempty"`
 	// StructAbstractInfo 标签摘要信息列表;注意：与文本摘要text_abstract_info选其一
-	StructAbstractInfo []StructAbstractInfo `json:"struct_abstract_info,omitempty"`
-}
-
-// AbstractMaterialForUpdate 摘要素材
-type AbstractMaterialForUpdate struct {
-	// TextAbstractInfo 文本摘要信息; 注意：与标签摘要struct_abstract_info选其一
-	TextAbstractInfo *TextAbstractInfo `json:"text_abstract_info,omitempty"`
-	// StructAbstractInfo 标签摘要信息列表;注意：与文本摘要text_abstract_info选其一
 	StructAbstractInfo *StructAbstractInfo `json:"struct_abstract_info,omitempty"`
 }
 
