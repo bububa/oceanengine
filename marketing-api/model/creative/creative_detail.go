@@ -54,6 +54,8 @@ type CreativeDetail struct {
 	SubTitle string `json:"sub_title,omitempty"`
 	// WebUrl Android应用下载详情页
 	WebUrl string `json:"web_url,omitempty"`
+	// OpenUrl 直达链接，只在电商店铺推广推广目的下有效
+	OpenUrl string `json:"open_url,omitempty"`
 	// ActionText 行动号召
 	ActionText string `json:"action_text,omitempty"`
 	// PlayableUrl 试玩素材URL
