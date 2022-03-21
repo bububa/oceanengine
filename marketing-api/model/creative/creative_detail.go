@@ -36,6 +36,8 @@ type CreativeDetail struct {
 	ImageList []ImageInfo `json:"image_list,omitempty"`
 	// TitleList 标题信息，程序化创意标题列表。最多包含10个标题
 	TitleList []TitleMaterial `json:"title_list,omitempty"`
+	// AbstractList 搜索广告字段
+	AbstractList []AbstractMaterial `json:"abstract_list,omitempty"`
 	// Creatives 素材信息, 首选投放位置和创意类型决定素材规格。程序化创意只有在审核通过后才有值
 	Creatives []Creative `json:"creatives,omitempty"`
 	// Source 广告来源
