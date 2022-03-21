@@ -4,6 +4,8 @@ import "github.com/bububa/oceanengine/marketing-api/enum"
 
 // VideoMaterial 视频素材信息
 type VideoMaterial struct {
+	// ImageMode 素材类型，必填，注意：程序化创意不支持组图 CREATIVE_IMAGE_MODE_GROUP，其他类型图片都支持，如横版/竖版大图、小图。详见【附录-素材类型】
+	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// ImageInfo 视频封面图片，传1张
 	ImageInfo *ImageInfo `json:"image_info,omitempty"`
 	// VideoInfo 视频素材信息

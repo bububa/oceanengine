@@ -43,7 +43,7 @@ type Creative struct {
 	// DpaTemplate 是否使用商品库视频模板，针对DPA广告
 	DpaTemplate uint64 `json:"dpa_template,omitempty"`
 	// DpaVideoTempateType 商品库视频模板生成类型，针对DPA广告
-	DpaVideoTempateType enum.DpaVideoTemplateType `json:"dpa_video_template_type,omitempty"`
+	DpaVideoTemplateType enum.DpaVideoTemplateType `json:"dpa_video_template_type,omitempty"`
 	// DpaVideoTaskIDs 自定义商品库视频模板ID，针对DPA广告
 	DpaVideoTaskIDs []string `json:"dpa_video_task_ids,omitempty"`
 	// ComponentInfo 创意组件信息
