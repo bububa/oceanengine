@@ -8,6 +8,14 @@ type AbstractMaterial struct {
 	StructAbstractInfo []StructAbstractInfo `json:"struct_abstract_info,omitempty"`
 }
 
+// AbstractMaterialForUpdate 摘要素材
+type AbstractMaterialForUpdate struct {
+	// TextAbstractInfo 文本摘要信息; 注意：与标签摘要struct_abstract_info选其一
+	TextAbstractInfo *TextAbstractInfo `json:"text_abstract_info,omitempty"`
+	// StructAbstractInfo 标签摘要信息列表;注意：与文本摘要text_abstract_info选其一
+	StructAbstractInfo *StructAbstractInfo `json:"struct_abstract_info,omitempty"`
+}
+
 // TextAbstractInfo 文本摘要信息
 type TextAbstractInfo struct {
 	// AbstractText 文本摘要内容,长度限制为25-45个字, 两个英文字符占1位。使用文本摘要(text_abstract_info)时必填; 如果要使用动态词包，格式如下：“XXX{词包名}XXX{词包名}XXX”，请注意当您使用动态词包需在下方 word_list 字段中按顺序传入词包ID，并且在一个文本摘要内容中最多使用两个动态词包。如果要使用搜索关键词，格式如下：“XXX{#关键词#}XXX”，请注意当您使用关键词需在下方 bidword_list 字段中传入关键词，并且在一个文本摘要内容中最多使用一个关键词
