@@ -4,6 +4,8 @@ import "github.com/bububa/oceanengine/marketing-api/enum"
 
 // ImageMaterial 创意图片素材
 type ImageMaterial struct {
+	// ImageMode 素材类型，必填，注意：程序化创意不支持组图 CREATIVE_IMAGE_MODE_GROUP，其他类型图片都支持，如横版/竖版大图、小图。详见【附录-素材类型】
+	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// ImageInfo 图片素材信息
 	ImageInfo *ImageInfo `json:"image_info,omitempty"`
 	// TemplateImage 图片模版信息，创建DPA创意时可传入,选择模板后image_info传入内容无效
