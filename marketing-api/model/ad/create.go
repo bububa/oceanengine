@@ -19,7 +19,7 @@ type CreateRequest struct {
 	// DeliveryRange 投放范围。详见【附录-广告投放范围】;默认值: "DEFAULT"默认; 允许值: DEFAULT 默认, UNION 穿山甲、UNIVERSAL 通投智选; 对于投放范围的解释可参考【广告计划】
 	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
 	// UnionVideoType 投放形式（穿山甲视频创意类型），当delivery_range为"UNION"时必填。详见【附录-穿山甲视频创意类型】;默认值: ORIGINAL_VIDEO原生; 允许值: ORIGINAL_VIDEO原生, REWARDED_VIDEO激励视频,SPLASH_VIDEO开屏
-	UnionVideoType string `json:"union_video_type,omitempty"`
+	UnionVideoType enum.UnionVideoType `json:"union_video_type,omitempty"`
 	// DownloadType 下载方式; 默认值：DOWNLOAD_URL下载链接; 可选值：DOWNLOAD_URL下载链接、EXTERNAL_URL落地页链接
 	DownloadType string `json:"download_type,omitempty"`
 	// DownloadUrl 应用下载方式，推广目的为APP时有值。返回值：DOWNLOAD_URL下载链接，QUICK_APP_URL快应用+下载链接，EXTERNAL_URL落地页链接
@@ -42,12 +42,46 @@ type CreateRequest struct {
 	PromotionType string `json:"promotion_type,omitempty"`
 	// AwemeAccount 抖音号，可从【获取绑定抖音号】接口获取，默认取绑定的第一个抖音号
 	AwemeAccount string `json:"aweme_account,omitempty"`
-	// ExternalActions 转化类型列表，当出价方式为OCPM时必填，当出价方式为CPC和CPM时非必填。; 可通过【工具-转化目标管理-查询计划可用转化目标】查询可用external_action
-	ExternalActions []string `json:"external_actions,omitempty"`
+	// LandingPageStayTime 店铺停留时长，单位为毫秒，当external_action为AD_CONVERT_TYPE_STAY_TIME时必填
+	// 允许值：1000、5000、12000、20000、30000、40000、50000、60000
+	LandingPageStayTime int `json:"landing_page_stay_time,omitempty"`
+	// InventoryCatalog 广告位大类。允许值 MANUAL首选媒体 SCENE场景广告位，SMART优选广告位，UNIVERSAL通投智选
+	InventorCatalog string `json:"inventory_catalog,omitempty"`
+	// InventoryType 广告投放位置（首选媒体），详见【附录-首选投放位置】，在没有使用smart_inventory的情况下，当前字段必填。
+	InventoryType []enum.StatInventoryType `json:"inventory_type,omitempty"`
+	// SmartInventory 优选广告位，允许值NORMAL表示不使用优选，SMART表示使用优选，UNIVERSAL表示通投，使用优选广告位的时候默认忽略inventory_type字段。
+	// 默认值: NORMAL
+	SmartInventory string `json:"smart_inventory,omitempty"`
+	// ExternalAction 预定义转化目标
+	ExternalAction enum.AdConvertType `json:"external_action,omitempty"`
+	// ExternalActions 转化类型列表，仅抖音号、销售线索收集推广目的支持该字段
+	// 可通过【工具-转化目标管理-查询计划可用转化目标】查询可用external_action
+	ExternalActions []enum.AdConvertType `json:"external_actions,omitempty"`
+	// DeepExternalAction 深度转化目标，可通过【获取优化目标】接口获取
+	DeepExternalAction enum.DeepExternalAction `json:"deep_external_action,omitempty"`
+	// AssetIDs 资产 id，可通过【获取推广内容】接口获取
+	// 当使用事件管理时必填
+	AssetIDs []uint64 `json:"asset_ids,omitempty"`
+	// TrackURLGroupType 监测链接类型（当推广目的为APP时必填）允许值：TRACK_URL_GROUP_ID 已有链接、 CUSTOM ：自定义
+	TrackURLGroupType string `json:"track_url_group_type,omitempty"`
+	// TrackURLGroupID 监测链接组ID（当推广目的为APP时，且监测链接类型为TRACK_URL_GROUP_ID 时必填）
+	TrackURLGroupID uint64 `json:"track_url_group_id,omitempty"`
+	// ValueOptimizedType 目标优化类型，0表示行为优化，1表示价值优化
+	// 当前仅支持推广目的为销售线索收集（landing_type=LINK）
+	// 当选择价值优化时value_optimized_open价值优化必须为开启，会自动设为1，并将 cpa_bid置为0
+	ValueOptimizedType *int `json:"value_optimized_type,omitempty"`
+	// ValueOptimizedValue 价值优选，0表示关闭，1表示开启
+	// 当前仅支持推广目的为销售线索收集（landing_type=LINK）
+	// 目标优化类型为价值优化时必须开启，会自动设为1，并将cpa_bid置为 0
+	ValueOptmizedValue *int `json:"value_optimized_value,omitempty"`
 	// ProductPlatformID 商品目录ID(ID由【DPA商品广告-查询商品库】 得到)
 	ProductPlatformID uint64 `json:"product_platform_id,omitempty"`
 	// ProductID 商品ID，当广告组商品类型选择SDPA时必填(ID由【DPA商品广告-获取DPA商品库商品列表】 得到，创建后不可修改)
 	ProductID string `json:"product_id,omitempty"`
+	// AssetID 物件ID，可用场景需同时满足：
+	// 1. 推广目的为应用推广APP、销售线索收集LINK、电商店铺SHOP中的一种，且广告组商品类型为 SDPA
+	// 2. 仅在汽车垂直行业下（商品库行业类型对应AUTO_NEW）可以使用且必填，可通过【商品广告-获取投放条件列表】获取，创建后不可修改。
+	AssetID uint64 `json:"asset_id,omitempty"`
 	// CategoryType 商品目录投放范围,当广告组商品类型选择 DPA 多商品时可修改;允许值：NONE不限，"CATEGORY"选择分类，"PRODUCT"指定商品
 	CategoryType string `json:"category_type,omitempty"`
 	// DpaCategories 分类列表，category_type更新为"CATEGORY"时可修改，由【DPA商品广告-获取DPA分类】 得到限制个数1~100
@@ -216,12 +250,29 @@ type CreateRequest struct {
 	LubanRoiGoal float64 `json:"luban_roi_goal,omitempty"`
 	// RoiGoal 深度转化ROI系数, 范围(0,5]，精度：保留小数点后四位, deep_bid_type为"ROI_COEFFICIENT"时有值
 	RoiGoal float64 `json:"roi_goal,omitempty"`
+	// TargetCvr 目标转化率，转化率优化仅支持电商店铺推广，且付费方式为OCPC或OCPM
+	// 允许值：0～100，0表示关闭转化率优化
+	TargetCvr float64 `json:"target_cvr,omitempty"`
 	// AutoInheritSwitch 一键继承开关，ON表示开启一键继承，OFF表示关闭一键继承
 	AutoInheritSwitch string `json:"auto_inherit_switch,omitempty"`
 	// InheritType 一键继承账户类型，auto_inherit_switch为ON时有意义，INHERIT_FROM_ACCOUNT表示从同账户下的优质计划中继承，INHERIT_FROM_CUSTOMER表示从同账户所在组织下的其他账户的优质计划中继承
 	InheritType string `json:"inherit_type,omitempty"`
 	// InheritedAdvertiserID 一键继承的同组织账户id的list，inherit_type等于INHERIT_FROM_CUSTOMER时有意义
 	InheritedAdvertiserID []uint64 `json:"inherited_advertiser_id,omitempty"`
+	// TrackURL 展示（监测链接）
+	TrackURL string `json:"track_url,omitempty"`
+	// ActionTrackURL 点击（监测链接）只允许传入1个（当推广目的为应用下载且创建计划传递了convert_id，系统会自动获取转化中的点击监测链接）
+	ActionTrackURL *string `json:"action_track_url,omitempty"`
+	// VideoPlayEffectiveTrackURL 视频有效播放（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
+	VideoPlayEffectiveTrackURL *string `json:"video_play_effective_track_url,omitempty"`
+	// VideoPlayDoneTrackURL 视频播完（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
+	VideoPlayDoneTrackURL *string `json:"video_play_done_track_url,omitempty"`
+	// VideoPlayTrackURL 视频播放（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
+	VideoPlayTrackURL *string `json:"video_play_track_url,omitempty"`
+	// TrackURLSendType 数据发送方式，不可修改,默认值: SERVER_SEND
+	// 允许值: SERVER_SEND(服务器端上传), CLIENT_SEND(客户端上传)
+	// 客户端上传是指由客户端直接上报给监测平台的服务器, 只有白名单用户才可使用CLIENT_SEND(客户端上传), 如果需要开通请找对接的销售、运营
+	TrackURLSendType string `json:"track_url_send_type,omitempty"`
 	// AutoUpdateKeyword 是否开启自动加词，ON 开启、OFF 关闭
 	AutoUpdateKeyword string `json:"auto_update_keyword,omitempty"`
 }

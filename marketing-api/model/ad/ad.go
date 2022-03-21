@@ -64,11 +64,11 @@ type Ad struct {
 	// ConvertID 转化目标，其中convert_id数值较小时为预定义转化
 	ConvertID int `json:"convert_id,omitempty"`
 	// ExternalAction 转化类型，目前当推广类型为抖音时有值，允许值："AD_CONVERT_TYPE_FOLLOW_ACTION", "AD_CONVERT_TYPE_MESSAGE_ACTION", "AD_CONVERT_TYPE_INTERACTION"
-	ExternalAction string `json:"external_action,omitempty"`
+	ExternalAction enum.AdConvertType `json:"external_action,omitempty"`
 	// ExternalActions 转化类型，目前当推广类型为抖音时有值，允许值："AD_CONVERT_TYPE_FOLLOW_ACTION", "AD_CONVERT_TYPE_MESSAGE_ACTION", "AD_CONVERT_TYPE_INTERACTION"
-	ExternalActions []string `json:"external_actions,omitempty"`
+	ExternalActions []enum.AdConvertType `json:"external_actions,omitempty"`
 	// DeepExternalAction 深度转化目标
-	DeepExternalAction string `json:"deep_external_action,omitempty"`
+	DeepExternalAction enum.DeepExternalAction `json:"deep_external_action,omitempty"`
 	// FeedDeliverySearch 搜索快投关键词，HAS_OPEN:启用，DISABLE:不启用
 	FeedDeliverySearch string `json:"feed_delivery_search,omitempty"`
 	// IntelligentFlowSwitch 智能流量开关，ON:开启，OFF:关闭

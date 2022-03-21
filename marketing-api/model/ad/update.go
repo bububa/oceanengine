@@ -184,6 +184,20 @@ type UpdateRequest struct {
 	LubanRoiGoal float64 `json:"luban_roi_goal,omitempty"`
 	// RoiGoal 深度转化ROI系数, 范围(0,5]，精度：保留小数点后四位, deep_bid_type为"ROI_COEFFICIENT"时有值
 	RoiGoal float64 `json:"roi_goal,omitempty"`
+	// TargetCvr 目标转化率，转化率优化仅支持电商店铺推广，且付费方式为OCPC或OCPM; 允许值：0～100，0表示关闭转化率优化
+	TargetCvr float64 `json:"target_cvr,omitempty"`
+	// TrackURL 展示（监测链接）
+	TrackURL string `json:"track_url,omitempty"`
+	// ActionTrackURL 点击（监测链接）只允许传入1个（当推广目的为应用下载且创建计划传递了convert_id，系统会自动获取转化中的点击监测链接）
+	ActionTrackURL *string `json:"action_track_url,omitempty"`
+	// VideoPlayEffectiveTrackURL 视频有效播放（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
+	VideoPlayEffectiveTrackURL *string `json:"video_play_effective_track_url,omitempty"`
+	// VideoPlayDoneTrackURL 视频播完（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
+	VideoPlayDoneTrackURL *string `json:"video_play_done_track_url,omitempty"`
+	// VideoPlayTrackURL 视频播放（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
+	VideoPlayTrackURL *string `json:"video_play_track_url,omitempty"`
+	// AutoUpdateKeyword 否开启自动加词，允许值：ON（开启）、OFF（关闭）
+	AutoUpdateKeyword string `json:"auto_update_keyword,omitempty"`
 }
 
 // Encode implement PostRequest interface
