@@ -1,0 +1,15 @@
+package enum
+
+// DynamicCreativeType 动态创意类型
+type DynamicCreativeType string
+
+const (
+	// DYNAMIC_CREATIVE_TITLE 动态标题
+	DYNAMIC_CREATIVE_TITLE DynamicCreativeType = "DYNAMIC_CREATIVE_TITLE"
+	// DYNAMIC_CREATIVE_ABSTRACT 动态摘要
+	DYNAMIC_CREATIVE_ABSTRACT DynamicCreativeType = "DYNAMIC_CREATIVE_ABSTRACT"
+	// DYNAMIC_CREATIVE_SUBLINK 动态子链
+	DYNAMIC_CREATIVE_SUBLINK DynamicCreativeType = "DYNAMIC_CREATIVE_SUBLINK"
+	// DYNAMIC_CREATIVE_ON 开启动态创意
+	DYNAMIC_CREATIVE_ON DynamicCreativeType = "DYNAMIC_CREATIVE_ON"
+)

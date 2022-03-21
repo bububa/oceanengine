@@ -10,6 +10,8 @@ type CreativeInfo struct {
 	CreativeID uint64 `json:"creative_id,omitempty"`
 	// TitleMaterial 标题素材
 	TitleMaterial *TitleMaterial `json:"title_material,omitempty"`
+	// TitleMaterials 创意标题素材，最多支持10个标题，不使用程序化创意包时必填
+	TitleMaterials []TitleMaterial `json:"title_materials,omitempty"`
 	// ImageMaterials 创意图片素材，组图、橱窗类型传3张，其他图片类型传1张，使用DPA模板时template_image只能传入1个，image_mode为图片素材时使用
 	ImageMaterials []ImageMaterial `json:"image_materials,omitempty"`
 	// VideoMaterials 视频素材信息，image_mode为视频素材时使用
@@ -21,7 +23,7 @@ type CreativeInfo struct {
 	// CompnentMaterials 组件信息，数组传入最大长度2，每种类型（基础/附加组件）最多支持1个; 附加组件：选择磁贴、投票磁贴、图片磁贴、电商磁贴、优惠券磁贴、游戏礼包码; 基础组件：推广卡片
 	ComponentMaterials []ComponentMaterial `json:"component_materials,omitempty"`
 	// AbstractMaterials 摘要素材，使用标签摘要时必须要传入3个;使用搜索广告时必传
-	AbstractMaterials []AbstractMaterial `json:"abstract_material,omitempty"`
+	AbstractMaterials []AbstractMaterial `json:"abstract_materials,omitempty"`
 	// DerivePosterCid 是否将视频的封面和标题同步到图片创意。视频素材可填写。在创建完视频创意后，在计划下同步新建图片创意，允许值：0（不开启），1（开启）
 	DerivePosterCid *int `json:"derive_poster_cid,omitempty"`
 	// ThirdPartyID 创意自定义参数，例如开发者可设定此参数为创意打标签，用于区分使用的素材

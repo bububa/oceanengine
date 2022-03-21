@@ -1,5 +1,7 @@
 package creative
 
+import "github.com/bububa/oceanengine/marketing-api/enum"
+
 // AdData 广告计划数据
 type AdData struct {
 	// ThridIndustryID 三级行业ID
@@ -10,6 +12,8 @@ type AdData struct {
 	Source string `json:"source,omitempty"`
 	// IesCoreUserID 品牌主页-推广抖音号，当传入此字段时表示开启抖音主页。广告视频将同步到您的主页下，在客户端点击广告头像将进入您的主页。创建后不可修改。
 	IesCoreUserID string `json:"ies_core_user_id,omitempty"`
+	// IsPresentedVideo 自动生成视频素材，利用已上传的图片与视频生成更多优质的短视频素材：1（启用），0（不启用）默认值: 0
+	IsPresentedVideo *int `json:"is_presented_video,omitempty"`
 	// PlayableURL 搭配试玩素材URL，可通过【获取试玩素材列表】进行获取。
 	PlayableURL string `json:"playable_url,omitempty"`
 	// IsFeedAndFavSee 主页作品列表隐藏广告内容，默认值：0; 允选值：0（不隐藏），1（隐藏）
@@ -30,6 +34,10 @@ type AdData struct {
 	PriorityTrail string `json:"priority_trail,omitempty"`
 	// Supplements 云游戏
 	Supplements []SupplementInfo `json:"supplements,omitempty"`
+	// DynamicCreativeSwitch
+	DynamicCreativeSwitch []enum.DynamicCreativeType `json:"dynamic_creative_switch,omitempty"`
+	// OpenURL 直达链接，只在电商店铺推广推广目的下有效
+	OpenURL string `json:"open_url,omitempty"`
 }
 
 // SupplementInfo 云游戏列表
@@ -37,7 +45,7 @@ type SupplementInfo struct {
 	// SupplementType 云游戏类型，允许值: CLOUD_GAME
 	SupplementType string `json:"supplement_type,omitempty"`
 	// Game 云游戏信息, 最多只允许填入一个
-	Games []GameInfo `json:"game,omitempty"`
+	Games []GameInfo `json:"games,omitempty"`
 }
 
 // GameInfo 云游戏信息

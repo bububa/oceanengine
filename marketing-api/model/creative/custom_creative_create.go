@@ -5,6 +5,7 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
+// CustomCreativeCreateRequest 创建自定义创意（营销链路） API Request
 type CustomCreativeCreateRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`

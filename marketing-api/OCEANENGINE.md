@@ -54,11 +54,14 @@
     - 获取广告创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
     - 创建自定义创意 [ CustomCreativeCreate(clt *core.SDKClient, accessToken string, req *creative.CustomCreativeCreateRequest) (*creative.CustomCreativeCreateResponseData, error) ]
     - 修改自定义创意 [ CustomCreativeUpdate(clt *core.SDKClient, accessToken string, req *creative.CustomCreativeUpdateRequest) (*creative.CustomCreativeCreateResponseData, error) ]
+    - 创建程序化创意 [ ProceduralCreativeCreate(clt *core.SDKClient, accessToken string, req *creative.ProceduralCreativeCreateRequest) error ]
+    - 修改程序化创意 [ ProceduralCreativeUpdate(clt *core.SDKClient, accessToken string, req *creative.ProceduralCreativeUpdateRequest) error ]
     - 创建广告创意 [ Create(clt *core.SDKClient, accessToken string, req *creative.CreateRequest) (*creative.CreateResponseData, error) ]
     - 创意详细信息 [ Read(clt *core.SDKClient, accessToken string, req *creative.ReadRequest) (*creative.CreativeDetail, error) ]
     - 修改创意信息 [ Update(clt *core.SDKClient, accessToken string, req *creative.UpdateRequest) (*creative.CreateResponseData, error) ]
     - 更新创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 创意素材信息 [ MaterialRead(clt *core.SDKClient, accessToken string, req *creative.MaterialReadRequest) ([]creative.Material, error) ]
+    - 获取创意审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *creative.RejectReasonRequest) ([]creative.RejectReason, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ AdvertiserGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
