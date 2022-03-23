@@ -1,15 +1,18 @@
 package creative
 
-import "github.com/bububa/oceanengine/marketing-api/enum"
+import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
+)
 
 // Material 素材信息
 type Material struct {
 	// ID 创意ID
 	ID string `json:"id,omitempty"`
 	// AdID 广告计划ID
-	AdID string `json:"ad_id,omitempty"`
+	AdID model.FlexUint64 `json:"ad_id,omitempty"`
 	// AdvertiserID 广告主ID
-	AdvertiserID string `json:"advertiser_id,omitempty"`
+	AdvertiserID model.FlexUint64 `json:"advertiser_id,omitempty"`
 	// Title 创意素材标题
 	Title string `json:"title,omitempty"`
 	// Status 创意状态
