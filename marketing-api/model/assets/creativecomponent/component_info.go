@@ -1,6 +1,8 @@
 package creativecomponent
 
 import (
+	"encoding/json"
+
 	"github.com/bububa/oceanengine/marketing-api/enum"
 )
 
@@ -16,6 +18,52 @@ type ComponentInfo struct {
 	CreateTime string `json:"create_time,omitempty"`
 	// Status 组件审核状态。
 	Status enum.ComponentStatus `json:"status,omitempty"`
+}
+
+type tmpComponentInfo struct {
+	// ComponentType 组件类型
+	ComponentType enum.ComponentType `json:"component_type,omitempty"`
+	// ComponentName 组件名称。长度小于等于20。一个中文长度为2
+	ComponentName string `json:"component_name,omitempty"`
+	// ComponentData 组件详细信息。不同的component_type对应的值不同，具体的结构见创建或更新接口定义
+	ComponentData json.RawMessage `json:"component_data,omitempty"`
+	// CreateTime 创建时间。格式"2020-12-25 15:12:08"
+	CreateTime string `json:"create_time,omitempty"`
+	// Status 组件审核状态。
+	Status enum.ComponentStatus `json:"status,omitempty"`
+}
+
+// UnmarshalJSON implement json Unmarshal interface
+func (i *ComponentInfo) UnmarshalJSON(b []byte) (err error) {
+	var tmp tmpComponentInfo
+	if err = json.Unmarshal(b, &tmp); err != nil {
+		return
+	}
+	info := ComponentInfo{
+		ComponentType: tmp.ComponentType,
+		ComponentName: tmp.ComponentName,
+		CreateTime:    tmp.CreateTime,
+		Status:        tmp.Status,
+	}
+	switch info.ComponentType {
+	case enum.ComponentType_CHOICE_MAGNET:
+		info.ComponentData = ChoiceMagnet{}
+	case enum.ComponentType_VOTE_MAGNET:
+		info.ComponentData = VoteMagnet{}
+	case enum.ComponentType_IMAGE_MAGNET:
+		info.ComponentData = ImageMagnet{}
+	case enum.ComponentType_COUPON_MAGNET:
+		info.ComponentData = CouponMagnet{}
+	case enum.ComponentType_PROMOTION_CARD:
+		info.ComponentData = PromotionCard{}
+	case enum.ComponentType_GAME_PACK:
+		info.ComponentData = GamePack{}
+	}
+	if err = json.Unmarshal(tmp.ComponentData, &info.ComponentData); err != nil {
+		return
+	}
+	*i = info
+	return
 }
 
 // ComponentData 组件详细信息 interface
