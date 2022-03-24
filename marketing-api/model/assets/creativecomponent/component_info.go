@@ -69,6 +69,13 @@ func (i *ComponentInfo) UnmarshalJSON(b []byte) (err error) {
 			return
 		}
 		info.ComponentData = data
+	case enum.ComponentType_COMMERCE_MAGNET:
+		var data CommerceMagnet
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	case enum.ComponentType_COUPON_MAGNET:
 		var data CouponMagnet
 		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
@@ -210,6 +217,13 @@ type CommerceMagnet struct {
 	CommerceCards [1]CommerceCard `json:"commerce_cards,omitempty"`
 }
 
+// Type implement ComponentData interface
+func (m CommerceMagnet) Type() enum.ComponentType {
+	return enum.ComponentType_COMMERCE_MAGNET
+}
+
+var _ ComponentData = (*CommerceMagnet)(nil)
+
 // CouponMagnet 优惠券磁贴的component_data
 type CouponMagnet struct {
 	// CommerceCards 电商磁铁信息，长度只能为1
@@ -223,6 +237,12 @@ func (m CouponMagnet) Type() enum.ComponentType {
 
 var _ ComponentData = (*CouponMagnet)(nil)
 
+type ImageInfo struct {
+	WebURL string `json:"web_url,omitempty"`
+	Height int    `json:"height,omitempty"`
+	Width  int    `json:"width,omitempty"`
+}
+
 // PromotionCard 推广卡片的component_data
 type PromotionCard struct {
 	// ImageID 图片id。建议尺寸：108*108，大小为1M
@@ -234,7 +254,8 @@ type PromotionCard struct {
 	// ProductSellingPoints 推广卖点。最多选择10个推广卖点 ，内容长度要求：6 ≤ x ≤9 。一个中文长度为1
 	ProductSellingPoints []string `json:"product_selling_points,omitempty"`
 	// EnablePersonalAction 是否开启智能优选，1-开启、0-不开启
-	EnablePersonalAction int `json:"enable_personal_action,omitempty"`
+	EnablePersonalAction int        `json:"enable_personal_action,omitempty"`
+	ImageInfo            *ImageInfo `json:"image_info,omitempty"`
 }
 
 // Type implement ComponentData interface
