@@ -34,5 +34,13 @@ type SuggestionAcceptResponseData struct {
 	// SuggestionAccept 采纳成功的工具列表
 	SuggestionAccept []string `json:"suggestion_accept,omitempty"`
 	// SuggestionAcceptFailed 采纳失败的工具列表
-	SuggestionAcceptFailed []string `json:"suggestion_accept_failed,omitempty"`
+	SuggestionAcceptFailed []SuggestionAcceptFailed `json:"suggestion_accept_failed,omitempty"`
+}
+
+// SuggestionAcceptFailed 采纳失败
+type SuggestionAcceptFailed struct {
+	// SuggestionType 采纳失败的工具
+	SuggestionType string `json:"suggestion_type,omitempty"`
+	// FailReason 采纳失败的原因
+	FailReason string `json:"fail_reason,omitempty"`
 }
