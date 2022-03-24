@@ -2,6 +2,8 @@ package creativecomponent
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 )
@@ -47,24 +49,50 @@ func (i *ComponentInfo) UnmarshalJSON(b []byte) (err error) {
 	}
 	switch info.ComponentType {
 	case enum.ComponentType_CHOICE_MAGNET:
-		info.ComponentData = ChoiceMagnet{}
+		var data ChoiceMagnet
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	case enum.ComponentType_VOTE_MAGNET:
-		info.ComponentData = VoteMagnet{}
+		var data VoteMagnet
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	case enum.ComponentType_IMAGE_MAGNET:
-		info.ComponentData = ImageMagnet{}
+		var data ImageMagnet
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	case enum.ComponentType_COUPON_MAGNET:
-		info.ComponentData = CouponMagnet{}
+		var data CouponMagnet
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	case enum.ComponentType_PROMOTION_CARD:
-		info.ComponentData = PromotionCard{}
+		var data PromotionCard
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	case enum.ComponentType_GAME_PACK:
 		info.ComponentData = GamePack{}
-	}
-	if err = json.Unmarshal(tmp.ComponentData, &info.ComponentData); err != nil {
-		return
+	default:
+		return errors.New("unknown component_type")
 	}
 	*i = info
 	return
 }
+
+var _ json.Unmarshaler = (*ComponentInfo)(nil)
 
 // ComponentData 组件详细信息 interface
 type ComponentData interface {
@@ -102,6 +130,8 @@ func (m ChoiceMagnet) Type() enum.ComponentType {
 	return enum.ComponentType_CHOICE_MAGNET
 }
 
+var _ ComponentData = (*ChoiceMagnet)(nil)
+
 // VoteMagnet 投票磁贴的component_data
 type VoteMagnet struct {
 	// Title 主标题。长度小于等于24。一个中文长度为2
@@ -121,6 +151,8 @@ func (m VoteMagnet) Type() enum.ComponentType {
 	return enum.ComponentType_VOTE_MAGNET
 }
 
+var _ ComponentData = (*VoteMagnet)(nil)
+
 // ImageMagnet 图片磁贴的component_data
 type ImageMagnet struct {
 	// StartTime 投放开始时间。格式: "2020-12-01"
@@ -139,6 +171,8 @@ type ImageMagnet struct {
 func (m ImageMagnet) Type() enum.ComponentType {
 	return enum.ComponentType_IMAGE_MAGNET
 }
+
+var _ ComponentData = (*ImageMagnet)(nil)
 
 // CommerceCard 电商磁铁/优惠券磁贴信息
 type CommerceCard struct {
@@ -187,6 +221,8 @@ func (m CouponMagnet) Type() enum.ComponentType {
 	return enum.ComponentType_COUPON_MAGNET
 }
 
+var _ ComponentData = (*CouponMagnet)(nil)
+
 // PromotionCard 推广卡片的component_data
 type PromotionCard struct {
 	// ImageID 图片id。建议尺寸：108*108，大小为1M
@@ -205,6 +241,8 @@ type PromotionCard struct {
 func (p PromotionCard) Type() enum.ComponentType {
 	return enum.ComponentType_PROMOTION_CARD
 }
+
+var _ ComponentData = (*PromotionCard)(nil)
 
 // GamePack 游戏礼包码的component_data
 type GamePack struct {
@@ -228,3 +266,5 @@ type GamePack struct {
 func (g GamePack) Type() enum.ComponentType {
 	return enum.ComponentType_GAME_PACK
 }
+
+var _ ComponentData = (*GamePack)(nil)
