@@ -238,7 +238,7 @@ func (m CouponMagnet) Type() enum.ComponentType {
 var _ ComponentData = (*CouponMagnet)(nil)
 
 type ImageInfo struct {
-	WebURL string `json:"web_url,omitempty"`
+	WebUri string `json:"web_uri,omitempty"`
 	Height int    `json:"height,omitempty"`
 	Width  int    `json:"width,omitempty"`
 }
@@ -254,8 +254,8 @@ type PromotionCard struct {
 	// ProductSellingPoints 推广卖点。最多选择10个推广卖点 ，内容长度要求：6 ≤ x ≤9 。一个中文长度为1
 	ProductSellingPoints []string `json:"product_selling_points,omitempty"`
 	// EnablePersonalAction 是否开启智能优选，1-开启、0-不开启
-	EnablePersonalAction int        `json:"enable_personal_action,omitempty"`
-	ImageInfo            *ImageInfo `json:"image_info,omitempty"`
+	EnablePersonalAction int         `json:"enable_personal_action,omitempty"`
+	ImageInfo            []ImageInfo `json:"image_info,omitempty"`
 }
 
 // Type implement ComponentData interface
