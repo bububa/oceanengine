@@ -43,6 +43,8 @@ type Ad struct {
 	QuickAppUrl string `json:"quick_app_url,omitempty"`
 	// ExternalUrl 落地页链接，投放内容或下载方式为落地页时有值
 	ExternalUrl string `json:"external_url,omitempty"`
+	// Ulink 直达备用链接，仅支持穿山甲广告位（不支持搜索广告）
+	Ulink string `json:"ulink,omitempty"`
 	// TrackUrl 展示（监测链接）
 	TrackUrl []string `json:"track_url,omitempty"`
 	// ActionTrackUrl 点击（监测链接）
