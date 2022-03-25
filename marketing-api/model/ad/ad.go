@@ -164,19 +164,19 @@ type Ad struct {
 	// ConvertedTimeDuration 过滤时间范围
 	ConvertedTimeDuration string `json:"converted_time_duration,omitempty"`
 	// DpaLbs 地域匹配-LBS;开启时，根据用户的地理位置信息，给用户投放位于其附近的产品 ;取值：0，1（0表示不启用，1表示启用）
-	DpaLbs int `json:"dpa_lbs,omitempty"`
+	DpaLbs *int `json:"dpa_lbs,omitempty"`
 	// DpaCity 地域匹配-商品所在城市;开启时，仅将商品投放给位于该商品设置的可投城市的用户 ;取值：0，1（0表示不启用，1表示启用）
-	DpaCity int `json:"dpa_city,omitempty"`
+	DpaCity *int `json:"dpa_city,omitempty"`
 	// DpaProvince 地域匹配-商品所在省份;开启时，将商品仅投放给位于该商品设置的可投省份的用户 ;取值：0，1（0表示不启用，1表示启用）
-	DpaProvince int `json:"dpa_province,omitempty"`
+	DpaProvince *int `json:"dpa_province,omitempty"`
 	// DpaLocationAudience DPA行为重定向，0:不启用，1：启用
-	DpaLocationAudience int `json:"dap_location_audience,omitempty"`
+	DpaLocationAudience *int `json:"dap_location_audience,omitempty"`
 	// AssetIDs 事件管理下资产 id
 	AssetIDs []uint64 `json:"asset_ids,omitempty"`
 	// ValueOptimizedType 目标优化类型，0表示行为优化，1表示价值优化
-	ValueOptimizedType int `json:"value_optimized_type,omitempty"`
+	ValueOptimizedType *int `json:"value_optimized_type,omitempty"`
 	// ValueOptimizedOpen 价值优选，0表示关闭，1表示开启
-	ValueOptimizedOpen int `json:"value_optimized_open,omitempty"`
+	ValueOptimizedOpen *int `json:"value_optimized_open,omitempty"`
 	// IncludeCustomActions 包含人群包((DPA推广目的特有,格式举例[{"days": 7, "code": 1001},]， dpa_local_audience为1时有值; day可选范围:1, 7, 14, 28, 60, 90, 120, 180。
 	IncludeCustomActions json.RawMessage `json:"include_custom_actions,omitempty"`
 	// ExcludeCustomActions 排除人群包((DPA推广目的特有,格式举例{"days": 7, "code": 1002},]，day可选范围: 1, 7, 14, 28, 60, 90, 120, 180。
