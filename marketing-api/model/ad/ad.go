@@ -62,7 +62,7 @@ type Ad struct {
 	// DonwloadMode 优先从系统应用商店下载（下载模式）;允许值：APP_STORE_DELIVERY（仅安卓应用下载支持）、 DEFAULT当应用下载时，默认default下载，可选用APP_STORE_DELIVERY（应用商店直投），当为该值时，将优先跳转目标应用对应手机系统应用商店安装详情页，跳转失败则使用下载链接下载。请确保投放的应用在应用商店内已上架
 	DownloadMode string `json:"download_mode,omitempty"`
 	// ConvertID 转化目标，其中convert_id数值较小时为预定义转化
-	ConvertID int `json:"convert_id,omitempty"`
+	ConvertID uint64 `json:"convert_id,omitempty"`
 	// ExternalAction 转化类型，目前当推广类型为抖音时有值，允许值："AD_CONVERT_TYPE_FOLLOW_ACTION", "AD_CONVERT_TYPE_MESSAGE_ACTION", "AD_CONVERT_TYPE_INTERACTION"
 	ExternalAction enum.AdConvertType `json:"external_action,omitempty"`
 	// ExternalActions 转化类型，目前当推广类型为抖音时有值，允许值："AD_CONVERT_TYPE_FOLLOW_ACTION", "AD_CONVERT_TYPE_MESSAGE_ACTION", "AD_CONVERT_TYPE_INTERACTION"
@@ -94,7 +94,7 @@ type Ad struct {
 	// StoreproPackID 活动ID （storepro_unit 为 "STORE_ACTIVITY" 时有值
 	StoreproPackID uint64 `json:"storepro_pack_id,omitempty"`
 	// ProductPlatformID  产品目录ID(ID由查询产品目录接口得到), 当推广目的landing_type为DPA时有值
-	ProductPlatformID int64 `json:"product_platform_id,omitempty"`
+	ProductPlatformID uint64 `json:"product_platform_id,omitempty"`
 	// ProductID 商品id，当推广目的为 DPA 广告组商品类型为 SDPA 时有值
 	ProductID string `json:"product_id,omitempty"`
 	// AssetID 物件id，当广告组商品类型为 SDPA 且商品库为汽车商品库时有值
@@ -108,7 +108,7 @@ type Ad struct {
 	// DpaProductTarget 自定义筛选条件（商品投放条件）。用于圈定商品投放范围，结合商品库字段搭配判断条件，圈定商品投放范围。
 	DpaProductTarget []DpaProductTarget `json:"dpa_product_target,omitempty"`
 	// DpaAdtype dpa广告类型，取值范围："DPA_LINK"落地页, "DPA_APP"应用下载
-	DpaAdtype []string `json:"dpa_adtype,omitempty"`
+	DpaAdtype string `json:"dpa_adtype,omitempty"`
 	// ParamsType 链接类型(落地页)，当dpa_adtype为"DPA_LINK"时有值，取值: "DPA"商品库所含链接, "CUSTOM"自定义链接
 	ParamsType string `json:"params_type,omitempty"`
 	// DpaExternalUrlField 落地页链接字段选择，当params_type为"DPA"时有值
@@ -225,6 +225,10 @@ type Ad struct {
 	LaunchTargetType string `json:"launch_target_type,omitempty"`
 	// AutoUpdateKeyword 是否开启自动加词，ON 开启、OFF 关闭
 	AutoUpdateKeyword string `json:"auto_update_keyword,omitempty"`
+	// LandingPageStayTime 店铺停留时长，单位为毫秒
+	LandingPageStayTime int64 `json:"landing_page_stay_time,omitempty"`
+	// TargetCvr 目标转化率
+	TargetCvr float64 `json:"target_cvr,omitempty"`
 }
 
 // DpaProductTarget 商品投放条件
@@ -243,6 +247,8 @@ type DpaProductTarget struct {
 type Audience struct {
 	// District 地域;取值: "CITY"省市, "COUNTY"区县, "BUSINESS_DISTRICT"商圈,"NONE"不限，省市传法："city": [12],"district": "CITY",区县的传法："city": [130102],"district": "COUNTY";暂不支持"海外"
 	District string `json:"district,omitempty"`
+	// RegionVersion 行政区域版本号。通过[【获取行政信息】]https://open.oceanengine.com/doc/index.html?key=ad&type=api&id=1709606596424718)接口获取; district =REGION/OVERSEA时必填
+	RegionVersion string `json:"region_version,omitempty"`
 	// City 地域定向省市或者区县列表(当传递省份ID时,旗下市县ID可省略不传),当district为"CITY"或"COUNTY"时有值
 	City []uint64 `json:"city,omitempty"`
 	// BusinessIDs 商圈ID数组，district为"BUSINESS_DISTRICT"时有值
@@ -278,7 +284,9 @@ type Audience struct {
 	// AppIDs （老版行为兴趣）APP行为定向——按APP（请注意如果投放的是"应用下载-IOS"不支持设置APP行为定向，请勿传值。）可通过【工具-查询工具-查询应用信息】获取。当app_behavior_target为APP时有值
 	AppIDs []uint64 `json:"app_ids,omitempty"`
 	// AwemeFanBehavior 抖音达人互动用户行为类型
-	AwemeFanBehavior []enum.Behavior `json:"aweme_fan_behavior,omitempty"`
+	AwemeFanBehaviors []enum.Behavior `json:"aweme_fan_behaviors,omitempty"`
+	// AwemeFanTimeScope
+	AwemeFanTimeScope string `json:"aweme_fan_time_scope,omitempty"`
 	// AwemeFanCategories 抖音达人分类ID列表，与aweme_fan_behaviors同时设置才会生效（抖音达人定向）
 	AwemeFanCategories []uint64 `json:"aweme_fan_categories,omitempty"`
 	// AwemeFanAccounts 抖音达人ID列表，与aweme_fan_behaviors同时设置才会生效（抖音达人定向）
