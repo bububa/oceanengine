@@ -73,7 +73,7 @@ type CreateRequest struct {
 	// ValueOptimizedValue 价值优选，0表示关闭，1表示开启
 	// 当前仅支持推广目的为销售线索收集（landing_type=LINK）
 	// 目标优化类型为价值优化时必须开启，会自动设为1，并将cpa_bid置为 0
-	ValueOptmizedValue *int `json:"value_optimized_value,omitempty"`
+	ValueOptmizedOpen *int `json:"value_optimized_value,omitempty"`
 	// ProductPlatformID 商品目录ID(ID由【DPA商品广告-查询商品库】 得到)
 	ProductPlatformID uint64 `json:"product_platform_id,omitempty"`
 	// ProductID 商品ID，当广告组商品类型选择SDPA时必填(ID由【DPA商品广告-获取DPA商品库商品列表】 得到，创建后不可修改)
@@ -131,7 +131,7 @@ type CreateRequest struct {
 	// Age 年龄
 	Age []enum.AudienceAge `json:"age,omitempty"`
 	// Carreer 职业选项，详见【附录-职业】
-	Career []string `json:"career,omitempty"`
+	Career []enum.Carrier `json:"career,omitempty"`
 	// RetargetingTagsInclude 定向人群包列表（自定义人群），内容为人群包id。如果选择"同时定向与排除"，需传入retargeting_tags_include和retargeting_tags_exclude
 	RetargetingTagsInclude []uint64 `json:"retargeting_tags_include,omitempty"`
 	// RetargetingTagsExclude 排除人群包列表（自定义人群），内容为人群包id。如果选择"同时定向与排除"，需传入retargeting_tags_include和retargeting_tags_exclude
