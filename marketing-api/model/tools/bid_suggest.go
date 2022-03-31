@@ -62,7 +62,7 @@ type BidSuggestRequest struct {
 	ArticleCategory []string `json:"article_category,omitempty"`
 	// ActivateType 用户首次激活时间, 详见【附录-用户首次激活时间】
 	// 允许值:"WITH_IN_A_MONTH","ONE_MONTH_2_THREE_MONTH","THREE_MONTH_EAILIER"
-	ActivateType enum.ActivateType `json:"activate_type,omitempty"`
+	ActivateType []enum.ActivateType `json:"activate_type,omitempty"`
 	// Platform 平台，当下载方式包含下载链接时，平台类型需与选择的下载链接类型对应，当下载方式不包含下载方式的时候，平台可多选。为保证投放效果,平台类型定向PC与移动端互斥
 	Platform []enum.AudiencePlatform `json:"platform,omitempty"`
 	// District 地域;取值: "CITY"省市, "COUNTY"区县, "BUSINESS_DISTRICT"商圈,"NONE"不限，省市传法："city": [12],"district": "CITY",区县的传法："city": [130102],"district": "COUNTY";暂不支持"海外"
