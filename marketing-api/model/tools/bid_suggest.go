@@ -11,7 +11,7 @@ type BidSuggestRequest struct {
 	// AdvertiserID 广告主id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Pricing 出价类型，查看【附录-出价类型】
-	Pricing enum.PricingType `json:"pricing_type,omitempty"`
+	Pricing enum.PricingType `json:"pricing,omitempty"`
 	// CampaignID 广告组ID
 	CampaignID uint64 `json:"campaign_id,omitempty"`
 	// AdID 广告ID，修改广告时需要传
