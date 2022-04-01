@@ -15,7 +15,7 @@ type CreateRequest struct {
 	// Name 广告计划名称，长度为1-100个字符，其中1个中文字符算2位
 	Name string `json:"name,omitempty"`
 	// Operation 计划状态; 默认值： "enable"开启状态; 允许值: "enable"开启,"disable"关闭
-	Operation enum.AdOptStatus `json:"operation,omitempty"`
+	Operation string `json:"operation,omitempty"`
 	// DeliveryRange 投放范围。详见【附录-广告投放范围】;默认值: "DEFAULT"默认; 允许值: DEFAULT 默认, UNION 穿山甲、UNIVERSAL 通投智选; 对于投放范围的解释可参考【广告计划】
 	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
 	// UnionVideoType 投放形式（穿山甲视频创意类型），当delivery_range为"UNION"时必填。详见【附录-穿山甲视频创意类型】;默认值: ORIGINAL_VIDEO原生; 允许值: ORIGINAL_VIDEO原生, REWARDED_VIDEO激励视频,SPLASH_VIDEO开屏
