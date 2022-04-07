@@ -50,6 +50,7 @@
     - 更新计划状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *ad.UpdateStatusRequest) (*ad.UpdateResponseData, error) ]
     - 更新计划预算 [ UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) ]
     - 更新计划出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) ]
+    - 批量获取计划成本保障状态 [ CostProtectStatusGet(clt *core.SDKClient, accessToken string, req *ad.CostProtectStatusGetRequest) ([]ad.CostProtectStatus, error) ]
   - 广告创意模块 (api/creative)
     - 获取广告创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
     - 创建自定义创意 [ CustomCreativeCreate(clt *core.SDKClient, accessToken string, req *creative.CustomCreativeCreateRequest) (*creative.CustomCreativeCreateResponseData, error) ]
@@ -86,6 +87,10 @@
     - 直播间流量来源报表 [ FlowCategoryGet(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.ResponseData, error) ]
     - 直播间商品分析报表 [ ProductGet(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.ResponseData, error) ]
     - 直播受众分析报表 [ AudiencePortraitGet(clt *core.SDKClient, accessToken string, req *liveroom.Request) (*liveroom.ResponseData, error) ]
+  - 异步数据报表 (api/report/asynctask)
+    - 创建异步任务 [ Create(clt *core.SDKClient, accessToken string, req *asynctask.CreateRequest) (*asynctask.Task, error) ]
+    - 获取异步任务列表 [ Get(clt *core.SDKClient, accessToken string, req *asynctask.GetRequest) (*asynctask.GetResponseData, error) ]
+    - 下载任务结果 [ Download(clt *core.SDKClient, accessToken string, req *asynctask.DownloadRequest) ([]byte, error) ]
 - DMP 人群管理 (api/dmp)
   - 数据源文件上传 [ datasource.FileUpload(clt *core.SDKClient, accessToken string, req *datasource.FileUploadRequest) (string, error) ]
   - 数据源创建 [ datasource.Create(clt *core.SDKClient, accessToken string, req *datasource.CreateRequest) (string, error) ]

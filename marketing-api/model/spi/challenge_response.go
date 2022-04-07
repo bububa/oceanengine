@@ -1,4 +1,4 @@
-package sip
+package spi
 
 // ChallengeResponse .
 type ChallengeResponse struct {
