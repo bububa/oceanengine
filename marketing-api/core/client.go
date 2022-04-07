@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"io"
+	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"strings"
@@ -91,6 +92,35 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
 	return c.fetch(httpReq, resp)
+}
+
+// GetBytes get bytes api
+func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string) ([]byte, error) {
+	var builder strings.Builder
+	builder.WriteString(BASE_URL)
+	builder.WriteString(gw)
+	if req != nil {
+		builder.WriteString("?")
+		builder.WriteString(req.Encode())
+	}
+	reqUrl := builder.String()
+	debug.PrintGetRequest(reqUrl, c.debug)
+	httpReq, err := http.NewRequest("GET", reqUrl, nil)
+	if err != nil {
+		return nil, err
+	}
+	if accessToken != "" {
+		httpReq.Header.Add("Access-Token", accessToken)
+	}
+	if c.sandbox {
+		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+	httpResp, err := http.DefaultClient.Do(httpReq)
+	if err != nil {
+		return nil, err
+	}
+	defer httpResp.Body.Close()
+	return ioutil.ReadAll(httpResp.Body)
 }
 
 // Upload multipart/form-data post

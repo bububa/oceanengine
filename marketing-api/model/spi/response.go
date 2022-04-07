@@ -1,4 +1,4 @@
-package sip
+package spi
 
 // BaseResponse 返回信息基类
 type BaseResponse struct {
