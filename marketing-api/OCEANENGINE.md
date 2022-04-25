@@ -51,6 +51,7 @@
     - 更新计划预算 [ UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) ]
     - 更新计划出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) ]
     - 批量获取计划成本保障状态 [ CostProtectStatusGet(clt *core.SDKClient, accessToken string, req *ad.CostProtectStatusGetRequest) ([]ad.CostProtectStatus, error) ]
+    - 获取计划审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *ad.RejectReasonRequest) ([]ad.RejectReason, error) ]
   - 广告创意模块 (api/creative)
     - 获取广告创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
     - 创建自定义创意 [ CustomCreativeCreate(clt *core.SDKClient, accessToken string, req *creative.CustomCreativeCreateRequest) (*creative.CustomCreativeCreateResponseData, error) ]
