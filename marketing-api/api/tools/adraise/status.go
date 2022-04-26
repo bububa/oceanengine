@@ -1,7 +1,8 @@
 package adraise
 
 import (
-	"encoding/json"
+	"regexp"
+	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/enum"
@@ -15,8 +16,15 @@ func Status(clt *core.SDKClient, accessToken string, req *adraise.StatusRequest)
 		return nil, err
 	}
 	ret := make(map[uint64]enum.AdRaiseStatus, len(req.AdIDs))
-	if err := json.Unmarshal([]byte(resp.Data.Status), &ret); err != nil {
-		return nil, err
+	re := regexp.MustCompile(`(\d+):\s+'(.*?)'`)
+	matches := re.FindAllStringSubmatch(resp.Data.Status, -1)
+	for _, match := range matches {
+		if len(match) != 3 {
+			continue
+		}
+		adID, _ := strconv.ParseUint(match[1], 10, 64)
+		status := match[2]
+		ret[adID] = enum.AdRaiseStatus(status)
 	}
 	return ret, nil
 }
