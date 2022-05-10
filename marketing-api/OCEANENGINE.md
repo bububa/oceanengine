@@ -209,6 +209,7 @@
   - 转化回传 [ Conversion(req *conversion.Request) error ]
 - 工具
   - 查询工具
+    - 查询在投计划配额 [ tools.QuotaGet(clt *core.SDKClient, accessToken string, req *tools.QuotaGetRequest) (*tools.QuotaGetResult, error) ]
     - 查询受众预估结果 [ tools.EstimateAudience(clt *core.SDKClient, accessToken string, req *tools.EstimateAudienceRequest) (*tools.EstimateAudienceResponseData, error) ]
     - 建议日预算及预期成本 [ BidSuggest(clt *core.SDKClient, accessToken string, req *tools.BidSuggestRequest) (*tools.BidSuggest, error) ]
     - 日志查询 [ tools/log.Search(clt *core.SDKClient, accessToken string, req *log.SearchRequest) (*log.SearchResponseData, error) ]
