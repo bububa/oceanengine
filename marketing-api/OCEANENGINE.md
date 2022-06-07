@@ -282,3 +282,9 @@
   - 地域信息管理
     - 查询国家/区域信息 [ tools.CountryInfo(clt *core.SDKClient, accessToken string, req *tools.CountryInfoRequest) (*tools.CountryInfoResponseData, error) ]
     - 获取行政信息 [ tools.AdminInfo(clt *core.SDKClient, accessToken string, req *tools.AdminInfoRequest) (*tools.AdminInfoResponseData, error) ]
+  - 账户优选起量
+    - 新建优选起量任务 [ Create(clt *core.SDKClient, accessToken string, req *taskraise.CreateRequest) (uint64, error) ]
+    - 查询优选起量任务 [ Get(clt *core.SDKClient, accessToken string, req *taskraise.GetRequest) (*taskraise.GetResponseData, error) ]
+    - 关闭优选起量任务 [ StatusStop(clt *core.SDKClient, accessToken string, req *taskraise.StatusStopRequest) error ]
+    - 查询优选起量状态 [ OptimizationIDsGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (enum.TaskRaiseStatus, error) ]
+    - 查询优选起量任务数据 [ DataGet(clt *core.SDKClient, accessToken string, req *taskraise.DataGetRequest) (*taskraise.DataGetResponseData, error) ]
