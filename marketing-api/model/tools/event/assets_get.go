@@ -26,7 +26,13 @@ type AssetsGetRequest struct {
 // AssetsGetFiltering 过滤条件
 type AssetsGetFiltering struct {
 	// LandingPage 三方落地页数据
-	LandingPage *LandingPage `json:"landing_page,omitempty"`
+	LandingPage *AssetBaseInfo `json:"landing_page,omitempty"`
+	// QuickApp 快应用数据
+	QuickApp *AssetBaseInfo `json:"quick_app,omitempty"`
+	// App 应用数据
+	App *AssetBaseInfo `json:"app,omitempty"`
+	// MiniProgram 字节小程序快应用资产
+	MiniProgram *AssetBaseInfo `json:"mini_program,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -58,6 +64,12 @@ type AssetsGetResponse struct {
 type AssetsGetResponseData struct {
 	// LandingPages 三方数据集合
 	LandingPages []LandingPage `json:"landing_pages,omitempty"`
+	// QuickApp 快应用数据
+	QuickApp []QuickApp `json:"quick_app,omitempt"y`
+	// App 应用数据`
+	App []App `json:"app,omitempty"`
+	// MiniProgram 字节小程序快应用资产
+	MiniProgram []MiniProgram `json:"mini_program,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
