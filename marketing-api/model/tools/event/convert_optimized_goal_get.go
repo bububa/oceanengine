@@ -16,7 +16,7 @@ type ConvertOptimizedGoalGetRequest struct {
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// MarketingPurpose 营销目的，允许值:CONVERSION 行动转化、INTENTION 用户意向、ACKNOWLEDGE 品牌认知
 	MarketingPurpose enum.MarketingPurpose `json:"marketing_purpose,omitempty"`
-	// AssetType 资产类型，允许值:THIRD_EXTERNAL 三方落地页、TETRIS_EXTERNAL 建站
+	// AssetType 资产类型，允许值:THIRD_EXTERNAL 三方落地页、TETRIS_EXTERNAL 建站、APP 应用、QUICK_APP 快应用、MINI_PROGRAME字节小程序
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
 	// SiteID 建站site_id，当asset_type为TETRIS_EXTERNAL时必填，site_id可以通过【获取橙子建站站点列表】接口获得
 	SiteID uint64 `json:"site_id,omitempty"`
