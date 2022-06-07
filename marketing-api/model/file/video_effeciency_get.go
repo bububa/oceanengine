@@ -16,6 +16,7 @@ type VideoEffeciencyGetRequest struct {
 	MaterialIDs []string `json:"material_ids,omitempty"`
 }
 
+// Encode implement GetRequest interfacd
 func (r VideoEffeciencyGetRequest) Encode() string {
 	values := &url.Values{}
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
