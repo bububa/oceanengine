@@ -246,6 +246,8 @@ type Metrics struct {
 	Play100FeedBreak int64 `json:"play_100_feed_break,omitempty"`
 	// 视频数据-平均单次播放时长,单位：秒; 计算方法：视频播放总实际时长／播放总次数（不包含跳跃的时长）
 	AveragePlayTimePerPlay float64 `json:"average_play_time_per_play,omitempty"`
+	// PlayOver 播放完成数
+	PlayOver int64 `json:"play_over,omitempty"`
 	// 视频数据-播完率; 计算公式：播放完成数/播放数
 	PlayOverRate float64 `json:"play_over_rate,omitempty"`
 	// 视频数据-WiFi播放占比; 在wifi环境下视频的播放数/视频播放总数
