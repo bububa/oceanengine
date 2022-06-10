@@ -29,13 +29,13 @@ type Message struct {
 // AccountRelation 账号对应关系，包含所有advertiser_ids的授权关系
 type AccountRelation struct {
 	// AgentIDs 代理商授权
-	AgentIDs []uint64 `json:"agent_ids,omitempty"`
+	AgentIDs map[string][]uint64 `json:"agent_ids,omitempty"`
 	// CoreUserIDs 用户授权账号
-	CoreUserIDs []uint64 `json:"core_user_ids,omitempty"`
+	CoreUserIDs map[string][]uint64 `json:"core_user_ids,omitempty"`
 	// AdvertiserIDs 广告主id直接授权
 	AdvertiserIDs []uint64 `json:"advertiser_ids,omitempty"`
 	// CcIDs 巨量纵横账号
-	Ccids []uint64 `json:"cc_ids,omitempty"`
+	Ccids map[string][]uint64 `json:"cc_ids,omitempty"`
 }
 
 // MessageData .
@@ -50,6 +50,8 @@ type MessageData struct {
 	ToUserID string `json:"to_user_id,omitempty"`
 	// CoreUserID 登陆用户id
 	CoreUserID uint64 `json:"core_user_id,omitempty"`
+	// AdvertiserID 广告主I D
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// CoreUserIDs 登陆用户ids
 	CoreUserIDs []uint64 `json:"core_user_ids,omitempty"`
 	// AdID 创意归属计划id
