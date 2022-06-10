@@ -13,7 +13,7 @@ type Message struct {
 	// AdvertiserIDs 消息对应的广告主账号，report.advertiser.beforeday 时返回所有已产出的广告主ID组，其余服务类型一次仅返回一个广告主ID
 	AdvertiserIDs []uint64 `json:"advertiser_ids,omitempty"`
 	// AccountRelation 推送广告主账号的订阅来源，是订阅的哪个账号下的广告主数据; min=1，max=1k
-	AccountRelation *AccountRelation `json:"account_relation,omitempty"`
+	AccountRelation string `json:"account_relation,omitempty"`
 	// ServiceLabel 订阅服务类型
 	ServiceLabel string `json:"service_label,omitempty"`
 	// Data 推送数据信息，具体结构参考子文档
