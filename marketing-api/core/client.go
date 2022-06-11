@@ -202,6 +202,31 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.PostRequest, resp model.R
 	return c.fetch(httpReq, resp)
 }
 
+// AnalyticsV1Post 电话转化回传API专用
+func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model.Response) error {
+	reqBytes := req.Encode()
+	reqBuf := bytes.NewBuffer(reqBytes)
+	reqBuf.WriteString(c.Secret)
+	sha256Sum := sha256.Sum256(reqBuf.Bytes())
+	sign := hex.EncodeToString(sha256Sum[:])
+
+	var builder strings.Builder
+	builder.WriteString(ANALYTICSV1_URL)
+	builder.WriteString(gw)
+	reqUrl := builder.String()
+	debug.PrintPostJSONRequest(reqUrl, reqBuf.Bytes(), c.debug)
+	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
+	if err != nil {
+		return err
+	}
+	httpReq.Header.Add("Content-Type", "application/json")
+	httpReq.Header.Add("x-signature", sign)
+	if c.sandbox {
+		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+	return c.fetch(httpReq, resp)
+}
+
 // fetch execute http request
 func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	httpResp, err := http.DefaultClient.Do(httpReq)

@@ -61,6 +61,8 @@ type CreateRequest struct {
 	DeepExternalAction enum.DeepExternalAction `json:"deep_external_action,omitempty"`
 	// AssetIDs 资产 id，可通过【获取推广内容】接口获取
 	// 当使用事件管理时必填
+	// 正常情况下数组限制上限为1个；当landing_type=link时上限为2个
+	// 若数组长度为2，需保证有一个小程序资产+落地页资产，顺序不强限制
 	AssetIDs []uint64 `json:"asset_ids,omitempty"`
 	// TrackURLGroupType 监测链接类型（当推广目的为APP时必填）允许值：TRACK_URL_GROUP_ID 已有链接、 CUSTOM ：自定义
 	TrackURLGroupType string `json:"track_url_group_type,omitempty"`

@@ -41,6 +41,8 @@ type AdData struct {
 	DynamicCreativeSwitch []enum.DynamicCreativeType `json:"dynamic_creative_switch,omitempty"`
 	// OpenURL 直达链接，只在电商店铺推广推广目的下有效
 	OpenURL string `json:"open_url,omitempty"`
+	// MiniProgramInfo 字节小程序信息
+	MiniProgramInfo *MiniProgramInfo `json:"mini_program_info,omitempty"`
 }
 
 // SupplementInfo 云游戏列表
@@ -57,4 +59,19 @@ type GameInfo struct {
 	ID string `json:"id,omitempty"`
 	// Orientation 云游戏素材方向，允许值: VERTICAL竖屏，HORIZONTAL横屏
 	Orientation string `json:"orientation,omitempty"`
+}
+
+// MiniProgramInfo 字节小程序信息
+type MiniProgramInfo struct {
+	// AppID 小程序/小游戏id
+	AppID string `json:"app_id,omitempty"`
+	// StartPath 启动路径，小程序类型必传，小游戏类型不传值
+	StartPath string `json:"start_path,omitempty"`
+	// Params 页面监测参数
+	Params string `json:"params,omitempty"`
+	// Type 小程序类型，当使用 mini_program_info 时，该字段必填
+	// 允许值：BYTE_GAME 小游戏、BYTE_APP 小程序
+	Type enum.MiniProgramType `json:"type,omitempty"`
+	// URL 字节小程序调起链接
+	URL string `json:"url,omitempty"`
 }

@@ -111,6 +111,8 @@ type CreativeDetail struct {
 	// 不传时，不改变已有的值
 	// 注意：该字段为【增量更新】
 	DynamicCreativeSwitch []enum.DynamicCreativeType `json:"dynamic_creative_switch,omitempty"`
+	// MiniProgramInfo 字节小程序信息
+	MiniProgramInfo *MiniProgramInfo `json:"mini_program_info,omitempty"`
 }
 
 // Supplement 云游戏素材

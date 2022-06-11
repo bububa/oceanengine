@@ -4,6 +4,8 @@ package enum
 type ComponentType string
 
 const (
+	// ComponentType_UNKNOWN 未知组件
+	ComponentType_UNKNOWN ComponentType = ""
 	// ComponentType_CHOICE_MAGNET 选择磁贴
 	ComponentType_CHOICE_MAGNET ComponentType = "CHOICE_MAGNET"
 	// ComponentType_VOTE_MAGNET 投票磁贴
@@ -18,4 +20,10 @@ const (
 	ComponentType_GAME_PACK ComponentType = "GAME_PACK"
 	// ComponentType_PROMOTION_CARD 推广卡片
 	ComponentType_PROMOTION_CARD ComponentType = "PROMOTION_CARD"
+	// ComponentType_LIGHT_INTER_ACTIVE 轻互动组件
+	ComponentType_LIGHT_INTER_ACTIVE ComponentType = "LIGHT_INTER_ACTIVE"
+	// ComponentType_RESERVATION_BUTTON 游戏预约按钮
+	ComponentType_RESERVATION_BUTTON ComponentType = "RESERVATION_BUTTON"
+	// ComponentType_UNION_LIGHT_INTERACTIVE 穿山甲轻互动组件
+	ComponentType_UNION_LIGHT_INTERACTIVE ComponentType = "UNION_LIGHT_INTERACTIVE"
 )

@@ -1,14 +1,16 @@
 package spi
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 // Message 正文数据
 type Message struct {
 	// MessageID 唯一标识一条推送消息/数据; 64字符
 	MessageID string `json:"message_id,omitempty"`
 	// SubscribeTaskID 订阅任务id，订阅任务的主键; 64字符
-	SubscribeTaskID string `json:"subscribe_task_id,omitempty"`
-	// AdvertiserIDs 消息对应的广告主账号（全量，包含account_relation中所有map的value中的adv_id值）; min=1，max=1k
+	SubscribeTaskID uint64 `json:"subscribe_task_id,omitempty"`
+	// AdvertiserIDs 消息对应的广告主账号，report.advertiser.beforeday 时返回所有已产出的广告主ID组，其余服务类型一次仅返回一个广告主ID
 	AdvertiserIDs []uint64 `json:"advertiser_ids,omitempty"`
 	// AccountRelation 推送广告主账号的订阅来源，是订阅的哪个账号下的广告主数据; min=1，max=1k
 	AccountRelation string `json:"account_relation,omitempty"`
@@ -27,13 +29,13 @@ type Message struct {
 // AccountRelation 账号对应关系，包含所有advertiser_ids的授权关系
 type AccountRelation struct {
 	// AgentIDs 代理商授权
-	AgentIDs []uint64 `json:"agent_ids,omitempty"`
+	AgentIDs map[string][]uint64 `json:"agent_ids,omitempty"`
 	// CoreUserIDs 用户授权账号
-	CoreUserIDs []uint64 `json:"core_user_ids,omitempty"`
+	CoreUserIDs map[string][]uint64 `json:"core_user_ids,omitempty"`
 	// AdvertiserIDs 广告主id直接授权
 	AdvertiserIDs []uint64 `json:"advertiser_ids,omitempty"`
 	// CcIDs 巨量纵横账号
-	Ccids []uint64 `json:"cc_ids,omitempty"`
+	Ccids map[string][]uint64 `json:"cc_ids,omitempty"`
 }
 
 // MessageData .
@@ -48,6 +50,8 @@ type MessageData struct {
 	ToUserID string `json:"to_user_id,omitempty"`
 	// CoreUserID 登陆用户id
 	CoreUserID uint64 `json:"core_user_id,omitempty"`
+	// AdvertiserID 广告主I D
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// CoreUserIDs 登陆用户ids
 	CoreUserIDs []uint64 `json:"core_user_ids,omitempty"`
 	// AdID 创意归属计划id

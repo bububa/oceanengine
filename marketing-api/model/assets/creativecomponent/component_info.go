@@ -2,7 +2,6 @@ package creativecomponent
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
@@ -97,9 +96,35 @@ func (i *ComponentInfo) UnmarshalJSON(b []byte) (err error) {
 		}
 		info.ComponentData = data
 	case enum.ComponentType_GAME_PACK:
-		info.ComponentData = GamePack{}
+		var data GamePack
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
+	case enum.ComponentType_LIGHT_INTER_ACTIVE:
+		var data LightInterActive
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
+	case enum.ComponentType_RESERVATION_BUTTON:
+		var data ReservationButton
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
+	case enum.ComponentType_UNION_LIGHT_INTERACTIVE:
+		var data UnionLightInteractive
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	default:
-		return errors.New("unknown component_type")
+		info.ComponentData = UnknownComponent(tmp.ComponentData)
 	}
 	*i = info
 	return
@@ -295,3 +320,207 @@ func (g GamePack) Type() enum.ComponentType {
 }
 
 var _ ComponentData = (*GamePack)(nil)
+
+// CardImage 卡片图片
+type CardImage struct {
+	// ImageURL 卡片正面图片/盲盒素材
+	ImageURL string `json:"image_url,omitempty"`
+	// HiddenImageURL 卡片反面图片
+	HiddenImageURL string `json:"hidden_image_url,omitempty"`
+}
+
+// CouponInfo 优惠券信息
+type CouponInfo struct {
+	// TItle 优惠标题
+	// 字符数≤6
+	Title string `json:"title,omitempty"`
+	// CouponImage 优惠图片
+	CouponImage string `json:"coupon_image,omitempty"`
+	// DiscountTime 优惠时间
+	DiscountTime string `json:"discount_time,omitempty"`
+	// Amount 优惠金额
+	// 字符数≤3
+	Amount string `json:"amount,omitempty"`
+	// Unit 金额单位
+	Unit string `json:"unit,omitempty"`
+}
+
+// GiftPackageInfo 礼包码信息
+type GiftPackageInfo struct {
+	// CodeList 礼包码列表
+	CodeList []GiftPackageCode `json:"code_list,omitempty"`
+}
+
+// GiftPackageCode 礼包码
+type GiftPackageCode struct {
+	// Code 礼包码
+	// 字符数≤12
+	Code string `json:"code,omitempty"`
+	// Probability 概率
+	// 概率和=100
+	Probability int `json:"probability,omitempty"`
+}
+
+// PairInfo 配对信息
+type PairInfo struct {
+	// BackgroundImage 背景
+	BackgroundImage string `json:"background_image,omitempty"`
+	// LeftAvatar 左头像
+	LeftAvatar string `json:"left_avatar,omitempty"`
+	// Title 激励文案
+	// 字符数≤16
+	Title string `json:"title,omitempty"`
+}
+
+// LightInterActive 轻互动组件
+type LightInterActive struct {
+	// StyleType 互动前玩法
+	// 枚举值：1-翻卡、2-盲盒、3-翻页、4-擦除、5-刮刮卡
+	StyleType int `json:"style_type,omitempty"`
+	// ShowSeconds 出现时间
+	// 互动组件相对视频的展现时间，建议游戏行业10s，非游戏行业4s。
+	// 枚举值：4000-4s、10000-10s
+	ShowSeconds int64 `json:"show_seconds,omitempty"`
+	// Tips 提示标题
+	// 字符数≤10
+	Tips string `json:"tips,omitempty"`
+	// ImageLIst 卡片图片列表/盲盒图片列表; 长度=1
+	ImageList []CardImage `json:"image_list,omitempty"`
+	// Title 卖点标题
+	// 字符数≤7
+	Title string `json:"title,omitempty"`
+	// InteractiveType 互动后玩法
+	// 枚举值：1-全局优惠、2-礼包码、3-配对、4-单品优惠、5-新人优惠
+	InteractiveType int `json:"interactive_type,omitempty"`
+	// RewardTips 领取后提示
+	// 字符数≤16
+	RewardTips string `json:"reward_tips,omitempty"`
+	// CouponInfo 优惠券信息
+	CouponInfo *CouponInfo `json:"coupon_info,omitempty"`
+	// GiftPackageInfo 礼包码信息
+	GiftPackageInfo *GiftPackageInfo `json:"gift_package_info,omitempty"`
+	// PairInfo 配对信息
+	PairInfo *PairInfo `json:"pair_info,omitempty"`
+}
+
+// Type Implement ComponentData interface
+func (l LightInterActive) Type() enum.ComponentType {
+	return enum.ComponentType_LIGHT_INTER_ACTIVE
+}
+
+var _ ComponentData = (*LightInterActive)(nil)
+
+// ReservationButton 游戏预约按钮
+type ReservationButton struct {
+	// AppDesc 应用描述，长度是1-15个字（两个英文字符占1个字）
+	AppDesc string `json:"app_desc,omitempty"`
+	// AppIntroduction 应用介绍，长度是1-20个字（两个英文字符占1个字）
+	AppIntroduction string `json:"app_introduction,omitempty"`
+	// AppThumbnails 应用图片集，图片id，从【素材管理-获取图片素材】接口获取;
+	// 如果组件类型component_type是RESERVATION_BUTTON（游戏预约按钮）时必须三个，建议宽高比 9:16
+	AppThumbnails []string `json:"app_thumbnails,omitempty"`
+	// AppName 应用名称
+	AppName string `json:"app_name,omitempty"`
+	// AppLogo 应用logo，可通过【获取图片素材】接口获取
+	AppLogo string `json:"app_logo,omitempty"`
+	// PackageName 应用包名称
+	PackageName string `json:"package_name,omitempty"`
+	// DownloadURL 应用下载链接
+	// IOS下载链接：需要为iTunes官方地址
+	// Android下载链接：需要为「应用管理中心」提供下载链接。
+	DownloadURL string `json:"download_url,omitempty"`
+}
+
+// Type Implement ComponentData interface
+func (r ReservationButton) Type() enum.ComponentType {
+	return enum.ComponentType_RESERVATION_BUTTON
+}
+
+var _ ComponentData = (*ReservationButton)(nil)
+
+// RewardInfo 红包信息。
+type RewardInfo struct {
+	// Title 主标题。长度小于等于16，一个中文占2位。
+	Title string `json:"title,omitempty"`
+	// RewardTips 互动后玩法引导文案（如恭喜获得XX元红包 ）。长度小于等于30，一个中文占2位。
+	RewardTips string `json:"reward_tips,omitempty"`
+	// BonusAmount 奖励物。取值为0.1～1000.0之间的数字，至多保留一位小数。
+	BonusAmount float64 `json:"bonus_amount,omitempty"`
+	// AddonText 特殊说明，即红包描述文案（如实际金额以APP内为准）。长度小于等于30，一个中文占2位。
+	AddonText string `json:"addon_text,omitempty"`
+	// CtaText 按钮文案。枚举值：PREFER_SYSTEM_RECOMMAND-个性化文案、DOWNLOAD_AND_RECEIVE_NOW-立即下载领取、RECEIVE_NOW-立即领取
+	CtaText string `json:"cta_text,omitempty"`
+}
+
+// ProductCouponInfo 商品优惠信息。
+type ProductCouponInfo struct {
+	// RewardTips 互动后玩法引导文案（如恭喜抽中商品，下载即可领取）。长度小于等于30，一个中文占2位。
+	RewardTips string `json:"reward_tips,omitempty"`
+	// ProductImageID 商品图片。要求图片大小在200k以内且尺寸比例为1：1，建议参考尺寸144*144px。
+	ProductImageID string `json:"product_image_id,omitempty"`
+	// ProductName 商品文案。长度小于等于30，一个中文占2位。
+	ProductName string `json:"product_name,omitempty"`
+	// AddonText 特殊说明。长度小于等于30，一个中文占2位。
+	AddonText string `json:"addon_text,omitempty"`
+	// CtaText 按钮文案。枚举值：PREFER_SYSTEM_RECOMMAND-个性化文案、DOWNLOAD_AND_RECEIVE_NOW-立即下载领取、RECEIVE_NOW-立即领取
+	CtaText string `json:"cta_text,omitempty"`
+}
+
+// OffsetTimeInfo 抵时长信息。
+type OffsetTimeInfo struct {
+	// RewardReduceDuration 抵扣时长。可输入5～25（包含）之间的整数。选填，若不填默认为5秒。
+	RewardReduceDuration int64 `json:"reward_reduce_duration,omitempty"`
+}
+
+// UnionLightInteractive 穿山甲轻互动组件的component_data
+type UnionLightInteractive struct {
+	// StyleType 互动前玩法
+	// 枚举值：1-翻卡-领红包1、2-领红包样式2、3-领红包样式3、4-红包雨、5-翻卡-领商品1、6-答题、7-滑动
+	StyleType int `json:"style_type,omitempty"`
+	// ShowSeconds 出现时间
+	// 互动组件相对视频的展现时间，可输入3.0～25.0（包含）之间的数字，至多保留1位小数。
+	// 当style_type为2、3、4时，只允许输入5.0～25.0（包含）之间的数字
+	ShowSeconds int64 `json:"show_seconds,omitempty"`
+	// Tips 引导文案（如点击翻卡，赢取无门槛红包提现）。长度小于等于30，一个中文占2位。
+	Tips string `json:"tips,omitempty"`
+	// CompSkin 组件样式。允许值：FLIPCARD-卡片，TREASUREBOX-宝箱，REWARD-激励、NATIVE-原生。
+	// 当style_type为1、5时，允许值为FLIPCARD，TREASUREBOX；当style_type为6、7时，允许值为REWARD、NATIVE。
+	CompSkin string `json:"comp_skin,omitempty"`
+	// Question 问题。长度小于等于30，一个中文占2位。
+	// 当style_type为6-答题时，必填。
+	Question string `json:"question,omitempty"`
+	// Option1 选项一。长度小于等于16，一个中文占2位。
+	// 当style_type为6-答题时，必填。
+	Option1 string `json:"option_1,omitempty"`
+	// Option2 选项二。长度小于等于16，一个中文占2位。
+	// 当style_type为6-答题时，必填。
+	Option2 string `json:"option_2,omitempty"`
+	// AnswerOption 正确选项。允许值：1-选项一，2-选项二
+	// 当style_type为6-答题时，必填。
+	AnswerOption int `json:"answer_option,omitempty"`
+	// InteractiveType 互动后玩法。枚举值：1-红包、2-商品优惠、3-抵扣时长
+	InteractiveType int `json:"interactive_type,omitempty"`
+	// RewardInfo 红包信息。
+	RewardInfo *RewardInfo `json:"reward_info,omitempty"`
+	// ProductCouponInfo 商品优惠信息。
+	ProductCouponInfo *ProductCouponInfo `json:"product_coupon_info,omitempty"`
+	// OffsetTimeInfo 抵时长信息。
+	OffsetTimeInfo *OffsetTimeInfo `json:"offset_time_info,omitempty"`
+}
+
+// Type Implement ComponentData interface
+func (u UnionLightInteractive) Type() enum.ComponentType {
+	return enum.ComponentType_UNION_LIGHT_INTERACTIVE
+}
+
+var _ ComponentData = (*UnionLightInteractive)(nil)
+
+// UnknownComponent 未知组件
+type UnknownComponent []byte
+
+// Type Implement ComponentData interface
+func (u UnknownComponent) Type() enum.ComponentType {
+	return enum.ComponentType_UNKNOWN
+}
+
+var _ ComponentData = (*UnknownComponent)(nil)

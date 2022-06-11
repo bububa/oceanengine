@@ -134,6 +134,7 @@
   - 素材推送 [ MaterialBind(clt *core.SDKClient, accessToken string, req *file.MaterialBindRequest) ([]file.FailedMaterialBind, error) ]
   - 批量删除视频素材 [ VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) ]
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
+  - 获取低效素材 [ VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *file.VideoEffeciencyGetRequest) ([]string, error) ] 
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
@@ -206,7 +207,8 @@
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
 - 事件管理(api/conversion)
-  - 转化回传 [ Conversion(req *conversion.Request) error ]
+  - 转化回传 [ Conversion(clt *core.SDKClient, req *conversion.Request) error ]
+  - 实时电话回传 [ Attribution(clt *core.SDKClient, req *conversion.Request) error ]
 - 工具
   - 查询工具
     - 查询在投计划配额 [ tools.QuotaGet(clt *core.SDKClient, accessToken string, req *tools.QuotaGetRequest) (*tools.QuotaGetResult, error) ]
@@ -281,3 +283,9 @@
   - 地域信息管理
     - 查询国家/区域信息 [ tools.CountryInfo(clt *core.SDKClient, accessToken string, req *tools.CountryInfoRequest) (*tools.CountryInfoResponseData, error) ]
     - 获取行政信息 [ tools.AdminInfo(clt *core.SDKClient, accessToken string, req *tools.AdminInfoRequest) (*tools.AdminInfoResponseData, error) ]
+  - 账户优选起量
+    - 新建优选起量任务 [ Create(clt *core.SDKClient, accessToken string, req *taskraise.CreateRequest) (uint64, error) ]
+    - 查询优选起量任务 [ Get(clt *core.SDKClient, accessToken string, req *taskraise.GetRequest) (*taskraise.GetResponseData, error) ]
+    - 关闭优选起量任务 [ StatusStop(clt *core.SDKClient, accessToken string, req *taskraise.StatusStopRequest) error ]
+    - 查询优选起量状态 [ OptimizationIDsGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (enum.TaskRaiseStatus, error) ]
+    - 查询优选起量任务数据 [ DataGet(clt *core.SDKClient, accessToken string, req *taskraise.DataGetRequest) (*taskraise.DataGetResponseData, error) ]
