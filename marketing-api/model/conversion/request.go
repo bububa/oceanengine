@@ -12,12 +12,18 @@ type Request struct {
 	EventType enum.ConversionEventType `json:"event_type,omitempty"`
 	// EventWeight 广告主可以针对每一次转化，回传一个这次转化的价值，单位是 RMB。
 	EventWeight float64 `json:"event_weight,omitempty"`
+	// AttributeLabel 当前场景只支持convert，勿传其他值
+	AttributeLabel string `json:"attribute_label,omitempty"`
+	// BizType 当前场景只支持4，，勿传其他值
+	BizType int `json:"biz_type,omitempty"`
 	// Context 包含一些关键的上下文信息
 	Context *Context `json:"context,omitempty"`
 	// Properties 对于上报事件的附加属性，详情请见自定义属性的介绍。
 	Properties *Properties `json:"properties,omitempty"`
 	// Timestamp 事件发生的毫秒级时间戳
 	Timestamp int64 `json:"timestamp,omitempty"`
+	// Source 广告主标识，自定义值，用于标识数据来源，例如：jd
+	Source string `json:"source,omitempty"`
 }
 
 // Context 包含一些关键的上下文信
@@ -34,6 +40,21 @@ type ContextAd struct {
 	SkuID string `json:"skuid,omitempty"`
 	// MatchType 这个参数可以帮助广告主标识是通过哪种渠道进行的归因，如果不传，就会默认为点击归因。
 	MatchType enum.ConversionAdMatchType `json:"match_type,omitempty"`
+	// CustomerID 数据上报白名单customerid；每次上报必须需要带上已配置白名单的customerid，否则会上报失败；
+	// 注意，此字段必填，且仅用于上报权限验证。
+	CustomerID uint64 `json:"customer_id,omitempty"`
+	// Attributed true: 客户已归因，上报的事件为转化事件
+	// false: 客户未归因，上报为需要巨量引擎归因的事件
+	Attributed bool `json:"attributed,omitempty"`
+	// AdID 广告计划id；若您可以确定当前订单来自对应广告计划id，则可以上报此字段获得更加精准的归因结果
+	AdID uint64 `json:"ad_id,omitempty"`
+	// CompaignID 广告组id；同上，若您可以确定当前订单来自对应广告组id，则可以上报此字段获得更加精准的归因结果
+	CompaignID uint64 `json:"campaign_id,omitempty"`
+	// AdvertiserIDs 广告账户id；同上，若您可以确定当前订单来自对应广告账户id，则可以上报此字段获得更加精准的归因结果
+	AdvertiserIDs []uint64 `json:"advertiser_ids,omitempty"`
+	// CustomerIDs 客户id；同上，若您可以确定当前订单来自对应客户id，则可以上报此字段获得更加精准的归因结果
+	// 若您不确定订单来自哪个账户，请务必在此字段中填充 所有投放下单的 customer_id，字节侧将为您进行精准归因
+	CustomerIDs []uint64 `json:"customer_ids,omitempty"`
 }
 
 // ContextDevice 归因设备信息
@@ -44,6 +65,12 @@ type ContextDevice struct {
 	Idfa string `json:"idfa,omitempty"`
 	// Oaid 归因上的设备的 oaid 的原值
 	Oaid string `json:"oaid,omitempty"`
+	// PhoneNumberBlured 下单用户的模糊手机号，目前支持以下3种类型：
+	// 1. （新）仅后四位：例如*******1234，前七位需要用星号表示；当上传此手机号格式时，receiver_province、receiver_city必填，否则无法上报和正确归因
+	// 2. 省略中间四位：例如130****1234，中间四位需用星号表示
+	// 3. 原始手机号sha256后的结果，64位字符串
+	// 【注意】手机号的加密步骤仅在能获取明文手机号情况下，使用sha256加密，其他两种手机号形式切勿加密！否则会导致归因为0
+	PhoneNumberBlured string `json:"phone_number_blured,omitempty"`
 }
 
 // Properties 附加属性
@@ -90,7 +117,7 @@ type Properties struct {
 	EnterMethod string `json:"enter_method,omitempty"`
 	// EnterFromMerge 直播间来源页面
 	EnterFromMerge string `json:"enter_from_merge,omitempty"`
-	// ProductID 商品id
+	// ProductID 商品id，按照淘宝的sku_id进行回传。若订单中包含多个sku，则可在此字段中填写全部sku_id，英文逗号分隔
 	ProductID string `json:"product_id,omitempty"`
 	// M2Score M2质量分; 自有建模预估能力的客户对保险用户M2后是否续保的打分
 	M2Score float64 `json:"m2_score,omitempty"`
@@ -156,6 +183,14 @@ type Properties struct {
 	UserValue int `json:"user_value,omitempty"`
 	// Gender 用户性别
 	Gender int `json:"gender,omitempty"`
+	// OrderID 订单id；建议按照淘宝订单中的父订单（tid）进行回传；系统会根据订单id辅助去重提升归因准确性
+	OrderID uint64 `json:"order_id,omitempty"`
+	// ReceiverProvince 收货人所在的省份；当phone_num_blurred值为*******1234类型时必填
+	ReceiverProvince string `json:"receiver_province,omitempty"`
+	// ReceiverCity 收货人所在的城市（若城市为直辖市仍然填写市，如北京市）；当phone_num_blurred值为*******1234类型时必填
+	ReceiverCity string `json:"receiver_city,omitempty"`
+	// AdzoneID 推广位id，即通过新淘客创建追踪链接时，选择的推广位管理下的推广位名称对应的ID，同时也是pid=mm_1_2_3中的“3”这段数字
+	AdzoneID uint64 `json:"adzone_id,omitempty"`
 }
 
 // Encode implement GetRequest interface
