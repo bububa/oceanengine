@@ -207,7 +207,8 @@
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
 - 事件管理(api/conversion)
-  - 转化回传 [ Conversion(req *conversion.Request) error ]
+  - 转化回传 [ Conversion(clt *core.SDKClient, req *conversion.Request) error ]
+  - 实时电话回传 [ Attribution(clt *core.SDKClient, req *conversion.Request) error ]
 - 工具
   - 查询工具
     - 查询在投计划配额 [ tools.QuotaGet(clt *core.SDKClient, accessToken string, req *tools.QuotaGetRequest) (*tools.QuotaGetResult, error) ]
