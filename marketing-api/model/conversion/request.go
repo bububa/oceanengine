@@ -45,7 +45,7 @@ type ContextAd struct {
 	CustomerID uint64 `json:"customer_id,omitempty"`
 	// Attributed true: 客户已归因，上报的事件为转化事件
 	// false: 客户未归因，上报为需要巨量引擎归因的事件
-	Attributed bool `json:"attributed,omitempty"`
+	Attributed bool `json:"attributed"`
 	// AdID 广告计划id；若您可以确定当前订单来自对应广告计划id，则可以上报此字段获得更加精准的归因结果
 	AdID uint64 `json:"ad_id,omitempty"`
 	// CompaignID 广告组id；同上，若您可以确定当前订单来自对应广告组id，则可以上报此字段获得更加精准的归因结果
