@@ -19,9 +19,9 @@ type UpdateRequest struct {
 	// DownloadMode 优先从系统应用商店下载（下载模式），当下载方式为下载链接时，可修改。允许值：APP_STORE_DELIVERY（仅安卓应用下载支持）、 DEFAULT当应用下载时，默认default下载，可选用APP_STORE_DELIVERY（应用商店直投），选择后，将优先跳转目标应用对应手机系统应用商店安装详情页，跳转失败则使用下载链接下载。
 	DownloadMode string `json:"download_mode,omitempty"`
 	// OpenUrl 直达链接（点击唤起APP）直达链接仅支持部分App唤起，点击创意将优先跳转App，再根据投放内容跳转相关链接
-	OpenUrl string `json:"open_url,omitempty"`
+	OpenUrl *string `json:"open_url,omitempty"`
 	// Ulink 直达备用链接，仅支持穿山甲广告位（不支持搜索广告）
-	Ulink string `json:"ulink,omitempty"`
+	Ulink *string `json:"ulink,omitempty"`
 	// ExternalUrl 落地页链接（支持橙子建站落地页）;对于转化量为目标的计划如OCPM计划不允许更改，非转化为目标的计划如CPC、CPM计划可更改; 获取橙子建站落地页可参考【橙子建站落地页管理】
 	ExternalUrl string `json:"external_url,omitempty"`
 	// CategoryType 商品目录投放范围,当广告组商品类型选择 DPA 多商品时可修改;允许值：NONE不限，"CATEGORY"选择分类，"PRODUCT"指定商品
