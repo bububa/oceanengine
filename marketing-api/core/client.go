@@ -20,6 +20,7 @@ type SDKClient struct {
 	Secret  string
 	debug   bool
 	sandbox bool
+	client  *http.Client
 }
 
 // NewSDKClient 创建SDKClient
@@ -27,12 +28,18 @@ func NewSDKClient(appID string, secret string) *SDKClient {
 	return &SDKClient{
 		AppID:  appID,
 		Secret: secret,
+		client: http.DefaultClient,
 	}
 }
 
 // SetDebug 设置debug模式
 func (c *SDKClient) SetDebug(debug bool) {
 	c.debug = debug
+}
+
+// SetHttpClient 设置http.Client
+func (c *SDKClient) SetHttpClient(client *http.Client) {
+	c.client = client
 }
 
 // UseSandbox 启用sandbox
@@ -115,7 +122,7 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
-	httpResp, err := http.DefaultClient.Do(httpReq)
+	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return nil, err
 	}
@@ -229,7 +236,7 @@ func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model
 
 // fetch execute http request
 func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
-	httpResp, err := http.DefaultClient.Do(httpReq)
+	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return err
 	}
