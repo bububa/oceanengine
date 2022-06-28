@@ -16,6 +16,8 @@ type CreativeWord struct {
 	ContentType enum.CreativeWordType `json:"content_type,omitempty"`
 	// MaxWordLen 替换词最大长度
 	MaxWordLen int `json:"max_word_len,omitempty"`
+	// MinWordLen 替换词最小长度
+	MinWordLen int `json:"min_word_len,omitempty"`
 	// Status 创意词包状态
 	Status enum.CreativeWordStatus `json:"status,omitempty"`
 	// UserRate 创意词包人群覆盖率;取值范围: 0-1
