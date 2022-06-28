@@ -16,10 +16,12 @@ import (
 
 // SDKClient sdk client
 type SDKClient struct {
-	AppID   string
-	Secret  string
-	debug   bool
-	sandbox bool
+	AppID      string
+	Secret     string
+	debug      bool
+	sandbox    bool
+	operatorIP string
+	client     *http.Client
 }
 
 // NewSDKClient 创建SDKClient
@@ -27,12 +29,18 @@ func NewSDKClient(appID string, secret string) *SDKClient {
 	return &SDKClient{
 		AppID:  appID,
 		Secret: secret,
+		client: http.DefaultClient,
 	}
 }
 
 // SetDebug 设置debug模式
 func (c *SDKClient) SetDebug(debug bool) {
 	c.debug = debug
+}
+
+// SetHttpClient 设置http.Client
+func (c *SDKClient) SetHttpClient(client *http.Client) {
+	c.client = client
 }
 
 // UseSandbox 启用sandbox
@@ -43,6 +51,23 @@ func (c *SDKClient) UseSandbox() {
 // DisableSandbox 禁用sandbox
 func (c *SDKClient) DisableSandbox() {
 	c.sandbox = false
+}
+
+// SetOperatorIP 设置操作者IP, 支持ipv4/ipv6
+func (c *SDKClient) SetOperatorIP(ip string) {
+	c.operatorIP = ip
+}
+
+// Copy 复制SDKClient
+func (c *SDKClient) Copy() *SDKClient {
+	return &SDKClient{
+		AppID:      c.AppID,
+		Secret:     c.Secret,
+		debug:      c.debug,
+		sandbox:    c.sandbox,
+		operatorIP: c.operatorIP,
+		client:     c.client,
+	}
 }
 
 // Post post api
@@ -63,6 +88,9 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	httpReq.Header.Add("Content-Type", "application/json")
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
+	}
+	if c.operatorIP != "" {
+		httpReq.Header.Add("Operator-Ip", c.operatorIP)
 	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
@@ -88,6 +116,9 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
 	}
+	if c.operatorIP != "" {
+		httpReq.Header.Add("Operator-Ip", c.operatorIP)
+	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
@@ -112,10 +143,13 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
 	}
+	if c.operatorIP != "" {
+		httpReq.Header.Add("Operator-Ip", c.operatorIP)
+	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
-	httpResp, err := http.DefaultClient.Do(httpReq)
+	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return nil, err
 	}
@@ -170,6 +204,9 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 	httpReq.Header.Add("Content-Type", mw.FormDataContentType())
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
+	}
+	if c.operatorIP != "" {
+		httpReq.Header.Add("Operator-Ip", c.operatorIP)
 	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
@@ -229,7 +266,7 @@ func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model
 
 // fetch execute http request
 func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
-	httpResp, err := http.DefaultClient.Do(httpReq)
+	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return err
 	}

@@ -1,6 +1,7 @@
 package agent
 
 import (
+	"encoding/json"
 	"net/url"
 	"strconv"
 
@@ -11,6 +12,8 @@ import (
 type AdvertiserSelectRequest struct {
 	// AdvertiserID 代理商ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// CompanyIDs
+	CompanyIDs []string `json:"company_ids,omitempty"`
 	// Page 页码.默认值: 1
 	Page int `json:"page,omitempty"`
 	// PageSize 页面数据量.默认值: 100
@@ -21,6 +24,10 @@ type AdvertiserSelectRequest struct {
 func (r AdvertiserSelectRequest) Encode() string {
 	values := &url.Values{}
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	if len(r.CompanyIDs) > 0 {
+		bs, _ := json.Marshal(r.CompanyIDs)
+		values.Set("company_ids", string(bs))
+	}
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
 	}

@@ -1,5 +1,7 @@
 package dpa
 
+import "github.com/bububa/oceanengine/marketing-api/model"
+
 // Product 商品详情
 type Product struct {
 	// Name 商品名称
@@ -69,11 +71,11 @@ type Product struct {
 	// ThirdCategory 商品所处三级行业
 	ThirdCategory string `json:"third_category,omitempty"`
 	// FirstCategoryID 商品所处一级行业 ID
-	FirstCategoryID uint64 `json:"first_category_id,omitempty"`
+	FirstCategoryID model.FlexUint64 `json:"first_category_id,omitempty"`
 	// SubCategoryID 商品所处二级行业 ID
-	SubCategoryID uint64 `json:"sub_category_id,omitempty"`
+	SubCategoryID model.FlexUint64 `json:"sub_category_id,omitempty"`
 	// ThirdCategoryID 商品所处三级行业 ID
-	ThirdCategoryID uint64 `json:"third_category_id,omitempty"`
+	ThirdCategoryID model.FlexUint64 `json:"third_category_id,omitempty"`
 	// BrandName 商品名称
 	BrandName string `json:"brand_name,omitempty"`
 	// Tags 商品标签
