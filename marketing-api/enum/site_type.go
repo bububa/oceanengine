@@ -42,4 +42,6 @@ const (
 	SiteType_AUTOGENNOVEL SiteType = "AUTOGENNOVEL"
 	// SiteType_STOREORANGESITE 门店橙子建站
 	SiteType_STOREORANGESITE SiteType = "STOREORANGESITE"
+	// SiteType_DEPOSITE 托管落地页
+	SiteType_DEPOSITE SiteType = "DEPOSITE"
 )
