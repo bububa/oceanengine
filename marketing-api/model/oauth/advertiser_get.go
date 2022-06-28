@@ -51,4 +51,14 @@ type Advertiser struct {
 	IsValid bool `json:"is_valid,omitempty"`
 	// AccountRole 新版授权账号角色
 	AccountRole enum.AccountRole `json:"account_role,omitempty"`
+	// CompanyList
+	CompanyList []Company `json:"company_list,omitempty"`
+}
+
+// Company
+type Company struct {
+	// CustomerCompanyID
+	CustomerCompanyID uint64 `json:"customer_company_id,omitempty"`
+	// CustomerCompanyName
+	CustomerCompanyName string `json:"customer_company_name,omitempty"`
 }
