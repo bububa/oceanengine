@@ -29,12 +29,9 @@ func (r AdQualityGetRequest) Encode() string {
 type AdQualityGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *AdQualityGetResponseData `json:"data,omitempty"`
-}
-
-// AdQualityGetResponseData json返回值
-type AdQualityGetResponseData struct {
-	List []AdQuality `json:"list,omitempty"`
+	Data struct {
+		List []AdQuality `json:"list,omitempty"`
+	} `json:"data,omitempty"`
 }
 
 // AdQuality 广告质量度
