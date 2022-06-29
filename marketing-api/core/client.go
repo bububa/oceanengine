@@ -264,6 +264,31 @@ func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model
 	return c.fetch(httpReq, resp)
 }
 
+// OpenGet get api
+func (c *SDKClient) OpenGet(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
+	var builder strings.Builder
+	builder.WriteString(OPEN_URL)
+	builder.WriteString(gw)
+	if req != nil {
+		builder.WriteString("?")
+		builder.WriteString(req.Encode())
+	}
+	reqUrl := builder.String()
+	debug.PrintGetRequest(reqUrl, c.debug)
+	httpReq, err := http.NewRequest("GET", reqUrl, nil)
+	if err != nil {
+		return err
+	}
+	httpReq.Header.Add("Content-Type", "application/json")
+	if accessToken != "" {
+		httpReq.Header.Add("App-Access-Token", accessToken)
+	}
+	if c.sandbox {
+		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+	return c.fetch(httpReq, resp)
+}
+
 // fetch execute http request
 func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	httpResp, err := c.client.Do(httpReq)
