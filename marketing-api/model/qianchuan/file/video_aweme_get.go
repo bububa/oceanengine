@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/model/file"
 )
 
 // VideoAwemeGetRequest 获取抖音号下的视频 API Request
@@ -16,16 +17,16 @@ type VideoAwemeGetRequest struct {
 	AwemeID uint64 `json:"aweme_id,omitempty"`
 	// Filtering 视频过滤条件
 	Filtering *VideoAwemeGetFiltering `json:"filtering,omitempty"`
-	// Page 页码，默认值：1
-	Page int `json:"page,omitempty"`
-	// PageSize 页面大小， 默认值：10，取值范围1-100
-	PageSize int `json:"page_size,omitempty"`
+	// Cursor 页码游标值，第一次拉取，无需入参
+	Cursor int `json:"cursor,omitempty"`
+	// Count 页面大小，默认值30，限制1-50
+	Count int `json:"count,omitempty"`
 }
 
 // VideoAwemeGetFiltering 筛选条件
 type VideoAwemeGetFiltering struct {
-	// AwemeURL 抖音视频链接，可在抖音端上通过【分享】-【复制链接】获取
-	AwemeURL string `json:"aweme_url,omitempty"`
+	//ProductID 商品ID，查询关联商品的相应视频，仅短视频带货场景需入参
+	ProductID uint64 `json:"product_id,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -37,11 +38,11 @@ func (r VideoAwemeGetRequest) Encode() string {
 		filter, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(filter))
 	}
-	if r.Page > 1 {
-		values.Set("page", strconv.Itoa(r.Page))
+	if r.Cursor > 0 {
+		values.Set("cursor", strconv.Itoa(r.Cursor))
 	}
-	if r.PageSize > 0 {
-		values.Set("page_size", strconv.Itoa(r.PageSize))
+	if r.Count > 0 {
+		values.Set("count", strconv.Itoa(r.Count))
 	}
 	return values.Encode()
 }
@@ -55,7 +56,7 @@ type VideoAwemeGetResponse struct {
 // VideoAwemeGetResponseData json返回值
 type VideoAwemeGetResponseData struct {
 	// List 视频列表
-	List []Video `json:"video_list,omitempty"`
+	List []file.Video `json:"video_list,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
