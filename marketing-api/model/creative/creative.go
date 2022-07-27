@@ -59,5 +59,5 @@ type Creative struct {
 	// CreativeCreateTime 广告创意创建时间，格式yyyy-MM-dd HH:mm:ss
 	CreativeCreateTime string `json:"creative_create_time,omitempty"`
 	// CreativeModifyTime 广告创意更新时间，格式yyyy-MM-dd HH:mm:ss
-	CreativeModifyTime string `json:"creative_modity_time,omitempty"`
+	CreativeModifyTime string `json:"creative_modify_time,omitempty"`
 }
