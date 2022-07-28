@@ -1,5 +1,9 @@
 package site
 
+import (
+	"encoding/json"
+)
+
 // IconType 图标信息
 type IconType string
 
@@ -66,6 +70,46 @@ type ButtonEvent struct {
 	Trigger *EventTrigger `json:"trigger,omitempty"`
 	// Behavior 事件行为描述，behavior目前已开放DownloadEvent 和LinkEvent以及TelephoneEvent
 	Behavior Event `json:"behavior,omitempty"`
+}
+
+type tmpButtonEvent struct {
+	// Trigger 触发
+	Trigger *EventTrigger `json:"trigger,omitempty"`
+	// Behavior 事件行为描述，behavior目前已开放DownloadEvent 和LinkEvent以及TelephoneEvent
+	Behavior json.RawMessage `json:"behavior,omitempty"`
+}
+
+func (e *ButtonEvent) UnmarshalJSON(b []byte) error {
+	var tmp tmpButtonEvent
+	if err := json.Unmarshal(b, &tmp); err != nil {
+		return err
+	}
+	event := ButtonEvent{
+		Trigger: tmp.Trigger,
+	}
+	var base BaseEvent
+	if err := json.Unmarshal(tmp.Behavior, &base); err != nil {
+		return err
+	}
+	switch base.Type() {
+	case EventType_DownloadEvent:
+		var data DownloadEvent
+		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
+			return err
+		}
+	case EventType_LinkEvent:
+		var data LinkEvent
+		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
+			return err
+		}
+	case EventType_TelephoneEvent:
+		var data TelephoneEvent
+		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
+			return err
+		}
+	}
+	*e = event
+	return nil
 }
 
 // TriggerType 触发事件

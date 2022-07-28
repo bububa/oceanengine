@@ -2,8 +2,7 @@ package site
 
 // TelephoneEvent TelephoneEvent事件行为描述
 type TelephoneEvent struct {
-	// Name 事件名称，传“TelephoneEvent” 1 <= name长度值 <= 20
-	Name string `json:"name,omitempty"`
+	BaseEvent
 	// SmartPhone 智能电话信息
 	SmartPhone *SmartPhone `json:"smart_phone,omitempty"`
 }
