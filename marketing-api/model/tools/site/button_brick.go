@@ -99,16 +99,19 @@ func (e *ButtonEvent) UnmarshalJSON(b []byte) error {
 		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
 			return err
 		}
+		event.Behavior = data
 	case EventType_LinkEvent:
 		var data LinkEvent
 		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
 			return err
 		}
+		event.Behavior = data
 	case EventType_TelephoneEvent:
 		var data TelephoneEvent
 		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
 			return err
 		}
+		event.Behavior = data
 	}
 	*e = event
 	return nil
