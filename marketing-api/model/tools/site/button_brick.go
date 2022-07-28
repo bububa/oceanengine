@@ -65,7 +65,7 @@ type ButtonEvent struct {
 	// Trigger 触发
 	Trigger *EventTrigger `json:"trigger,omitempty"`
 	// Behavior 事件行为描述，behavior目前已开放DownloadEvent 和LinkEvent以及TelephoneEvent
-	Behavior *Event `json:"behavior,omitempty"`
+	Behavior Event `json:"behavior,omitempty"`
 }
 
 // TriggerType 触发事件
