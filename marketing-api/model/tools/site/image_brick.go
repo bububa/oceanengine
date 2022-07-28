@@ -14,7 +14,7 @@ type ImageBrick struct {
 	// Link 图片跳转链接信息
 	Link *Link `json:"link,omitempty"`
 	// IsCover 是否保持宽高比 ， 1: 表示保持宽高比， 0：不保持
-	IsCover int `json:"is_cover"`
+	IsCover bool `json:"is_cover"`
 }
 
 // Type implement Brick interface

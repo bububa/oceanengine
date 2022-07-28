@@ -57,6 +57,8 @@ type ButtonBrick struct {
 	BorderRadius float64 `json:"border_radius,omitempty"`
 	// Events 事件列表信息
 	Events []ButtonEvent `json:"events,omitempty"`
+	// PackageInfo 应用下载样式
+	PackageInfo *PackageInfo `json:"package_info,omitempty"`
 }
 
 // Type implement Brick interface
@@ -130,4 +132,48 @@ type EventTrigger struct {
 	Type TriggerType `json:"type,omitempty"`
 	// TouchSeconds 长按时间（秒）：触发时间为longTouch类型，必填;长按时间 >= 1
 	TouchSeconds int64 `json:"touch_seconds,omitempty"`
+}
+
+// PackageInfo 应用下载样式
+type PackageInfo struct {
+	// Type 展示样式:imageText 图片文字、image 图片
+	Type string `json:"type,omitepty"`
+	// Image type为“image”样式时有效，可自行上传图片url，或从获取图片素材获取图片ID：id
+	Image string `json:"image,omitempty"`
+	// Background 背景信息，type为imageText样式时有效
+	Background *Background `json:"background,omitempty"`
+	// Description 应用包描述，type为imageText样式时有效
+	Description *Description `json:"description,omitempty"`
+	// Title 标题配置，type为imageText样式时有效
+	Title *Title `json:"title,omitempty"`
+}
+
+// Background 背景信息，type为imageText样式时有效
+type Background struct {
+	// Type 背景类型：color 颜色、image 图片
+	Type string `json:"type,omitempty"`
+	// Color 景颜色信息，比如“rgba(255,255,255,1)”,默认为无
+	Color string `json:"color,omitempty"`
+	// Image 背景图片，background的type 为image时，可自行上传图片url，或从获取图片素材获取图片ID：id
+	Image string `json:"image,omitempty"`
+}
+
+// Description 应用包描述，type为imageText样式时有效
+type Description struct {
+	// Type 描述展示类型:label 标签、text 文本
+	Type string `json:"type,omitempty"`
+	// Labels 标签内容，description的type为label时有效
+	Labels []string `json:"labels,omitempty"`
+	// Color 文字颜色，比如“rgba(255,255,255,1)”,默认为无
+	Color string `json:"color,omitempty"`
+	// FontSize 文字大小，默认15
+	FontSize int `json:"font_size,omitempty"`
+}
+
+// Title 标题配置，type为imageText样式时有效
+type Title struct {
+	// Color 文字颜色，比如“rgba(255,255,255,1)”,默认为无
+	Color string `json:"color,omitempty"`
+	// FontSize 文字大小，默认15
+	FontSize int `json:"font_size,omitempty"`
 }
