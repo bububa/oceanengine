@@ -39,3 +39,7 @@ type BaseBrick struct {
 	// Float 站点组件浮动方式: none（默认为无);其他值可选:top（置顶）;right（居右）;bottom（置底）
 	Float string `json:"float,omitempty"`
 }
+
+func (b BaseBrick) Type() BrickType {
+	return BrickType(b.Name)
+}

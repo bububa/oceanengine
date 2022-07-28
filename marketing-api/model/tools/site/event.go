@@ -16,3 +16,11 @@ const (
 type Event interface {
 	Type() EventType
 }
+
+type BaseEvent struct {
+	Name string `json:"name,omitempty"`
+}
+
+func (e BaseEvent) Type() EventType {
+	return EventType(e.Name)
+}
