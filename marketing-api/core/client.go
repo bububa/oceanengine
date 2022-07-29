@@ -21,6 +21,7 @@ type SDKClient struct {
 	debug      bool
 	sandbox    bool
 	operatorIP string
+	limiter    RateLimiter
 	client     *http.Client
 }
 
@@ -56,6 +57,11 @@ func (c *SDKClient) DisableSandbox() {
 // SetOperatorIP 设置操作者IP, 支持ipv4/ipv6
 func (c *SDKClient) SetOperatorIP(ip string) {
 	c.operatorIP = ip
+}
+
+// SetRateLimiter 设置限流
+func (c *SDKClient) SetRateLimiter(limiter RateLimiter) {
+	c.limiter = limiter
 }
 
 // Copy 复制SDKClient
@@ -95,6 +101,9 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
+	if c.limiter != nil {
+		c.limiter.Take()
+	}
 	return c.fetch(httpReq, resp)
 }
 
@@ -122,6 +131,9 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
+	if c.limiter != nil {
+		c.limiter.Take()
+	}
 	return c.fetch(httpReq, resp)
 }
 
@@ -148,6 +160,9 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+	if c.limiter != nil {
+		c.limiter.Take()
 	}
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
@@ -210,6 +225,9 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+	if c.limiter != nil {
+		c.limiter.Take()
 	}
 	return c.fetch(httpReq, resp)
 }
