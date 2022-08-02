@@ -79,6 +79,9 @@ type tmpButtonEvent struct {
 	Trigger *EventTrigger `json:"trigger,omitempty"`
 	// Behavior 事件行为描述，behavior目前已开放DownloadEvent 和LinkEvent以及TelephoneEvent
 	Behavior json.RawMessage `json:"behavior,omitempty"`
+	Name     string          `json:"name,omitempty"`
+	Method   EventType       `json:"method,omitempty"`
+	Payload  json.RawMessage `json:"payload,omitempty"`
 }
 
 func (e *ButtonEvent) UnmarshalJSON(b []byte) error {
@@ -89,26 +92,37 @@ func (e *ButtonEvent) UnmarshalJSON(b []byte) error {
 	event := ButtonEvent{
 		Trigger: tmp.Trigger,
 	}
-	var base BaseEvent
-	if err := json.Unmarshal(tmp.Behavior, &base); err != nil {
-		return err
+	var (
+		eventType EventType
+		payload   json.RawMessage
+	)
+	if tmp.Payload != nil {
+		eventType = tmp.Method
+		payload = tmp.Payload
+	} else {
+		var base BaseEvent
+		if err := json.Unmarshal(tmp.Behavior, &base); err != nil {
+			return err
+		}
+		eventType = base.Type()
+		payload = tmp.Behavior
 	}
-	switch base.Type() {
+	switch eventType {
 	case EventType_DownloadEvent:
 		var data DownloadEvent
-		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
+		if err := json.Unmarshal(payload, &data); err != nil {
 			return err
 		}
 		event.Behavior = &data
 	case EventType_LinkEvent:
 		var data LinkEvent
-		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
+		if err := json.Unmarshal(payload, &data); err != nil {
 			return err
 		}
 		event.Behavior = &data
 	case EventType_TelephoneEvent:
 		var data TelephoneEvent
-		if err := json.Unmarshal(tmp.Behavior, &data); err != nil {
+		if err := json.Unmarshal(payload, &data); err != nil {
 			return err
 		}
 		event.Behavior = &data
