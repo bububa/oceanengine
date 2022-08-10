@@ -113,4 +113,10 @@ const (
 	Conversion_HIGH_LOAN_CREDIT = "high_loan_credit"
 	// Conversion_UNFOLLOW_IN_WECHAT 加微信成功后T日取消关注
 	Conversion_UNFOLLOW_IN_WECHAT = "unfollow_in_wechat"
+	// Conversion_ECOM_CANCEL_ORDER 电商取消订单
+	Conversion_ECOM_CANCEL_ORDER = "ecom_cancel_order"
+	// Conversion_ECOM_SUCCESSFUL_PAY 电商支付成功
+	Conversion_ECOM_SUCCESSFUL_PAY = "ecom_successful_pay"
+	// Conversion_ECOM_REFUND 电商退款
+	Conversion_ECOM_REFUND = "ecom_refund"
 )
