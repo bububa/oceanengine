@@ -78,4 +78,10 @@ const (
 	Track_POTENTIAL_CUSTOMER TrackEventType = 196
 	// Track_PAY_POTENTIAL 支付_存在意向; 在表单提交成功（获取用户手机号）之后在落地页的支付行为-支付成功
 	Track_PAY_POTENTIAL TrackEventType = 218
+	// Track_ECOM_CANCEL_ORDER 电商取消订单
+	Track_ECOM_CANCEL_ORDER TrackEventType = 450
+	// Track_ECOM_SUCCESSFUL_PAY 电商支付成功
+	Track_ECOM_SUCCESSFUL_PAY TrackEventType = 449
+	// Track_ECOM_REFUND 电商退款
+	Track_ECOM_REFRUND TrackEventType = 448
 )
