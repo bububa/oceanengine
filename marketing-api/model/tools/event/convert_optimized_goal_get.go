@@ -24,6 +24,8 @@ type ConvertOptimizedGoalGetRequest struct {
 	AssetID uint64 `json:"asset_id,omitempty"`
 	// CampaignType 广告类型，默认值信息流。允许值：FEED 信息流、SEARCH 搜索
 	CampaignType enum.CampaignType `json:"campaign_type,omitempty"`
+	// WechatAppID 微信小游戏原始id。获取方式：资产->青鸟线索通->转化组件->微信小游戏->小游戏列表，可获取小游戏原始id。
+	WechatAppID string `json:"wechat_app_id,omitempty"`
 }
 
 // Encode implement GetRequest interface
