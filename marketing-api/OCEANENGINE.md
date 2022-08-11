@@ -239,6 +239,7 @@
     - 行动号召字段内容获取 [ tools.ActionTextGet(clt *core.SDKClient, accessToken string, req *tools.ActionTextGetRequest) ([]string, error) ]
     - 查询推广卡片推荐内容（新版） [ PromotionCardRecommendTitleGet(clt *core.SDKClient, accessToken string, req *tools.PromotionCardRecommendTitleGetRequest) ([]string, error) ]
     - 获取预估点击成本 [ tools.EstimatedPriceGet(clt *core.SDKClient, accessToken string, req *tools.EstimatedPriceGetRequest) (*tools.EstimatedPrice, error) ]
+    - 获取抖音授权关系 [ tools.AwemeAuthList(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthListRequest) (*tools.AwemeAuthListData, error) ]
     - 查询视频是否挂载下载类锚点 [ tools.CheckAvailableAnchor(clt *core.SDKClient, accessToken string, req *video.CheckAvailableAnchorRequest) ([]video.AvailableAnchor, error) ]
     - 获取快投推荐出价系数 [ tools.SearchBidRatioGet(clt *core.SDKClient, accessToken string, req *tools.SearchBidRatioGetRequest) (float64, error) ]
   - 抖音达人 (tools/aweme)
