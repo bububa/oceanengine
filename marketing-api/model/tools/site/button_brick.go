@@ -52,7 +52,7 @@ type ButtonBrick struct {
 	// BorderColor 边框颜色信息，比如“rgba(255,255,255,1)”,默认为无
 	BorderColor string `json:"border_color,omitempty"`
 	// BorderWidth 边框粗细，默认0
-	BorderWidth int `json:"border_width,omitempty"`
+	BorderWidth float64 `json:"border_width,omitempty"`
 	// BorderRadius 边框圆角，默认为0，范围：radius >= 0
 	BorderRadius float64 `json:"border_radius,omitempty"`
 	// Events 事件列表信息
