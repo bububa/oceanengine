@@ -24,8 +24,12 @@
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
     - 二级代理商列表 [ ChildAgentSelect(clt *core.SDKClient, accessToken string, req *agent.ChildAgentSelectRequest) ([]uint64, error) ]
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
-  - 账号管家管理 (api/majordomo)
-    - 广告主列表 [ MajordomoSelect(clt *core.SDKClient, accessToken string, req *majordomo.AdvertiserSelectRequest) ([]majordomo.AdvertiserSelectResponseList, error) ]
+  - 纵横组织账户管理
+    - 获取纵横组织下资产账户列表 [ majordomo.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *majordomo.AdvertiserSelectRequest) ([]majordomo.Advertiser, error) ]
+    - [获取纵横组织下资产账户列表（分页）[ customercenter.AdvertiserList(clt *core.SDKClient, accessToken string, req *customercenter.AdvertiserListRequest) (*customercenter.AdvertiserListData, error) ]
+    - 查询合作组织 [ businessplatform.PartnerOrganizationList(clt *core.SDKClient, accessToken string, req *businessplatform.PartnerOrganizationListRequest) (*businessplatform.PartnerOrganizationListData, error)  ]
+    - 获取纵横组织下所有主体信息 [ businessplatform.CompanyInfoGet(clt *core.SDKClient, accessToken string, req *businessplatform.CompanyInfoGetRequest) (*businessplatform.CompanyInfoGetData, error) ]
+    - 获取主体下的账户列表 [ businessplatform.CompanyAccountGet(clt *core.SDKClient, accessToken string, req *businessplatform.CompanyAccountGetRequest) (*businessplatform.CompanyAccountGetData, error) ]
   - 资金和流水管理 (api)
     - 查询账号余额 [ advertiser.FundGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.FundGetResponseData, error) ]
     - 查询账号日流水 [ advertiser.FundDailyStat(clt *core.SDKClient, accessToken string, req *advertiser.FundDailyStatRequest) (*advertiser.FundDailyStatResponseData, error) ]
