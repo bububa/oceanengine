@@ -2,6 +2,8 @@ package spi
 
 import (
 	"encoding/json"
+
+	"github.com/bububa/oceanengine/marketing-api/enum"
 )
 
 // Message 正文数据
@@ -119,6 +121,20 @@ type EventContent struct {
 	ReplyToCommentUser *CommentUser `json:"reply_to_comment_user,omitempty"`
 	// ReplyToCommentContent 回复的评论内容
 	ReplyToCommentContent string `json:"reply_to_comment_content,omitempty"`
+	// Message 通知内容，示例："尊敬的客户，您好！因您当前账户下的【所有广告】低效在投计划数过多，已经严重影响您的账户健康度，根据平台相关规则，【所有广告】已被【限制投放】。限制不会自动解除。建议您及时清理账户中的低效计划，完成清理后，可以联系和您对接的销售同学进行解除限制申诉（如您没有对接销售可通过平台右下方智能客服提工单反馈），感谢您对巨量引擎的支持。"
+	Message string `json:"message,omitempty"`
+	// AdIDs 被暂停的计划列表
+	AdIDs []uint64 `json:"ad_ids,omitempty"`
+	// GroupIDs 被暂停的管家项目列表
+	GroupIDs []uint64 `json:"group_ids,omitempty"`
+	// PromotionIDs 成功占用配额的巨量引擎体验版的广告列表
+	PromotionIDs []uint64 `json:"promotion_ids,omitempty"`
+	// SumQuota 变化后在投计划配额
+	SumQuota int64 `json:"sum_quota,omitempty"`
+	// SumQuotaBefore 变化前在投计划配额
+	SumQuotaBefore int64 `json:"sum_quota_before,omitempty"`
+	// CampaignType 广告组类型，FEED 信息流、 SEARCH 搜索广告
+	CampaignType enum.CampaignType `json:"campaign_type,omitempty"`
 }
 
 // CommentUser 用户信息
