@@ -40,8 +40,8 @@ type AccountRelation struct {
 	Ccids map[string][]uint64 `json:"cc_ids,omitempty"`
 }
 
-// MessageData .
-type MessageData struct {
+// MessageDataBase .
+type MessageDataBase struct {
 	// AppID 应用APPID
 	AppID uint64 `json:"app_id,omitempty"`
 	// UserID 创意归属广告主id
@@ -64,8 +64,20 @@ type MessageData struct {
 	CreativeIDs []uint64 `json:"creative_ids,omitempty"`
 	// Event 事件名称
 	Event string `json:"event,omitempty"`
+}
+
+// MessageData .
+type MessageData struct {
+	MessageDataBase
 	// Content 事件内容
 	Content *EventContent `json:"content,omitempty"`
+}
+
+// MessageDataV2 .
+type MessageDataV2 struct {
+	MessageDataBase
+	// Content 事件内容
+	Content string `json:"content,omitempty"`
 }
 
 // EventContent 事件内容
