@@ -31,6 +31,8 @@ type TransferableFundGetResponse struct {
 type TransferableFund struct {
 	// GrantValid 可用赠款余额(单位元)
 	GrantValid float64 `json:"grant_valid,omitempty"`
+	// CashTransferBalance 可用现金余额(单位元)
+	CashTransferBalance float64 `json:"cash_transfer_balance,omitempty"`
 	// UnversalPrepayValid 通用预付可用余额(单位元)
 	UniversalPrepayValid float64 `json:"universal_prepay_valid,omitempty"`
 	// BrandPrepayValid 品牌预付可用余额(单位元)
