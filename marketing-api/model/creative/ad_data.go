@@ -6,6 +6,10 @@ import "github.com/bububa/oceanengine/marketing-api/enum"
 type AdData struct {
 	// ThridIndustryID 三级行业ID
 	ThirdIndustryID uint64 `json:"thrid_industry_id,omitempty"`
+	// ParamsType 链接类型
+	ParamsType string `json:"params_type,omitempty"`
+	// DpaExternalUrlField 落地页链接字段选择
+	DpaExternalUrlField *string `json:"dpa_external_url_field,omitempty"`
 	// AdKeywords 创意标签。最多20个标签，且每个标签长度不超过10个字符
 	AdKeywords []string `json:"ad_keywords,omitempty"`
 	// Source 广告来源，4-20个字符，当推广目的为非应用下载或者应用下载且download_type为"EXTERNAL_URL时"时必填
@@ -26,6 +30,8 @@ type AdData struct {
 	WebURL string `json:"web_url,omitempty"`
 	// ExternalURL 落地页链接（支持橙子建站落地页）
 	ExternalURL string `json:"external_url,omitempty"`
+	// ExternalUrlParams 落地页检测参数
+	ExternalUrlParams *string `json:"external_url_params,omitempty"`
 	// IsCommentDisabled 是否关闭评论，0为开启，1为关闭，默认值：0; 允许值: 0, 1
 	IsCommentDisabled *int `json:"is_comment_disabled,omitempty"`
 	// AdDownloadStatus 允许客户端下载视频功能，0为开启，即允许客户端下载视频；1为关闭，即不允许客户端下载视频。默认不传值，表示允许客户端下载视频。关闭客户端下载视频功能仅对本地上传的视频有效。
