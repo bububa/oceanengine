@@ -119,6 +119,8 @@ type Properties struct {
 	EnterFromMerge string `json:"enter_from_merge,omitempty"`
 	// ProductID 商品id，按照淘宝的sku_id进行回传。若订单中包含多个sku，则可在此字段中填写全部sku_id，英文逗号分隔
 	ProductID string `json:"product_id,omitempty"`
+	// ProductName 商品名
+	ProductName string `json:"product_name,omitempty"`
 	// M2Score M2质量分; 自有建模预估能力的客户对保险用户M2后是否续保的打分
 	M2Score float64 `json:"m2_score,omitempty"`
 	// Consumption LU搜索侧广告主消耗金额; LU广告搜索侧广告主的消耗金额
