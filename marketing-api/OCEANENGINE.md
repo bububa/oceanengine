@@ -269,6 +269,12 @@
     - 查询动态创意词包 [ Select(clt *core.SDKClient, accessToken string, req *creativeword.SelectRequest) ([]creativeword.CreativeWord, error) ]
     - 更新动态创意词包 [ Update(clt *core.SDKClient, accessToken string, req *creativeword.UpdateRequest) (uint64, error) ]
     - 删除动态创意词包 [ Delete(clt *core.SDKClient, accessToken string, req *creativeword.DeleteRequest) (uint64, error) ]
+  - 穿山甲流量包 (tools/union)
+    - 获取穿山甲流量包 [ FlowPackageGet(clt *core.SDKClient, accessToken string, req *union.FlowPackageGetRequest) (*union.FlowPackageGetData, error) ]
+    - 创建穿山甲流量包 [ FlowPackageCreate(clt *core.SDKClient, accessToken string, req *union.FlowPackageCreateRequest) (uint64, error) ]
+    - 修改穿山甲流量包 [ FlowPackageUpdate(clt *core.SDKClient, accessToken string, req *union.FlowPackageUpdateRequest) (uint64, error) ]
+    - 删除穿山甲流量包 [ FlowPackageDelete(clt *core.SDKClient, accessToken string, req *union.FlowPackageDeleteRequest) (uint64, error) ]
+    - 查看rit数据 [ FlowPackageReport(clt *core.SDKClient, accessToken string, req *union.FlowPackageReportRequest) (*union.FlowPackageReportData, error) ]
   - 转化目标管理 (tools/adconvert)
     - 创建转化目标 [ Create(clt *core.SDKClient, accessToken string, req *adconvert.CreateRequest) (*adconvert.Convert, error) ]
     - 转化目标列表 [ Select(clt *core.SDKClient, accessToken string, req *adconvert.SelectRequest) (*adconvert.SelectResponseData, error) ]
