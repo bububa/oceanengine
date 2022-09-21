@@ -1,4 +1,4 @@
-package event
+package eventmanager
 
 import (
 	"encoding/json"
@@ -9,18 +9,21 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
-// AssetsGetRequest 获取推广内容API Request
+// AssetsGetRequest 获取已创建资产列表 API Request
 type AssetsGetRequest struct {
 	// AdvertiserID 广告主 id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// AssetType 资产类型，允许值：THIRD_EXTERNAL：三方落地页
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
+	// Filtering 过滤条件
+	Filtering *AssetsGetFiltering `json:"filtering,omitempty"`
+	// SortType 排序方式，允许值：ASC：升序 DESC：降序
+	// 默认值ASC
+	SortType enum.OrderType `json:"sort_type,omitempty"`
 	// Page 页码，默认值1
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小，默认值10，最大30
 	PageSize int `json:"page_size,omitempty"`
-	// Filtering 过滤条件
-	Filtering *AssetsGetFiltering `json:"filtering,omitempty"`
 }
 
 // AssetsGetFiltering 过滤条件
@@ -28,9 +31,9 @@ type AssetsGetFiltering struct {
 	// LandingPage 三方落地页数据
 	LandingPage *AssetBaseInfo `json:"landing_page,omitempty"`
 	// QuickApp 快应用数据
-	QuickApp *AssetBaseInfo `json:"quick_app,omitempty"`
+	QuickApp *QuickApp `json:"quick_app,omitempty"`
 	// App 应用数据
-	App *AssetBaseInfo `json:"app,omitempty"`
+	App *App `json:"app,omitempty"`
 	// MiniProgram 字节小程序快应用资产
 	MiniProgram *AssetBaseInfo `json:"mini_program,omitempty"`
 }
@@ -50,10 +53,13 @@ func (r AssetsGetRequest) Encode() string {
 		filtering, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(filtering))
 	}
+	if r.SortType != "" {
+		values.Set("sort_type", string(r.SortType))
+	}
 	return values.Encode()
 }
 
-// AssetsGetResponse 获取推广内容 API Response
+// AssetsGetResponse 获取已创建资产列表 API Response
 type AssetsGetResponse struct {
 	model.BaseResponse
 	// Data json返回值

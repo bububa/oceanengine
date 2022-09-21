@@ -218,13 +218,19 @@
     - 创建组件 [ Create(clt *core.SDKClient, accessToken string, req *creativecomponent.CreateRequest) (*creativecomponent.CreateResponseData, error) ]
     - 更新组件 [ Update(clt *core.SDKClient, accessToken string, req *creativecomponent.UpdateRequest) (*creativecomponent.CreateResponseData, error) ]
     - 查询组件列表 [ Get(clt *core.SDKClient, accessToken string, req *creativecomponent.GetRequest) (*creativecomponent.GetResponseData, error) ]
-  - 事件管理
-    - 获取推广内容 [ tools/event.AssetsGet(clt *core.SDKClient, accessToken string, req *event.AssetsGetRequest) (*event.AssetsGetResponseData, error) ]
-    - 获取优化目标 [ tools/event.ConvertOptimizedGoalGet(clt *core.SDKClient, accessToken string, req *event.ConvertOptimizedGoalGetRequest) (*event.ConvertOptimizedGoalGetResponseData, error) ]
-    - 创建事件 [ EventsCreate(clt *core.SDKClient, accessToken string, req *event.EventsCreateRequest) error ]
-    - 创建资产 [ AssetsCreate(clt *core.SDKClient, accessToken string, req *event.AssetsCreateRequest) (uint64, error) ]
-    - 获取可创建事件列表 [ AvailableEventsGet(clt *core.SDKClient, accessToken string, req *event.AvailableEventsGetRequest) ([]event.EventConfig, error) ]
-    - 获取已创建事件列表 [ EventConfigsGet(clt *core.SDKClient, accessToken string, req *event.EventConfigsGetRequest) ([]event.EventConfig, error) ]
+  - 事件管理 (api/eventmanger)
+    - 获取已创建资产列表 [ AssetsGet(clt *core.SDKClient, accessToken string, req *eventmanager.AssetsGetRequest) (*eventmanager.AssetsGetResponseData, error) ]
+    - 获取可用优化目标 [ EventConvertOptimizedGoalGet(clt *core.SDKClient, accessToken string, req *eventmanager.EventConvertOptimizedGoalGetRequest) (*eventmanager.EventConvertOptimizedGoalGetResponseData, error) ]
+    - 资产下创建事件 [ EventsCreate(clt *core.SDKClient, accessToken string, req *eventmanager.EventsCreateRequest) error ]
+    - 创建事件资产 [ AssetsCreate(clt *core.SDKClient, accessToken string, req *eventmanager.AssetsCreateRequest) (uint64, error) ]
+    - 获取可创建事件列表 [ AvailableEventsGet(clt *core.SDKClient, accessToken string, req *eventmanager.AvailableEventsGetRequest) ([]eventmanager.EventConfig, error) ]
+    - 获取已创建事件列表 [ EventConfigsGet(clt *core.SDKClient, accessToken string, req *eventmanager.EventConfigsGetRequest) ([]eventmanager.EventConfig, error) ]
+    - 事件资产下创建监测链接组 [ TrackURLCreate(clt *core.SDKClient, accessToken string, req *eventmanager.TrackURLCreateRequest) error ]
+    - 事件资产下更新监测链接组 [ TrackURLUpdate(clt *core.SDKClient, accessToken string, req *eventmanager.TrackURLUpdateRequest) error ]
+    - 获取事件资产下的监测链接组 [ TrackURLGet(clt *core.SDKClient, accessToken string, req *eventmanager.TrackURLGetRequest) (*eventmanager.TrackURLGetData, error) ]
+    - 事件管理资产查看共享范围 [ ShareGet(clt *core.SDKClient, accessToken string, req *eventmanager.ShareGetRequest) (*eventmanager.ShareGetData, error) ] 
+    - 事件管理资产共享 [ Share(clt *core.SDKClient, accessToken string, req *eventmanager.ShareRequest) ([]eventmanager.ShareError, error) ]
+    - 事件管理资产取消共享 [ ShareCancel(clt *core.SDKClient, accessToken string, req *eventmanager.ShareRequest) ([]eventmanager.ShareError, error) ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
 - 事件管理(api/conversion)
