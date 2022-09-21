@@ -1,4 +1,4 @@
-package event
+package eventmanager
 
 import (
 	"net/url"

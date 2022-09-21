@@ -1,4 +1,4 @@
-package event
+package eventmanager
 
 import "github.com/bububa/oceanengine/marketing-api/enum"
 

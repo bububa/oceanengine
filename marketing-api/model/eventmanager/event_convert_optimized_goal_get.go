@@ -1,4 +1,4 @@
-package event
+package eventmanager
 
 import (
 	"net/url"
@@ -8,8 +8,8 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
-// ConvertOptimizedGoalGetRequest 获取优化目标 API Request
-type ConvertOptimizedGoalGetRequest struct {
+// EventConvertOptimizedGoalGetRequest 获取优化目标 API Request
+type EventConvertOptimizedGoalGetRequest struct {
 	// AdvertiserID 广告主id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// LandingType 广告组推广目的，允许值:LINK 销售线索收集
@@ -22,6 +22,13 @@ type ConvertOptimizedGoalGetRequest struct {
 	SiteID uint64 `json:"site_id,omitempty"`
 	// AssetID 三方的资产id，当asset_type为THIRD_EXTERNAL时必填
 	AssetID uint64 `json:"asset_id,omitempty"`
+	// MiniProgramID 字节小程序资产id
+	MiniProgramID string `json:"mini_program_id,omitempty"`
+	// PackageName 应用包名称
+	PackageName string `json:"package_name,omitempty"`
+	// AppType 应用类型，当asset_type为应用APP时必填
+	// 可选值：ANDROID 、IOS
+	AppType string `json:"app_type,omitempty"`
 	// CampaignType 广告类型，默认值信息流。允许值：FEED 信息流、SEARCH 搜索
 	CampaignType enum.CampaignType `json:"campaign_type,omitempty"`
 	// WechatAppID 微信小游戏原始id。获取方式：资产->青鸟线索通->转化组件->微信小游戏->小游戏列表，可获取小游戏原始id。
@@ -29,7 +36,7 @@ type ConvertOptimizedGoalGetRequest struct {
 }
 
 // Encode implement GetRequest interface
-func (r ConvertOptimizedGoalGetRequest) Encode() string {
+func (r EventConvertOptimizedGoalGetRequest) Encode() string {
 	values := &url.Values{}
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("landing_type", string(r.LandingType))
@@ -41,23 +48,35 @@ func (r ConvertOptimizedGoalGetRequest) Encode() string {
 	if r.AssetID > 0 {
 		values.Set("asset_id", strconv.FormatUint(r.AssetID, 10))
 	}
+	if r.MiniProgramID != "" {
+		values.Set("mini_program_id", r.MiniProgramID)
+	}
+	if r.PackageName != "" {
+		values.Set("package_name", r.PackageName)
+	}
+	if r.AppType != "" {
+		values.Set("app_type", r.AppType)
+	}
 	if r.CampaignType != "" {
 		values.Set("campaign_type", string(r.CampaignType))
+	}
+	if r.WechatAppID != "" {
+		values.Set("wechat_app_id", r.WechatAppID)
 	}
 	return values.Encode()
 }
 
-// ConvertOptimizedGoalGetResponse 获取优化目标 API Response
-type ConvertOptimizedGoalGetResponse struct {
+// EventConvertOptimizedGoalGetResponse 获取优化目标 API Response
+type EventConvertOptimizedGoalGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *ConvertOptimizedGoalGetResponseData `json:"data,omitempty"`
+	Data *EventConvertOptimizedGoalGetResponseData `json:"data,omitempty"`
 }
 
-// ConvertOptimizedGoalGetResponseData json返回值
-type ConvertOptimizedGoalGetResponseData struct {
+// EventConvertOptimizedGoalGetResponseData json返回值
+type EventConvertOptimizedGoalGetResponseData struct {
 	// AssetIDs 资产 id
 	AssetIDs []uint64 `json:"asset_ids,omitempty"`
 	// Goals 优化目标数据列表
-	Goals []ConvertOptimizedGoal `json:"goals,omitempty"`
+	Goals []EventConvertOptimizedGoal `json:"goals,omitempty"`
 }

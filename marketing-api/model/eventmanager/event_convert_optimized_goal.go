@@ -1,9 +1,9 @@
-package event
+package eventmanager
 
 import "github.com/bububa/oceanengine/marketing-api/enum"
 
-// ConvertOptimizedGoal 优化目标数据
-type ConvertOptimizedGoal struct {
+// EventConvertOptimizedGoal 优化目标数据
+type EventConvertOptimizedGoal struct {
 	// ExternalAction 预定义转化目标，具体枚举可查看【附录-预定义转化类型】
 	ExternalAction enum.AdConvertType `json:"external_action,omitempty"`
 	// OptimizationName 事件名称
@@ -17,7 +17,7 @@ type ConvertOptimizedGoal struct {
 	// AssetTypes 资产类型，:THIRD_EXTERNAL:三方落地页、TETRIS_EXTERNAL:建站、APP 应用、QUICK_APP 快应用、MINI_PROGRAME字节小程序
 	AssetTypes []enum.AssetType `json:"asset_types,omitempty"`
 	// DeepGoals 深度优化目标列表
-	DeepGoals []ConvertOptimizedGoal `json:"deep_goals,omitempty"`
+	DeepGoals []EventConvertOptimizedGoal `json:"deep_goals,omitempty"`
 	// DeepExternalAction 深度转化目标，具体枚举可查看【附录-预定义转化类型】
 	DeepExternalAction enum.AdConvertType `json:"deep_external_action,omitempty"`
 }
