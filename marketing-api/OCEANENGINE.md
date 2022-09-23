@@ -107,6 +107,9 @@
   - 发布人群包 [ customaudience.Publish(clt *core.SDKClient, accessToken string, req *customaudience.PublishRequest) error ]
   - 推送人群包 [ customaudience.Push(clt *core.SDKClient, accessToken string, req *customaudience.PushRequest) error ]
   - 删除人群包 [ customaudience.Delete(clt *core.SDKClient, accessToken string, req *customaudience.DeleteRequest) error ]
+  - 云图相关接口
+    - 获取广告账户关联云图账户信息 [ BrandGet(clt *core.SDKClient, accessToken string, advertiserID uint64) ([]dmp.BrandInfo, error) ]
+    - 推送dmp人群包到云图账户 [ Copy(clt *core.SDKClient, accessToken string, req *customaudience.CopyRequest) error ]
 - 搜索广告
   - 广告组 [ campaign.Create(clt *core.SDKClient, accessToken string, req *campaign.CreateRequest) (uint64, error) ]
   - 关键词管理 (api/keyword)

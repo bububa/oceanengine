@@ -2,7 +2,6 @@ package datasource
 
 import (
 	"github.com/bububa/oceanengine/marketing-api/core"
-	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/model/dmp/datasource"
 )
 
@@ -13,6 +12,5 @@ import (
 // 每次更新数据源后，都需要重新调用【发布人群包】接口发布人群包才能让对应的更新生效！否则人群包将使用更新前的数据源！
 // 在调用【发布人群包】接口发布人群包的过程中，建议不要更新数据源，这会导致人群包发布过程延后！
 func Update(clt *core.SDKClient, accessToken string, req *datasource.UpdateRequest) error {
-	var resp model.BaseResponse
-	return clt.Post("2/dmp/data_source/update/", req, &resp, accessToken)
+	return clt.Post("2/dmp/data_source/update/", req, nil, accessToken)
 }
