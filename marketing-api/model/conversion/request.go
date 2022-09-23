@@ -48,13 +48,15 @@ type ContextAd struct {
 	Attributed bool `json:"attributed"`
 	// AdID 广告计划id；若您可以确定当前订单来自对应广告计划id，则可以上报此字段获得更加精准的归因结果
 	AdID uint64 `json:"ad_id,omitempty"`
-	// CompaignID 广告组id；同上，若您可以确定当前订单来自对应广告组id，则可以上报此字段获得更加精准的归因结果
-	CompaignID uint64 `json:"campaign_id,omitempty"`
+	// CampaignID 广告组id；同上，若您可以确定当前订单来自对应广告组id，则可以上报此字段获得更加精准的归因结果
+	CampaignID uint64 `json:"campaign_id,omitempty"`
 	// AdvertiserIDs 广告账户id；同上，若您可以确定当前订单来自对应广告账户id，则可以上报此字段获得更加精准的归因结果
 	AdvertiserIDs []uint64 `json:"advertiser_ids,omitempty"`
 	// CustomerIDs 客户id；同上，若您可以确定当前订单来自对应客户id，则可以上报此字段获得更加精准的归因结果
 	// 若您不确定订单来自哪个账户，请务必在此字段中填充 所有投放下单的 customer_id，字节侧将为您进行精准归因
 	CustomerIDs []uint64 `json:"customer_ids,omitempty"`
+	// ClickTime 点击时间，指用户点击页面跳转时间，上报秒级时间戳
+	ClickTime int64 `json:"click_time,omitempty"`
 }
 
 // ContextDevice 归因设备信息
@@ -79,6 +81,8 @@ type Properties struct {
 	PayAmount float64 `json:"pay_amount,omitempty"`
 	// BillTrackType 支付方式
 	BillTrackType enum.ConversionBillTrackType `json:"bill_track_type,omitempty"`
+	// AggCost 聚合页消耗金额总和
+	AggCost int64 `json:"agg_cost,omitempty"`
 	// ClassPurchaseAmount 正价课购买次数;背景：教育行业深度转化，优化用户的正价课购买行为；其中有一些用户会一次性产生多科的正价课购买，希望该行为能够表达给深度转化模型优化；释义：用户产生一科正价课购买行为，则属性为1；用户产生3科正价课购买行为，则属性为3；
 	ClassPurchaseAmount int `json:"class_purchase_amount,omitempty"`
 	// PeopleQuality 差异价值人群质量;金融行业授信事件差异价值获取属性1:高质量;2:中质量;3:低质量
@@ -95,6 +99,8 @@ type Properties struct {
 	IfHello *int `json:"if_hello,omitempty"`
 	// DialogMode 智能客服对话输入方式; input是用户主动输入,pick是用户点击菜单输入
 	DialogMode string `json:"dialog_mode,omitempty"`
+	// ConsumptionDetail 记录LU场景下广告主消耗的ctr/cvr/bid等
+	ConsumptionDetail string `json:"consumption_detail,omitempty"`
 	// Consumption2 LU搜索侧广告主总消耗金额; LU广告搜索侧广告主的总消耗金额
 	Consumption2 int64 `json:"consumption2,omitempty"`
 	// OriginalEvent 客户自定义的原始事件
@@ -121,6 +127,18 @@ type Properties struct {
 	ProductID string `json:"product_id,omitempty"`
 	// ProductName 商品名
 	ProductName string `json:"product_name,omitempty"`
+	// ProductImag 商品图片
+	ProductImag string `json:"product_imag,omitempty"`
+	// ProductNumber 商品数量
+	ProductNumber int `json:"product_number,omitempty"`
+	// ProductTitle 商品标题
+	ProductTitle string `json:"product_title,omitempty"`
+	// ProductPrice 商品单价，单位为“元”
+	ProductPrice int `json:"product_price,omitempty"`
+	// ShopName 店铺名称
+	ShopName string `json:"shop_name,omitempty"`
+	// ProductType 商品类型
+	ProductType string `json:"product_type,omitempty"`
 	// M2Score M2质量分; 自有建模预估能力的客户对保险用户M2后是否续保的打分
 	M2Score float64 `json:"m2_score,omitempty"`
 	// Consumption LU搜索侧广告主消耗金额; LU广告搜索侧广告主的消耗金额
@@ -187,6 +205,8 @@ type Properties struct {
 	Gender int `json:"gender,omitempty"`
 	// OrderID 订单id；建议按照淘宝订单中的父订单（tid）进行回传；系统会根据订单id辅助去重提升归因准确性
 	OrderID uint64 `json:"order_id,omitempty"`
+	// OrderState 订单状态
+	OrderState string `json:"order_state,omitempty"`
 	// ReceiverProvince 收货人所在的省份；当phone_num_blurred值为*******1234类型时必填
 	ReceiverProvince string `json:"receiver_province,omitempty"`
 	// ReceiverCity 收货人所在的城市（若城市为直辖市仍然填写市，如北京市）；当phone_num_blurred值为*******1234类型时必填
