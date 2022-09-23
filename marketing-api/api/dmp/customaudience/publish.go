@@ -2,7 +2,6 @@ package customaudience
 
 import (
 	"github.com/bububa/oceanengine/marketing-api/core"
-	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/model/dmp/customaudience"
 )
 
@@ -17,6 +16,5 @@ import (
 // - 每当人群包的内容发生变化，就需要再次发布让变化生效！
 // - 发布是一个异步的过程，发布中不建议对数据源进行更新操作，这会导致人群包的发布过程推迟！
 func Publish(clt *core.SDKClient, accessToken string, req *customaudience.PublishRequest) error {
-	var resp model.BaseResponse
-	return clt.Post("2/dmp/custom_audience/publish/", req, &resp, accessToken)
+	return clt.Post("2/dmp/custom_audience/publish/", req, nil, accessToken)
 }
