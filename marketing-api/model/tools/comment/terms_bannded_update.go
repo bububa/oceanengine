@@ -4,8 +4,8 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
-// TermsBandedUpdateRequest 更新屏蔽词 API Request
-type TermsBandedUpdateRequest struct {
+// TermsBanndedUpdateRequest 更新屏蔽词 API Request
+type TermsBanndedUpdateRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// OriginTerms 待更新的屏蔽词; 屏蔽词长度范围为0-100
@@ -15,6 +15,6 @@ type TermsBandedUpdateRequest struct {
 }
 
 // Encode implement PostRequest interface
-func (r TermsBandedUpdateRequest) Encode() []byte {
+func (r TermsBanndedUpdateRequest) Encode() []byte {
 	return util.JSONMarshal(r)
 }

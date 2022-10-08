@@ -7,8 +7,8 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
-// TermsBandedGetRequest 获取屏蔽词列表 API Request
-type TermsBandedGetRequest struct {
+// TermsBanndedGetRequest 获取屏蔽词列表 API Request
+type TermsBanndedGetRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Page 页数 默认值: 1
@@ -18,7 +18,7 @@ type TermsBandedGetRequest struct {
 }
 
 // Encode implement GetRequest interface
-func (r TermsBandedGetRequest) Encode() string {
+func (r TermsBanndedGetRequest) Encode() string {
 	values := &url.Values{}
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Page > 0 {
@@ -30,15 +30,15 @@ func (r TermsBandedGetRequest) Encode() string {
 	return values.Encode()
 }
 
-// TermsBandedGetResponse 获取屏蔽词列表 API Response
-type TermsBandedGetResponse struct {
+// TermsBanndedGetResponse 获取屏蔽词列表 API Response
+type TermsBanndedGetResponse struct {
 	model.BaseResponse
 	// Data json 返回值
-	Data *TermsBandedGetResponseData `json:"data,omitempty"`
+	Data *TermsBanndedGetResponseData `json:"data,omitempty"`
 }
 
-// TermsBandedGetResponseData json 返回值
-type TermsBandedGetResponseData struct {
+// TermsBanndedGetResponseData json 返回值
+type TermsBanndedGetResponseData struct {
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 	// Terms 屏蔽词列表
