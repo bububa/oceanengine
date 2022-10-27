@@ -10,6 +10,8 @@ type VideoMaterial struct {
 	ImageInfo *ImageInfo `json:"image_info,omitempty"`
 	// VideoInfo 视频素材信息
 	VideoInfo *VideoInfo `json:"video_info,omitempty"`
+	// AwemeItemID 抖音短视频ID
+	AwemeItemID uint64 `json:"aweme_item_id,omitempty"`
 	// DpaVideoTemplateType 商品库视频生成类型，创建DPA创意时可传入，传入后该素材下image_info与video_info不生效
 	DpaVideoTemplateType enum.DpaVideoTemplateType `json:"dpa_video_template_type,omitempty"`
 	// DpaVideoTaskIDs 自定义商品库视频模板ID，创建DPA创意时可传入，传入后该素材下image_info与video_info不生效，长度限制1，从【获取 DPA 商品库视频模板】接口中获取
