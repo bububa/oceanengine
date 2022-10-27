@@ -14,4 +14,6 @@ const (
 	AudiencePlatform_IPAD AudiencePlatform = "IPAD"
 	// AudiencePlatform_WAP wap
 	AudiencePlatform_WAP AudiencePlatform = "WAP"
+	// AudiencePlatform_OTHER
+	AudiencePlatform_OTHER AudiencePlatform = "OTHER"
 )

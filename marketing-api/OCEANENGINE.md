@@ -97,6 +97,11 @@
     - 创建异步任务 [ Create(clt *core.SDKClient, accessToken string, req *asynctask.CreateRequest) (*asynctask.Task, error) ]
     - 获取异步任务列表 [ Get(clt *core.SDKClient, accessToken string, req *asynctask.GetRequest) (*asynctask.GetResponseData, error) ]
     - 下载任务结果 [ Download(clt *core.SDKClient, accessToken string, req *asynctask.DownloadRequest) ([]byte, error) ]
+  - 广告体验版数据报表 (api/report/v3)
+    - 项目数据报表 [ ProjectGet(clt *core.SDKClient, accessToken string, req *v3.ProjectGetRequest) (*v3.ProjectGetResult, error) ]
+    - 广告数据报表 [ PromotionGet(clt *core.SDKClient, accessToken string, req *v3.PromotionGetRequest) (*v3.PromotionGetResult, error) ]
+    - 素材数据报表 [ MaterialGet(clt *core.SDKClient, accessToken string, req *v3.MaterialGetRequest) (*v3.MaterialGetResult, error) ]
+    - 自定义报表 [ CustomGet(clt *core.SDKClient, accessToken string, req *v3.CustomGetRequest) (*v3.CustomGetResult, error) ]
 - DMP 人群管理 (api/dmp)
   - 数据源文件上传 [ datasource.FileUpload(clt *core.SDKClient, accessToken string, req *datasource.FileUploadRequest) (string, error) ]
   - 数据源创建 [ datasource.Create(clt *core.SDKClient, accessToken string, req *datasource.CreateRequest) (string, error) ]
