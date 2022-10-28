@@ -130,7 +130,7 @@ type PromotionGetListItem struct {
 	// PromotionName 广告名称
 	PromotionName string `json:"promotion_name,omitempty"`
 	// StatDateTime 数据时间
-	StatDateTIme string `json:"stat_date_time,omitempty"`
+	StatDateTIme string `json:"stat_datetime,omitempty"`
 	// Data
 	Data []Stat `json:"data,omitempty"`
 }

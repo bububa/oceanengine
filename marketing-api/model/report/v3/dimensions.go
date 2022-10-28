@@ -23,9 +23,9 @@ type Dimensions struct {
 	// CdpProjectName 项目的名称
 	CdpProjectName string `json:"cdp_project_name,omitempty"`
 	// LandingType 对应项目的推广目的
-	LandingType int `json:"landing_type,omitempty"`
+	LandingType string `json:"landing_type,omitempty"`
 	// ExternalAction 对应项目的转化目标
-	ExternalAction int `json:"external_action,omitempty"`
+	ExternalAction string `json:"external_action,omitempty"`
 	// Pricing 对应项目的计费类型
 	Pricing int `json:"pricing,omitempty"`
 	// DeepExternalAction 对应项目的深度转化目标
