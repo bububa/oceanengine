@@ -21,7 +21,7 @@ type ProjectGetRequest struct {
 	// Fields 指定需要的指标名称
 	Fields []string `json:"fields,omitempty"`
 	// GroupBy 分组条件默认为 STAT_GROUP_BY_FIELD_STAT_TIME
-	GroupBy []enum.StatGroupBy `json:"group_by,omitempty"`
+	GroupBy enum.StatGroupBy `json:"group_by,omitempty"`
 	// TimeGranularity 时间粒度, 默认值: STAT_TIME_GRANULARITY_DAILY
 	TimeGranularity enum.StatTimeGranularity `json:"time_granularity,omitempty"`
 	// OrderField 排序字段，所有的统计指标均可参与排序
@@ -78,9 +78,8 @@ func (r ProjectGetRequest) Encode() string {
 		fields, _ := json.Marshal(r.Fields)
 		values.Set("fields", string(fields))
 	}
-	if r.GroupBy != nil {
-		groupBy, _ := json.Marshal(r.GroupBy)
-		values.Set("group_by", string(groupBy))
+	if r.GroupBy != "" {
+		values.Set("group_by", string(r.GroupBy))
 	}
 	if r.TimeGranularity != "" {
 		values.Set("time_granularity", string(r.TimeGranularity))
@@ -126,7 +125,7 @@ type ProjectGetListItem struct {
 	// ProjectName 项目名称
 	ProjectName string `json:"project_name,omitempty"`
 	// StatDateTime 数据时间
-	StatDateTIme string `json:"stat_date_time,omitempty"`
+	StatDateTIme string `json:"stat_datetime,omitempty"`
 	// Data
 	Data []Stat `json:"data,omitempty"`
 }
