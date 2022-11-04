@@ -46,6 +46,8 @@ func (r GetRequest) Encode() string {
 
 // GetFiltering 过滤条件
 type GetFiltering struct {
+	// CampaignID 按照campaign_id过滤
+	CampaignID uint64 `json:"campaign_id,omitempty"`
 	// IDs 按广告计划ID过滤，范围为1-100
 	IDs []uint64 `json:"ids,omitempty"`
 	// AdName 按广告计划name过滤，长度为1-30个字符
