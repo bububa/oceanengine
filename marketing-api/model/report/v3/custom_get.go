@@ -85,6 +85,8 @@ func (r CustomGetRequest) Encode() string {
 	if len(r.OrderBy) > 0 {
 		fields, _ := json.Marshal(r.OrderBy)
 		values.Set("order_by", string(fields))
+	} else {
+		values.Set("order_by", "[]")
 	}
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
@@ -95,6 +97,8 @@ func (r CustomGetRequest) Encode() string {
 	if len(r.Filters) > 0 {
 		filters, _ := json.Marshal(r.Filters)
 		values.Set("filters", string(filters))
+	} else {
+		values.Set("filters", "[]")
 	}
 	return values.Encode()
 }
@@ -111,7 +115,7 @@ type CustomGetResult struct {
 	// Rows 数据列表
 	Rows []CustomGetListItem `json:"rows,omitempty"`
 	// TotalMetrics 指标汇总数据
-	TotalMetrics *Metrics `json:"total_metrics,omitempty"`
+	TotalMetrics *CustomMetrics `json:"total_metrics,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
@@ -119,7 +123,7 @@ type CustomGetResult struct {
 // CustomGetListItem 数据详情
 type CustomGetListItem struct {
 	// Metrics 指标数据
-	Metrics *Metrics `json:"metrics,omitempty"`
+	Metrics *CustomMetrics `json:"metrics,omitempty"`
 	// Dimensions 维度数据
-	Dimensions *Dimensions `json:"dimensions,omitempty"`
+	Dimensions *CustomDimensions `json:"dimensions,omitempty"`
 }
