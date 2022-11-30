@@ -69,6 +69,18 @@
     - 更新创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 创意素材信息 [ MaterialRead(clt *core.SDKClient, accessToken string, req *creative.MaterialReadRequest) ([]creative.Material, error) ]
     - 获取创意审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *creative.RejectReasonRequest) ([]creative.RejectReason, error) ]
+- 广告投放体验版
+  - 广告管理模块 (api/ad/v3)
+    - 创建广告 [ Create(clt *core.SDKClient, accessToken string, req *v3.CreateRequest) (uint64, error) ]
+    - 修改广告 [ Update(clt *core.SDKClient, accessToken string, req *v3.UpdateRequest) (*v3.UpdateResponseData, error) ]
+    - 获取广告列表 [ List(clt *core.SDKClient, accessToken string, req *v3.ListRequest) (*v3.ListResponseData, error) ]
+    - 批量更新广告预算 [ BudgetUpdate(clt *core.SDKClient, accessToken string, req *v3.BudgetUpdateRequest) (*v3.UpdateResponseData, error) ]
+    - 批量更新广告出价 [ BidUpdate(clt *core.SDKClient, accessToken string, req *v3.BidUpdateRequest) (*v3.UpdateResponseData, error) ]
+    - 批量删除广告 [ Delete(clt *core.SDKClient, accessToken string, req *v3.DeleteRequest) (*v3.UpdateResponseData, error) ]
+    - 批量更新广告启用状态 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *v3.StatusUpdateRequest) (*v3.UpdateResponseData, error) ]
+    - 批量修改深度出价 [ DeepBidUpdate(clt *core.SDKClient, accessToken string, req *v3.DeepBidUpdateRequest) (*v3.UpdateResponseData, error) ]
+    - 批量获取计划成本保障状态 [ CostProtectStatusGet(clt *core.SDKClient, accessToken string, req *v3.CostProtectStatusGetRequest) ([]v3.CostProtectStatus, error) ]
+    - 获取计划审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *v3.RejectReasonRequest) ([]v3.RejectReason, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ AdvertiserGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
