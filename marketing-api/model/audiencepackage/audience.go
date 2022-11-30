@@ -39,6 +39,8 @@ type Audience struct {
 	LaunchPrice []int `json:"launch_price,omitempty"`
 	// InterestActionMode 行为兴趣;取值："UNLIMITED"不限,"CUSTOM"自定义,"RECOMMEND"系统推荐。若与自定义人群同时使用，系统推荐("RECOMMEND")不生效;仅推广范围为默认时可填，且不可与老版行为兴趣定向同时填写，否则会报错
 	InterestActionMode string `json:"interest_action_mode,omitempty"`
+	// Action 行为内容
+	Action *AudienceAction `json:"action,omitempty"`
 	// ActionScene 行为场景
 	ActionScene []enum.ActionScene `json:"action_scene,omitempty"`
 	// ActionDays 用户发生行为天数，当interest_action_mode传CUSTOM时有效
@@ -101,4 +103,16 @@ type Audience struct {
 		CampaignName string `json:"campaign_name,omitempty"`
 		Status       string `json:"status,omitempty"`
 	} `json:"bind_info,omitempty"`
+}
+
+// AudienceAction 行为内容
+type AudienceAction struct {
+	// ActionScene 行为场景
+	ActionScene []enum.ActionScene `json:"action_scene,omitempty"`
+	// ActionDays 用户发生行为天数，当interest_action_mode传CUSTOM时有效
+	ActionDays uint `json:"action_days,omitempty"`
+	// ActionCategories 行为类目词，当interest_action_mode传CUSTOM时有效
+	ActionCategories []uint64 `json:"action_categories,omitempty"`
+	// ActionWords 行为关键词，当interest_action_mode传CUSTOM时有效
+	ActionWords []uint64 `json:"action_words,omitempty"`
 }
