@@ -271,6 +271,9 @@
   - 获取计划诊断信息 (tools/diagnosis)
     - 获取计划诊断建议 [ SuggestionGet(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionGetRequest) (*diagnosis.SuggestionGetResponseData, error) ]
     - 采纳计划诊断建议 [ SuggestionAccept(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionAcceptRequest) (*diagnosis.SuggestionAcceptResponseData, error) ]
+  - 获取计划诊断信息体验版 (tools/diagnosis/v3)
+    - 获取计划诊断建议 [ SuggestionGet(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionGetRequest) (*diagnosis.SuggestionGetResponseData, error) ]
+    - 采纳计划诊断建议 [ SuggestionAccept(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionAcceptRequest) (*diagnosis.SuggestionAcceptResponseData, error) ]
   - 行为兴趣词管理 (tools/interestaction)
     - 行为类目查询 [ ActionCategory(clt *core.SDKClient, accessToken string, req *interestaction.ActionCategoryRequest) ([]interestaction.Object, error) ]
     - 行为关键词查询 [ ActionKeyword(clt *core.SDKClient, accessToken string, req *interestaction.ActionKeywordRequest) ([]interestaction.Object, error) ]
