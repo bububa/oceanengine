@@ -272,11 +272,11 @@ type Audience struct {
 	// Action 行为内容
 	Action *AudienceAction `json:"action,omitempty"`
 	// InterestCategories 兴趣类目词，当interest_action_mode传CUSTOM时有效
-	InterestCategories []uint64 `json:"Interest_categories,omitempty"`
+	InterestCategories []uint64 `json:"interest_categories,omitempty"`
 	// InterestWords 兴趣关键词, 传入具体的词id，非兴趣词包id，可以通过词包相关接口或者兴趣关键词word2id接口获取词id，一个计划下最多创建1000个关键词。当interest_action_mode传CUSTOM时有效
 	InterestWords []uint64 `json:"interest_words,omitempty"`
 	// AdTags （老版行为兴趣）兴趣分类,如果传"空数组"表示不限，如果"数组传0"表示系统推荐,如果按兴趣类型传表示自定义
-	AdTags []uint64 `json:"ad_tags,omitempty"`
+	AdTags []uint64 `json:"ad_tag,omitempty"`
 	// InterestTags （老版行为兴趣）兴趣关键词, 传入具体的词id，非兴趣词包id，可以通过词包相关接口或者兴趣关键词word2id接口获取词id，一个计划下最多创建1000个关键词。
 	InterestTags []uint64 `json:"interest_tags,omitempty"`
 	// AppBehaviorTarget （老版行为兴趣）APP行为; 取值：NONE不限，CATEGORY按分类，APP按APP
