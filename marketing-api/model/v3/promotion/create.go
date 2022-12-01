@@ -1,6 +1,7 @@
 package promotion
 
 import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -14,7 +15,7 @@ type CreateRequest struct {
 	// Name 广告名称，长度是1-50个字（两个英文字符占1个字）。名称不可重复
 	Name string `json:"name,omitempty"`
 	// Operation 广告状态， 允许值: ENABLE开启(默认值）、DISABLE关闭
-	Operation string `json:"operation,omitempty"`
+	Operation enum.OptStatus `json:"operation,omitempty"`
 	// PromotionMaterials 广告素材组合
 	PromotionMaterials []PromotionMaterial `json:"promotion_materials,omitempty"`
 	// Source 广告来源，字数限制：[1-10]

@@ -17,7 +17,7 @@ type UpdateRequest struct {
 	// Name 广告计划名称，长度为1-100个字符，其中1个中文字符算2位
 	Name string `json:"name,omitempty"`
 	// DownloadMode 优先从系统应用商店下载（下载模式），当下载方式为下载链接时，可修改。允许值：APP_STORE_DELIVERY（仅安卓应用下载支持）、 DEFAULT当应用下载时，默认default下载，可选用APP_STORE_DELIVERY（应用商店直投），选择后，将优先跳转目标应用对应手机系统应用商店安装详情页，跳转失败则使用下载链接下载。
-	DownloadMode string `json:"download_mode,omitempty"`
+	DownloadMode enum.DownloadMode `json:"download_mode,omitempty"`
 	// OpenUrl 直达链接（点击唤起APP）直达链接仅支持部分App唤起，点击创意将优先跳转App，再根据投放内容跳转相关链接
 	OpenUrl *string `json:"open_url,omitempty"`
 	// Ulink 直达备用链接，仅支持穿山甲广告位（不支持搜索广告）
@@ -61,7 +61,7 @@ type UpdateRequest struct {
 	// AudiencePackageID 定向包ID
 	AudiencePackageID uint64 `json:"audience_package_id,omitempty"`
 	// District 地域;取值: "CITY"省市, "COUNTY"区县, "BUSINESS_DISTRICT"商圈,"NONE"不限，省市传法："city": [12],"district": "CITY",区县的传法："city": [130102],"district": "COUNTY";暂不支持"海外"
-	District string `json:"district,omitempty"`
+	District enum.District `json:"district,omitempty"`
 	// RegionVersion 行政区域版本号。通过[【获取行政信息】]https://open.oceanengine.com/doc/index.html?key=ad&type=api&id=1709606596424718)接口获取; district =REGION/OVERSEA时必填
 	RegionVersion string `json:"region_version,omitempty"`
 	// City 地域定向省市或者区县列表(当传递省份ID时,旗下市县ID可省略不传),当district为"CITY"或"COUNTY"时有值
@@ -71,7 +71,7 @@ type UpdateRequest struct {
 	// Geolocation 从地图添加(地图位置)
 	Geolocation *[]model.Geolocation `json:"geolocation,omitempty"`
 	// LocationType 位置类型;取值：CURRENT正在该地区的用户，HOME居住在该地区的用户，TRAVEL到该地区旅行的用户，ALL该地区内的所有用户;当city和district有值时返回值
-	LocationType string `json:"location_type,omitempty"`
+	LocationType enum.LocationType `json:"location_type,omitempty"`
 	// Gender 性别
 	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// Age 年龄
@@ -83,7 +83,7 @@ type UpdateRequest struct {
 	// RetargetingTagsExclude 排除人群包列表（自定义人群），内容为人群包id。如果选择"同时定向与排除"，需传入retargeting_tags_include和retargeting_tags_exclude
 	RetargetingTagsExclude *[]uint64 `json:"retargeting_tags_exclude,omitempty"`
 	// InterestActionMode 行为兴趣;取值："UNLIMITED"不限,"CUSTOM"自定义,"RECOMMEND"系统推荐。若与自定义人群同时使用，系统推荐("RECOMMEND")不生效;仅推广范围为默认时可填，且不可与老版行为兴趣定向同时填写，否则会报错
-	InterestActionMode string `json:"interest_action_mode,omitempty"`
+	InterestActionMode enum.InterestActionMode `json:"interest_action_mode,omitempty"`
 	// ActionScene 行为场景
 	ActionScene *[]enum.ActionScene `json:"action_scene,omitempty"`
 	// ActionDays 用户发生行为天数，当interest_action_mode传CUSTOM时有效

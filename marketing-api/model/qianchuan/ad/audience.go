@@ -10,11 +10,11 @@ type Audience struct {
 	// AudienceMode 人群定向模式，当promotion_way为 SIMPLE时返回，枚举值：AUTO智能推荐、CUSTOM自定义
 	AudienceMode enum.AudienceMode `json:"audience_mode,omitempty"`
 	// District 地域定向类型，配合city字段使用，允许值：CITY：省市，COUNTY：区县，NONE：不限；默认值：NONE
-	District string `json:"district,omitempty"`
+	District enum.District `json:"district,omitempty"`
 	// City 具体定向的城市列表，当 district 为COUNTY，city 为必填，枚举值详见【附件-city.json】；省市传法：city: [12]，district: CITY；区县的传法：city: [130102]，district: COUNTY
 	City []uint64 `json:"city,omitempty"`
 	// LocationType 地域定向的用户状态类型，当 district 为COUNTY，CITY为必填，允许值：CURRENT：正在该地区的用户，HOME：居住在该地区的用户，TRAVEL；到该地区旅行的用户，ALL：该地区内的所有用户
-	LocationType string `json:"location_type,omitempty"`
+	LocationType enum.LocationType `json:"location_type,omitempty"`
 	// Gender 允许值: GENDER_FEMALE：女性，GENDER_MALE：男性，NONE： 不限
 	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// Age 年龄，详见【附录-受众年龄区间】；允许值：AGE_BETWEEN_18_23, AGE_BETWEEN_24_30, AGE_BETWEEN_31_40, AGE_BETWEEN_41_49, AGE_ABOVE_50

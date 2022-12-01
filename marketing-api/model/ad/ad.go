@@ -58,11 +58,11 @@ type Ad struct {
 	// TrackUrlSendType 数据发送方式; 允许值: SERVER_SEND(服务器端上传), CLIENT_SEND(客户端上传)
 	TrackUrlSendType string `json:"track_url_send_type,omitempty"`
 	// DownloadType 应用下载方式，推广目的为APP时有值。返回值：DOWNLOAD_URL下载链接，QUICK_APP_URL快应用+下载链接，EXTERNAL_URL落地页链接
-	DownloadType string `json:"download_type,omitempty"`
+	DownloadType enum.DownloadType `json:"download_type,omitempty"`
 	// AppType 下载类型，当推广类型为应用推广且download_type为DOWNLOAD_URL或者QUICK_APP_URL时或当推广类型为DPA(商品目录推广)且dpa_adtype为DPA_APP有值
 	AppType string `json:"app_type,omitempty"`
 	// DonwloadMode 优先从系统应用商店下载（下载模式）;允许值：APP_STORE_DELIVERY（仅安卓应用下载支持）、 DEFAULT当应用下载时，默认default下载，可选用APP_STORE_DELIVERY（应用商店直投），当为该值时，将优先跳转目标应用对应手机系统应用商店安装详情页，跳转失败则使用下载链接下载。请确保投放的应用在应用商店内已上架
-	DownloadMode string `json:"download_mode,omitempty"`
+	DownloadMode enum.DownloadMode `json:"download_mode,omitempty"`
 	// ConvertID 转化目标，其中convert_id数值较小时为预定义转化
 	ConvertID uint64 `json:"convert_id,omitempty"`
 	// ExternalAction 转化类型，目前当推广类型为抖音时有值，允许值："AD_CONVERT_TYPE_FOLLOW_ACTION", "AD_CONVERT_TYPE_MESSAGE_ACTION", "AD_CONVERT_TYPE_INTERACTION"
@@ -120,7 +120,7 @@ type Ad struct {
 	// Package 应用包名，当推广类型为应用推广且download_type为DOWNLOAD_URL时或当推广类型为DPA(商品目录推广)且dpa_adtype为DPA_APP有值
 	Package string `json:"package,omitempty"`
 	// InventoryCatalog 广告位大类。 MANUAL首选媒体 SCENE场景广告位，SMART优选广告位，UNIVERSAL通投智选
-	InventoryCatalog string `json:"inventory_catalog,omitempty"`
+	InventoryCatalog enum.InventoryCatalog `json:"inventory_catalog,omitempty"`
 	// InventoryType 创意投放位置; 创建选择优选广告位时，此字段回会返回对应的优选广告位
 	InventoryType []enum.StatInventoryType `json:"inventory_type,omitempty"`
 	// SmartInventory 优选广告位，NORMAL表示不使用优选，SMART表示使用优选，UNIVERSAL表示通投
@@ -248,7 +248,7 @@ type DpaProductTarget struct {
 // Audience 受众
 type Audience struct {
 	// District 地域;取值: "CITY"省市, "COUNTY"区县, "BUSINESS_DISTRICT"商圈,"NONE"不限，省市传法："city": [12],"district": "CITY",区县的传法："city": [130102],"district": "COUNTY";暂不支持"海外"
-	District string `json:"district,omitempty"`
+	District enum.District `json:"district,omitempty"`
 	// RegionVersion 行政区域版本号。通过[【获取行政信息】]https://open.oceanengine.com/doc/index.html?key=ad&type=api&id=1709606596424718)接口获取; district =REGION/OVERSEA时必填
 	RegionVersion string `json:"region_version,omitempty"`
 	// City 地域定向省市或者区县列表(当传递省份ID时,旗下市县ID可省略不传),当district为"CITY"或"COUNTY"时有值
@@ -258,7 +258,7 @@ type Audience struct {
 	// Geolocation 从地图添加(地图位置)
 	Geolocation []model.Geolocation `json:"geolocation,omitempty"`
 	// LocationType 位置类型;取值：CURRENT正在该地区的用户，HOME居住在该地区的用户，TRAVEL到该地区旅行的用户，ALL该地区内的所有用户;当city和district有值时返回值
-	LocationType string `json:"location_type,omitempty"`
+	LocationType enum.LocationType `json:"location_type,omitempty"`
 	// Gender 性别
 	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// Age 年龄
@@ -268,7 +268,7 @@ type Audience struct {
 	// RetargetingTagsExclude 排除人群包列表（自定义人群），内容为人群包id。如果选择"同时定向与排除"，需传入retargeting_tags_include和retargeting_tags_exclude
 	RetargetingTagsExclude []uint64 `json:"retargeting_tags_exclude,omitempty"`
 	// InterestActionMode 行为兴趣;取值："UNLIMITED"不限,"CUSTOM"自定义,"RECOMMEND"系统推荐。若与自定义人群同时使用，系统推荐("RECOMMEND")不生效;仅推广范围为默认时可填，且不可与老版行为兴趣定向同时填写，否则会报错
-	InterestActionMode string `json:"interest_action_mode,omitempty"`
+	InterestActionMode enum.InterestActionMode `json:"interest_action_mode,omitempty"`
 	// Action 行为内容
 	Action *AudienceAction `json:"action,omitempty"`
 	// InterestCategories 兴趣类目词，当interest_action_mode传CUSTOM时有效

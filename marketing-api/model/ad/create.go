@@ -21,7 +21,7 @@ type CreateRequest struct {
 	// UnionVideoType 投放形式（穿山甲视频创意类型），当delivery_range为"UNION"时必填。详见【附录-穿山甲视频创意类型】;默认值: ORIGINAL_VIDEO原生; 允许值: ORIGINAL_VIDEO原生, REWARDED_VIDEO激励视频,SPLASH_VIDEO开屏
 	UnionVideoType enum.UnionVideoType `json:"union_video_type,omitempty"`
 	// DownloadType 下载方式; 默认值：DOWNLOAD_URL下载链接; 可选值：DOWNLOAD_URL下载链接、EXTERNAL_URL落地页链接
-	DownloadType string `json:"download_type,omitempty"`
+	DownloadType enum.DownloadType `json:"download_type,omitempty"`
 	// DownloadUrl 应用下载方式，推广目的为APP时有值。返回值：DOWNLOAD_URL下载链接，QUICK_APP_URL快应用+下载链接，EXTERNAL_URL落地页链接
 	DownloadUrl string `json:"download_url,omitempty"`
 	// ExternalUrl 落地页链接（支持橙子建站落地页）;对于转化量为目标的计划如OCPM计划不允许更改，非转化为目标的计划如CPC、CPM计划可更改; 获取橙子建站落地页可参考【橙子建站落地页管理】
@@ -31,7 +31,7 @@ type CreateRequest struct {
 	// Package 应用包名，当推广类型为应用推广且download_type为DOWNLOAD_URL时或当推广类型为DPA(商品目录推广)且dpa_adtype为DPA_APP有值
 	Package string `json:"package,omitempty"`
 	// DownloadMode 优先从系统应用商店下载（下载模式）;允许值：APP_STORE_DELIVERY（仅安卓应用下载支持）、 DEFAULT当应用下载时，默认default下载，可选用APP_STORE_DELIVERY（应用商店直投），选择后，将优先跳转目标应用对应手机系统应用商店安装详情页，跳转失败则使用下载链接下载。;请确保投放的应用在应用商店内已上架;详情请参照【帮助中心】
-	DownloadMode string `json:"download_mode,omitempty"`
+	DownloadMode enum.DownloadMode `json:"download_mode,omitempty"`
 	// ConvertID 转化目标， 当出价方式为"OCPM"时必填，当出价方式为CPC和CPM时非必填。可通过【工具-转化目标管理-查询计划可用转化id】查询可用id
 	ConvertID uint64 `json:"convert_id,omitempty"`
 	// OpenUrl 直达链接（点击唤起APP）直达链接仅支持部分App唤起，点击创意将优先跳转App，再根据投放内容跳转相关链接
@@ -46,7 +46,7 @@ type CreateRequest struct {
 	// 允许值：1000、5000、12000、20000、30000、40000、50000、60000
 	LandingPageStayTime int `json:"landing_page_stay_time,omitempty"`
 	// InventoryCatalog 广告位大类。允许值 MANUAL首选媒体 SCENE场景广告位，SMART优选广告位，UNIVERSAL通投智选
-	InventorCatalog string `json:"inventory_catalog,omitempty"`
+	InventorCatalog enum.InventoryCatalog `json:"inventory_catalog,omitempty"`
 	// InventoryType 广告投放位置（首选媒体），详见【附录-首选投放位置】，在没有使用smart_inventory的情况下，当前字段必填。
 	InventoryType []enum.StatInventoryType `json:"inventory_type,omitempty"`
 	// SmartInventory 优选广告位，允许值NORMAL表示不使用优选，SMART表示使用优选，UNIVERSAL表示通投，使用优选广告位的时候默认忽略inventory_type字段。
@@ -117,7 +117,7 @@ type CreateRequest struct {
 	// AudiencePackageID 定向包ID
 	AudiencePackageID uint64 `json:"audience_package_id,omitempty"`
 	// District 地域;取值: "CITY"省市, "COUNTY"区县, "BUSINESS_DISTRICT"商圈,"NONE"不限，省市传法："city": [12],"district": "CITY",区县的传法："city": [130102],"district": "COUNTY";暂不支持"海外"
-	District string `json:"district,omitempty"`
+	District enum.District `json:"district,omitempty"`
 	// RegionVersion 行政区域版本号。通过[【获取行政信息】]https://open.oceanengine.com/doc/index.html?key=ad&type=api&id=1709606596424718)接口获取; district =REGION/OVERSEA时必填
 	RegionVersion string `json:"region_version,omitempty"`
 	// City 地域定向省市或者区县列表(当传递省份ID时,旗下市县ID可省略不传),当district为"CITY"或"COUNTY"时有值
@@ -127,7 +127,7 @@ type CreateRequest struct {
 	// Geolocation 从地图添加(地图位置)
 	Geolocation []model.Geolocation `json:"geolocation,omitempty"`
 	// LocationType 位置类型;取值：CURRENT正在该地区的用户，HOME居住在该地区的用户，TRAVEL到该地区旅行的用户，ALL该地区内的所有用户;当city和district有值时返回值
-	LocationType string `json:"location_type,omitempty"`
+	LocationType enum.LocationType `json:"location_type,omitempty"`
 	// Gender 性别
 	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// Age 年龄
@@ -139,7 +139,7 @@ type CreateRequest struct {
 	// RetargetingTagsExclude 排除人群包列表（自定义人群），内容为人群包id。如果选择"同时定向与排除"，需传入retargeting_tags_include和retargeting_tags_exclude
 	RetargetingTagsExclude []uint64 `json:"retargeting_tags_exclude,omitempty"`
 	// InterestActionMode 行为兴趣;取值："UNLIMITED"不限,"CUSTOM"自定义,"RECOMMEND"系统推荐。若与自定义人群同时使用，系统推荐("RECOMMEND")不生效;仅推广范围为默认时可填，且不可与老版行为兴趣定向同时填写，否则会报错
-	InterestActionMode string `json:"interest_action_mode,omitempty"`
+	InterestActionMode enum.InterestActionMode `json:"interest_action_mode,omitempty"`
 	// ActionScene 行为场景
 	ActionScene []enum.ActionScene `json:"action_scene,omitempty"`
 	// ActionDays 用户发生行为天数，当interest_action_mode传CUSTOM时有效
