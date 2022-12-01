@@ -1,20 +1,17 @@
-package v3
+package promotion
 
 import (
-	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
-// CreateRequest 创建广告 API Request
-type CreateRequest struct {
+// UpdateRequest 修改广告列API Request
+type UpdateRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
-	// ProjectID 项目ID
-	ProjectID uint64 `json:"project_id,omitempty"`
+	// PromotionID 广告ID，广告ID要属于广告主ID
+	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// Name 广告名称，长度是1-50个字（两个英文字符占1个字）。名称不可重复
 	Name string `json:"name,omitempty"`
-	// Operation 广告状态， 允许值: ENABLE开启(默认值）、DISABLE关闭
-	Operation string `json:"operation,omitempty"`
 	// PromotionMaterials 广告素材组合
 	PromotionMaterials []PromotionMaterial `json:"promotion_materials,omitempty"`
 	// Source 广告来源，字数限制：[1-10]
@@ -34,15 +31,6 @@ type CreateRequest struct {
 }
 
 // Encode implement PostRequest interface
-func (r CreateRequest) Encode() []byte {
+func (r UpdateRequest) Encode() []byte {
 	return util.JSONMarshal(r)
-}
-
-// CreateResponse 创建广告 API Response
-type CreateResponse struct {
-	model.BaseResponse
-	Data struct {
-		// PromotionID 广告ID
-		PromotionID uint64 `json:"promotion_id,omitempty"`
-	} `json:"data,omitempty"`
 }

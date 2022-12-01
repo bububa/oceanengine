@@ -1,4 +1,4 @@
-package v3
+package promotion
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ import (
 type CostProtectStatusGetRequest struct {
 	// AdvertiserID 广告主id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
-	// PromotionIDs 广告计划id，每次最多传入50个
+	// PromotionIDs 广告id，每次最多传入50个
 	PromotionIDs []uint64 `json:"promotion_ids,omitempty"`
 }
 
