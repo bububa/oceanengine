@@ -13,7 +13,7 @@ type CreateRequest struct {
 	// AdID 广告计划ID，计划ID要属于广告主ID，且非删除计划，否则会报错
 	AdID uint64 `json:"ad_id,omitempty"`
 	// InventoryType 广告投放位置（首选媒体）
-	InventoryType string `json:"inventory_type,omitempty"`
+	InventoryType enum.StatInventoryType `json:"inventory_type,omitempty"`
 	// SmartInventory 优选广告位，0表示不使用优选，1表示使用，使用优选广告位的时候默认忽略inventory_type字段;默认值: 0; 允许值: 0、1
 	SmartInventory int `json:"smart_inventory,omitempty"`
 	// CreativeMaterialMode 创意方式，当值为"STATIC_ASSEMBLE"表示程序化创意，其他情况不传字段

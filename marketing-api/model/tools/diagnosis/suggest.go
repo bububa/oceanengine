@@ -29,6 +29,11 @@ type Suggestion struct {
 	Msg string `json:"msg,omitempty"`
 	// Name 建议名称
 	Name string `json:"name,omitempty"`
+	// SceneType 场景下的细分类型，允许值:
+	// 当 scene=CLEAN时，值为学习期失败率高，空耗，活跃度低，创意重复无法跑量，低效素材无法跑量
+	// 当 scene=POTENTIAL时，值为潜力计划
+	// 当 scene=PROBLEM时，值为起量困难，掉量，衰减，优化潜力
+	SceneType string `json:"scene_type,omitempty"`
 	// ToolType 工具类型，允许值：ACTION操作类建议（可直接采纳）、TEXT文案类建议
 	ToolType string `json:"tool_type,omitempty"`
 	// Tools 工具列表

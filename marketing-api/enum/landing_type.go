@@ -20,4 +20,6 @@ const (
 	SHOP LandingType = "SHOP"
 	// ARTICLE 头条文章推广，目前API暂不支持该推广目的的设定，可在平台侧选择该推广目的类型
 	ARTICLE LandingType = "ARTICLE"
+	// MICRO_GAME 小游戏
+	MICRO_GAME LandingType = "MICRO_GAME"
 )

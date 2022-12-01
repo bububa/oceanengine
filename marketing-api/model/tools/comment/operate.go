@@ -15,7 +15,7 @@ type OperateRequest struct {
 	// CommentIDs 评论id列表; operate_type类型为"REPLY_TO_REPLY"、"STICK"、"CANCEL_STICK"时只允许传入1个评论ID；operate_type类型为"REPLY"时，只允许传入小于等于20个评论ID;operate_type类型为"HIDE"时，只允许传入小于等于50个评论ID
 	CommentIDs []uint64 `json:"comment_ids,omitempty"`
 	// InventoryType 广告位 允许值："INVENTORY_AWEME_FEED"（抖音）
-	InventoryType string `json:"inventory_type,omitempty"`
+	InventoryType enum.StatInventoryType `json:"inventory_type,omitempty"`
 	// OperateType 操作类型，详情见【附录-评论操作类型】;允许值："REPLY"、"REPLY_TO_REPLY"、"STICK_ON_TOP"、"CANCEL_STICK"、"HIDE"、"BLOCK_USERS"（屏蔽用户目前只支持抖音）
 	OperateType enum.CommentOperateType `json:"operate_type,omitempty"`
 	// ReplyText 回复内容，当operate_type为"REPLY"，"REPLY_TO_REPLY"时必填

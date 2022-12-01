@@ -19,5 +19,5 @@ type EventConvertOptimizedGoal struct {
 	// DeepGoals 深度优化目标列表
 	DeepGoals []EventConvertOptimizedGoal `json:"deep_goals,omitempty"`
 	// DeepExternalAction 深度转化目标，具体枚举可查看【附录-预定义转化类型】
-	DeepExternalAction enum.AdConvertType `json:"deep_external_action,omitempty"`
+	DeepExternalAction enum.DeepExternalAction `json:"deep_external_action,omitempty"`
 }

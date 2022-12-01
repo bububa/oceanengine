@@ -69,6 +69,25 @@
     - 更新创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 创意素材信息 [ MaterialRead(clt *core.SDKClient, accessToken string, req *creative.MaterialReadRequest) ([]creative.Material, error) ]
     - 获取创意审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *creative.RejectReasonRequest) ([]creative.RejectReason, error) ]
+- 广告投放体验版 (api/v3)
+  - 项目管理模块 (api/v3/project)
+    - 创建项目 [ Create(clt *core.SDKClient, accessToken string, req *project.CreateRequest) (uint64, error) ]
+    - 修改项目 [ Update(clt *core.SDKClient, accessToken string, req *project.UpdateRequest) (*project.UpdateResponseData, error) ]
+    - 获取项目列表 [ List(clt *core.SDKClient, accessToken string, req *project.ListRequest) (*project.ListResponseData, error) ]
+    - 批量更新项目状态 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *project.StatusUpdateRequest) (*project.UpdateResponseData, error) ]
+    - 批量删除项目 [ Delete(clt *core.SDKClient, accessToken string, req *project.DeleteRequest) (*project.UpdateResponseData, error) ]
+    - 批量更新项目预算 [ BudgetUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetUpdateRequest) (*project.UpdateResponseData, error) ]
+  - 广告管理模块 (api/v3/promotion)
+    - 创建广告 [ Create(clt *core.SDKClient, accessToken string, req *promotion.CreateRequest) (uint64, error) ]
+    - 修改广告 [ Update(clt *core.SDKClient, accessToken string, req *promotion.UpdateRequest) (*promotion.UpdateResponseData, error) ]
+    - 获取广告列表 [ List(clt *core.SDKClient, accessToken string, req *promotion.ListRequest) (*promotion.ListResponseData, error) ]
+    - 批量更新广告预算 [ BudgetUpdate(clt *core.SDKClient, accessToken string, req *promotion.BudgetUpdateRequest) (*promotion.UpdateResponseData, error) ]
+    - 批量更新广告出价 [ BidUpdate(clt *core.SDKClient, accessToken string, req *promotion.BidUpdateRequest) (*promotion.UpdateResponseData, error) ]
+    - 批量删除广告 [ Delete(clt *core.SDKClient, accessToken string, req *promotion.DeleteRequest) (*promotion.UpdateResponseData, error) ]
+    - 批量更新广告启用状态 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *promotion.StatusUpdateRequest) (*promotion.UpdateResponseData, error) ]
+    - 批量修改深度出价 [ DeepBidUpdate(clt *core.SDKClient, accessToken string, req *promotion.DeepBidUpdateRequest) (*promotion.UpdateResponseData, error) ]
+    - 批量获取计划成本保障状态 [ CostProtectStatusGet(clt *core.SDKClient, accessToken string, req *promotion.CostProtectStatusGetRequest) ([]promotion.CostProtectStatus, error) ]
+    - 获取计划审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *promotion.RejectReasonRequest) ([]promotion.RejectReason, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ AdvertiserGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
@@ -269,6 +288,9 @@
     - 查询抖音号id对应的达人信息 [ AwemeAuthorInfoGet(clt *core.SDKClient, accessToken string, req *aweme.AwemeAuthorInfoGetRequest) ([]aweme.Author, error) ]
     - 查询授权直播抖音达人列表 [ LiveAuthorizeList(clt *core.SDKClient, accessToken string, req *aweme.LiveAuthorizeListRequest) (*aweme.LiveAuthorizeListResponseData, error) ]
   - 获取计划诊断信息 (tools/diagnosis)
+    - 获取计划诊断建议 [ SuggestionGet(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionGetRequest) (*diagnosis.SuggestionGetResponseData, error) ]
+    - 采纳计划诊断建议 [ SuggestionAccept(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionAcceptRequest) (*diagnosis.SuggestionAcceptResponseData, error) ]
+  - 获取计划诊断信息体验版 (tools/diagnosis/v3)
     - 获取计划诊断建议 [ SuggestionGet(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionGetRequest) (*diagnosis.SuggestionGetResponseData, error) ]
     - 采纳计划诊断建议 [ SuggestionAccept(clt *core.SDKClient, accessToken string, req *diagnosis.SuggestionAcceptRequest) (*diagnosis.SuggestionAcceptResponseData, error) ]
   - 行为兴趣词管理 (tools/interestaction)

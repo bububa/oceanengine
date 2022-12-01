@@ -66,13 +66,13 @@ type BidSuggestRequest struct {
 	// Platform 平台，当下载方式包含下载链接时，平台类型需与选择的下载链接类型对应，当下载方式不包含下载方式的时候，平台可多选。为保证投放效果,平台类型定向PC与移动端互斥
 	Platform []enum.AudiencePlatform `json:"platform,omitempty"`
 	// District 地域;取值: "CITY"省市, "COUNTY"区县, "BUSINESS_DISTRICT"商圈,"NONE"不限，省市传法："city": [12],"district": "CITY",区县的传法："city": [130102],"district": "COUNTY";暂不支持"海外"
-	District string `json:"district,omitempty"`
+	District enum.District `json:"district,omitempty"`
 	// City 地域定向省市或者区县列表(当传递省份ID时,旗下市县ID可省略不传),当district为"CITY"或"COUNTY"时有值
 	City []uint64 `json:"city,omitempty"`
 	// BusinessIDs 商圈ID数组，district为"BUSINESS_DISTRICT"时有值
 	BusinessIDs []uint64 `json:"business_ids,omitempty"`
 	// LocationType 位置类型;取值：CURRENT正在该地区的用户，HOME居住在该地区的用户，TRAVEL到该地区旅行的用户，ALL该地区内的所有用户;当city和district有值时返回值
-	LocationType string `json:"location_type,omitempty"`
+	LocationType enum.LocationType `json:"location_type,omitempty"`
 	// AdTags （老版行为兴趣）兴趣分类,如果传"空数组"表示不限，如果"数组传0"表示系统推荐,如果按兴趣类型传表示自定义
 	AdTags []uint64 `json:"ad_tags,omitempty"`
 	// InterestTags （老版行为兴趣）兴趣关键词, 传入具体的词id，非兴趣词包id，可以通过词包相关接口或者兴趣关键词word2id接口获取词id，一个计划下最多创建1000个关键词。

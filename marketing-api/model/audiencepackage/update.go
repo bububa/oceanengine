@@ -49,7 +49,7 @@ type UpdateRequest struct {
 	// LauchPrice 手机价格,传入价格区间，最高传入11000（表示1w以上）;传值示例 "launch_price": [2000, 11000]，表示2000元以上;
 	LaunchPrice []int `json:"launch_price,omitempty"`
 	// InterestActionMode 行为兴趣;取值："UNLIMITED"不限,"CUSTOM"自定义,"RECOMMEND"系统推荐。若与自定义人群同时使用，系统推荐("RECOMMEND")不生效;仅推广范围为默认时可填，且不可与老版行为兴趣定向同时填写，否则会报错
-	InterestActionMode string `json:"interest_action_mode,omitempty"`
+	InterestActionMode enum.InterestActionMode `json:"interest_action_mode,omitempty"`
 	// ActionScene 行为场景
 	ActionScene []enum.ActionScene `json:"action_scene,omitempty"`
 	// ActionDays 用户发生行为天数，当interest_action_mode传CUSTOM时有效
@@ -65,13 +65,13 @@ type UpdateRequest struct {
 	// BusinessIDs 商圈ID数组，district为"BUSINESS_DISTRICT"时有值
 	BusinessIDs []uint64 `json:"business_ids,omitempty"`
 	// District 地域;取值: "CITY"省市, "COUNTY"区县, "BUSINESS_DISTRICT"商圈,"NONE"不限，省市传法："city": [12],"district": "CITY",区县的传法："city": [130102],"district": "COUNTY";暂不支持"海外"
-	District string `json:"district,omitempty"`
+	District enum.District `json:"district,omitempty"`
 	// RegionVersion 行政区域版本号
 	RegionVersion string `json:"region_version,omitempty"`
 	// City 地域定向省市或者区县列表(当传递省份ID时,旗下市县ID可省略不传),当district为"CITY"或"COUNTY"时有值
 	City []uint64 `json:"city,omitempty"`
 	// LocationType 位置类型;取值：CURRENT正在该地区的用户，HOME居住在该地区的用户，TRAVEL到该地区旅行的用户，ALL该地区内的所有用户;当city和district有值时返回值
-	LocationType string `json:"location_type,omitempty"`
+	LocationType enum.LocationType `json:"location_type,omitempty"`
 	// SuperiorPopularityType 媒体定向;
 	SuperiorPopularityType string `json:"superior_popularity_type,omitempty"`
 	// FlowPackage 定向逻辑

@@ -14,6 +14,8 @@ type QuotaGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// CampaignType 广告组类型，FEED：信息流 SEARCH:搜索广告
 	CampaignType enum.CampaignType `json:"campaign_type,omitempty"`
+	// DeliveryRange
+	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -21,6 +23,9 @@ func (r QuotaGetRequest) Encode() string {
 	values := &url.Values{}
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("campaign_type", string(r.CampaignType))
+	if r.DeliveryRange != "" {
+		values.Set("delivery_range", string(r.DeliveryRange))
+	}
 	return values.Encode()
 }
 
