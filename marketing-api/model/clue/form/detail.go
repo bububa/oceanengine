@@ -1,10 +1,10 @@
 package form
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DetailRequest 获取表单详情 API Request
@@ -17,10 +17,12 @@ type DetailRequest struct {
 
 // Encode implement GetRequest interface
 func (r DetailRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("instance_id", strconv.FormatUint(r.InstanceID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // DetailResponse 获取表单详情 API Response

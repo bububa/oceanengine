@@ -2,12 +2,12 @@ package v3
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CustomGetRequest 自定义报表 API Request
@@ -68,7 +68,7 @@ type CustomGetFilter struct {
 
 // Encode implement GetRequest interface
 func (r CustomGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("start_time", r.StartTime.Format("2006-01-02"))
 	values.Set("end_time", r.EndTime.Format("2006-01-02"))
 	if r.AdvertiserID > 0 {
@@ -100,7 +100,9 @@ func (r CustomGetRequest) Encode() string {
 	} else {
 		values.Set("filters", "[]")
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // CustomGetResponse 自定义数据报表 API Response

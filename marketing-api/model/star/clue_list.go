@@ -1,10 +1,10 @@
 package star
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ClueListRequest 获取星图订单投后线索 API Request
@@ -23,7 +23,7 @@ type ClueListRequest struct {
 
 // Encode implement GetRequest interface
 func (r ClueListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("star_id", strconv.FormatUint(r.StarID, 10))
 	if r.DemandID > 0 {
 		values.Set("demand_id", strconv.FormatUint(r.DemandID, 10))
@@ -37,7 +37,9 @@ func (r ClueListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ClueListResponse 获取星图客户任务列表 API Response

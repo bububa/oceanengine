@@ -2,10 +2,10 @@ package log
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SearchRequest 日志查询 API Request
@@ -26,7 +26,7 @@ type SearchRequest struct {
 
 // Encode implement GetRequest interface
 func (r SearchRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if len(r.ObjectID) > 0 {
 		ids, _ := json.Marshal(r.ObjectID)
@@ -44,7 +44,9 @@ func (r SearchRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // SearchResponse 日志查询 API Response

@@ -1,11 +1,11 @@
 package taskraise
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // OptimizationIDsGetRequest 查询优选起量状态 API Request
@@ -16,9 +16,11 @@ type OptimizationIDsGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r OptimizationIDsGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // OptimizationIDsGetResponse 查询优选起量状态 API Response

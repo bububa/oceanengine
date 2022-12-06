@@ -1,10 +1,10 @@
 package taskraise
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DataGetRequest 查询优选起量任务数据 API Request
@@ -17,10 +17,12 @@ type DataGetRequest struct {
 
 // Encode implement GetRequet interface
 func (r DataGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("report_id", strconv.FormatUint(r.ReportID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // DataGetResponse 查询优选起量任务数据 API Response

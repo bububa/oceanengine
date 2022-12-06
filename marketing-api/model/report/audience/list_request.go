@@ -2,9 +2,10 @@ package audience
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 	"time"
+
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ListRequest 抖音达人数据/行为兴趣数据 API Request
@@ -27,7 +28,7 @@ type ListRequest struct {
 
 // Encode implement GetRequest interface
 func (r ListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if !r.StartDate.IsZero() {
 		values.Set("start_date", r.StartDate.Format("2006-01-02"))
@@ -49,5 +50,7 @@ func (r ListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }

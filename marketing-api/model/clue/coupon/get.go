@@ -2,10 +2,10 @@ package coupon
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // GetRequest 获取卡券列表 API Request
@@ -33,7 +33,7 @@ type GetRequest struct {
 
 // Encode implement GetRequest interface
 func (r GetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if len(r.ActivityIDs) > 0 {
 		ids, _ := json.Marshal(r.ActivityIDs)
@@ -58,7 +58,9 @@ func (r GetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // GetResponse 获取卡券列表 API Response

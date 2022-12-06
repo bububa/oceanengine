@@ -1,11 +1,11 @@
 package adraise
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ResultRequest 获取一键起量的后验数据 API Request
@@ -20,11 +20,13 @@ type ResultRequest struct {
 
 // Encode implement GetRequest interface
 func (r ResultRequest) Encode() string {
-	ret := &url.Values{}
-	ret.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	ret.Set("ad_id", strconv.FormatUint(r.AdID, 10))
-	ret.Set("opt_type", string(r.OptType))
-	return ret.Encode()
+	values := util.GetUrlValues()
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	values.Set("ad_id", strconv.FormatUint(r.AdID, 10))
+	values.Set("opt_type", string(r.OptType))
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ResultResponse 获取一键起量的后验数据 API Response

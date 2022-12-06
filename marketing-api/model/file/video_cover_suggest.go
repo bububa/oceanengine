@@ -1,11 +1,11 @@
 package file
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VideoCoverSuggestRequest 获取视频智能封面 API Request
@@ -18,10 +18,12 @@ type VideoCoverSuggestRequest struct {
 
 // Encode implement GetRequest interface
 func (r VideoCoverSuggestRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("video_id", r.VideoID)
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // VideoCoverSuggestResponse 获取视频智能封面 API Response

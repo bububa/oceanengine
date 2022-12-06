@@ -1,11 +1,11 @@
 package adraise
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ReportRequest 获取一键起量报告 API Request
@@ -34,28 +34,30 @@ type ReportRequest struct {
 
 // Encode implement GetRequest interface
 func (r ReportRequest) Encode() string {
-	ret := &url.Values{}
-	ret.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	ret.Set("ad_id", strconv.FormatUint(r.AdID, 10))
-	ret.Set("ad_raise_version", r.AdRaiseVersion)
-	ret.Set("start_time", r.StartTime)
-	ret.Set("end_time", r.EndTime)
+	values := util.GetUrlValues()
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	values.Set("ad_id", strconv.FormatUint(r.AdID, 10))
+	values.Set("ad_raise_version", r.AdRaiseVersion)
+	values.Set("start_time", r.StartTime)
+	values.Set("end_time", r.EndTime)
 	if r.TimeDimension != "" {
-		ret.Set("time_dimension", r.TimeDimension)
+		values.Set("time_dimension", r.TimeDimension)
 	}
 	if r.OrderField != "" {
-		ret.Set("order_field", r.OrderField)
+		values.Set("order_field", r.OrderField)
 	}
 	if r.OrderType != "" {
-		ret.Set("order_type", string(r.OrderType))
+		values.Set("order_type", string(r.OrderType))
 	}
 	if r.Page > 0 {
-		ret.Set("page", strconv.Itoa(r.Page))
+		values.Set("page", strconv.Itoa(r.Page))
 	}
 	if r.PageSize > 0 {
-		ret.Set("page_size", strconv.Itoa(r.PageSize))
+		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return ret.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ReportResponse A获取一键起量报告PI Response

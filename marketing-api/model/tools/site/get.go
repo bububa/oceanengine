@@ -2,11 +2,11 @@ package site
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // GetRequest 获取橙子建站站点列表 API Request
@@ -25,7 +25,7 @@ type GetRequest struct {
 
 // Encode implement GetRequest interface
 func (r GetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		filtering, _ := json.Marshal(r.Filtering)
@@ -40,7 +40,9 @@ func (r GetRequest) Encode() string {
 	if r.Status != "" {
 		values.Set("status", string(r.Status))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // GetFiltering 过滤字段

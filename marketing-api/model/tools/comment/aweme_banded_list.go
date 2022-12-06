@@ -2,10 +2,10 @@ package comment
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AwemeBandedList 获取屏蔽用户列表 API Request
@@ -32,7 +32,7 @@ type AwemeBandedListFiltering struct {
 
 // Encode implement GetRequest interface
 func (r AwemeBandedListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		filter, _ := json.Marshal(r.Filtering)
@@ -44,7 +44,9 @@ func (r AwemeBandedListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AwemeBandedListResponse 获取屏蔽用户列表 API Response

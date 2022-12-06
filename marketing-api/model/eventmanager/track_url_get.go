@@ -1,10 +1,10 @@
 package eventmanager
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // TrackURLGetRequest 获取事件资产下的监测链接组 API Request
@@ -27,7 +27,7 @@ type TrackURLGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r TrackURLGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("assets_id", strconv.FormatUint(r.AssetsID, 10))
 	if r.DownloadURL != "" {
@@ -45,7 +45,9 @@ func (r TrackURLGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // TrackURLGetResponse 获取事件资产下的监测链接组 API Response

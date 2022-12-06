@@ -1,10 +1,10 @@
 package adraise
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // EstimateRequest 获取起量预估值 API Request
@@ -19,13 +19,15 @@ type EstimateRequest struct {
 
 // Encode implement GetRequest interface
 func (r EstimateRequest) Encode() string {
-	ret := &url.Values{}
-	ret.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	ret.Set("ad_id", strconv.FormatUint(r.AdID, 10))
+	values := util.GetUrlValues()
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	values.Set("ad_id", strconv.FormatUint(r.AdID, 10))
 	if r.ModifyValue > 0 {
-		ret.Set("modify_value", strconv.FormatInt(r.ModifyValue, 10))
+		values.Set("modify_value", strconv.FormatInt(r.ModifyValue, 10))
 	}
-	return ret.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // EstimateResponse 获取起量预估值 API Response

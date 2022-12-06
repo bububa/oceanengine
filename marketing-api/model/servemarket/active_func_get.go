@@ -2,10 +2,10 @@ package servemarket
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ActiveFuncGetRequest 获取用户已购功能点列表
@@ -20,14 +20,16 @@ type ActiveFuncGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r ActiveFuncGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("app_id", strconv.FormatUint(r.AppID, 10))
 	values.Set("use_uid", strconv.FormatUint(r.UseUid, 10))
 	if len(r.FuncKeys) > 0 {
 		bs, _ := json.Marshal(r.FuncKeys)
 		values.Set("func_keys", string(bs))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ActiveFuncGetResponse 获取用户已购功能点列表

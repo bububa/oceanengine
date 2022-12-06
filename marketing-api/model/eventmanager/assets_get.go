@@ -2,11 +2,11 @@ package eventmanager
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AssetsGetRequest 获取已创建资产列表 API Request
@@ -40,7 +40,7 @@ type AssetsGetFiltering struct {
 
 // Encode implement GetRequest interface
 func (r AssetsGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("asset_type", string(r.AssetType))
 	if r.Page > 0 {
@@ -56,7 +56,9 @@ func (r AssetsGetRequest) Encode() string {
 	if r.SortType != "" {
 		values.Set("sort_type", string(r.SortType))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AssetsGetResponse 获取已创建资产列表 API Response

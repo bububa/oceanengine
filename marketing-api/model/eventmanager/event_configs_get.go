@@ -1,11 +1,11 @@
 package eventmanager
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // EventConfigsGetRequest 获取已创建事件列表 API Request
@@ -20,13 +20,15 @@ type EventConfigsGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r EventConfigsGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Add("asset_id", strconv.FormatUint(r.AssetID, 10))
 	if r.SortType != "" {
 		values.Add("sort_type", string(r.SortType))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // EventConfigsGetResponse 获取已创建事件列表 API Response

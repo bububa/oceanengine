@@ -1,10 +1,10 @@
 package star
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ReportOrderOverviewGetRequest 获取订单投后分析报表 API Request
@@ -17,10 +17,12 @@ type ReportOrderOverviewGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r ReportOrderOverviewGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("star_id", strconv.FormatUint(r.StarID, 10))
 	values.Set("order_id", strconv.FormatUint(r.OrderID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ReportOrderOverviewGetResponse 获取订单投后分析报表 API Response

@@ -2,11 +2,11 @@ package businessplatform
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // PartnerOrganizationListRequest 查询合作组织 API Request
@@ -32,7 +32,7 @@ type PartnerOrganizationListFilter struct {
 
 // Encode implement GetRequest interface
 func (r PartnerOrganizationListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("organization_id", strconv.FormatUint(r.OrganizationID, 10))
 	if r.Filtering != nil {
 		bs, _ := json.Marshal(r.Filtering)
@@ -44,7 +44,9 @@ func (r PartnerOrganizationListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // PartnerOrganizationListResponse 查询合作组织 API Response

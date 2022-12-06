@@ -2,9 +2,9 @@ package fund
 
 import (
 	"encoding/json"
-	"net/url"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SharedWalletBalanceGetRequest 获取共享钱包余额 API Request
@@ -15,10 +15,12 @@ type SharedWalletBalanceGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r SharedWalletBalanceGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	ids, _ := json.Marshal(r.AdvertiserIDs)
 	values.Set("advertiser_ids", string(ids))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // SharedWalletBalanceGetResponse 获取共享钱包余额 API Response

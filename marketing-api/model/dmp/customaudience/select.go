@@ -1,10 +1,10 @@
 package customaudience
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SelectRequest 人群包列表API Request
@@ -21,16 +21,18 @@ type SelectRequest struct {
 
 // Encode implement GetRequest interface
 func (r SelectRequest) Encode() string {
-	values := &url.Values{}
-	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	values.Add("select_type", strconv.Itoa(r.SelectType))
+	values := util.GetUrlValues()
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	values.Set("select_type", strconv.Itoa(r.SelectType))
 	if r.Offset >= 0 {
-		values.Add("offset", strconv.Itoa(r.Offset))
+		values.Set("offset", strconv.Itoa(r.Offset))
 	}
 	if r.Limit > 0 {
-		values.Add("limit", strconv.Itoa(r.Limit))
+		values.Set("limit", strconv.Itoa(r.Limit))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // SelectResponse 人群包列表API Response

@@ -2,10 +2,10 @@ package adraise
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // StatusRequest 获取当前起量状态 API Request
@@ -18,11 +18,13 @@ type StatusRequest struct {
 
 // Encode implement GetRequest interface
 func (r StatusRequest) Encode() string {
-	ret := &url.Values{}
-	ret.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	values := util.GetUrlValues()
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.AdIDs)
-	ret.Set("ad_ids", string(ids))
-	return ret.Encode()
+	values.Set("ad_ids", string(ids))
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // StatusResponse 获取当前起量状态 API Response

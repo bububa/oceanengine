@@ -2,11 +2,11 @@ package star
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DemandOrderListRequest 获取星图客户任务列表  API Request
@@ -29,7 +29,7 @@ type DemandOrderListFilter struct {
 
 // Encode implement GetRequest interface
 func (r DemandOrderListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("star_id", strconv.FormatUint(r.StarID, 10))
 	if r.Filtering != nil {
 		buf, _ := json.Marshal(r.Filtering)
@@ -41,7 +41,9 @@ func (r DemandOrderListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // DemandOrderListResponse 获取星图客户任务列表  API Response

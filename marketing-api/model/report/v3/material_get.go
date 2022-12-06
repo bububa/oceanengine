@@ -2,12 +2,12 @@ package v3
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // MaterialGetRequest 素材数据报表 API Request
@@ -71,7 +71,7 @@ type Material struct {
 
 // Encode implement GetRequest interface
 func (r MaterialGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("start_date", r.StartDate.Format("2006-01-02"))
 	values.Set("end_date", r.EndDate.Format("2006-01-02"))
 	if r.AdvertiserID > 0 {
@@ -103,7 +103,9 @@ func (r MaterialGetRequest) Encode() string {
 		filtering, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(filtering))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // MaterialGetResponse 素材数据报表 API Response

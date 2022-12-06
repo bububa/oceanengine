@@ -2,11 +2,11 @@ package audience
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // Request 受众分析数据报表 API Request
@@ -30,7 +30,7 @@ type Request struct {
 
 // Encode implement GetRequest interface
 func (r Request) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("start_date", r.StartDate.Format("2006-01-02"))
 	values.Set("end_date", r.EndDate.Format("2006-01-02"))
@@ -49,5 +49,7 @@ func (r Request) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }

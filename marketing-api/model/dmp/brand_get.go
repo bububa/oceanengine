@@ -1,10 +1,10 @@
 package dmp
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // BrandGetRequest 获取广告账户关联云图账户信息 API Request
@@ -15,9 +15,11 @@ type BrandGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r BrandGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // BrandGetResponse 获取广告账户关联云图账户信息 API Response

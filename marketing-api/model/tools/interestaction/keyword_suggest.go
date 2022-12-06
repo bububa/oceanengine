@@ -2,11 +2,11 @@ package interestaction
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // KeywordSuggestRequest 获取行为兴趣推荐关键词
@@ -27,7 +27,7 @@ type KeywordSuggestRequest struct {
 
 // Encode implement GetRequest interface
 func (r KeywordSuggestRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("id", strconv.FormatUint(r.ID, 10))
 	values.Set("tag_type", r.TagType)
@@ -39,7 +39,9 @@ func (r KeywordSuggestRequest) Encode() string {
 	if r.ActionDays > 0 {
 		values.Set("action_days", strconv.Itoa(r.ActionDays))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // KeywordSuggestResponse 获取行为兴趣推荐关键词 API Response

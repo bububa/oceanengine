@@ -2,11 +2,11 @@ package union
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // FlowPackageGetRequest 获取穿山甲流量包 API Request
@@ -34,7 +34,7 @@ type FlowPackageGetFilter struct {
 
 // Encode implement GetRequest interface
 func (r FlowPackageGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		bs, _ := json.Marshal(r.Filtering)
@@ -46,7 +46,9 @@ func (r FlowPackageGetRequest) Encode() string {
 	if r.PageSize != 10 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // FlowPackageGetResponse 获取穿山甲流量包 API Response

@@ -1,10 +1,9 @@
 package tools
 
 import (
-	"net/url"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // RegionGetRequest 获取地域列表 API Request
@@ -17,12 +16,14 @@ type RegionGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r RegionGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("region_type", r.RegionType)
 	if r.RegionLevel != "" {
 		values.Set("region_level", string(r.RegionLevel))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // RegionGetResponse  获取地域列表 API Response

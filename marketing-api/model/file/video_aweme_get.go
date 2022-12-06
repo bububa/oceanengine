@@ -2,10 +2,10 @@ package file
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VideoAwemeGetRequest 获取抖音号下的视频 API Request
@@ -30,7 +30,7 @@ type VideoAwemeGetFiltering struct {
 
 // Encode implement GetRequest interface
 func (r VideoAwemeGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("aweme_id", strconv.FormatUint(r.AwemeID, 10))
 	if r.Filtering != nil {
@@ -43,7 +43,9 @@ func (r VideoAwemeGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // VideoAwemeGetResponse 获取抖音号下的视频 API Response

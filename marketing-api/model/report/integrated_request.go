@@ -2,12 +2,12 @@ package report
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // IntegratedRequest 多合一数据报表接口 API Request
@@ -80,7 +80,7 @@ type PostFiltering struct {
 
 // Encode implement GetRequest interface
 func (r IntegratedRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("start_date", r.StartDate.Format("2006-01-02"))
 	values.Set("end_date", r.EndDate.Format("2006-01-02"))
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
@@ -112,5 +112,7 @@ func (r IntegratedRequest) Encode() string {
 		filtering, _ := json.Marshal(r.PostFiltering)
 		values.Set("post_filtering", string(filtering))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }

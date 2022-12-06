@@ -2,11 +2,11 @@ package aweme
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AwemeInfoSearchRequest 查询抖音帐号和类目信息 API Request
@@ -21,14 +21,16 @@ type AwemeInfoSearchRequest struct {
 
 // Encode implement GetRequest interface
 func (r AwemeInfoSearchRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("query_word", r.QueryWord)
 	if len(r.Behaviors) > 0 {
 		buf, _ := json.Marshal(r.Behaviors)
 		values.Set("behaviors", string(buf))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AwemeInfoSearchResponse 查询抖音帐号和类目信息 API Response

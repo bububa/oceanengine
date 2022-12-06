@@ -2,11 +2,11 @@ package adconvert
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SelectRequest 转化目标列表 API Request
@@ -25,7 +25,7 @@ type SelectRequest struct {
 
 // Encode implement GetRequest interface
 func (r SelectRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if len(r.ConvertIDs) > 0 {
 		buf, _ := json.Marshal(r.ConvertIDs)
@@ -40,7 +40,9 @@ func (r SelectRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Add("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // SelectResponse 转化目标列表 API Response

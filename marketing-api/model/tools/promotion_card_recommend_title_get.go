@@ -1,10 +1,10 @@
 package tools
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // PromotionCardRecommendTitleGetRequest 查询推广卡片推荐内容（新版） API Request
@@ -29,7 +29,7 @@ type PromotionCardRecommendTitleGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r PromotionCardRecommendTitleGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Add("text_type", r.TextType)
 	if r.AdID > 0 {
@@ -44,7 +44,9 @@ func (r PromotionCardRecommendTitleGetRequest) Encode() string {
 	if r.ContentType != "" {
 		values.Add("content_type", r.ContentType)
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // PromotionCardRecommendTitleGetResponse 查询推广卡片推荐内容（新版） API Response

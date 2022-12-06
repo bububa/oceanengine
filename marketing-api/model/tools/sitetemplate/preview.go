@@ -1,10 +1,10 @@
 package sitetemplate
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // PreviewRequest 获取模版预览链接 API Request
@@ -17,10 +17,12 @@ type PreviewRequest struct {
 
 // Encode implement GetRequest interface
 func (r PreviewRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("template_id", strconv.FormatUint(r.TemplateID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // PreviewResponse 获取模版预览链接 API Response

@@ -2,10 +2,10 @@ package customercenter
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdvertiserListRequest 获取纵横组织下资产账户列表（分页） API Request
@@ -28,7 +28,7 @@ type AdvertiserListFilter struct {
 
 // Encode implement GetRequest interface
 func (r AdvertiserListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("cc_account_id", strconv.FormatUint(r.CcAccountID, 10))
 	if r.Filtering != nil {
 		bs, _ := json.Marshal(r.Filtering)
@@ -40,7 +40,9 @@ func (r AdvertiserListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AdvertiserListResponse 获取纵横组织下资产账户列表（分页）API Response

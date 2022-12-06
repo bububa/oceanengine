@@ -2,10 +2,10 @@ package advertiser
 
 import (
 	"encoding/json"
-	"net/url"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // BudgetGetRequest 获取账户日预算 API Request
@@ -17,9 +17,11 @@ type BudgetGetRequest struct {
 // Encode implement GetRequest interface
 func (r BudgetGetRequest) Encode() string {
 	idsBytes, _ := json.Marshal(r.AdvertiserIDs)
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_ids", string(idsBytes))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // BudgetGetResponse 获取账户日预算 API Response

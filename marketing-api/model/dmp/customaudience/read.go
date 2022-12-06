@@ -2,10 +2,10 @@ package customaudience
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ReadRequest 人群包详细信息API Request
@@ -18,13 +18,15 @@ type ReadRequest struct {
 
 // Encode implement GetRequest interface
 func (r ReadRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.CustomAudienceIds != nil {
 		ids, _ := json.Marshal(r.CustomAudienceIds)
 		values.Add("custom_audience_ids", string(ids))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ReadResponse 人群包详细信息API Response

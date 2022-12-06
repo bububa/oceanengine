@@ -2,10 +2,10 @@ package tools
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdminInfoRequest 获取行政信息 API Request
@@ -29,13 +29,15 @@ type AdminInfoRequest struct {
 
 // Encode implement GetRequest interface
 func (r AdminInfoRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	codes, _ := json.Marshal(r.Codes)
 	values.Set("codes", string(codes))
 	values.Set("language", r.Language)
 	values.Set("sub_district", r.SubDistrict)
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AdminInfoResponse 获取行政信息 API Response

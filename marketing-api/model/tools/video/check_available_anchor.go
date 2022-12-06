@@ -2,11 +2,11 @@ package video
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CheckAvailableAnchorRequest 查询视频是否挂载下载类锚点 API Request
@@ -24,13 +24,15 @@ type CheckAvailableAnchorRequest struct {
 
 // Encode implement GetRequest interface
 func (r CheckAvailableAnchorRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	buf, _ := json.Marshal(r.ItemIDs)
 	values.Set("item_ids", string(buf))
 	values.Set("landing_app", string(r.LandingApp))
 	values.Set("external_action", string(r.ExternalAction))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // CheckAvailableAnchorResponse 查询视频是否挂载下载类锚点 API Response

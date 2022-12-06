@@ -2,10 +2,10 @@ package keyword
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // GetRequest 获取关键词列表 API Request
@@ -24,13 +24,15 @@ type GetFiltering struct {
 
 // Encode implement GetRequest interface
 func (r GetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		filter, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(filter))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // GetResponse 获取关键词列表 API Response

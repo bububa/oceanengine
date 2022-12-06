@@ -2,9 +2,9 @@ package advertiser
 
 import (
 	"encoding/json"
-	"net/url"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // PublicInfoRequest 广告主公开信息 API Request
@@ -16,9 +16,11 @@ type PublicInfoRequest struct {
 // Encode implement GetRequest interface
 func (r PublicInfoRequest) Encode() string {
 	idsBytes, _ := json.Marshal(r.AdvertiserIDs)
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_ids", string(idsBytes))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // PublicInfoResponse 广告主公开信息 API Response

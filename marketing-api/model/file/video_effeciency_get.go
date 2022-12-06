@@ -2,10 +2,10 @@ package file
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VideoEffeciencyGetRequest 获取低效素材 API Request
@@ -18,11 +18,13 @@ type VideoEffeciencyGetRequest struct {
 
 // Encode implement GetRequest interfacd
 func (r VideoEffeciencyGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.MaterialIDs)
 	values.Set("material_ids", string(ids))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // VideoEffeciencyGetResponse 获取低效素材 API Response

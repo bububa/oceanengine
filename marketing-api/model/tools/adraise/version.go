@@ -1,10 +1,10 @@
 package adraise
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VersionRequest 获取起量版本信息 API Request
@@ -21,16 +21,18 @@ type VersionRequest struct {
 
 // Encode implement GetRequest interface
 func (r VersionRequest) Encode() string {
-	ret := &url.Values{}
-	ret.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	ret.Set("ad_id", strconv.FormatUint(r.AdID, 10))
+	values := util.GetUrlValues()
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	values.Set("ad_id", strconv.FormatUint(r.AdID, 10))
 	if r.Page > 0 {
-		ret.Set("page", strconv.Itoa(r.Page))
+		values.Set("page", strconv.Itoa(r.Page))
 	}
 	if r.PageSize > 0 {
-		ret.Set("page_size", strconv.Itoa(r.PageSize))
+		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return ret.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // VersionResponse 获取起量版本信息 API Response

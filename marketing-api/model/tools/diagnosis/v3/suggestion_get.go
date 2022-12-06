@@ -2,10 +2,10 @@ package v3
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SuggestionGetRequest 获取计划诊断建议 API Request
@@ -20,13 +20,15 @@ type SuggestionGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r SuggestionGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.PromotionIDs)
 	values.Set("promotion_ids", string(ids))
 	scenes, _ := json.Marshal(r.Scenes)
 	values.Set("scenes", string(scenes))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // SuggestionGetResponse 获取计划诊断建议 API Response

@@ -2,8 +2,9 @@ package file
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
+
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VideoAdGetRequest 获取同主体下广告主视频素材API Request
@@ -16,11 +17,13 @@ type VideoAdGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r VideoAdGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if len(r.VideoIDs) > 0 {
 		ids, _ := json.Marshal(r.VideoIDs)
 		values.Set("video_ids", string(ids))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }

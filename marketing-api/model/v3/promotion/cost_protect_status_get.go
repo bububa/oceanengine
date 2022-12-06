@@ -2,10 +2,10 @@ package promotion
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CostProtectStatusGetRequest 批量获取计划成本保障状态 API Request
@@ -18,11 +18,13 @@ type CostProtectStatusGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r CostProtectStatusGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.PromotionIDs)
 	values.Set("promotion_ids", string(ids))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // CostProtectStatusGetResponse 批量获取计划成本保障状态 API Response

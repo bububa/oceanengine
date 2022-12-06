@@ -2,10 +2,10 @@ package product
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AvailableGetRequest 获取可投商品列表 API Request
@@ -30,7 +30,7 @@ type GetFiltering struct {
 
 // Encode implement GetRequest interface
 func (r AvailableGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		filter, _ := json.Marshal(r.Filtering)
@@ -42,7 +42,9 @@ func (r AvailableGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AvailableGetResponse 获取可投商品列表 API Response
