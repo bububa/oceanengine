@@ -43,6 +43,7 @@ type Request struct {
 type Context struct {
 	Ad     *ContextAd     `json:"ad,omitempty"`     // 包含一些关键的广告相关信息
 	Device *ContextDevice `json:"device,omitempty"` // 传递一些归因的设备信息
+	App    *ContextApp    `json:"app,omitempty"`
 }
 
 // ContextAd 广告相关信息
@@ -80,12 +81,24 @@ type ContextDevice struct {
 	Idfa string `json:"idfa,omitempty"`
 	// Oaid 归因上的设备的 oaid 的原值
 	Oaid string `json:"oaid,omitempty"`
+	// Gaid
+	Gaid string `json:"gaid,omitempty"`
+	// AndroidId
+	AndroidId string `json:"android_id,omitempty"`
+	// AndroidIdMd5
+	AndroidIdMd5 string `json:"android_id_md5,omitempty"`
 	// PhoneNumBlurred 下单用户的模糊手机号，目前支持以下3种类型：
 	// 1. （新）仅后四位：例如*******1234，前七位需要用星号表示；当上传此手机号格式时，receiver_province、receiver_city必填，否则无法上报和正确归因
 	// 2. 省略中间四位：例如130****1234，中间四位需用星号表示
 	// 3. 原始手机号sha256后的结果，64位字符串
 	// 【注意】手机号的加密步骤仅在能获取明文手机号情况下，使用sha256加密，其他两种手机号形式切勿加密！否则会导致归因为0
 	PhoneNumBlurred string `json:"phone_num_blurred,omitempty"`
+}
+
+// ContextApp 归因应用信息
+type ContextApp struct {
+	// PackageName 应用包名
+	PackageName string `json:"package_name,omitempty"`
 }
 
 // Properties 附加属性
