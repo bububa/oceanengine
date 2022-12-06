@@ -258,6 +258,14 @@
     - 事件管理资产查看共享范围 [ ShareGet(clt *core.SDKClient, accessToken string, req *eventmanager.ShareGetRequest) (*eventmanager.ShareGetData, error) ] 
     - 事件管理资产共享 [ Share(clt *core.SDKClient, accessToken string, req *eventmanager.ShareRequest) ([]eventmanager.ShareError, error) ]
     - 事件管理资产取消共享 [ ShareCancel(clt *core.SDKClient, accessToken string, req *eventmanager.ShareRequest) ([]eventmanager.ShareError, error) ]
+    - 转化回传鉴权管理 (api/eventmanager/auth)
+      - 新增公钥 [ AddPublicKey(clt *core.SDKClient, accessToken string, req *auth.AddPublicKeyRequest) (*auth.PublicKey, error) ]
+      - 删除公钥 [ DelPublicKey(clt *core.SDKClient, accessToken string, req *auth.DelPublicKeyRequest) error ]
+      - 查询公钥 [ GetPublicKey(clt *core.SDKClient, accessToken string, req *auth.GetPublicKeyRequest) (*auth.PublicKey, error) ]
+      - 查询全部公钥 [ GetAllPublicKeys(clt *core.SDKClient, accessToken string, req *auth.GetAllPublicKeyRequest) ([]auth.PublicKey, error) ]
+      - 开启鉴权 [ Enable(clt *core.SDKClient, accessToken string, advertiserID uint64) error ]
+      - 关闭鉴权 [ Disable(clt *core.SDKClient, accessToken string, advertiserID uint64) error ]
+      - 查询鉴权开启状态 [ GetAllPublicKeys(clt *core.SDKClient, accessToken string, req *auth.GetAllPublicKeyRequest) ([]auth.PublicKey, error) ]
 - 数据上报管理 (api/track)
   - 转化回传 [ Active(req *track.ActiveRequest) error ]
 - 事件管理(api/conversion)

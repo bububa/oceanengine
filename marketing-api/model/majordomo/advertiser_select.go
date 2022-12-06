@@ -1,10 +1,10 @@
 package majordomo
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdvertiserSelectRequest 广告主列表（管家） API Request
@@ -15,9 +15,11 @@ type AdvertiserSelectRequest struct {
 
 // Encode implement GetRequest interface
 func (r AdvertiserSelectRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AdvertiserSelectResponse 广告主列表（管家） API Response

@@ -1,10 +1,10 @@
 package dpa
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // BehaviourAvailablesRequest 获取DPA可用行为 API Request
@@ -17,10 +17,12 @@ type BehaviourAvailablesRequest struct {
 
 // Encode implement GetRequest interface
 func (r BehaviourAvailablesRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("platform_id", strconv.FormatUint(r.PlatformID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // BehaviourAvailablesResponse 获取DPA可用行为 API Response

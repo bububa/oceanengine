@@ -2,10 +2,10 @@ package clue
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // GetRequest 获取线索列表 API Request
@@ -24,7 +24,7 @@ type GetRequest struct {
 
 // Encode implement GetRequest interface
 func (r GetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	ids, _ := json.Marshal(r.AdvertiserIDs)
 	values.Set("advertiser_ids", string(ids))
 	values.Set("start_time", r.StartTime)
@@ -35,7 +35,9 @@ func (r GetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // GetResponse 获取线索列表 API Response

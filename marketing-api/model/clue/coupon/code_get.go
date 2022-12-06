@@ -1,10 +1,10 @@
 package coupon
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CodeGetRequest 查询券码记录 API Request
@@ -35,7 +35,7 @@ type CodeGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r CodeGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("activity_id", strconv.FormatUint(r.ActivityID, 10))
 	if r.CouponID > 0 {
@@ -59,7 +59,9 @@ func (r CodeGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // CodeGetResponse 查询券码记录 API Response

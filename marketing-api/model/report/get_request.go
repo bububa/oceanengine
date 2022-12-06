@@ -2,11 +2,11 @@ package report
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // GetRequest 获取数据报表API Request
@@ -81,7 +81,7 @@ type StatFiltering struct {
 
 // Encode implement GetRequest interface
 func (r GetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("start_date", r.StartDate.Format("2006-01-02"))
 	values.Set("end_date", r.EndDate.Format("2006-01-02"))
 	if r.AgentID > 0 {
@@ -117,5 +117,7 @@ func (r GetRequest) Encode() string {
 		filtering, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(filtering))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }

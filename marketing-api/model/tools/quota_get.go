@@ -1,11 +1,11 @@
 package tools
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // QuotaGetRequest 查询在投计划配额 API Request
@@ -20,13 +20,15 @@ type QuotaGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r QuotaGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("campaign_type", string(r.CampaignType))
 	if r.DeliveryRange != "" {
 		values.Set("delivery_range", string(r.DeliveryRange))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // QuotaGetResponse 查询在投计划配额 API Response

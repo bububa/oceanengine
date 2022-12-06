@@ -2,11 +2,11 @@ package tools
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdStatExtraInfoGetRequest 查询广告计划学习期状态 API Request
@@ -19,11 +19,13 @@ type AdStatExtraInfoGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AdStatExtraInfoGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	buf, _ := json.Marshal(r.AdIDs)
 	values.Set("ad_ids", string(buf))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AdStatExtraInfoGetResponse 查询广告计划学习期状态 API Request

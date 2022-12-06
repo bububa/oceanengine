@@ -3,17 +3,16 @@ package track
 import (
 	"encoding/json"
 	"net/http"
-	"net/url"
 	"strconv"
-	"strings"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model/track"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // Active API上报数据(new)
 func Active(req *track.ActiveRequest) (string, error) {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	if req.Callback != "" {
 		values.Set("callback", req.Callback)
 		values.Set("os", strconv.Itoa(req.Os))
@@ -46,10 +45,13 @@ func Active(req *track.ActiveRequest) (string, error) {
 	for k, v := range req.Ext {
 		values.Set(k, v)
 	}
-	var builder strings.Builder
+	rawQuery := values.Encode()
+	util.PutUrlValues(values)
+	builder := util.GetStringsBuilder()
 	builder.WriteString("https://ad.oceanengine.com/track/activate/?")
-	builder.WriteString(values.Encode())
+	builder.WriteString(rawQuery)
 	reqUrl := builder.String()
+	util.PutStringsBuilder(builder)
 	resp, err := http.DefaultClient.Get(reqUrl)
 	if err != nil {
 		return reqUrl, err

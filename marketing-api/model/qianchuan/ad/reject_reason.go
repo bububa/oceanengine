@@ -2,10 +2,10 @@ package ad
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // RejectReasonRequest 获取计划审核建议 API Request
@@ -18,11 +18,13 @@ type RejectReasonRequest struct {
 
 // Encode implement GetRequest interface
 func (r RejectReasonRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.AdIDs)
 	values.Set("ad_ids", string(ids))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // RejectReasonResponse 获取计划审核建议  API Response

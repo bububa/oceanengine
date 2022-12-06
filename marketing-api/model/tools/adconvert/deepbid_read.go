@@ -1,11 +1,11 @@
 package adconvert
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DeepbidReqdRequest 查询深度优化方式 API Request
@@ -30,7 +30,7 @@ type DeepbidReadRequest struct {
 
 // Encode implement GetRequest interface
 func (r DeepbidReadRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Add("campaign_id", strconv.FormatUint(r.CampaignID, 10))
 	values.Add("deep_external_action", string(r.DeepExternalAction))
@@ -43,7 +43,9 @@ func (r DeepbidReadRequest) Encode() string {
 	}
 	values.Add("flow_control_mode", string(r.FlowControlMode))
 	values.Add("smart_bid_type", string(r.SmartBidType))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // DeepbidReadResponse 查询深度优化方式 API Response

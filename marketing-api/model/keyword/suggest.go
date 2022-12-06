@@ -1,11 +1,11 @@
 package keyword
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SuggestRequest 搜索快投关键词推荐 API Request
@@ -18,10 +18,12 @@ type SuggestRequest struct {
 
 // Encode implement GetRequest interface
 func (r SuggestRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("ad_id", strconv.FormatUint(r.AdID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // SuggestResponse 搜索快投关键词推荐 API Response

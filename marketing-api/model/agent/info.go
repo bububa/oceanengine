@@ -2,9 +2,9 @@ package agent
 
 import (
 	"encoding/json"
-	"net/url"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // InfoRequest 获取代理商信息 API Request
@@ -19,10 +19,12 @@ type InfoRequest struct {
 func (r InfoRequest) Encode() string {
 	idsBytes, _ := json.Marshal(r.AdvertiserIDs)
 	fieldsBytes, _ := json.Marshal(r.Fields)
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_ids", string(idsBytes))
 	values.Set("fields", string(fieldsBytes))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // InfoResponse 获取代理商信息 API Response

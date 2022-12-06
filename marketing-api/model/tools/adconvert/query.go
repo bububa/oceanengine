@@ -1,11 +1,11 @@
 package adconvert
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // QueryRequest 查询广告计划可用转化目标 API Request
@@ -39,7 +39,7 @@ type QueryRequest struct {
 
 // Encode implement GetRequest interface
 func (r QueryRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Add("landing_type", string(r.LandingType))
 	values.Add("promotion_content", string(r.PromotionContent))
@@ -67,7 +67,9 @@ func (r QueryRequest) Encode() string {
 	if r.MarketingScene != "" {
 		values.Add("marketing_scene", string(r.MarketingScene))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // QueryResponse 查询广告计划可用转化目标 API Response

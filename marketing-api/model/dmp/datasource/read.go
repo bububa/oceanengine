@@ -2,11 +2,11 @@ package datasource
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ReadRequest 数据源详细信息 API Request
@@ -20,13 +20,15 @@ type ReadRequest struct {
 
 // Encode implement GetRequest interface
 func (r ReadRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.DataSourceIDList != nil {
 		idList, _ := json.Marshal(r.DataSourceIDList)
 		values.Set("data_source_id_list", string(idList))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ReadResponse 数据源详细信息 API Response

@@ -2,11 +2,11 @@ package businessplatform
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CompanyAccountGetRequest 获取主体下的账户列表 API Request
@@ -27,7 +27,7 @@ type CompanyAccountGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r CompanyAccountGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("organization_id", strconv.FormatUint(r.OrganizationID, 10))
 	values.Set("company_id", strconv.FormatUint(r.CompanyID, 10))
 	bs, _ := json.Marshal(r.AccountType)
@@ -38,7 +38,9 @@ func (r CompanyAccountGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // CompanyAccountGetResponse 获取主体下的账户列表 API Response

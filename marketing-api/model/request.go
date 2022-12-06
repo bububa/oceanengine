@@ -1,6 +1,9 @@
 package model
 
-import "io"
+import (
+	"io"
+	"net/http"
+)
 
 // PostRequest post request interface
 type PostRequest interface {
@@ -28,4 +31,10 @@ type UploadField struct {
 type UploadRequest interface {
 	// Encode encode request to UploadFields
 	Encode() []UploadField
+}
+
+// ConversionRequest
+type ConversionRequest interface {
+	PostRequest
+	Sign(req *http.Request, content []byte) (string, error)
 }

@@ -2,11 +2,11 @@ package aweme
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AwemeMultiLevelCategoryGetRequest 查询抖音类目列表 API Request
@@ -19,13 +19,15 @@ type AwemeMultiLevelCategoryGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AwemeMultiLevelCategoryGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if len(r.Behaviors) > 0 {
 		buf, _ := json.Marshal(r.Behaviors)
 		values.Set("behaviors", string(buf))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AwemeMultiLevelCategoryGetResponse 查询抖音帐号和类目信息 API Response

@@ -2,7 +2,8 @@ package track
 
 import (
 	"strconv"
-	"strings"
+
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // Response 线索-API上报数据 API Response
@@ -22,9 +23,11 @@ func (r Response) IsError() bool {
 
 // Error implement error interface
 func (r Response) Error() string {
-	var builder strings.Builder
+	builder := util.GetStringsBuilder()
 	builder.WriteString(strconv.Itoa(r.Code))
 	builder.WriteString(":")
 	builder.WriteString(r.Msg)
-	return builder.String()
+	util.PutStringsBuilder(builder)
+	ret := builder.String()
+	return ret
 }

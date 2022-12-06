@@ -2,11 +2,11 @@ package tools
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AwemeAuthListRequest 获取抖音授权关系
@@ -33,7 +33,7 @@ type AwemeAuthListFilter struct {
 
 // Encode implement GetRequest interface
 func (r AwemeAuthListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		buf, _ := json.Marshal(r.Filtering)
@@ -45,7 +45,9 @@ func (r AwemeAuthListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AwemeAuthListResponse 获取抖音授权关系

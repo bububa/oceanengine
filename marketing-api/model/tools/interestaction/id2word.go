@@ -2,11 +2,11 @@ package interestaction
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // Id2WordRequest 兴趣行为类目关键词id转词 API Request
@@ -27,7 +27,7 @@ type Id2WordRequest struct {
 
 // Encode implement GetRequest interface
 func (r Id2WordRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.IDs)
 	values.Set("ids", string(ids))
@@ -40,7 +40,9 @@ func (r Id2WordRequest) Encode() string {
 	if r.ActionDays > 0 {
 		values.Set("action_days", strconv.Itoa(r.ActionDays))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // Id2WordResponse 兴趣行为类目关键词id转词 API Response

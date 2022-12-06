@@ -1,10 +1,9 @@
 package oauth
 
 import (
-	"net/url"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdvertiserGetRequest 获取已授权账户 API Request
@@ -19,11 +18,13 @@ type AdvertiserGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AdvertiserGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("app_id", r.AppId)
 	values.Set("secret", r.Secret)
 	values.Set("access_token", r.AccessToken)
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AdvertiserGetResponse 获取已授权账户 API Response

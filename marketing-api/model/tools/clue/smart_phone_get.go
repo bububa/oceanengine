@@ -1,10 +1,10 @@
 package clue
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SmartPhoneGetRequest 建站工具——查询已有智能电话 API Request
@@ -19,7 +19,7 @@ type SmartPhoneGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r SmartPhoneGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
@@ -27,7 +27,9 @@ func (r SmartPhoneGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // SmartPhoneGetResponse 建站工具——查询已有智能电话 API Response

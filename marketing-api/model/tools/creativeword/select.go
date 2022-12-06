@@ -2,10 +2,10 @@ package creativeword
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SelectRequest 查询动态创意词包 API Request
@@ -18,11 +18,13 @@ type SelectRequest struct {
 
 // Encode implement GetRequest interface
 func (r SelectRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	buf, _ := json.Marshal(r.CreativeWordIDs)
 	values.Set("creative_word_ids", string(buf))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // SelectResponse 查询动态创意词包 API Response

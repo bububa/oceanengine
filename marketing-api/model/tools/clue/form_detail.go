@@ -1,10 +1,10 @@
 package clue
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // FormDetailRequest 建站工具——查询表单详情 API Request
@@ -17,12 +17,14 @@ type FormDetailRequest struct {
 
 // Encode implement GetRequest interface
 func (r FormDetailRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.InstanceID > 0 {
 		values.Set("instance_id", strconv.FormatUint(r.InstanceID, 10))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // FormDetailResponse 建站工具——查询表单详情 API Response
