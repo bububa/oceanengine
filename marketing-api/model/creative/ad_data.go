@@ -32,8 +32,8 @@ type AdData struct {
 	ExternalURL string `json:"external_url,omitempty"`
 	// ExternalUrlParams 落地页检测参数
 	ExternalUrlParams *string `json:"external_url_params,omitempty"`
-	// IsCommentDisabled 是否关闭评论，0为开启，1为关闭，默认值：0; 允许值: 0, 1
-	IsCommentDisabled *int `json:"is_comment_disabled,omitempty"`
+	// IsCommentDisable 是否关闭评论，0为开启，1为关闭，默认值：0; 允许值: 0, 1
+	IsCommentDisable *int `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 允许客户端下载视频功能，0为开启，即允许客户端下载视频；1为关闭，即不允许客户端下载视频。默认不传值，表示允许客户端下载视频。关闭客户端下载视频功能仅对本地上传的视频有效。
 	AdDownloadStatus *int `json:"ad_download_status,omitempty"`
 	// PriorityTrail 是否优先调起试玩。当推广目的为应用推广且使用搭配试玩素材时可以开启该功能。允许值：ON开启，OFF关闭
@@ -49,6 +49,19 @@ type AdData struct {
 	OpenURL string `json:"open_url,omitempty"`
 	// MiniProgramInfo 字节小程序信息
 	MiniProgramInfo *MiniProgramInfo `json:"mini_program_info,omitempty"`
+	// AnchorRelatedType 原生锚点启用类型，允许值：不启用OFF，自动生成AUTO，手动选择SELECT
+	// 默认值为OFF
+	// 自动生成AUTO仅应用推广目的下时支持
+	AnchorRelatedType string `json:"anchor_related_type,omitempty"`
+	// AnchorType 锚点类型，允许值：
+	// - 应用下载-游戏：APP_GAME
+	// - 应用下载-网服：APP_INTERNET_SERVICE
+	// - 应用下载-电商：APP_SHOP
+	// - 高级在线预约：ONLINE_SUBSCRIBE
+	// 当 anchor_related_type = SELECT时必填
+	AnchorType enum.AnchorType `json:"anchor_type,omitempty"`
+	// AnchorID 原生锚点id，当 anchor_related_type = SELECT时必填，可从【获取账户下原生锚点】接口中获取
+	AnchorID string `json:"anchor_id,omitempty"`
 }
 
 // SupplementInfo 云游戏列表
