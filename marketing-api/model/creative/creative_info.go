@@ -22,10 +22,14 @@ type CreativeInfo struct {
 	SubTitleMaterial *TitleMaterial `json:"sub_title_material,omitempty"`
 	// PlayableMaterial 基础试玩素材，image_mode为基础试玩素材时使用，不支持和image_materials同时传入
 	PlayableMaterial *PlayableMaterial `json:"playable_material,omitempty"`
+	// InteractiveMaterial 直出互动素材信息
+	InteractiveMaterial *InteractiveMaterial `json:"interactive_material,omitempty"`
 	// CompnentMaterials 组件信息，数组传入最大长度2，每种类型（基础/附加组件）最多支持1个; 附加组件：选择磁贴、投票磁贴、图片磁贴、电商磁贴、优惠券磁贴、游戏礼包码; 基础组件：推广卡片
 	ComponentMaterials []ComponentMaterial `json:"component_materials,omitempty"`
 	// AbstractMaterials 摘要素材，使用标签摘要时必须要传入3个;使用搜索广告时必传
 	AbstractMaterials []AbstractMaterial `json:"abstract_materials,omitempty"`
+	// DecorationMaterial 家装卡券素材
+	DecorationMaterial *DecorationMaterial `json:"decoration_material,omitempty"`
 	// DerivePosterCid 是否将视频的封面和标题同步到图片创意。视频素材可填写。在创建完视频创意后，在计划下同步新建图片创意，允许值：0（不开启），1（开启）
 	DerivePosterCid *int `json:"derive_poster_cid,omitempty"`
 	// ThirdPartyID 创意自定义参数，例如开发者可设定此参数为创意打标签，用于区分使用的素材
