@@ -37,7 +37,7 @@ type Ad struct {
 	// Audience 定向设置
 	Audience *Audience `json:"audience,omitempty"`
 	// CreativeMaterialMode 创意呈现方式
-	CreativeMaterialMode string `json:"creative_material_mode,omitempty"`
+	CreativeMaterialMode enum.CreativeMaterialMode `json:"creative_material_mode,omitempty"`
 	// FirstIndustryID 创意一级行业ID
 	FirstIndustryID uint64 `json:"first_industry_id,omitempty"`
 	// SecondIndustryID 创意二级行业ID

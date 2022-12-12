@@ -31,11 +31,11 @@ type Dimensions struct {
 	// Inventory 投放广告位，分组条件包含STAT_GROUP_BY_INVENTORY时返回
 	Inventory enum.StatInventoryType `json:"inventory,omitempty"`
 	// CampaignType 广告组类型。如果分组条件中包括STAT_GROUP_BY_CAMPAIGN_TYPE,此字段有值
-	CampaignType string `json:"campaign_type,omitempty"`
+	CampaignType enum.CampaignType `json:"campaign_type,omitempty"`
 	// CreativeMaterialMode 创意类型，分组条件包含STAT_GROUP_BY_CREATIVE_MATERIAL_MODE时返回，允许值：STATIC_ASSEMBLE（程序化创意）、INTERVENE（自定义创意）
-	CreativeMaterialMode string `json:"creative_material_mode,omitempty"`
+	CreativeMaterialMode enum.CreativeMaterialMode `json:"creative_material_mode,omitempty"`
 	// ExternalAction 转化类型。如果分组条件中包括STAT_GROUP_BY_EXTERNAL_ACTION,此字段有值
-	ExternalAction string `json:"external_action,omitempty"`
+	ExternalAction enum.AdConvertType `json:"external_action,omitempty"`
 	// LandingType 推广目的类型，分组条件包含STAT_GROUP_BY_LANDING_TYPE时返回
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// PricingCategory 广告类型。如果分组条件中包括STAT_GROUP_BY_PRICING_CATEGORY,此字段有值

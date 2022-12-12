@@ -16,6 +16,11 @@ type Clue struct {
 	AdName string `json:"ad_name,omitempty"`
 	// CreativeID 广告创意id
 	CreativeID model.FlexUint64 `json:"creative_id,omitempty"`
+	// PromotionName 体验版广告名称
+	PromotionName string `json:"promotion_name,omitempty"`
+	// PromotionID 体验版广告ID
+	// 注意：体验版广告信息与计划/创意信息互斥，不会同时返回
+	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// SiteID 站点ID
 	SiteID model.FlexUint64 `json:"site_id,omitempty"`
 	// SiteName 站点名称
