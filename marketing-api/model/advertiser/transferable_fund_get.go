@@ -47,4 +47,8 @@ type TransferableFund struct {
 	BrandCreditValid float64 `json:"brand_credit_valid,omitempty"`
 	// BidCreditValid 竞价授信可用余额(单位元)
 	BidCreditValid float64 `json:"bid_credit_valid,omitempty"`
+	// DepositAmount 保证金(单位元)
+	DepositAmount float64 `json:"deposit_amount,omitempty"`
+	// TotalTransferBalance 总可转余额
+	TotalTransferBalance float64 `json:"total_transfer_balance,omitempty"`
 }

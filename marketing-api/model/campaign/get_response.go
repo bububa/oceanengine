@@ -44,4 +44,10 @@ type Campaign struct {
 	DeliveryRelatedNum enum.CampaignDPA `json:"delivery_related_num,omitempty"`
 	// DeliveryMode 投放类型，允许值：MANUAL（手动）、PROCEDURAL（自动，投放管家）
 	DeliveryMode string `json:"delivery_mode,omitempty"`
+	// CampaignBudgetOptimization 支持预算择优分配允许值：
+	// ON 开启，OFF 不开启(默认值)
+	// 广告主商品类型为CAMPAIGN_DPA_MULTI_DELIVERY时不允许开启预算择优分配
+	CampaignBudgetOptimization string `json:"campaign_budget_optimization,omitempty"`
+	// SmartBidType 出价方式（投放场景），campaign_budget_optimization为ON时必填，且必须为SMART_BID_NO_BID
+	SmartBidType enum.SmartBidType `json:"smart_bid_type,omitempty"`
 }
