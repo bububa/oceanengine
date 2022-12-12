@@ -1,10 +1,10 @@
 package adpreview
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // IDType 查询条件
@@ -29,11 +29,13 @@ type QrcodeGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r QrcodeGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("id_type", string(r.IDType))
 	values.Set("id", strconv.FormatUint(r.ID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // QrcodeGetResponse 获取广告预览二维码

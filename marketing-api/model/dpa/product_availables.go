@@ -1,10 +1,10 @@
 package dpa
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ProductAvailablesRequest 获取商品库信息 API Request
@@ -15,9 +15,11 @@ type ProductAvailablesRequest struct {
 
 // Encode implement GetRequest interface
 func (r ProductAvailablesRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ProductAvailablesResponse 获取商品库信息 API Response

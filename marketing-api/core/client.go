@@ -12,6 +12,7 @@ import (
 
 	"github.com/bububa/oceanengine/marketing-api/core/internal/debug"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // SDKClient sdk client
@@ -82,10 +83,11 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	if req != nil {
 		reqBytes = req.Encode()
 	}
-	var builder strings.Builder
+	builder := util.GetStringsBuilder()
 	builder.WriteString(BASE_URL)
 	builder.WriteString(gw)
 	reqUrl := builder.String()
+	util.PutStringsBuilder(builder)
 	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
@@ -109,7 +111,7 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 
 // Get get api
 func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	var builder strings.Builder
+	builder := util.GetStringsBuilder()
 	builder.WriteString(BASE_URL)
 	builder.WriteString(gw)
 	if req != nil {
@@ -117,6 +119,7 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 		builder.WriteString(req.Encode())
 	}
 	reqUrl := builder.String()
+	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {
@@ -139,7 +142,7 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 
 // GetBytes get bytes api
 func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string) ([]byte, error) {
-	var builder strings.Builder
+	builder := util.GetStringsBuilder()
 	builder.WriteString(BASE_URL)
 	builder.WriteString(gw)
 	if req != nil {
@@ -147,6 +150,7 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 		builder.WriteString(req.Encode())
 	}
 	reqUrl := builder.String()
+	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {
@@ -174,13 +178,11 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 
 // Upload multipart/form-data post
 func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
-	var buf bytes.Buffer
-	mw := multipart.NewWriter(&buf)
+	buf := util.GetBufferPool()
+	mw := multipart.NewWriter(buf)
 	params := req.Encode()
 	mp := make(map[string]string, len(params))
-	var builder strings.Builder
 	for _, v := range params {
-		builder.Reset()
 		var (
 			fw  io.Writer
 			r   io.Reader
@@ -188,31 +190,37 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 		)
 		if v.Reader != nil {
 			if fw, err = mw.CreateFormFile(v.Key, v.Value); err != nil {
+				util.PutBufferPool(buf)
 				return err
 			}
 			r = v.Reader
+			builder := util.GetStringsBuilder()
 			builder.WriteString("@")
 			builder.WriteString(v.Value)
 			mp[v.Key] = builder.String()
+			util.PutStringsBuilder(builder)
 		} else {
 			if fw, err = mw.CreateFormField(v.Key); err != nil {
+				util.PutBufferPool(buf)
 				return err
 			}
 			r = strings.NewReader(v.Value)
 			mp[v.Key] = v.Value
 		}
 		if _, err = io.Copy(fw, r); err != nil {
+			util.PutBufferPool(buf)
 			return err
-
 		}
 	}
 	mw.Close()
-	builder.Reset()
+	builder := util.GetStringsBuilder()
 	builder.WriteString(BASE_URL)
 	builder.WriteString(gw)
 	reqUrl := builder.String()
+	util.PutStringsBuilder(builder)
 	debug.PrintPostMultipartRequest(reqUrl, mp, c.debug)
-	httpReq, err := http.NewRequest("POST", reqUrl, &buf)
+	httpReq, err := http.NewRequest("POST", reqUrl, buf)
+	util.PutBufferPool(buf)
 	if err != nil {
 		return err
 	}
@@ -233,24 +241,27 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 }
 
 // AnalyticsPost 转化回传API专用
-func (c *SDKClient) AnalyticsPost(gw string, req model.PostRequest, resp model.Response) error {
+func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp model.Response) error {
 	reqBytes := req.Encode()
-	reqBuf := bytes.NewBuffer(reqBytes)
-	reqBuf.WriteString(c.Secret)
-	sha256Sum := sha256.Sum256(reqBuf.Bytes())
-	sign := hex.EncodeToString(sha256Sum[:])
-
-	var builder strings.Builder
-	builder.WriteString(ANALYTICS_URL)
-	builder.WriteString(gw)
-	reqUrl := builder.String()
-	debug.PrintPostJSONRequest(reqUrl, reqBuf.Bytes(), c.debug)
+	reqUrl := util.StringsJoin(ANALYTICS_URL, gw)
+	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
 	}
 	httpReq.Header.Add("Content-Type", "application/json")
-	httpReq.Header.Add("x-signature", sign)
+	if token, err := req.Sign(httpReq, reqBytes); err == nil {
+		httpReq.Header.Add("x-rs256-token", token)
+	} else {
+		reqBuf := util.GetBufferPool()
+		reqBuf.Grow(len(reqBytes) + len(c.Secret))
+		reqBuf.Write(reqBytes)
+		reqBuf.WriteString(c.Secret)
+		sha256Sum := sha256.Sum256(reqBuf.Bytes())
+		util.PutBufferPool(reqBuf)
+		sign := hex.EncodeToString(sha256Sum[:])
+		httpReq.Header.Add("x-signature", sign)
+	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
@@ -260,21 +271,20 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.PostRequest, resp model.R
 // AnalyticsV1Post 电话转化回传API专用
 func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model.Response) error {
 	reqBytes := req.Encode()
-	reqBuf := bytes.NewBuffer(reqBytes)
-	reqBuf.WriteString(c.Secret)
-	sha256Sum := sha256.Sum256(reqBuf.Bytes())
-	sign := hex.EncodeToString(sha256Sum[:])
-
-	var builder strings.Builder
-	builder.WriteString(ANALYTICSV1_URL)
-	builder.WriteString(gw)
-	reqUrl := builder.String()
-	debug.PrintPostJSONRequest(reqUrl, reqBuf.Bytes(), c.debug)
+	reqUrl := util.StringsJoin(ANALYTICSV1_URL, gw)
+	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
 	}
 	httpReq.Header.Add("Content-Type", "application/json")
+	reqBuf := util.GetBufferPool()
+	reqBuf.Grow(len(reqBytes) + len(c.Secret))
+	reqBuf.Write(reqBytes)
+	reqBuf.WriteString(c.Secret)
+	sha256Sum := sha256.Sum256(reqBuf.Bytes())
+	util.PutBufferPool(reqBuf)
+	sign := hex.EncodeToString(sha256Sum[:])
 	httpReq.Header.Add("x-signature", sign)
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
@@ -284,7 +294,7 @@ func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model
 
 // OpenGet get api
 func (c *SDKClient) OpenGet(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	var builder strings.Builder
+	builder := util.GetStringsBuilder()
 	builder.WriteString(OPEN_URL)
 	builder.WriteString(gw)
 	if req != nil {
@@ -292,6 +302,7 @@ func (c *SDKClient) OpenGet(gw string, req model.GetRequest, resp model.Response
 		builder.WriteString(req.Encode())
 	}
 	reqUrl := builder.String()
+	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {

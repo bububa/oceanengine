@@ -2,11 +2,11 @@ package dpa
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VideoGetRequest 获取 DPA 商品库视频模板 API Request
@@ -42,7 +42,7 @@ type VideoGetFilter struct {
 
 // Encode implement GetRequest interface
 func (r VideoGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		bs, _ := json.Marshal(r.Filtering)
@@ -54,7 +54,9 @@ func (r VideoGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // VideoGetResponse 获取 DPA 商品库视频模板 API Response

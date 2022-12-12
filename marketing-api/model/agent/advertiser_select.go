@@ -2,10 +2,10 @@ package agent
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdvertiserSelectRequest 代理商管理账户列表 API Request
@@ -22,7 +22,7 @@ type AdvertiserSelectRequest struct {
 
 // Encode implement GetRequest interface
 func (r AdvertiserSelectRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if len(r.CompanyIDs) > 0 {
 		bs, _ := json.Marshal(r.CompanyIDs)
@@ -34,7 +34,9 @@ func (r AdvertiserSelectRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AdvertiserSelectResponse 代理商管理账户列表 API Response

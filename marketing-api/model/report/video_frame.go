@@ -2,11 +2,11 @@ package report
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // VideoFrameRequest 视频互动流失数据 API Request
@@ -33,7 +33,7 @@ type VideoFrameFiltering struct {
 
 // Encode implement GetRequest interface
 func (r VideoFrameRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("start_date", r.StartDate.Format("2006-01-02"))
 	values.Set("end_date", r.EndDate.Format("2006-01-02"))
@@ -43,7 +43,9 @@ func (r VideoFrameRequest) Encode() string {
 		metrics, _ := json.Marshal(r.Metrics)
 		values.Set("metrics", string(metrics))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // VideoFrameResponse 视频互动流失数据 API Response

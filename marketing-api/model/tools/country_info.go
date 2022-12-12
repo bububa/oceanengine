@@ -1,10 +1,10 @@
 package tools
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CountryInfoRequest 查询国家/区域信息 API Request
@@ -19,10 +19,12 @@ type CountryInfoRequest struct {
 
 // Encode implement GetRequest interface
 func (r CountryInfoRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("language", r.Language)
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // CountryInfoResponse 查询国家/区域信息 API Response

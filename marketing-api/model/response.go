@@ -2,7 +2,8 @@ package model
 
 import (
 	"strconv"
-	"strings"
+
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // Response api response interface
@@ -30,9 +31,11 @@ func (r BaseResponse) IsError() bool {
 
 // Error implement Response interface
 func (r BaseResponse) Error() string {
-	var builder strings.Builder
+	builder := util.GetStringsBuilder()
 	builder.WriteString(strconv.Itoa(r.Code))
 	builder.WriteString(":")
 	builder.WriteString(r.Message)
-	return builder.String()
+	ret := builder.String()
+	util.PutStringsBuilder(builder)
+	return ret
 }

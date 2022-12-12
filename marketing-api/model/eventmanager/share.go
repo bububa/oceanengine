@@ -2,7 +2,6 @@ package eventmanager
 
 import (
 	"strconv"
-	"strings"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
@@ -49,7 +48,7 @@ type ShareError struct {
 }
 
 func (e ShareError) Error() string {
-	var builder strings.Builder
+	builder := util.GetStringsBuilder()
 	if e.AccountInfo != nil {
 		builder.WriteString("AccountID: ")
 		builder.WriteString(strconv.FormatUint(e.AccountInfo.AccountID, 10))
@@ -58,5 +57,7 @@ func (e ShareError) Error() string {
 		builder.WriteString(", ")
 	}
 	builder.WriteString(e.ErrorMessage)
-	return builder.String()
+	ret := builder.String()
+	util.PutStringsBuilder(builder)
+	return ret
 }

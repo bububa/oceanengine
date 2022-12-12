@@ -2,11 +2,11 @@ package aweme
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AwemeCategoryTopAuthorGetRequest 查询抖音类目下的推荐达人 API Request
@@ -21,14 +21,16 @@ type AwemeCategoryTopAuthorGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AwemeCategoryTopAuthorGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("category_id", strconv.FormatUint(r.CategoryID, 10))
 	if len(r.Behaviors) > 0 {
 		buf, _ := json.Marshal(r.Behaviors)
 		values.Set("behaviors", string(buf))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AwemeCategoryTopAuthorGetResponse 查询抖音类目下的推荐达人 API Response

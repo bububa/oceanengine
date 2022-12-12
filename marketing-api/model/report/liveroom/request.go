@@ -2,11 +2,11 @@ package liveroom
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // Request 直播分析数据报表 API Request
@@ -41,7 +41,7 @@ type Filtering struct {
 
 // Encode implement GetRequest interface
 func (r Request) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if !r.StartTime.IsZero() {
 		values.Set("start_time", r.StartTime.Format("2006-01-02 15:04:05"))
@@ -69,5 +69,7 @@ func (r Request) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }

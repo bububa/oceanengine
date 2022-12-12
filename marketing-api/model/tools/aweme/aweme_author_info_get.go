@@ -2,11 +2,11 @@ package aweme
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AwemeAuthorInfoGetRequest 查询抖音号id对应的达人信息 API Request
@@ -21,7 +21,7 @@ type AwemeAuthorInfoGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AwemeAuthorInfoGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.LabelIDs)
 	values.Set("label_ids", string(ids))
@@ -29,7 +29,9 @@ func (r AwemeAuthorInfoGetRequest) Encode() string {
 		buf, _ := json.Marshal(r.Behaviors)
 		values.Set("behaviors", string(buf))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AwemeAuthorInfoGetResponse 查询抖音号id对应的达人信息 API Response

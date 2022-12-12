@@ -1,9 +1,18 @@
 package conversion
 
 import (
+	"crypto/rsa"
+	"crypto/sha256"
+	"encoding/base64"
 	"encoding/json"
+	"errors"
+	"net/http"
+	"strconv"
+	"strings"
+	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // Request 转化回传参数
@@ -24,12 +33,17 @@ type Request struct {
 	Timestamp int64 `json:"timestamp,omitempty"`
 	// Source 广告主标识，自定义值，用于标识数据来源，例如：jd
 	Source string `json:"source,omitempty"`
+	// PrivateKey
+	PrivateKey *rsa.PrivateKey `json:"-"`
+	// Credential
+	Credential enum.Credential `json:"-"`
 }
 
 // Context 包含一些关键的上下文信
 type Context struct {
 	Ad     *ContextAd     `json:"ad,omitempty"`     // 包含一些关键的广告相关信息
 	Device *ContextDevice `json:"device,omitempty"` // 传递一些归因的设备信息
+	App    *ContextApp    `json:"app,omitempty"`
 }
 
 // ContextAd 广告相关信息
@@ -67,12 +81,24 @@ type ContextDevice struct {
 	Idfa string `json:"idfa,omitempty"`
 	// Oaid 归因上的设备的 oaid 的原值
 	Oaid string `json:"oaid,omitempty"`
+	// Gaid
+	Gaid string `json:"gaid,omitempty"`
+	// AndroidId
+	AndroidId string `json:"android_id,omitempty"`
+	// AndroidIdMd5
+	AndroidIdMd5 string `json:"android_id_md5,omitempty"`
 	// PhoneNumBlurred 下单用户的模糊手机号，目前支持以下3种类型：
 	// 1. （新）仅后四位：例如*******1234，前七位需要用星号表示；当上传此手机号格式时，receiver_province、receiver_city必填，否则无法上报和正确归因
 	// 2. 省略中间四位：例如130****1234，中间四位需用星号表示
 	// 3. 原始手机号sha256后的结果，64位字符串
 	// 【注意】手机号的加密步骤仅在能获取明文手机号情况下，使用sha256加密，其他两种手机号形式切勿加密！否则会导致归因为0
 	PhoneNumBlurred string `json:"phone_num_blurred,omitempty"`
+}
+
+// ContextApp 归因应用信息
+type ContextApp struct {
+	// PackageName 应用包名
+	PackageName string `json:"package_name,omitempty"`
 }
 
 // Properties 附加属性
@@ -219,4 +245,53 @@ type Properties struct {
 func (r Request) Encode() []byte {
 	ret, _ := json.Marshal(r)
 	return ret
+}
+
+// Sign implement ConvertionRequest interface
+func (r Request) Sign(req *http.Request, content []byte) (string, error) {
+	if r.PrivateKey == nil || r.Credential == "" {
+		return "", errors.New("no private_key/credential")
+	}
+	// get stringToSign
+	method := req.Method
+	pathAndQuery := req.URL.Path
+	// 在path末尾加上'/'
+	if pathAndQuery == "" || pathAndQuery[len(pathAndQuery)-1] != '/' {
+		pathAndQuery = pathAndQuery + "/"
+	}
+	if req.URL.RawQuery != "" {
+		pathAndQuery = pathAndQuery + "?" + req.URL.RawQuery
+	}
+	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
+	contentHash := getContentHashBase64(content)
+	buf := util.GetBufferPool()
+	buf.WriteString(strings.ToUpper(method))
+	buf.WriteByte('\n')
+	buf.WriteString(pathAndQuery)
+	buf.WriteByte('\n')
+	buf.WriteString(timestamp)
+	buf.WriteByte('\n')
+	buf.WriteString(contentHash)
+	signBytes, err := util.SignWithPrivateKey(buf.Bytes(), r.PrivateKey)
+	util.PutBufferPool(buf)
+	if err != nil {
+		return "", err
+	}
+	signature := base64.StdEncoding.EncodeToString(signBytes)
+	builder := util.GetStringsBuilder()
+	builder.WriteString("credential=")
+	builder.WriteString(string(r.Credential))
+	builder.WriteString("×tamp=")
+	builder.WriteString(timestamp)
+	builder.WriteString("&signature=")
+	builder.WriteString(signature)
+	token := builder.String()
+	util.PutStringsBuilder(builder)
+	return token, nil
+}
+
+func getContentHashBase64(content []byte) string {
+	hasher := sha256.New()
+	hasher.Write(content)
+	return base64.StdEncoding.EncodeToString(hasher.Sum(nil))
 }

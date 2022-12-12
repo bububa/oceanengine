@@ -2,10 +2,10 @@ package dpa
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AssetsDetailReadRequest 获取投放条件详情 API Request
@@ -18,11 +18,13 @@ type AssetsDetailReadRequest struct {
 
 // Encode implement GetRequest interface
 func (r AssetsDetailReadRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	bs, _ := json.Marshal(r.AssetIDs)
 	values.Set("asset_ids", string(bs))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AssetsDetailReadResponse 获取投放条件详情 API Response

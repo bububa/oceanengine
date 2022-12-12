@@ -2,11 +2,11 @@ package interestaction
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ActionKeywordRequest 行为关键词查询 API Request
@@ -23,13 +23,15 @@ type ActionKeywordRequest struct {
 
 // Encode implement GetRequest interface
 func (r ActionKeywordRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("query_words", r.QueryWords)
 	scene, _ := json.Marshal(r.ActionScene)
 	values.Set("action_scene", string(scene))
 	values.Set("action_days", strconv.Itoa(r.ActionDays))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ActionKeywordResponse 行为关键词查询 API Response

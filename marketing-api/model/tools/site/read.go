@@ -1,10 +1,10 @@
 package site
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ReadRequest 获取橙子建站站点详细信息 API Request
@@ -17,10 +17,12 @@ type ReadRequest struct {
 
 // Encode implement GetRequest interface
 func (r ReadRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("site_id", strconv.FormatUint(r.SiteID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ReadResponse 获取橙子建站站点详细信息 API Response

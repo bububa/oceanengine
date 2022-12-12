@@ -1,10 +1,10 @@
 package shop
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdvertiserListRequest 获取店铺账户关联的广告账户列表
@@ -19,7 +19,7 @@ type AdvertiserListRequest struct {
 
 // Encode implement GetRequest interface
 func (r AdvertiserListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("shop_id", strconv.FormatUint(r.ShopID, 10))
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
@@ -27,7 +27,9 @@ func (r AdvertiserListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AdvertiserListResponse 获取店铺账户关联的广告账户列表 API Response

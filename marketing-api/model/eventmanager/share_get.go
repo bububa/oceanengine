@@ -1,10 +1,10 @@
 package eventmanager
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ShareGetRequest 事件管理资产查看共享范围 API Request
@@ -21,7 +21,7 @@ type ShareGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r ShareGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("organization_id", strconv.FormatUint(r.OrganizationID, 10))
 	values.Set("asset_id", strconv.FormatUint(r.AssetID, 10))
 	if r.Page > 1 {
@@ -30,7 +30,9 @@ func (r ShareGetRequest) Encode() string {
 	if r.PageSize != 10 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ShareGetResponse 事件管理资产查看共享范围 API Response

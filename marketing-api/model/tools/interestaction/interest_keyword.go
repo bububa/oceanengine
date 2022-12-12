@@ -1,10 +1,10 @@
 package interestaction
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // InterestKeywordRequest 兴趣关键词查询 API Request
@@ -17,10 +17,12 @@ type InterestKeywordRequest struct {
 
 // Encode implement GetRequest interface
 func (r InterestKeywordRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("query_words", r.QueryWords)
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // InterestKeywordResponse 兴趣关键词查询 API Response

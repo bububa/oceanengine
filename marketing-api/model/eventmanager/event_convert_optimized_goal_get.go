@@ -1,11 +1,11 @@
 package eventmanager
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // EventConvertOptimizedGoalGetRequest 获取优化目标 API Request
@@ -37,7 +37,7 @@ type EventConvertOptimizedGoalGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r EventConvertOptimizedGoalGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("landing_type", string(r.LandingType))
 	values.Set("marketing_purpose", string(r.MarketingPurpose))
@@ -63,7 +63,9 @@ func (r EventConvertOptimizedGoalGetRequest) Encode() string {
 	if r.WechatAppID != "" {
 		values.Set("wechat_app_id", r.WechatAppID)
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // EventConvertOptimizedGoalGetResponse 获取优化目标 API Response

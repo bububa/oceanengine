@@ -1,10 +1,10 @@
 package adconvert
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ReadRequest 查询转化目标详细信息 API Request
@@ -17,10 +17,12 @@ type ReadRequest struct {
 
 // Encode implement GetRequest interface
 func (r ReadRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Add("convert_id", strconv.FormatUint(r.ConvertID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ReadResponse 查询转化目标详细信息 API Response

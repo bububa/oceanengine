@@ -2,10 +2,10 @@ package form
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ListRequest 获取表单列表 API Request
@@ -28,7 +28,7 @@ type ListRequest struct {
 
 // Encode implement GetRequest interface
 func (r ListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if len(r.InstanceIDs) > 0 {
 		ids, _ := json.Marshal(r.InstanceIDs)
@@ -49,7 +49,9 @@ func (r ListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ListResponse 获取表单列表 API Response

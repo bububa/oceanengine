@@ -2,10 +2,10 @@ package servemarket
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // OrderGetRequest 获取应用订单数据 API Request
@@ -31,7 +31,7 @@ type OrderGetFilter struct {
 
 // Encode implement GetReqeust
 func (r OrderGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("app_id", strconv.FormatUint(r.AppID, 10))
 	if r.Filtering != nil {
 		bs, _ := json.Marshal(r.Filtering)
@@ -43,7 +43,9 @@ func (r OrderGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // OrderGetResponse 获取应用订单数据 API Response

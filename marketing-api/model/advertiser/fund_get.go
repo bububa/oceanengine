@@ -1,10 +1,10 @@
 package advertiser
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // FundGetRequest 查询账号余额 API Request
@@ -15,9 +15,11 @@ type FundGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r FundGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // FundGetResponse 查询账号余额 API Response

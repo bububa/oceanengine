@@ -2,11 +2,11 @@ package aweme
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // LiveAuthorizeListRequest 查询授权直播抖音达人列表
@@ -23,7 +23,7 @@ type LiveAuthorizeListRequest struct {
 
 // Encode implement GetRequest interface
 func (r LiveAuthorizeListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	status, _ := json.Marshal(r.Status)
 	values.Set("status", string(status))
@@ -33,7 +33,9 @@ func (r LiveAuthorizeListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // LiveAuthorizeListResponse 查询授权直播抖音达人列表 API Response

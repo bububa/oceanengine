@@ -1,10 +1,10 @@
 package dmp
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AudiencesGetRequest 查询人群包列表 API Request
@@ -21,7 +21,7 @@ type AudiencesGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AudiencesGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("retargeting_tags_type", strconv.Itoa(r.RetargetingTagsType))
 	if r.Offset > 0 {
@@ -30,7 +30,9 @@ func (r AudiencesGetRequest) Encode() string {
 	if r.Limit > 0 {
 		values.Set("limit", strconv.Itoa(r.Limit))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AudiencesGetResponse 查询人群包列表 API Response

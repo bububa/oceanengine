@@ -1,10 +1,10 @@
 package tools
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // EstimatedPriceGetRequest 获取预估点击成本 API Request
@@ -15,9 +15,11 @@ type EstimatedPriceGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r EstimatedPriceGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // EstimatedPriceGetResponse 获取预估点击成本 API Response

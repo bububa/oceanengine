@@ -1,10 +1,10 @@
 package site
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // FormsListRequest 获取落地页预约表单信息 API Request
@@ -17,10 +17,12 @@ type FormsListRequest struct {
 
 // Encode implement GetRequest interface
 func (r FormsListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("site_id", strconv.FormatUint(r.SiteID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // FormsListResponse 获取落地页预约表单信息 API Response

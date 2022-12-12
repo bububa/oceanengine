@@ -2,10 +2,10 @@ package dpa
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DetailGetRequest 获取商品列表 API Request
@@ -38,7 +38,7 @@ type DetailGetFilter struct {
 
 // Encode implement GetRequest interface
 func (r DetailGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("product_platform_id", strconv.FormatUint(r.ProductPlatformID, 10))
 	if r.Filtering != nil {
@@ -51,7 +51,9 @@ func (r DetailGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // DetailGetResponse 获取商品列表 API Response

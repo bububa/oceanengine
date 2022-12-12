@@ -1,10 +1,10 @@
 package businessplatform
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // CompanyInfoGetRequest 获取纵横组织下所有主体信息 API Request
@@ -19,7 +19,7 @@ type CompanyInfoGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r CompanyInfoGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("organization_id", strconv.FormatUint(r.OrganizationID, 10))
 	if r.Page > 1 {
 		values.Set("page", strconv.Itoa(r.Page))
@@ -27,7 +27,9 @@ func (r CompanyInfoGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // CompanyInfoGetResponse 获取纵横组织下所有主体信息 API Response

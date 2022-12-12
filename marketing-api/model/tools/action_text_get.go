@@ -1,11 +1,11 @@
 package tools
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ActionTextGetRequest 行动号召字段内容获取 API Request
@@ -23,7 +23,7 @@ type ActionTextGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r ActionTextGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Add("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Add("landing_type", string(r.LandingType))
 	if r.AdvancedCreativeType != "" {
@@ -32,7 +32,9 @@ func (r ActionTextGetRequest) Encode() string {
 	if r.Industry > 0 {
 		values.Add("industry", strconv.FormatUint(r.Industry, 10))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ActionTextGetResponse 行动号召字段内容获取 API Response

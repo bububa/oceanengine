@@ -2,10 +2,10 @@ package creative
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // MaterialReadRequest 创意素材信息
@@ -20,7 +20,7 @@ type MaterialReadRequest struct {
 
 // Encode implement GetRequest interface
 func (r MaterialReadRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if len(r.CreativeIDs) > 0 {
 		ids, _ := json.Marshal(r.CreativeIDs)
@@ -30,7 +30,9 @@ func (r MaterialReadRequest) Encode() string {
 		fields, _ := json.Marshal(r.Fields)
 		values.Set("fields", string(fields))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // MaterialReadResponse 创意素材信息 API Response

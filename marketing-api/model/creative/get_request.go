@@ -2,10 +2,10 @@ package creative
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // GetRequest 获取创意列表 API Request
@@ -21,11 +21,20 @@ type GetRequest struct {
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小默认值: 10，大小上限1000
 	PageSize int `json:"page_size,omitempty"`
+	// Cursor 页码游标值，第一次拉取，传入0
+	// 同时传入时，cursor优先级大于page
+	// 注：page+page_size与cursor+count为两种分页方式
+	// cursor+count适用于获取数据记录数≥10000的场景
+	Cursor int `json:"cursor,omitempt"`
+	// Count 页面数据量
+	// 注：page+page_size与cursor+count为两种分页方式
+	// cursor+count适用于获取数据记录数≥10000的场景
+	Count int `json:"count,omitempty"`
 }
 
 // Encode implement GetRequest interface
 func (r GetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		filtering, _ := json.Marshal(r.Filtering)
@@ -41,7 +50,13 @@ func (r GetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	if r.Cursor > 0 || r.Count > 0 {
+		values.Set("cursor", strconv.Itoa(r.Cursor))
+		values.Set("count", strconv.Itoa(r.Count))
+	}
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // GetFiltering 过滤条件

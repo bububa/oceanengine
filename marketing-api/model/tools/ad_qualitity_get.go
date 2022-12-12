@@ -2,10 +2,10 @@ package tools
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AdQualityGetRequest 查询广告质量度 API Request
@@ -18,11 +18,13 @@ type AdQualityGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AdQualityGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	buf, _ := json.Marshal(r.AdIDs)
 	values.Set("ad_ids", string(buf))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AdQualityGetResponse 查询广告质量度 API Response

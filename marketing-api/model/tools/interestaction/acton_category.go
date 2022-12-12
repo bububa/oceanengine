@@ -2,11 +2,11 @@ package interestaction
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ActionCategoryRequest 行为类目查询 API Request
@@ -21,12 +21,14 @@ type ActionCategoryRequest struct {
 
 // Encode implement GetRequest interface
 func (r ActionCategoryRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	scene, _ := json.Marshal(r.ActionScene)
 	values.Set("action_scene", string(scene))
 	values.Set("action_days", strconv.Itoa(r.ActionDays))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // ActionCategoryResponse 行为类目查询 API Response

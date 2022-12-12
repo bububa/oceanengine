@@ -2,10 +2,10 @@ package dpa
 
 import (
 	"encoding/json"
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AssetsListRequest 获取投放条件列表 API Request
@@ -32,7 +32,7 @@ type AssetsListFilter struct {
 
 // Encode implement GetRequest interface
 func (r AssetsListRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("platform_id", strconv.FormatUint(r.PlatformID, 10))
 	bs, _ := json.Marshal(r.ProductIDs)
@@ -47,7 +47,9 @@ func (r AssetsListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AssetsListResponse 获取投放条件列表 API Response

@@ -2,9 +2,9 @@ package shop
 
 import (
 	"encoding/json"
-	"net/url"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // GetRequest 获取店铺账户信息 API Request
@@ -15,10 +15,12 @@ type GetRequest struct {
 
 // Encode implement GetRequest interface
 func (r GetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	ids, _ := json.Marshal(r.ShopIDs)
 	values.Set("shop_ids", string(ids))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // GetResponse 获取店铺账户信息 API Response

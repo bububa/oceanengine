@@ -1,10 +1,10 @@
 package advertiser
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // AvatarGetRequest 获取广告主头像信息 API Request
@@ -15,9 +15,11 @@ type AvatarGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r AvatarGetRequest) Encode() string {
-	values := url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // AvatarGetResponse 获取广告主头像信息 API Response

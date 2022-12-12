@@ -1,8 +1,9 @@
 package asynctask
 
 import (
-	"net/url"
 	"strconv"
+
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // DownloadRequest 下载任务结果
@@ -19,7 +20,7 @@ type DownloadRequest struct {
 
 // Encode implement GetRequest interface
 func (r DownloadRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("task_id", strconv.FormatUint(r.TaskID, 10))
 	if r.RangeFrom > 0 {
@@ -28,5 +29,7 @@ func (r DownloadRequest) Encode() string {
 	if r.RangeFrom != 0 {
 		values.Set("range_to", strconv.FormatInt(r.RangeTo, 10))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }

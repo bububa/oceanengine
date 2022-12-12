@@ -1,10 +1,10 @@
 package tools
 
 import (
-	"net/url"
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // IndustryGetRequest 获取行业列表 API Request
@@ -17,10 +17,12 @@ type IndustryGetRequest struct {
 
 // Encode implement GetRequest interface
 func (r IndustryGetRequest) Encode() string {
-	values := &url.Values{}
+	values := util.GetUrlValues()
 	values.Set("level", strconv.Itoa(r.Level))
 	values.Set("type", r.Type)
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // IndustryGetResponse 获取行业列表 API Response
