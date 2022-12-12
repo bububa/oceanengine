@@ -51,7 +51,7 @@ type IntegratedFiltering struct {
 	// ImageModes 素材类型列表：按照类型过滤
 	ImageModes []enum.ImageMode `json:"image_mode,omitempty"`
 	// CreativeMaterialModes 创意类型列表：按照创意类型过滤，STATIC_ASSEMBLE 表示程序化创意，INTERVENE表示自定义创意
-	CreativeMaterialModes []string `json:"creative_material_mode,omitempty"`
+	CreativeMaterialModes []enum.CreativeMaterialMode `json:"creative_material_mode,omitempty"`
 	// LandingTypes 推广目的列表：按照广告组推广目的过滤, 允许值: "LINK","APP","DPA","GOODS","STORE","SHOP","AWEME"
 	LandingTypes []enum.LandingType `json:"landing_type,omitempty"`
 	// Bidwords 按关键词过滤, 传入关键词，不可传空字符串，最多支持100个。只支持关键词/搜索词报表，关键词可通过【搜索广告-获取关键词】接口进行获取

@@ -24,7 +24,7 @@ type GetRequest struct {
 // GetFiltering 过滤字段
 type GetFiltering struct {
 	// LandingType 定向包类型
-	LandingType string `json:"landing_type,omitempty"`
+	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// DeliveryRange 广告投放范围
 	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
 }

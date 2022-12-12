@@ -72,7 +72,7 @@ type StatFiltering struct {
 	// ImageModes 素材类型列表：按照类型过滤
 	ImageModes []enum.ImageMode `json:"image_modes,omitempty"`
 	// CreativeMaterialModes 创意类型列表：按照创意类型过滤，STATIC_ASSEMBLE 表示程序化创意，INTERVENE表示自定义创意
-	CreativeMaterialModes []string `json:"creative_material_modes,omitempty"`
+	CreativeMaterialModes []enum.CreativeMaterialMode `json:"creative_material_modes,omitempty"`
 	// LandingTypes 推广目的列表：按照广告组推广目的过滤, 允许值: "LINK","APP","DPA","GOODS","STORE","SHOP","AWEME"
 	LandingTypes []enum.LandingType `json:"landing_types,omitempty"`
 	// Status 广告创意状态：按照广告创意状态过滤，默认为返回“所有不包含已删除”，如果要返回所有包含已删除有对应枚举表示

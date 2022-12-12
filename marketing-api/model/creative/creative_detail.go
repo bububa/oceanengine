@@ -23,7 +23,7 @@ type CreativeDetail struct {
 	// SceneInventory 首选场景广告位，详见【附录-首选场景广告位】，使用首选场景广告位时默认忽略inventory_type字段，与scene_inventory不能同时传 允许值: "VIDEO_SCENE", "FEED_SCENE", "TAIL_SCENE"
 	SceneInventory string `json:"scene_inventory,omitempty"`
 	// CreativeMaterialMode 创意类型，该字段为STATIC_ASSEMBLE表示程序化创意，其他情况无该字段
-	CreativeMaterialMode string `json:"creative_material_mode,omitempty"`
+	CreativeMaterialMode enum.CreativeMaterialMode `json:"creative_material_mode,omitempty"`
 	// ProceduralPackageID 程序化创意包ID
 	ProceduralPackageID uint64 `json:"procedural_package_id,omitempty"`
 	// ProceduralPackageVersion 程序化创意包版本

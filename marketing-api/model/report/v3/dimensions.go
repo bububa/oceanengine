@@ -2,6 +2,8 @@ package v3
 
 import (
 	"time"
+
+	"github.com/bububa/oceanengine/marketing-api/enum"
 )
 
 // Dimensions 维度数据
@@ -11,9 +13,9 @@ type Dimensions struct {
 	// PromotionID 广告ID，分组条件包含 STAT_GROUP_BY_APP_PROMOTION_ID 时返回
 	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// LandingType 对应项目的推广目的
-	LandingType string `json:"landing_type,omitempty"`
+	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// ExternalAction 对应项目的转化目标
-	ExternalAction string `json:"external_action,omitempty"`
+	ExternalAction enum.AdConvertType `json:"external_action,omitempty"`
 	// PricingType 对应项目的计费类型
 	PricingType string `json:"pricing_type,omitempty"`
 	// AppCode 您所投放的广告数据中，对应的首选广告位
@@ -50,9 +52,9 @@ type CustomDimensions struct {
 	// CdpProjectName 项目的名称
 	CdpProjectName string `json:"cdp_project_name,omitempty"`
 	// LandingType 对应项目的推广目的
-	LandingType string `json:"landing_type,omitempty"`
+	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// ExternalAction 对应项目的转化目标
-	ExternalAction string `json:"external_action,omitempty"`
+	ExternalAction enum.AdConvertType `json:"external_action,omitempty"`
 	// Pricing 对应项目的计费类型
 	Pricing int `json:"pricing,omitempty"`
 	// DeepExternalAction 对应项目的深度转化目标

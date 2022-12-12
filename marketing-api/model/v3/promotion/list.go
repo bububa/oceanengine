@@ -39,6 +39,8 @@ type ListFilter struct {
 	PromotionModifyTime string `json:"promotion_modify_time,omitempty"`
 	// RejectReasonType 审核建议类型，允许值：NONE 无建议、REVIEW_REJECT 审核不通过、LOW_MATERAIL 低质素材、DISCOMFORT 引人不适、QUALITY_POOR 素材质量低、EXAGGERATION 夸大宣传、ELSE 其他
 	RejectReasonType enum.PromotionRejectReasonType `json:"reject_reason_type,omitempty"`
+	// LearningPhase 学习期状态 允许值：LEARNING（学习期中）、LEARNED（学习期结束）、LEARN_FAILED（学习期失败)
+	LearningPhase []enum.LearningPhase `json:"learning_phase,omitempty"`
 }
 
 // Encode implement GetRequest interface
