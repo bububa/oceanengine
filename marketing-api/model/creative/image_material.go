@@ -1,16 +1,65 @@
 package creative
 
-import "github.com/bububa/oceanengine/marketing-api/enum"
+import (
+	"encoding/json"
+
+	"github.com/bububa/oceanengine/marketing-api/enum"
+)
 
 // ImageMaterial 创意图片素材
 type ImageMaterial struct {
 	// ImageMode 素材类型，必填，注意：程序化创意不支持组图 CREATIVE_IMAGE_MODE_GROUP，其他类型图片都支持，如横版/竖版大图、小图。详见【附录-素材类型】
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// ImageInfo 图片素材信息
-	ImageInfo *ImageInfo `json:"image_info,omitempty"`
+	ImageInfo *ImageInfoWrapper `json:"image_info,omitempty"`
 	// TemplateImage 图片模版信息，创建DPA创意时可传入,选择模板后image_info传入内容无效
 	TemplateImage *TemplateImage `json:"template_imate,omitempty"`
 }
+
+// ImageInfoWrapper image_info wrapper
+// image_info 可能为slice也可能为object
+type ImageInfoWrapper struct {
+	Object *ImageInfo
+	List   []ImageInfo
+}
+
+func (i *ImageInfoWrapper) IsObject() bool {
+	return i.Object != nil
+}
+
+// UnmarshalJSON implement json Unmarshal interface
+func (i *ImageInfoWrapper) UnmarshalJSON(b []byte) (err error) {
+	var ret ImageInfoWrapper
+	if b[0] == '[' && b[len(b)-1] == ']' {
+		if err := json.Unmarshal(b, &ret.List); err != nil {
+			return err
+		}
+	} else if b[0] == '{' && b[len(b)-1] == '}' {
+		ret.Object = new(ImageInfo)
+		if err := json.Unmarshal(b, ret.Object); err != nil {
+			return err
+		}
+	}
+	if ret.Object == nil && len(ret.List) == 0 {
+		i = nil
+	} else {
+		*i = ret
+	}
+	return nil
+}
+
+// MmarshalJSON implement json Marshal interface
+func (i *ImageInfoWrapper) MarshalJSON() ([]byte, error) {
+	if i.Object != nil {
+		return json.Marshal(i.Object)
+	} else if len(i.List) == 0 {
+		return []byte("null"), nil
+	}
+	return json.Marshal(i.List)
+}
+
+var _ json.Unmarshaler = (*ImageInfoWrapper)(nil)
+var _ json.Marshaler = (*ImageInfoWrapper)(nil)
 
 // ImageInfo 图片素材信息
 type ImageInfo struct {
