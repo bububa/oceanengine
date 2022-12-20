@@ -258,6 +258,8 @@
     - 事件管理资产查看共享范围 [ ShareGet(clt *core.SDKClient, accessToken string, req *eventmanager.ShareGetRequest) (*eventmanager.ShareGetData, error) ] 
     - 事件管理资产共享 [ Share(clt *core.SDKClient, accessToken string, req *eventmanager.ShareRequest) ([]eventmanager.ShareError, error) ]
     - 事件管理资产取消共享 [ ShareCancel(clt *core.SDKClient, accessToken string, req *eventmanager.ShareRequest) ([]eventmanager.ShareError, error) ]
+    - 获取可用优化目标（体验版）[ v3.OptimizedGoalGet(clt *core.SDKClient, accessToken string, req *v3.OptimizedGoalGetRequest) (*v3.OptimizedGoalGetResponseData, error) ]
+    - 获取可用深度优化方式体验版 [ v3.DeepBidTypeGet(clt *core.SDKClient, accessToken string, req *v3.DeepBidTypeGetRequest) ([]enum.DeepBidType, error)  ]
     - 转化回传鉴权管理 (api/eventmanager/auth)
       - 新增公钥 [ AddPublicKey(clt *core.SDKClient, accessToken string, req *auth.AddPublicKeyRequest) (*auth.PublicKey, error) ]
       - 删除公钥 [ DelPublicKey(clt *core.SDKClient, accessToken string, req *auth.DelPublicKeyRequest) error ]

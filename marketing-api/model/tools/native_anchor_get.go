@@ -61,7 +61,9 @@ func (r NativeAnchorGetRequest) Encode() string {
 		bs, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(bs))
 	}
-	return values.Encode()
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
 }
 
 // NativeAnchorGetResponse 获取账户下原生锚点
