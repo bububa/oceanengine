@@ -18,6 +18,14 @@ type AdvertiserSelectRequest struct {
 	Page int `json:"page,omitempty"`
 	// PageSize 页面数据量.默认值: 100
 	PageSize int `json:"page_size,omitempty"`
+	// Cursor 页码游标值，第一次拉取，无需入参
+	// 注：page+page_size与cursor+count为两种分页方式
+	// cursor+count适用于获取数据记录数≥10000的场景
+	Cursor int `json:"cursor,omitempty"`
+	// Count 页面数据量，页面数据量
+	// 注：page+page_size与cursor+count为两种分页方式
+	// cursor+count适用于获取数据记录数≥10000的场景
+	Count int `json:"count,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -28,11 +36,15 @@ func (r AdvertiserSelectRequest) Encode() string {
 		bs, _ := json.Marshal(r.CompanyIDs)
 		values.Set("company_ids", string(bs))
 	}
-	if r.Page > 0 {
+	if r.Page > 1 {
 		values.Set("page", strconv.Itoa(r.Page))
 	}
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
+	}
+	if r.Cursor > 0 || r.Count > 0 {
+		values.Set("cursor", strconv.Itoa(r.Cursor))
+		values.Set("count", strconv.Itoa(r.Count))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
@@ -55,4 +67,6 @@ type AdvertiserSelectResponseData struct {
 	AccountSource string `json:"account_source,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
+	// CursorInfo 分页信息
+	CursorInfo *model.PageInfo `json:"cursor_info,omitempty"`
 }

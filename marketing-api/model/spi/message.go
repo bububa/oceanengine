@@ -62,6 +62,10 @@ type MessageDataBase struct {
 	AdIDs []uint64 `json:"ad_ids,omitempty"`
 	// CreativeIDs 聚合周期内发生指标变更的创意列表，service_label 为report.creative.activeprogram时有值
 	CreativeIDs []uint64 `json:"creative_ids,omitempty"`
+	// ProjectIDs 状态发生变更的项目ids
+	ProjectIDs []uint64 `json:"project_ids,omitempty"`
+	// PromotionIDs 状态发生变更的广告ids
+	PromotionIDs []uint64 `json:"promotion_ids,omitempty"`
 	// Event 事件名称
 	Event string `json:"event,omitempty"`
 }
@@ -147,6 +151,11 @@ type EventContent struct {
 	SumQuotaBefore int64 `json:"sum_quota_before,omitempty"`
 	// CampaignType 广告组类型，FEED 信息流、 SEARCH 搜索广告
 	CampaignType enum.CampaignType `json:"campaign_type,omitempty"`
+	// DeliveryRange 允许值: DEFAULT默认（默认值）, UNION穿山甲,
+	// 当campaign_type = feed && delivery_range= default可获取所有广告配额;
+	// 当campaign_type = feed && delivery_range= union时可获取穿山甲广告配额;
+	// 当campaign_type = search && delivery_range= default时可获取搜索广告配额;
+	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
 }
 
 // CommentUser 用户信息

@@ -19,6 +19,10 @@
     - 广告主信息 [ Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
     - 广告主公开信息 [ PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
     - 获取广告主头像信息 [ AvatarGet(clt *core.SDK, accessToken string, advertiserID uint64) (*advertiser.AvatarGetResponseData, error) ]
+    - 获取投放资质信息（新版）[ QualificationSelect(clt *core.SDKClient, accessToken string, advertiserID uint64) ([]advertiser.Qualification, error) ]
+    - 批量上传投放资质 [ QualificationCreate(clt *core.SDKClient, accessToken string, req *advertiser.QualificationCreateRequest) error ]
+    - 获取广告主资质（新版）[ QualificationGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.Qualification, error) ]
+    - 提交广告主资质（新版）[ QualificationSubmit(clt *core.SDKClient, accessToken string, req *advertiser.QualificationSubmitRequest) error ]
   - 代理商账号管理 (api/agent)
     - 广告主列表 [ AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
@@ -258,6 +262,8 @@
     - 事件管理资产查看共享范围 [ ShareGet(clt *core.SDKClient, accessToken string, req *eventmanager.ShareGetRequest) (*eventmanager.ShareGetData, error) ] 
     - 事件管理资产共享 [ Share(clt *core.SDKClient, accessToken string, req *eventmanager.ShareRequest) ([]eventmanager.ShareError, error) ]
     - 事件管理资产取消共享 [ ShareCancel(clt *core.SDKClient, accessToken string, req *eventmanager.ShareRequest) ([]eventmanager.ShareError, error) ]
+    - 获取可用优化目标（体验版）[ v3.OptimizedGoalGet(clt *core.SDKClient, accessToken string, req *v3.OptimizedGoalGetRequest) (*v3.OptimizedGoalGetResponseData, error) ]
+    - 获取可用深度优化方式体验版 [ v3.DeepBidTypeGet(clt *core.SDKClient, accessToken string, req *v3.DeepBidTypeGetRequest) ([]enum.DeepBidType, error)  ]
     - 转化回传鉴权管理 (api/eventmanager/auth)
       - 新增公钥 [ AddPublicKey(clt *core.SDKClient, accessToken string, req *auth.AddPublicKeyRequest) (*auth.PublicKey, error) ]
       - 删除公钥 [ DelPublicKey(clt *core.SDKClient, accessToken string, req *auth.DelPublicKeyRequest) error ]
@@ -288,6 +294,7 @@
     - 获取抖音授权关系 [ tools.AwemeAuthList(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthListRequest) (*tools.AwemeAuthListData, error) ]
     - 查询视频是否挂载下载类锚点 [ tools.CheckAvailableAnchor(clt *core.SDKClient, accessToken string, req *video.CheckAvailableAnchorRequest) ([]video.AvailableAnchor, error) ]
     - 获取快投推荐出价系数 [ tools.SearchBidRatioGet(clt *core.SDKClient, accessToken string, req *tools.SearchBidRatioGetRequest) (float64, error) ]
+    - 获取账户下原生锚点 [ tools.NativeAnchorGet(clt *core.SDKClient, accessToken string, req *tools.NativeAnchorGetRequest) (*tools.NativeAnchorGetResponseData, error)  ]
   - 抖音达人 (tools/aweme)
     - 查询抖音帐号和类目信息 [ AwemeInfoSearch(clt *core.SDKClient, accessToken string, req *aweme.AwemeInfoSearchRequest) (*aweme.AwemeInfoSearchResult, error) ]
     - 查询抖音类似帐号 [ AwemeSimilarAuthorSearch(clt *core.SDKClient, accessToken string, req *aweme.AwemeSimilarAuthorSearchRequest) ([]aweme.Author, error) ]
