@@ -54,7 +54,7 @@ func (r NativeAnchorGetRequest) Encode() string {
 	if r.Page > 1 {
 		values.Set("page", strconv.Itoa(r.Page))
 	}
-	if r.PageSize != 10 {
+	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
 	if r.Filtering != nil {
