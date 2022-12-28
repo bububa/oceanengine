@@ -12,7 +12,7 @@ type IAd interface {
 	GetName() string
 	GetCampaignID() uint64
 	GetAdvertiserID() uint64
-	GetOptStatus() enum.OptStatus
+	GetOptStatus() enum.AdOptStatus
 	GetBudget() float64
 	GetCpaBid() float64
 	GetDeepCpaBid() float64
