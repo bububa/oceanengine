@@ -16,7 +16,7 @@ func (fu64 *FlexUint64) UnmarshalJSON(b []byte) (err error) {
 }
 
 // Int64 support string quoted number in json
-type Int64 uint64
+type Int64 int64
 
 // UnmarshalJSON implement json Unmarshal interface
 func (i64 *Int64) UnmarshalJSON(b []byte) (err error) {
