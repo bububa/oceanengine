@@ -2,6 +2,13 @@ package model
 
 import "strconv"
 
+type AdVersion int
+
+const (
+	AdVersion_DEFAULT AdVersion = 1
+	AdVersion_2       AdVersion = 2
+)
+
 // FlexUint64 support string quoted number in json
 type FlexUint64 uint64
 

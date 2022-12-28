@@ -2,6 +2,8 @@ package track
 
 import (
 	"net/url"
+
+	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
 // DEFAULT_CLICK_FIELDS 默认点击检测字段
@@ -24,6 +26,7 @@ var DEFAULT_CLICK_FIELDS = []string{
 	"ua",
 	"geo",
 	"ts",
+	"track_id",
 	"callback",
 	"callback_url",
 	"model",
@@ -32,7 +35,7 @@ var DEFAULT_CLICK_FIELDS = []string{
 }
 
 // Click 生成击检测链接
-func Click(baseUrl string, fields []string) string {
+func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
 	if fields == nil {
 		fields = DEFAULT_CLICK_FIELDS
 	}
@@ -43,13 +46,23 @@ func Click(baseUrl string, fields []string) string {
 		case "request_id":
 			values.Set("request_id", "__REQUEST_ID__")
 		case "aid":
-			values.Set("aid", "__AID__")
+			if adVersion == model.AdVersion_2 {
+				values.Set("aid", "__PROMOTION_ID__")
+			} else {
+				values.Set("aid", "__AID__")
+			}
 		case "advertiser_id":
 			values.Set("advertiser_id", "__ADVERTISER_ID__")
 		case "cid":
-			values.Set("cid", "__CID__")
+			if adVersion != model.AdVersion_2 {
+				values.Set("cid", "__CID__")
+			}
 		case "campaign_id":
-			values.Set("campaign_id", "__CAMPAIGN_ID__")
+			if adVersion == model.AdVersion_2 {
+				values.Set("campaign_id", "__PROJECT_ID__")
+			} else {
+				values.Set("campaign_id", "__CAMPAIGN_ID__")
+			}
 		case "ctype":
 			values.Set("ctype", "__CTYPE__")
 		case "csite":
@@ -76,6 +89,8 @@ func Click(baseUrl string, fields []string) string {
 			values.Set("geo", "__GEO__")
 		case "ts":
 			values.Set("ts", "__TS__")
+		case "track_id":
+			values.Set("track_id", "__TRACK_ID__")
 		case "callback":
 			values.Set("callback", "__CALLBACK_PARAM__")
 		case "callback_url":

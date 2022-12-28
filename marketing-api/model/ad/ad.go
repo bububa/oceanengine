@@ -7,6 +7,18 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
+type IAd interface {
+	GetID() uint64
+	GetName() string
+	GetCampaignID() uint64
+	GetAdvertiserID() uint64
+	GetOptStatus() enum.OptStatus
+	GetBudget() float64
+	GetCpaBid() float64
+	GetDeepCpaBid() float64
+	Version() model.AdVersion
+}
+
 // Ad 广告信息
 type Ad struct {
 	// ID 计划ID
@@ -210,7 +222,7 @@ type Ad struct {
 	// DeepBidType 深度优化方式
 	DeepBidType enum.DeepBidType `json:"deep_bid_type,omitempty"`
 	// DeepCpabidid 深度优化出价，deep_bid_type为"DEEP_BID_MIN"时有值。当对应的转化convert_id，设定深度转化目标时才会有效。
-	DeepCpabidid uint64 `json:"deep_cpabidid,omitempty"`
+	DeepCpabidid float64 `json:"deep_cpabidid,omitempty"`
 	// LubanROiGoal 鲁班目标ROI出价策略系数。推广目的为商品推广(GOODS)时可填。当传入该参数时，表示启用鲁班ROI优化，支持范围(0,100]，精度：保留小数点后四位
 	LubanRoiGoal float64 `json:"luban_roi_goal,omitempty"`
 	// RoiGoal 深度转化ROI系数, 范围(0,5]，精度：保留小数点后四位, deep_bid_type为"ROI_COEFFICIENT"时有值
@@ -335,6 +347,35 @@ type Audience struct {
 	DpaRtaSwitch string `json:"dpa_rta_switch,omitempty"`
 	// DpaRtaRecommendType RTA推荐逻辑，ONLY:仅RTA推荐商品，MORE：基于RTA推荐更多商品
 	DpaRtaRecommendType string `json:"dpa_rta_recommend_type,omitempty"`
+}
+
+func (a Ad) Version() model.AdVersion {
+	return model.AdVersion_DEFAULT
+}
+
+func (a Ad) GetID() uint64 {
+	return a.ID
+}
+func (a Ad) GetName() string {
+	return a.Name
+}
+func (a Ad) GetCampaignID() uint64 {
+	return a.CampaignID
+}
+func (a Ad) GetAdvertiserID() uint64 {
+	return a.AdvertiserID
+}
+func (a Ad) GetOptStatus() enum.AdOptStatus {
+	return a.OptStatus
+}
+func (a Ad) GetBudget() float64 {
+	return a.Budget
+}
+func (a Ad) GetCpaBid() float64 {
+	return a.CpaBid
+}
+func (a Ad) GetDeepCpaBid() float64 {
+	return a.DeepCpabidid
 }
 
 // AudienceAction 行为内容
