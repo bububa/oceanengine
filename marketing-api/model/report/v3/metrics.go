@@ -1,5 +1,7 @@
 package v3
 
+import "github.com/bububa/oceanengine/marketing-api/model"
+
 // Metrics 指标数据
 type Metrics struct {
 	// StatCost 表示广告在投放期内的预估花费金额。当天数据可能会有波动，次日稳定
@@ -142,9 +144,9 @@ type Metrics struct {
 
 type CustomMetrics struct {
 	// StatCost 表示广告在投放期内的预估花费金额。当天数据可能会有波动，次日稳定
-	StatCost string `json:"stat_cost,omitempty"`
+	StatCost model.Float64 `json:"stat_cost,omitempty"`
 	// ShowCnt 广告展示给用户的次数。计算方式：经平台判定有效且被计费的展示次数。
-	ShowCnt string `json:"show_cnt,omitempty"`
+	ShowCnt model.Int64 `json:"show_cnt,omitempty"`
 	// CpmPlatform 广告平均每一千次展现所付出的费用，计算公式是：总花费/展示数*1000。
 	CpmPlatform float64 `json:"cpm_platform,omitempty"`
 	// ClickCnt 当头条用户点击广告素材时，触发点击事件，该事件被认为是一次有效的广告点击。
