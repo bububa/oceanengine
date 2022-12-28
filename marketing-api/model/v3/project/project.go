@@ -64,6 +64,14 @@ type Project struct {
 	TrackURLSetting *TrackURLSetting `json:"track_url_setting,omitempty"`
 }
 
+func (p Project) GetOpenURL() string {
+	return p.OpenURL
+}
+
+func (p Project) IsProject() bool {
+	return true
+}
+
 // RelatedProduct 关联产品投放相关
 type RelatedProduct struct {
 	// ProductSetting 商品库设置，枚举值：SINGLE 启用SDPA、NO_MAP不启用

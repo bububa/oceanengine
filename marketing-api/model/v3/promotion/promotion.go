@@ -83,6 +83,10 @@ func (p Promotion) GetDeepCpaBid() float64 {
 	return p.DeepCpaBid
 }
 
+func (p Promotion) IsProject() bool {
+	return false
+}
+
 // PromotionMaterial 广告素材
 type PromotionMaterial struct {
 	// VideoMaterialList 视频素材信息
