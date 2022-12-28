@@ -83,6 +83,21 @@ func (p Promotion) GetDeepCpaBid() float64 {
 	return p.DeepCpaBid
 }
 
+func (p Promotion) GetExternalURLs() []string {
+	var list []string
+	mp := make(map[string]struct{})
+	for _, m := range p.PromotionMaterials {
+		for _, l := range m.ExternalURLMaterialList {
+			if _, found := mp[l]; found {
+				continue
+			}
+			list = append(list, l)
+			mp[l] = struct{}{}
+		}
+	}
+	return list
+}
+
 func (p Promotion) IsProject() bool {
 	return false
 }
