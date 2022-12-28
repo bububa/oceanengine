@@ -19,6 +19,11 @@ type IAd interface {
 	Version() model.AdVersion
 }
 
+type WithOpenURL interface {
+	GetOpenURL() string
+	IsProject() bool
+}
+
 // Ad 广告信息
 type Ad struct {
 	// ID 计划ID
@@ -374,8 +379,17 @@ func (a Ad) GetBudget() float64 {
 func (a Ad) GetCpaBid() float64 {
 	return a.CpaBid
 }
+
 func (a Ad) GetDeepCpaBid() float64 {
 	return a.DeepCpabidid
+}
+
+func (a Ad) GetOpenURL() string {
+	return a.OpenUrl
+}
+
+func (a Ad) IsProject() bool {
+	return false
 }
 
 // AudienceAction 行为内容
