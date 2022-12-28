@@ -43,6 +43,19 @@ type ListFilter struct {
 	LearningPhase []enum.LearningPhase `json:"learning_phase,omitempty"`
 }
 
+func (f ListFilter) GetIDs() []uint64 {
+	return f.IDs
+}
+func (f ListFilter) GetName() string {
+	return f.Name
+}
+func (f ListFilter) GetCreateTime() string {
+	return f.PromotionCreateTime
+}
+func (f ListFilter) GetModifyTime() string {
+	return f.PromotionModifyTime
+}
+
 // Encode implement GetRequest interface
 func (r ListRequest) Encode() string {
 	values := util.GetUrlValues()
