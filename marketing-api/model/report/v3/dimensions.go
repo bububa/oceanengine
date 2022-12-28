@@ -1,8 +1,6 @@
 package v3
 
 import (
-	"time"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
@@ -47,7 +45,7 @@ type CustomDimensions struct {
 	// StatTimeWeek 细分到自然周的数据，周一到周日为一整周
 	StatTimeWeek int `json:"stat_time_week,omitempty"`
 	// StatTimeMonth 细分到自然月的数据，例如2022-3，表示是3月1日到3月31日
-	StatTimeMonth time.Month `json:"stat_time_month,omitempty"`
+	StatTimeMonth string `json:"stat_time_month,omitempty"`
 	// CdpProjectID 项目ID
 	CdpProjectID model.FlexUint64 `json:"cdp_project_id,omitempty"`
 	// CdpProjectName 项目的名称
