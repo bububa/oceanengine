@@ -9,6 +9,13 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
+type IListFilter interface {
+	GetIDs() []uint64
+	GetName() string
+	GetCreateTime() string
+	GetModifyTime() string
+}
+
 // GetRequest 获取广告计划 API Request
 type GetRequest struct {
 	// AdvertiserID 广告主ID
@@ -60,6 +67,19 @@ type GetFiltering struct {
 	AdCreateTime string `json:"ad_create_time,omitempty"`
 	// AdModifyTime 广告计划更新时间，格式"yyyy-mm-dd"，表示过滤出当天更新的广告计划
 	AdModifyTime string `json:"ad_modify_time,omitempty"`
+}
+
+func (f GetFiltering) GetIDs() []uint64 {
+	return f.IDs
+}
+func (f GetFiltering) GetName() string {
+	return f.AdName
+}
+func (f GetFiltering) GetCreateTime() string {
+	return f.AdCreateTime
+}
+func (f GetFiltering) GetModifyTime() string {
+	return f.AdModifyTime
 }
 
 // GetResponse 获取广告计划 API Response
