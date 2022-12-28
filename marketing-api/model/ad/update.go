@@ -179,7 +179,7 @@ type UpdateRequest struct {
 	// CpaBid 目标转化出价/预期成本， 当pricing为"OCPM"、"OCPC"出价方式时有值
 	CpaBid float64 `json:"cpa_bid,omitempty"`
 	// DeepCpabidid 深度优化出价，deep_bid_type为"DEEP_BID_MIN"时有值。当对应的转化convert_id，设定深度转化目标时才会有效。
-	DeepCpabidid uint64 `json:"deep_cpabidid,omitempty"`
+	DeepCpabidid float64 `json:"deep_cpabidid,omitempty"`
 	// LubanROiGoal 鲁班目标ROI出价策略系数。推广目的为商品推广(GOODS)时可填。当传入该参数时，表示启用鲁班ROI优化，支持范围(0,100]，精度：保留小数点后四位
 	LubanRoiGoal float64 `json:"luban_roi_goal,omitempty"`
 	// RoiGoal 深度转化ROI系数, 范围(0,5]，精度：保留小数点后四位, deep_bid_type为"ROI_COEFFICIENT"时有值
