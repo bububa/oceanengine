@@ -64,8 +64,22 @@ type Project struct {
 	TrackURLSetting *TrackURLSetting `json:"track_url_setting,omitempty"`
 }
 
+func (p Project) GetID() uint64 {
+	return p.ProjectID
+}
+
 func (p Project) GetOpenURL() string {
 	return p.OpenURL
+}
+
+func (p Project) GetActionTrackURL() []string {
+	if p.TrackURLSetting == nil {
+		return nil
+	}
+	if p.TrackURLSetting.ActionTrackURL == nil {
+		return nil
+	}
+	return *p.TrackURLSetting.ActionTrackURL
 }
 
 func (p Project) IsProject() bool {

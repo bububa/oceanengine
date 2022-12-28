@@ -16,10 +16,13 @@ type IAd interface {
 	GetBudget() float64
 	GetCpaBid() float64
 	GetDeepCpaBid() float64
+	GetExternalURLs() []string
 	Version() model.AdVersion
 }
 
 type WithOpenURL interface {
+	GetID() uint64
+	GetActionTrackURL() []string
 	GetOpenURL() string
 	IsProject() bool
 }
@@ -386,6 +389,14 @@ func (a Ad) GetDeepCpaBid() float64 {
 
 func (a Ad) GetOpenURL() string {
 	return a.OpenUrl
+}
+
+func (a Ad) GetExternalURLs() []string {
+	return []string{a.ExternalUrl}
+}
+
+func (a Ad) GetActionTrackURL() []string {
+	return a.ActionTrackUrl
 }
 
 func (a Ad) IsProject() bool {
