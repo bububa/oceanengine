@@ -43,6 +43,46 @@ type Promotion struct {
 	MaterialScoreInfo *MaterialScoreInfo `json:"material_score_info,omitempty"`
 }
 
+func (p Promotion) Version() model.AdVersion {
+	return model.AdVersion_2
+}
+
+func (p Promotion) GetID() uint64 {
+	return p.PromotionID
+}
+
+func (p Promotion) GetName() string {
+	return p.PromotionName
+}
+
+func (p Promotion) GetCampaignID() uint64 {
+	return p.ProjectID
+}
+
+func (p Promotion) GetAdvertiserID() uint64 {
+	return p.AdvertiserID
+}
+
+func (p Promotion) GetOptStatus() enum.AdOptStatus {
+	switch p.OptStatus {
+	case enum.OptStatus_ENABLE:
+		return enum.AdOptStatus_ENABLE
+	case enum.OptStatus_DISABLE:
+		return enum.AdOptStatus_DISABLE
+	}
+	return ""
+}
+func (p Promotion) GetBudget() float64 {
+	return p.Budget
+}
+func (p Promotion) GetCpaBid() float64 {
+	return p.CpaBid
+}
+
+func (p Promotion) GetDeepCpaBid() float64 {
+	return p.DeepCpaBid
+}
+
 // PromotionMaterial 广告素材
 type PromotionMaterial struct {
 	// VideoMaterialList 视频素材信息
