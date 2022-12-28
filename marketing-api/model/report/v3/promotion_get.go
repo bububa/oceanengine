@@ -131,8 +131,8 @@ type PromotionGetListItem struct {
 	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// PromotionName 广告名称
 	PromotionName string `json:"promotion_name,omitempty"`
-	// StatDateTime 数据时间
-	StatDateTIme string `json:"stat_datetime,omitempty"`
+	// StatDatetime 数据时间
+	StatDatetime string `json:"stat_datetime,omitempty"`
 	// Data
 	Data []Stat `json:"data,omitempty"`
 }
