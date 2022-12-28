@@ -247,7 +247,7 @@ type CreateRequest struct {
 	// DeepBidType 深度优化方式，允许值详见【附录-深度优化方式】，对于每次付费的转化，深度优化类型需要设置为BID_PER_ACTION（每次付费出价）具体概念见【深度优化方式】;当转化目标中含有深度转化时，该字段必填。获取方式见【查询深度优化方式】
 	DeepBidType enum.DeepBidType `json:"deep_bid_type,omitempty"`
 	// DeepCpabidid 深度优化出价，deep_bid_type为"DEEP_BID_MIN"时有值。当对应的转化convert_id，设定深度转化目标时才会有效。
-	DeepCpabidid uint64 `json:"deep_cpabidid,omitempty"`
+	DeepCpabidid float64 `json:"deep_cpabidid,omitempty"`
 	// LubanROiGoal 鲁班目标ROI出价策略系数。推广目的为商品推广(GOODS)时可填。当传入该参数时，表示启用鲁班ROI优化，支持范围(0,100]，精度：保留小数点后四位
 	LubanRoiGoal float64 `json:"luban_roi_goal,omitempty"`
 	// RoiGoal 深度转化ROI系数, 范围(0,5]，精度：保留小数点后四位, deep_bid_type为"ROI_COEFFICIENT"时有值
