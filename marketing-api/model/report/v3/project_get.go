@@ -126,8 +126,8 @@ type ProjectGetListItem struct {
 	ProjectID uint64 `json:"project_id,omitempty"`
 	// ProjectName 项目名称
 	ProjectName string `json:"project_name,omitempty"`
-	// StatDateTime 数据时间
-	StatDateTIme string `json:"stat_datetime,omitempty"`
+	// StatDatetime 数据时间
+	StatDatetime string `json:"stat_datetime,omitempty"`
 	// Data
 	Data []Stat `json:"data,omitempty"`
 }

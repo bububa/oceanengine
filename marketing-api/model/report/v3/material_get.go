@@ -129,8 +129,8 @@ type MaterialGetListItem struct {
 	MaterialID uint64 `json:"material_id,omitempty"`
 	// ImageMode 素材类型
 	ImageMode string `json:"image_mode,omitempty"`
-	// StatDateTime 数据时间
-	StatDateTIme string `json:"stat_datetime,omitempty"`
+	// StatDatetime 数据时间
+	StatDatetime string `json:"stat_datetime,omitempty"`
 	// Data
 	Data []Stat `json:"data,omitempty"`
 }
