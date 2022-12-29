@@ -8,7 +8,11 @@ import (
 type TermsBannedDeleteRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
-	// Terms 待删除的屏蔽词列表; 如果删除的屏蔽词不存在也会显示成功; 一次最多操作500个词，单个屏蔽词长度范围为0-100
+	// AwemeID 为绑定的抖音号添加屏蔽词, 只允许传入1个，通过【获取绑定的抖音号】 接口获取，当is_apply_to_adv不传或为false时，aweme_id生效
+	AwemeID string `json:"aweme_id,omitempty"`
+	// IsApplyToAdv 是否应用于当前账户，当is_apply_to_adv不传或为false时，aweme_id生效
+	IsApplyToAdv bool `json:"is_apply_to_adv,omitempty"`
+	// Terms 屏蔽词列表，一次最多操作100个词，屏蔽词最大20字
 	Terms []string `json:"terms,omitempty"`
 }
 
