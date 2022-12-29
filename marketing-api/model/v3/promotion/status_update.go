@@ -9,6 +9,8 @@ import (
 type StatusUpdateRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// Data
+	Data []StatusUpdateData `json:"data,omitempty"`
 }
 
 type StatusUpdateData struct {
