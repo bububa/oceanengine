@@ -9,7 +9,7 @@ import (
 // 删除屏蔽用户接口用于删除已屏蔽的抖音用户，抖音用户屏蔽需要广告主绑定抖音账号。
 func AwemeBandedDelete(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedCreateRequest) (*comment.AwemeBandedCreateResponseData, error) {
 	var resp comment.AwemeBandedCreateResponse
-	err := clt.Post("2/tools/comment/aweme_banded/delete/", req, &resp, accessToken)
+	err := clt.Post("v3.0/tools/comment/aweme_banded/delete/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

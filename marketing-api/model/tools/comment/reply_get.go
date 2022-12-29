@@ -3,7 +3,6 @@ package comment
 import (
 	"strconv"
 
-	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -14,8 +13,6 @@ type ReplyGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// CommentID 父评论id
 	CommentID uint64 `json:"comment_id,omitempty"`
-	// InventoryType 广告位 允许值："INVENTORY_AWEME_FEED"（抖音）
-	InventoryType enum.StatInventoryType `json:"inventory_type,omitempty"`
 	// Page 页数 默认值: 1
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小默认值: 10
@@ -27,7 +24,6 @@ func (r ReplyGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("comment_id", strconv.FormatUint(r.CommentID, 10))
-	values.Set("inventory_type", string(r.InventoryType))
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
 	}
