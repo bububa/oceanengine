@@ -122,5 +122,5 @@ type GetResponseData struct {
 	// NegativeVolumnRate 负评率
 	NegativeVolumnRate float64 `json:"negative_volumn_rate,omitempty"`
 	// CommentsList 评论列表
-	CommentsList []Comment `json:"comments_list,omitempty"`
+	CommentsList []Comment `json:"comment_list,omitempty"`
 }
