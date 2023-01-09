@@ -146,12 +146,16 @@
     - 更新关键词 [ Update(clt *core.SDKClient, accessToken string, req *keyword.UpdateRequest) (*keyword.ResponseData, error) ]
     - 删除关键词 [ Delete(clt *core.SDKClient, accessToken string, req *keyword.DeleteRequest) (*keyword.ResponseData, error) ]
     - 搜索快投关键词推荐 [ Suggest(clt *core.SDKClient, accessToken string, req *keyword.SuggestRequest) ([]keyword.SuggestKeyword, error) ]
+    - 快投2.0获取推荐关键词 [ v3.Suggest(clt *core.SDKClient, accessToken string, req *v3.SuggestRequest) ([]keyword.SuggestKeyword, error) ]
   - 否定词管理 (api/privativeword)
     - 批量新增计划否定词 [ AdAdd(clt *core.SDKClient, accessToken string, req *privativeword.AdAddRequest) (*privativeword.AdAddResponseData, error) ]
     - 设置计划否定词 [ AdUpdate(clt *core.SDKClient, accessToken string, req *privativeword.AdUpdateRequest) (uint64, error) ]
     - 批量新增组否定词 [ CampaignAdd(clt *core.SDKClient, accessToken string, req *privativeword.CampaignAddRequest) (*privativeword.CampaignAddResponseData, error) ]
     - 设置组否定词 [ CampaignUpdate(clt *core.SDKClient, accessToken string, req *privativeword.AdUpdateRequest) (uint64, error) ]
     - 获取否定词列表 [ Get(clt *core.SDKClient, accessToken string, req *privativeword.GetRequest) (*privativeword.GetResponseData, error) ]
+    - 2.0项目批量获取否定词 [ v3.Add(clt *core.SDKClient, accessToken string, req *v3.AddRequest) (*v3.AddResponseData, error) ]
+    - 2.0项目批量获取否定词 [ v3.Update(clt *core.SDKClient, accessToken string, req *v3.AddRequest) (*v3.AddResponseData, error) ]
+    - 2.0项目批量获取否定词 [ v3.Get(clt *core.SDKClient, accessToken string, req *v3.GetRequest) ([]v3.Word, error) ]
 - 商品广告 (api/dpa)
   - 获取商品库信息 [ ProductAvailables(clt *core.SDKClient, accessToken string, req *dpa.ProductAvailablesRequest) ([]dpa.Platform, error) ]
   - 获取商品库元信息 [ MetaGet(clt *core.SDKClient, accessToken string, req *dpa.MetaGetRequest) ([]dpa.Meta, error) ]

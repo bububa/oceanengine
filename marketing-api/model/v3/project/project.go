@@ -1,6 +1,9 @@
 package project
 
-import "github.com/bububa/oceanengine/marketing-api/enum"
+import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
+)
 
 // Project 项目
 type Project struct {
@@ -125,6 +128,8 @@ type Audience struct {
 	AudiencePackageID uint64 `json:"audience_package_id,omitempty"`
 	// District 地域类型，枚举值: CITY 省市、 COUNTY 区县、REGION 行政区域、OVERSEA 海外区域、NONE 不限
 	District enum.District `json:"district,omitempty"`
+	// Geolocation 从地图添加(地图位置)
+	Geolocation []model.Geolocation `json:"geolocation,omitempty"`
 	// RegionVersion 行政区域版本号
 	RegionVersion string `json:"region_version,omitempty"`
 	// City 地域定向省市或者区县列表，当district=CITY/COUNTY/REGION/OVERSEA时
