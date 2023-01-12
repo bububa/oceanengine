@@ -132,7 +132,7 @@ type VideoMaterial struct {
 	// VideoCoverID 视频封面图片ID
 	VideoCoverID string `json:"video_cover_id,omitempty"`
 	// ItemID 抖音短视频ID
-	ItemID string `json:"item_id,omitempty"`
+	ItemID model.Uint64 `json:"item_id,omitempty"`
 	// MaterialID 素材ID
 	MaterialID model.Uint64 `json:"material_id,omitempty"`
 	// MaterialStatus 素材审核状态，枚举值：
