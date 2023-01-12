@@ -39,7 +39,7 @@ type Dimensions struct {
 
 type CustomDimensions struct {
 	// StatTimeHour 细分到每个小时的数据
-	StatTimeHour int `json:"stat_time_hour,omitempty"`
+	StatTimeHour string `json:"stat_time_hour,omitempty"`
 	// StatTimeDay 细分到自然天的数据
 	StatTimeDay string `json:"stat_time_day,omitempty"`
 	// StatTimeWeek 细分到自然周的数据，周一到周日为一整周
