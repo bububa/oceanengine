@@ -8,11 +8,11 @@ import (
 // Material 素材信息
 type Material struct {
 	// ID 创意ID
-	ID model.FlexUint64 `json:"id,omitempty"`
+	ID model.Uint64 `json:"id,omitempty"`
 	// AdID 广告计划ID
-	AdID model.FlexUint64 `json:"ad_id,omitempty"`
+	AdID model.Uint64 `json:"ad_id,omitempty"`
 	// AdvertiserID 广告主ID
-	AdvertiserID model.FlexUint64 `json:"advertiser_id,omitempty"`
+	AdvertiserID model.Uint64 `json:"advertiser_id,omitempty"`
 	// Title 创意素材标题
 	Title string `json:"title,omitempty"`
 	// Status 创意状态

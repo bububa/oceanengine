@@ -134,7 +134,7 @@ type VideoMaterial struct {
 	// ItemID 抖音短视频ID
 	ItemID string `json:"item_id,omitempty"`
 	// MaterialID 素材ID
-	MaterialID model.FlexUint64 `json:"material_id,omitempty"`
+	MaterialID model.Uint64 `json:"material_id,omitempty"`
 	// MaterialStatus 素材审核状态，枚举值：
 	// MATERIAL_STATUS_OK 投放中、MATERIAL_STATUS_DELETE 已删除、MATERIAL_STATUS_PROJECT_OFFLINE_BUDGET 项目超出预算、MATERIAL_STATUS_PROJECT_PREOFFLINE_BUDGET 项目接近预算、MATERIAL_STATUS_TIME_NO_REACH 未到达投放时间、MATERIAL_STATUS_TIME_DONE 已完成、MATERIAL_STATUS_NO_SCHEDULE 不在投放时段、MATERIAL_STATUS_AUDIT 新建审核中、MATERIAL_STATUS_REAUDIT 修改审核中、MATERIAL_STATUS_OFFLINE_AUDIT 审核不通过、MATERIAL_STATUS_OFFLINE_BUDGET 广告超出预算、MATERIAL_STATUS_ OFFLINE_BALANCE 账户余额不足、MATERIAL_STATUS_ PREOFFLINE_BUGDET 广告接近预算、MATERIAL_STATUS_PROJECT_DISABLE 已被项目暂停、MATERIAL_STATUS_DISABLE 已暂停、MATERIAL_STATUS_PROMOTION_DISABLE 已被广告暂停、MATERIAL_STATUS_MATERIAL_DELETE 已删除
 	MaterialStatus enum.MaterialStatus `json:"material_status,omitempty"`
@@ -153,7 +153,7 @@ type Image struct {
 	// ImageID 图片ID
 	ImageID string `json:"image_id,omitempty"`
 	// MaterialID 素材ID
-	MaterialID model.FlexUint64 `json:"material_id,omitempty"`
+	MaterialID model.Uint64 `json:"material_id,omitempty"`
 	// MaterialStatus 素材审核状态，枚举值：
 	// MATERIAL_STATUS_OK 投放中、MATERIAL_STATUS_DELETE 已删除、MATERIAL_STATUS_PROJECT_OFFLINE_BUDGET 项目超出预算、MATERIAL_STATUS_PROJECT_PREOFFLINE_BUDGET 项目接近预算、MATERIAL_STATUS_TIME_NO_REACH 未到达投放时间、MATERIAL_STATUS_TIME_DONE 已完成、MATERIAL_STATUS_NO_SCHEDULE 不在投放时段、MATERIAL_STATUS_AUDIT 新建审核中、MATERIAL_STATUS_REAUDIT 修改审核中、MATERIAL_STATUS_OFFLINE_AUDIT 审核不通过、MATERIAL_STATUS_OFFLINE_BUDGET 广告超出预算、MATERIAL_STATUS_ OFFLINE_BALANCE 账户余额不足、MATERIAL_STATUS_ PREOFFLINE_BUGDET 广告接近预算、MATERIAL_STATUS_PROJECT_DISABLE 已被项目暂停、MATERIAL_STATUS_DISABLE 已暂停、MATERIAL_STATUS_PROMOTION_DISABLE 已被广告暂停、MATERIAL_STATUS_MATERIAL_DELETE 已删除
 	MaterialStatus enum.MaterialStatus `json:"material_status,omitempty"`

@@ -8,7 +8,7 @@ import (
 // AdSuggestion 诊断建议
 type AdSuggestion struct {
 	// AdID 计划id
-	AdID model.FlexUint64 `json:"ad_id,omitempty"`
+	AdID model.Uint64 `json:"ad_id,omitempty"`
 	// SceneList 计划对应的场景列表
 	SceneList []SuggestScene `json:"scene_list,omitempty"`
 }

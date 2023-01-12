@@ -36,7 +36,7 @@ type CopyResponseData struct {
 // CopyResult 复制结果
 type CopyResult struct {
 	// OriginSiteID 返回复制成功的原站点id
-	OriginSiteID model.FlexUint64 `json:"origin_site_id,omitempty"`
+	OriginSiteID model.Uint64 `json:"origin_site_id,omitempty"`
 	// SiteID 返回复制成功后生成的新站点id
-	SiteID model.FlexUint64 `json:"site_id,omitempty"`
+	SiteID model.Uint64 `json:"site_id,omitempty"`
 }

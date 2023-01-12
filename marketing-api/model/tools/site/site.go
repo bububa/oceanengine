@@ -12,7 +12,7 @@ type SiteDetail struct {
 	// Bricks 具体见返回示例业务数据（新建或更新时传递的数据）
 	Bricks []Brick `json:"bricks,omitempty"`
 	// ID 站点ID
-	ID model.FlexUint64 `json:"id,omitempty"`
+	ID model.Uint64 `json:"id,omitempty"`
 	// Status 站点状态
 	Status enum.SiteStatus `json:"status,omitempty"`
 	// SiteType 建站类型
@@ -25,7 +25,7 @@ type tmpSiteDetail struct {
 	// Bricks 具体见返回示例业务数据（新建或更新时传递的数据）
 	Bricks []json.RawMessage `json:"bricks,omitempty"`
 	// ID 站点ID
-	ID model.FlexUint64 `json:"id,omitempty"`
+	ID model.Uint64 `json:"id,omitempty"`
 	// Status 站点状态
 	Status enum.SiteStatus `json:"status,omitempty"`
 	// SiteType 建站类型
@@ -37,7 +37,7 @@ type tmpSiteDetail struct {
 // Site 站点信息
 type Site struct {
 	// SiteID 站点ID
-	SiteID model.FlexUint64 `json:"siteId,omitempty"`
+	SiteID model.Uint64 `json:"siteId,omitempty"`
 	// Name 建站名称
 	Name string `json:"name,omitempty"`
 	// Status 站点状态
