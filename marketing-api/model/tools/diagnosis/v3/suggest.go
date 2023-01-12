@@ -8,7 +8,7 @@ import (
 // AdSuggestion 诊断建议
 type AdSuggestion struct {
 	// PromotionID 计划id
-	PromotionID model.FlexUint64 `json:"promotion_id,omitempty"`
+	PromotionID model.Uint64 `json:"promotion_id,omitempty"`
 	// SceneList 计划对应的场景列表
 	SceneList []diagnosis.SuggestScene `json:"scene_list,omitempty"`
 }

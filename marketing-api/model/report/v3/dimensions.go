@@ -39,7 +39,7 @@ type Dimensions struct {
 
 type CustomDimensions struct {
 	// StatTimeHour 细分到每个小时的数据
-	StatTimeHour int `json:"stat_time_hour,omitempty"`
+	StatTimeHour string `json:"stat_time_hour,omitempty"`
 	// StatTimeDay 细分到自然天的数据
 	StatTimeDay string `json:"stat_time_day,omitempty"`
 	// StatTimeWeek 细分到自然周的数据，周一到周日为一整周
@@ -47,7 +47,7 @@ type CustomDimensions struct {
 	// StatTimeMonth 细分到自然月的数据，例如2022-3，表示是3月1日到3月31日
 	StatTimeMonth string `json:"stat_time_month,omitempty"`
 	// CdpProjectID 项目ID
-	CdpProjectID model.FlexUint64 `json:"cdp_project_id,omitempty"`
+	CdpProjectID model.Uint64 `json:"cdp_project_id,omitempty"`
 	// CdpProjectName 项目的名称
 	CdpProjectName string `json:"cdp_project_name,omitempty"`
 	// LandingType 对应项目的推广目的
@@ -67,13 +67,13 @@ type CustomDimensions struct {
 	// DeliveryMode 投放模式
 	DeliveryMode enum.AdDeliveryRange `json:"delivery_mode,omitempty"`
 	// CdpPromotionID 广告ID
-	CdpPromotionID model.FlexUint64 `json:"cdp_promotion_id,omitempty"`
+	CdpPromotionID model.Uint64 `json:"cdp_promotion_id,omitempty"`
 	// CdpPromotionName 对应广告的名称
 	CdpPromotionName string `json:"cdp_promotion_name,omitempty"`
 	// AdPlatformCdpPromotionBid 在广告中设置的出价
-	AdPlatformCdpPromotionBid float64 `json:"ad_platform_cdp_promotion_bid,omitempty"`
+	AdPlatformCdpPromotionBid model.Float64 `json:"ad_platform_cdp_promotion_bid,omitempty"`
 	// AdPlatformCdpPromotionDeepCpaBid 在广告中设置的深度转化出价
-	AdPlatformCdpPromotionDeepCpaBid float64 `json:"ad_platform_cdp_promotion_roi_goal,omitempty"`
+	AdPlatformCdpPromotionDeepCpaBid model.Float64 `json:"ad_platform_cdp_promotion_roi_goal,omitempty"`
 	// AppCode 您所投放的广告数据中，对应的首选广告位
 	AppCode int `json:"app_code,omitempty"`
 	// PackageName 您在项目中设置的应用包包名
@@ -91,7 +91,7 @@ type CustomDimensions struct {
 	// CityName 您所投放的广告数据，对应的用户城市信息
 	CityName string `json:"city_name,omitempty"`
 	// MaterialID 素材的ID
-	MaterialID model.FlexUint64 `json:"material_id,omitempty"`
+	MaterialID model.Uint64 `json:"material_id,omitempty"`
 	// AdPlatformMaterialContent 对应的素材标题、视频及图片内容
 	AdPlatformMaterialContent string `json:"ad_platform_material_content,omitempty"`
 	// ImageMode 对应的素材类型，包括标题、大图横图、竖版视频等

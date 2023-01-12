@@ -5,24 +5,24 @@ import "github.com/bububa/oceanengine/marketing-api/model"
 // Clue 线索
 type Clue struct {
 	// ClueID 线索ID
-	ClueID model.FlexUint64 `json:"clue_id,omitempty"`
+	ClueID model.Uint64 `json:"clue_id,omitempty"`
 	// AdvertiserID 广告主ID
-	AdvertiserID model.FlexUint64 `json:"advertiser_id,omitempty"`
+	AdvertiserID model.Uint64 `json:"advertiser_id,omitempty"`
 	// AdvertiserName 广告主名
 	AdvertiserName string `json:"advertiser_name,omitempty"`
 	// AdID 计划ID
-	AdID model.FlexUint64 `json:"ad_id,omitempty"`
+	AdID model.Uint64 `json:"ad_id,omitempty"`
 	// AdName 计划名
 	AdName string `json:"ad_name,omitempty"`
 	// CreativeID 广告创意id
-	CreativeID model.FlexUint64 `json:"creative_id,omitempty"`
+	CreativeID model.Uint64 `json:"creative_id,omitempty"`
 	// PromotionName 体验版广告名称
 	PromotionName string `json:"promotion_name,omitempty"`
 	// PromotionID 体验版广告ID
 	// 注意：体验版广告信息与计划/创意信息互斥，不会同时返回
 	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// SiteID 站点ID
-	SiteID model.FlexUint64 `json:"site_id,omitempty"`
+	SiteID model.Uint64 `json:"site_id,omitempty"`
 	// SiteName 站点名称
 	SiteName string `json:"site_name,omitempty"`
 	// IntentionEstimation 线索意向。拉取到线索后，intention_estimation的获取会有约 10 分钟延迟；建议 10 分钟后重新拉取并和该条线索进行匹配
@@ -40,7 +40,7 @@ type Clue struct {
 	// ModuleName 组件名字
 	ModuleName string `json:"module_name,omitempty"`
 	// ModuleID 组件ID
-	ModuleID model.FlexUint64 `json:"module_id,omitempty"`
+	ModuleID model.Uint64 `json:"module_id,omitempty"`
 	// CreateTime 线索创建时间，如：2020-04-29
 	CreateTime string `json:"create_time,omitempty"`
 	// CreateTimeDetail 线索创建时间，如：2020-04-29 00:00:00

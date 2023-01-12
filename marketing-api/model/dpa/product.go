@@ -71,11 +71,11 @@ type Product struct {
 	// ThirdCategory 商品所处三级行业
 	ThirdCategory string `json:"third_category,omitempty"`
 	// FirstCategoryID 商品所处一级行业 ID
-	FirstCategoryID model.FlexUint64 `json:"first_category_id,omitempty"`
+	FirstCategoryID model.Uint64 `json:"first_category_id,omitempty"`
 	// SubCategoryID 商品所处二级行业 ID
-	SubCategoryID model.FlexUint64 `json:"sub_category_id,omitempty"`
+	SubCategoryID model.Uint64 `json:"sub_category_id,omitempty"`
 	// ThirdCategoryID 商品所处三级行业 ID
-	ThirdCategoryID model.FlexUint64 `json:"third_category_id,omitempty"`
+	ThirdCategoryID model.Uint64 `json:"third_category_id,omitempty"`
 	// BrandName 商品名称
 	BrandName string `json:"brand_name,omitempty"`
 	// Tags 商品标签

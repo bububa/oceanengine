@@ -11,7 +11,7 @@ import (
 // ComponentInfo 组件信息
 type ComponentInfo struct {
 	// ComponentID 组件ID
-	ComponentID model.FlexUint64 `json:"component_id,omitempty"`
+	ComponentID model.Uint64 `json:"component_id,omitempty"`
 	// ComponentType 组件类型
 	ComponentType enum.ComponentType `json:"component_type,omitempty"`
 	// ComponentName 组件名称。长度小于等于20。一个中文长度为2
@@ -26,7 +26,7 @@ type ComponentInfo struct {
 
 type tmpComponentInfo struct {
 	// ComponentID 组件ID
-	ComponentID model.FlexUint64 `json:"component_id,omitempty"`
+	ComponentID model.Uint64 `json:"component_id,omitempty"`
 	// ComponentType 组件类型
 	ComponentType enum.ComponentType `json:"component_type,omitempty"`
 	// ComponentName 组件名称。长度小于等于20。一个中文长度为2

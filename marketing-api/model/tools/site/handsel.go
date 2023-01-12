@@ -38,9 +38,9 @@ type HandselResponseData struct {
 // HandselResult 转赠结果
 type HandselResult struct {
 	// OriginSiteID 返回转赠成功的原site_ids
-	OriginSiteID model.FlexUint64 `json:"origin_site_id,omitempty"`
+	OriginSiteID model.Uint64 `json:"origin_site_id,omitempty"`
 	// SiteID 转赠成功后的生成的新站点id，失败的数据无此参数返回
-	SiteID model.FlexUint64 `json:"site_id,omitempty"`
+	SiteID model.Uint64 `json:"site_id,omitempty"`
 	// TargetAdvertiserID 返回转赠成功的目标广告主id
-	TargetAdvertiserID model.FlexUint64 `json:"target_advertiser_id,omitempty"`
+	TargetAdvertiserID model.Uint64 `json:"target_advertiser_id,omitempty"`
 }

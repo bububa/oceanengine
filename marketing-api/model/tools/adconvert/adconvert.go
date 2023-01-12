@@ -18,7 +18,7 @@ type AdConvert struct {
 // ExternalAction 转化来源下的转化目标
 type ExternalAction struct {
 	// ConvertID 转化目标ID，返回自定义转化目标ID，预定义转化目标返回为Null，对应数字值可根据external_action参考【枚举值-转化类型】
-	ConvertID model.FlexUint64 `json:"convert_id,omitempty"`
+	ConvertID model.Uint64 `json:"convert_id,omitempty"`
 	// ActionTrackURL 转化监测连接
 	ActionTrackURL string `json:"action_track_url,omitempty"`
 	// Disabled 转化是否禁用,true 表示已经禁用，false 表示可用

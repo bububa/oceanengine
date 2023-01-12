@@ -13,7 +13,9 @@ type UpdateRequest struct {
 	// Name 广告名称，长度是1-50个字（两个英文字符占1个字）。名称不可重复
 	Name string `json:"name,omitempty"`
 	// PromotionMaterials 广告素材组合
-	PromotionMaterials []PromotionMaterial `json:"promotion_materials,omitempty"`
+	PromotionMaterials *PromotionMaterial `json:"promotion_materials,omitempty"`
+	// NativeSetting 原生广告设置
+	NativeSetting *NativeSetting `json:"native_setting,omitempty"`
 	// Source 广告来源，字数限制：[1-10]
 	// 当landing_type = LINK、MICRO_GAME时必填
 	Source string `json:"source,omitempty"`
