@@ -116,9 +116,9 @@ type DeliveryRange struct {
 	// InventoryCatalog 广告位大类，枚举值： MANUAL 首选媒体，UNIVERSAL_SMART 通投智选
 	InventoryCatalog enum.InventoryCatalog `json:"inventory_catalog,omitempty"`
 	// InventoryType 广告投放位置（首选媒体)
-	InventoryType enum.StatInventoryType `json:"inventory_type,omitempty"`
+	InventoryType []enum.StatInventoryType `json:"inventory_type,omitempty"`
 	// UnionVideoType 投放形式（穿山甲视频创意类型），枚举值：ORIGINAL_VIDEO 原生视频、REWARDED_VIDEO 激励视频、SPLASH_VIDEO 开屏视频
-	UnionVideoType enum.UnionVideoType `json:"union_video_type,omitempty"`
+	UnionVideoType *enum.UnionVideoType `json:"union_video_type,omitempty"`
 }
 
 // Audience 定向设置
