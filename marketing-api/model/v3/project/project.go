@@ -223,7 +223,7 @@ type DeliverySetting struct {
 	// BudgetMode 项目预算类型， 枚举值：BUDGET_MODE_INFINITE 不限、BUDGET_MODE_DAY 日预算
 	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// Budget 项目预算
-	Budget string `json:"budget,omitempty"`
+	Budget float64 `json:"budget,omitempty"`
 }
 
 // TrackURLSetting 监测链接设置
