@@ -17,7 +17,9 @@ type CreateRequest struct {
 	// Operation 广告状态， 允许值: ENABLE开启(默认值）、DISABLE关闭
 	Operation enum.OptStatus `json:"operation,omitempty"`
 	// PromotionMaterials 广告素材组合
-	PromotionMaterials []PromotionMaterial `json:"promotion_materials,omitempty"`
+	PromotionMaterials *PromotionMaterial `json:"promotion_materials,omitempty"`
+	// NativeSetting 原生广告设置
+	NativeSetting *NativeSetting `json:"native_setting,omitempty"`
 	// Source 广告来源，字数限制：[1-10]
 	// 当landing_type = LINK、MICRO_GAME时必填
 	Source string `json:"source,omitempty"`

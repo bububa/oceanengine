@@ -30,6 +30,10 @@ type ListFilter struct {
 	IDs []uint64 `json:"ids,omitempty"`
 	// Name 广告名称，长度是1-50个字（两个英文字符占1个字，该字段采取模糊查询的方式）
 	Name string `json:"name,omitempty"`
+	// ProjectID 按项目id过滤
+	ProjectID uint64 `json:"project_id,omitempty"`
+	// DeliveryMode 投放模式，允许值：MANUAL手动投放 (默认值），PROCEDURAL自动投放
+	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
 	// Status 广告状态过滤，允许值：
 	// NOT_DELETED 不限 、ALL 不限（包含已删除）、OK 投放中、DELETED 已删除、PROJECT_OFFLINE_BUDGET 项目超出预算、PROJECT_PREOFFLINE_BUDGET 项目接近预算、TIME_NO_REACH 未到达投放时间、TIME_DONE 已完成、NO_SCHEDULE 不在投放时段、AUDIT 新建审核中、REAUDIT 修改审核中、FROZEN 已终止、AUDIT_DENY 审核不通过、OFFLINE_BUDGET 广告超出预算、OFFLINE_BALANCE 账户余额不足、PREOFFLINE_BUDGET 广告接近预算、DISABLED 已暂停、PROJECT_DISABLED 已被项目暂停、LIVE_ROOM_OFF 关联直播间不可投、PRODUCT_OFFLINE 关联商品不可投，、AWEME_ACCOUNT_DISABLED 关联抖音账号不可投、AWEME_ANCHOR_DISABLED 锚点不可投、DISABLE_BY_QUOTA 已暂停（配额达限）
 	Status enum.PromotionStatus `json:"status,omitempty"`

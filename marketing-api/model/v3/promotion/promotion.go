@@ -27,8 +27,10 @@ type Promotion struct {
 	Status enum.PromotionStatus `json:"status,omitempty"`
 	// OptStatus 操作状态
 	OptStatus enum.OptStatus `json:"opt_status,omitempty"`
+	// NativeSetting 原生广告设置
+	NativeSetting *NativeSetting `json:"native_setting,omitempty"`
 	// PromotionMaterials 广告素材组合
-	PromotionMaterials []PromotionMaterial `json:"promotion_materials,omitempty"`
+	PromotionMaterials *PromotionMaterial `json:"promotion_materials,omitempty"`
 	// Source 广告来源
 	Source string `json:"source,omitempty"`
 	// Budget 预算
@@ -84,18 +86,10 @@ func (p Promotion) GetDeepCpaBid() float64 {
 }
 
 func (p Promotion) GetExternalURLs() []string {
-	var list []string
-	mp := make(map[string]struct{})
-	for _, m := range p.PromotionMaterials {
-		for _, l := range m.ExternalURLMaterialList {
-			if _, found := mp[l]; found {
-				continue
-			}
-			list = append(list, l)
-			mp[l] = struct{}{}
-		}
+	if p.PromotionMaterials == nil {
+		return nil
 	}
-	return list
+	return p.PromotionMaterials.ExternalURLMaterialList
 }
 
 func (p Promotion) IsProject() bool {
@@ -118,6 +112,11 @@ type PromotionMaterial struct {
 	WebURLMaterialList []string `json:"web_url_material_list,omitempty"`
 	// PlayableURLMaterialList 试玩落地页素材
 	PlayableURLMaterialList []string `json:"playable_url_material_list,omitempty"`
+	// OpenURL 直达链接，用于打开电商app，调起店铺
+	// 仅在电商店铺推广目的下有效
+	OpenURL string `json:"open_url,omitempty"`
+	// Ulink 直达备用链接，支持穿山甲和站内广告位
+	Ulink string `json:"ulink,omitempty"`
 	// ProductInfo 产品信息
 	ProductInfo *ProductInfo `json:"product_info,omitempty"`
 	// CallToActionButtons 行动号召文案
@@ -204,4 +203,19 @@ type LowQualityMaterial struct {
 	LowQualityVideoIDs []string `json:"low_quality_video_ids,omitempty"`
 	// LowQualityImageIDs 低质图片素材
 	LowQualityImageIDs []string `json:"low_quality_image_ids,omitempty"`
+}
+
+// NativeSetting 原生广告设置
+type NativeSetting struct {
+	// AwemeID 授权抖音号id，可通过【获取抖音号授权关系】接口获得
+	// 当传入抖音号表示原生广告开启
+	AwemeID string `json:"aweme_id,omitempty"`
+	// IsFeedAndFavSee 主页作品列表隐藏广告内容
+	// 允选值：OFF（不隐藏），ON（隐藏）
+	// 默认值：OFF
+	IsFeedAndFavSee string `json:"is_feed_and_fav_see,omitempty"`
+	// AnchorRelatedType 原生锚点启用开关，允许值:
+	// 不启用 OFF，自动生成 AUTO，手动选择 SELECT
+	// 默认值为 OFF
+	AnchorRelatedType string `json:"anchor_related_type,omitempty"`
 }
