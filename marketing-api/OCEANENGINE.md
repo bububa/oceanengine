@@ -125,6 +125,7 @@
     - 广告数据报表 [ PromotionGet(clt *core.SDKClient, accessToken string, req *v3.PromotionGetRequest) (*v3.PromotionGetResult, error) ]
     - 素材数据报表 [ MaterialGet(clt *core.SDKClient, accessToken string, req *v3.MaterialGetRequest) (*v3.MaterialGetResult, error) ]
     - 自定义报表 [ CustomGet(clt *core.SDKClient, accessToken string, req *v3.CustomGetRequest) (*v3.CustomGetResult, error) ]
+    - 获取自定义报表可用指标和维度 [ CustomConfigGet(clt *core.SDKClient, accessToken string, req *v3.CustomConfigGetRequest) ([]v3.CustomConfig, error) ]
 - DMP 人群管理 (api/dmp)
   - 数据源文件上传 [ datasource.FileUpload(clt *core.SDKClient, accessToken string, req *datasource.FileUploadRequest) (string, error) ]
   - 数据源创建 [ datasource.Create(clt *core.SDKClient, accessToken string, req *datasource.CreateRequest) (string, error) ]
