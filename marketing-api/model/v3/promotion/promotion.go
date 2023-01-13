@@ -198,7 +198,7 @@ type MaterialScoreInfo struct {
 	// MaterialAdvice 素材评级建议
 	MaterialAdvice []string `json:"material_advice,omitempty"`
 	// LowQualityMaterialList 低质素材信息
-	LowQualityMaterialList []LowQualityMaterial `json:"low_quality_material_list,omitempty"`
+	LowQualityMaterialList *LowQualityMaterial `json:"low_quality_material_list,omitempty"`
 }
 
 // LowQualityMaterial 低质素材信息
