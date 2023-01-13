@@ -34,7 +34,7 @@ type Promotion struct {
 	// IsCommentDisable 广告评论，ON为启用，OFF为不启用
 	IsCommentDisable int `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
-	AdDownloadStatus string `json:"ad_download_status,omitempty"`
+	AdDownloadStatus int `json:"ad_download_status,omitempty"`
 	// Source 广告来源
 	Source string `json:"source,omitempty"`
 	// Budget 预算
