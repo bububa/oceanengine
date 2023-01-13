@@ -142,7 +142,7 @@ type Audience struct {
 	// Gender 性别， 详见【附录-受众性别】
 	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// Age 年龄， 详见【附录-受众年龄区间】
-	Age enum.AudienceAge `json:"age,omitempty"`
+	Age *[]enum.AudienceAge `json:"age,omitempty"`
 	// RetargetingTageInclude 定向人群包列表（自定义人群）
 	RetargetingTagsInclude *[]uint64 `json:"retargeting_tags_include,omitempty"`
 	// RetargetingTagsExclude 排除人群包列表（自定义人群）
@@ -162,7 +162,7 @@ type Audience struct {
 	// InterestWords 兴趣关键词
 	InterestWords *[]uint64 `json:"interest_words,omitempty"`
 	// AwemeFanBehaviors 抖音达人互动用户行为类型, 详见【附录-抖音用户行为类型】
-	AwemeFanBehaviors *[]string `json:"aweme_fan_behaviors,omitempty"`
+	AwemeFanBehaviors *[]enum.Behavior `json:"aweme_fan_behaviors,omitempty"`
 	// AwemeFanTimeScope 抖音达人互动行为时间范围，枚举值：FIFTEEN_DAYS 15天、THIRTY_DAYS 30天、SIXTY_DAYS 60天
 	AwemeFanTimeScope string `json:"aweme_fan_time_scope,omitempty"`
 	// AwemeFanCategories 抖音达人分类ID列表，可通过【工具-抖音达人-查询抖音类目列表】接口获取
@@ -176,13 +176,13 @@ type Audience struct {
 	// ExcludeFlowPackage 排除定向逻辑，可通过【工具-穿山甲流量包-获取穿山甲流量包】
 	ExcludeFlowPackage *[]uint64 `json:"exclude_flow_package,omitempty"`
 	// Platform 投放平台列表，枚举值：ANDROID、IOS
-	Platform enum.AudiencePlatform `json:"platform,omitempty"`
+	Platform *[]enum.AudiencePlatform `json:"platform,omitempty"`
 	// AndroidOsv 最低安卓版本
 	AndroidOsv string `json:"android_osv,omitempty"`
 	// IosOsv 最低IOS版本
 	IosOsv string `json:"ios_osv,omitempty"`
 	// DeviceType 设备类型，枚举值：MOBILE、PAD
-	DeviceType string `json:"device_type,omitempty"`
+	DeviceType *[]string `json:"device_type,omitempty"`
 	// Ac 网络类型, 详见【附录-受众网络类型】
 	Ac *[]string `json:"ac,omitempty"`
 	// Carrier 运营商, 详见【附录-受众运营商类型】
