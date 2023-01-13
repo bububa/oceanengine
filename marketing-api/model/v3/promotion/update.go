@@ -17,7 +17,7 @@ type UpdateRequest struct {
 	// NativeSetting 原生广告设置
 	NativeSetting *NativeSetting `json:"native_setting,omitempty"`
 	// IsCommentDisable 广告评论，ON为启用，OFF为不启用
-	IsCommentDisable string `json:"is_comment_disable,omitempty"`
+	IsCommentDisable int `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
 	AdDownloadStatus string `json:"ad_download_status,omitempty"`
 	// Source 广告来源，字数限制：[1-10]
