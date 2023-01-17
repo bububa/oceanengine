@@ -47,3 +47,22 @@ func (f64 *Float64) UnmarshalJSON(b []byte) (err error) {
 	*f64 = Float64(i)
 	return
 }
+
+type OnOffInt int
+
+func (ooi *OnOffInt) UnmarshalJSON(b []byte) (err error) {
+	str := string(b)
+	var i int
+	if str == "ON" {
+		i = 1
+	} else if str == "OFF" {
+		i = 0
+	} else {
+		if b[0] == '"' && b[len(b)-1] == '"' {
+			b = b[1 : len(b)-1]
+		}
+		i, _ = strconv.Atoi(str)
+	}
+	*ooi = OnOffInt(i)
+	return nil
+}
