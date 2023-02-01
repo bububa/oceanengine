@@ -248,7 +248,7 @@ type Ad struct {
 	// AutoUpdateKeyword 是否开启自动加词，ON 开启、OFF 关闭
 	AutoUpdateKeyword string `json:"auto_update_keyword,omitempty"`
 	// LandingPageStayTime 店铺停留时长，单位为毫秒
-	LandingPageStayTime int64 `json:"landing_page_stay_time,omitempty"`
+	LandingPageStayTime int `json:"landing_page_stay_time,omitempty"`
 	// TargetCvr 目标转化率
 	TargetCvr float64 `json:"target_cvr,omitempty"`
 }

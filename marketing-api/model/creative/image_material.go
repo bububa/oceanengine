@@ -13,7 +13,7 @@ type ImageMaterial struct {
 	// ImageInfo 图片素材信息
 	ImageInfo *ImageInfoWrapper `json:"image_info,omitempty"`
 	// TemplateImage 图片模版信息，创建DPA创意时可传入,选择模板后image_info传入内容无效
-	TemplateImage *TemplateImage `json:"template_imate,omitempty"`
+	TemplateImage *TemplateImage `json:"template_image,omitempty"`
 }
 
 // ImageInfoWrapper image_info wrapper
