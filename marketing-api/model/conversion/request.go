@@ -230,7 +230,7 @@ type Properties struct {
 	// Gender 用户性别
 	Gender int `json:"gender,omitempty"`
 	// OrderID 订单id；建议按照淘宝订单中的父订单（tid）进行回传；系统会根据订单id辅助去重提升归因准确性
-	OrderID uint64 `json:"order_id,omitempty"`
+	OrderID string `json:"order_id,omitempty"`
 	// OrderState 订单状态
 	OrderState string `json:"order_state,omitempty"`
 	// ReceiverProvince 收货人所在的省份；当phone_num_blurred值为*******1234类型时必填
