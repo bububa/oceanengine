@@ -14,6 +14,8 @@ type AdData struct {
 	AdKeywords []string `json:"ad_keywords,omitempty"`
 	// Source 广告来源，4-20个字符，当推广目的为非应用下载或者应用下载且download_type为"EXTERNAL_URL时"时必填
 	Source string `json:"source,omitempty"`
+	// EnableSmartSource 是否开启来源智能生成，允许值：ON 开启，OFF 关闭
+	EnableSmartSource string `json:"enable_smart_source,omitempty"`
 	// IesCoreUserID 品牌主页-推广抖音号，当传入此字段时表示开启抖音主页。广告视频将同步到您的主页下，在客户端点击广告头像将进入您的主页。创建后不可修改。
 	IesCoreUserID string `json:"ies_core_user_id,omitempty"`
 	// IsPresentedVideo 自动生成视频素材，利用已上传的图片与视频生成更多优质的短视频素材：1（启用），0（不启用）默认值: 0
