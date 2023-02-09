@@ -257,8 +257,6 @@ type CustomMetrics struct {
 	AttributionGameInAppRoi7Days model.Float64 `json:"attribution_game_in_app_roi_7days,omitempty"`
 	// AttributionGameInAppRoi8Days 所选时间范围内的激活用户在激活后七日内的整体付费ROI，计算公式是：激活后七日付费金额/所选时间的消耗。
 	AttributionGameInAppRoi8Days model.Float64 `json:"attribution_game_in_app_roi_8days,omitempty"`
-	// AttributionDayActivePayCount 广告计费当日激活且首次付费的次数
-	AttributionDayActivePayCount model.Int64 `json:"attribution_day_acitve_pay_count,omitempty"`
 	// AttributionDayActivePayCost 消耗/计费当日激活且首次付费数
 	AttributionDayActivePayCost model.Float64 `json:"attribution_day_active_pay_cost,omitempty"`
 	// AttributionDayActivePayRate 计费当日激活且首次付费数/激活数
