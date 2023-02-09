@@ -26,6 +26,6 @@ type CreateResponse struct {
 	// Data json返回值
 	Data struct {
 		// SiteID 站点id
-		SiteID uint64 `json:"site_id,omitempty"`
+		SiteID string `json:"site_id,omitempty"`
 	} `json:"data,omitempty"`
 }

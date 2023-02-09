@@ -20,6 +20,8 @@ type LandingPage struct {
 // QuickApp 快应用数据
 type QuickApp struct {
 	AssetBaseInfo
+	// Name 快应用名称，长度限制为20，一个字符长度为1
+	Name string `json:"name,omitempty"`
 	// PackageName 快应用包名
 	PackageName string `json:"package_name,omitempty"`
 }
@@ -27,6 +29,10 @@ type QuickApp struct {
 // App 应用数据
 type App struct {
 	AssetBaseInfo
+	// Name 快应用名称，长度限制为20，一个字符长度为1
+	Name string `json:"name,omitempty"`
+	// AppName 应用名
+	AppName string `json:"app_name,omitempty"`
 	// AppType 应用类型
 	AppType string `json:"app_type,omitempty"`
 	// DownloadURL 应用下载链接

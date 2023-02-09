@@ -3,6 +3,7 @@ package site
 import (
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/tools/site"
+	"strconv"
 )
 
 // Create 创建橙子建站站点
@@ -12,7 +13,7 @@ import (
 // ①DownloadEvent类型的按钮组件可以填入安卓/IOS下载链接
 // 除以上情况外其他建站组件中的URL参数都不允许填入应用下载链接，如果填入将会创建失败。
 
-// 此接口为创建橙子建站站点，如需进行发布请调用【更改橙子建站站点状态】接口将站点及其落地页发布到线上，未发布则保存在本地，无法使用！
+// Create 此接口为创建橙子建站站点，如需进行发布请调用【更改橙子建站站点状态】接口将站点及其落地页发布到线上，未发布则保存在本地，无法使用！
 // 图片大小需要在2M之内，否则会报错！
 // 创建完成后会返回建站id，建站地址可由如下格式拼装得到：https://www.chengzijianzhan.com/tetris/page/XXXXXXXXXXXXX/（其中XX是建站ID，拼装后就可获得在广告投放流程中使用的投放的URL，以及预览URL）！
 // 快应用链接仅支持以下三类
@@ -24,5 +25,5 @@ func Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (u
 	if err := clt.Post("2/tools/site/create/", req, &resp, accessToken); err != nil {
 		return 0, err
 	}
-	return resp.Data.SiteID, nil
+	return strconv.ParseUint(resp.Data.SiteID, 10, 64)
 }
