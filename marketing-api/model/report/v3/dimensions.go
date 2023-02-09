@@ -59,7 +59,7 @@ type CustomDimensions struct {
 	// DeepExternalAction 对应项目的深度转化目标
 	DeepExternalAction int `json:"deep_external_action,omitempty"`
 	// AdPlatformCdpProjectDownloadType 在项目中设置的下载方式
-	AdPlatformCdpProjectDownloadType int `json:"ad_platform_cdp_project_download_type,omitempty"`
+	AdPlatformCdpProjectDownloadType string `json:"ad_platform_cdp_project_download_type,omitempty"`
 	// AdPlatformCdpProjectDownloadURL 在项目中设置的下载链接
 	AdPlatformCdpProjectDownloadURL string `json:"ad_platform_cdp_project_download_url,omitempty"`
 	// AdPlatformCdpProjectDownloadActionTrackURL 在项目中设置的监测链接
@@ -75,7 +75,7 @@ type CustomDimensions struct {
 	// AdPlatformCdpPromotionDeepCpaBid 在广告中设置的深度转化出价
 	AdPlatformCdpPromotionDeepCpaBid model.Float64 `json:"ad_platform_cdp_promotion_roi_goal,omitempty"`
 	// AppCode 您所投放的广告数据中，对应的首选广告位
-	AppCode int `json:"app_code,omitempty"`
+	AppCode string `json:"app_code,omitempty"`
 	// PackageName 您在项目中设置的应用包包名
 	PackageName string `json:"package_name,omitempty"`
 	// Gender 您所投放的广告数据中，对应的用户性别。无法识别的性别数据会显示为“其他”

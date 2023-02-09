@@ -14,6 +14,8 @@ import (
 type CustomGetRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// DateTopic 数据主题
+	DataTopic string `json:"data_topic"`
 	// Dimensions 维度列表。获取方式：巨量引擎体验版—>报表—>新建/编辑自定义报表—>API参数生成。该字段从前端自定义报表中获取，建议不要修改。
 	Dimensions []string `json:"dimensions,omitempty"`
 	// Metrics 指标列表 。获取方式：巨量引擎体验版—>报表—>新建/编辑自定义报表—>API参数生成。该字段从前端自定义报表中获取，建议不要修改。
@@ -73,6 +75,9 @@ func (r CustomGetRequest) Encode() string {
 	values.Set("end_time", r.EndTime.Format("2006-01-02"))
 	if r.AdvertiserID > 0 {
 		values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	}
+	if len(r.DataTopic) > 0 {
+		values.Set("data_topic", r.DataTopic)
 	}
 	if len(r.Dimensions) > 0 {
 		fields, _ := json.Marshal(r.Dimensions)
