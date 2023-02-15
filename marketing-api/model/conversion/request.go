@@ -103,7 +103,7 @@ type ContextApp struct {
 
 // Properties 附加属性
 type Properties struct {
-	// PayAmount 支付金额
+	// PayAmount 支付金额, 单位分
 	PayAmount float64 `json:"pay_amount,omitempty"`
 	// BillTrackType 支付方式
 	BillTrackType enum.ConversionBillTrackType `json:"bill_track_type,omitempty"`
@@ -239,6 +239,10 @@ type Properties struct {
 	ReceiverCity string `json:"receiver_city,omitempty"`
 	// AdzoneID 推广位id，即通过新淘客创建追踪链接时，选择的推广位管理下的推广位名称对应的ID，同时也是pid=mm_1_2_3中的“3”这段数字
 	AdzoneID uint64 `json:"adzone_id,omitempty"`
+	// TecAgent 数据回传身份, 回传公司主体名称
+	TecAgent string `json:"tec_agent,omitempty"`
+	// EcomPlatform 来源平台（PDD TB JD 微信小程序）
+	EcomPlatform string `json:"ecom_platform,omitempty"`
 }
 
 // Encode implement GetRequest interface
