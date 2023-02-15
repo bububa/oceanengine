@@ -7,7 +7,7 @@ type PageInfo struct {
 	// PageSize 每页item个数
 	PageSize int `json:"page_size,omitempty"`
 	// TotalNumber 总item个数
-	TotalNumber int64 `json:"total_number,omitempty"`
+	TotalNumber Int64 `json:"total_number,omitempty"`
 	// TotalPage 总页数
 	TotalPage int `json:"total_page,omitempty"`
 	// HasMore 是否有下一页
