@@ -22,6 +22,8 @@ type EventConvertOptimizedGoalGetRequest struct {
 	SiteID uint64 `json:"site_id,omitempty"`
 	// AssetID 三方的资产id，当asset_type为THIRD_EXTERNAL时必填
 	AssetID uint64 `json:"asset_id,omitempty"`
+	// QuickAppID 快应用id
+	QuickAppID uint64 `json:"quick_app_id,omitempty"`
 	// MiniProgramID 字节小程序资产id
 	MiniProgramID string `json:"mini_program_id,omitempty"`
 	// PackageName 应用包名称
