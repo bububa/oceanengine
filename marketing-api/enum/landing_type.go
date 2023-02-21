@@ -22,4 +22,6 @@ const (
 	ARTICLE LandingType = "ARTICLE"
 	// MICRO_GAME 小游戏
 	MICRO_GAME LandingType = "MICRO_GAME"
+	// QUICK_APP 快应用
+	QUICK_APP LandingType = "QUICK_APP"
 )
