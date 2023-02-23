@@ -110,8 +110,15 @@ type PromotionMaterial struct {
 	TitleMaterialList []TitleMaterial `json:"title_material_list,omitempty"`
 	// ComponentMaterialList 创意组件信息
 	ComponentMaterialList []ComponentMaterial `json:"component_material_list,omitempty"`
-	// ExternalURLMaterialList 普通落地页链接素材
+	// ExternalURLMaterialList 普通落地页链接素材，上限10个
+	// 当landing_type = APP ，且 download_type = EXTERNAL_URL时，external_url_material_list 至少传入一个
+	// 当landing_type = LINK和SHOP类型，且项目asset_type = ORANGE 时，仅允许传入支持对应优化目标的橙子落地页
+	// 当landing_type = LINK和SHOP类型，且项目asset_type = THIRDPARTY 时，仅允许自研落地页
+	// 当landing_type = MICRO_GAME和WECHAT_APP类型，仅支持选择含微信小程序/小游戏的橙子建站落地页且如果多选落地页，需要所有建站对应相同的微信小游戏/微信小程序，否则报错
+	// 应用直播链路和线索自研落地页直播链路不支持该字段
 	ExternalURLMaterialList []string `json:"external_url_material_list,omitempty"`
+	// MiniProgramInfo 字节小程序信息，当landing_type = MICRO_GAME且micro_promotion_type = BYTE_APP或BYTE_GAME时有效且必填
+	MiniProgramInfo *MiniProgramInfo `json:"mini_program_info,omitempty"`
 	// WebURLMaterialList Android应用下载详情页
 	WebURLMaterialList []string `json:"web_url_material_list,omitempty"`
 	// PlayableURLMaterialList 试玩落地页素材
@@ -222,4 +229,17 @@ type NativeSetting struct {
 	// 不启用 OFF，自动生成 AUTO，手动选择 SELECT
 	// 默认值为 OFF
 	AnchorRelatedType string `json:"anchor_related_type,omitempty"`
+}
+
+// MiniProgramInfo 字节小程序信息，当landing_type = MICRO_GAME且micro_promotion_type = BYTE_APP或BYTE_GAME时有效且必填
+type MiniProgramInfo struct {
+	// AppID 小程序/小游戏id，当使用 mini_program_info且url不传入时必填
+	AppID string `json:"app_id,omitempty"`
+	// StartPath 启动路径，小程序类型必传，小游戏类型不传值
+	StartPath string `json:"start_path,omitempty"`
+	// Params 页面监测参数
+	Params string `json:"params,omitempty"`
+	// URL 字节小程序调起链接，传输会检查url正确性，不传输由平台自动生成;
+	// url传入时，app_id、start_path、params无须传入
+	URL string `json:"url,omitempty"`
 }

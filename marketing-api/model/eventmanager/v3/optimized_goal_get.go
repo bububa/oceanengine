@@ -19,6 +19,10 @@ type OptimizedGoalGetRequest struct {
 	AdType enum.CampaignType `json:"ad_type,omitempty"`
 	// AssetType 资产类型，允许值:THIRD_EXTERNAL 三方落地页、TETRIS_EXTERNAL 建站、APP 应用、QUICK_APP 快应用、MINI_PROGRAME字节小程序
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
+	// MiniProgoramID 字节小程序资产id，当asset_type=MINI_PROGRAME时需传入
+	MiniProgramID string `json:"mini_program_id,omitempty"`
+	// QuickAppID 快应用id，当 landing_type = QUICK_APP 时该字段必填
+	QuickAppID string `json:"quick_app_id,omitempty"`
 	// AssetID 三方的资产id，当asset_type为THIRD_EXTERNAL时必填
 	AssetID uint64 `json:"asset_id,omitempty"`
 	// PackageName 应用包名称
@@ -37,6 +41,12 @@ func (r OptimizedGoalGetRequest) Encode() string {
 	values.Set("landing_type", string(r.LandingType))
 	values.Set("app_type", string(r.AppType))
 	values.Set("asset_type", string(r.AssetType))
+	if r.MiniProgramID != "" {
+		values.Set("mini_program_id", r.MiniProgramID)
+	}
+	if r.QuickAppID != "" {
+		values.Set("quick_app_id", r.QuickAppID)
+	}
 	if r.AssetID > 0 {
 		values.Set("asset_id", strconv.FormatUint(r.AssetID, 10))
 	}

@@ -40,7 +40,8 @@ type CreateRequest struct {
 	SubscribeURL string `json:"subscribe_url,omitempty"`
 	// AssetType 资产类型
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
-	// MicroPromotionType 小游戏类型
+	// 小程序类型，landing_type = MICRO_GAME 时有效且必填
+	// 允许值： WECHAT_GAME 微信小游戏、WECHAT_APP微信小程序、BYTE_GAME字节小游戏、BYTE_APP字节小程序
 	MicroPromotionType enum.MicroPromotionType `json:"micro_promotion_type,omitempty"`
 	// OptimizeGoal 优化目标
 	OptimizeGoal *OptimizeGoal `json:"optimize_goal,omitempty"`

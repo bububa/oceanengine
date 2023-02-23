@@ -194,6 +194,20 @@ type Audience struct {
 	HideIfConverted string `json:"hide_if_converted,omitempty"`
 	// ConvertedTimeDuration 过滤时间范围，详见 【附录-过滤时间范围】
 	ConvertedTimeDuration string `json:"converted_time_duration,omitempty"`
+	// FilterAwemeAbnormalActive 过滤高活跃用户，即过滤关注、点赞、评论行为高活跃的用户允许值：
+	// ON 过滤
+	// OFF不过滤（默认值）
+	// 当marketing_goal= LIVE 且inventory_type非仅穿山甲时，支持该字段
+	FilterAwemeAbnormalActive *model.OnOffInt `json:"filter_aweme_abnormal_active,omitempty"`
+	// FilterAwemeFansCount 过滤高关注数用户，例如"filter_aweme_fans_count": 1000表示过滤粉丝数在1000以上的用户
+	// 允许值：1000、500、200
+	// 当marketing_goal= Live 且inventory_type非仅穿山甲时，支持该字段
+	FilterAwemeFansCount int `json:"filter_aweme_fans_count,omitempty"`
+	// 过滤自己的粉丝，允许值：
+	// ON 过滤
+	// OFF不过滤（默认值）
+	// 当marketing_goal= Live 且inventory_type非仅穿山甲时，支持该字段
+	FilterOwnAwemeFans *model.OnOffInt `json:"filter_own_aweme_fans,omitempty"`
 	// DeviceBrand 手机品牌, 详见【附录-手机品牌】
 	DeviceBrand *[]string `json:"device_brand,omitempty"`
 	// LaunchPrice 手机价格，价格区间，最高11000（表示1w以上）
