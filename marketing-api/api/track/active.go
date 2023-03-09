@@ -45,13 +45,8 @@ func Active(req *track.ActiveRequest) (string, error) {
 	for k, v := range req.Ext {
 		values.Set(k, v)
 	}
-	rawQuery := values.Encode()
+	reqUrl := util.StringsJoin("https://ad.oceanengine.com/track/activate/?", values.Encode())
 	util.PutUrlValues(values)
-	builder := util.GetStringsBuilder()
-	builder.WriteString("https://ad.oceanengine.com/track/activate/?")
-	builder.WriteString(rawQuery)
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
 	resp, err := http.DefaultClient.Get(reqUrl)
 	if err != nil {
 		return reqUrl, err

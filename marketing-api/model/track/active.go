@@ -1,6 +1,9 @@
 package track
 
-import "github.com/bububa/oceanengine/marketing-api/enum"
+import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model/conversion"
+)
 
 // ActiveRequest 线索-API上报数据 API Request
 type ActiveRequest struct {
@@ -34,4 +37,18 @@ type ActiveRequest struct {
 	Caid2 string `json:"caid2,omitempty"`
 	// Ext 补充数据
 	Ext map[string]string `json:"ext,omitempty"`
+}
+
+// WxaActiveRequest 微信小程序线索-API上报数据 API Request
+type WxaActiveRequest struct {
+	// ClueToken 下发线索token
+	ClueToken string `json:"clue_token,omitempty"`
+	// UnionID 微信union_id
+	UnionID string `json:"union_id,omitempty"`
+	// OpenID 微信open_id
+	OpenID string `json:"open_id,omitempty"`
+	// EventType 事件类型
+	EventType enum.TrackEventType `json:"event_type,omitempty"`
+	// Props 参数包含pay_amount
+	Props *conversion.Properties `json:"props,omitempty"`
 }
