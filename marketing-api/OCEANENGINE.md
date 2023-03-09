@@ -42,6 +42,9 @@
     - 代理商退款 [ agent.AdvertiserRefund(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRefundRequest) (string, error) ]
     - 获取共享钱包余额 [ fund.SharedWalletFundGet(clt *core.SDKClient, accessToken string, advertiserIDs []uint64) ([]fund.SharedWalletBalance, error) ]
     - 查询账户可转余额 [ TransferableFundGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.TransferableFund, error) ]
+    - 获取可转账户列表（客户中心&广告主） [ customercenter.AdvertiserTransferableList(clt *core.SDKClient, accessToken string, req *customercenter.AdvertiserTransferableListRequest) (*customercenter.AdvertiserTransferableListData, error) ]
+    - 创建转账交易号 [ customercenter.FundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *customercenter.FundTransferSeqCreateRequest) (uint64, error) ]
+    - 提交转账交易号 [ customercenter.FundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *customercenter.FundTransferSeqCommitRequest) (uint64, error) ]
 - 广告投放
   - 广告账户预算 (api)
     - 获取账户日预算 [ advertiser.BudgetGet(clt *core.SDKClient, accessToken string, req *advertiser.BudgetGetRequest) ([]advertiser.BudgetGetResponseList, error) ]

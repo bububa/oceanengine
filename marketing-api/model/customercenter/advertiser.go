@@ -24,4 +24,6 @@ type Advertiser struct {
 	EDouyinID string `json:"e_douyin_id,omitempty"`
 	// EDouyinName 企业号名称（一个对象只会返回企业号和广告主其中一种）
 	EDouyinName string `json:"e_douyin_name,omitempty"`
+	// IsEnabled 账户状态，true为审核通过，false为审核不通过，注：账户审核通过方可进行转账
+	IsEnabled bool `json:"is_enabled,omitempty"`
 }
