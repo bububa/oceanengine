@@ -48,7 +48,7 @@ type WxaActiveRequest struct {
 	// OpenID 微信open_id
 	OpenID string `json:"open_id,omitempty"`
 	// EventType 事件类型
-	EventType enum.TrackEventType `json:"event_type,omitempty"`
+	EventType string `json:"event_type,omitempty"`
 	// Props 参数包含pay_amount
 	Props *conversion.Properties `json:"props,omitempty"`
 }
