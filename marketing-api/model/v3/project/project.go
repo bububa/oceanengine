@@ -268,13 +268,13 @@ type TrackURLSetting struct {
 	// ActionTrackURL 点击（监测链接）
 	ActionTrackURL *[]string `json:"action_track_url,omitempty"`
 	// VideoPlayEffectiveTrackURL 视频有效播放（监测链接）
-	VideoPlayEffectiveTrackURL string `json:"video_play_effective_track_url,omitempty"`
+	VideoPlayEffectiveTrackURL *[]string `json:"video_play_effective_track_url,omitempty"`
 	// VideoPlayDoneTrackURL 视频播完（监测链接）
-	VideoPlayDoneTrackURL string `json:"video_play_done_track_url,omitempty"`
+	VideoPlayDoneTrackURL *[]string `json:"video_play_done_track_url,omitempty"`
 	// VideoPlayFirstTrackURL 视频开始播放（监测链接）
-	VideoPlayFirstTrackURL string `json:"video_play_first_track_url,omitempty"`
+	VideoPlayFirstTrackURL *[]string `json:"video_play_first_track_url,omitempty"`
 	// SendType 数据发送方式，枚举值：SERVER_SEND 服务器端上传, CLIENT_SEND 客户端上传
-	SendType string `json:"send_type,omitempty"`
+	SendType enum.SendType `json:"send_type,omitempty"`
 }
 
 // Keyword 搜索关键词
