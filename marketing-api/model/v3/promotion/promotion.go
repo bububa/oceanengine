@@ -39,6 +39,8 @@ type Promotion struct {
 	Source string `json:"source,omitempty"`
 	// Budget 预算
 	Budget float64 `json:"budget,omitempty"`
+	// Bid 点击出价/展示出价
+	Bid float64 `json:"bid,omitempty"`
 	// CpaBid 目标转化出价/预期成本
 	CpaBid float64 `json:"cpa_bid,omitempty"`
 	// DeepCpaBid 深度优化出价

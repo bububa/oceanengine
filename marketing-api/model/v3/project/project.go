@@ -11,6 +11,8 @@ type Project struct {
 	ProjectID uint64 `json:"project_id,omitempty"`
 	// AdvertiserID 广告账户id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// DeliveryMode 投放模式，允许值：MANUAL手动投放、PROCEDURAL自动投放
+	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
 	// LandingType 推广目的，枚举值：APP 应用推广、LINK 销售线索推广、MICRO_GAME小游戏
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// AppPromotionType 子目标，枚举值：DOWNLOAD 应用下载、LAUNCH 应用调用、RESERVE 预约下载
@@ -35,12 +37,22 @@ type Project struct {
 	PackageName string `json:"package_name,omitempty"`
 	// AppName 应用名
 	AppName string `json:"app_name,omitempty"`
+	// FeedDeliverySearch 搜索快投关键词功能，HAS_OPEN:启用，DISABLED:未启用
+	FeedDeliverySearch enum.FeedDeliverySearch `json:"feed_delivery_search,omitempty"`
+	// SearchBidRatio 出价系数
+	SearchBidRatio float64 `json:"search_bid_ratio,omitempty"`
+	// AudienceExtend 定向拓展
+	AudienceExtend string `json:"audience_extend,omitempty"`
+	// Keywords 搜索关键词列表
+	Keywords []Keyword `json:"keywords,omitempty"`
 	// RelatedProduct 关联产品投放相关
 	RelatedProduct *RelatedProduct `json:"related_product,omitempty"`
 	// AssetType 资产类型
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
-	// MicroPromotionType 小游戏类型
-	MicroPromotionType enum.MicroPromotionType `json:"micropromotion_type,omitempty"`
+	// QuickAppId 快应用资产id
+	QuickAppId uint64 `json:"quick_app_id,omitempty"`
+	// MicroPromotionType 小程序类型
+	MicroPromotionType enum.MicroPromotionType `json:"micro_promotion_type,omitempty"`
 	// DownloadURL 下载链接
 	DownloadURL string `json:"download_url,omitempty"`
 	// DownloadType 下载方式，枚举值：DOWNLOAD_URL 直接下载、EXTERNAL_URL 落地页下载
@@ -52,7 +64,7 @@ type Project struct {
 	// OpenURL Deeplink直达链接
 	OpenURL string `json:"open_url,omitempty"`
 	// UlinkURL ulink直达链接
-	UlinkURL string `json:"urlink_url,omitempty"`
+	UlinkURL string `json:"ulink_url,omitempty"`
 	// SubscribeURL 预约下载链接
 	SubscribeURL string `json:"subscribe_url,omitempty"`
 	// OptimizeGoal 优化目标
@@ -234,10 +246,14 @@ type DeliverySetting struct {
 	DeepBidType enum.DeepBidType `json:"deep_bid_type,omitempty"`
 	// BidType 竞价策略，枚举值：CUSTOM 稳定成本、NO_BID 最大转化投放
 	BidType enum.BidType `json:"bid_type,omitempty"`
+	// BidSpeed 投放速度，允许值：BALANCE 匀速,FAST 加速
+	BidSpeed enum.BidSpeed `json:"bid_speed,omitempty"`
 	// BudgetMode 项目预算类型， 枚举值：BUDGET_MODE_INFINITE 不限、BUDGET_MODE_DAY 日预算
 	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// Budget 项目预算
 	Budget float64 `json:"budget,omitempty"`
+	// BudgetOptimizeSwitch 支持预算择优分配，枚举值： ON 开启，OFF 不开启
+	BudgetOptimizeSwitch enum.BudgetOptimizeSwitch `json:"budget_optimize_switch,omitempty"`
 }
 
 // TrackURLSetting 监测链接设置
@@ -259,4 +275,14 @@ type TrackURLSetting struct {
 	VideoPlayFirstTrackURL string `json:"video_play_first_track_url,omitempty"`
 	// SendType 数据发送方式，枚举值：SERVER_SEND 服务器端上传, CLIENT_SEND 客户端上传
 	SendType string `json:"send_type,omitempty"`
+}
+
+// Keyword 搜索关键词
+type Keyword struct {
+	// Word 关键词
+	Word string `json:"word,omitempty"`
+	// BidType 出价类型。 允许值:FEED_TO_SEARCH 搜索快投
+	BidType string `json:"bid_type,omitempty"`
+	// MatchType 匹配类型，允许值: PHRASE短语匹配，EXTENSIVE广泛匹配，PRECISION精准匹配
+	MatchType enum.KeywordMatchType `json:"match_type,omitempty"`
 }
