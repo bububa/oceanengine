@@ -28,6 +28,8 @@ type ListRequest struct {
 type ListFilter struct {
 	// IDs 按广告项目ID过滤，范围为1-100
 	IDs []uint64 `json:"ids,omitempty"`
+	// DeliveryMode 投放模式，允许值：MANUAL手动投放、PROCEDURAL自动投放
+	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
 	// LandingType 推广目的，允许值：APP 应用推广、LINK 销售线索推广、MICRO_GAME小游戏
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// AppPromotionType 子目标，允许值：DOWNLOAD 应用下载、LAUNCH 应用调用、RESERVE 预约下载

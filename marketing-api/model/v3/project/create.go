@@ -12,6 +12,9 @@ type CreateRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Operation 计划状态，允许值: ENABLE开启（默认值）,DISABLE关闭
 	Operation enum.OptStatus `json:"operation,omitempty"`
+	// DeliveryMode 投放模式，允许值：MANUAL手动投放(默认值）、PROCEDURAL自动投放 自动投放仅支持landing_type=APP或MICRO_GAME
+	// 当marketing_goal= LIVE时，仅支持MANUAL手动投放
+	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
 	// LandingType 推广目的，枚举值：APP 应用推广、LINK 销售线索推广、MICRO_GAME小游戏
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// AppPromotionType 子目标，枚举值：DOWNLOAD 应用下载、LAUNCH 应用调用、RESERVE 预约下载
