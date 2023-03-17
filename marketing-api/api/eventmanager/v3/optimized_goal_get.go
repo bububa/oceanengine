@@ -9,7 +9,7 @@ import (
 // 查询事件管理下资产的优化目标
 func OptimizedGoalGet(clt *core.SDKClient, accessToken string, req *v3.OptimizedGoalGetRequest) (*v3.OptimizedGoalGetResponseData, error) {
 	var resp v3.OptimizedGoalGetResponse
-	if err := clt.Get("v3.0/event_manager/optimized_goal/get/", req, &resp, accessToken); err != nil {
+	if err := clt.Get("v3.0/event_manager/optimized_goal/get_v2/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil
