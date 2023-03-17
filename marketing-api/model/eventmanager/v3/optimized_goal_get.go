@@ -39,8 +39,9 @@ func (r OptimizedGoalGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("landing_type", string(r.LandingType))
-	values.Set("app_type", string(r.AppType))
+	values.Set("app_type", r.AppType)
 	values.Set("asset_type", string(r.AssetType))
+	values.Set("ad_type", string(r.AdType))
 	if r.MiniProgramID != "" {
 		values.Set("mini_program_id", r.MiniProgramID)
 	}
