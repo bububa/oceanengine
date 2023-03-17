@@ -24,6 +24,8 @@ type QuickApp struct {
 	Name string `json:"name,omitempty"`
 	// PackageName 快应用包名
 	PackageName string `json:"package_name,omitempty"`
+	// QuickAppID 快应用ID
+	QuickAppID uint64 `json:"quick_app_id,omitempty"`
 }
 
 // App 应用数据
