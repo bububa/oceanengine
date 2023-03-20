@@ -3,6 +3,7 @@ package promotion
 import (
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/model/v3/project"
 )
 
 // Promotion 广告信息
@@ -110,6 +111,12 @@ type PromotionMaterial struct {
 	ImageMaterialList []ImageMaterial `json:"image_material_list,omitempty"`
 	// TitleMaterialList 标题素材
 	TitleMaterialList []TitleMaterial `json:"title_material_list,omitempty"`
+	// TextAbstractList 文本摘要信息，单广告可添加1-10个，长度25-45个字
+	TextAbstractList []TextAbstract `json:"text_abstract_list,omitempty"`
+	// AnchorMaterialList 原生锚点素材，当 anchor_related_type = SELECT时必填，数量上限为1
+	AnchorMaterialList []AnchorMaterial `json:"anchor_material_list,omitempty"`
+	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
+	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// ComponentMaterialList 创意组件信息
 	ComponentMaterialList []ComponentMaterial `json:"component_material_list,omitempty"`
 	// ExternalURLMaterialList 普通落地页链接素材，上限10个
@@ -130,6 +137,8 @@ type PromotionMaterial struct {
 	OpenURL string `json:"open_url,omitempty"`
 	// Ulink 直达备用链接，支持穿山甲和站内广告位
 	Ulink string `json:"ulink,omitempty"`
+	// DynamicCreateiveSwitch 动态创意开关，允许值：ON开启（默认值），OFF关闭，当ad_type=SEARCH时有效
+	DynamicCreateiveSwitch string `json:"dynamic_creative_switch,omitempty"`
 	// ProductInfo 产品信息
 	ProductInfo *ProductInfo `json:"product_info,omitempty"`
 	// CallToActionButtons 行动号召文案
@@ -176,14 +185,41 @@ type Image struct {
 type TitleMaterial struct {
 	// Title 创意标题
 	Title string `json:"title,omitempty"`
+	// BidwordList 搜索关键词列表
+	BidwordList []Bidword `json:"bidword_list,omitempty"`
 	// WordList 动态词包ID
 	WordList []uint64 `json:"word_list,omitempty"`
+}
+
+// TextAbstract 文本摘要信息，单广告可添加1-10个，长度25-45个字
+type TextAbstract struct {
+	// AbstractText 文本摘要内容,单广告可添加1-10个，长度25-45个字, 两个英文字符占1位。
+	// 如果要使用动态词包，格式如下：“XXX{词包名}XXX{词包名}XXX”，请注意当您使用动态词包需在下方 word_list 字段中按顺序传入词包ID，并且在一个文本摘要内容中最多使用两个动态词包。如果要使用搜索关键词，格式如下：“XXX{#关键词#}XXX”，请注意当您使用关键词需在下方 bidword_list 字段中传入关键词，并且在一个文本摘要内容中最多使用一个关键词
+	AbstractText string `json:"abstract_text,omitempty"`
+	// BidwordList 搜索关键词列表
+	BidwordList []Bidword `json:"bidword_list,omitempty"`
+	// WordList 动态词包ID，可使用 【查询动态词包接口】 获得，结合标题中的词包格式您需要填写相同个数与顺序的词包ID，如果实际ID顺序与标题中词包名顺序不一致我们将以词包ID顺序为准。
+	WordList []uint64 `json:"word_list,omitempty"`
+}
+
+// Bidword 搜索关键词列表
+type Bidword struct {
+	// DefaultWord 关键词
+	DefaultWord string `json:"default_word,omitempty"`
 }
 
 // ComponentMaterial 创意组件信息
 type ComponentMaterial struct {
 	// ComponentID 组件id
 	ComponentID uint64 `json:"component_id,omitempty"`
+	// ExternalURLMaterialList 普通落地页链接素材，上限10个
+	// 当landing_type = APP ，且 download_type = EXTERNAL_URL时，external_url_material_list 至少传入一个;
+	// 当landing_type = LINK和SHOP类型，且项目asset_type = ORANGE 时，仅允许传入支持对应优化目标的橙子落地页;
+	// 当landing_type = LINK和SHOP类型，且项目asset_type = THIRDPARTY 时，仅允许自研落地页;
+	// landing_type = MICRO_GAME时，当micropromotion_type = WECHAT_APP或WECHAT_GAME时有效，且如果多选落地页，需要所有建站对应相同的微信小游戏/微信小程序，否则报错；
+	// 当micropromotion_type = BYTE_APP或BYTE_GAME时有效，可作为备用链接传入该字段，数量上限为1;
+	// 获取对应优化目标的橙子建站落地页可参考【通过优化目标获取橙子落地页站点信息】获取第三方落地页可参考【第三方落地页管理】
+	ExternalURLMaterialList []string `json:"external_url_material_list,omitempty"`
 }
 
 // ProductInfo 产品信息
@@ -244,4 +280,14 @@ type MiniProgramInfo struct {
 	// URL 字节小程序调起链接，传输会检查url正确性，不传输由平台自动生成;
 	// url传入时，app_id、start_path、params无须传入
 	URL string `json:"url,omitempty"`
+}
+
+// AnchorMaterial 原生锚点素材
+type AnchorMaterial struct {
+	// AnchorType 锚点类型，允许值：
+	// - 应用下载-游戏：APP_GAME- 应用下载-网服：APP_INTERNET_SERVICE- 应用下载-电商：APP_SHOP- 高级在线预约：ONLINE_SUBSCRIBE当 anchor_related_type = SELECT时必填
+	AnchorType enum.AnchorType `json:"anchor_type,omitempty"`
+	// AnchorID 原生锚点id可使用【获取账户下的原生锚点】获得
+	// 当 anchor_related_type = SELECT时必填
+	AnchorID string `json:"anchor_id,omitempty"`
 }

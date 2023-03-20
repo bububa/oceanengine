@@ -232,10 +232,6 @@ type Audience struct {
 
 // DeliverySetting 投放设置
 type DeliverySetting struct {
-	// CpaBid 目标转化出价/预期成本(注意：nobid不返回该字段)
-	CpaBid float64 `json:"cpa_bid,omitempty"`
-	// RoiGoal 深度转化ROI系数(注意：nobid不返回该字段)
-	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// ScheduleType 投放时间类型，枚举值：SCHEDULE_FROM_NOW 从今天起长期投放、SCHEDULE_START_END 设置开始和结束日期
 	ScheduleType enum.ScheduleType `json:"schedule_type,omitempty"`
 	// StartTime 投放起始时间，如：2017-01-01 精确到天
@@ -244,6 +240,13 @@ type DeliverySetting struct {
 	EndTime string `json:"end_time,omitempty"`
 	// ScheduleTime 投放时段
 	ScheduleTime string `json:"schedule_time,omitempty"`
+	// ProjectCustom 项目成本稳投，当ad_type=SEARCH&&bid_type=CUSTOM 稳定成本时有效，当dea有值时，不支持项目成本稳投
+	// 允许值：
+	// ON 开启（默认值），
+	// OFF 不开启
+	ProjectCustom string `json:"project_custom,omitempty"`
+	// Bid 点击出价/展示出价，当delivery_mode = MANUAL&&项目成本稳投开启&&pricing=CPC时填写有效；取值范围：0.2-999
+	Bid float64 `json:"bid,omitempty"`
 	// DeepBidType 深度出价方式
 	DeepBidType enum.DeepBidType `json:"deep_bid_type,omitempty"`
 	// BidType 竞价策略，枚举值：CUSTOM 稳定成本、NO_BID 最大转化投放
@@ -254,6 +257,16 @@ type DeliverySetting struct {
 	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// Budget 项目预算
 	Budget float64 `json:"budget,omitempty"`
+	// Pricing 计费方式，允许值：PRICING_CPM 按展示付费,PRICING_CPC 按点击付费,PRICING_OCPM 目标转化出价-按展示付费（默认值）,PRICING_OCPC 目标转化出价-按点击付费
+	// 当ea=AD_CONVERT_TYPE_SHOW_OFF_NUM 展示量时：仅支持CPM；
+	// 当ea= AD_CONVERT_TYPE_CLICK_NUM点击量时：仅支持CPC；
+	// 当ea !=AD_CONVERT_TYPE_SHOW_OFF_NUM 展示量 或AD_CONVERT_TYPE_CLICK_NUM 点击量时，在固定支持oCPM的情况下，以下情况额外支持oCPC：1)首选媒体仅选择穿山甲 2)广告类型为搜索直投；
+	// 当ad_type=SEARCH时，不支持PRICING_CPM
+	Pricing enum.PricingType `json:"pricing,omitempty"`
+	// CpaBid 目标转化出价/预期成本(注意：nobid不返回该字段)
+	CpaBid float64 `json:"cpa_bid,omitempty"`
+	// RoiGoal 深度转化ROI系数(注意：nobid不返回该字段)
+	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// BudgetOptimizeSwitch 支持预算择优分配，枚举值： ON 开启，OFF 不开启
 	BudgetOptimizeSwitch enum.BudgetOptimizeSwitch `json:"budget_optimize_switch,omitempty"`
 }
@@ -287,4 +300,7 @@ type Keyword struct {
 	BidType string `json:"bid_type,omitempty"`
 	// MatchType 匹配类型，允许值: PHRASE短语匹配，EXTENSIVE广泛匹配，PRECISION精准匹配
 	MatchType enum.KeywordMatchType `json:"match_type,omitempty"`
+	// Bid 出价。取值范围：0.2至999.0。
+	// 当pricing为PRICING_OCPC/PRICING_OCPM时，不支持出价
+	Bid float64 `json:"bid,omitempty"`
 }

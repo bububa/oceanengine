@@ -1,4 +1,4 @@
-package tools
+package nativeanchor
 
 import (
 	"encoding/json"
@@ -9,8 +9,8 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
-// NativeAnchorGetRequest 获取账户下原生锚点
-type NativeAnchorGetRequest struct {
+// GetRequest 获取账户下原生锚点
+type GetRequest struct {
 	// AdvertiserID 广告账户ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Page 页码，默认值: 1
@@ -18,11 +18,11 @@ type NativeAnchorGetRequest struct {
 	// PageSize 页面数据量，默认值: 10，page_size范围为[1,100]
 	PageSize int `json:"page_size,omitempty"`
 	// Filtering 过滤器
-	Filtering *NativeAnchorGetFilter `json:"filtering,omitempty"`
+	Filtering *GetFilter `json:"filtering,omitempty"`
 }
 
-// NativeAnchorGetFilter 过滤器
-type NativeAnchorGetFilter struct {
+// GetFilter 过滤器
+type GetFilter struct {
 	// AnchorID 按原生锚点id 做过滤
 	AnchorID string `json:"anchor_id,omitempty"`
 	// AnchorName 按原生锚点名称做过滤
@@ -48,7 +48,7 @@ type NativeAnchorGetFilter struct {
 }
 
 // Encode implement GetRequest interface
-func (r NativeAnchorGetRequest) Encode() string {
+func (r GetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Page > 1 {
@@ -66,37 +66,17 @@ func (r NativeAnchorGetRequest) Encode() string {
 	return ret
 }
 
-// NativeAnchorGetResponse 获取账户下原生锚点
-type NativeAnchorGetResponse struct {
+// GetResponse 获取账户下原生锚点
+type GetResponse struct {
 	model.BaseResponse
 	// Data 返回数据
-	Data *NativeAnchorGetResponseData `json:"data,omitempty"`
+	Data *GetResponseData `json:"data,omitempty"`
 }
 
-// NativeAnchorGetResponseData 返回数据
-type NativeAnchorGetResponseData struct {
+// GetResponseData 返回数据
+type GetResponseData struct {
 	// PageInfo 页面信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 	// List 广告账户下原生锚点列表
 	List []NativeAnchor `json:"list,omitempty"`
-}
-
-// NativeAnchor 广告账户下原生锚点
-type NativeAnchor struct {
-	// AnchorID 锚点id
-	AnchorID string `json:"anchor_id,omitempty"`
-	// AnchorName 锚点名称
-	AnchorName string `json:"anchor_name,omitempty"`
-	// AnchorType 锚点类型
-	AnchorType enum.AnchorType `json:"anchor_type,omitempty"`
-	// Status 锚点审核状态
-	Status string `json:"status,omitempty"`
-	// Source 锚点来源
-	Source string `json:"source,omitempty"`
-	// CreateTime 锚点创建日期，格式：yyyy-MM-dd
-	CreateTime string `json:"create_time,omitempty"`
-	// AndroidPackageName 安卓应用包名
-	AndroidPackageName string `json:"android_package_name,omitempty"`
-	// IosPackageName ios应用包名
-	IosPackageName string `json:"ios_package_name,omitempty"`
 }
