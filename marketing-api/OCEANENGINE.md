@@ -95,6 +95,8 @@
     - 批量修改深度出价 [ DeepBidUpdate(clt *core.SDKClient, accessToken string, req *promotion.DeepBidUpdateRequest) (*promotion.UpdateResponseData, error) ]
     - 批量获取计划成本保障状态 [ CostProtectStatusGet(clt *core.SDKClient, accessToken string, req *promotion.CostProtectStatusGetRequest) ([]promotion.CostProtectStatus, error) ]
     - 获取计划审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *promotion.RejectReasonRequest) ([]promotion.RejectReason, error) ]
+    - 新建/修改白盒配置 [ AutoGenerateConfigCreate(clt *core.SDKClient, accessToken string, req *promotion.AutoGenerateConfigCreateRequest) (uint64, error) ]
+    - 查询配置详情 [ AutoGenerateConfigGet(clt *core.SDKClient, accessToken string, req *promotion.AutoGenerateConfigGetRequest) (*promotion.AutoGenerateConfig, error)]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ AdvertiserGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]

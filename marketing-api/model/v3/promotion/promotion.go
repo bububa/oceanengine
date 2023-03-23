@@ -50,6 +50,12 @@ type Promotion struct {
 	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// MaterialScoreInfo 素材评级信息
 	MaterialScoreInfo *MaterialScoreInfo `json:"material_score_info,omitempty"`
+	// CreativeAutoGenerateSwitch 是否开启自动生成素材
+	// 默认值：OFF
+	// 枚举值：ON开启、OFF不开启
+	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
+	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
+	ConfigID uint64 `json:"config_id,omitempty"`
 }
 
 func (p Promotion) Version() model.AdVersion {
