@@ -24,4 +24,6 @@ const (
 	MICRO_GAME LandingType = "MICRO_GAME"
 	// QUICK_APP 快应用
 	QUICK_APP LandingType = "QUICK_APP"
+	// NATIVE_ACTION 原生互动
+	NATIVE_ACTION LandingType = "NATIVE_ACTION"
 )
