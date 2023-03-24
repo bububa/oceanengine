@@ -41,7 +41,7 @@ type RejectReason struct {
 	// PromotionID 广告ID
 	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// PromotionReject  广告维度审核建议
-	PromotionReject *PromotionReject `json:"promotion_reject,omitempty"`
+	PromotionReject []PromotionReject `json:"promotion_reject,omitempty"`
 	// MaterialReject 素材维度审核建议
 	MaterialReject []MaterialReject `json:"material_reject,omitempty"`
 }
