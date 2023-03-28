@@ -14,6 +14,11 @@ type AudiencePackage struct {
 	Description string `json:"description,omitempty"`
 	// LandingType 定向包推广类型
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
+	// AdType 广告类型，允许值：
+	// ALL 所有广告（默认值）
+	// SEARCH 搜索广告
+	// 搜索定向包仅支持落地页、应用推广、抖音号、直播间，不支持商品、电商店铺、快应用、小游戏
+	AdType enum.CampaignType `json:"ad_type,omitempty"`
 	// HideIfConverted 过滤已转化用户; 注意点：过滤已转化不支持投放目标为展示、点击计划，不支持受众预估; 过滤已转化用户：选择过滤已转化用户之后，可以避免该广告再次投放给已转化过的用户，可以选择过滤5个广告层级的已转化用户（不限/广告计划/广告组/广告账户/公司账户/APP）
 	HideIfConverted string `json:"hide_if_converted,omitempty"`
 	// ConvertedTimeDuration 过滤时间范围，详见， 【附录-过滤时间范围】，当过滤已转化用户类型选择"公司账户"时填写，教育行业专属，非教育行业不会生效
