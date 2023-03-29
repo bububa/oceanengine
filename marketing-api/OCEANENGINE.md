@@ -360,6 +360,7 @@
     - 获取起量的后验数据 [ Result(clt *core.SDKClient, accessToken string, req *adraise.ResultRequest) (*adraise.Result, error) ]
     - 获取一键起量报告 [ Report(clt *core.SDKClient, accessToken string, req *adraise.ReportRequest) (*adraise.ReportResponseData, error) ]
     - 获取起量版本信息 [ Version(clt *core.SDKClient, accessToken string, req *adraise.VersionRequest) (*adraise.VersionResponseData, error) ]
+    - 获取广告建议起量预算 [ SuggestBudgetGet(clt *core.SDKClient, accessToken string, req *adraise.SuggestBudgetGetRequest) ([]adraise.SuggestBudget, error) ]
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
