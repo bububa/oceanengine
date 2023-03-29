@@ -18,4 +18,6 @@ const (
 	AssetType_ORANGE AssetType = "ORANGE"
 	// AssetType_THIRDPARTY 自研落地页
 	AssetType_THIRDPARTY AssetType = "THIRDPARTY"
+	// AssetType_ENTERPRISE 企业号落地页
+	AssetType_ENTERPRISE AssetType = "ENTERPRISE"
 )
