@@ -197,6 +197,7 @@
   - 批量删除视频素材 [ VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) ]
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
   - 获取低效素材 [ VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *file.VideoEffeciencyGetRequest) ([]string, error) ] 
+  - 批量删除图片素材 [ v3.ImageDelete(clt *core.SDKClient, accessToken string, req *v3.ImageDeleteRequest) ([]string, error) ]
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
