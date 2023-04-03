@@ -36,11 +36,8 @@ func (r ChildAgentSelectRequest) Encode() string {
 type ChildAgentSelectResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *ChildAgentSelectResponseData `json:"data,omitempty"`
-}
-
-// ChildAgentSelectResponseData json返回值
-type ChildAgentSelectResponseData struct {
-	// ChildAgentIDs 二级代理商ID列表
-	ChildAgentIDs []uint64 `json:"child_agent_ids,omitempty"`
+	Data struct {
+		// ChildAgentIDs 二级代理商ID列表
+		ChildAgentIDs []uint64 `json:"child_agent_ids,omitempty"`
+	} `json:"data,omitempty"`
 }

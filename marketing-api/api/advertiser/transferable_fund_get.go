@@ -12,7 +12,7 @@ func TransferableFundGet(clt *core.SDKClient, accessToken string, advertiserID u
 		AdvertiserID: advertiserID,
 	}
 	var resp advertiser.TransferableFundGetResponse
-	err := clt.Get("2/advertiser/transferable_fund/get", req, &resp, accessToken)
+	err := clt.Get("2/advertiser/transferable_fund/get/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

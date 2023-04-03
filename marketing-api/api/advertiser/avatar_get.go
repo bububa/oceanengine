@@ -11,8 +11,7 @@ func AvatarGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*a
 		AdvertiserID: advertiserID,
 	}
 	var resp advertiser.AvatarGetResponse
-	err := clt.Get("2/advertiser/avatar/get", req, &resp, accessToken)
-	if err != nil {
+	if err := clt.Get("2/advertiser/avatar/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

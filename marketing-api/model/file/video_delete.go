@@ -21,11 +21,8 @@ func (r VideoDeleteRequest) Encode() []byte {
 // VideoDeleteResponse 批量删除视频素材 API Response
 type VideoDeleteResponse struct {
 	model.BaseResponse
-	Data *VideoDeleteResponseData `json:"data,omitempty"`
-}
-
-// VideoDeleteResponseData json返回值
-type VideoDeleteResponseData struct {
-	// FailVideoIDs 操作失败的video_id列表，不在此列表内的素材表示删除成功
-	FailVideoIDs []string `json:"fail_video_ids,omitempty"`
+	Data struct {
+		// FailVideoIDs 操作失败的video_id列表，不在此列表内的素材表示删除成功
+		FailVideoIDs []string `json:"fail_video_ids,omitempty"`
+	} `json:"data,omitempty"`
 }
