@@ -77,6 +77,13 @@ type StatFiltering struct {
 	LandingTypes []enum.LandingType `json:"landing_types,omitempty"`
 	// Status 广告创意状态：按照广告创意状态过滤，默认为返回“所有不包含已删除”，如果要返回所有包含已删除有对应枚举表示
 	Status enum.CreativeStatus `json:"status,omitempty"`
+	// DeliveryMode 投放模式筛选。
+	// 允许值:
+	// STANDARD:标准投放。
+	// ADLAB_FREE:管家&省心投放
+	DeliveryMode []string `json:"delivery_mode,omitempty"`
+	// PlatformVersion 获取的数据平台版本
+	PlatformVersion string `json:"platform_version,omitempty"`
 }
 
 // Encode implement GetRequest interface
