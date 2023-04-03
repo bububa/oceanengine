@@ -1,0 +1,17 @@
+package enum
+
+// DeliveryQualificationStatus 投放资质状态
+type DeliveryQualificationStatus string
+
+const (
+	// DeliveryQualificationStatus_STATUS_CONFIRM 审核通过
+	DeliveryQualificationStatus_STATUS_CONFIRM DeliveryQualificationStatus = "STATUS_CONFIRM"
+	// DeliveryQualificationStatus_STATUS_CONFIRM_FAIL 审核不通过
+	DeliveryQualificationStatus_STATUS_CONFIRM_FAIL DeliveryQualificationStatus = "STATUS_CONFIRM_FAIL"
+	// DeliveryQualificationStatus_STATUS_NOT_SUBMIT 未提交
+	DeliveryQualificationStatus_STATUS_NOT_SUBMIT DeliveryQualificationStatus = "STATUS_NOT_SUBMIT"
+	// DeliveryQualificationStatus_STATUS_PENDING_CONFIRM 审核中
+	DeliveryQualificationStatus_STATUS_PENDING_CONFIRM DeliveryQualificationStatus = "STATUS_PENDING_CONFIRM"
+	// DeliveryQualificationStatus_STATUS_WAIT_CONFIRM 待审核
+	DeliveryQualificationStatus_STATUS_WAIT_CONFIRM DeliveryQualificationStatus = "STATUS_WAIT_CONFIRM"
+)

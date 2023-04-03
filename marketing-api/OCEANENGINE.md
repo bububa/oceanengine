@@ -23,6 +23,9 @@
     - 批量上传投放资质 [ QualificationCreate(clt *core.SDKClient, accessToken string, req *advertiser.QualificationCreateRequest) error ]
     - 获取广告主资质（新版）[ QualificationGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.Qualification, error) ]
     - 提交广告主资质（新版）[ QualificationSubmit(clt *core.SDKClient, accessToken string, req *advertiser.QualificationSubmitRequest) error ]
+    - 批量上传资质附件 [ AttachmentUpload(clt *core.SDKClient, accessToken string, req *advertiser.AttachmentUploadRequest) (uint64, error)]
+    - 投放资质查询 [ DeliveryQualificationList(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryQualificationListRequest) (*advertiser.DeliveryQualificationListData, error) ]
+    - 投放资质提交 [ DeliveryQualificationSubmit(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryQualificationSubmitRequest) error ]
   - 代理商账号管理 (api/agent)
     - 广告主列表 [ AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
