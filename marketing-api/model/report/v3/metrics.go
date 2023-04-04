@@ -311,8 +311,8 @@ type CustomMetrics struct {
 	AttributionMicroGame3dLtv float64 `json:"attribution_micro_game_3d_ltv,omitempty"`
 	// AttributionMicroGame7dLtv 小游戏激活后七日LTV-所选时间范围内的激活用户在激活后七日内的变现金额
 	AttributionMicroGame7dLtv float64 `json:"attribution_micro_game_7d_ltv,omitempty"`
-	// AttributionGameInAppRoi1Day 小游戏当日广告变现ROI-所选时间范围内的激活用户在激活当日的广告变现ROI，计算公式是：当日LTV / 所选时间的消耗
-	AttributionGameInAppRoi1Day float64 `json:"attribution_game_in_app_roi_1day,omitempty"`
+	// AttributionMicroGame0dRoi 小游戏当日广告变现ROI-所选时间范围内的激活用户在激活当日的广告变现ROI，计算公式是：当日LTV / 所选时间的消耗
+	AttributionMicroGame0dRoi float64 `json:"attribution_micro_game_0d_roi,omitempty"`
 	// AttributionMicroGame3dRoi 小游戏激活后三日广告变现ROI-所选时间范围内的激活用户在激活后三日内的广告变现ROI，计算公式是：三日LTV / 所选时间的消耗
 	AttributionMicroGame3dRoi float64 `json:"attribution_micro_game_3d_roi,omitempty"`
 	// AttributionMicroGame7dRoi 小游戏激活后七日广告变现ROI-所选时间范围内的激活用户在激活后七日内的广告变现ROI，计算公式是：七日LTV / 所选时间的消耗
