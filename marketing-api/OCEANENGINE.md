@@ -23,6 +23,9 @@
     - 批量上传投放资质 [ QualificationCreate(clt *core.SDKClient, accessToken string, req *advertiser.QualificationCreateRequest) error ]
     - 获取广告主资质（新版）[ QualificationGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.Qualification, error) ]
     - 提交广告主资质（新版）[ QualificationSubmit(clt *core.SDKClient, accessToken string, req *advertiser.QualificationSubmitRequest) error ]
+    - 批量上传资质附件 [ AttachmentUpload(clt *core.SDKClient, accessToken string, req *advertiser.AttachmentUploadRequest) (uint64, error)]
+    - 投放资质查询 [ DeliveryQualificationList(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryQualificationListRequest) (*advertiser.DeliveryQualificationListData, error) ]
+    - 投放资质提交 [ DeliveryQualificationSubmit(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryQualificationSubmitRequest) error ]
   - 代理商账号管理 (api/agent)
     - 广告主列表 [ AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
@@ -197,6 +200,7 @@
   - 批量删除视频素材 [ VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) ]
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
   - 获取低效素材 [ VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *file.VideoEffeciencyGetRequest) ([]string, error) ] 
+  - 批量删除图片素材 [ v3.ImageDelete(clt *core.SDKClient, accessToken string, req *v3.ImageDeleteRequest) ([]string, error) ]
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
@@ -360,6 +364,7 @@
     - 获取起量的后验数据 [ Result(clt *core.SDKClient, accessToken string, req *adraise.ResultRequest) (*adraise.Result, error) ]
     - 获取一键起量报告 [ Report(clt *core.SDKClient, accessToken string, req *adraise.ReportRequest) (*adraise.ReportResponseData, error) ]
     - 获取起量版本信息 [ Version(clt *core.SDKClient, accessToken string, req *adraise.VersionRequest) (*adraise.VersionResponseData, error) ]
+    - 获取广告建议起量预算 [ SuggestBudgetGet(clt *core.SDKClient, accessToken string, req *adraise.SuggestBudgetGetRequest) ([]adraise.SuggestBudget, error) ]
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]

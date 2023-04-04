@@ -14,8 +14,5 @@ func VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteR
 	if err != nil {
 		return nil, err
 	}
-	if resp.Data == nil {
-		return nil, nil
-	}
 	return resp.Data.FailVideoIDs, nil
 }

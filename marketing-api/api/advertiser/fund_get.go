@@ -12,7 +12,7 @@ func FundGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*adv
 		AdvertiserID: advertiserID,
 	}
 	var resp advertiser.FundGetResponse
-	err := clt.Get("2/advertiser/fund/get", req, &resp, accessToken)
+	err := clt.Get("2/advertiser/fund/get/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}
