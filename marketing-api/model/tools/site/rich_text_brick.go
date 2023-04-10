@@ -61,7 +61,7 @@ type RichTextBrick struct {
 	// 107（思源黑体极细）
 	FontFamily int `json:"font_family,omitempty"`
 	// FontSize 字号,默认值为14
-	FontSize int `json:"font_size,omitempty"`
+	FontSize float64 `json:"font_size,omitempty"`
 	// FontStyle 文字样式，可选值：
 	// 黑体bold
 	// 斜体italic
