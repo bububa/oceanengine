@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, main ]
 
 jobs:
 
@@ -21,7 +21,10 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version: 1.20
+        go-version-file: ${{ env.package }}/go.mod
+
+    - name: Dependencies
+      run: go get -t -d -v ${{ env.package }}/...
 
     - name: Build
       run: go build -v ${{ env.package }}/...
@@ -30,4 +33,4 @@ jobs:
       env:
         APPKEY: ${{ secrets.APPKEY }}
         SECRET: ${{ secrets.APP_SECRET }}
-      run: go test -v ${{ env.package }}
+      run: go test -v ${{ env.package }}/...
