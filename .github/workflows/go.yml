@@ -13,7 +13,6 @@ jobs:
     env:
       GOPATH: ${{ github.workspace }}
       package: github.com/bububa/oceanengine
-      workdir: ${{ github.workspace }}/src/${{ package }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -22,14 +21,14 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version-file: ${{ env.workdir }}/go.mod
+        go-version-file: ${{ env.GOPATH }}/src/${{ env.package }}/go.mod
         cache-dependency-path: |
-          ${{ env.workdir }}/go.mod
-          ${{ env.workdir }}/go.sum
+          ${{ env.GOPATH }}/src/${{ env.package }}/go.mod
+          ${{ env.GOPATH }}/src/${{ env.package }}/go.sum
 
     - name: Dependencies
       run: |
-        cd ${{ env.workdir }}
+        cd ${{ env.GOPATH }}/src/${{ env.package }}
         go mod download
 
     - name: Build
@@ -40,5 +39,5 @@ jobs:
         APPKEY: ${{ secrets.APPKEY }}
         SECRET: ${{ secrets.APP_SECRET }}
       run: |
-        cd ${{ env.workdir }}
+        cd ${{ env.GOPATH }}/src/${{ env.package }}
         go test -v ./...
