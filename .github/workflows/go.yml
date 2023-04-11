@@ -24,7 +24,9 @@ jobs:
         go-version-file: ${{ env.GOPATH }}/src/${{ env.package }}/go.mod
 
     - name: Dependencies
-      run: go get -t -d -v ${{ env.package }}/...
+      run: |
+        cd ${{ env.GOPATH }}/src/${{ env.package }}
+        go mod tidy
 
     - name: Build
       run: go build -v ${{ env.package }}/...
