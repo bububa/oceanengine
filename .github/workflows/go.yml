@@ -15,6 +15,8 @@ jobs:
       package: github.com/bububa/oceanengine
     steps:
     - uses: actions/checkout@v3
+      with:
+        path: src/${{ env.package }}
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -22,7 +24,7 @@ jobs:
         go-version: 1.20
 
     - name: Build
-      run: go build -v ${{ env.package }}
+      run: go build -v ${{ env.package }}/...
 
     - name: Test
       env:
