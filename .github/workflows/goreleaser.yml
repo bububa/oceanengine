@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.20'
-          cache-dependency-path: cache
+          cache-dependency-path: ${{ env.cache }}
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v4
         with:
