@@ -12,32 +12,35 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GOPATH: ${{ github.workspace }}
-      package: github.com/bububa/oceanengine
+      package: src/github.com/${{ github.repository }}
+    defaults:
+      run:
+        working-directory: ${{ env.GOPATH }}/${{ env.package }}
     steps:
     - uses: actions/checkout@v3
       with:
-        path: src/${{ env.package }}
+        path: ${{ env.GOPATH }}/${{ env.package }}
 
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version-file: ${{ env.GOPATH }}/src/${{ env.package }}/go.mod
+        go-version-file: ${{ env.GOPATH }}/${{ env.package }}/go.mod
         cache-dependency-path: |
-          ${{ env.GOPATH }}/src/${{ env.package }}/go.mod
-          ${{ env.GOPATH }}/src/${{ env.package }}/go.sum
+          ${{ env.GOPATH }}/${{ env.package }}/go.mod
+          ${{ env.GOPATH }}/${{ env.package }}/go.sum
 
     - name: Dependencies
-      run: |
-        cd ${{ env.GOPATH }}/src/${{ env.package }}
-        go mod download
+      run: go mod download
 
     - name: Build
-      run: go build -v ${{ env.package }}/...
+      run: |
+        cd ${{ env.GOPATH }}/${{ env.package }}
+        go build -v ./...
 
     - name: Test
       env:
         APPKEY: ${{ secrets.APPKEY }}
         SECRET: ${{ secrets.APP_SECRET }}
       run: |
-        cd ${{ env.GOPATH }}/src/${{ env.package }}
+        cd ${{ env.GOPATH }}/${{ env.package }}
         go test -v ./...
