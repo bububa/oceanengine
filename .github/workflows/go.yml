@@ -10,6 +10,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    env:
+      GOPATH: ${{ github.workspace }}
+      package: github.com/bububa/oceanengine
     steps:
     - uses: actions/checkout@v3
 
@@ -19,10 +22,10 @@ jobs:
         go-version: 1.20
 
     - name: Build
-      run: go build -v ./...
+      run: go build -v ${{ env.package }}
 
     - name: Test
       env:
         APPKEY: ${{ secrets.APPKEY }}
         SECRET: ${{ secrets.APP_SECRET }}
-      run: go test -v ./...
+      run: go test -v ${{ env.package }}
