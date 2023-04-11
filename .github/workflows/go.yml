@@ -33,14 +33,10 @@ jobs:
       run: go mod download
 
     - name: Build
-      run: |
-        cd ${{ env.GOPATH }}/${{ env.package }}
-        go build -v ./...
+      run: go build -v ./...
 
     - name: Test
       env:
         APPKEY: ${{ secrets.APPKEY }}
         SECRET: ${{ secrets.APP_SECRET }}
-      run: |
-        cd ${{ env.GOPATH }}/${{ env.package }}
-        go test -v ./...
+      run: go test -v ./...
