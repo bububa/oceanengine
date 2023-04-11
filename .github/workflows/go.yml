@@ -24,10 +24,8 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version-file: ${{ env.GOPATH }}/${{ env.package }}/go.mod
-        cache-dependency-path: |
-          ${{ env.GOPATH }}/${{ env.package }}/go.mod
-          ${{ env.GOPATH }}/${{ env.package }}/go.sum
+        go-version-file: '1.20'
+        cache-dependency-path: ${{ env.GOPATH }}/${{ env.package }}/go.sum
 
     - name: Dependencies
       run: go mod download
