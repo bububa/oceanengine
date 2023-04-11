@@ -13,7 +13,7 @@ jobs:
     env:
       GOPATH: ${{ github.workspace }}
       package: github.com/bububa/oceanengine
-      workdir: ${{ env.GOPATH }}/src/${{ env.package }}
+      workdir: ${{ github.workspace }}/src/${{ package }}
     steps:
     - uses: actions/checkout@v3
       with:
