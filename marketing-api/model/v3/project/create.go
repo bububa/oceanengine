@@ -12,27 +12,49 @@ type CreateRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Operation 计划状态，允许值: ENABLE开启（默认值）,DISABLE关闭
 	Operation enum.OptStatus `json:"operation,omitempty"`
-	// DeliveryMode 投放模式，允许值：MANUAL手动投放(默认值）、PROCEDURAL自动投放 自动投放仅支持landing_type=APP或MICRO_GAME
+	// DeliveryMode 投放模式，允许值：
+	// MANUAL手动投放(默认值）、PROCEDURAL自动投放
+	// 自动投放仅支持landing_type=APP或MICRO_GAME或LINK
+	// 自动投放不支持SEARCH搜索广告
 	// 当marketing_goal= LIVE时，仅支持MANUAL手动投放
 	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
-	// LandingType 推广目的，枚举值：APP 应用推广、LINK 销售线索推广、MICRO_GAME小游戏
+	// LandingType 推广目的，允许值：APP 应用推广、LINK 销售线索推广、MICRO_GAME 小程序、SHOP 电商店铺推广、QUICK_APP快应用、NATIVE_ACTION 原生互动、DPA商品目录
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
-	// AppPromotionType 子目标，枚举值：DOWNLOAD 应用下载、LAUNCH 应用调用、RESERVE 预约下载
+	// AppPromotionType 子目标，当 landing_type = APP 有效且必填
+	// 允许值：DOWNLOAD 应用下载、LAUNCH 应用调用、RESERVE 预约下载
+	// 当delivery_mode = PROCEDURAL 时仅支持DOWNLOAD应用下载；
+	// 当marketing_goal= LIVE时，仅支持DOWNLOAD应用下载、LAUNCH 应用调起
 	AppPromotionType enum.AppPromotionType `json:"app_promotion_type,omitempty"`
-	// MarketingGoal 营销场景，枚举值：VIDEO_AND_IMAGE 短视频/图片
+	// MarketingGoal 营销场景，允许值：VIDEO_AND_IMAGE 短视频/图片，LIVE直播,
+	// LIVE仅支持已在广告平台签署直播推广协议的账户，支持的landing_type有应用/小程序/线索/原生互动
+	// 当delivery_mode选择PROCEDURAL且landing_type选择LINK时，仅支持VIDEO_AND_IMAGE
 	MarketingGoal enum.MarketingGoal `json:"marketing_goal,omitempty"`
-	// AdType 广告类型，枚举值：ALL
+	// 广告类型，允许值：ALL 通投广告 SEARCH 搜索广告
+	// 当 marketing_goal= LIVE时，仅支持ALL
+	// 仅当landing_type=APP/LINk&&delivery_mode=MANUAL时支持搜索广告，否则报错
 	AdType enum.CampaignType `json:"ad_type,omitempty"`
 	// Name 项目名称
 	Name string `json:"name,omitempty"`
-	// SearchBidRatio 出价系数
+	// SearchBidRatio 出价系数，默认系数为1，出价系数可通过【获取快投推荐出价系数】查询，小数点后最多两位,取值范围 [1,2]
+	// 当符合以下所有条件时填写有效
+	// 1. bid_type != NO_BID && pricing = PRICING_OCPM
+	// 2. deep_bid_type = DEEP_BID_DEFAULT 无深度优化方式 /BID_PER_ACTION 每次付费
 	SearchBidRatio float64 `json:"search_bid_ratio,omitempty"`
-	// AudienceExtend 定向拓展
+	// AudienceExtend 定向拓展, 允许值：ON:开启（默认值）， OFF:关闭
 	AudienceExtend string `json:"audience_extend,omitempty"`
 	// Keywords 搜索关键词列表
 	Keywords []Keyword `json:"keywords,omitempty"`
 	// RelatedProduct 关联产品投放相关
 	RelatedProduct *RelatedProduct `json:"related_product,omitempty"`
+	// DpaCategories 商品投放范围，分类列表，由【DPA商品广告-获取DPA分类】 得到
+	// 个数限制 [0, 1000]
+	// 不传和传空数组即为不限商品投放范围
+	// DPA推广目的下有效
+	DpaCategories []uint64 `json:"dpa_categories,omitempty"`
+	// DpaProductTarget 自定义筛选条件（商品投放条件）。用于圈定商品投放范围，结合商品库字段搭配判断条件，圈定商品投放范围。获取商品库元信息-商品广告-商业开放平台
+	// 数组长度限制：最大5条
+	// DPA推广目的下有效
+	DpaProductTarget []DpaProductTarget `json:"dpa_product_target,omitempty"`
 	// DownloadURL 下载链接
 	DownloadURL string `json:"download_url,omitempty"`
 	// DownloadType 下载方式，枚举值：DOWNLOAD_URL 直接下载、EXTERNAL_URL 落地页下载
@@ -55,6 +77,10 @@ type CreateRequest struct {
 	// 小程序类型，landing_type = MICRO_GAME 时有效且必填
 	// 允许值： WECHAT_GAME 微信小游戏、WECHAT_APP微信小程序、BYTE_GAME字节小游戏、BYTE_APP字节小程序
 	MicroPromotionType enum.MicroPromotionType `json:"micro_promotion_type,omitempty"`
+	// DpaAdType DPA广告类型，
+	// 允许值: DPA_LINK 落地页
+	// 当landing_type为dpa时有效且必填
+	DpaAdType enum.DpaAdType `json:"dpa_adtype,omitempty"`
 	// OptimizeGoal 优化目标
 	OptimizeGoal *OptimizeGoal `json:"optimize_goal,omitempty"`
 	// LandingPageStayTime 店铺停留时长，单位为毫秒，当external_action为AD_CONVERT_TYPE_STAY_TIME时有效且必填

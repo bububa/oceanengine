@@ -8,6 +8,10 @@ const (
 	MarketingGoal_VIDEO_PROM_GOODS MarketingGoal = "VIDEO_PROM_GOODS"
 	// MarketingGoal_LIVE_PROM_GOODS 直播带货
 	MarketingGoal_LIVE_PROM_GOODS MarketingGoal = "LIVE_PROM_GOODS"
+	// MarketingGoal_VIDEO_AND_IMAGE 短视频/图片
+	MarketingGoal_VIDEO_AND_IMAGE MarketingGoal = "VIDEO_AND_IMAGE"
+	// MarketingGoal_LIVE 直播
+	MarketingGoal_LIVE MarketingGoal = "LIVE"
 	// MarketingGoal_ALL 不限
 	MarketingGoal_ALL MarketingGoal = "ALL"
 )
