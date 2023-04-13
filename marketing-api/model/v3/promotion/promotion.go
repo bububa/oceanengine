@@ -125,6 +125,9 @@ type PromotionMaterial struct {
 	// 仅当landing_type选择LINK且命中白名单可用
 	// 需在广告平台签署协议后可用
 	DecorationMaterial []DecorationMaterial `json:"decoration_material,omitempty"`
+	// AutoExtendTraffic 智能拓流
+	// 允许值：ON开启（默认值）； OFF关闭
+	AutoExtendTraffic string `json:"auto_extend_traffic,omitempty"`
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// ComponentMaterialList 创意组件信息
