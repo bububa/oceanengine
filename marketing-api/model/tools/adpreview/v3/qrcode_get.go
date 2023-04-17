@@ -47,7 +47,9 @@ func (r QrcodeGetRequest) Encode() string {
 type QrcodeGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *QrcodeGetResponseData `json:"data,omitempty"`
+	Data struct {
+		Data *QrcodeGetResponseData `json:"data,omitempty"`
+	} `json:"data,omitempty"`
 }
 
 // QrcodeGetResponseData json返回值

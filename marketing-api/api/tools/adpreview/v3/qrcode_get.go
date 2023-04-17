@@ -12,5 +12,5 @@ func QrcodeGet(clt *core.SDKClient, accessToken string, req *v3.QrcodeGetRequest
 	if err != nil {
 		return nil, err
 	}
-	return resp.Data, nil
+	return resp.Data.Data, nil
 }
