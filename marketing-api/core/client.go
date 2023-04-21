@@ -179,6 +179,9 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 // Upload multipart/form-data post
 func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
 	buf := util.GetBufferPool()
+	defer func() {
+		util.PutBufferPool(buf)
+	}()
 	mw := multipart.NewWriter(buf)
 	params := req.Encode()
 	mp := make(map[string]string, len(params))
@@ -190,7 +193,6 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 		)
 		if v.Reader != nil {
 			if fw, err = mw.CreateFormFile(v.Key, v.Value); err != nil {
-				util.PutBufferPool(buf)
 				return err
 			}
 			r = v.Reader
@@ -201,14 +203,12 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 			util.PutStringsBuilder(builder)
 		} else {
 			if fw, err = mw.CreateFormField(v.Key); err != nil {
-				util.PutBufferPool(buf)
 				return err
 			}
 			r = strings.NewReader(v.Value)
 			mp[v.Key] = v.Value
 		}
 		if _, err = io.Copy(fw, r); err != nil {
-			util.PutBufferPool(buf)
 			return err
 		}
 	}
@@ -220,7 +220,6 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 	util.PutStringsBuilder(builder)
 	debug.PrintPostMultipartRequest(reqUrl, mp, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, buf)
-	util.PutBufferPool(buf)
 	if err != nil {
 		return err
 	}
