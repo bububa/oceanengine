@@ -12,6 +12,11 @@ import (
 type DeepBidTypeGetRequest struct {
 	// AdvertiserID 广告主id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// DeliveryMode 投放模式，允许值：MANUAL手动投放(默认值）、PROCEDURAL自动投放
+	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
+	// LandingType 推广目的，允许值：LINK线索
+	// 如需获取线索智投深度优化方式请同时传入delivery_mode=PROCEDURAL&&landing_type=LINK
+	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// AssetID 资产id
 	AssetID uint64 `json:"asset_id,omitempty"`
 	// ExternalAction 优化目标
@@ -24,6 +29,12 @@ type DeepBidTypeGetRequest struct {
 func (r DeepBidTypeGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	if r.DeliveryMode != "" {
+		values.Set("delivery_mode", string(r.DeliveryMode))
+	}
+	if r.LandingType != "" {
+		values.Set("landing_type", string(r.LandingType))
+	}
 	if r.AssetID > 0 {
 		values.Set("asset_id", strconv.FormatUint(r.AssetID, 10))
 	}
