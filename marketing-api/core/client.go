@@ -179,9 +179,7 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 // Upload multipart/form-data post
 func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
 	buf := util.GetBufferPool()
-	defer func() {
-		util.PutBufferPool(buf)
-	}()
+	defer util.PutBufferPool(buf)
 	mw := multipart.NewWriter(buf)
 	params := req.Encode()
 	mp := make(map[string]string, len(params))
