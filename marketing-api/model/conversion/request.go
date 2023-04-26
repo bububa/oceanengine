@@ -159,8 +159,12 @@ type Properties struct {
 	ProductNumber int `json:"product_number,omitempty"`
 	// ProductTitle 商品标题
 	ProductTitle string `json:"product_title,omitempty"`
-	// ProductPrice 商品单价，单位为“元”
-	ProductPrice int `json:"product_price,omitempty"`
+	// ProductPrice 商品单价，单位为“分”, 商品加个范围
+	ProductPrice string `json:"product_price,omitempty"`
+	// ProductCategory 商品类目
+	ProductCategory string `json:"product_category,omitempty"`
+	// ProductPicUrl 商品大图URL
+	ProductPicUrl string `json:"product_pic_url,omitempty"`
 	// ShopName 店铺名称
 	ShopName string `json:"shop_name,omitempty"`
 	// ProductType 商品类型
