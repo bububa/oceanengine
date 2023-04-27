@@ -23,7 +23,7 @@ type VideoMaterialClearTaskParameters struct {
 	MaterialIDs []uint64 `json:"material_ids,omitempty"`
 	// ClearMaterialTypes 清理素材类型，允许值：INEFFICIENT_MATERIAL低效素材；SIMILAR_MATERIAL 同质化挤压严重素材；SIMILAR_QUEUE_MATERIAL同质化排队素材
 	// 如果不传清理素材类型，默认清理这三个标签的全部素材
-	ClearMaterialTypes []enum.ClearMaterialType `json:"clear_material_types,omitempty"`
+	ClearMaterialTypes []enum.MaterialProperty `json:"clear_material_types,omitempty"`
 	// CreateTimeUpper 清理创建时间"yyyy-mm-dd"之前的素材，不包括这一天
 	ClearTimeUpper string `json:"clear_time_upper,omitempty"`
 	// StartTime 账户下累积转化数和累积消耗数的数据统计开始时间，格式为"yyyy-mm-dd"，且包含该日期

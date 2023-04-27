@@ -28,7 +28,7 @@ func (r VideoMaterialClearTaskResultGetRequest) Encode() string {
 	if r.Page > 1 {
 		values.Set("page", strconv.Itoa(r.Page))
 	}
-	if r.PageSize != 10 {
+	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
 	ret := values.Encode()
@@ -58,7 +58,7 @@ type VideoMaterialClearResult struct {
 	// INEFFICIENT_MATERIAL低效素材；
 	// SIMILAR_MATERIAL 同质化挤压严重素材；
 	// SIMILAR_QUEUE_MATERIAL 同质化排队素材
-	ClearMaterialTypes []enum.ClearMaterialType `json:"clear_material_types,omitempty"`
+	ClearMaterialTypes []enum.MaterialProperty `json:"clear_material_types,omitempty"`
 	// CreativeSuccessCount 清理成功的创意数
 	CreativeSuccessCount int64 `json:"creative_success_count,omitempty"`
 	// CreativeFailCount 清理失败的创意数
