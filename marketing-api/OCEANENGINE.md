@@ -201,6 +201,9 @@
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
   - 获取低效素材 [ VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *file.VideoEffeciencyGetRequest) ([]string, error) ] 
   - 批量删除图片素材 [ v3.ImageDelete(clt *core.SDKClient, accessToken string, req *v3.ImageDeleteRequest) ([]string, error) ]
+  - 创建素材清理任务 [ VideoMaterialClearTaskCreate(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskCreateRequest) (uint64, error) ]
+  - 获取清理任务列表 [ VideoMaterialClearTaskGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskGetRequest) (*file.VideoMaterialClearTaskGetData, error) ]
+  - 下载清理任务结果 [ VideoMaterialClearTaskResultGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskResultGetRequest) (*file.VideoMaterialClearTaskResultGetData, error) ]
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
