@@ -120,6 +120,8 @@ type CouponBrick struct {
 type WechatGameBrick struct {
 	// InstanceID 微信小游戏组件ID，当wechat_game不为空时，有返回值。用户可以通过【青鸟线索通平台】获取微信小游戏组件ID
 	InstanceID uint64 `json:"instance_id,omitempty"`
+	// GamePath 微信小游戏的路径参数
+	GamePath string `json:"game_path,omitempty"`
 	// Items 标签，个数不超过2，字数不超过5个中文字符
 	Items []string `json:"items,omitempty"`
 	// Introduction 简介，长度不超过40个中文字符
