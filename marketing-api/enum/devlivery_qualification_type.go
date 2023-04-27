@@ -1,0 +1,29 @@
+package enum
+
+// DeliveryQualificationType 投放资质类型
+type DeliveryQualificationType string
+
+const (
+	// DeliveryQualificationType_AGENT_ARRANGEMENT 广告代投协议
+	DeliveryQualificationType_AGENT_ARRANGEMENT DeliveryQualificationType = "AGENT_ARRANGEMENT"
+	// DeliveryQualificationType_AUTHORIZATION_CONTRACT 委托加工/生产合同
+	DeliveryQualificationType_AUTHORIZATION_CONTRACT DeliveryQualificationType = "AUTHORIZATION_CONTRACT"
+	// DeliveryQualificationType_DISTRIBUTION_AUTHORIZATION 经销授权书
+	DeliveryQualificationType_DISTRIBUTION_AUTHORIZATION DeliveryQualificationType = "DISTRIBUTION_AUTHORIZATION"
+	// DeliveryQualificationType_ICP_RECORD_AUTHORIZATION icp域名备案/授权
+	DeliveryQualificationType_ICP_RECORD_AUTHORIZATION DeliveryQualificationType = "ICP_RECORD_AUTHORIZATION"
+	// DeliveryQualificationType_OTHER_CERTIFICATION 其他资质
+	DeliveryQualificationType_OTHER_CERTIFICATION DeliveryQualificationType = "OTHER_CERTIFICATION"
+	// DeliveryQualificationType_PATENT_CERTIFICATE 专利证书
+	DeliveryQualificationType_PATENT_CERTIFICATE DeliveryQualificationType = "PATENT_CERTIFICATE"
+	// DeliveryQualificationType_PORTRAIT_AUTHORIZATION 肖像授权书
+	DeliveryQualificationType_PORTRAIT_AUTHORIZATION DeliveryQualificationType = "PORTRAIT_AUTHORIZATION"
+	// DeliveryQualificationType_QUALITY_REPORT 鉴定/质检报告
+	DeliveryQualificationType_QUALITY_REPORT DeliveryQualificationType = "QUALITY_REPORT"
+	// DeliveryQualificationType_SOFTWARE_COPYRIGHT_REGISTRATION_CERTIFICATE 软件著作权登记证书
+	DeliveryQualificationType_SOFTWARE_COPYRIGHT_REGISTRATION_CERTIFICATE DeliveryQualificationType = "SOFTWARE_COPYRIGHT_REGISTRATION_CERTIFICATE"
+	// DeliveryQualificationType_TRADEMARK_REGISTRATION_CERTIFICATE 商标注册证
+	DeliveryQualificationType_TRADEMARK_REGISTRATION_CERTIFICATE DeliveryQualificationType = "TRADEMARK_REGISTRATION_CERTIFICATE"
+	// DeliveryQualificationType_VIDEO_MATERIAL_PRODUCTION_IP_AUTHORIZATION 广告视频/素材/作品/IP授权
+	DeliveryQualificationType_VIDEO_MATERIAL_PRODUCTION_IP_AUTHORIZATION DeliveryQualificationType = "VIDEO_MATERIAL_PRODUCTION_IP_AUTHORIZATION"
+)

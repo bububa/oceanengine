@@ -225,6 +225,14 @@ type CustomMetrics struct {
 	InAppPay model.Int64 `json:"in_app_pay,omitempty"`
 	// InAppOrder 用户调起APP后提交订单的次数，一般在DPA广告中使用
 	InAppOrder model.Int64 `json:"in_app_order,omitempty"`
+	// InAppPayOrderGmv 引流电商订单GMV, 当您使用“in_app_order”事件回传订单金额时，对应的GMV金额
+	InAppPayOrderGmv model.Float64 `json:"in_app_pay_order_gmv,omitempty"`
+	// InAppPayOrderRoi 引流电商订单ROI, 引流电商订单GMV/消耗"
+	InAppPayOrderRoi model.Float64 `json:"in_app_pay_order_roi,omitempty"`
+	// InAppPayGmv 引流电商支付GMV, 当您使用“in_app_pay”事件回传支付金额时，对应的GMV金额"
+	InAppPayGmv model.Float64 `json:"in_app_pay_gmv,omitempty"`
+	// InAppPayRoi 引流电商支付ROI, 引流电商支付GMV/消耗
+	InAppPayRoi model.Float64 `json:"in_app_pay_roi,omitempty"`
 	// AttributionGameInAppLtv1Day 所选时间范围内的激活用户，激活当日在APP内的付费金额。
 	AttributionGameInAppLtv1Day model.Float64 `json:"attribution_game_in_app_ltv_1day,omitempty"`
 	// AttributionGameInAppLtv2Days 所选时间范围内的激活用户，激活后一天内在APP内的付费金额总和。该指标隔日产出，并做了模糊化处理。
@@ -289,4 +297,24 @@ type CustomMetrics struct {
 	AttributionDeepConvertCost model.Float64 `json:"attribution_deep_convert_cost,omitempty"`
 	// AttributionDeepConvertRate 深度转化数（计费时间）/转化数（计费时间）*100%
 	AttributionDeepConvertRate model.Float64 `json:"attribution_deep_convert_rate,omitempty"`
+	// TotalPlay 播放量, 播放时间大于0S的数量，在某些蜂窝网络环境下，需要您手动点击开始才会开始播放，因此有时播放数小于展示数。
+	TotalPlay model.Int64 `json:"total_play,omitempty"`
+	// ValidPlay 有效播放数, 竞价广告播放时间大于等于10秒的数量，如果视频总时长不足10秒，则记录播放完成的次数。品牌广告在部分APP（头条、头条lite、抖音、西瓜、抖音火山版、皮皮虾）播放时间大于等于5秒的数量，在其他APP大于等于3秒的数量，如果视频总时长不足5秒/3秒时，则记录播放完成的次数。
+	ValidPlay model.Int64 `json:"valid_play,omitempty"`
+	// ValidPlayCost 有效播放成本, 计算公式：总花费/有效播放数，当天数据可能会有波动，次日早8点后稳定。
+	ValidPlayCost model.Float64 `json:"valid_play_cost,omitempty"`
+	// ValidPlayRate 有效播放率, 计算公式：有效播放数/展示数。
+	ValidPlayRate model.Float64 `json:"valid_play_rate,omitempty"`
+	// AttributionMicroGame0dLtv 小游戏当日LTV-所选时间范围内的激活用户在激活当日的变现金额
+	AttributionMicroGame0dLtv model.Float64 `json:"attribution_micro_game_0d_ltv,omitempty"`
+	// AttributionMicroGame3dLtv 小游戏激活后三日LTV-所选时间范围内的激活用户在激活后三日内的变现金额
+	AttributionMicroGame3dLtv model.Float64 `json:"attribution_micro_game_3d_ltv,omitempty"`
+	// AttributionMicroGame7dLtv 小游戏激活后七日LTV-所选时间范围内的激活用户在激活后七日内的变现金额
+	AttributionMicroGame7dLtv model.Float64 `json:"attribution_micro_game_7d_ltv,omitempty"`
+	// AttributionMicroGame0dRoi 小游戏当日广告变现ROI-所选时间范围内的激活用户在激活当日的广告变现ROI，计算公式是：当日LTV / 所选时间的消耗
+	AttributionMicroGame0dRoi model.Float64 `json:"attribution_micro_game_0d_roi,omitempty"`
+	// AttributionMicroGame3dRoi 小游戏激活后三日广告变现ROI-所选时间范围内的激活用户在激活后三日内的广告变现ROI，计算公式是：三日LTV / 所选时间的消耗
+	AttributionMicroGame3dRoi model.Float64 `json:"attribution_micro_game_3d_roi,omitempty"`
+	// AttributionMicroGame7dRoi 小游戏激活后七日广告变现ROI-所选时间范围内的激活用户在激活后七日内的广告变现ROI，计算公式是：七日LTV / 所选时间的消耗
+	AttributionMicroGame7dRoi model.Float64 `json:"attribution_micro_game_7d_roi,omitempty"`
 }

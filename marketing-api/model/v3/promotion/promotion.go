@@ -50,6 +50,12 @@ type Promotion struct {
 	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// MaterialScoreInfo 素材评级信息
 	MaterialScoreInfo *MaterialScoreInfo `json:"material_score_info,omitempty"`
+	// CreativeAutoGenerateSwitch 是否开启自动生成素材
+	// 默认值：OFF
+	// 枚举值：ON开启、OFF不开启
+	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
+	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
+	ConfigID uint64 `json:"config_id,omitempty"`
 }
 
 func (p Promotion) Version() model.AdVersion {
@@ -115,10 +121,19 @@ type PromotionMaterial struct {
 	TextAbstractList []TextAbstract `json:"text_abstract_list,omitempty"`
 	// AnchorMaterialList 原生锚点素材，当 anchor_related_type = SELECT时必填，数量上限为1
 	AnchorMaterialList []AnchorMaterial `json:"anchor_material_list,omitempty"`
+	// DecorationMaterial 家装卡券素材
+	// 仅当landing_type选择LINK且命中白名单可用
+	// 需在广告平台签署协议后可用
+	DecorationMaterial []DecorationMaterial `json:"decoration_material,omitempty"`
+	// AutoExtendTraffic 智能拓流
+	// 允许值：ON开启（默认值）； OFF关闭
+	AutoExtendTraffic string `json:"auto_extend_traffic,omitempty"`
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// ComponentMaterialList 创意组件信息
 	ComponentMaterialList []ComponentMaterial `json:"component_material_list,omitempty"`
+	// MiniProgramInfo 字节小程序信息，当landing_type = MICRO_GAME且micro_promotion_type = BYTE_APP或BYTE_GAME时有效且必填
+	MiniProgramInfo *MiniProgramInfo `json:"mini_program_info,omitempty"`
 	// ExternalURLMaterialList 普通落地页链接素材，上限10个
 	// 当landing_type = APP ，且 download_type = EXTERNAL_URL时，external_url_material_list 至少传入一个
 	// 当landing_type = LINK和SHOP类型，且项目asset_type = ORANGE 时，仅允许传入支持对应优化目标的橙子落地页
@@ -126,8 +141,19 @@ type PromotionMaterial struct {
 	// 当landing_type = MICRO_GAME和WECHAT_APP类型，仅支持选择含微信小程序/小游戏的橙子建站落地页且如果多选落地页，需要所有建站对应相同的微信小游戏/微信小程序，否则报错
 	// 应用直播链路和线索自研落地页直播链路不支持该字段
 	ExternalURLMaterialList []string `json:"external_url_material_list,omitempty"`
-	// MiniProgramInfo 字节小程序信息，当landing_type = MICRO_GAME且micro_promotion_type = BYTE_APP或BYTE_GAME时有效且必填
-	MiniProgramInfo *MiniProgramInfo `json:"mini_program_info,omitempty"`
+	// ParamsType 链接类型(落地页)，DPA推广目的下必填允许值: DPA 商品库所含链接、CUSTOM 自定义链接
+	ParamsType string `json:"params_type,omitempty"`
+	// ExternalURLField 落地页链接字段选择，当params_type为DPA时必填
+	ExternalURLField string `json:"external_url_field,omitempty"`
+	// ExternalURLParams 落地页检测参数
+	ExternalURLParams string `json:"external_url_params,omitempty"`
+	// OpenURLType 直达链接类型，允许值: NONE不启用, DPA商品库所含链接, CUSTOM自定义链接商品库链接对应商品库内调起字段，如对接多种调起链接则可选择；自定义链接可自行输入调起链接。
+	// DPA推广母的下可以使用
+	OpenURLType string `json:"open_url_type,omitempty"`
+	// OpenURLField 直达链接字段选择，当dpa_open_url_type为DPA必填
+	OpenURLField string `json:"open_url_field,omitempty"`
+	// OpenURLParams 直达链接检测参数(DPA推广目的特有,在“产品库中提取的scheme地址"后面追加填写的参数)
+	OpenURLParams string `json:"open_url_params,omitempty"`
 	// WebURLMaterialList Android应用下载详情页
 	WebURLMaterialList []string `json:"web_url_material_list,omitempty"`
 	// PlayableURLMaterialList 试玩落地页素材
@@ -290,4 +316,13 @@ type AnchorMaterial struct {
 	// AnchorID 原生锚点id可使用【获取账户下的原生锚点】获得
 	// 当 anchor_related_type = SELECT时必填
 	AnchorID string `json:"anchor_id,omitempty"`
+}
+
+// DecorationMaterial 家装卡券素材
+type DecorationMaterial struct {
+	// ImageMode 素材类型，仅支持传入CREATIVE_IMAGE_MODE_DECORATION_COUPON
+	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
+	// ActivityID 活动ID，image_mode为家具卡券素材时填写
+	// 通过【获取家装联盟卡券列表】接口获取
+	ActivityID string `json:"activity_id,omitempty"`
 }

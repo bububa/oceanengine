@@ -58,6 +58,12 @@ type CreateRequest struct {
 	AutoExtendTraffic string `json:"auto_extend_traffic,omitempty"`
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
+	// CreativeAutoGenerateSwitch 是否开启自动生成素材
+	// 默认值：OFF
+	// 枚举值：ON开启、OFF不开启
+	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
+	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
+	ConfigID uint64 `json:"config_id,omitempty"`
 }
 
 // Encode implement PostRequest interface

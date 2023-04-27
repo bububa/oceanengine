@@ -44,7 +44,7 @@ type ButtonBrick struct {
 	// Color 文案颜色信息，默认值rgba(255,255,255,1)
 	Color string `json:"color,omitempty"`
 	// FontSize 文案字号,默认值16
-	FontSize int `json:"font_size,omitempty"`
+	FontSize float64 `json:"font_size,omitempty"`
 	// BgColor 背景颜色信息，比如“rgba(255,255,255,1)”,默认为无
 	BgColor string `json:"bg_color,omitempty"`
 	// BgImage 背景图片，bg_type 为image时，有效且必填;可自行上传图片url，或从获取图片素材获取图片ID：id
@@ -184,7 +184,7 @@ type Description struct {
 	// Color 文字颜色，比如“rgba(255,255,255,1)”,默认为无
 	Color string `json:"color,omitempty"`
 	// FontSize 文字大小，默认15
-	FontSize int `json:"font_size,omitempty"`
+	FontSize float64 `json:"font_size,omitempty"`
 }
 
 // Title 标题配置，type为imageText样式时有效
@@ -192,5 +192,5 @@ type Title struct {
 	// Color 文字颜色，比如“rgba(255,255,255,1)”,默认为无
 	Color string `json:"color,omitempty"`
 	// FontSize 文字大小，默认15
-	FontSize int `json:"font_size,omitempty"`
+	FontSize float64 `json:"font_size,omitempty"`
 }

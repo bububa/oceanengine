@@ -27,6 +27,11 @@ type GetFiltering struct {
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// DeliveryRange 广告投放范围
 	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
+	// AdType 广告类型，允许值：
+	// ALL 所有广告（默认值）
+	// SEARCH 搜索广告
+	// 搜索定向包仅支持落地页、应用推广、抖音号、直播间，不支持商品、电商店铺、快应用、小游戏
+	AdType enum.CampaignType `json:"ad_type,omitempty"`
 }
 
 // Encode implement GetRequest interface
