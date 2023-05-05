@@ -317,4 +317,8 @@ type CustomMetrics struct {
 	AttributionMicroGame3dRoi model.Float64 `json:"attribution_micro_game_3d_roi,omitempty"`
 	// AttributionMicroGame7dRoi 小游戏激活后七日广告变现ROI-所选时间范围内的激活用户在激活后七日内的广告变现ROI，计算公式是：七日LTV / 所选时间的消耗
 	AttributionMicroGame7dRoi model.Float64 `json:"attribution_micro_game_7d_roi,omitempty"`
+	// 播放3s; 广告播放时间大于等于3秒的数量，如果视频总时长不足3秒，则记录播放完成的次数
+	PlayDuration3s model.Float64 `json:"play_duration_3s,omitempty"`
+	// 视频数据-播完率; 计算公式：播放完成数/播放数
+	PlayOverRate model.Float64 `json:"play_over_rate,omitempty"`
 }
