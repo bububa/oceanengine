@@ -10,9 +10,11 @@ import (
 var DEFAULT_CLICK_FIELDS = []string{
 	"request_id",
 	"aid",
+	"promotion_id",
 	"advertiser_id",
 	"cid",
 	"campaign_id",
+	"project_id",
 	"ctype",
 	"csite",
 	"imei",
@@ -46,11 +48,9 @@ func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
 		case "request_id":
 			values.Set("request_id", "__REQUEST_ID__")
 		case "aid":
-			if adVersion == model.AdVersion_2 {
-				values.Set("aid", "__PROMOTION_ID__")
-			} else {
-				values.Set("aid", "__AID__")
-			}
+			values.Set("aid", "__AID__")
+		case "promotion_id":
+			values.Set("aid", "__PROMOTION_ID__")
 		case "advertiser_id":
 			values.Set("advertiser_id", "__ADVERTISER_ID__")
 		case "cid":
@@ -58,11 +58,9 @@ func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
 				values.Set("cid", "__CID__")
 			}
 		case "campaign_id":
-			if adVersion == model.AdVersion_2 {
-				values.Set("campaign_id", "__PROJECT_ID__")
-			} else {
-				values.Set("campaign_id", "__CAMPAIGN_ID__")
-			}
+			values.Set("campaign_id", "__CAMPAIGN_ID__")
+		case "project_id":
+			values.Set("campaign_id", "__PROJECT_ID__")
 		case "ctype":
 			values.Set("ctype", "__CTYPE__")
 		case "csite":
