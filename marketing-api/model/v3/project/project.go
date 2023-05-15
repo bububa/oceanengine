@@ -190,6 +190,10 @@ type OptimizeGoal struct {
 	// 默认值：OFF
 	// 当前仅支持推广目的为销售线索收集（landing_type=LINK）时传入ACTION，VALUE
 	ValueOptimizedType string `json:"value_optimized_type,omitempty"`
+	// PaidSwitch 字节提供的归因方式，允许值：
+	// 1启用；2 不启用（默认值）
+	// 仅当landing_type=SHOP，external_action=AD_CONVERT_TYPE_APP_ORDER app内下单（电商）时有效
+	PaidSwitch int `json:"paid_switch,omitempty"`
 }
 
 // DeliveryRange 广告版位
