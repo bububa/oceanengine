@@ -81,4 +81,18 @@ type StrategyState struct {
 	StateType enum.StrategyStateType `json:"state_type,omitempty"`
 	// StateValue 配置项值
 	StateValue string `json:"state_value,omitempty"`
+	// Limit 配置项限制条件
+	Limit *StrategyStateLimit `json:"limite,omitempty"`
+}
+
+// StrategyStateLimit 配置项限制条件
+type StrategyStateLimit struct {
+	// TextMaxLength 文案最大长度(仅对state_type=Text有效)
+	TextMaxLength int `json:"text_maxlength,omitempty"`
+	// TextMinLength 文案最小长度(仅对state_type=Text有效)
+	TextMinLength int `json:"text_min_length,omitempty"`
+	// ImgWidth 图片宽度(仅对state_type=Image有效)
+	ImgWidth int `json:"img_width,omitempty"`
+	// ImgHeight 图片高度(仅对state_type=Image有效)
+	ImgHeight int `json:"img_height,omitempty"`
 }
