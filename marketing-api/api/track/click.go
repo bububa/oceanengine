@@ -50,7 +50,7 @@ func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
 		case "aid":
 			values.Set("aid", "__AID__")
 		case "promotion_id":
-			values.Set("aid", "__PROMOTION_ID__")
+			values.Set("promotion_id", "__PROMOTION_ID__")
 		case "advertiser_id":
 			values.Set("advertiser_id", "__ADVERTISER_ID__")
 		case "cid":
@@ -60,7 +60,7 @@ func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
 		case "campaign_id":
 			values.Set("campaign_id", "__CAMPAIGN_ID__")
 		case "project_id":
-			values.Set("campaign_id", "__PROJECT_ID__")
+			values.Set("project_id", "__PROJECT_ID__")
 		case "ctype":
 			values.Set("ctype", "__CTYPE__")
 		case "csite":
