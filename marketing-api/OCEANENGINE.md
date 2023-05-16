@@ -388,6 +388,13 @@
     - 获取一键起量报告 [ Report(clt *core.SDKClient, accessToken string, req *adraise.ReportRequest) (*adraise.ReportResponseData, error) ]
     - 获取起量版本信息 [ Version(clt *core.SDKClient, accessToken string, req *adraise.VersionRequest) (*adraise.VersionResponseData, error) ]
     - 获取广告建议起量预算 [ SuggestBudgetGet(clt *core.SDKClient, accessToken string, req *adraise.SuggestBudgetGetRequest) ([]adraise.SuggestBudget, error) ]
+  - 一键起量（巨量广告升级版） 
+    - 获取广告建议起量预算 [ SuggestBudgetGet(clt *core.SDKClient, accessToken string, req *v3.SuggestBudgetGetRequest) ([]v3.SuggestBudget, error) ]
+    - 开启/更新一键起量 [ Set(clt *core.SDKClient, accessToken string, req *v3.SetRequest) error ]
+    - 获取一键起量方案列表 [ StatusGet(clt *core.SDKClient, accessToken string, req *v3.StatusGetRequest) ([]v3.PromotionRaiseStatus, error) ]
+    - 获取起量版本信息 [ VersionGet(clt *core.SDKClient, accessToken string, req *v3.VersionGetRequest) (*v3.VersionGetResponseData, error) ]
+    - 关停正在起量的广告 [ Stop(clt *core.SDKClient, accessToken string, req *v3.StopRequest) error ]
+    - 获取广告起量状态 [ StatusCurrentIDsGet(clt *core.SDKClient, accessToken string, req *v3.StatusCurrentIDsGetRequest) (*v3.StatusCurrentIDsGetResult, error) ]
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
