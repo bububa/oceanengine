@@ -12,4 +12,6 @@ const (
 	AnchorType_APP_SHOP AnchorType = "APP_SHOP"
 	// AnchorType_ONLINE_SUBSCRIBE 高级在线预约
 	AnchorType_ONLINE_SUBSCRIBE AnchorType = "ONLINE_SUBSCRIBE"
+	// AnchorType_SHOPPING_CART 购物车
+	AnchorType_SHOPPING_CART AnchorType = "SHOPPING_CART"
 )
