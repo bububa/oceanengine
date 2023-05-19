@@ -14,4 +14,8 @@ const (
 	AnchorType_ONLINE_SUBSCRIBE AnchorType = "ONLINE_SUBSCRIBE"
 	// AnchorType_SHOPPING_CART 购物车
 	AnchorType_SHOPPING_CART AnchorType = "SHOPPING_CART"
+	// AnchorType_PRIVATE_CHAT  私信锚点
+	AnchorType_PRIVATE_CHAT AnchorType = "PRIVATE_CHAT"
+	// AnchorType_INSURANCE 保险锚点
+	AnchorType_INSURANCE AnchorType = "INSURANCE"
 )
