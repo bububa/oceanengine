@@ -33,6 +33,9 @@ type AdvertiserTransferableListRequest struct {
 func (r AdvertiserTransferableListRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	if r.TransferAccountType != "" {
+		values.Set("transfer_account_type", string(r.TransferAccountType))
+	}
 	if r.Page > 1 {
 		values.Set("page", strconv.Itoa(r.Page))
 	}
