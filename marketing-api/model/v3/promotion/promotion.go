@@ -33,7 +33,7 @@ type Promotion struct {
 	// PromotionMaterials 广告素材组合
 	PromotionMaterials *PromotionMaterial `json:"promotion_materials,omitempty"`
 	// IsCommentDisable 广告评论，ON为启用，OFF为不启用
-	IsCommentDisable model.OnOffInt `json:"is_comment_disable,omitempty"`
+	IsCommentDisable model.ReverseOnOffInt `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
 	AdDownloadStatus model.OnOffInt `json:"ad_download_status,omitempty"`
 	// Source 广告来源

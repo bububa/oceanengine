@@ -66,3 +66,22 @@ func (ooi *OnOffInt) UnmarshalJSON(b []byte) (err error) {
 	*ooi = OnOffInt(i)
 	return nil
 }
+
+type ReverseOnOffInt int
+
+func (ooi *ReverseOnOffInt) UnmarshalJSON(b []byte) (err error) {
+	if b[0] == '"' && b[len(b)-1] == '"' {
+		b = b[1 : len(b)-1]
+	}
+	str := string(b)
+	var i int
+	if str == "ON" {
+		i = 0
+	} else if str == "OFF" {
+		i = 1
+	} else {
+		i, _ = strconv.Atoi(str)
+	}
+	*ooi = ReverseOnOffInt(i)
+	return nil
+}
