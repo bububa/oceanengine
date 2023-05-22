@@ -46,5 +46,5 @@ type SuggestKeyword struct {
 	// MatchType 匹配类型
 	MatchType enum.KeywordMatchType `json:"match_type,omitempty"`
 	// Msv 月搜索量
-	Msg int64 `json:"msv,omitempty"`
+	Msv int64 `json:"msv,omitempty"`
 }

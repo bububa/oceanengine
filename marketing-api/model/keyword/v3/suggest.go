@@ -1,8 +1,6 @@
 package v3
 
 import (
-	"strconv"
-
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
@@ -14,17 +12,23 @@ type SuggestRequest struct {
 	ProjectID uint64 `json:"project_id,omitempty"`
 	// QueryList 以词推词，最多只传入10个，长度要求30字内 ,可传入行业名称获取行业推词
 	QueryList []string `json:"query_list,omitempty"`
+	// PromotionMaterial 广告素材
+	PromotionMaterial *PromotionMaterial `json:"promotion_material,omitempty"`
 }
 
-// Encode implement GetRequest interface
-func (r SuggestRequest) Encode() string {
-	values := util.GetUrlValues()
-	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	values.Set("project_id", strconv.FormatUint(r.ProjectID, 10))
-	if len(r.QueryList) > 0 {
-		values.Set("query_list", string(util.JSONMarshal(r.QueryList)))
-	}
-	ret := values.Encode()
-	util.PutUrlValues(values)
-	return ret
+// PromotionMaterial 广告素材
+type PromotionMaterial struct {
+	// Abstracts 广告摘要
+	Abstracts []string `json:"abstracts,omitempty"`
+	// QuantityWords 优词
+	QuantityWords []string `json:"quantity_words,omitempty"`
+	// AppName 应用名
+	AppName string `json:"app_name,omitempty"`
+	// Source 来源
+	Source string `json:"source,omitempty"`
+}
+
+// Encode implement PostRequest interface
+func (r SuggestRequest) Encode() []byte {
+	return util.JSONMarshal(r)
 }
