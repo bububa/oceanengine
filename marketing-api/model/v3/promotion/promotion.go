@@ -209,6 +209,8 @@ type Image struct {
 
 // TitleMaterial 标题素材
 type TitleMaterial struct {
+	// MaterialID 素材ID
+	MaterialID model.Uint64 `json:"material_id,omitempty"`
 	// Title 创意标题
 	Title string `json:"title,omitempty"`
 	// BidwordList 搜索关键词列表
@@ -320,6 +322,8 @@ type AnchorMaterial struct {
 
 // DecorationMaterial 家装卡券素材
 type DecorationMaterial struct {
+	// MaterialID 素材ID
+	MaterialID model.Uint64 `json:"material_id,omitempty"`
 	// ImageMode 素材类型，仅支持传入CREATIVE_IMAGE_MODE_DECORATION_COUPON
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// ActivityID 活动ID，image_mode为家具卡券素材时填写
