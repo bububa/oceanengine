@@ -18,6 +18,8 @@ type Keyword struct {
 	KeywordID uint64 `json:"keyword_id,omitempty"`
 	// WordID 词ID，不同计划下如果关键词的内容相同，词id会相同
 	WordID uint64 `json:"word_id,omitempty"`
+	// Msv 月搜索量
+	Msg int64 `json:"msv,omitempty"`
 	// ErrorReason 关键词添加失败原因
 	ErrorReason string `json:"error_reason,omitempty"`
 }
