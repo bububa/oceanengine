@@ -19,7 +19,7 @@ type AdvertiserRechargeRequest struct {
 	// CREDIT_UNIVERSAL 通用授信
 	// CREDIT_BRAND 品牌授信
 	// CREDIT_BID 竞价授信
-	TransferType string `json:"transfer_type,omitempty"`
+	TransferType AdvertiserTransferType `json:"transfer_type,omitempty"`
 	// Amount 金额,单位(元),最低转账金额500元
 	Amount float64 `json:"amount,omitempty"`
 }

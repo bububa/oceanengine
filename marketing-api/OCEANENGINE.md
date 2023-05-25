@@ -48,6 +48,10 @@
     - 获取可转账户列表（客户中心&广告主） [ customercenter.AdvertiserTransferableList(clt *core.SDKClient, accessToken string, req *customercenter.AdvertiserTransferableListRequest) (*customercenter.AdvertiserTransferableListData, error) ]
     - 创建转账交易号 [ customercenter.FundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *customercenter.FundTransferSeqCreateRequest) (uint64, error) ]
     - 提交转账交易号 [ customercenter.FundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *customercenter.FundTransferSeqCommitRequest) (uint64, error) ]
+    - 创建转账交易号（方舟）[ agent.FundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCreateRequest) (string, error) ]
+    - 提交转账交易号（方舟）[ agent.FundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]
+    - 创建退款交易号（方舟）[ agent.RefundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCreateRequest) (string, error) ]
+    - 提交退款交易号（方舟）[ agent.RefundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]
 - 广告投放
   - 广告账户预算 (api)
     - 获取账户日预算 [ advertiser.BudgetGet(clt *core.SDKClient, accessToken string, req *advertiser.BudgetGetRequest) ([]advertiser.BudgetGetResponseList, error) ]
