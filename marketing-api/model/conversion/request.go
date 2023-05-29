@@ -289,7 +289,7 @@ func (r Request) Sign(req *http.Request, content []byte) (string, error) {
 	builder := util.GetStringsBuilder()
 	builder.WriteString("credential=")
 	builder.WriteString(string(r.Credential))
-	builder.WriteString("×tamp=")
+	builder.WriteString("xtamp=")
 	builder.WriteString(timestamp)
 	builder.WriteString("&signature=")
 	builder.WriteString(signature)
