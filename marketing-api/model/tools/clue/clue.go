@@ -25,6 +25,10 @@ type Clue struct {
 	SiteID model.Uint64 `json:"site_id,omitempty"`
 	// SiteName 站点名称
 	SiteName string `json:"site_name,omitempty"`
+	// MidInfo 升级版素材组(投放2.0)
+	// 注意：投放1.0为空，mid_info是一个jsonstring，示例
+	//  {    "titleId" : 123,    "videoId" : 234,    "imageId" : 135}
+	MidInfo string `json:"mid_info,omitempty"`
 	// IntentionEstimation 线索意向。拉取到线索后，intention_estimation的获取会有约 10 分钟延迟；建议 10 分钟后重新拉取并和该条线索进行匹配
 	IntentionEstimation string `json:"intention_estimation,omitempty"`
 	// ExternalURL 落地页 url
@@ -106,6 +110,8 @@ type Clue struct {
 	CountryName string `json:"country_name,omitempty"`
 	// SystemTags 线索相关的系统标签，是一个标签项的数组
 	SystemTags []string `json:"system_tags,omitempty"`
+	// Tags 线索被打上的人工标签，，是一个标签项的数组，包括自定义标签和行业标签
+	Tags []string `json:"tags,omitempty"`
 	// AllocationStatus 分配状态值; 枚举值：0 待分配、1 已分配
 	AllocationStatus int `json:"allocation_status,omitempty"`
 	// Store 门店信息
