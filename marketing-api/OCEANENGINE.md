@@ -268,6 +268,11 @@
     - 获取智能电话列表 [ Get(clt *core.SDKClient, accessToken string, req *smartphone.GetRequest) (*smartphone.GetResponseData, error) ]
     - 删除智能电话 [ Delete(clt *core.SDKClient, accessToken string, req *smartphone.DeleteRequest) error ]
     - 查询智能电话拨打记录 [ Record(clt *core.SDKClient, accessToken string, req *smartphone.RecordRequest) (*smartphone.RecordResponseData, error) ]
+  - 微信加粉组件 (clue/wechat)
+    - 获取微信库微信号列表 [ PoolList(clt *core.SDKClient, accessToken string, req *wechat.PoolListRequest) (*wechat.PoolListData, error) ]
+    - 获取微信号码包详情 [ InstanceDetail(clt *core.SDKClient, accessToken string, req *wechat.InstanceDetailRequest) (*wechat.Instance, error) ]
+    - 获取微信号码包列表 [ InstanceList(clt *core.SDKClient, accessToken string, req *wechat.InstanceListRequest) (*wechat.InstanceListData, error) ]
+    - 更新微信号码包 [ InstanceUpdate(clt *core.SDKClient, accessToken string, req *wechat.InstanceUpdateRequest) (*wechat.InstanceUpdateResult, error) ]
 - 资产
   - 创意组件(api/assets/creativecomponent)
     - 创建组件 [ Create(clt *core.SDKClient, accessToken string, req *creativecomponent.CreateRequest) (*creativecomponent.CreateResponseData, error) ]
