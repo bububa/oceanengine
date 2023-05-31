@@ -41,9 +41,25 @@
     - 获取千川账户下已授权抖音号 [ AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
 
 - 数据报表 （api/qianchuan/report)
-  - 获取广告账户数据 [ AdvertiserGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
-  - 获取广告计划数据 [ AdGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
-  - 获取广告创意数据 [ CreativeGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
+  - 广告数据报表
+    - 获取广告账户数据 [ AdvertiserGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
+    - 获取广告计划数据 [ AdGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
+    - 获取广告创意数据 [ CreativeGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
+    - 获取广告素材数据 [ MaterialGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
+    - 获取搜索词/关键词数据 [ SearchWordGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
+    - 视频互动流失数据 [ VideoUserLoseGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
+    - 长周期转化价值-订单明细 [ LongTransferOrderGet(clt *core.SDKClient, accessToken string, req *report.LongTransferOrderGetRequest) (*report.LongTransferOrderGetData, error) ]
+  - 直播间报表
+    - 获取今日直播数据 [ LiveGet(clt *core.SDKClient, accessToken string, req *report.LiveGetRequest) (*report.LiveStat, error) ]
+    - 获取今日直播间列表 [ live.RoomGet(clt *core.SDKClient, accessToken string, req *live.RoomGetRequest) (*live.RoomGetData, error) ]
+    - 获取直播间详情 [ live.RoomDetailGet(clt *core.SDKClient, accessToken string, req *live.RoomDetailGetRequest) (*live.Room, error) ]
+    - 获取直播间流量表现 [ live.RoomFlowPerformanceGet(clt *core.SDKClient, accessToken string, req *live.RoomFlowPerformanceGetRequest) (*live.RoomFlowPerformance, error) ]
+    - 获取直播间用户洞察 [ live.RoomUserGet(clt *core.SDKClient, accessToken string, req *live.RoomUserGetRequest) (*live.RoomUser, error)  ]
+    - 获取直播间商品列表 [ live.RoomProductListGet(clt *core.SDKClient, accessToken string, req *live.RoomProductListGetRequest) (*live.RoomProductListData, error) ]
+  - 商品竞争分析 (api/quancuan/product/analyse)
+    - 获取商品竞争分析列表 [ List(clt *core.SDKClient, accessToken string, req *analyse.ListRequest) (*analyse.ListResponseData, error) ]
+    - 商品竞争分析详情-效果对比 [ CompareStatsData(clt *core.SDKClient, accessToken string, req *analyse.CompareStatsDataRequest) (*analyse.CompareStatsData, error) ]
+    - 商品竞争分析详情-创意比对 [ CompareCreative(clt *core.SDKClient, accessToken string, req *analyse.CompareCreativeRequest) (*analyse.CompareCreative, error) ]
 
 - 素材管理 (api/file)
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]

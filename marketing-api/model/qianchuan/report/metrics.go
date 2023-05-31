@@ -1,17 +1,7 @@
 package report
 
-// Metrics 维度数据
+// Metrics 指标数据
 type Metrics struct {
-	// StatDatetime 数据起始时间，分组条件包含 STAT_GROUP_BY_FIELD_STAT_TIME 时返回，格式为：yyyy-MM-dd HH:mm:ss
-	StatDatetime string `json:"stat_datetime,omitempty"`
-	// AdvertiserID 广告主ID
-	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
-	// CampaignID 广告组id
-	CampaignID uint64 `json:"campaign_id,omitempty"`
-	// AdID 计划id
-	AdID uint64 `json:"ad_id,omitempty"`
-	// CreativeID 创意id
-	CreativeID uint64 `json:"creative_id,omitempty"`
 	// StatCost 消耗
 	StatCost float64 `json:"stat_cost,omitempty"`
 	// ShowCnt 展示数
@@ -86,4 +76,16 @@ type Metrics struct {
 	PlayOver int64 `json:"play_over,omitempty"`
 	// PlayOverRate 完播率
 	PlayOverRate float64 `json:"play_over_rate,omitempty"`
+	// ValidPlay 有效播放数
+	ValidPlay int64 `json:"valid_play,omitempty"`
+	// AveragePlayTimePerPlay 平均单次播放时长
+	AveragePlayTimePerPlay float64 `json:"average_play_time_per_play,omitempty"`
+	// ValidPlayRate 有效播放率
+	ValidPlayRate float64 `json:"valid_play_rate,omitempty"`
+	// DislikeCnt 不感兴趣数
+	DislikeCnt int64 `json:"dislike_cnt,omitempty"`
+	// ReportCnt 举报数
+	ReportCnt int64 `json:"report_cnt,omitempty"`
+	// UserLoseCnt 流失数
+	UserLoseCnt int64 `json:"user_lose_cnt,omitempty"`
 }
