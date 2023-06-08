@@ -343,6 +343,8 @@ type BrandInfo struct {
 	EcomCategoryID uint64 `json:"ecom_category_id,omitempty"`
 	// BrandNameID 云图品牌id
 	BrandNameID uint64 `json:"brand_name_id,omitempty"`
+	// CdpBrandID cdp品牌id
+	CdpBrandID uint64 `json:"cdp_brand_id,omitempty"`
 	// CdpBrandName 云图品牌名称
 	CdpBrandName string `json:"cdp_brand_name,omitempty"`
 	// SubBrandNames 子品牌名称
