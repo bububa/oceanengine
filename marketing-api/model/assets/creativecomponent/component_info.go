@@ -123,6 +123,13 @@ func (i *ComponentInfo) UnmarshalJSON(b []byte) (err error) {
 			return
 		}
 		info.ComponentData = data
+	case enum.ComponentType_LUCKY_BOX:
+		var data LuckyBox
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	default:
 		info.ComponentData = UnknownComponent(tmp.ComponentData)
 	}
@@ -577,6 +584,33 @@ func (u UnionLightInteractive) Type() enum.ComponentType {
 }
 
 var _ ComponentData = (*UnionLightInteractive)(nil)
+
+// LuckyBox 幸运盒子
+type LuckyBox struct {
+	// BoxUrlLogo 品牌logo图，url格式。尺寸：200px*200px，格式：jpg或png（二选一），大小：300kb
+	BoxUrlLogo string `json:"box_url_logo,omitempty"`
+	// BoxColor 提供RGB色值，如“#161823”
+	BoxColor string `json:"box_color,omitempty"`
+	// TitleFirst 标题第一段文案，默认为“预备！”。客户可以自定义文案，字符个数限制：<=3个中文字数（6个字符）
+	TitleFirst string `json:"title_first,omitempty"`
+	// Duration 倒计时时间，默认“5”。选择盒子倒计时时间 ，5-12秒；为了保证素材核心信息不被感染，建议5s之后出现
+	Duration int `json:"duration,omitempty"`
+	// TitleSecond 标题第二段文案，默认为“秒后有大量盒盒掉落”，秒固定不可配置，“后有大量盒盒掉落”文案可配置。可以自定义文案，字符个数限制：<=9个中文字数（18个字符）
+	TitleSecond string `json:"title_second,omitempty"`
+	// SubTitle 副标题文案，可以自定义文案，字符个数限制：<=14个中文字数（28个字符）
+	SubTitle string `json:"sub_title,omitempty"`
+	// SpecialBoxType 特效盒子类型，默认1金色盒子（当前只有一种类型，后续会开发其他类型）
+	SpecialBoxType int `json:"special_box_type,omitempty"`
+	// HintText 互动提示文案，用户提供自定义文案，字符个数限制：<=14个中文字数（28个字符）
+	HintText string `json:"hint_text,omitempty"`
+}
+
+// Type Implement ComponentData interface
+func (u LuckyBox) Type() enum.ComponentType {
+	return enum.ComponentType_LUCKY_BOX
+}
+
+var _ ComponentData = (*LuckyBox)(nil)
 
 // UnknownComponent 未知组件
 type UnknownComponent []byte
