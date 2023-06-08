@@ -20,6 +20,12 @@ type Keyword struct {
 	WordID uint64 `json:"word_id,omitempty"`
 	// Msv 月搜索量
 	Msg int64 `json:"msv,omitempty"`
+	// Status  审核状态:
+	// AUDITING 审核中
+	// AUDIT_ACCEPTED 审核通过
+	// AUDIT_REJECTED 审核拒绝
+	// DELETED 已删除
+	Status enum.KeywordAuditStatus `json:"status,omitempty"`
 	// ErrorReason 关键词添加失败原因
 	ErrorReason string `json:"error_reason,omitempty"`
 }

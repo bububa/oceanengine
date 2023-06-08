@@ -26,4 +26,6 @@ const (
 	ComponentType_RESERVATION_BUTTON ComponentType = "RESERVATION_BUTTON"
 	// ComponentType_UNION_LIGHT_INTERACTIVE 穿山甲轻互动组件
 	ComponentType_UNION_LIGHT_INTERACTIVE ComponentType = "UNION_LIGHT_INTERACTIVE"
+	// ComponentType_LUCKY_BOX 幸运盒子组件
+	ComponentType_LUCKY_BOX ComponentType = "LUCKY_BOX"
 )

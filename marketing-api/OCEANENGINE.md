@@ -161,6 +161,10 @@
     - 删除关键词 [ Delete(clt *core.SDKClient, accessToken string, req *keyword.DeleteRequest) (*keyword.ResponseData, error) ]
     - 搜索快投关键词推荐 [ Suggest(clt *core.SDKClient, accessToken string, req *keyword.SuggestRequest) ([]keyword.SuggestKeyword, error) ]
     - 快投2.0获取推荐关键词 [ v3.Suggest(clt *core.SDKClient, accessToken string, req *v3.SuggestRequest) ([]keyword.SuggestKeyword, error) ]
+    - 体验版创建关键词 [ v3.Create(clt *core.SDKClient, accessToken string, req *v3.CreateRequest) (*keyword.ResponseData, error) ]
+    - 体验版更新关键词属性 [ v3.Update(clt *core.SDKClient, accessToken string, req *v3.UpdateRequest) (*keyword.ResponseData, error) ]
+    - 体验版删除关键词 [ v3.Delete(clt *core.SDKClient, accessToken string, req *v3.DeleteRequest) (*keyword.DeleteResponseData, error) ]
+    - 体验版获取关键词列表[ v3.List(clt *core.SDKClient, accessToken string, req *v3.ListRequest) ([]keyword.Keyword, error) ]
   - 否定词管理 (api/privativeword)
     - 批量新增计划否定词 [ AdAdd(clt *core.SDKClient, accessToken string, req *privativeword.AdAddRequest) (*privativeword.AdAddResponseData, error) ]
     - 设置计划否定词 [ AdUpdate(clt *core.SDKClient, accessToken string, req *privativeword.AdUpdateRequest) (uint64, error) ]

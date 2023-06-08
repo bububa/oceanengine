@@ -24,6 +24,8 @@ type UpdateRequest struct {
 	// Source 广告来源，字数限制：[1-10]
 	// 当landing_type = LINK、MICRO_GAME时必填
 	Source string `json:"source,omitempty"`
+	// BrandInfo 品牌信息
+	BrandInfo *BrandInfo `json:"brand_info,omitempty"`
 	// Budget 预算(出价方式为OCPM时，不少于300元；24小时内修改预算操作，不能超过20次，24小时是指自然天的24小时；单次修改预算幅度不能低于100元（增加或者减少）；修改后预算金额，不能低于当前已消费金额的105%，以整百单位向上取整；取值范围: ≥ 0
 	Budget float64 `json:"budget,omitempty"`
 	// CpaBid 目标转化出价/预期成本， 取值范围：0.1-10000元
