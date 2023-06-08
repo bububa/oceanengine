@@ -336,7 +336,7 @@ type DecorationMaterial struct {
 // BrandInfo 品牌信息
 type BrandInfo struct {
 	// YuntuCategoryID 品牌分类id
-	YuntuCategoryID uint64 `json:"yuntu_category_id,omitempty"`
+	YuntuCategoryID int64 `json:"yuntu_category_id,omitempty"`
 	// CdpCategoryID cdp品牌id
 	CdpCategoryID uint64 `json:"cdp_category_id,omitempty"`
 	// EcomCategoryID 电商品牌id
