@@ -56,6 +56,8 @@ type Promotion struct {
 	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
 	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
 	ConfigID uint64 `json:"config_id,omitempty"`
+	// BrandInfo 品牌信息
+	BrandInfo *BrandInfo `json:"brand_info,omitempty"`
 }
 
 func (p Promotion) Version() model.AdVersion {
@@ -329,4 +331,22 @@ type DecorationMaterial struct {
 	// ActivityID 活动ID，image_mode为家具卡券素材时填写
 	// 通过【获取家装联盟卡券列表】接口获取
 	ActivityID string `json:"activity_id,omitempty"`
+}
+
+// BrandInfo 品牌信息
+type BrandInfo struct {
+	// YuntuCategoryID 品牌分类id
+	YuntuCategoryID uint64 `json:"yuntu_category_id,omitempty"`
+	// CdpCategoryID cdp品牌id
+	CdpCategoryID uint64 `json:"cdp_category_id,omitempty"`
+	// EcomCategoryID 电商品牌id
+	EcomCategoryID uint64 `json:"ecom_category_id,omitempty"`
+	// BrandNameID 云图品牌id
+	BrandNameID uint64 `json:"brand_name_id,omitempty"`
+	// CdpBrandName 云图品牌名称
+	CdpBrandName string `json:"cdp_brand_name,omitempty"`
+	// SubBrandNames 子品牌名称
+	SubBrandNames []string `json:"sub_brand_names,omitempty"`
+	// SubBrandNameIDs 子品牌id
+	SubBrandNameIDs []string `json:"sub_brand_name_ids,omitempty"`
 }
