@@ -338,13 +338,13 @@ type BrandInfo struct {
 	// YuntuCategoryID 品牌分类id
 	YuntuCategoryID int64 `json:"yuntu_category_id,omitempty"`
 	// CdpCategoryID cdp品牌id
-	CdpCategoryID uint64 `json:"cdp_category_id,omitempty"`
+	CdpCategoryID int64 `json:"cdp_category_id,omitempty"`
 	// EcomCategoryID 电商品牌id
-	EcomCategoryID uint64 `json:"ecom_category_id,omitempty"`
+	EcomCategoryID int64 `json:"ecom_category_id,omitempty"`
 	// BrandNameID 云图品牌id
 	BrandNameID int64 `json:"brand_name_id,omitempty"`
 	// CdpBrandID cdp品牌id
-	CdpBrandID uint64 `json:"cdp_brand_id,omitempty"`
+	CdpBrandID int64 `json:"cdp_brand_id,omitempty"`
 	// CdpBrandName 云图品牌名称
 	CdpBrandName string `json:"cdp_brand_name,omitempty"`
 	// SubBrandNames 子品牌名称
