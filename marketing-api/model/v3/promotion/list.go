@@ -44,6 +44,25 @@ type ListFilter struct {
 	// PROMOTION_STATUS_DONE已完成
 	// PROMOTION_STATUS_DELETED已删除
 	StatusFirst enum.PromotionStatusFirst `json:"status_first,omitempty"`
+	// StatusSecond 广告二级状态过滤，允许值：
+	// AUDIT_DENY 审核不通过
+	// AUDIT 新建审核中
+	// REAUDIT 修改审核中
+	// DISABLED 已暂停
+	// DISABLE_BY_QUOTA 已暂停（配额达限）
+	// PROJECT_DISABLED 项目已被暂停
+	// NO_SCHEDULE 不在投放时段
+	// TIME_NO_REACH 未到达投放时间
+	// OFFLINE_BALANCE 账户余额不足
+	// BALANCE_OFFLINE_BUDGET 账户超出预算
+	// PROJECT_OFFLINE_BUDGET 项目超出预算
+	// PROMOTION_OFFLINE_BUDGET 广告超出预算
+	// LIVE_ROOM_OFF 直播间不可投
+	// PRODUCT_OFFLINE 商品不可投
+	// AWEME_ACCOUNT_DISABLED 抖音账号不可投
+	// AWEME_ANCHOR_DISABLED 锚点不可投
+	// 当status_first = PROMOTION_STATUS_DISABLE时传入有效
+	StatusSecond enum.PromotionStatus `json:"status_second,omitempty"`
 	// PromotionCreateTime 广告创建时间，格式yyyy-mm-dd，表示过滤出当天创建的广告项目
 	PromotionCreateTime string `json:"promotion_create_time,omitempty"`
 	// PromotionModifyTime 广告更新时间，格式yyyy-mm-dd，表示过滤出当天更新的广告项目
