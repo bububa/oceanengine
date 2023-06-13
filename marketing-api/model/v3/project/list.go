@@ -52,6 +52,19 @@ type ListFilter struct {
 	// PROJECT_STATUS_DONE 已完成
 	// PROJECT_STATUS_NO_SCHEDULE 不在投放时段
 	Status enum.ProjectStatus `json:"status,omitempty"`
+	// StatusFirst 项目一级状态过滤，允许值：
+	// PROJECT_STATUS_DELETE已删除
+	// PROJECT_STATUS_DONE已完成
+	// PROJECT_STATUS_DISABLE未投放
+	// PROJECT_STATUS_ENABLE启用中
+	StatusFirst enum.ProjectStatus `json:"status_first,omitempty"`
+	// StatusSecond 项目二级状态过滤，允许值：
+	// PROJECT_STATUS_STOP 已暂停
+	// PROJECT_STATUS_BUDGET_EXCEED 项目超出预算
+	// PROJECT_STATUS_NOT_START 未达投放时间
+	// PROJECT_STATUS_NO_SCHEDULE 不在投放时段
+	// 当status_first = PROJECT_STATUS_DISABLE时传入有效
+	StatusSecond enum.ProjectStatus `json:"status_second,omitempty"`
 	// ProjectCreateTime 项目创建时间，格式yyyy-mm-dd，表示过滤出当天创建的广告项目
 	ProjectCreateTime string `json:"project_create_time,omitempty"`
 	// ProjectModifyTime 项目更新时间，格式yyyy-mm-dd，表示过滤出当天更新的广告项目

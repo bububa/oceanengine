@@ -36,6 +36,10 @@ const (
 	PromotionStatus_OFFLINE_BALANCE PromotionStatus = "OFFLINE_BALANCE"
 	// PromotionStatus_PREOFFLINE_BUDGET 广告接近预算
 	PromotionStatus_PREOFFLINE_BUDGET PromotionStatus = "PREOFFLINE_BUDGET"
+	// PromotionStatus_BALANCE_OFFLINE_BUDGET 账户超出预算
+	PromotionStatus_BALANCE_OFFLINE_BUDGET PromotionStatus = "BALANCE_OFFLINE_BUDGET"
+	// PromotionStatus_PROMOTION_OFFLINE_BUDGET 广告超出预算
+	PromotionStatus_PROMOTION_OFFLINE_BUDGET PromotionStatus = "PROMOTION_OFFLINE_BUDGET"
 	// PromotionStatus_DISABLED 已暂停
 	PromotionStatus_DISABLED PromotionStatus = "DISABLED"
 	// PromotionStatus_PROJECT_DISABLED 已被项目暂停
@@ -56,4 +60,20 @@ const (
 	PromotionStatus_ADVERTISER_OFFLINE_BUDGET PromotionStatus = "ADVERTISER_OFFLINE_BUDGET "
 	// PromotionStatus_ADVERTISER_PREOFFLINE_BUDGET 账号接近预算
 	PromotionStatus_ADVERTISER_PREOFFLINE_BUDGET PromotionStatus = "ADVERTISER_PREOFFLINE_BUDGET "
+)
+
+// PromotionStatusFirst 广告一级状态过滤
+type PromotionStatusFirst string
+
+const (
+	// PROMOTION_STATUS_ENABLE 投放中
+	PROMOTION_STATUS_ENABLE PromotionStatusFirst = "PROMOTION_STATUS_ENABLE"
+	// PROMOTION_STATUS_DISABLE 未投放
+	PROMOTION_STATUS_DISABLE PromotionStatusFirst = "PROMOTION_STATUS_DISABLE"
+	// PROMOTION_STATUS_FROZEN 已终止
+	PROMOTION_STATUS_FROZEN PromotionStatusFirst = "PROMOTION_STATUS_FROZEN"
+	// PROMOTION_STATUS_DONE 已完成
+	PROMOTION_STATUS_DONE PromotionStatusFirst = "PROMOTION_STATUS_DONE"
+	// PROMOTION_STATUS_DELETED 已删除
+	PROMOTION_STATUS_DELETED PromotionStatusFirst = "PROMOTION_STATUS_DELETED"
 )
