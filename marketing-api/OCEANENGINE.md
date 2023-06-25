@@ -133,6 +133,10 @@
     - 创建异步任务 [ Create(clt *core.SDKClient, accessToken string, req *asynctask.CreateRequest) (*asynctask.Task, error) ]
     - 获取异步任务列表 [ Get(clt *core.SDKClient, accessToken string, req *asynctask.GetRequest) (*asynctask.GetResponseData, error) ]
     - 下载任务结果 [ Download(clt *core.SDKClient, accessToken string, req *asynctask.DownloadRequest) ([]byte, error) ]
+    - 体验版(api/report/asynctask/v3)
+        - 自定义报表—创建异步任务 [ Create(clt *core.SDKClient, accessToken string, req *v3.CreateRequest) (*asynctask.Task, error) ] 
+        - 获取任务列表 [ Get(clt *core.SDKClient, accessToken string, req *v3.GetRequest) (*asynctask.GetResponseData, error) ]
+        - 自定义报表—获取下载结果 [ Download(clt *core.SDKClient, accessToken string, req *v3.DownloadRequest) ([]byte, error) ]
   - 广告体验版数据报表 (api/report/v3)
     - 项目数据报表 [ ProjectGet(clt *core.SDKClient, accessToken string, req *v3.ProjectGetRequest) (*v3.ProjectGetResult, error) ]
     - 广告数据报表 [ PromotionGet(clt *core.SDKClient, accessToken string, req *v3.PromotionGetRequest) (*v3.PromotionGetResult, error) ]
