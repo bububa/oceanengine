@@ -73,7 +73,7 @@ type AssetsGetResponseData struct {
 	// LandingPages 三方数据集合
 	LandingPages []LandingPage `json:"landing_pages,omitempty"`
 	// QuickApp 快应用数据
-	QuickApp []QuickApp `json:"quick_app,omitempt"y`
+	QuickApp []QuickApp `json:"quick_app,omitempty"`
 	// App 应用数据`
 	App []App `json:"app,omitempty"`
 	// MiniProgram 字节小程序快应用资产
