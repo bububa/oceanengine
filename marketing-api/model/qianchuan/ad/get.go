@@ -54,6 +54,10 @@ type GetFiltering struct {
 	AdName string `json:"ad_name,omitempty"`
 	// Status 按计划状态过滤，不传入即默认返回“所有不包含已删除”，其他规则详见【附录-广告计划查询状态】
 	Status qianchuan.AdStatusForSearch `json:"status,omitempty"`
+	// CampaignScene 按营销场景过滤，允许值：DAILY_SALE日常销售（默认）
+	CampaignScene qianchuan.CampaignScene `json:"campaign_scene,omitempty"`
+	// MarketingScene 按广告类型过滤，允许值：ALL 全部，FEED 通投广告，SEARCH 搜索广告，默认为FEED
+	MarketingScene qianchuan.MarketingScene `json:"marketing_scene,omitempty"`
 	// PromotionWay 按推广方式过滤，允许值：STANDARD专业推广、SIMPLE极速推广
 	PromotionWay enum.PromotionWay `json:"promotion_way,omitempty"`
 	// MarketingGoal 广告组营销目标，允许值：VIDEO_PROM_GOODS：短视频带货、LIVE_PROM_GOODS：直播带货

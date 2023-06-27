@@ -34,6 +34,12 @@ type UpdateRequest struct {
 	CreativeAutoGenerate *int `json:"creative_auto_generate,omitempty"`
 	// IsHomepageHide 抖音主页是否隐藏视频，和抖音号关系类型相关，返回值参考【附录-抖音号授权类型】;bind_type为OFFICIAL或SELF时，允许值：1 隐藏、0 不隐藏（默认值）;bind_type不为OFFICIAL或SELF时，需传入唯一允许值0 不隐藏
 	IsHomePageHide *int `json:"is_homepage_hide,omitempty"`
+	// ProgrammaticCreativeMadiaList 程序化创意素材信息，最多支持 9 个创意。当 creative_material_mode 不为 PROGRAMMATIC_CREATIVE 时，该字段不填数据；当 creative_material_mode 为 PROGRAMMATIC_CREATIVE 时，该字段必填;请至少添加一个视频类型素材
+	ProgrammaticCreativeMadiaList []creative.ProgrammaticCreativeMedia `json:"programmatic_creative_media_list,omitempty"`
+	// ProgrammaticCreativeTitleList 程序化创意标题信息，最多支持 10 个标题。当 creative_material_mode 不为 PROGRAMMATIC_CREATIVE 时，该字段不填数据；当 creative_material_mode 为 PROGRAMMATIC_CREATIVE 时，该字段必填; 请至少添加一个标题
+	ProgrammaticCreativeTitleList []creative.TitleMaterial `json:"programmatic_creative_title_list,omitempty"`
+	// ProgrammaticCreativeCard 程序化创意推广卡片信息。当 creative_material_mode 不为 PROGRAMMATIC_CREATIVE 时，该字段不填数据；当 creative_material_mode 为 PROGRAMMATIC_CREATIVE 时，该字段必填
+	ProgrammaticCreativeCard *creative.ProgrammaticCreativeCard `json:"programmatic_creative_card,omitempty"`
 }
 
 // Encode implement PostRequest interface

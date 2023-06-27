@@ -2,6 +2,7 @@ package ad
 
 import (
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/creative"
 	"github.com/bububa/oceanengine/marketing-api/util"
@@ -13,10 +14,19 @@ type CreateRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// MarketingGoal 营销目标
 	MarketingGoal enum.MarketingGoal `json:"marketing_goal,omitempty"`
+	// CampaignScene 营销场景 ，允许值：
+	// DAILY_SALE日常销售
+	CampaignScene qianchuan.CampaignScene `json:"campaign_scene,omitempty"`
+	// MarketingScene 广告类型，允许值：
+	// FEED 通投广告
+	MarketingScene qianchuan.MarketingScene `json:"marketing_scene,omitempty"`
 	// PromotionWary 推广方式
 	PromotionWay enum.PromotionWay `json:"promotion_way,omitempty"`
 	// Name 计划名称，长度为1-100个字符，其中1个汉字算2位字符。名称不可重复，否则会报错
 	Name string `json:"name,omitempty"`
+	// LabAdType 推广方式，允许值：
+	// LAB_AD 托管
+	LabAdType enum.AdLabType `json:"lad_ad_type,omitempty"`
 	// CampaignID 千川广告组id
 	CampaignID uint64 `json:"campaign_id,omitempty"`
 	// AwemeID 抖音id，即商品广告背后关联的抖音号，可通过【查询可推广抖音号列表】接口获取名下可推广抖音号
@@ -60,8 +70,30 @@ func (r CreateRequest) Encode() []byte {
 type CreateResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data struct {
-		// AdID 创建的计划id
-		AdID uint64 `json:"ad_id,omitempty"`
-	} `json:"data,omitempty"`
+	Data *CreateResult `json:"data,omitempty"`
+}
+
+type CreateResult struct {
+	// AdID 创建的计划id
+	AdID uint64 `json:"ad_id,omitempty"`
+	// NoticeInfos 提示信息
+	NoticeInfos []NoticeInfo `json:"notice_info,omitempty"`
+}
+
+// NoticeInfo 提示信息
+type NoticeInfo struct {
+	// Code 提示错误码
+	Code int `json:"code,omitempty"`
+	// Message 提示错误信息
+	Message string `json:"message,omitempty"`
+	// SearchKeywordError 搜索关键词错误列表，仅marketing_scene=SEARCH 情况下会返回该信息
+	SearchKeywordError []SearchKeywordError `json:"search_keyword_error,omitempty"`
+}
+
+// SearchKeywordError 搜索关键词错误
+type SearchKeywordError struct {
+	// SearchKeyword 错误的搜索关键词
+	SearchKeyword string `json:"search_keyword,omitempty"`
+	// ErrorMessage 错误的原因
+	ErrorMessage string `json:"error_message,omitempty"`
 }
