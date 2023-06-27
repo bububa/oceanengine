@@ -27,6 +27,8 @@ type VideoAwemeGetRequest struct {
 type VideoAwemeGetFiltering struct {
 	//ProductID 商品ID，查询关联商品的相应视频，仅短视频带货场景需入参
 	ProductID uint64 `json:"product_id,omitempty"`
+	// AwemeItemURL 抖音主页视频url
+	AwemeItemURL string `json:"aweme_item_url,omitempty"`
 }
 
 // Encode implement GetRequest interface

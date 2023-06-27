@@ -8,6 +8,8 @@ type Video struct {
 	ID string `json:"id,omitempty"`
 	// VideoID 视频ID
 	VideoID string `json:"video_id,omitempty"`
+	// VideoCoverURL 视频封面图片url
+	VideoCoverURL string `json:"video_cover_url,omitempty"`
 	// Size 视频大小
 	Size uint64 `json:"size,omitempty"`
 	// Width 视频宽度
@@ -45,4 +47,12 @@ type Video struct {
 	Title string `json:"title,omitempty"`
 	// IsRecommend 是否推荐; 0 不推荐 1 推荐
 	IsRecommend int `json:"is_recommend,omitempty"`
+	// ViewCnt 观看数
+	ViewCnt int64 `json:"view_cnt,omitempty"`
+	// LikeCnt 点赞数
+	LikeCnt int64 `json:"like_cnt,omitempty"`
+	// ShareCnt 分享数
+	ShareCnt int64 `json:"share_cnt,omitempty"`
+	// CommentCnt 评论数
+	CommentCnt int64 `json:"comment_cnt,omitempty"`
 }
