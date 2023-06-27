@@ -15,6 +15,13 @@ type DeliverySetting struct {
 	ExternalAction qianchuan.ExternalAction `json:"external_action,omitempty"`
 	// DeepExternalAction 深度转化目标
 	DeepExternalAction qianchuan.ExternalAction `json:"deep_external_action,omitempty"`
+	// DeepBidType 深度出价方式，允许值：MIN
+	DeepBidType qianchuan.DeepBidType `json:"deep_bid_type,omitempty"`
+	// RoiGoal 支付ROI目标，最多支持两位小数，0.01～100
+	// 当external_action=AD_CONVERT_TYPE_SHOPPING且deep_external_action=AD_CONVERT_TYPE_LIVE_PAY_ROI且deep_bid_type=MIN时，必填
+	// 注意：
+	// 1、按展示付费(oCPM)，根据【保障规则】提供保障福利，请谨慎修改支付ROI目标和定向，以免失去保障资格。
+	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// Budget 预算
 	Budget float64 `json:"budget,omitempty"`
 	// BudgetMode 预算类型
