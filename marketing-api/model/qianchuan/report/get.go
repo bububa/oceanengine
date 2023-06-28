@@ -1,7 +1,6 @@
 package report
 
 import (
-	"encoding/json"
 	"strconv"
 	"time"
 
@@ -69,6 +68,21 @@ type StatFiltering struct {
 	// DAILY_SALE：日常销售（默认）
 	// 注意：当下单平台为“小店随心推”时，不支持
 	CampaignScene qianchuan.CampaignScene `json:"campaign_scene,omitempty"`
+	// ExternalAction 优化目标，如果不填，默认查的是当前营销目标下的所有优化目标
+	// 当营销目标为直播带货时，允许值为：
+	// AD_CONVERT_TYPE_LIVE_CLICK_PRODUCT_ACTION: 直播间商品点击
+	// AD_CONVERT_TYPE_LIVE_COMMENT_ACTION: 直播间评论
+	// AD_CONVERT_TYPE_LIVE_ENTER_ACTION: 进入直播间
+	// AD_CONVERT_TYPE_LIVE_ROI: 直播间支付ROI
+	// AD_CONVERT_TYPE_LIVE_SUCCESSORDER_ACTION: 直播间下单
+	// AD_CONVERT_TYPE_LIVE_SUCCESSORDER_PAY: 直播间成交
+	// AD_CONVERT_TYPE_NEW_FOLLOW_ACTION: 直播间粉丝提升
+	// 当营销目标为短视频带货时，允许值：
+	// AD_CONVERT_TYPE_QC_FOLLOW_ACTION: 粉丝提升
+	// AD_CONVERT_TYPE_QC_MUST_BUY: 点赞评论
+	// AD_CONVERT_TYPE_SHOPPING: 商品购买
+	// ROIAD_CONVERT_TYPE_VIDEO_ROI:商品支付
+	ExternalAction qianchuan.ExternalAction `json:"external_action,omitempty"`
 	// CreativeMaterialMode 按创意类型过滤，允许值：
 	// CUSTOM_CREATIVE：自定义创意
 	// PROGRAMMATIC_CREATIVE： 程序化创意
@@ -149,8 +163,7 @@ func (r GetRequest) Encode() string {
 		values.Set("time_granularity", string(r.TimeGranularity))
 	}
 	if len(r.Fields) > 0 {
-		fields, _ := json.Marshal(r.Fields)
-		values.Set("fields", string(fields))
+		values.Set("fields", string(util.JSONMarshal(r.Fields)))
 	}
 	if r.WordType != "" {
 		values.Set("word_type", string(r.WordType))
@@ -168,8 +181,7 @@ func (r GetRequest) Encode() string {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
 	if r.Filtering != nil {
-		filtering, _ := json.Marshal(r.Filtering)
-		values.Set("filtering", string(filtering))
+		values.Set("filtering", string(util.JSONMarshal(r.Filtering)))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)

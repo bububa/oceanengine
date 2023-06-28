@@ -26,4 +26,10 @@ type Room struct {
 	AwemeAvatar string `json:"aweme_avatar,omitempty"`
 	// RoomDelivery 在投计划数
 	RoomDelivery int64 `json:"room_delivery,omitempty"`
+	// AnchorID 主播ID
+	AnchorID uint64 `json:"anchor_id,omitempty"`
+	// AnchorName 主播名称
+	AnchorName string `json:"anchor_name,omitempty"`
+	// AnchorAvatar 主播头像
+	AnchorAvatar string `json:"anchor_avatar,omitempty"`
 }

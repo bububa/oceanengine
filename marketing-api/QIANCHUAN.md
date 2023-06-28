@@ -61,6 +61,19 @@
     - 商品竞争分析详情-效果对比 [ CompareStatsData(clt *core.SDKClient, accessToken string, req *analyse.CompareStatsDataRequest) (*analyse.CompareStatsData, error) ]
     - 商品竞争分析详情-创意比对 [ CompareCreative(clt *core.SDKClient, accessToken string, req *analyse.CompareCreativeRequest) (*analyse.CompareCreative, error) ]
 
+- 随心推投放 (api/qianchuan/aweme)
+  - 创建随心推订单 [ OrderCreate(clt *core.SDKClient, accessToken string, req *aweme.OrderCreateRequest) (*aweme.Order, error) ]
+  - 终止随心推订单 [ OrderTerminate(clt *core.SDKClient, accessToken string, req *aweme.OrderTerminateRequest) (*aweme.OrderTerminateResult, error) ]
+  - 获取随心推订单列表 [ OrderGet(clt *core.SDKClient, accessToken string, req *aweme.OrderGetRequest) (*aweme.OrderGetResult, error) ]
+  - 获取随心推订单详情 [ OrderDetailGet(clt *core.SDKClient, accessToken string, req *aweme.OrderDetailGetRequest) (*aweme.Order, error) ]
+  - 获取随心推订单数据 [ api/qianchuan/report.OrderGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
+  - 获取随心推兴趣标签 [ InterestActionInterestKeyword(clt *core.SDKClient, accessToken string, advertiserID uint64) ([]aweme.InterestKeyword, error) ]
+  - 获取随心推可投视频列表 [ VideoGet(clt *core.SDKClient, accessToken string, req *aweme.VideoGetRequest) (*aweme.VideoGetResult, error) ]
+  - 获取随心推投放效果预估 [ EstimateProfit(clt *core.SDKClient, accessToken string, req *aweme.EstimateProfitRequest) (*aweme.EstimateProfit, error) ]
+  - 获取随心推短视频建议出价 [ SuggestBid(clt *core.SDKClient, accessToken string, req *aweme.SuggestBidRequest) (float64, error) ]
+  - 获取随心推ROI建议出价 [ SuggestRoiGoal(clt *core.SDKClient, accessToken string, req *aweme.SuggestRoiGoalRequest) (float64, error) ]
+  - 查询随心推使用中订单配额信息 [ OrderQuotaGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*aweme.OrderQuota, error) ]
+
 - 素材管理 (api/file)
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
   - 上传视频 [ VideoAd(clt *core.SDKClient, accessToken string, req *file.VideoAdRequest) (*file.Video, error) ]
