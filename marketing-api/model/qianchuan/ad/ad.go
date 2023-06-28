@@ -3,7 +3,10 @@ package ad
 import (
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
+	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/aweme"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/creative"
+	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/live"
+	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/product"
 )
 
 // Ad 计划详情
@@ -31,11 +34,11 @@ type Ad struct {
 	// AdModifyTime 计划修改时间
 	AdModityTime string `json:"ad_modity_time,omitempty"`
 	// AwemeInfo 计划中关联的抖音号信息
-	AwemeInfo []AwemeInfo `json:"aweme_info,omitempty"`
+	AwemeInfo []aweme.Aweme `json:"aweme_info,omitempty"`
 	// ProductInfo 商品列表
-	ProductInfo []ProductInfo `json:"product_info,omitempty"`
+	ProductInfo []product.Product `json:"product_info,omitempty"`
 	// RoomInfo 直播间列表
-	RoomInfo []RoomInfo `json:"room_info,omitempty"`
+	RoomInfo []live.Room `json:"room_info,omitempty"`
 	// DeliverySetting 投放设置
 	DeliverySetting *DeliverySetting `json:"delivery_setting,omitempty"`
 	// Audience 定向设置

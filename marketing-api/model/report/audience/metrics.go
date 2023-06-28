@@ -1,49 +1,51 @@
 package audience
 
-import "encoding/json"
+import (
+	"github.com/bububa/oceanengine/marketing-api/model"
+)
 
 // Metrics 指标
 type Metrics struct {
 	// StatCost 消耗
-	StatCost json.Number `json:"stat_cost,omitempty"`
+	StatCost model.Float64 `json:"stat_cost,omitempty"`
 	// ShowCnt 展示数
-	ShowCnt json.Number `json:"show_cnt,omitempty"`
+	ShowCnt model.Int64 `json:"show_cnt,omitempty"`
 	// CpmPlatform 平均千次展示成本
-	CpmPlatform json.Number `json:"cpm_platform,omitempty"`
+	CpmPlatform model.Float64 `json:"cpm_platform,omitempty"`
 	// ClickCnt 点击数
-	ClickCnt json.Number `json:"click_cnt,omitempty"`
+	ClickCnt model.Int64 `json:"click_cnt,omitempty"`
 	// Ctr 点击率
-	Ctr json.Number `json:"ctr,omitempty"`
+	Ctr model.Float64 `json:"ctr,omitempty"`
 	// CpcPlatform 平均点击单价
-	CpcPlatform json.Number `json:"cpc_platform,omitempty"`
+	CpcPlatform model.Float64 `json:"cpc_platform,omitempty"`
 	// ConvertCnt 转化数
-	ConvertCnt json.Number `json:"convert_cnt,omitempty"`
+	ConvertCnt model.Int64 `json:"convert_cnt,omitempty"`
 	// ConversionCost 转化成本
-	ConversionCost json.Number `json:"conversion_cost,omitempty"`
+	ConversionCost model.Float64 `json:"conversion_cost,omitempty"`
 	// ConversionRate 转化率
-	ConversionRate json.Number `json:"conversion_rate,omitempty"`
+	ConversionRate model.Float64 `json:"conversion_rate,omitempty"`
 	// DeepConvertCnt 深度转化数
-	DeepConvertCnt json.Number `json:"deep_convert_cnt,omitempty"`
+	DeepConvertCnt model.Int64 `json:"deep_convert_cnt,omitempty"`
 	// DeepConvertCost 深度转化成本
-	DeepConvertCost json.Number `json:"deep_convert_cost,omitempty"`
+	DeepConvertCost model.Float64 `json:"deep_convert_cost,omitempty"`
 	// DeepConvertRate 深度转化率
-	DeepConvertRate json.Number `json:"deep_convert_rate,omitempty"`
+	DeepConvertRate model.Float64 `json:"deep_convert_rate,omitempty"`
 	// TotalPlay 播放数
-	TotalPlay json.Number `json:"total_play,omitempty"`
+	TotalPlay model.Int64 `json:"total_play,omitempty"`
 	// ValidPlay 有效播放数
-	ValidPlay json.Number `json:"valid_play,omitempty"`
+	ValidPlay model.Int64 `json:"valid_play,omitempty"`
 	// ValidPlayRate 有效播放率
-	ValidPlayRate json.Number `json:"valid_play_rate,omitempty"`
+	ValidPlayRate model.Float64 `json:"valid_play_rate,omitempty"`
 	// ValidPlayCost 有效播放成本
-	ValidPlayCost json.Number `json:"valid_play_cost,omitempty"`
+	ValidPlayCost model.Float64 `json:"valid_play_cost,omitempty"`
 	// DyFollow 新增关注数
-	DyFollow json.Number `json:"dy_follow,omitempty"`
+	DyFollow model.Int64 `json:"dy_follow,omitempty"`
 	// DyLike 点赞数
-	DyLike json.Number `json:"dy_like,omitempty"`
+	DyLike model.Int64 `json:"dy_like,omitempty"`
 	// DyComment 评论提交数
-	DyComment json.Number `json:"dy_comment,omitempty"`
+	DyComment model.Int64 `json:"dy_comment,omitempty"`
 	// DyShare 分享数
-	DyShare json.Number `json:"dy_share,omitempty"`
+	DyShare model.Int64 `json:"dy_share,omitempty"`
 }
 
 // MetricsDict 查询指标详细数据

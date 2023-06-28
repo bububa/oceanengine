@@ -25,6 +25,8 @@ type Dimension struct {
 	// video ：视频素材
 	// image ：图片素材
 	MaterialType qianchuan.MaterialType `json:"material_type,omitempty"`
+	// MarketingGoal 营销目标
+	MarketingGoal enum.MarketingGoal `json:"marketing_goal,omitempty"`
 	// MaterialID 素材id，一个素材唯一对应一个素材id，相同素材上传多次对应一个material_id
 	MaterialID uint64 `json:"material_id,omitempty"`
 	// CreateTime 素材创建时间，即该素材最近一次上传素材库的时间
