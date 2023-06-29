@@ -75,7 +75,7 @@ type MaterialListData struct {
 // Material 低效素材
 type Material struct {
 	// MaterialID 请求的素材 id
-	MaterialID uint64 `json:"material_id,omitempty"`
+	MaterialID model.Uint64 `json:"material_id,omitempty"`
 	// MaterialProperties 素材属性标签
 	// INEFFICIENT_MATERIAL低效素材
 	// SIMILAR_MATERIAL 同质化挤压严重素材
