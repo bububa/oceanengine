@@ -54,6 +54,8 @@ type Promotion struct {
 	DeepCpaBid float64 `json:"deep_cpabid,omitempty"`
 	// RoiGoal 深度转化ROI系数
 	RoiGoal float64 `json:"roi_goal,omitempty"`
+	// ScheduleTime 广告的投放时段
+	ScheduleTime string `json:"schedule_time,omitempty"`
 	// MaterialScoreInfo 素材评级信息
 	MaterialScoreInfo *MaterialScoreInfo `json:"material_score_info,omitempty"`
 	// CreativeAutoGenerateSwitch 是否开启自动生成素材
