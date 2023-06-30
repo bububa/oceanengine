@@ -1,5 +1,7 @@
 package dpa
 
+import "github.com/bububa/oceanengine/marketing-api/model"
+
 // Product 商品详情
 type Product struct {
 	// Name 商品名称
@@ -83,7 +85,7 @@ type Product struct {
 	// Videos 视频内容，小说库特有字段
 	Videos []Link `json:"videos,omitempty"`
 	// HasVideo 当前商品是否有商品视频 0：没有，1：有
-	HasVideo int `json:"has_video,omitempty"`
+	HasVideo model.Bool `json:"has_video,omitempty"`
 	// Profession 额外信息
 	Profession *Profession `json:"profession,omitempty"`
 }
