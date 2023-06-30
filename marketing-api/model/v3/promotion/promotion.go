@@ -40,6 +40,8 @@ type Promotion struct {
 	IsCommentDisable model.ReverseOnOffInt `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
 	AdDownloadStatus model.OnOffInt `json:"ad_download_status,omitempty"`
+	// MaterialsType 素材类型
+	MaterialsType enum.MaterialsType `json:"materials_type,omitempty"`
 	// Source 广告来源
 	Source string `json:"source,omitempty"`
 	// Budget 预算
@@ -52,6 +54,8 @@ type Promotion struct {
 	DeepCpaBid float64 `json:"deep_cpabid,omitempty"`
 	// RoiGoal 深度转化ROI系数
 	RoiGoal float64 `json:"roi_goal,omitempty"`
+	// ScheduleTime 广告的投放时段
+	ScheduleTime string `json:"schedule_time,omitempty"`
 	// MaterialScoreInfo 素材评级信息
 	MaterialScoreInfo *MaterialScoreInfo `json:"material_score_info,omitempty"`
 	// CreativeAutoGenerateSwitch 是否开启自动生成素材
