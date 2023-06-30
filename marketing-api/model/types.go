@@ -48,6 +48,31 @@ func (f64 *Float64) UnmarshalJSON(b []byte) (err error) {
 	return
 }
 
+// Bool support number/string in json
+type Bool bool
+
+// UnmarshalJSON implement json Unmarshal interface
+func (bl *Bool) UnmarshalJSON(b []byte) (err error) {
+	if b[0] == '"' && b[len(b)-1] == '"' {
+		b = b[1 : len(b)-1]
+	}
+	var ret bool
+	str := string(b)
+	if str == "true" {
+		ret = true
+	} else if str == "false" {
+		ret = false
+	} else if i, err := strconv.ParseInt(str, 10, 64); err != nil {
+		return err
+	} else if i == 0 {
+		ret = false
+	} else {
+		ret = true
+	}
+	*bl = Bool(ret)
+	return
+}
+
 type OnOffInt int
 
 func (ooi *OnOffInt) UnmarshalJSON(b []byte) (err error) {
