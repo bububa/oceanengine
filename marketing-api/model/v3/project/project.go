@@ -100,7 +100,7 @@ type Project struct {
 	// OptimizeGoal 优化目标
 	OptimizeGoal *OptimizeGoal `json:"optimize_goal,omitempty"`
 	// LandingPageStayTime 店铺停留时长，单位为毫秒
-	LandingPageStayTime int `json:"landing_page_stay_time,omitempty"`
+	LandingPageStayTime enum.LandingPageStayTime `json:"landing_page_stay_time,omitempty"`
 	// DeliveryRange 广告版位
 	DeliveryRange *DeliveryRange `json:"delivery_range,omitempty"`
 	// Audience 定向设置
