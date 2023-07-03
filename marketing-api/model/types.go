@@ -22,6 +22,23 @@ func (u64 *Uint64) UnmarshalJSON(b []byte) (err error) {
 	return
 }
 
+// JSONUint64 support string quoted number in json and marshal to string
+type JSONUint64 uint64
+
+// UnmarshalJSON implement json Unmarshal interface
+func (u64 *JSONUint64) UnmarshalJSON(b []byte) (err error) {
+	if b[0] == '"' && b[len(b)-1] == '"' {
+		b = b[1 : len(b)-1]
+	}
+	i, _ := strconv.ParseUint(string(b), 10, 64)
+	*u64 = JSONUint64(i)
+	return
+}
+
+func (u64 JSONUint64) MarshalJSON() ([]byte, error) {
+	return []byte(`"` + strconv.FormatUint(uint64(u64), 10) + `"`), nil
+}
+
 // Int64 support string quoted number in json
 type Int64 int64
 
