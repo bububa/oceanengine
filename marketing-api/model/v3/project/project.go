@@ -144,7 +144,7 @@ type RelatedProduct struct {
 	ProductPlatformID uint64 `json:"product_platform_id,omitempty"`
 	// 产品ID，当启用商品库时必填，可通过【商品广告-获取商品列表】 查询，创建后不可修改
 	// 当delivery_mode选择PROCEDURAL且landing_type选择LINK时，传入报错
-	ProductID string `json:"product_id,omitempty"`
+	ProductID model.Uint64 `json:"product_id,omitempty"`
 	// AssetID 物件ID，可通过【商品广告-获取投放条件列表】获取，创建后不可修改。
 	AssetID uint64 `json:"asset_id,omitempty"`
 	// Products 产品ID列表，上限为10
