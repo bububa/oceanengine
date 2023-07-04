@@ -431,6 +431,13 @@
     - 设置应用共享 [ BpShare(clt *core.SDKClient, accessToken string, req *appmanagement.BpShareRequest) (*appmanagement.BpShareData, error) ]
     - 取消应用共享关系 [ BpShareCancel(clt *core.SDKClient, accessToken string, req *appmanagement.BpShareRequest) (*appmanagement.BpShareData, error) ]
     - 更新应用共享关系 [ UpdateAuthorization(clt *core.SDKClient, accessToken string, req *appmanagement.UpdateAuthorizationRequest) error ]
+  - 应用母包更新 (tools/appmanagement)
+    - 创建异步文件上传任务 [ UploadTaskCreate(clt *core.SDKClient, accessToken string, req *appmanagement.UploadTaskCreateRequest) (uint64, error) ]
+    - 查询文件异步上传任务 [ UploadTaskList(clt *core.SDKClient, accessToken string, req *appmanagement.UploadTaskListRequest) ([]appmanagement.UploadTask, error) ]
+    - 获取应用细分分类及题材标签 [ IndustryInfoList(clt *core.SDKClient, accessToken string, req *appmanagement.IndustryInfoListRequest) ([]appmanagement.Industry, error) ]
+    - 查询安卓应用母包 [ AndroidBasicPackageGet(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackageGetRequest) (*appmanagement.AndroidBasicPackageGetResult, error) ]
+    - 更新安卓应用母包 [ AndroidBasicPackageUpdate(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackageUpdateRequest) error ]
+    - 发布安卓应用母包 [ AndroidBasicPackagePublish(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackagePublishRequest) error ]
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
