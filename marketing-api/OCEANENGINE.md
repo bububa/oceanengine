@@ -413,6 +413,8 @@
     - 获取起量版本信息 [ VersionGet(clt *core.SDKClient, accessToken string, req *v3.VersionGetRequest) (*v3.VersionGetResponseData, error) ]
     - 关停正在起量的广告 [ Stop(clt *core.SDKClient, accessToken string, req *v3.StopRequest) error ]
     - 获取广告起量状态 [ StatusCurrentIDsGet(clt *core.SDKClient, accessToken string, req *v3.StatusCurrentIDsGetRequest) (*v3.StatusCurrentIDsGetResult, error) ]
+  - 快应用管理 (tools/quickappmanagment)
+    - 查询快应用信息 [ QuickAppGet(clt *core.SDKClient, accessToken string, req *quickappmanagement.QuickAppGetRequest) (*quickappmanagement.QuickAppGetResult, error) ]
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
