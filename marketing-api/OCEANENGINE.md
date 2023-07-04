@@ -413,8 +413,24 @@
     - 获取起量版本信息 [ VersionGet(clt *core.SDKClient, accessToken string, req *v3.VersionGetRequest) (*v3.VersionGetResponseData, error) ]
     - 关停正在起量的广告 [ Stop(clt *core.SDKClient, accessToken string, req *v3.StopRequest) error ]
     - 获取广告起量状态 [ StatusCurrentIDsGet(clt *core.SDKClient, accessToken string, req *v3.StatusCurrentIDsGetRequest) (*v3.StatusCurrentIDsGetResult, error) ]
-  - 快应用管理 (tools/quickappmanagment)
+  - 快应用管理 (tools/quickappmanagement)
     - 查询快应用信息 [ QuickAppGet(clt *core.SDKClient, accessToken string, req *quickappmanagement.QuickAppGetRequest) (*quickappmanagement.QuickAppGetResult, error) ]
+  - 应用管理 (tools/appmanagement)
+    - 查询游戏信息 [ BookingGet(clt *core.SDKClient, accessToken string, req *appmanagement.AppListRequest) (*appmanagement.AppListResponseData, error) ]
+    - 查询应用信息 [ AppGet(clt *core.SDKClient, accessToken string, req *appmanagement.AppListRequest) (*appmanagement.AppListResponseData, error) ]
+    - 查询安卓应用信息（支持所有账户体系） [ AndroidAppList(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidAppListRequest) (*appmanagement.AppListResponseData, error) ]
+    - 查询应用预约记录 [ BookingRecordsGet(clt *core.SDKClient, accessToken string, req *appmanagement.BookingRecordsGetRequest) (*appmanagement.BookingRecordsGetData, error) ]
+    - 提交解析应用包任务 [ DownloadPackageParse(clt *core.SDKClient, accessToken string, req *appmanagement.DownloadPackageParseRequest) (string, error) ]
+    - 查询包解析状态 [ DownloadPackageGet(clt *core.SDKClient, accessToken string, req *appmanagement.DownloadPackageGetRequest) (appmanagement.DownloadPackageStatus, error) ]
+    - 查询应用分包列表 [ ExtendPackageList(clt *core.SDKClient, accessToken string, req *appmanagement.ExtendPackageListRequest) (*appmanagement.ExtendPackageListData, error) ]
+    - 查询应用分包列表 （支持所有账户体系） [ ExtendPackageListV2(clt *core.SDKClient, accessToken string, req *appmanagement.ExtendPackageListV2Request) (*appmanagement.ExtendPackageListData, error) ]
+    - 创建应用分包 [ ExtendPackageCreate(clt *core.SDKClient, accessToken string, req *appmanagement.ExtendPackageCreateRequest) error ]
+    - 创建应用分包 （支持所有账户体系） [ ExtendPackageCreateV2(clt *core.SDKClient, accessToken string, req *appmanagement.ExtendPackageCreateV2Request) error ]
+    - 更新应用子包版本 [ ExtendPackageUpdate(clt *core.SDKClient, accessToken string, req *appmanagement.ExtendPackageUpdateRequest) error ]
+    - 查看应用共享范围 [ ShareAccountList(clt *core.SDKClient, accessToken string, req *appmanagement.ShareAccountListRequest) (*appmanagement.ShareAccountListData, error) ]
+    - 设置应用共享 [ BpShare(clt *core.SDKClient, accessToken string, req *appmanagement.BpShareRequest) (*appmanagement.BpShareData, error) ]
+    - 取消应用共享关系 [ BpShareCancel(clt *core.SDKClient, accessToken string, req *appmanagement.BpShareRequest) (*appmanagement.BpShareData, error) ]
+    - 更新应用共享关系 [ UpdateAuthorization(clt *core.SDKClient, accessToken string, req *appmanagement.UpdateAuthorizationRequest) error ]
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
