@@ -45,6 +45,14 @@
   - 商品/直播间管理
     - 获取可投商品列表 [ AvailableGet(clt *core.SDKClient, accessToken string, req *product.AvailableGetRequest) (*product.AvailableGetResponseData, error) ]
     - 获取千川账户下已授权抖音号 [ AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
+  - 关键词管理 (api/qianchuan/ad)
+    - 获取计划的搜索关键词 [ KeywordsGet(clt *core.SDKClient, accessToken string, req *ad.KeywordsGetRequest) (*ad.KeywordsGetResult, error) ]
+    - 更新关键词 [ KeywordsUpdate(clt *core.SDKClient, accessToken string, req *ad.KeywordsUpdateRequest) error ]
+    - 获取系统推荐的搜索关键词 [ RecommendKeywordsGet(clt *core.SDKClient, accessToken string, req *ad.RecommendKeywordsGetRequest) (*ad.RecommendKeywordsGetResult, error) ]
+    - 关键词合规校验 [ KeywordCheck(clt *core.SDKClient, accessToken string, req *ad.KeywordCheckRequest) (*ad.KeywordCheckData, error) ]
+  - 否定词管理 (api/qianchuan/ad)
+    - 获取否定词列表 [ PrivatewordsGet(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsGetRequest) (*ad.PrivateWords, error) ]
+    - 全量更新否定词 [ PrivatewordsUpdate(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsUpdateRequest) (*ad.PrivatewordsUpdateResult, error) ]
 
 - 数据报表 （api/qianchuan/report)
   - 广告数据报表

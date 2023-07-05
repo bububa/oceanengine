@@ -10,6 +10,8 @@ const (
 	KeywordStatus_REJECT KeywordStatus = "REJECT"
 	// KeywordStatus_AUDIT 新建审核中
 	KeywordStatus_AUDIT KeywordStatus = "AUDIT"
+	// KeywordStatus_ENABLE
+	KeywordStatus_ENABLE KeywordStatus = "ENABLE"
 	// KeywordStatus_DELETE 已删除
 	KeywordStatus_DELETE KeywordStatus = "DELETE"
 	// KeywordStatus_PAUSED 词暂停
