@@ -32,6 +32,12 @@
     - 更新出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) ]
     - 更新预算 [ UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) ]
     - 获取计划审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *ad.RejectReasonRequest) ([]ad.RejectReasonList, error) ]
+    - 获取低效计划列表 [ LqAdGet(clt *core.SDKClient, accessToken string, req *ad.LqAdGetRequest) ([]uint64, error) ]
+    - 获取支付ROI目标建议 [ SuggestRoiGoal(clt *core.SDKClient, accessToken string, req *ad.SuggestRoiGoalRequest) (*ad.SuggestRoiResult, error) ]
+    - 获取非ROI目标建议出价 [ SuggestBid(clt *core.SDKClient, accessToken string, req *ad.SuggestBidRequest) (*ad.SuggestBidResult, error) ]
+    - 更新计划的支付ROI目标 [ RoiGoalUpdate(clt *core.SDKClient, accessToken string, req *ad.RoiGoalUpdateRequest) ([]ad.RoiGoalUpdateResult, error) ]
+    - 获取建议预算接口 [ SuggestBudget(clt *core.SDKClient, accessToken string, req *ad.SuggestBudgetRequest) (*ad.SuggestBudgetResult, error) ]
+    - 获取预估效果接口 [ EstimateEffect(clt *core.SDKClient, accessToken string, req *ad.EstimateEffectRequest) (*ad.EstimateEffectResult, error) ]
   - 广告创意管理 (api/qianchuan/creative)
     - 批量更新广告创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 获取账户下创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]

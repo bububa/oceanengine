@@ -75,7 +75,7 @@ type GetFilter struct {
 func (r GetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	values.Set("platform_version", r.PlatformVersion)
+	values.Set("platform_version", string(r.PlatformVersion))
 	if r.Filtering != nil {
 		bs, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(bs))
