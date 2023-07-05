@@ -83,7 +83,7 @@ type StatFiltering struct {
 	// ADLAB_FREE:管家&省心投放
 	DeliveryMode []string `json:"delivery_mode,omitempty"`
 	// PlatformVersion 获取的数据平台版本
-	PlatformVersion string `json:"platform_version,omitempty"`
+	PlatformVersion enum.PlatformVersion `json:"platform_version,omitempty"`
 }
 
 // Encode implement GetRequest interface

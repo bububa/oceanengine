@@ -16,7 +16,7 @@ type GetRequest struct {
 	// PlatformVersion 查询的平台版本，查询体验版需传入V2，允许值：
 	// V1: 1.0平台（默认值）
 	// V2: 2.0平台
-	PlatformVersion string `json:"platform_version,omitempty"`
+	PlatformVersion enum.PlatformVersion `json:"platform_version,omitempty"`
 	// StartTime 查询起始时间，格式：yyyy-MM-dd，若不填，默认6天前（即获取最近七天的内容）
 	StartTime string `json:"start_time,omitempty"`
 	// EndTime 查询截止时间，格式：yyyy-MM-dd，若不填，默认当天
