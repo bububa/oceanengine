@@ -1,6 +1,6 @@
 package analyse
 
-import "github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
+import "github.com/bububa/oceanengine/marketing-api/enum"
 
 // Creative 商品创意数据
 type Creative struct {
@@ -12,7 +12,7 @@ type Creative struct {
 	// UNION_SPLASH 穿山甲开屏图片
 	// VIDEO_LARGE 横版视频
 	// VIDEO_VERTICAL 竖版视频
-	ImageMode qianchuan.ImageMode `json:"image_mode,omitempty"`
+	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// TitleMaterial 标题素材
 	TitleMaterial *TitleMaterial `json:"title_material,omitempty"`
 	// VideoMaterial 视频素材

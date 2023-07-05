@@ -32,6 +32,12 @@
     - 更新出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) ]
     - 更新预算 [ UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) ]
     - 获取计划审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *ad.RejectReasonRequest) ([]ad.RejectReasonList, error) ]
+    - 获取低效计划列表 [ LqAdGet(clt *core.SDKClient, accessToken string, req *ad.LqAdGetRequest) ([]uint64, error) ]
+    - 获取支付ROI目标建议 [ SuggestRoiGoal(clt *core.SDKClient, accessToken string, req *ad.SuggestRoiGoalRequest) (*ad.SuggestRoiResult, error) ]
+    - 获取非ROI目标建议出价 [ SuggestBid(clt *core.SDKClient, accessToken string, req *ad.SuggestBidRequest) (*ad.SuggestBidResult, error) ]
+    - 更新计划的支付ROI目标 [ RoiGoalUpdate(clt *core.SDKClient, accessToken string, req *ad.RoiGoalUpdateRequest) ([]ad.RoiGoalUpdateResult, error) ]
+    - 获取建议预算接口 [ SuggestBudget(clt *core.SDKClient, accessToken string, req *ad.SuggestBudgetRequest) (*ad.SuggestBudgetResult, error) ]
+    - 获取预估效果接口 [ EstimateEffect(clt *core.SDKClient, accessToken string, req *ad.EstimateEffectRequest) (*ad.EstimateEffectResult, error) ]
   - 广告创意管理 (api/qianchuan/creative)
     - 批量更新广告创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 获取账户下创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
@@ -39,6 +45,14 @@
   - 商品/直播间管理
     - 获取可投商品列表 [ AvailableGet(clt *core.SDKClient, accessToken string, req *product.AvailableGetRequest) (*product.AvailableGetResponseData, error) ]
     - 获取千川账户下已授权抖音号 [ AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
+  - 关键词管理 (api/qianchuan/ad)
+    - 获取计划的搜索关键词 [ KeywordsGet(clt *core.SDKClient, accessToken string, req *ad.KeywordsGetRequest) (*ad.KeywordsGetResult, error) ]
+    - 更新关键词 [ KeywordsUpdate(clt *core.SDKClient, accessToken string, req *ad.KeywordsUpdateRequest) error ]
+    - 获取系统推荐的搜索关键词 [ RecommendKeywordsGet(clt *core.SDKClient, accessToken string, req *ad.RecommendKeywordsGetRequest) (*ad.RecommendKeywordsGetResult, error) ]
+    - 关键词合规校验 [ KeywordCheck(clt *core.SDKClient, accessToken string, req *ad.KeywordCheckRequest) (*ad.KeywordCheckData, error) ]
+  - 否定词管理 (api/qianchuan/ad)
+    - 获取否定词列表 [ PrivatewordsGet(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsGetRequest) (*ad.PrivateWords, error) ]
+    - 全量更新否定词 [ PrivatewordsUpdate(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsUpdateRequest) (*ad.PrivatewordsUpdateResult, error) ]
 
 - 数据报表 （api/qianchuan/report)
   - 广告数据报表
@@ -77,9 +91,13 @@
 - 素材管理 (api/file)
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
   - 上传视频 [ VideoAd(clt *core.SDKClient, accessToken string, req *file.VideoAdRequest) (*file.Video, error) ]
-  - 获取图片素材 [ ImageGet(clt *core.SDKClient, accessToken string, req *file.ImageGetRequest) (*file.ImageGetResponseData, error) ]
-  - 获取视频素材 [ VideoGet(clt *core.SDKClient, accessToken string, req *file.VideoGetRequest) (*file.VideoGetResponseData, error) ]
-  - 获取抖音号下的视频 [ VideoAwemeGet(clt *core.SDKClient, accessToken string, req *file.VideoAwemeGetRequest) (*file.VideoAwemeGetResponseData, error) ]
+  - 获取图片素材 [ api.qianchuan.file.ImageGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.ImageGetRequest) (*file.ImageGetResponseData, error) ]
+  - 获取视频素材 [ api.qianchuan.file.VideoGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoGetRequest) (*file.VideoGetResponseData, error) ]
+  - 获取抖音号下的视频 [ api.qianchuan.file.VideoAwemeGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoAwemeGetRequest) (*api.qianchuan.file.VideoAwemeGetResponseData, error) ]
+  - 获取首发素材  [ api.qianchuan.file.VideoOriginalGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoOriginalGetRequest) ([]string, error) ]
+  - 获取低效素材 [ api.qianchuan.file.VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoEffeciencyGetRequest) ([]string, error) ]
+  - 批量删除图片素材 [ api.qianchuan.file.ImageDelete(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.ImageDeleteRequest) ([]string, error) ]
+  - 批量删除视频素材 [ api.qianchuan.file.VideoDelete(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoDeleteRequest) ([]string, error) ]
 
 - 工具
   - 查询工具

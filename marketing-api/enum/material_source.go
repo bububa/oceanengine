@@ -4,6 +4,8 @@ package enum
 type MaterialSource string
 
 const (
+	// MaterialSource_ARTHUR 亚瑟共享素材
+	MaterialSource_ARTHUR MaterialSource = "ARTHUR"
 	// MaterialSource_AD_SITE ad后台本地上传
 	MaterialSource_AD_SITE MaterialSource = "AD_SITE"
 	// MaterialSource_CREATIVE_CENTER 创意中心
@@ -16,6 +18,10 @@ const (
 	MaterialSource_VIDEO_CAPTURE MaterialSource = "VIDEO_CAPTURE"
 	// MaterialSource_ACCOUNT_PUSH 推送视频
 	MaterialSource_ACCOUNT_PUSH MaterialSource = "ACCOUNT_PUSH"
+	// MaterialSource_LIVE_HIGHLIGHT 直播剪辑素材
+	MaterialSource_LIVE_HIGHLIGHT MaterialSource = "LIVE_HIGHLIGHT"
+	// MaterialSource_TADA tada共享素材
+	MaterialSource_TADA MaterialSource = "TADA"
 	// MaterialSource_STAR 星图视频
 	MaterialSource_STAR MaterialSource = "STAR"
 	// MaterialSource_CEWEBRITY_VIDEO 达人视频

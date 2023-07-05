@@ -94,7 +94,7 @@ type StatFiltering struct {
 	// 注意：
 	// 1.当下单平台为“小店随心推”时，不支持
 	// 2.素材样式为竖版视频时，包含高光快投创意
-	ImageMode qianchuan.ImageMode `json:"image_mode,omitempty"`
+	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// SmartBidType 投放场景（投放方式），允许值：
 	// SMART_BID_CUSTOM：控成本投放
 	// SMART_BID_CONSERVATIVE： 放量投放
@@ -122,7 +122,7 @@ type StatFiltering struct {
 	// TADA：tada共享素材
 	// CREATIVE_CENTER：巨量创意PC共享素材
 	// 注意：仅素材类型为视频素材时，支持
-	VideoSource qianchuan.VideoSource `json:"video_source,omitempty"`
+	VideoSource enum.MaterialSource `json:"video_source,omitempty"`
 	// WordType 词类型，当word有传值时，必填，允许值：
 	// SEARCH_WORD搜索词
 	// KEY_WORD关键词

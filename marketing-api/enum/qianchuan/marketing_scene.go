@@ -10,4 +10,6 @@ const (
 	MarketingScene_FEED MarketingScene = "FEED"
 	// MarketingScene_SEARCH 搜索广告
 	MarketingScene_SEARCH MarketingScene = "SEARCH"
+	// MarketingScene_SHOPPING_MALL 商城广告
+	MarketingScene_SHOPPING_MALL MarketingScene = "SHOPPING_MALL"
 )

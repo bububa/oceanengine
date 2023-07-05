@@ -85,6 +85,8 @@ type Keyword struct {
 	WordID uint64 `json:"word_id,omitempty"`
 	// Word 关键词字面
 	Word string `json:"word,omitempty"`
+	// AdID 计划ID
+	AdID uint64 `json:"ad_id,omitempty"`
 	// Status 关键词状态
 	// CONFIRM 审核通过且可代入
 	// REJECT 审核拒绝

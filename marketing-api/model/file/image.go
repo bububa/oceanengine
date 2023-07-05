@@ -1,5 +1,7 @@
 package file
 
+import "github.com/bububa/oceanengine/marketing-api/enum"
+
 // Image 图片
 type Image struct {
 	// ID 图片ID
@@ -23,4 +25,15 @@ type Image struct {
 	CreateTime string `json:"create_time,omitempty"`
 	// Filename 素材的文件名
 	Filename string `json:"filename,omitempty"`
+	// ImageMode 素材类型，允许值:
+	// SQUARE 方图
+	// LARGE 大图
+	// SMALL 小图
+	// LARGE_VERTICAL 大图竖图
+	// UNION_SPLASH 穿山甲开屏图片
+	// VIDEO_LARGE 横版视频
+	// VIDEO_VERTICAL 竖版视频
+	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
+	// Tag 素材标签
+	Tag string `json:"tag,omitempty"`
 }

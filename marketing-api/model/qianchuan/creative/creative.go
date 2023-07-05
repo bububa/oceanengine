@@ -22,7 +22,7 @@ type Creative struct {
 	// CreativeModifyTime 创意修改时间
 	CreativeModifyTime string `json:"creative_modify_time,omitempty"`
 	// ImageMode 素材类型，支持视频和图片
-	ImageMode qianchuan.ImageMode `json:"image_mode,omitempty"`
+	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// VideoMaterial 视频素材
 	VideoMaterial *VideoMaterial `json:"video_material,omitempty"`
 	// ImageMaterial 图片素材
