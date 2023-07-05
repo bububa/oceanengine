@@ -1,11 +1,11 @@
 package creative
 
-import "github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
+import "github.com/bububa/oceanengine/marketing-api/enum"
 
 // ProgrammaticCreativeMedia 程序化创意素材信息
 type ProgrammaticCreativeMedia struct {
 	// ImageMode 创意素材类型
-	ImageMode qianchuan.ImageMode `json:"image_mode,omitempty"`
+	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// VideoID 视频ID
 	VideoID string `json:"video_id,omitempty"`
 	// VideoCoverID 视频封面ID

@@ -91,9 +91,13 @@
 - 素材管理 (api/file)
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
   - 上传视频 [ VideoAd(clt *core.SDKClient, accessToken string, req *file.VideoAdRequest) (*file.Video, error) ]
-  - 获取图片素材 [ ImageGet(clt *core.SDKClient, accessToken string, req *file.ImageGetRequest) (*file.ImageGetResponseData, error) ]
-  - 获取视频素材 [ VideoGet(clt *core.SDKClient, accessToken string, req *file.VideoGetRequest) (*file.VideoGetResponseData, error) ]
-  - 获取抖音号下的视频 [ VideoAwemeGet(clt *core.SDKClient, accessToken string, req *file.VideoAwemeGetRequest) (*file.VideoAwemeGetResponseData, error) ]
+  - 获取图片素材 [ api.qianchuan.file.ImageGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.ImageGetRequest) (*file.ImageGetResponseData, error) ]
+  - 获取视频素材 [ api.qianchuan.file.VideoGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoGetRequest) (*file.VideoGetResponseData, error) ]
+  - 获取抖音号下的视频 [ api.qianchuan.file.VideoAwemeGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoAwemeGetRequest) (*api.qianchuan.file.VideoAwemeGetResponseData, error) ]
+  - 获取首发素材  [ api.qianchuan.file.VideoOriginalGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoOriginalGetRequest) ([]string, error) ]
+  - 获取低效素材 [ api.qianchuan.file.VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoEffeciencyGetRequest) ([]string, error) ]
+  - 批量删除图片素材 [ api.qianchuan.file.ImageDelete(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.ImageDeleteRequest) ([]string, error) ]
+  - 批量删除视频素材 [ api.qianchuan.file.VideoDelete(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoDeleteRequest) ([]string, error) ]
 
 - 工具
   - 查询工具

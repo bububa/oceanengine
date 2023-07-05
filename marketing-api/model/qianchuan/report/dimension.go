@@ -54,7 +54,7 @@ type Dimension struct {
 	// LARGE：横版大图
 	// LARGE_VERTICAL：竖版图片
 	// SQUARE ：商品卡方图
-	MaterialMode qianchuan.ImageMode `json:"material_mode,omitempty"`
+	MaterialMode enum.MaterialMode `json:"material_mode,omitempty"`
 	// VideoSource 视频来源筛选，以平台素材库接口的视频来源枚举值为准，允许值：
 	// E_COMMERCE：本地上传
 	// LIVE_HIGHLIGHT：直播剪辑素材
@@ -65,7 +65,7 @@ type Dimension struct {
 	// TADA：tada共享素材
 	// CREATIVE_CENTER：巨量创意PC共享素材
 	// 注意：仅素材类型为视频素材时，支持
-	VideoSource qianchuan.VideoSource `json:"video_source,omitempty"`
+	VideoSource enum.MaterialSource `json:"video_source,omitempty"`
 	// StartDate 开始日期
 	StartDate string `json:"start_date,omitempty"`
 	// EndDate 结束日期
