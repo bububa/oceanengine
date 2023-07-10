@@ -44,6 +44,8 @@ type Promotion struct {
 	MaterialsType enum.MaterialsType `json:"materials_type,omitempty"`
 	// Source 广告来源
 	Source string `json:"source,omitempty"`
+	// BudgetMode 预算类型
+	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// Budget 预算
 	Budget float64 `json:"budget,omitempty"`
 	// Bid 点击出价/展示出价
