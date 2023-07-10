@@ -20,4 +20,6 @@ const (
 	AssetType_THIRDPARTY AssetType = "THIRDPARTY"
 	// AssetType_ENTERPRISE 企业号落地页
 	AssetType_ENTERPRISE AssetType = "ENTERPRISE"
+	// AssetType_AWEME_HOME_PAGE 抖音主页资产
+	AssetType_AWEME_HOME_PAGE AssetType = "AWEME_HOME_PAGE"
 )
