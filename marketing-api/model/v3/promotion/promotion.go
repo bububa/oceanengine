@@ -44,6 +44,8 @@ type Promotion struct {
 	MaterialsType enum.MaterialsType `json:"materials_type,omitempty"`
 	// Source 广告来源
 	Source string `json:"source,omitempty"`
+	// BudgetMode 预算类型
+	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// Budget 预算
 	Budget float64 `json:"budget,omitempty"`
 	// Bid 点击出价/展示出价
@@ -179,6 +181,8 @@ type PromotionMaterial struct {
 	ProductInfo *ProductInfo `json:"product_info,omitempty"`
 	// CallToActionButtons 行动号召文案
 	CallToActionButtons []string `json:"call_to_action_buttons,omitempty"`
+	// IntelligentGeneration 智能生成行动号召按钮，开启后即对应的文案自动生成，可选项为OFF（默认）、ON
+	IntelligentGeneration string `json:"intelligent_generation,omitempty"`
 }
 
 // VideoMaterial 视频素材信息
