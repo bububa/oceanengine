@@ -52,13 +52,9 @@ func ReadPrivateKeyFromPem(r io.Reader) (*rsa.PrivateKey, error) {
 
 func ParsePrivateKeyFromPem(bs []byte) (*rsa.PrivateKey, error) {
 	block, _ := pem.Decode(bs)
-	privKeyI, err := x509.ParsePKCS8PrivateKey(block.Bytes)
+	privKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
 	if err != nil {
 		return nil, err
-	}
-	privKey, ok := privKeyI.(*rsa.PrivateKey)
-	if !ok {
-		return nil, errors.New("not rsa private key")
 	}
 	return privKey, nil
 }
