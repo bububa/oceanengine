@@ -88,7 +88,6 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	builder.WriteString(gw)
 	reqUrl := builder.String()
 	util.PutStringsBuilder(builder)
-	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
@@ -106,6 +105,7 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	if c.limiter != nil {
 		c.limiter.Take()
 	}
+	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
 	return c.fetch(httpReq, resp)
 }
 
@@ -241,7 +241,6 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp model.Response) error {
 	reqBytes := req.Encode()
 	reqUrl := util.StringsJoin(ANALYTICS_URL, gw)
-	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
@@ -262,6 +261,7 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp m
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
+	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
 	return c.fetch(httpReq, resp)
 }
 
@@ -269,7 +269,6 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp m
 func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model.Response) error {
 	reqBytes := req.Encode()
 	reqUrl := util.StringsJoin(ANALYTICSV1_URL, gw)
-	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
@@ -286,6 +285,7 @@ func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
+	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
 	return c.fetch(httpReq, resp)
 }
 
