@@ -25,7 +25,7 @@ type AddPublicKeyRequest struct {
 }
 
 // NewPrivateKey 生成新私钥，返回pem file
-func NewPrivateKey(advertiserID uint64, privateKey *rsa.PrivateKey) (string, error) {
+func NewPrivateKey(privateKey *rsa.PrivateKey) (string, error) {
 	if privKey, err := rsa.GenerateKey(rand.Reader, RSA_BITS); err != nil {
 		return "", err
 	} else {
