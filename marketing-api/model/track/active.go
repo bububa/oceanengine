@@ -1,8 +1,15 @@
 package track
 
 import (
+	"crypto/rsa"
+	"errors"
+	"net/http"
+	"strconv"
+
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/model/conversion"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ActiveRequest 线索-API上报数据 API Request
@@ -37,6 +44,10 @@ type ActiveRequest struct {
 	Caid2 string `json:"caid2,omitempty"`
 	// Ext 补充数据
 	Ext map[string]string `json:"ext,omitempty"`
+	// PrivateKey
+	PrivateKey *rsa.PrivateKey `json:"-"`
+	// Credential
+	Credential enum.Credential `json:"-"`
 }
 
 // WxaActiveRequest 微信小程序线索-API上报数据 API Request
@@ -51,4 +62,52 @@ type WxaActiveRequest struct {
 	EventType string `json:"event_type,omitempty"`
 	// Props 参数包含pay_amount
 	Props *conversion.Properties `json:"props,omitempty"`
+}
+
+// Encode implement GetRequest interface
+func (r ActiveRequest) Encode() string {
+	values := util.GetUrlValues()
+	if r.Callback != "" {
+		values.Set("callback", r.Callback)
+		values.Set("os", strconv.Itoa(r.Os))
+		if r.Os == enum.Track_ANDROID {
+			values.Set("imei", r.Imei)
+			values.Set("muid", r.Muid)
+			values.Set("oaid", r.Oaid)
+			if r.OaidMd5 != "" {
+				values.Set("oaid_md5", r.OaidMd5)
+			}
+		} else {
+			values.Set("idfa", r.Idfa)
+		}
+		if r.Caid1 != "" {
+			values.Set("caid1", r.Caid1)
+		}
+		if r.Caid2 != "" {
+			values.Set("caid2", r.Caid2)
+		}
+	} else {
+		values.Set("link", r.Link)
+	}
+	values.Set("event_type", strconv.Itoa(r.EventType))
+	if r.ConvTime > 0 {
+		values.Set("conv_time", strconv.FormatInt(r.ConvTime, 10))
+	}
+	if r.Source != "" {
+		values.Set("source", r.Source)
+	}
+	for k, v := range r.Ext {
+		values.Set(k, v)
+	}
+	ret := values.Encode()
+	util.PutUrlValues(values)
+	return ret
+}
+
+// Sign implement ConvertionRequest interface
+func (r ActiveRequest) Sign(req *http.Request, content []byte) (string, error) {
+	if r.PrivateKey == nil || r.Credential == "" {
+		return "", errors.New("no private_key/credential")
+	}
+	return model.CredentialSign(req, content, r.PrivateKey, r.Credential)
 }

@@ -7,6 +7,8 @@ const (
 	ANALYTICS_URL = "https://analytics.oceanengine.com/api/v2/"
 	// ANALYTICSV1_URL 电话转化回传API gateway
 	ANALYTICSV1_URL = "https://analytics.oceanengine.com/api/v1/"
-	// OPEN_URL OpenAPIgateway
+	// TRACK_URL  转化事件回调服务 gateway
+	TRACK_URL = "https://ad.oceanengine.com/track/activate/"
+	// OPEN_URL OpenAPI gateway
 	OPEN_URL = "https://open.oceanengine.com/open_api/"
 )

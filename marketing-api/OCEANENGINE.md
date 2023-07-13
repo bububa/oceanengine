@@ -311,9 +311,10 @@
       - 关闭鉴权 [ Disable(clt *core.SDKClient, accessToken string, advertiserID uint64) error ]
       - 查询鉴权开启状态 [ GetAllPublicKeys(clt *core.SDKClient, accessToken string, req *auth.GetAllPublicKeyRequest) ([]auth.PublicKey, error) ]
 - 数据上报管理 (api/track)
-  - 转化回传 [ Active(req *track.ActiveRequest) error ]
+  - 转化回传 [ Active(req *track.ActiveRequest) (int, error) ]
+  - 微信小程序转化回传 [ WxaActive(gw string, token string, req *track.WxaActiveRequest, debug bool) error ]
 - 事件管理(api/conversion)
-  - 转化回传 [ Conversion(clt *core.SDKClient, req *conversion.Request) error ]
+  - 转化回传 [ Conversion(clt *core.SDKClient, req *conversion.Request) (int, error) ]
   - 实时电话回传 [ Attribution(clt *core.SDKClient, req *conversion.Request) error ]
 - 工具
   - 查询工具

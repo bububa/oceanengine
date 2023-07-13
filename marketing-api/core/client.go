@@ -238,6 +238,24 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 }
 
 // AnalyticsPost 转化回传API专用
+func (c *SDKClient) TrackActive(req model.TrackRequest, resp model.Response) error {
+	reqUrl := util.StringsJoin(TRACK_URL, "?", req.Encode())
+	httpReq, err := http.NewRequest("GET", reqUrl, nil)
+	if err != nil {
+		return err
+	}
+	httpReq.Header.Add("Content-Type", "application/json")
+	if token, err := req.Sign(httpReq, nil); err == nil {
+		httpReq.Header.Add("x-rs256-token", token)
+	}
+	if c.sandbox {
+		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+	debug.PrintJSONRequest("GET", reqUrl, httpReq.Header, nil, c.debug)
+	return c.fetch(httpReq, resp)
+}
+
+// AnalyticsPost 转化回传API专用
 func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp model.Response) error {
 	reqBytes := req.Encode()
 	reqUrl := util.StringsJoin(ANALYTICS_URL, gw)
