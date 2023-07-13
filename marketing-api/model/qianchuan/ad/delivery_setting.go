@@ -24,6 +24,8 @@ type DeliverySetting struct {
 	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// Budget 预算
 	Budget float64 `json:"budget,omitempty"`
+	// ReviveBudget 复活预算
+	ReviveBudget float64 `json:"revive_budget,omitempty"`
 	// BudgetMode 预算类型
 	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// CpaBid 转化出价
@@ -40,4 +42,18 @@ type DeliverySetting struct {
 	ScheduleTime string `json:"schedule_time,omitempty"`
 	// ScheduleFixedRange 固定投放时长，当 live_schedule_type 为时有值；单位为秒，最小值为1800（0.5小时），最大值为48*1800（24小时）SCHEDULE_TIME_FIXEDRANGE
 	ScheduleFixedRange int64 `json:"schedule_fixed_range,omitempty"`
+	// EnableAutoPause 是否启用超成本自动暂停，允许值：
+	// 0 关闭 1 开启
+	EnableAutoPause int `json:"enable_auto_pause,omitempty"`
+	// AutoManageStrategyCmd 托管策略，允许值：
+	// 0 优先跑量 1 优先成本
+	AutoManageStrategyCmd int `json:"auto_manage_strategy_cmd,omitempty"`
+	// EnableFlowMaterial 是否优质素材自动同步投放
+	// 0 关闭 1 开启
+	EnableFlowMaterial int `json:"enable_flow_material,omitempty"`
+	// ProductNewOpen 是否开启新品加速，默认关闭。
+	// 开启：true
+	// 关闭：false（默认）
+	// 注意：需要调用【商家获取可投商品列表】/【达人获取可投商品列表】获取当前商品是否支持开启新品加速。在开启商品加速后，roi_goal会受到限制。
+	ProductNewOpen bool `json:"product_new_open,omitempty"`
 }

@@ -53,6 +53,8 @@
   - 否定词管理 (api/qianchuan/ad)
     - 获取否定词列表 [ PrivatewordsGet(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsGetRequest) (*ad.PrivateWords, error) ]
     - 全量更新否定词 [ PrivatewordsUpdate(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsUpdateRequest) (*ad.PrivatewordsUpdateResult, error) ]
+  - 全域推广 (api/qianchuan/uni_promotion)
+    - 获取全域推广列表 [ List(clt *core.SDKClient, accessToken string, req *unipromotion.ListRequest) (*unipromotion.ListResult, error) ]
 
 - 数据报表 （api/qianchuan/report)
   - 广告数据报表
@@ -63,6 +65,7 @@
     - 获取搜索词/关键词数据 [ SearchWordGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
     - 视频互动流失数据 [ VideoUserLoseGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
     - 长周期转化价值-订单明细 [ LongTransferOrderGet(clt *core.SDKClient, accessToken string, req *report.LongTransferOrderGetRequest) (*report.LongTransferOrderGetData, error) ]
+    - 全域推广数据 [ UniPromotionGet(clt *core.SDKClient, accessToken string, req *report.UniPromotionGetRequest) (*report.UniPromotionStats, error) ]
   - 直播间报表
     - 获取今日直播数据 [ LiveGet(clt *core.SDKClient, accessToken string, req *report.LiveGetRequest) (*report.LiveStat, error) ]
     - 获取今日直播间列表 [ live.RoomGet(clt *core.SDKClient, accessToken string, req *live.RoomGetRequest) (*live.RoomGetData, error) ]

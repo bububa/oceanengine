@@ -24,4 +24,12 @@ type Product struct {
 	DiscountLowerPrice float64 `json:"discount_lower_price,omitempty"`
 	// DiscountHigherPrice 折扣价区间最大值，单位为元
 	DiscountHigherPrice float64 `json:"discount_higher_price,omitempty"`
+	// Tags 是否可投猜喜可选值:
+	// 1: 可投猜喜
+	// 0: 不可投猜喜
+	Tags int `json:"tags,omitempty"`
+	// SupportProductNewOpen 当前商品是否支持开启新品加速
+	// 支持：true
+	// 不支持：false
+	SupportProductNewOpen bool `json:"support_product_new_open,omitempty"`
 }

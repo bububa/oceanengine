@@ -39,6 +39,8 @@ type GrayGetResponse struct {
 type GrayItem struct {
 	// GrayKey 白名单能力的唯一key
 	GrayKey string `json:"gray_key,omitempty"`
+	// InGray 当前白名单能力是否已全量，true、false。对于已经全量的key，请不要再次查询
+	InGray bool `json:"in_gray,omitempty"`
 	// InWhitelist 是否命中白名单。0代表命中，1代表未命中
-	InWhitelist int `json:"in_whitelist,omitempty"`
+	InWhitelist model.Bool `json:"in_whitelist,omitempty"`
 }
