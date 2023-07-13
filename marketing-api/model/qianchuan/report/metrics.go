@@ -34,6 +34,10 @@ type Metrics struct {
 	ConversionCost float64 `json:"conversion_cost,omitempty"`
 	// ConversionRate 转化率
 	ConversionRate float64 `json:"conversion_rate,omitempty"`
+	// EcpConvertCnt 转化数
+	EcpConvertCnt int64 `json:"ecp_convert_cnt,omitempty"`
+	// EcpConvertPlatform 转化成本
+	EcpConvertPlatform float64 `json:"ecp_convert_platform,omitempty"`
 	// DyFollow 新增关注数
 	DyFollow int64 `json:"dy_follow,omitempty"`
 	// DyLike 点赞数
