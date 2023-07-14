@@ -86,7 +86,7 @@ type ProductForUpdate struct {
 	Profession *Profession `json:"profession,omitempty"`
 }
 
-func NewProductForUpdatFromProduct(src *Product, dist *ProductForUpdate) {
+func CopyProductForUpdateFromProduct(src *Product, dist *ProductForUpdate) {
 	loc := time.Now().Location()
 	dist.Name = src.Name
 	dist.Title = src.Title
