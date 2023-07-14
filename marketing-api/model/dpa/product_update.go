@@ -15,7 +15,7 @@ type ProductUpdateRequest struct {
 	// ProductID 商品ID
 	ProductID uint64 `json:"product_id,omitempty"`
 	// ProductInfo 商品详情，包括商品库基础字段、落地页、品牌、商户、价格以及其他字段信息，以下所有字段均包含在该结构体下，且不同类型商品库填入字段存在差异，具体格式见下方字段详情
-	ProductInfo *Product `json:"product_info,omitempty"`
+	ProductInfo *ProductForUpdate `json:"product_info,omitempty"`
 }
 
 // Encode implement PostRequest interface
