@@ -1,5 +1,7 @@
 package dpa
 
+import "time"
+
 // ProductForUpdate 商品详情
 type ProductForUpdate struct {
 	// Name 商品名称
@@ -82,4 +84,46 @@ type ProductForUpdate struct {
 	HasVideo int `json:"has_video,omitempty"`
 	// Profession 额外信息
 	Profession *Profession `json:"profession,omitempty"`
+}
+
+func NewProductForUpdatFromProduct(src *Product, dist *ProductForUpdate) {
+	loc := time.Now().Location()
+	dist.Name = src.Name
+	dist.Title = src.Title
+	dist.Description = src.Description
+	if src.OfflineTime != "" {
+		if t, err := time.ParseInLocation("2006-01-02", src.OfflineTime, loc); err == nil {
+			dist.OfflineTime = t.Unix()
+		}
+	}
+	dist.Status = src.Status
+	dist.Stock = src.Stock
+	dist.FirstCategory = src.FirstCategory
+	dist.SubCategory = src.SubCategory
+	dist.ThirdCategory = src.ThirdCategory
+	dist.FirstCategoryID = src.FirstCategoryID
+	dist.SubCategoryID = src.SubCategoryID
+	dist.ThirdCategoryID = src.ThirdCategoryID
+	dist.SpuID = src.SpuID
+	dist.OuterID = src.OuterID
+	dist.ImageURL = src.ImageURL
+	dist.ImageURLs = src.ImageURLs
+	dist.LandingInfo = src.LandingInfo
+	dist.BrandInfo = src.BrandInfo
+	dist.ShopKeeperInfo = src.ShopKeeperInfo
+	dist.PriceInfo = src.PriceInfo
+	dist.Feature = src.Feature
+	dist.Mark = src.Mark
+	dist.Bought = src.Bought
+	dist.Comments = src.Comments
+	dist.Province = src.Province
+	dist.City = src.City
+	dist.Age = src.Age
+	dist.Label = src.Label
+	dist.ExternalURL = src.ExternalURL
+	dist.BrandName = src.BrandName
+	dist.Tags = src.Tags
+	dist.Video = src.Video
+	dist.Videos = src.Videos
+	dist.Profession = src.Profession
 }
