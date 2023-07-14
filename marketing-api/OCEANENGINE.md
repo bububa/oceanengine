@@ -459,6 +459,9 @@
     - 关闭优选起量任务 [ StatusStop(clt *core.SDKClient, accessToken string, req *taskraise.StatusStopRequest) error ]
     - 查询优选起量状态 [ OptimizationIDsGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (enum.TaskRaiseStatus, error) ]
     - 查询优选起量任务数据 [ DataGet(clt *core.SDKClient, accessToken string, req *taskraise.DataGetRequest) (*taskraise.DataGetResponseData, error) ]
+  - 微信小程序/小游戏管理 (tools/wechat)
+    - 获取微信小程序列表 [ AppletList(clt *core.SDKClient, accessToken string, req *wechat.AppletListRequest) (*wechat.AppletListResult, error) ]
+    - 获取微信小游戏列表 [ GameList(clt *core.SDKClient, accessToken string, req *wechat.GameListRequest) (*wechat.GameListResult, error) ]
 - 应用市场 (api/servemarket)
   - 获取应用订单数据 [ OrderGet(clt *core.SDKClient, accessToken string, req *servemarket.OrderGetRequest) (*servemarket.OrderGetResponseData, error) ]
   - 获取用户已购功能点列表 [ ActiveFuncGet(clt *core.SDKClient, accessToken string, req *servemarket.ActiveFuncGetRequest) ([]servemarket.OrderFunction, error) ]
