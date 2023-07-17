@@ -112,6 +112,8 @@ type BidSuggestResponse struct {
 type BidSuggest struct {
 	// SuggestedBid 建议出价
 	SuggestedBid float64 `json:"suggested_bid,omitempty"`
+	// BidHigh30 竞争力超过30%广告的高跑量出价
+	BidHigh30 float64 `json:"bid_high_30,omitempty"`
 	// BidHigh50 竞争力超过50%的计划（手动出价获取）
 	BidHigh50 float64 `json:"bid_high_50,omitempty"`
 	// BidHigh90 竞争力超过90%的计划（手动出价获取）
