@@ -334,6 +334,7 @@
     - 查询视频是否挂载下载类锚点 [ tools.CheckAvailableAnchor(clt *core.SDKClient, accessToken string, req *video.CheckAvailableAnchorRequest) ([]video.AvailableAnchor, error) ]
     - 获取快投推荐出价系数 [ tools.SearchBidRatioGet(clt *core.SDKClient, accessToken string, req *tools.SearchBidRatioGetRequest) (float64, error) ]
     - 查询白名单能力 [ GrayGet(clt *core.SDKClient, accessToken string, req *tools.GrayGetRequest) ([]tools.GrayItem, error) ]
+    - 查询建议出价（巨量广告升级版） [ tools.v3.BidSuggest(clt *core.SDKClient, accessToken string, req *v3.BidSuggestRequest) (*tools.BidSuggest, error) ]
     - 应用管理 (tools/appmanagement)
       - 查询游戏信息 [ BookingGet(clt *core.SDKClient, accessToken string, req *appmanagement.AppListRequest) (*appmanagement.AppListResponseData, error) ]
       - 查询应用信息 [ AppGet(clt *core.SDKClient, accessToken string, req *appmanagement.AppListRequest) (*appmanagement.AppListResponseData, error) ]
