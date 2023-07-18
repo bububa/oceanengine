@@ -105,6 +105,7 @@
 - 工具
   - 查询工具
     - 获取行业列表 [ tools.IndustryGet(clt *core.SDKClient, accessToken string, req *tools.IndustryGetRequest) ([]tools.Industry, error) ]
+    - 智能优惠券白名单 [ tools.AllowCoupon(clt *core.SDKClient, accessToken string, req *tools.AllowCouponRequest) (*tools.AllowCouponResult, error) ]
   - 抖音达人 (tools/aweme)
     - 查询抖音类目列表 [ AwemeMultiLevelCategoryGet(clt *core.SDKClient, accessToken string, req *aweme.AwemeMultiLevelCategoryGetRequest) ([]aweme.Category, error) ]
     - 查询抖音类目下的推荐达人 [ AwemeCategoryTopAuthorGet(clt *core.SDKClient, accessToken string, req *aweme.AwemeCategoryTopAuthorGetRequest) ([]aweme.Author, error) ]
