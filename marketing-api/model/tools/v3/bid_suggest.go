@@ -50,5 +50,7 @@ func (r BidSuggestRequest) Encode() string {
 // BidSuggestResponse 查询建议出价（巨量广告升级版） API Response
 type BidSuggestResponse struct {
 	model.BaseResponse
-	Data *tools.BidSuggest `json:"data,omitempty"`
+	Data struct {
+		Data *tools.BidSuggest `json:"data,omitempty"`
+	} `json:"data,omitempty"`
 }

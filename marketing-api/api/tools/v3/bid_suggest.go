@@ -13,5 +13,5 @@ func BidSuggest(clt *core.SDKClient, accessToken string, req *v3.BidSuggestReque
 	if err := clt.Get("v3.0/tools/bids/suggest/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
-	return resp.Data, nil
+	return resp.Data.Data, nil
 }
