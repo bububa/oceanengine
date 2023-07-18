@@ -9,10 +9,10 @@ import (
 type Audience struct {
 	// AudienceMode 人群定向模式，当promotion_way为 SIMPLE时返回，枚举值：AUTO智能推荐、CUSTOM自定义
 	AudienceMode enum.AudienceMode `json:"audience_mode,omitempty"`
-	// OrigintationID 定向包ID，定向包ID由【工具-人群管理-获取定向包】获取
+	// OrientationID 定向包ID，定向包ID由【工具-人群管理-获取定向包】获取
 	// 1、如果同时传定向包ID和自定义用户定向参数时，仅定向包中的定向生效
 	// 2、仅通投且专业推广支持，极速推广不支持
-	OrigintationID uint64 `json:"origintation_id,omitempty"`
+	OrientationID uint64 `json:"orientation_id,omitempty"`
 	// DistrictType 定向or排除地域，允许值：
 	// true：排除地域
 	// false：定向地域，默认

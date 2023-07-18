@@ -128,3 +128,11 @@
     - 查询动态创意词包 [ Select(clt *core.SDKClient, accessToken string, req *creativeword.SelectRequest) ([]creativeword.CreativeWord, error) ]
   - DMP人群管理 (tools/dmp)
     - 查询人群包列表 [ AudiencesGet(clt *core.SDKClient, accessToken string, req *dmp.AudiencesGetRequest) (*dmp.AudiencesGetResponseData, error) ]
+    - 获取定向包列表 [ OrientationPackageGet(clt *core.SDKClient, accessToken string, req *dmp.OrientationPackageGetRequest) (*dmp.OrientationPackageGetResult, error) ]
+    - 获取人群管理列表 [ AudienceListGet(clt *core.SDKClient, accessToken string, req *dmp.AudienceListGetRequest) (*dmp.AudienceListGetResult, error) ]
+    - 获取人群分组 [ AudienceGroupGet(clt *core.SDKClient, accessToken string, req *dmp.AudienceGroupGetRequest) ([]string, error) ]
+    - 上传人群 [ AudienceCreateByFile(clt *core.SDKClient, accessToken string, req *dmp.AudienceCreateByFileRequest) (uint64, error) ]
+    - 推送人群 [ AudiencePush(clt *core.SDKClient, accessToken string, req *dmp.AudiencePushRequest) (uint64, error) ]
+    - 删除人群 [ AudienceDelete(clt *core.SDKClient, accessToken string, req *dmp.AudienceDeleteRequest) (uint64, error) ]
+    - 小文件直接上传 [ AudienceFileUpload(clt *core.SDKClient, accessToken string, req *dmp.AudienceFileUploadRequest) (*dmp.AudienceFileUploadResult, error) ]
+    - 大文件分片上传 [ AudienceFilePartUpload(clt *core.SDKClient, accessToken string, req *dmp.AudienceFilePartUploadRequest) (string, error) ]
