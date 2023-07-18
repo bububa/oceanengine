@@ -46,6 +46,10 @@ type SuggestRoiGoalRequest struct {
 	// AD_CONVERT_TYPE_LIVE_SUCCESSORDER_PAY直播间成交
 	// AD_CONVERT_TYPE_LIVE_SUCCESSORDER_PAY_7DAYS7日总成交
 	ExternalAction qianchuan.ExternalAction `json:"external_action,omitempty"`
+	// CampaignScene 营销场景，可选值
+	// DAILY_SALE 日常销售
+	// NEW_CUSTOMER_TRANSFORMATION 新客转化
+	CampaignScene qianchuan.CampaignScene `json:"campaign_scene,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -69,6 +73,9 @@ func (r SuggestRoiGoalRequest) Encode() string {
 	}
 	if r.ExternalAction != "" {
 		values.Set("external_action", string(r.ExternalAction))
+	}
+	if r.CampaignScene != "" {
+		values.Set("campaign_scene", string(r.CampaignScene))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
