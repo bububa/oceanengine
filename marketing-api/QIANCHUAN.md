@@ -105,15 +105,25 @@
 - 工具
   - 查询工具
     - 获取行业列表 [ tools.IndustryGet(clt *core.SDKClient, accessToken string, req *tools.IndustryGetRequest) ([]tools.Industry, error) ]
+    - 日志查询 [ tools/log.Search(clt *core.SDKClient, accessToken string, req *log.SearchRequest) (*log.SearchResponseData, error) ]
+    - 获取定向受众预估 [ tools.EstimateAudience(clt *core.SDKClient, accessToken string, req *tools.EstimateAudienceRequest) (*tools.EstimateAudienceResult, error)  ]
+    - 获取在投计划配额信息 [ ad.QuotaGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*ad.QuotaGetResult, error) ]
+    - 获取白名单能力 [ tools.GrayGet(clt *core.SDKClient, accessToken string, req *tools.GrayGetRequest) (*qianchuanTools.GrayGetResult, error) ]
     - 智能优惠券白名单 [ tools.AllowCoupon(clt *core.SDKClient, accessToken string, req *tools.AllowCouponRequest) (*tools.AllowCouponResult, error) ]
   - 抖音达人 (tools/aweme)
-    - 查询抖音类目列表 [ AwemeMultiLevelCategoryGet(clt *core.SDKClient, accessToken string, req *aweme.AwemeMultiLevelCategoryGetRequest) ([]aweme.Category, error) ]
     - 查询抖音类目下的推荐达人 [ AwemeCategoryTopAuthorGet(clt *core.SDKClient, accessToken string, req *aweme.AwemeCategoryTopAuthorGetRequest) ([]aweme.Author, error) ]
+    - 查询抖音类目列表 [ AwemeMultiLevelCategoryGet(clt *core.SDKClient, accessToken string, req *aweme.AwemeMultiLevelCategoryGetRequest) ([]aweme.Category, error) ]
+    - 查询抖音类似帐号 [ AwemeSimilarAuthorSearch(clt *core.SDKClient, accessToken string, req *aweme.AwemeSimilarAuthorSearchRequest) ([]aweme.Author, error) ]
+    - 查询抖音帐号和类目信息 [ AwemeInfoSearch(clt *core.SDKClient, accessToken string, req *aweme.AwemeInfoSearchRequest) (*aweme.AwemeInfoSearchResult, error) ]
+    - 查询抖音号id对应的达人信息 [ AwemeAuthorInfoGet(clt *core.SDKClient, accessToken string, req *aweme.AwemeAuthorInfoGetRequest) ([]aweme.Author, error) ]
+    - 查询授权直播抖音达人列表 [ LiveAuthorizeList(clt *core.SDKClient, accessToken string, req *aweme.LiveAuthorizeListRequest) (*aweme.LiveAuthorizeListResponseData, error) ]
   - 行为兴趣词管理 (tools/interestaction)
     - 行为类目查询 [ ActionCategory(clt *core.SDKClient, accessToken string, req *interestaction.ActionCategoryRequest) ([]interestaction.Object, error) ]
     - 行为关键词查询 [ ActionKeyword(clt *core.SDKClient, accessToken string, req *interestaction.ActionKeywordRequest) ([]interestaction.Object, error) ]
     - 兴趣类目查询 [ InterestCategory(clt *core.SDKClient, accessToken string, req *interestaction.InterestCategoryRequest) ([]interestaction.Object, error) ]
     - 兴趣关键词查询 [ InterestKeyword(clt *core.SDKClient, accessToken string, req *interestaction.InterestKeywordRequest) ([]interestaction.Object, error) ]
+    - 兴趣行为类目关键词ID转词 [ Id2Word(clt *core.SDKClient, accessToken string, req *interestaction.Id2WordRequest) (*interestaction.Id2WordResponseData, error) ]
+    - 获取行为兴趣推荐关键词 [ KeywordSuggest(clt *core.SDKClient, accessToken string, req *interestaction.KeywordSuggestRequest) ([]interestaction.Object, error) ]
   - 动态创意词包管理 (tools/creativeword)
     - 查询动态创意词包 [ Select(clt *core.SDKClient, accessToken string, req *creativeword.SelectRequest) ([]creativeword.CreativeWord, error) ]
   - DMP人群管理 (tools/dmp)

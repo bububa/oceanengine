@@ -9,6 +9,15 @@ import (
 type Audience struct {
 	// AudienceMode 人群定向模式，当promotion_way为 SIMPLE时返回，枚举值：AUTO智能推荐、CUSTOM自定义
 	AudienceMode enum.AudienceMode `json:"audience_mode,omitempty"`
+	// OrigintationID 定向包ID，定向包ID由【工具-人群管理-获取定向包】获取
+	// 1、如果同时传定向包ID和自定义用户定向参数时，仅定向包中的定向生效
+	// 2、仅通投且专业推广支持，极速推广不支持
+	OrigintationID uint64 `json:"origintation_id,omitempty"`
+	// DistrictType 定向or排除地域，允许值：
+	// true：排除地域
+	// false：定向地域，默认
+	// 仅直播带货+通投广告+极速推广+托管计划，支持
+	DistrictType *bool `json:"district_type,omitempty"`
 	// District 地域定向类型，配合city字段使用，允许值：CITY：省市，COUNTY：区县，NONE：不限；默认值：NONE
 	District enum.District `json:"district,omitempty"`
 	// City 具体定向的城市列表，当 district 为COUNTY，city 为必填，枚举值详见【附件-city.json】；省市传法：city: [12]，district: CITY；区县的传法：city: [130102]，district: COUNTY
@@ -62,4 +71,6 @@ type Audience struct {
 	RetargetingTagsExclude []uint64 `json:"retargeting_tags_exclude,omitempty"`
 	// LivePlatformTags 直播带货平台精选人群包
 	LivePlatformTags []enum.LivePlatformTag `json:"live_platform_tags,omitempty"`
+	// NewCustomer 新客定向，NO_BUY 店铺未购，NONE 不限（默认）
+	NewCustomer string `json:"new_customer,omitempty"`
 }
