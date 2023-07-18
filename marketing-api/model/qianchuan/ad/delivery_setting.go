@@ -56,4 +56,12 @@ type DeliverySetting struct {
 	// 关闭：false（默认）
 	// 注意：需要调用【商家获取可投商品列表】/【达人获取可投商品列表】获取当前商品是否支持开启新品加速。在开启商品加速后，roi_goal会受到限制。
 	ProductNewOpen bool `json:"product_new_open,omitempty"`
+	// QcpxMode 是否开启智能优惠券，允许值
+	// QCPX_MODE_ON 启用
+	// QCPX_MODE_OFF 不启用
+	QcpxMode qianchuan.QcpxMode `json:"qcpx_mode,omitempty"`
+	// AllowQcpx 是否支持智能优惠券
+	// true 支持
+	// false 不支持
+	AllowQcpx bool `json:"allow_qcpx,omitempty"`
 }
