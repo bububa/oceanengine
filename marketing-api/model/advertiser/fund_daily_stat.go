@@ -82,4 +82,6 @@ type FundDailyStatResponseList struct {
 	TransferIn float64 `json:"transfer_in,omitempty"`
 	// TransferOut 总转出(单位元)
 	TransferOut float64 `json:"transfer_out,omitempty"`
+	// CompanyWalletCost 账户消耗的子钱包的共享余额（单位元）
+	CompanyWalletCost float64 `json:"company_wallet_cost,omitempty"`
 }
