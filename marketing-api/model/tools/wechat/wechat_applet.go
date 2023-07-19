@@ -20,8 +20,8 @@ type WechatApplet struct {
 	HeaderImageURL string `json:"header_image_url,omitempty"`
 	// Labels 小程序标签
 	Labels []string `json:"labels,omitempty"`
-	// GuildText 引导文案
-	GuildText string `json:"guild_text,omitempty"`
+	// GuideText 引导文案
+	GuideText string `json:"guide_text,omitempty"`
 	// ImagesVerticalURL 小程序竖图的url
 	ImagesVerticalURL []string `json:"images_vertical_url,omitempty"`
 	// ImagesHorizontalURL 小程序横图的url

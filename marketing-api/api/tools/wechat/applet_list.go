@@ -8,7 +8,7 @@ import (
 // AppletList 获取微信小程序列表
 func AppletList(clt *core.SDKClient, accessToken string, req *wechat.AppletListRequest) (*wechat.AppletListResult, error) {
 	var resp wechat.AppletListResponse
-	if err := clt.Get("2/tools/wechat_applet/list/", req, &resp, accessToken); err != nil {
+	if err := clt.Get("v3.0/tools/wechat_applet/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

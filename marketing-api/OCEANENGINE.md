@@ -466,6 +466,9 @@
   - 微信小程序/小游戏管理 (tools/wechat)
     - 获取微信小程序列表 [ AppletList(clt *core.SDKClient, accessToken string, req *wechat.AppletListRequest) (*wechat.AppletListResult, error) ]
     - 获取微信小游戏列表 [ GameList(clt *core.SDKClient, accessToken string, req *wechat.GameListRequest) (*wechat.GameListResult, error) ]
+    - 创建微信小游戏 [ GameCreate(clt *core.SDKClient, accessToken string, req *wechat.GameCreateRequest) (*wechat.WechatGame, error) ]
+    - 创建微信小程序 [ AppletCreate(clt *core.SDKClient, accessToken string, req *wechat.AppletCreateRequest) (uint64, error) ]
+    - 更新微信小程序 [ AppletUpdate(clt *core.SDKClient, accessToken string, req *wechat.AppletUpdateRequest) (*wechat.AppletUpdateResult, error) ]
 - 应用市场 (api/servemarket)
   - 获取应用订单数据 [ OrderGet(clt *core.SDKClient, accessToken string, req *servemarket.OrderGetRequest) (*servemarket.OrderGetResponseData, error) ]
   - 获取用户已购功能点列表 [ ActiveFuncGet(clt *core.SDKClient, accessToken string, req *servemarket.ActiveFuncGetRequest) ([]servemarket.OrderFunction, error) ]
