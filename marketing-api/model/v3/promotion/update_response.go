@@ -15,6 +15,8 @@ type UpdateResponseData struct {
 	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// PromotionIDs 广告计划ID集合
 	PromotionIDs []uint64 `json:"promotion_ids,omitempty"`
+	// ErrorList 更新失败的广告计划列表
+	ErrorsList []UpdateError `json:"error_list,omitempty"`
 	// Errors 更新失败的广告计划列表
 	Errors []UpdateError `json:"errors,omitempty"`
 }
@@ -28,6 +30,8 @@ type UpdateError struct {
 	ObjectType string `json:"object_type,omitempty"`
 	// ErrorCode 错误信息
 	ErrorCode int `json:"error_code,omitempty"`
+	// ErrorKeyword 更新错误的搜索关键词
+	ErrorKeyword string `json:"error_keyword,omitempty"`
 	// ErrorMessage 错误信息
 	ErrorMessage string `json:"error_message"`
 }

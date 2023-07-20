@@ -15,6 +15,8 @@ type UpdateResponseData struct {
 	ProjectID uint64 `json:"project_id,omitempty"`
 	// PromotionIDs 广告项目ID集合
 	ProjectIDs []uint64 `json:"project_ids,omitempty"`
+	// ErrorList 更新失败的广告计划列表
+	ErrorList []UpdateError `json:"error_list,omitempty"`
 	// Errors 更新失败的广告计划列表
 	Errors []UpdateError `json:"errors,omitempty"`
 }
