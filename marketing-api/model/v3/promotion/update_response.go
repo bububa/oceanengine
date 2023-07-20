@@ -1,6 +1,11 @@
 package promotion
 
-import "github.com/bububa/oceanengine/marketing-api/model"
+import (
+	"strconv"
+
+	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // UpdateResponse 更新计划API Response
 type UpdateResponse struct {
@@ -16,7 +21,7 @@ type UpdateResponseData struct {
 	// PromotionIDs 广告计划ID集合
 	PromotionIDs []uint64 `json:"promotion_ids,omitempty"`
 	// ErrorList 更新失败的广告计划列表
-	ErrorsList []UpdateError `json:"error_list,omitempty"`
+	ErrorList []UpdateError `json:"error_list,omitempty"`
 	// Errors 更新失败的广告计划列表
 	Errors []UpdateError `json:"errors,omitempty"`
 }
@@ -34,4 +39,24 @@ type UpdateError struct {
 	ErrorKeyword string `json:"error_keyword,omitempty"`
 	// ErrorMessage 错误信息
 	ErrorMessage string `json:"error_message"`
+}
+
+// Error implement error interface
+func (r UpdateError) Error() string {
+	var objectType string
+	switch r.ObjectType {
+	case "BASIC":
+		objectType = "广告基本设置"
+	case "MATERIAL":
+		objectType = "广告素材组合"
+	case "BUDGET":
+		objectType = "广告预算"
+	}
+	ret := util.StringsJoin("code:", strconv.Itoa(r.ErrorCode), ", msg:", r.ErrorMessage)
+	if objectType != "" {
+		ret = util.StringsJoin("更新 ", objectType, "失败, ", ret)
+	} else if r.PromotionID > 0 {
+		ret = util.StringsJoin("广告计划ID:", strconv.FormatUint(r.PromotionID, 10), ", ", ret)
+	}
+	return ret
 }
