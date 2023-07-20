@@ -1,6 +1,11 @@
 package ad
 
-import "github.com/bububa/oceanengine/marketing-api/model"
+import (
+	"strconv"
+
+	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // UpdateResponse 更新计划API Response
 type UpdateResponse struct {
@@ -27,4 +32,9 @@ type UpdateError struct {
 	AdID uint64 `json:"ad_id,omitempty"`
 	// ErrorMessage 错误信息
 	ErrorMessage string `json:"error_message"`
+}
+
+// Error implement error interface
+func (r UpdateError) Error() string {
+	return util.StringsJoin("广告计划ID:", strconv.FormatUint(r.AdID, 10), ", 错误信息", r.ErrorMessage)
 }
