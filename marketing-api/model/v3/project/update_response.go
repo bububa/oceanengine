@@ -1,6 +1,11 @@
 package project
 
-import "github.com/bububa/oceanengine/marketing-api/model"
+import (
+	"strconv"
+
+	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // UpdateResponse 更新计划API Response
 type UpdateResponse struct {
@@ -32,4 +37,24 @@ type UpdateError struct {
 	ErrorCode int `json:"error_code,omitempty"`
 	// ErrorMessage 错误信息
 	ErrorMessage string `json:"error_message"`
+}
+
+// Error implement error interface
+func (r UpdateError) Error() string {
+	var objectType string
+	switch r.ObjectType {
+	case "BASIC":
+		objectType = "广告基本设置"
+	case "MATERIAL":
+		objectType = "广告素材组合"
+	case "BUDGET":
+		objectType = "广告预算"
+	}
+	ret := util.StringsJoin("code:", strconv.Itoa(r.ErrorCode), ", msg:", r.ErrorMessage)
+	if objectType != "" {
+		ret = util.StringsJoin("更新 ", objectType, "失败, ", ret)
+	} else if r.ProjectID > 0 {
+		ret = util.StringsJoin("广告项目ID:", strconv.FormatUint(r.ProjectID, 10), ", ", ret)
+	}
+	return ret
 }
