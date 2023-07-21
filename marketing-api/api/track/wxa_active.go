@@ -50,7 +50,7 @@ func WxaActive(gw string, token string, req *track.WxaActiveRequest, debug bool)
 	if debug {
 		printPostJSONRequest(link, bs)
 	}
-	postReq, err := http.NewRequest("post", link, bytes.NewReader(bs))
+	postReq, err := http.NewRequest("POST", link, bytes.NewReader(bs))
 	if err != nil {
 		return err
 	}
