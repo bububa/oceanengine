@@ -37,7 +37,7 @@ func WxaActive(gw string, token string, req *track.WxaActiveRequest, debug bool)
 	}
 	h := sha1.New()
 	h.Write(b.Bytes())
-	values.Set("siganture", hex.EncodeToString(h.Sum(nil)))
+	values.Set("signature", hex.EncodeToString(h.Sum(nil)))
 	util.PutBufferPool(b)
 	link := util.StringsJoin(gw, "?", values.Encode())
 	util.PutUrlValues(values)
