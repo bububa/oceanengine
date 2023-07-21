@@ -56,7 +56,7 @@ func WxaActive(gw string, token string, req *track.WxaActiveRequest, debug bool)
 	}
 	postReq.Header.Set("content-type", "application/json")
 	client:=&http.Client{}
-	resp,err := client.Do(request)
+	resp,err := client.Do(postReq)
 	if err != nil {
 		return err
 	}
