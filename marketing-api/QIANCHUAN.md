@@ -9,6 +9,7 @@
   - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(clt *core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
   - 获取店铺账户关联的广告账户列表 [ qianchuan.shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
   - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
+  - 广告主添加抖音号 [ tools.AwemeAuth(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthRequest) (bool, error)  ]
 
 - 账户信息获取
   - 获取授权 User 信息 [ oauth.UserInfo(clt *core.SDKClient, accessToken string) (*oauth.UserInfoResponseData, error) ]
