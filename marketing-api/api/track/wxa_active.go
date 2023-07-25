@@ -37,7 +37,7 @@ func WxaActive(gw string, token string, req *track.WxaActiveRequest, debug bool)
 	}
 	h := sha1.New()
 	h.Write(b.Bytes())
-	values.Set("siganture", hex.EncodeToString(h.Sum(nil)))
+	values.Set("signature", hex.EncodeToString(h.Sum(nil)))
 	util.PutBufferPool(b)
 	link := util.StringsJoin(gw, "?", values.Encode())
 	util.PutUrlValues(values)
@@ -50,12 +50,13 @@ func WxaActive(gw string, token string, req *track.WxaActiveRequest, debug bool)
 	if debug {
 		printPostJSONRequest(link, bs)
 	}
-	postReq, err := http.NewRequest("post", link, bytes.NewReader(bs))
+	postReq, err := http.NewRequest("POST", link, bytes.NewReader(bs))
 	if err != nil {
 		return err
 	}
-	postReq.Header.Add("content-type", "application/json")
-	resp, err := http.DefaultClient.Do(postReq)
+	postReq.Header.Set("content-type", "application/json")
+	client:=&http.Client{}
+	resp,err := client.Do(postReq)
 	if err != nil {
 		return err
 	}
