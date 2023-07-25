@@ -237,10 +237,13 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 	return c.fetch(httpReq, resp)
 }
 
-// AnalyticsPost 转化回传API专用
+// TrackActive 转化回传API专用
 func (c *SDKClient) TrackActive(req model.TrackRequest, resp model.Response) error {
-	reqUrl := util.StringsJoin(TRACK_URL, "?", req.Encode())
-	httpReq, err := http.NewRequest("GET", reqUrl, nil)
+	var (
+		reqUrl   = req.RequestURI()
+		reqBytes = req.Encode()
+	)
+	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
 	}
@@ -251,8 +254,23 @@ func (c *SDKClient) TrackActive(req model.TrackRequest, resp model.Response) err
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
-	debug.PrintJSONRequest("GET", reqUrl, httpReq.Header, nil, c.debug)
-	return c.fetch(httpReq, resp)
+	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
+	if resp != nil {
+		return c.fetch(httpReq, resp)
+	}
+	httpResp, err := c.client.Do(httpReq)
+	if err != nil {
+		return err
+	}
+	defer httpResp.Body.Close()
+	if httpResp.StatusCode != 200 {
+		body, err := ioutil.ReadAll(httpResp.Body)
+		if err != nil {
+			return err
+		}
+		return model.BaseResponse{Code: httpResp.StatusCode, Message: string(body)}
+	}
+	return nil
 }
 
 // AnalyticsPost 转化回传API专用
