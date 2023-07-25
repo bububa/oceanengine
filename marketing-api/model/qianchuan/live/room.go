@@ -1,15 +1,13 @@
 package live
 
-import (
-	"github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
-)
+import "github.com/bububa/oceanengine/marketing-api/enum"
 
 // Room 直播间信息
 type Room struct {
 	// RoomID 直播间id
 	RoomID uint64 `json:"room_id,omitempty"`
 	// RoomStatus 直播间状态
-	RoomStatus qianchuan.RoomStatus `json:"room_status,omitempty"`
+	RoomStatus enum.LiveRoomStatus `json:"room_status,omitempty"`
 	// RoomTitle 直播间标题
 	RoomTitle string `json:"room_title,omitempty"`
 	// RoomCover 直播间封面图url列表

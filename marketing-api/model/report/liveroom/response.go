@@ -1,6 +1,7 @@
 package liveroom
 
 import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
@@ -38,7 +39,7 @@ type ResponseList struct {
 	// RoomQrcode 直播间二维码url，仅直播状态为直播中的直播间包含该指标
 	RoomQrcode string `json:"room_qrcode,omitempty"`
 	// RoomStatus 直播间状态，"PREPARING", "LIVING", "PAUSE", "END"其中一种
-	RoomStatus string `json:"room_status,omitempty"`
+	RoomStatus enum.LiveRoomStatus `json:"room_status,omitempty"`
 	// RoomTitle 直播间标题
 	RoomTitle string `json:"room_title,omitempty"`
 	// FirstFlowCategory 一级流量来源，枚举值，0-自然流量、1-Dou+、2-竞价广告、3-品牌广告

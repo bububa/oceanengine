@@ -44,9 +44,12 @@ type AdvertiserGetResponseData struct {
 type Advertiser struct {
 	// AdvertiserID 账号id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// AccountStringID 账号id（字符串型）
+	// 当advertiser_role=10有效，即抖音号类型时，即为aweme_sec_uid，可用于Dou+接口调用
+	AccountStringID string `json:"account_string_id,omitempty"`
 	// AdvertiserName 账号名称
 	AdvertiserName string `json:"advertiser_name,omitempty"`
-	// AdvertiserRole 账号角色，1-普通广告主，2-账号管家，3-一级代理商，4-二级代理商
+	// AdvertiserRole 账号角色，1-普通广告主，2-账号管家，3-一级代理商，4-二级代理商, 6-星图账号，10-抖音号（用于Dou+接口调用）
 	AdvertiserRole uint `json:"advertiser_role,omitempty"`
 	// IsValid 授权有效性，允许值：true/false；false表示对应的user在客户中心/一站式平台代理商平台变更了对此账号的权限,需要到对应平台进行调整过来；
 	IsValid bool `json:"is_valid,omitempty"`

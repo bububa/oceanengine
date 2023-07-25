@@ -106,6 +106,9 @@
     - 查询配置详情 [ AutoGenerateConfigGet(clt *core.SDKClient, accessToken string, req *promotion.AutoGenerateConfigGetRequest) (*promotion.AutoGenerateConfig, error) ]
     - 获取模板（白盒策略）列表 [ creative.StrategyList(clt *core.SDKClient, accessToken string, req *creative.StrategyListRequest) (*creative.StrategyListData, error) ]
     - 批量更新广告投放时段 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *promotion.ScheduleTimeUpdateRequest) (*promotion.UpdateResponseData, error) ]
+- Dou+ 投放能力 (api/duoplus)
+  - 查询订单列表 [ OrderList(clt *core.SDKClient, accessToken string, req *duoplus.OrderListRequest) (*duoplus.OrderListResult, error) ]
+  - 获取订单数据报表 [ OrderReport(clt *core.SDKClient, accessToken string, req *duoplus.OrderReportRequest) (*duoplus.OrderReportResult, error) ]
 - 数据报表
   - 广告数据报表 (api/report)
     - 广告主数据 [ AdvertiserGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
