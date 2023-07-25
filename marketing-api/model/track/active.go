@@ -2,10 +2,16 @@ package track
 
 import (
 	"crypto/rsa"
+	"crypto/sha1"
+	"encoding/hex"
 	"errors"
+	"math/rand"
 	"net/http"
+	"sort"
 	"strconv"
+	"time"
 
+	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/model/conversion"
@@ -50,6 +56,24 @@ type ActiveRequest struct {
 	Credential enum.Credential `json:"-"`
 }
 
+// Encode implement PostRequest interface
+func (r ActiveRequest) Encode() []byte {
+	return util.JSONMarshal(r)
+}
+
+// Sign implement ConvertionRequest interface
+func (r ActiveRequest) Sign(req *http.Request, content []byte) (string, error) {
+	if r.PrivateKey == nil || r.Credential == "" {
+		return "", errors.New("no private_key/credential")
+	}
+	return model.CredentialSign(req, content, r.PrivateKey, r.Credential)
+}
+
+// RequestURI implement TrackRequest interface
+func (r ActiveRequest) RequestURI() string {
+	return core.TRACK_URL
+}
+
 // WxaActiveRequest 微信小程序线索-API上报数据 API Request
 type WxaActiveRequest struct {
 	// ClueToken 下发线索token
@@ -62,50 +86,46 @@ type WxaActiveRequest struct {
 	EventType string `json:"event_type,omitempty"`
 	// Props 参数包含pay_amount
 	Props *conversion.Properties `json:"props,omitempty"`
+	// Token
+	Token string `json:"-"`
+	// Gateway
+	Gateway string `json:"-"`
+	// PrivateKey
+	PrivateKey *rsa.PrivateKey `json:"-"`
+	// Credential
+	Credential enum.Credential `json:"-"`
 }
 
 // Encode implement GetRequest interface
-func (r ActiveRequest) Encode() string {
+func (r WxaActiveRequest) Encode() []byte {
+	return util.JSONMarshal(r)
+}
+
+// RequestURI implement TrackRequest interface
+func (r WxaActiveRequest) RequestURI() string {
 	values := util.GetUrlValues()
-	if r.Callback != "" {
-		values.Set("callback", r.Callback)
-		values.Set("os", strconv.Itoa(r.Os))
-		if r.Os == enum.Track_ANDROID {
-			values.Set("imei", r.Imei)
-			values.Set("muid", r.Muid)
-			values.Set("oaid", r.Oaid)
-			if r.OaidMd5 != "" {
-				values.Set("oaid_md5", r.OaidMd5)
-			}
-		} else {
-			values.Set("idfa", r.Idfa)
-		}
-		if r.Caid1 != "" {
-			values.Set("caid1", r.Caid1)
-		}
-		if r.Caid2 != "" {
-			values.Set("caid2", r.Caid2)
-		}
-	} else {
-		values.Set("link", r.Link)
+	values.Set("timestamp", strconv.FormatInt(time.Now().Unix(), 10))
+	values.Set("nonce", strconv.Itoa(rand.Intn(1000)))
+	strs := make([]string, 0, 3)
+	strs = append(strs, r.Token)
+	strs = append(strs, values.Get("timestamp"))
+	strs = append(strs, values.Get("nonce"))
+	sort.Strings(strs)
+	b := util.GetBufferPool()
+	for _, s := range strs {
+		b.WriteString(s)
 	}
-	values.Set("event_type", strconv.Itoa(r.EventType))
-	if r.ConvTime > 0 {
-		values.Set("conv_time", strconv.FormatInt(r.ConvTime, 10))
-	}
-	if r.Source != "" {
-		values.Set("source", r.Source)
-	}
-	for k, v := range r.Ext {
-		values.Set(k, v)
-	}
-	ret := values.Encode()
+	h := sha1.New()
+	h.Write(b.Bytes())
+	values.Set("signature", hex.EncodeToString(h.Sum(nil)))
+	util.PutBufferPool(b)
+	link := util.StringsJoin(r.Gateway, "?", values.Encode())
 	util.PutUrlValues(values)
-	return ret
+	return link
 }
 
 // Sign implement ConvertionRequest interface
-func (r ActiveRequest) Sign(req *http.Request, content []byte) (string, error) {
+func (r WxaActiveRequest) Sign(req *http.Request, content []byte) (string, error) {
 	if r.PrivateKey == nil || r.Credential == "" {
 		return "", errors.New("no private_key/credential")
 	}

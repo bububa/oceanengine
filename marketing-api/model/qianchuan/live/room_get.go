@@ -3,7 +3,7 @@ package live
 import (
 	"strconv"
 
-	"github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/report"
 	"github.com/bububa/oceanengine/marketing-api/util"
@@ -21,7 +21,7 @@ type RoomGetRequest struct {
 	// 全部ALL
 	// 直播中LIVING
 	// 直播结束FINISH
-	RoomStatus qianchuan.RoomStatus `json:"room_status,omitempty"`
+	RoomStatus enum.LiveRoomStatus `json:"room_status,omitempty"`
 	// AdStatus 投放状态，可选值，默认不限
 	// 不限ALL
 	// 广告在投DELIVERY_OK

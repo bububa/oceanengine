@@ -50,8 +50,8 @@ type ConversionRequest interface {
 
 // TrackRequest
 type TrackRequest interface {
-	GetRequest
-	Sign(req *http.Request, content []byte) (string, error)
+	ConversionRequest
+	RequestURI() string
 }
 
 // CredentialSign implement ConvertionRequest interface

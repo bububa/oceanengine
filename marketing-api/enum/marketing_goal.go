@@ -12,6 +12,8 @@ const (
 	MarketingGoal_VIDEO_AND_IMAGE MarketingGoal = "VIDEO_AND_IMAGE"
 	// MarketingGoal_LIVE 直播
 	MarketingGoal_LIVE MarketingGoal = "LIVE"
+	// MarketingGoal_VIDEO 短视频
+	MarketingGoal_VIDEO MarketingGoal = "VIDEO"
 	// MarketingGoal_ALL 不限
 	MarketingGoal_ALL MarketingGoal = "ALL"
 )
