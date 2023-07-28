@@ -49,6 +49,8 @@ type RaiseStatus struct {
 	// HAS_PRERAISE
 	// RAISING
 	Status enum.AdRaiseStatus `json:"status,omitempty"`
+	// RaiseInfo 当前的起量信息， 当status=RAISING时返回该字段
+	RaiseInfo *RaiseInfo `json:"raise_info,omitempty"`
 }
 
 type RaiseError struct {

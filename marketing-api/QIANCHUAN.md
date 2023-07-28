@@ -6,16 +6,19 @@
   - 刷新 Token [ RefreshToken(clt *core.SDKClient, refreshToken string) (*oauth.AccessTokenResponseData, error)]
 
 - 账户关系获取
+  - 获取千川账户下已授权抖音号 [ aweme.AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
   - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(clt *core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
-  - 获取店铺账户关联的广告账户列表 [ qianchuan.shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
+  - 获取店铺账户关联的广告账户列表 [ shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
   - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
+  - 广告主添加抖音号 [ tools.AwemeAuth(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthRequest) (bool, error)  ]
 
 - 账户信息获取
   - 获取授权 User 信息 [ oauth.UserInfo(clt *core.SDKClient, accessToken string) (*oauth.UserInfoResponseData, error) ]
   - 获取代理商信息 [ agent.Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
-  - 获取店铺账户信息 [ Get(clt *core.SDKClient, accessToken string, req *shop.GetRequest) ([]shop.Shop, error) ]
-  - 广告主公开信息 [ advertiser.PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
-  - 广告主信息 [ advertiser.Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
+  - 获取店铺账户信息 [ shop.Get(clt *core.SDKClient, accessToken string, req *shop.GetRequest) ([]shop.Shop, error) ]
+  - 获取千川广告账户基础信息 [ advertiser.PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
+  - 获取千川广告账户全量信息 [ advertiser.Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
+  - 获取千川账户类型 [ TypeGet(clt *core.SDKClient, accessToken string, req *advertiser.TypeGetRequest) ([]advertiser.Advertiser, error) ]
 
 - 投放管理 (api/qianchuan)
   - 广告组管理 (api/qianchuan/campaign)
