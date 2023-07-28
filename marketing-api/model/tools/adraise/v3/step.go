@@ -30,6 +30,8 @@ type SetRequest struct {
 
 // RaiseInfo 起量信息
 type RaiseInfo struct {
+	// RaiseEndTime 预计结束时间
+	RaiseEndTime string `json:"raise_end_time,omitempty"`
 	// RaiseBudget 起量预算，单位：元，允许小数点后两位起量预算需大于等于计划出价，小于等于计划预算
 	RaiseBudget float64 `json:"raise_budget,omitempty"`
 	// IsEffectiveNow 是否立即生效，仅支持广告状态为“投放中”的广告，仅支持1个方案设置“立即生效”，传入True时不支持填写appointed_time
