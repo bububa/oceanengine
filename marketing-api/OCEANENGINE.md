@@ -106,6 +106,7 @@
     - 新建/修改白盒配置 [ AutoGenerateConfigCreate(clt *core.SDKClient, accessToken string, req *promotion.AutoGenerateConfigCreateRequest) (uint64, error) ]
     - 查询配置详情 [ AutoGenerateConfigGet(clt *core.SDKClient, accessToken string, req *promotion.AutoGenerateConfigGetRequest) (*promotion.AutoGenerateConfig, error) ]
     - 获取模板（白盒策略）列表 [ creative.StrategyList(clt *core.SDKClient, accessToken string, req *creative.StrategyListRequest) (*creative.StrategyListData, error) ]
+    - 获取关联云图的广告主账户信息 [ v3.CdpBrandGet(clt *core.SDKClient, accessToken string, req *v3.CdpBrandGetRequest) (*v3.CdpBrandGetResult, error) ]
     - 批量更新广告投放时段 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *promotion.ScheduleTimeUpdateRequest) (*promotion.UpdateResponseData, error) ]
 - Dou+ 投放能力 (api/duoplus)
   - 查询订单列表 [ OrderList(clt *core.SDKClient, accessToken string, req *duoplus.OrderListRequest) (*duoplus.OrderListResult, error) ]
