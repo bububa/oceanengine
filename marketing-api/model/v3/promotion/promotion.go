@@ -36,6 +36,8 @@ type Promotion struct {
 	NativeSetting *NativeSetting `json:"native_setting,omitempty"`
 	// PromotionMaterials 广告素材组合
 	PromotionMaterials *PromotionMaterial `json:"promotion_materials,omitempty"`
+	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
+	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// IsCommentDisable 广告评论，ON为启用，OFF为不启用
 	IsCommentDisable model.ReverseOnOffInt `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
