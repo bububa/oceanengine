@@ -255,6 +255,7 @@
     - 基于模板创建站点 [ SiteCreate(clt *core.SDKClient, accessToken string, req *sitetemplate.SiteCreateRequest) (uint64, error) ]
     - 获取站点模版列表 [ Get(clt *core.SDKClient, accessToken string, req *sitetemplate.GetRequest) (*sitetemplate.GetResponseData, error) ]
     - 获取模版预览链接 [ Preview(clt *core.SDKClient, accessToken string, req *sitetemplate.PreviewRequest) (string, error) ]
+    - 获取模板/站点URL [ PicURLGet(clt *core.SDKClient, accessToken string, req *sitetemplate.PicURLGetRequest) (map[string]string, error) ]
 - 飞鱼线索管理 (tools/clue)
   - 获取线索列表 [ Get(clt *core.SDKClient, accessToken string, req *clue.GetRequest) (*clue.GetResponseData, error) ]
   - 回传有效线索 [ Callback(clt *core.SDKClient, accessToken string, req *clue.CallbackRequest) error ]
