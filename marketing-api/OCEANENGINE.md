@@ -475,6 +475,9 @@
     - 创建微信小游戏 [ GameCreate(clt *core.SDKClient, accessToken string, req *wechat.GameCreateRequest) (*wechat.WechatGame, error) ]
     - 创建微信小程序 [ AppletCreate(clt *core.SDKClient, accessToken string, req *wechat.AppletCreateRequest) (uint64, error) ]
     - 更新微信小程序 [ AppletUpdate(clt *core.SDKClient, accessToken string, req *wechat.AppletUpdateRequest) (*wechat.AppletUpdateResult, error) ]
+    - 设置微信小游戏/小程序共享 [ BpAssetManagementShare(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareRequest) ([]wechat.BpAssetManagementShareError, error) ]
+    - 取消微信小游戏/小程序共享关系 [ BpAssetManagementShareCancel(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareRequest) ([]wechat.BpAssetManagementShareError, error) ]
+    - 查看微信小游戏/小程序共享范围 [ BpAssetManagementShareGet(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareGetRequest) (*wechat.BpAssetManagementShareList, error) ]
 - 应用市场 (api/servemarket)
   - 获取应用订单数据 [ OrderGet(clt *core.SDKClient, accessToken string, req *servemarket.OrderGetRequest) (*servemarket.OrderGetResponseData, error) ]
   - 获取用户已购功能点列表 [ ActiveFuncGet(clt *core.SDKClient, accessToken string, req *servemarket.ActiveFuncGetRequest) ([]servemarket.OrderFunction, error) ]
