@@ -43,7 +43,7 @@ type Project struct {
 	// PROJECT_STATUS_NOT_START 未达投放时间
 	// PROJECT_STATUS_NO_SCHEDULE 不在投放时段
 	// 当status_first = PROJECT_STATUS_DISABLE时传入有效
-	StatusSecond enum.ProjectStatus `json:"status_second,omitempty"`
+	StatusSecond []enum.ProjectStatus `json:"status_second,omitempty"`
 	// Pricing 出价方式
 	Pricing enum.PricingType `json:"pricing,omitempty"`
 	// PackageName 应用包名
