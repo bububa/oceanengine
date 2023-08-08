@@ -34,4 +34,8 @@ type Video struct {
 	// 1：是
 	// 0：否
 	IsImg int `json:"is_img,omitempty"`
+	// 是否AI生成
+	// false：不是AI生成
+	// true：AI生成
+	IsAiCreate bool `json:"is_ai_create,omitempty"`
 }

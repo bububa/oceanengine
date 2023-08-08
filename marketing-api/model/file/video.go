@@ -65,4 +65,8 @@ type Video struct {
 	ShareCnt int64 `json:"share_cnt,omitempty"`
 	// CommentCnt 评论数
 	CommentCnt int64 `json:"comment_cnt,omitempty"`
+	// 是否AI生成
+	// false：不是AI生成
+	// true：AI生成
+	IsAiCreate bool `json:"is_ai_create,omitempty"`
 }
