@@ -62,6 +62,7 @@
     - 全量更新否定词 [ PrivatewordsUpdate(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsUpdateRequest) (*ad.PrivatewordsUpdateResult, error) ]
   - 全域推广 (api/qianchuan/uni_promotion)
     - 获取全域推广列表 [ List(clt *core.SDKClient, accessToken string, req *unipromotion.ListRequest) (*unipromotion.ListResult, error) ]
+    - 获取可投全域推广抖音号列表 [ AuthorizedGet(clt *core.SDKClient, accessToken string, req *unipromotion.AuthorizedGetRequest) (*unipromotion.AuthorizedGetResult, error) ]
 
 - 数据报表 （api/qianchuan/report)
   - 广告数据报表
