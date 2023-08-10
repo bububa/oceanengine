@@ -14,6 +14,9 @@ type GrayGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// GrayKeys 白名单能力key，目前仅支持单次查询1个白名单能力key
 	GrayKeys []enum.GrayKey `json:"gray_keys,omitempty"`
+	// 抖音号id
+	// gray_keys = comm_roi 时，有效且必填
+	AwemeIDs []uint64 `json:"aweme_ids,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -21,6 +24,9 @@ func (r GrayGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("gray_keys", string(util.JSONMarshal(r.GrayKeys)))
+	if len(r.AwemeIDs) > 0 {
+		values.Set("aweme_ids", string(util.JSONMarshal(r.AwemeIDs)))
+	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
@@ -43,4 +49,6 @@ type GrayItem struct {
 	InGray bool `json:"in_gray,omitempty"`
 	// InWhitelist 是否命中白名单。0代表命中，1代表未命中
 	InWhitelist model.Bool `json:"in_whitelist,omitempty"`
+	// AwemeIDs 命中白名单的抖音号列表
+	AwemeIDs []uint64 `json:"aweme_ids,omitempty"`
 }
