@@ -3,6 +3,7 @@ package promotion
 import (
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/model/file"
 	"github.com/bububa/oceanengine/marketing-api/model/v3/project"
 )
 
@@ -172,6 +173,8 @@ type PromotionMaterial struct {
 	WebURLMaterialList []string `json:"web_url_material_list,omitempty"`
 	// PlayableURLMaterialList 试玩落地页素材
 	PlayableURLMaterialList []string `json:"playable_url_material_list,omitempty"`
+	// CarouselMaterialList   图集素材信息，当ad_type=ALL时，支持上限10个；当ad_type=SEARCH时，支持上限30个
+	CarouselMaterialList []CarouselMaterial `json:"carousel_material_list,omitempty"`
 	// OpenURL 直达链接，用于打开电商app，调起店铺
 	// 仅在电商店铺推广目的下有效
 	OpenURL string `json:"open_url,omitempty"`
@@ -365,4 +368,20 @@ type BrandInfo struct {
 	SubBrandNames []string `json:"sub_brand_names,omitempty"`
 	// SubBrandNameIDs 子品牌id
 	SubBrandNameIDs []string `json:"sub_brand_name_ids,omitempty"`
+}
+
+// CarouselMaterial   图集素材信息
+type CarouselMaterial struct {
+	// CarouselID 图集id，可通过【获取图集素材】接口获得
+	CarouselID string `json:"carousel_id,omitempty"`
+	// ImageID 图片ID列表
+	ImageID []string `json:"image_id,omitempty"`
+	// AudioID 音频ID
+	AudioID string `json:"audio_id,omitempty"`
+	// MaterialStatus 素材审核状态
+	MaterialStatus string `json:"material_status,omitempty"`
+	// CarouselType 图集素材类型
+	CarouselType enum.ImageMode `json:"carousel_type,omitempty"`
+	// ImageSubject 图片主题
+	ImageSubject []file.ImageSubject `json:"image_subject,omitempty"`
 }

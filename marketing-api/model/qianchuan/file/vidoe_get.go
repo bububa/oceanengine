@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
@@ -66,4 +67,18 @@ func (r VideoGetRequest) Encode() string {
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
+}
+
+// VideoGetResponse 获取视频素材 API Response
+type VideoGetResponse struct {
+	model.BaseResponse
+	Data *VideoGetResult `json:"data,omitempty"`
+}
+
+// VideoGetResult json返回值
+type VideoGetResult struct {
+	// List 视频列表
+	List []Video `json:"list,omitempty"`
+	// PageInfo 分页信息
+	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }

@@ -98,4 +98,6 @@ type Material struct {
 	IsAdHighQuality bool `json:"is_ad_high_quality,omitempty"`
 	// IsFirstPublishMaterial 是否是首发素材
 	IsFirstPublishMaterial bool `json:"is_first_publish_matertial,omitempty"`
+	// Aigc 素材是否是aigc生成
+	Aigc bool `json:"aigc,omitempty"`
 }
