@@ -40,4 +40,6 @@ type Image struct {
 	// false：不是AI生成
 	// true：AI生成
 	IsAiCreate bool `json:"is_ai_create,omitempty"`
+	// Aigc 素材是否是aigc生成
+	Aigc bool `json:"aigc,omitempty"`
 }

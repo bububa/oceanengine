@@ -16,6 +16,8 @@ type VideoAdRequest struct {
 	VideoFile *model.UploadField `json:"video_file,omitempty"`
 	// Filename 素材的文件名，可自定义素材名，不传则默认取文件名，最长255个字符; 注：若同一素材已进行上传，重新上传不会改名
 	Filename string `json:"filename,omitempty"`
+	// IsAigc 图片素材是否为AIGC生成
+	IsAigc bool `json:"is_aigc,omitempty"`
 }
 
 // Encode implement UploadRequest interface
@@ -44,6 +46,12 @@ func (r VideoAdRequest) Encode() []model.UploadField {
 		fields = append(fields, model.UploadField{
 			Key:   "filename",
 			Value: r.Filename,
+		})
+	}
+	if r.IsAigc {
+		fields = append(fields, model.UploadField{
+			Key:   "is_aigc",
+			Value: "true",
 		})
 	}
 	return fields
