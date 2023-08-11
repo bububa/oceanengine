@@ -36,6 +36,8 @@ type Image struct {
 	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// Tag 素材标签
 	Tag string `json:"tag,omitempty"`
-	// Aigc 素材是否是aigc生成
-	Aigc bool `json:"aigc,omitempty"`
+	// 是否AI生成
+	// false：不是AI生成
+	// true：AI生成
+	IsAiCreate bool `json:"is_ai_create,omitempty"`
 }

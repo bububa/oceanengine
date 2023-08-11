@@ -225,6 +225,11 @@
   - 创建素材清理任务 [ VideoMaterialClearTaskCreate(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskCreateRequest) (uint64, error) ]
   - 获取清理任务列表 [ VideoMaterialClearTaskGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskGetRequest) (*file.VideoMaterialClearTaskGetData, error) ]
   - 下载清理任务结果 [ VideoMaterialClearTaskResultGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskResultGetRequest) (*file.VideoMaterialClearTaskResultGetData, error) ]
+  - 上传图集 [ CarouselCreate(clt *core.SDKClient, accessToken string, req *file.CarouselCreateRequest) (*file.Carousel, error) ]
+  - 获取图集素材 [ CarouselList(clt *core.SDKClient, accessToken string, req *file.CarouselListRequest) (*file.CarouselListResult, error) ]
+  - 更新图集信息 [ CarouselUpdate(clt *core.SDKClient, accessToken string, req *file.CarouselUpdateRequest) ([]file.CarouselUpdateResult, error) ]
+  - 获取同主体下广告主图集素材 [ CarouselAdGet(clt *core.SDKClient, accessToken string, req *file.CarouselAdGetRequest) (*file.CarouselAdGetResult, error) ]
+  - 批量删除图集 [ CarouselDelete(clt *core.SDKClient, accessToken string, req *file.CarouselDeleteRequest) (*file.CarouselDeleteResult, error) ]
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]

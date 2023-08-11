@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
@@ -56,4 +57,18 @@ func (r ImageGetRequest) Encode() string {
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
+}
+
+// ImageGetResponse 获取图片素材 API Response
+type ImageGetResponse struct {
+	model.BaseResponse
+	Data *ImageGetResult `json:"data,omitempty"`
+}
+
+// ImageGetResult json返回值
+type ImageGetResult struct {
+	// List 图片列表
+	List []Image `json:"list,omitempty"`
+	// PageInfo 分页信息
+	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
