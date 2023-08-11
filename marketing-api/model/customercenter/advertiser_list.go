@@ -17,7 +17,8 @@ type AdvertiserListRequest struct {
 	// PageSize 页面数据量. 默认值: 10
 	PageSize int `json:"page_size,omitempty"`
 	// Filtering 过滤条件
-	Filtering *AdvertiserListFilter `json:"filtering,omitempty"`
+	Filtering     *AdvertiserListFilter `json:"filtering,omitempty"`
+	AccountSource string                `json:"account_source"`
 }
 
 // AdvertiserListFilter 过滤条件
@@ -39,6 +40,9 @@ func (r AdvertiserListRequest) Encode() string {
 	}
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
+	}
+	if r.AccountSource != "" {
+		values.Set("account_source", r.AccountSource)
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
