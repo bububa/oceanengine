@@ -10,8 +10,8 @@ import (
 
 // GameListRequest 获取微信小游戏列表 API Request
 type GameListRequest struct {
-	// AdvertiserID 广告主ID
-	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// AccountID 广告主ID
+	AccountID uint64 `json:"account_id,omitempty"`
 	// AccountType  账户类型
 	// 允许值：BP 巨量纵横组织账号、AD 广告主账号
 	AccountType enum.AccountType `json:"account_type,omitempty"`
@@ -41,7 +41,7 @@ type GameListFilter struct {
 // Encode implement GetRequest interface
 func (r GameListRequest) Encode() string {
 	values := util.GetUrlValues()
-	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	values.Set("account_id", strconv.FormatUint(r.AccountID, 10))
 	values.Set("account_type", string(r.AccountType))
 	if r.Filtering != nil {
 		values.Set("filtering", string(util.JSONMarshal(r.Filtering)))
