@@ -28,7 +28,7 @@ type GetFilter struct {
 	// AnchorName 按原生锚点名称做过滤
 	AnchorName string `json:"anchor_name,omitempty"`
 	// Status 锚点审核状态，允许值：锚点新建：CREATE、审核通过：AUDIT_SUCCESS、审核不通过：AUDIT_FAILD
-	Status string `json:"status,omitempty"`
+	Status []string `json:"status,omitempty"`
 	// LandingType 允许值：LINK销售线索收集、APP应用、AWEME抖音号推广
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// ExternalAction 优化目标，可通过【获取优化目标】接口获取
@@ -36,7 +36,7 @@ type GetFilter struct {
 	// Source 锚点来源，允许值：自动生成：AUTO、手动创建：MANUAL
 	Source string `json:"source,omitempty"`
 	// AnchorType 锚点类型，允许值：应用下载-游戏：APP_GAME、应用下载-网服：APP_INTERNET_SERVICE、应用下载-电商：APP_SHOP、高级在线预约：ONLINE_SUBSCRIBE
-	AnchorType enum.AnchorType `json:"anchor_type,omitempty"`
+	AnchorType []enum.AnchorType `json:"anchor_type,omitempty"`
 	// AndroidPackageName 安卓应用包名
 	AndroidPackageName string `json:"android_package_name,omitempty"`
 	// IosPackageName ios应用包名
