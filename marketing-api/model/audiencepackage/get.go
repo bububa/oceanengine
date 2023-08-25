@@ -32,6 +32,8 @@ type GetFiltering struct {
 	// SEARCH 搜索广告
 	// 搜索定向包仅支持落地页、应用推广、抖音号、直播间，不支持商品、电商店铺、快应用、小游戏
 	AdType enum.CampaignType `json:"ad_type,omitempty"`
+	// MarketingGoal 营销场景，允许值：VIDEO_AND_IMAGE 短视频/图片（默认值）， LIVE 直播
+	MarketingGoal enum.MarketingGoal `json:"marketing_goal,omitempty"`
 }
 
 // Encode implement GetRequest interface

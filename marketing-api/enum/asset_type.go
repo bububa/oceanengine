@@ -22,4 +22,8 @@ const (
 	AssetType_ENTERPRISE AssetType = "ENTERPRISE"
 	// AssetType_AWEME_HOME_PAGE 抖音主页资产
 	AssetType_AWEME_HOME_PAGE AssetType = "AWEME_HOME_PAGE"
+	// AssetType_APPLETS 微信小程序
+	AssetType_APPLETS AssetType = "APPLETS"
+	// AssetType_WECHAT_GAME 微信小游戏
+	AssetType_WECHAT_GAME AssetType = "WECHAT_GAME"
 )

@@ -16,6 +16,8 @@ type MaterialBindRequest struct {
 	VideoIDs []string `json:"video_ids,omitempty"`
 	// ImageIDs 图片ID，数量限制：<=50; 注意：跟video_ids必须二选一
 	ImageIDs []string `json:"image_ids,omitempty"`
+	// CarouselIDs 图集ID，数量限制：<=50 注意：跟image_ids、video_ids必须三选一
+	CarouselIDs []uint64 `json:"carousel_ids,omitempty"`
 }
 
 // Encode implement PostRequest interface
@@ -41,6 +43,8 @@ type FailedMaterialBind struct {
 	VideoID string `json:"video_id,omitempty"`
 	// ImageID 推送失败的图片id
 	ImageID string `json:"image_id,omitempty"`
+	// CarouselID 推送失败的图集id
+	CarouselID uint64 `json:"carousel_id,omitempty"`
 	// TargetAdvertiserID 目标推送广告主id
 	TargetAdvertiserID uint64 `json:"target_advertiser_id,omitempty"`
 	// FailReason 推送失败原因

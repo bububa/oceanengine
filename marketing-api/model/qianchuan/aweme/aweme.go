@@ -16,4 +16,13 @@ type Aweme struct {
 	Status enum.AwemeStatus `json:"aweme_status,omitempty"`
 	// BindType 抖音号关系类型
 	BindType []enum.AwemeBindType `json:"bind_type,omitempty"`
+	// HasRoi2DeliveryLimit 该抖音号是否有全域推广计划投放，如果开启了投放，那么该抖音号不可以用来投放其他直播带货广告
+	// 允许值：
+	// true：存在全域推广计划投放
+	// false：暂无全域推广计划投放
+	HasRoi2DeliveryLimit bool `json:"has_roi2_delivery_limit,omitempty"`
+	// HasRoi2GroupCreate 当前抖音号是否创建过全域推广计划
+	// false：未创建过计划, 可以新建
+	// true：已经创建过计划，不支持新建
+	HasRoi2GroupCreate bool `json:"has_roi2_group_create,omitempty"`
 }

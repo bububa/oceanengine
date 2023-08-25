@@ -25,7 +25,7 @@ type VideoMaterialClearTaskParameters struct {
 	// 如果不传清理素材类型，默认清理这三个标签的全部素材
 	ClearMaterialTypes []enum.MaterialProperty `json:"clear_material_types,omitempty"`
 	// CreateTimeUpper 清理创建时间"yyyy-mm-dd"之前的素材，不包括这一天
-	ClearTimeUpper string `json:"clear_time_upper,omitempty"`
+	CreateTimeUpper string `json:"create_time_upper,omitempty"`
 	// StartTime 账户下累积转化数和累积消耗数的数据统计开始时间，格式为"yyyy-mm-dd"，且包含该日期
 	StartTime string `json:"start_time,omitempty"`
 	// EndTime 账户下累积转化数和累积消耗数的数据统计结束时间，格式为"yyyy-mm-dd"，且包含该日期

@@ -83,7 +83,7 @@ type Material struct {
 	// AD_HIGH_QUALITY_MATERIAL AD 优质素材
 	// ECP_HIGH_QUALITY_MATERIAL 千川优质素材
 	// FIRST_PUBLISH_MATERIAL  首发素材
-	MaterialProperties enum.MaterialProperty `json:"material_properties,omitempty"`
+	MaterialProperties []enum.MaterialProperty `json:"material_properties,omitempty"`
 	// IsInefficientMaterial 是否低效素材
 	IsInefficientMaterial bool `json:"is_inefficient_material,omitempty"`
 	// IsSimilarQueueMaterial 是否同质化素材风险-排队投放素材
@@ -98,4 +98,6 @@ type Material struct {
 	IsAdHighQuality bool `json:"is_ad_high_quality,omitempty"`
 	// IsFirstPublishMaterial 是否是首发素材
 	IsFirstPublishMaterial bool `json:"is_first_publish_matertial,omitempty"`
+	// Aigc 素材是否是aigc生成
+	Aigc bool `json:"aigc,omitempty"`
 }
