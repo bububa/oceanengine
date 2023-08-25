@@ -8,4 +8,10 @@ const (
 	CampaignScene_DAILY_SALE CampaignScene = "DAILY_SALE"
 	// CampaignScene_NEW_CUSTOMER_TRANSFORMATION 新客转化
 	CampaignScene_NEW_CUSTOMER_TRANSFORMATION CampaignScene = "NEW_CUSTOMER_TRANSFORMATION"
+	// CampaignScene_LIVE_HEAT 直播间加热
+	CampaignScene_LIVE_HEAT CampaignScene = "LIVE_HEAT"
+	// CampaignScene_PLANT_GRASS 人群种草
+	CampaignScene_PLANT_GRASS CampaignScene = "PLANT_GRASS"
+	// CampaignScene_PRODUCT_HEAT 商品加热
+	CampaignScene_PRODUCT_HEAT CampaignScene = "PRODUCT_HEAT"
 )

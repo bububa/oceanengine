@@ -8,6 +8,10 @@ const (
 	MaterialMode_SMALL MaterialMode = "SMALL"
 	// MaterialMode_LARGE 大图，横版大图宽高比1.78，大小1.5M以下，下限：1280 & 720，上限：2560 & 1440
 	MaterialMode_LARGE MaterialMode = "LARGE"
+	// MareitalMode_LARGE_VERTICAL 竖版图片
+	MareitalMode_LARGE_VERTICAL MaterialMode = "LARGE_VERTICAL"
+	// MaterialMode_SQUARE 商品卡方图
+	MaterialMode_SQUARE MaterialMode = "SQUARE"
 	// MaterialMode_VIDEO_LARGE 横版视频，封面图宽高比1.78（下限：1280 & 720，上限：2560 & 1440））,视频资源支持mp4、mpeg、3gp、avi文件格式，宽高比16:9，大小不超过1000M
 	MaterialMode_VIDEO_LARGE MaterialMode = "VIDEO_LARGE"
 	// MaterialMode_VIDEO_VERTICAL 竖版视频，封面图宽高比0.56（9:16），下限：720 & 1280，上限：1440 & 2560，视频资源支持mp4、mpeg、3gp、avi文件格式，大小不超过100M
