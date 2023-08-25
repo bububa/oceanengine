@@ -225,6 +225,11 @@
   - 创建素材清理任务 [ VideoMaterialClearTaskCreate(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskCreateRequest) (uint64, error) ]
   - 获取清理任务列表 [ VideoMaterialClearTaskGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskGetRequest) (*file.VideoMaterialClearTaskGetData, error) ]
   - 下载清理任务结果 [ VideoMaterialClearTaskResultGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskResultGetRequest) (*file.VideoMaterialClearTaskResultGetData, error) ]
+  - 上传图集 [ CarouselCreate(clt *core.SDKClient, accessToken string, req *file.CarouselCreateRequest) (*file.Carousel, error) ]
+  - 获取图集素材 [ CarouselList(clt *core.SDKClient, accessToken string, req *file.CarouselListRequest) (*file.CarouselListResult, error) ]
+  - 更新图集信息 [ CarouselUpdate(clt *core.SDKClient, accessToken string, req *file.CarouselUpdateRequest) ([]file.CarouselUpdateResult, error) ]
+  - 获取同主体下广告主图集素材 [ CarouselAdGet(clt *core.SDKClient, accessToken string, req *file.CarouselAdGetRequest) (*file.CarouselAdGetResult, error) ]
+  - 批量删除图集 [ CarouselDelete(clt *core.SDKClient, accessToken string, req *file.CarouselDeleteRequest) (*file.CarouselDeleteResult, error) ]
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
@@ -255,6 +260,7 @@
     - 基于模板创建站点 [ SiteCreate(clt *core.SDKClient, accessToken string, req *sitetemplate.SiteCreateRequest) (uint64, error) ]
     - 获取站点模版列表 [ Get(clt *core.SDKClient, accessToken string, req *sitetemplate.GetRequest) (*sitetemplate.GetResponseData, error) ]
     - 获取模版预览链接 [ Preview(clt *core.SDKClient, accessToken string, req *sitetemplate.PreviewRequest) (string, error) ]
+    - 获取模板/站点URL [ PicURLGet(clt *core.SDKClient, accessToken string, req *sitetemplate.PicURLGetRequest) (map[string]string, error) ]
 - 飞鱼线索管理 (tools/clue)
   - 获取线索列表 [ Get(clt *core.SDKClient, accessToken string, req *clue.GetRequest) (*clue.GetResponseData, error) ]
   - 回传有效线索 [ Callback(clt *core.SDKClient, accessToken string, req *clue.CallbackRequest) error ]
@@ -449,13 +455,15 @@
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
     - 评论操作 [ Operate(clt *core.SDKClient, accessToken string, req *comment.OperateRequest) (*comment.OperateResponseData, error) ]
-    - 获取屏蔽词列表 [ TermsBandedGet(clt *core.SDKClient, accessToken string, req *comment.TermsBandedGetRequest) (*comment.TermsBandedGetResponseData, error) ]
-    - 添加屏蔽词 [ TermsBandedAdd(clt *core.SDKClient, accessToken string, req *comment.TermsBandedAddRequest) error ]
-    - 更新屏蔽词 [ TermsBandedUpdate(clt *core.SDKClient, accessToken string, req *comment.TermsBandedUpdateRequest) error ]
-    - 删除屏蔽词 [ TermsBandedDelete(clt *core.SDKClient, accessToken string, req *comment.TermsBandedDeleteRequest) error ]
-    - 获取屏蔽用户列表 [ AwemeBandedList(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedListRequest) (*comment.AwemeBandedListResponseData, error) ]
-    - 添加屏蔽用户 [ AwemeBandedCreate(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedCreateRequest) (*comment.AwemeBandedCreateResponseData, error) ]
-    - 删除屏蔽用户 [ AwemeBandedDelete(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedCreateRequest) (*comment.AwemeBandedCreateResponseData, error) ]
+    - 屏蔽词/屏蔽用户
+      - 获取屏蔽词列表 [ TermsBandedGet(clt *core.SDKClient, accessToken string, req *comment.TermsBandedGetRequest) (*comment.TermsBandedGetResponseData, error) ]
+      - 添加屏蔽词 [ TermsBandedAdd(clt *core.SDKClient, accessToken string, req *comment.TermsBandedAddRequest) error ]
+      - 更新屏蔽词 [ TermsBandedUpdate(clt *core.SDKClient, accessToken string, req *comment.TermsBandedUpdateRequest) error ]
+      - 删除屏蔽词 [ TermsBandedDelete(clt *core.SDKClient, accessToken string, req *comment.TermsBandedDeleteRequest) error ]
+      - 获取屏蔽用户列表 [ AwemeBandedList(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedListRequest) (*comment.AwemeBandedListResponseData, error) ]
+      - 添加屏蔽用户 [ AwemeBandedCreate(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedCreateRequest) (*comment.AwemeBandedCreateResponseData, error) ]
+      - 删除屏蔽用户 [ AwemeBandedDelete(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedCreateRequest) (*comment.AwemeBandedCreateResponseData, error) ]
+    - 获取评论视频ID列表 [ Mid2ItemID(clt *core.SDKClient, accessToken string, req *comment.Mid2ItemIDRequest) (*comment.Mid2ItemIDList, error) ]
   - 地域信息管理
     - 查询国家/区域信息 [ tools.CountryInfo(clt *core.SDKClient, accessToken string, req *tools.CountryInfoRequest) (*tools.CountryInfoResponseData, error) ]
     - 获取行政信息 [ tools.AdminInfo(clt *core.SDKClient, accessToken string, req *tools.AdminInfoRequest) (*tools.AdminInfoResponseData, error) ]
@@ -474,6 +482,9 @@
     - 创建微信小游戏 [ GameCreate(clt *core.SDKClient, accessToken string, req *wechat.GameCreateRequest) (*wechat.WechatGame, error) ]
     - 创建微信小程序 [ AppletCreate(clt *core.SDKClient, accessToken string, req *wechat.AppletCreateRequest) (uint64, error) ]
     - 更新微信小程序 [ AppletUpdate(clt *core.SDKClient, accessToken string, req *wechat.AppletUpdateRequest) (*wechat.AppletUpdateResult, error) ]
+    - 设置微信小游戏/小程序共享 [ BpAssetManagementShare(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareRequest) ([]wechat.BpAssetManagementShareError, error) ]
+    - 取消微信小游戏/小程序共享关系 [ BpAssetManagementShareCancel(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareRequest) ([]wechat.BpAssetManagementShareError, error) ]
+    - 查看微信小游戏/小程序共享范围 [ BpAssetManagementShareGet(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareGetRequest) (*wechat.BpAssetManagementShareList, error) ]
 - 应用市场 (api/servemarket)
   - 获取应用订单数据 [ OrderGet(clt *core.SDKClient, accessToken string, req *servemarket.OrderGetRequest) (*servemarket.OrderGetResponseData, error) ]
   - 获取用户已购功能点列表 [ ActiveFuncGet(clt *core.SDKClient, accessToken string, req *servemarket.ActiveFuncGetRequest) ([]servemarket.OrderFunction, error) ]

@@ -34,11 +34,15 @@
     - 更新状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *ad.UpdateStatusRequest) (*ad.UpdateResponseData, error) ]
     - 更新出价 [ UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) ]
     - 更新预算 [ UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) ]
+    - 更新计划的支付ROI目标 [ RoiGoalUpdate(clt *core.SDKClient, accessToken string, req *ad.RoiGoalUpdateRequest) ([]ad.RoiGoalUpdateResult, error) ]
+    - 更新计划投放时间 [ ScheduleDateUpdate(clt *core.SDKClient, accessToken string, req *ad.ScheduleDateUpdateRequest) (*ad.UpdateResponseData, error) ]
+    - 更新计划投放时段 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *ad.ScheduleTimeUpdateRequest) (*ad.UpdateResponseData, error) ]
+    - 更新计划投放时长 [ ScheduleFixedRangeUpdate(clt *core.SDKClient, accessToken string, req *ad.ScheduleFixedRangeUpdateRequest) (*ad.UpdateResponseData, error) ]
+    - 更新计划地域定向 [ RegionUpdate(clt *core.SDKClient, accessToken string, req *ad.RegionUpdateRequest) (*ad.UpdateResponseData, error) ]
     - 获取计划审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *ad.RejectReasonRequest) ([]ad.RejectReasonList, error) ]
     - 获取低效计划列表 [ LqAdGet(clt *core.SDKClient, accessToken string, req *ad.LqAdGetRequest) ([]uint64, error) ]
     - 获取支付ROI目标建议 [ SuggestRoiGoal(clt *core.SDKClient, accessToken string, req *ad.SuggestRoiGoalRequest) (*ad.SuggestRoiResult, error) ]
     - 获取非ROI目标建议出价 [ SuggestBid(clt *core.SDKClient, accessToken string, req *ad.SuggestBidRequest) (*ad.SuggestBidResult, error) ]
-    - 更新计划的支付ROI目标 [ RoiGoalUpdate(clt *core.SDKClient, accessToken string, req *ad.RoiGoalUpdateRequest) ([]ad.RoiGoalUpdateResult, error) ]
     - 获取建议预算接口 [ SuggestBudget(clt *core.SDKClient, accessToken string, req *ad.SuggestBudgetRequest) (*ad.SuggestBudgetResult, error) ]
     - 获取预估效果接口 [ EstimateEffect(clt *core.SDKClient, accessToken string, req *ad.EstimateEffectRequest) (*ad.EstimateEffectResult, error) ]
   - 广告创意管理 (api/qianchuan/creative)
@@ -58,6 +62,7 @@
     - 全量更新否定词 [ PrivatewordsUpdate(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsUpdateRequest) (*ad.PrivatewordsUpdateResult, error) ]
   - 全域推广 (api/qianchuan/uni_promotion)
     - 获取全域推广列表 [ List(clt *core.SDKClient, accessToken string, req *unipromotion.ListRequest) (*unipromotion.ListResult, error) ]
+    - 获取可投全域推广抖音号列表 [ AuthorizedGet(clt *core.SDKClient, accessToken string, req *unipromotion.AuthorizedGetRequest) (*unipromotion.AuthorizedGetResult, error) ]
 
 - 数据报表 （api/qianchuan/report)
   - 广告数据报表

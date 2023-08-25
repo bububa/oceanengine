@@ -30,6 +30,8 @@ type NativeAnchor struct {
 	NetSerivceAnchor *NetServiceAnchor `json:"net_service_anchor,omitempty"`
 	// GameAnchor 游戏锚点
 	GameAnchor *GameAnchor `json:"game_anchor,omitempty"`
+	// ShoppingCartAnchor 购物车锚点
+	ShoppingCartAnchor *ShoppingCartAnchor `json:"shopping_cart_anchor,omitempty"`
 }
 
 // AppEcommerceAnchor 电商下载锚点
@@ -174,4 +176,24 @@ type SiteInfo struct {
 	IosDownloadURL string `json:"ios_download_url,omitempty"`
 	// ExternalURL 第三方落地页
 	ExternalURL string `json:"external_url,omitempty"`
+}
+
+// ShoppingCartAnchor 购物车锚点，当anchor_type=SHOPPING_CART：购物车锚点时必填
+type ShoppingCartAnchor struct {
+	// Title 购物车小标题，不超过10个字
+	Title string `json:"title,omitempty"`
+	// ProductImages 商品图片，比例1:1，至少1张
+	ProductImages []Image `json:"product_images,omitempty"`
+	// ProductPrice 商品价格，最多两位小数
+	ProductPrice float64 `json:"product_price,omitempty"`
+	// ProductTitle 商品标题，不超过35个字
+	ProductTitle string `json:"product_title,omitempty"`
+	// ProductSource 商品来源，只支持填写淘宝/天猫/京东/拼多多/唯品会/得物
+	ProductSource string `json:"product_source,omitempty"`
+	// ExternalUrl 落地页链接
+	ExternalUrl string `json:"external_url,omitempty"`
+	// OpenUrl 直达链接
+	OpenUrl string `json:"open_url,omitempty"`
+	// LinkType 跳转类型，枚举值一跳：ONE_JUMP、二跳：TWO_JUMP
+	LinkType string `json:"link_type,omitempty"`
 }

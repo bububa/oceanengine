@@ -33,4 +33,16 @@ const (
 
 	// GrayKey_BAN_UPDATE_BLACKLIST_1_0_EXCEPT_LIVE 白名单id为766，允许巨量广告编辑直播链路以外的计划，禁止编辑直播链路广告计划
 	GrayKey_BAN_UPDATE_BLACKLIST_1_0_EXCEPT_LIVE GrayKey = "ban_update_blacklist_1_0_except_live"
+
+	// GrayKey_MallLongBid 商城广告支持长效出价
+	// 对应字段external_action、deep_external_action和deep_bid_type
+	// 商品购买-7日总成交：AD_CONVERT_TYPE_LIVE_SUCCESSORDER_PAY_7DAYS
+	// 商品支付ROI-7日总支付ROI：external_action=AD_CONVERT_TYPE_LIVE_SUCCESSORDER_PAY_7DAYS且deep_external_action=AD_CONVERT_TYPE_LIVE_PAY_ROI且deep_bid_type=MIN
+	GrayKey_MallLongBid GrayKey = "mallLongBid"
+
+	// GrayKey_SearchProductNewAccelerate 推商品-日常销售-搜索-托管链路新品加速能力
+	GrayKey_SearchProductNewAccelerate GrayKey = "search_product_new_accelerate"
+
+	// GrayKey_CommRoi “推直播间-日常销售-通投-自定义-官方/自运营-控成本”场景下的佣金ROI
+	GrayKey_CommRoi GrayKey = "comm_roi"
 )

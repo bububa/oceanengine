@@ -12,4 +12,6 @@ const (
 	BidType_UPPER_CONTROL BidType = "UPPER_CONTROL"
 	// BidType_CONSERVATIVE 放量投放
 	BidType_CONSERVATIVE BidType = "CONSERVATIVE"
+	// BidType_EXPLORE_UPGRADE 稳定成本-升级版
+	BidType_EXPLORE_UPGRADE BidType = "EXPLORE_UPGRADE"
 )
