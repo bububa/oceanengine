@@ -129,5 +129,23 @@ type ResponseFields struct {
 	// LiveOnlineUcount 直播间内人数
 	LiveOnlineUcount int64 `json:"live_online_ucount,omitempty"`
 	// PerCustomerTransaction 客单价
-	PerCustomerTransaction float64 `json:"per_customer_transaction,omitempty"`
+	PerCustomerTransaction             float64 `json:"per_customer_transaction,omitempty"`
+	LiveAppActivePayCount              int64   `json:"live_app_active_pay_count,omitempty"`
+	LiveAppDownloadFinishCount         int64   `json:"live_app_download_finish_count,omitempty"`
+	LiveGroupbuyOrderCount             int64   `json:"live_groupbuy_order_count,omitempty"`
+	LiveComponentCtr                   float64 `json:"live_component_ctr,omitempty"`
+	LiveCount                          int64   `json:"live_count,omitempty"`
+	LiveAppDownloadStartCount          int64   `json:"live_app_download_start_count,omitempty"`
+	LiveAppGamePayCount                int64   `json:"live_app_game_pay_count,omitempty"`
+	LiveCardIconComponentShowCount     int64   `json:"live_card_icon_component_show_count,omitempty"`
+	StatLiveGroupbuyOrderGmv           float64 `json:"stat_live_groupbuy_order_gmv,omitempty"`
+	OrderConvertRate                   float64 `json:"order_convert_rate,omitempty"`
+	LiveCardIconComponentClickCount    int64   `json:"live_card_icon_component_click_count,omitempty"`
+	LiveFormSubmitCount                int64   `json:"live_form_submit_count,omitempty"`
+	LiveAppActiveRegisterCount         int64   `json:"live_app_active_register_count,omitempty"`
+	LiveAppActiveCount                 int64   `json:"live_app_active_count,omitempty"`
+	LiveAppAttributionNextDayOpenRate  float64 `json:"live_app_attribution_next_day_open_rate,omitempty"`
+	LiveAppAttributionNextDayOpenCount int64   `json:"live_app_attribution_next_day_open_count,omitempty"`
+	LiveAppInstallFinishCount          int64   `json:"live_app_install_finish_count,omitempty"`
+	LiveAvgWatchCount                  int64   `json:"live_avg_watch_count,omitempty"`
 }
