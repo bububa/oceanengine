@@ -31,6 +31,7 @@
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
     - 二级代理商列表 [ ChildAgentSelect(clt *core.SDKClient, accessToken string, req *agent.ChildAgentSelectRequest) ([]uint64, error) ]
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
+    - 广告主账户复制 [ AdvertiserCopy(clt *core.SDKClient, accessToken string, req *agent.AdvertiserCopyRequest) (*agent.AdvertiserCopyResult, error) ]
   - 纵横组织账户管理
     - 获取纵横组织下资产账户列表 [ majordomo.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *majordomo.AdvertiserSelectRequest) ([]majordomo.Advertiser, error) ]
     - [获取纵横组织下资产账户列表（分页）[ customercenter.AdvertiserList(clt *core.SDKClient, accessToken string, req *customercenter.AdvertiserListRequest) (*customercenter.AdvertiserListData, error) ]
@@ -394,6 +395,7 @@
     - 修改穿山甲流量包 [ FlowPackageUpdate(clt *core.SDKClient, accessToken string, req *union.FlowPackageUpdateRequest) (uint64, error) ]
     - 删除穿山甲流量包 [ FlowPackageDelete(clt *core.SDKClient, accessToken string, req *union.FlowPackageDeleteRequest) (uint64, error) ]
     - 查看rit数据 [ FlowPackageReport(clt *core.SDKClient, accessToken string, req *union.FlowPackageReportRequest) (*union.FlowPackageReportData, error) ]
+    - 查看2.0rit数据 [ FlowPackagePromotionReport(clt *core.SDKClient, accessToken string, req *union.FlowPackagePromotionReportRequest) (*union.FlowPackageReportData, error) ]
   - 转化目标管理 (tools/adconvert)
     - 创建转化目标 [ Create(clt *core.SDKClient, accessToken string, req *adconvert.CreateRequest) (*adconvert.Convert, error) ]
     - 转化目标列表 [ Select(clt *core.SDKClient, accessToken string, req *adconvert.SelectRequest) (*adconvert.SelectResponseData, error) ]
