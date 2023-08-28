@@ -394,6 +394,7 @@
     - 修改穿山甲流量包 [ FlowPackageUpdate(clt *core.SDKClient, accessToken string, req *union.FlowPackageUpdateRequest) (uint64, error) ]
     - 删除穿山甲流量包 [ FlowPackageDelete(clt *core.SDKClient, accessToken string, req *union.FlowPackageDeleteRequest) (uint64, error) ]
     - 查看rit数据 [ FlowPackageReport(clt *core.SDKClient, accessToken string, req *union.FlowPackageReportRequest) (*union.FlowPackageReportData, error) ]
+    - 查看2.0rit数据 [ FlowPackagePromotionReport(clt *core.SDKClient, accessToken string, req *union.FlowPackagePromotionReportRequest) (*union.FlowPackageReportData, error) ]
   - 转化目标管理 (tools/adconvert)
     - 创建转化目标 [ Create(clt *core.SDKClient, accessToken string, req *adconvert.CreateRequest) (*adconvert.Convert, error) ]
     - 转化目标列表 [ Select(clt *core.SDKClient, accessToken string, req *adconvert.SelectRequest) (*adconvert.SelectResponseData, error) ]

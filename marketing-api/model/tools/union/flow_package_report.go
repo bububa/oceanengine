@@ -11,7 +11,7 @@ import (
 
 // FlowPackageReportRequest 查看rit数据 API Request
 type FlowPackageReportRequest struct {
-	// AdvertiserID 获取穿山甲流量包
+	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Filtering 过滤字段
 	Filtering *FlowPackageReportFilter `json:"filtering,omitempty"`
