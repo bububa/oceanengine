@@ -31,6 +31,7 @@
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
     - 二级代理商列表 [ ChildAgentSelect(clt *core.SDKClient, accessToken string, req *agent.ChildAgentSelectRequest) ([]uint64, error) ]
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
+    - 广告主账户复制 [ AdvertiserCopy(clt *core.SDKClient, accessToken string, req *agent.AdvertiserCopyRequest) (*agent.AdvertiserCopyResult, error) ]
   - 纵横组织账户管理
     - 获取纵横组织下资产账户列表 [ majordomo.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *majordomo.AdvertiserSelectRequest) ([]majordomo.Advertiser, error) ]
     - [获取纵横组织下资产账户列表（分页）[ customercenter.AdvertiserList(clt *core.SDKClient, accessToken string, req *customercenter.AdvertiserListRequest) (*customercenter.AdvertiserListData, error) ]
