@@ -54,6 +54,8 @@ type ActiveRequest struct {
 	PrivateKey *rsa.PrivateKey `json:"-"`
 	// Credential
 	Credential enum.Credential `json:"-"`
+	// AppAccessToken
+	AppAccessToken string `json:"-"`
 }
 
 // Encode implement PostRequest interface
@@ -67,6 +69,11 @@ func (r ActiveRequest) Sign(req *http.Request, content []byte) (string, error) {
 		return "", errors.New("no private_key/credential")
 	}
 	return model.CredentialSign(req, content, r.PrivateKey, r.Credential)
+}
+
+// GetAppAccessToken implement ConvertionRequest interface
+func (r ActiveRequest) GetAppAccessToken() string {
+	return r.AppAccessToken
 }
 
 // RequestURI implement TrackRequest interface
@@ -94,6 +101,8 @@ type WxaActiveRequest struct {
 	PrivateKey *rsa.PrivateKey `json:"-"`
 	// Credential
 	Credential enum.Credential `json:"-"`
+	// AppAccessToken
+	AppAccessToken string `json:"-"`
 }
 
 // Encode implement GetRequest interface
@@ -130,4 +139,9 @@ func (r WxaActiveRequest) Sign(req *http.Request, content []byte) (string, error
 		return "", errors.New("no private_key/credential")
 	}
 	return model.CredentialSign(req, content, r.PrivateKey, r.Credential)
+}
+
+// GetAppAccessToken implement ConvertionRequest interface
+func (r WxaActiveRequest) GetAppAccessToken() string {
+	return r.AppAccessToken
 }

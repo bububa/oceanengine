@@ -14,6 +14,7 @@
   - 刷新 Token [ RefreshToken(clt *core.SDKClient, refreshToken string) (*oauth.AccessTokenResponseData, error)]
   - 获取已授权账户 [ AdvertiserGet(clt \*core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
   - 获取授权 User 信息 [ UserInfo(clt *core.SDKClient, accessToken string) (*oauth.UserInfoResponseData, error) ]
+  - 获取APP Access Token [ AppAccessToken(clt *core.SDKClient) (*oauth.AppAccessTokenResult, error) ]
 - 账号服务
   - 广告主信息与资质管理 (api/advertiser)
     - 广告主信息 [ Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]

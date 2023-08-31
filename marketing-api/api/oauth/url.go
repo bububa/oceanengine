@@ -1,6 +1,8 @@
 package oauth
 
 import (
+	"strconv"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -8,7 +10,7 @@ import (
 // Url 生成授权链接
 func Url(clt *core.SDKClient, redirectUrl string, state string, materialAuth bool) string {
 	values := util.GetUrlValues()
-	values.Set("app_id", clt.AppID)
+	values.Set("app_id", strconv.FormatUint(clt.AppID, 10))
 	if state != "" {
 		values.Set("state", state)
 	}

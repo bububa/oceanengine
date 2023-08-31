@@ -5,7 +5,6 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"io"
-	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"strings"
@@ -17,7 +16,7 @@ import (
 
 // SDKClient sdk client
 type SDKClient struct {
-	AppID      string
+	AppID      uint64
 	Secret     string
 	debug      bool
 	sandbox    bool
@@ -27,7 +26,7 @@ type SDKClient struct {
 }
 
 // NewSDKClient 创建SDKClient
-func NewSDKClient(appID string, secret string) *SDKClient {
+func NewSDKClient(appID uint64, secret string) *SDKClient {
 	return &SDKClient{
 		AppID:  appID,
 		Secret: secret,
@@ -173,7 +172,7 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 		return nil, err
 	}
 	defer httpResp.Body.Close()
-	return ioutil.ReadAll(httpResp.Body)
+	return io.ReadAll(httpResp.Body)
 }
 
 // Upload multipart/form-data post
@@ -251,6 +250,9 @@ func (c *SDKClient) TrackActive(req model.TrackRequest, resp model.Response) err
 	if token, err := req.Sign(httpReq, nil); err == nil {
 		httpReq.Header.Add("x-rs256-token", token)
 	}
+	if token := req.GetAppAccessToken(); token != "" {
+		httpReq.Header.Add("App-Access-Token", token)
+	}
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
@@ -264,7 +266,7 @@ func (c *SDKClient) TrackActive(req model.TrackRequest, resp model.Response) err
 	}
 	defer httpResp.Body.Close()
 	if httpResp.StatusCode != 200 {
-		body, err := ioutil.ReadAll(httpResp.Body)
+		body, err := io.ReadAll(httpResp.Body)
 		if err != nil {
 			return err
 		}
@@ -282,6 +284,9 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp m
 		return err
 	}
 	httpReq.Header.Add("Content-Type", "application/json")
+	if token := req.GetAppAccessToken(); token != "" {
+		httpReq.Header.Add("App-Access-Token", token)
+	}
 	if token, err := req.Sign(httpReq, reqBytes); err == nil {
 		httpReq.Header.Add("x-rs256-token", token)
 	} else {
