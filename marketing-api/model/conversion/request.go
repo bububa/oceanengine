@@ -32,6 +32,8 @@ type Request struct {
 	PrivateKey *rsa.PrivateKey `json:"-"`
 	// Credential
 	Credential enum.Credential `json:"-"`
+	// AppAccessToken
+	AppAccessToken string `json:"-"`
 }
 
 // Context 包含一些关键的上下文信
@@ -256,4 +258,9 @@ func (r Request) Sign(req *http.Request, content []byte) (string, error) {
 		return "", errors.New("no private_key/credential")
 	}
 	return model.CredentialSign(req, content, r.PrivateKey, r.Credential)
+}
+
+// GetAccessToken implement ConvertionRequest interface
+func (r Request) GetAppAccessToken() string {
+	return r.AppAccessToken
 }

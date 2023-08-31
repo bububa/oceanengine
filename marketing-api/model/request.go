@@ -46,6 +46,7 @@ type UploadRequest interface {
 type ConversionRequest interface {
 	PostRequest
 	Sign(req *http.Request, content []byte) (string, error)
+	GetAppAccessToken() string
 }
 
 // TrackRequest
