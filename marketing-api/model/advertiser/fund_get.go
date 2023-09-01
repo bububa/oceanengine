@@ -82,5 +82,5 @@ type FundGetResponseData struct {
 	// WalletName 钱包名称（广告主账户绑定的共享子钱包名称）
 	WalletName string `json:"wallet_name,omitempty"`
 	// WalletTotalBalanceValid 账户绑定的子钱包的可用共享余额（单位元）
-	WalletTotalBalanceValid float64 `json:"wallet_total_balance_valid,omitempty"`
+	WalletTotalBalanceValid string `json:"wallet_total_balance_valid,omitempty"`
 }
