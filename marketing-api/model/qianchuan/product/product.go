@@ -10,12 +10,12 @@ type Product struct {
 	Inventory int64 `json:"inventory,omitempty"`
 	// Name 商品名称
 	Name string `json:"name,omitempty"`
+	// CategoryName 分类
+	CategoryName string `json:"category_name,omitempty"`
 	// ProductRate 好评率
 	ProductRate float64 `json:"product_rate,omitempty"`
 	// SaleTime 上架时间
 	SaleTime string `json:"sale_time,omitempty"`
-	// CategoryName 分类
-	CategoryName string `json:"category_name,omitempty"`
 	// DiscountPrice 售价，单位：元，已废弃
 	DiscountPrice float64 `json:"discount_price,omitempty"`
 	// MarketPrice 原价，单位为元

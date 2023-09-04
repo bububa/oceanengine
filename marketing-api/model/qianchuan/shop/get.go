@@ -32,11 +32,3 @@ type GetResponse struct {
 		List []Shop `json:"list,omitempty"`
 	} `json:"data,omitempty"`
 }
-
-// Shop shop账号
-type Shop struct {
-	// ID 店铺id
-	ID uint64 `json:"shop_id,omitempty"`
-	// Name 店铺名称
-	Name string `json:"shop_name,omitempty"`
-}
