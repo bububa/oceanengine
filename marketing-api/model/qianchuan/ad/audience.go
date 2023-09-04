@@ -71,6 +71,10 @@ type Audience struct {
 	RetargetingTagsExclude []uint64 `json:"retargeting_tags_exclude,omitempty"`
 	// LivePlatformTags 直播带货平台精选人群包
 	LivePlatformTags []enum.LivePlatformTag `json:"live_platform_tags,omitempty"`
-	// NewCustomer 新客定向，NO_BUY 店铺未购，NONE 不限（默认）
+	// 	NewCUstomer 新客定向，
+	// NO_BUY 店铺未购，
+	// NONE 不限
+	// NO_BUY_BRAND：品牌未购
+	// NO_BUY_DOUYIN 抖音号未购// NewCustomer
 	NewCustomer string `json:"new_customer,omitempty"`
 }

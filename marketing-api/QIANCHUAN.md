@@ -11,6 +11,7 @@
   - 获取店铺账户关联的广告账户列表 [ shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
   - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
   - 广告主添加抖音号 [ tools.AwemeAuth(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthRequest) (bool, error)  ]
+  - 店铺新客定向授权 [ tools.ShopAuth(clt *core.SDKClient, accessToken string, req *tools.ShopAuthRequest) error ]
 
 - 账户信息获取
   - 获取授权 User 信息 [ oauth.UserInfo(clt *core.SDKClient, accessToken string) (*oauth.UserInfoResponseData, error) ]
@@ -52,6 +53,9 @@
   - 商品/直播间管理
     - 获取可投商品列表 [ AvailableGet(clt *core.SDKClient, accessToken string, req *product.AvailableGetRequest) (*product.AvailableGetResponseData, error) ]
     - 获取千川账户下已授权抖音号 [ AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
+    - 达人获取可投商品列表 [ ProductAvailableGet(clt *core.SDKClient, accessToken string, req *aweme.ProductAvailableGetRequest) (*aweme.ProductAvailableGetResult, error) ]
+    - 获取广告主绑定的品牌列表 [ brand.AuthorizedGet(clt *core.SDKClient, accessToken string, req *brand.AuthorizedGetRequest) ([]brand.Brand, error) ]
+    - 获取广告主绑定的店铺列表 [ shop.AuthorizedGet(clt *core.SDKClient, accessToken string, req *shop.AuthorizedGetRequest) (*shop.AuthorizedGetResult, error) ]
   - 关键词管理 (api/qianchuan/ad)
     - 获取计划的搜索关键词 [ KeywordsGet(clt *core.SDKClient, accessToken string, req *ad.KeywordsGetRequest) (*ad.KeywordsGetResult, error) ]
     - 更新关键词 [ KeywordsUpdate(clt *core.SDKClient, accessToken string, req *ad.KeywordsUpdateRequest) error ]

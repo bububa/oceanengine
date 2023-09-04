@@ -4,9 +4,11 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/aweme"
+	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/brand"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/creative"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/live"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/product"
+	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/shop"
 )
 
 // Ad 计划详情
@@ -43,6 +45,10 @@ type Ad struct {
 	DeliverySetting *DeliverySetting `json:"delivery_setting,omitempty"`
 	// Audience 定向设置
 	Audience *Audience `json:"audience,omitempty"`
+	// ShopInfo 店铺信息
+	ShopInfo *shop.Shop `json:"shop_info,omitempty"`
+	// BrandInfo 品牌信息
+	BrandInfo *brand.Brand `json:"brand_info,omitempty"`
 	// CreativeMaterialMode 创意呈现方式
 	CreativeMaterialMode enum.CreativeMaterialMode `json:"creative_material_mode,omitempty"`
 	// FirstIndustryID 创意一级行业ID
