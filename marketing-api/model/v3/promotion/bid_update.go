@@ -17,7 +17,7 @@ type BidUpdateData struct {
 	// PromotionID 广告ID，广告ID需要属于广告主
 	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// Bid 出价，单位“元”，精度：两位小数。
-	Bid float64 `json:"deepbid,omitempty"`
+	Bid float64 `json:"bid,omitempty"`
 }
 
 // Encode implement PostRequest interface
