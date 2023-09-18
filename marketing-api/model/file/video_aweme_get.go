@@ -20,6 +20,10 @@ type VideoAwemeGetRequest struct {
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小， 默认值：10，取值范围1-100
 	PageSize int `json:"page_size,omitempty"`
+	// 页码游标值，第一次拉取，请传入0
+	Cursor string `json:"cursor,omitempty"`
+	// 页面数据量
+	Count int `json:"count, omitempty"`
 }
 
 // VideoAwemeGetFiltering 筛选条件
@@ -43,6 +47,10 @@ func (r VideoAwemeGetRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
+	if r.Count > 0 {
+		values.Set("count", strconv.Itoa(r.Count))
+		values.Set("cursor", r.Cursor)
+	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
@@ -59,7 +67,13 @@ type VideoAwemeGetResponseData struct {
 	// List 视频列表
 	List []VideoAweme `json:"list,omitempty"`
 	// PageInfo 分页信息
-	PageInfo *model.PageInfo `json:"page_info,omitempty"`
+	PageInfo   *model.PageInfo `json:"page_info,omitempty"`
+	CursorInfo CursorInfo      `json:"cursor_info"`
+}
+
+type CursorInfo struct {
+	HasMore bool   `json:"has_more"`
+	Cursor  string `json:"cursor"`
 }
 
 type VideoAweme struct {
