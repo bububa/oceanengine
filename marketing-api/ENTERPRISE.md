@@ -1,0 +1,25 @@
+# 企业号开放平台 Golang SDK
+
+- Oauth2 授权 (api/oauth)
+  - 生成授权链接 [ Url(clt *core.SDKClient, redirectUrl string, state string, materialAuth bool) string ]
+  - 获取 AccessToken [ AccessToken(clt *core.SDKClient, authCode String) (*oauth.AccessTokenResponseData, error) ]
+  - 刷新 Token [ RefreshToken(clt *core.SDKClient, refreshToken string) (*oauth.AccessTokenResponseData, error)]
+- 账号服务
+  - 企业号账号管理 (enterprise)
+    - 获取企业号信息 [ Info(clt *core.SDKClient, accessToken string, req *enterprise.InfoRequest) ([]enterprise.Enterprise, error) ]
+  - 纵横组织账户管理 
+    - 获取纵横组织下资产账户列表 [ majordomo.AdvertiserSelect(clt *core.SDKClient, accessToken string, advertiserID uint64) ([]majordomo.Advertiser, error) ]
+    - 获取纵横组织下资产账户列表（分页） [ customercenter.AdvertiserList(clt *core.SDKClient, accessToken string, req *customercenter.AdvertiserListRequest) (*customercenter.AdvertiserListData, error) ]
+- 抖音企业号
+  - 评论管理
+    - 获取评论列表 [ comment.ListGet(clt *core.SDKClient, accessToken string, req *comment.ListGetRequest) (*comment.ListGetResult, error) ]
+    - 获取评论的回复 [ comment.ReplyList(clt *core.SDKClient, accessToken string, req *comment.ReplyListRequest) (*comment.ReplyListResult, error) ]
+    - 获取评论从属信息 [ comment.Detail(clt *core.SDKClient, accessToken string, req *comment.DetailRequest) (*comment.DetailResult, error) ]
+    - 回复评论 [ comment.Reply(clt *core.SDKClient, accessToken string, req *comment.ReplyRequest) (*comment.ReplyResult, error) ]
+    - 获取企业号视频列表 [ enterprise.ItemList(clt *core.SDKClient, accessToken string, req *enterprise.ItemListRequest) ([]enterprise.Item, error) ]
+  - 经营分析
+    - 获取广告主关联的企业号列表 [ enterprise.BindListGet(clt *core.SDKClient, accessToken string, req *enterprise.BindListGetRequest) ([]enterprise.BindItem, error) ]
+    - 获取企业号推广操作记录 [ enterprise.OperationLogGet(clt *core.SDKClient, accessToken string, req *enterprise.OperationLogGetRequest) (*enterprise.OperationLogGetResult, error) ]
+    - 获取企业号基础数据 [ enterprise.OverviewDataGet(clt *core.SDKClient, accessToken string, req *enterprise.ReportRequest) (*enterprise.ReportResult, error) ]
+    - 获取企业号流量来源数据 [ enterprise.FlowCategoryGet(clt *core.SDKClient, accessToken string, req *enterprise.ReportRequest) (*enterprise.ReportResult, error) ]
+    - 获取企业号视频分析数据 [ enterprise.VideoInfoGet(clt *core.SDKClient, accessToken string, req *enterprise.ReportRequest) (*enterprise.ReportResult, error) ]

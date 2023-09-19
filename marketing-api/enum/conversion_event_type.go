@@ -121,4 +121,6 @@ const (
 	Conversion_ECOM_SUCCESSFUL_PAY = "ecom_successful_pay"
 	// Conversion_ECOM_REFUND 电商退款
 	Conversion_ECOM_REFUND = "ecom_refund"
+	// Conversion_WITHDRAW_IAA 续费失败or短期退订
+	Conversion_WITHDRAW_IAA = "withdraw_iaa"
 )

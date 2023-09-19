@@ -1,13 +1,5 @@
 # 巨量引擎开放平台 Golang SDK
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/bububa/oceanengine.svg)](https://pkg.go.dev/github.com/bububa/oceanengine)
-[![Go](https://github.com/bububa/oceanengine/actions/workflows/go.yml/badge.svg)](https://github.com/bububa/oceanengine/actions/workflows/go.yml)
-[![goreleaser](https://github.com/bububa/oceanengine/actions/workflows/goreleaser.yml/badge.svg)](https://github.com/bububa/oceanengine/actions/workflows/goreleaser.yml)
-[![GitHub go.mod Go version of a Go module](https://img.shields.io/github/go-mod/go-version/bububa/oceanengine.svg)](https://github.com/bububa/oceanengine)
-[![GoReportCard](https://goreportcard.com/badge/github.com/bububa/oceanengine)](https://goreportcard.com/report/github.com/bububa/oceanengine)
-[![GitHub license](https://img.shields.io/github/license/bububa/oceanengine.svg)](https://github.com/bububa/oceanengine/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/bububa/oceanengine.svg)](https://GitHub.com/bububa/oceanengine/releases/)
-
 - Oauth2 授权 (api/oauth)
   - 生成授权链接 [ Url(clt *core.SDKClient, redirectUrl string, state string, materialAuth bool) string ]
   - 获取 AccessToken [ AccessToken(clt *core.SDKClient, authCode String) (*oauth.AccessTokenResponseData, error) ]
@@ -202,12 +194,6 @@
   - 创建DPA商品（无商品id） [ ProductCreate(clt *core.SDKClient, accessToken string, req *dpa.ProductCreateRequest) (uint64, error) ]
   - 批量修改DPA商品状态 [ ProductStatusBatchUpdate(clt *core.SDKClient, accessToken string, req *dpa.ProductStatusBatchUpdateRequest) (*dpa.ProductStatusBatchUpdateResponseData, error) ]
   - 删除DPA商品 [ ProductDelete(clt *core.SDKClient, accessToken string, req *dpa.ProductDeleteRequest) error ]
-- 巨量星图 (api/star)
-  - 获取星图客户任务列表 [ DemandList(clt *core.SDKClient, accessToken string, req *star.DemandListRequest) (*star.DemandListResponseData, error) ]
-  - 获取星图客户任务订单列表 [ DemandOrderList(clt *core.SDKClient, accessToken string, req *star.DemandOrderListRequest) (*star.DemandOrderListResponseData, error) ]
-  - 获取订单投后分析报表 [ ReportOrderOverviewGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResponseData, error) ]
-  - 获取订单投后受众报表 [ ReportOrderUserDistributionGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderUserDistributionGetRequest) (*star.ReportOrderUserDistributionGetResponseData, error) ]
-  - 获取星图订单投后线索 [ ClueList(clt *core.SDKClient, accessToken string, req *star.ClueListRequest) (*star.ClueListResponseData, error) ]
 - 素材管理 (api/file)
   - 上传广告主图片 [ ImageAdvertiser(clt *core.SDKClient, accessToken string, req *file.ImageAdvertiserRequest) (*file.Image, error) ]
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
