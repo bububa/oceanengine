@@ -5,12 +5,11 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model/enterprise"
 )
 
-// ListItem 获取企业号视频列表
-func ListItem(clt *core.SDKClient, accessToken string, req *enterprise.ListItemRequest) (*enterprise.ListItemResponse, error) {
-	var resp enterprise.ListItemResponse
-	err := clt.Get("v1.0/enterprise/item/list/", req, &resp, accessToken)
-	if err != nil {
+// ItemList 获取企业号视频列表
+func ItemList(clt *core.SDKClient, accessToken string, req *enterprise.ItemListRequest) ([]enterprise.Item, error) {
+	var resp enterprise.ItemListResponse
+	if err := clt.Get("v1.0/enterprise/item/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
-	return &resp, nil
+	return resp.Data.ItemList, nil
 }
