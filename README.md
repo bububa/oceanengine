@@ -10,4 +10,5 @@
 
 - [巨量引擎开放平台SDK](https://github.com/bububa/oceanengine/blob/master/marketing-api/OCEANENGINE.md)
 - [巨量千川开放平台SDK](https://github.com/bububa/oceanengine/blob/master/marketing-api/QIANCHUAN.md)
+- [巨量星图开放平台SDK](https://github.com/bububa/oceanengine/blob/master/marketing-api/STAR.md)
 - [企业号开放平台SDK](https://github.com/bububa/oceanengine/blob/master/marketing-api/ENTERPRISE.md)
