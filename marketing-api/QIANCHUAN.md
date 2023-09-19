@@ -5,21 +5,29 @@
   - 获取 AccessToken [ AccessToken(clt *core.SDKClient, authCode String) (*oauth.AccessTokenResponseData, error) ]
   - 刷新 Token [ RefreshToken(clt *core.SDKClient, refreshToken string) (*oauth.AccessTokenResponseData, error)]
 
-- 账户关系获取
-  - 获取千川账户下已授权抖音号 [ aweme.AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
-  - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(clt *core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
-  - 获取店铺账户关联的广告账户列表 [ shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
-  - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
-  - 广告主添加抖音号 [ tools.AwemeAuth(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthRequest) (bool, error)  ]
-  - 店铺新客定向授权 [ tools.ShopAuth(clt *core.SDKClient, accessToken string, req *tools.ShopAuthRequest) error ]
+- 账户管理
+    - 账户关系获取
+      - 获取千川账户下已授权抖音号 [ aweme.AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
+      - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(clt *core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
+      - 获取店铺账户关联的广告账户列表 [ shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
+      - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
+      - 广告主添加抖音号 [ tools.AwemeAuth(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthRequest) (bool, error)  ]
+      - 店铺新客定向授权 [ tools.ShopAuth(clt *core.SDKClient, accessToken string, req *tools.ShopAuthRequest) error ]
+    - 账户信息获取
+      - 获取授权 User 信息 [ oauth.UserInfo(clt *core.SDKClient, accessToken string) (*oauth.UserInfoResponseData, error) ]
+      - 获取代理商信息 [ agent.Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
+      - 获取店铺账户信息 [ shop.Get(clt *core.SDKClient, accessToken string, req *shop.GetRequest) ([]shop.Shop, error) ]
+      - 获取千川广告账户基础信息 [ advertiser.PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
+      - 获取千川广告账户全量信息 [ advertiser.Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
+      - 获取千川账户类型 [ TypeGet(clt *core.SDKClient, accessToken string, req *advertiser.TypeGetRequest) ([]advertiser.Advertiser, error) ]
 
-- 账户信息获取
-  - 获取授权 User 信息 [ oauth.UserInfo(clt *core.SDKClient, accessToken string) (*oauth.UserInfoResponseData, error) ]
-  - 获取代理商信息 [ agent.Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
-  - 获取店铺账户信息 [ shop.Get(clt *core.SDKClient, accessToken string, req *shop.GetRequest) ([]shop.Shop, error) ]
-  - 获取千川广告账户基础信息 [ advertiser.PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
-  - 获取千川广告账户全量信息 [ advertiser.Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
-  - 获取千川账户类型 [ TypeGet(clt *core.SDKClient, accessToken string, req *advertiser.TypeGetRequest) ([]advertiser.Advertiser, error) ]
+- 资金管理(api/qianchuan/finance)
+  - 获取账户钱包信息 [ WalletGet(clt *core.SDKClient, accessToken string, req *finance.WalletGetRequest) (*finance.Wallet, error) ]
+  - 获取财务流水信息 [ DetailGet(clt *core.SDKClient, accessToken string, req *finance.DetailGetRequest) (*finance.DetailGetResult, error) ]
+  - 创建转账交易号（方舟） [ advertiser.FundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCreateRequest) (string, error) ]
+  - 提交转账交易号（方舟） [ advertiser.FundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]
+  - 创建退款交易号（方舟） [ advertiser.RefundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCreateRequest) (string, error) ]
+  - 提交退款交易号（方舟） [ advertiser.RefundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]
 
 - 投放管理 (api/qianchuan)
   - 广告组管理 (api/qianchuan/campaign)
