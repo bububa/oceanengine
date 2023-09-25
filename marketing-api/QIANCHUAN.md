@@ -27,6 +27,9 @@
   - 创建退款交易号（方舟） [ advertiser.RefundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCreateRequest) (string, error) ]
   - 提交退款交易号（方舟） [ advertiser.RefundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]
 - 投放管理 (api/qianchuan)
+  - 广告账户预算 (api/qianchuan/advertiser)
+    - 获取账户日预算 [ AccountBudgetGet(clt *core.SDKClient, accessToken string, req *advertiser.AccountBudgetGetRequest) (*advertiser.Budget, error) ]
+    - 更新账户日预算 [ AccountBudgetUpdate(clt *core.SDKClient, accessToken string, req *advertiser.AccountBudgetUpdateRequest) error ]
   - 广告组管理 (api/qianchuan/campaign)
     - 广告组创建 [ Create(clt *core.SDKClient, accessToken string, req *campaign.CreateRequest) (uint64, error) ]
     - 广告组更新 [ Update(clt *core.SDKClient, accessToken string, req *campaign.UpdateRequest) (uint64, error) ]
