@@ -102,6 +102,10 @@ type Keyword struct {
 	Status qianchuan.KeywordStatus `json:"status,omitempty"`
 	// MatchType 匹配类型，PHRASE 短语匹配、EXTENSIVE 广泛匹配、PRECISION 精准匹配
 	MatchType enum.KeywordMatchType `json:"match_type,omitempty"`
+	// WordPackageID 词包ID
+	WordPackageID uint64 `json:"word_package_id,omitempty"`
+	// WordPackageName 词包名称
+	WordPackageName string `json:"word_package_name,omitempty"`
 }
 
 // PrivateWords 搜索否定词

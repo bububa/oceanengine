@@ -1,5 +1,7 @@
 package product
 
+import "github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
+
 // Product 商品
 type Product struct {
 	// ID 商品id
@@ -32,4 +34,18 @@ type Product struct {
 	// 支持：true
 	// 不支持：false
 	SupportProductNewOpen bool `json:"support_product_new_open,omitempty"`
+	// ImgList 商品卡方图url列表
+	ImgList []struct {
+		// ImgURL 商品卡方图url
+		// 注意：在使用商品卡投放广告时，需要先将商品卡方图下载，然后上传至素材库
+		ImgURL string `json:"img_url,omitempty"`
+	} `json:"img_list,omitempty"`
+	// ChannelID 渠道ID，如果渠道品生效，价格、销量等信息需要返回渠道品信息
+	// 注意：在抖音号入參的情况下，如果当前商品在该抖音号下存在渠道品，会返回渠道品信息。在创编链路，需要使用渠道品来创建计划
+	// 渠道品相关介绍见《【抖店】销售渠道品功能操作手册》
+	ChannelID uint64 `json:"channel_id,omitempty"`
+	// ChannelType 渠道类型，枚举值
+	// SHOP_SELL 商家自卖
+	// STAR_SELL 达人自播
+	ChannelType qianchuan.ProductChannelType `json:"channel_type,omitempty"`
 }

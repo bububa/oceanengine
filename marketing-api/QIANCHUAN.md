@@ -27,6 +27,9 @@
   - 创建退款交易号（方舟） [ advertiser.RefundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCreateRequest) (string, error) ]
   - 提交退款交易号（方舟） [ advertiser.RefundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]
 - 投放管理 (api/qianchuan)
+  - 广告账户预算 (api/qianchuan/advertiser)
+    - 获取账户日预算 [ AccountBudgetGet(clt *core.SDKClient, accessToken string, req *advertiser.AccountBudgetGetRequest) (*advertiser.Budget, error) ]
+    - 更新账户日预算 [ AccountBudgetUpdate(clt *core.SDKClient, accessToken string, req *advertiser.AccountBudgetUpdateRequest) error ]
   - 广告组管理 (api/qianchuan/campaign)
     - 广告组创建 [ Create(clt *core.SDKClient, accessToken string, req *campaign.CreateRequest) (uint64, error) ]
     - 广告组更新 [ Update(clt *core.SDKClient, accessToken string, req *campaign.UpdateRequest) (uint64, error) ]
@@ -62,6 +65,7 @@
     - 获取广告主绑定的品牌列表 [ brand.AuthorizedGet(clt *core.SDKClient, accessToken string, req *brand.AuthorizedGetRequest) ([]brand.Brand, error) ]
     - 获取广告主绑定的店铺列表 [ shop.AuthorizedGet(clt *core.SDKClient, accessToken string, req *shop.AuthorizedGetRequest) (*shop.AuthorizedGetResult, error) ]
   - 关键词管理 (api/qianchuan/ad)
+    - 获取词包推荐关键词 [ KeywordPackageGet(clt *core.SDKClient, accessToken string, req *ad.KeywordPackageGetRequest) ([]ad.WordPackage, error) ]
     - 获取计划的搜索关键词 [ KeywordsGet(clt *core.SDKClient, accessToken string, req *ad.KeywordsGetRequest) (*ad.KeywordsGetResult, error) ]
     - 更新关键词 [ KeywordsUpdate(clt *core.SDKClient, accessToken string, req *ad.KeywordsUpdateRequest) error ]
     - 获取系统推荐的搜索关键词 [ RecommendKeywordsGet(clt *core.SDKClient, accessToken string, req *ad.RecommendKeywordsGetRequest) (*ad.RecommendKeywordsGetResult, error) ]
