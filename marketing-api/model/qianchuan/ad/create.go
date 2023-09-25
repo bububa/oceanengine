@@ -33,6 +33,10 @@ type CreateRequest struct {
 	AwemeID uint64 `json:"aweme_id,omitempty"`
 	// ProductIDs 商品id列表，即准备推广的商品列表，可通过【查询店铺商品列表】接口获取名下可推广商品; 目前仅支持推一个商品，但需以数组入参
 	ProductIDs []uint64 `json:"product_ids,omitempty"`
+	// ChannelProductInfos 渠道品信息
+	// 注意：如果当前商品在该抖音号下存在渠道品，需要入參channel_product_info
+	// 渠道品相关介绍见《【抖店】销售渠道品功能操作手册》
+	ChannelProductInfos []ChannelProduct `json:"channel_product_infos,omitempty"`
 	// DeliverySetting 投放设置
 	DeliverySetting DeliverySetting `json:"delivery_setting,omitempty"`
 	// Audience 人群定向
