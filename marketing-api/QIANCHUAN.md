@@ -62,6 +62,7 @@
     - 获取广告主绑定的品牌列表 [ brand.AuthorizedGet(clt *core.SDKClient, accessToken string, req *brand.AuthorizedGetRequest) ([]brand.Brand, error) ]
     - 获取广告主绑定的店铺列表 [ shop.AuthorizedGet(clt *core.SDKClient, accessToken string, req *shop.AuthorizedGetRequest) (*shop.AuthorizedGetResult, error) ]
   - 关键词管理 (api/qianchuan/ad)
+    - 获取词包推荐关键词 [ KeywordPackageGet(clt *core.SDKClient, accessToken string, req *ad.KeywordPackageGetRequest) ([]ad.WordPackage, error) ]
     - 获取计划的搜索关键词 [ KeywordsGet(clt *core.SDKClient, accessToken string, req *ad.KeywordsGetRequest) (*ad.KeywordsGetResult, error) ]
     - 更新关键词 [ KeywordsUpdate(clt *core.SDKClient, accessToken string, req *ad.KeywordsUpdateRequest) error ]
     - 获取系统推荐的搜索关键词 [ RecommendKeywordsGet(clt *core.SDKClient, accessToken string, req *ad.RecommendKeywordsGetRequest) (*ad.RecommendKeywordsGetResult, error) ]
