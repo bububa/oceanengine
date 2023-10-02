@@ -18,6 +18,10 @@ type AssetsCreateRequest struct {
 	QuickAppAsset *QuickApp `json:"quick_app_asset,omitempty"`
 	// AppAsset 应用信息
 	AppAsset *App `json:"app_asset,omitempty"`
+	// SiteAsset 橙子落地页信息
+	SiteAsset *Site `json:"site_asset,omitempty"`
+	// MiniProgramAsset 字节小程序资产信息
+	MiniProgramAsset *MiniProgram `json:"mini_program_asset,omitempty"`
 }
 
 // Encode implement PostRequest interface

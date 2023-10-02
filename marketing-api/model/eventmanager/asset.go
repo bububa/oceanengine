@@ -1,6 +1,8 @@
 package eventmanager
 
-// AssetBaseInfo 资产基本数据``
+import "github.com/bububa/oceanengine/marketing-api/enum"
+
+// AssetBaseInfo 资产基本数据“
 type AssetBaseInfo struct {
 	// AssetID 快应用资产ID
 	AssetID uint64 `json:"asset_id,omitempty"`
@@ -51,9 +53,26 @@ type App struct {
 	Role string `json:"role,omitempty"`
 }
 
+// Site 橙子落地页信息
+type Site struct {
+	AssetBaseInfo
+	// SiteID 橙子建站站点ID，橙子落地页必填
+	SiteID uint64 `json:"site_id,omitempty"`
+	// SiteName 橙子建站站点名称，橙子落地页必填
+	SiteName string `json:"site_name,omitempty"`
+}
+
 // MiniProgram 字节小程序快应用资产
 type MiniProgram struct {
 	AssetBaseInfo
 	// MiniProgramID 字节小程序id
 	MiniProgramID string `json:"mini_program_id,omitempty"`
+	// MicroProgramName 字节小程序的名称，需要与资产id后面信息一致
+	MicroProgramName string `json:"micro_program_name,omitempty"`
+	// InstanceID 字节小程序资产ID，通过【工具】-【获取字节小程序/小游戏】获取
+	InstanceID string `json:"instance_id,omitempty"`
+	// MiniProgramType 字节小程序类型：
+	// BYTE_APP：字节小程序
+	// BYTE_GAME：字节小游戏
+	MiniProgramType enum.MiniProgramType `json:"mini_program_type,omitempty"`
 }

@@ -474,6 +474,10 @@
     - 设置微信小游戏/小程序共享 [ BpAssetManagementShare(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareRequest) ([]wechat.BpAssetManagementShareError, error) ]
     - 取消微信小游戏/小程序共享关系 [ BpAssetManagementShareCancel(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareRequest) ([]wechat.BpAssetManagementShareError, error) ]
     - 查看微信小游戏/小程序共享范围 [ BpAssetManagementShareGet(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareGetRequest) (*wechat.BpAssetManagementShareList, error) ]
+  - 字节小程序/小游戏管理 (tools)
+    - 获取字节小游戏 [ MicroGameList(clt *core.SDKClient, accessToken string, req *tools.MicroAppListRequest) (*tools.MicroAppListResult, error) ]
+    - 获取字节小程序 [ MicroAppList(clt *core.SDKClient, accessToken string, req *tools.MicroAppListRequest) (*tools.MicroAppListResult, error) ]
+    - 获取字节小程序/小游戏详情内容 [ AssetLinkList(clt *core.SDKClient, accessToken string, req *tools.AssetLinkListRequest) (*tools.AssetLinkListResult, error) ]
 - 应用市场 (api/servemarket)
   - 获取应用订单数据 [ OrderGet(clt *core.SDKClient, accessToken string, req *servemarket.OrderGetRequest) (*servemarket.OrderGetResponseData, error) ]
   - 获取用户已购功能点列表 [ ActiveFuncGet(clt *core.SDKClient, accessToken string, req *servemarket.ActiveFuncGetRequest) ([]servemarket.OrderFunction, error) ]
