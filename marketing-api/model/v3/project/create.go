@@ -81,6 +81,12 @@ type CreateRequest struct {
 	// 允许值: DPA_LINK 落地页
 	// 当landing_type为dpa时有效且必填
 	DpaAdType enum.DpaAdType `json:"dpa_adtype,omitempty"`
+	// 字节小程序/小游戏资产id，通过 工具-字节小程序 接口获取
+	// 10.30日后上线条件必填逻辑
+	// landing_type = MICRO_GAME下，且micro_promotion_type=BYTE_GAME字节小游戏、BYTE_APP字节小程序，必填
+	// landing_type=
+	// LINK SHOP下，若选择事件资产为字节小程序类型，则必填
+	MicroAppInstanceID uint64 `json:"micro_app_instance_id,omitempty"`
 	// OptimizeGoal 优化目标
 	OptimizeGoal *OptimizeGoal `json:"optimize_goal,omitempty"`
 	// LandingPageStayTime 店铺停留时长，单位为毫秒，当external_action为AD_CONVERT_TYPE_STAY_TIME时有效且必填
