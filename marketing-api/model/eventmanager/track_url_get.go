@@ -11,8 +11,8 @@ import (
 type TrackURLGetRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
-	// AssetsID 资产ID
-	AssetsID uint64 `json:"assets_id,omitempty"`
+	// AssetID 资产ID
+	AssetID uint64 `json:"asset_id,omitempty"`
 	// DownloadURL 应用下载链接，应用下载链接，IOS和安卓应用资产：必填
 	DownloadURL string `json:"download_url,omitempty"`
 	// TrackURLGroupName 监测链接组名称
@@ -29,7 +29,7 @@ type TrackURLGetRequest struct {
 func (r TrackURLGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	values.Set("assets_id", strconv.FormatUint(r.AssetsID, 10))
+	values.Set("asset_id", strconv.FormatUint(r.AssetID, 10))
 	if r.DownloadURL != "" {
 		values.Set("download_url", r.DownloadURL)
 	}
