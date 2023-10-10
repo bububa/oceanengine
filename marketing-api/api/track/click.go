@@ -22,6 +22,7 @@ var DEFAULT_CLICK_FIELDS = []string{
 	"android_id",
 	"oaid",
 	"os",
+	"caid",
 	"mac",
 	"mac1",
 	"ip",
@@ -34,6 +35,7 @@ var DEFAULT_CLICK_FIELDS = []string{
 	"model",
 	"union_site",
 	"caid1",
+	"caid2",
 }
 
 // Click 生成击检测链接
@@ -73,6 +75,8 @@ func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
 			values.Set("android_id", "__ANDROIDID__")
 		case "oaid":
 			values.Set("oaid", "__OAID__")
+		case "caid":
+			values.Set("caid", "__CAID__")
 		case "os":
 			values.Set("os", "__OS__")
 		case "mac":
