@@ -44,6 +44,12 @@ type Comment struct {
 	ItemID uint64 `json:"item_id,omitempty"`
 	// ItemTitle 视频标题
 	ItemTitle string `json:"item_title,omitempty"`
+	// CommentPermission 评论权限，允许值：
+	// READ 只读
+	// WRITE 可写
+	CommentPermission enum.CommentPermission `json:"comment_permission,omitempty"`
+	// MaterialID 评论关联的视频素材id
+	MaterialID uint64 `json:"material_id,omitempty"`
 }
 
 // UserInfo 评论用户信息

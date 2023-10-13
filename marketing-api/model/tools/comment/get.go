@@ -13,16 +13,10 @@ import (
 type GetRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
-	// PlatformVersion 查询的平台版本，查询体验版需传入V2，允许值：
-	// V1: 1.0平台（默认值）
-	// V2: 2.0平台
-	PlatformVersion enum.PlatformVersion `json:"platform_version,omitempty"`
 	// StartTime 查询起始时间，格式：yyyy-MM-dd，若不填，默认6天前（即获取最近七天的内容）
 	StartTime string `json:"start_time,omitempty"`
 	// EndTime 查询截止时间，格式：yyyy-MM-dd，若不填，默认当天
 	EndTime string `json:"end_time,omitempty"`
-	// IncludeMetrics 是否包含计算指标，传入True则返回负评数和负评率，默认为True
-	IncludeMetrics bool `json:"include_metrics,omitempty"`
 	// OrderField 排序字段，允许值：
 	// REPLY_COUNT按评论回复数量排序
 	// LIKE_COUNT 按点赞数量排序
@@ -43,15 +37,8 @@ type GetRequest struct {
 type GetFilter struct {
 	// AdIDs 计划id列表，一次最多10个
 	AdIDs []uint64 `json:"ad_ids,omitempty"`
-	// CreativeIDs 广告创意id列表，一次最多100个，仅当platform_version=V1时传入生效
-	CreativeIDs []uint64 `json:"creative_ids,omitempty"`
 	// ItemIDs 广告视频id列表，一次最多100个，仅当platform_version=V2时传入生效，可通过【获取抖音授权关系】获取item_id和视频相关信息
 	ItemIDs []uint64 `json:"item_ids,omitempty"`
-	// BindRelation 抖音号分类，可选值:
-	// ALL: 全部抖音号（默认值）
-	// BIND_AWEME: 绑定的抖音号
-	// VIRTUAL_AWEME: 虚拟抖音号
-	BindRelation string `json:"bind_relation,omitempty"`
 	// LevelType 查询的评论等级，可选值:
 	// LEVEL_ALL: 所有评论（默认值）
 	// LEVEL_ONE: 一级评论
@@ -69,19 +56,24 @@ type GetFilter struct {
 	// NEUTRAL: 中性评论
 	// POSITIVE: 正向评论
 	EmotionType enum.CommentEmotionType `json:"emotion_type,omitempty"`
+	// Content 评论关键词，最长支持10个字符
+	Content string `json:"content,omitempty"`
+	// AuthorIDs 视频作者抖音id，最多支持100个
+	AuthorIDs []uint64 `json:"author_ids,omitempty"`
+	// CommentType 评论内容类型，不传返回所有评论，允许值：
+	// IMAGE_COMMENT 图片评论
+	// IMAGE_TEXT_COMMENT 图文评论
+	// TEXT_COMMENT 文字评论
+	CommentType enum.CommentType `json:"comment_type,omitempty"`
 }
 
 // Encode implement GetRequest interface
 func (r GetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	values.Set("platform_version", string(r.PlatformVersion))
 	if r.Filtering != nil {
 		bs, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(bs))
-	}
-	if !r.IncludeMetrics {
-		values.Set("include_metrics", "false")
 	}
 	if r.OrderField != "" {
 		values.Set("order_field", r.OrderField)
@@ -117,10 +109,6 @@ type GetResponse struct {
 type GetResponseData struct {
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
-	// NegativeVolumn 负评数
-	NegativeVolumn int `json:"negative_volumn,omitempty"`
-	// NegativeVolumnRate 负评率
-	NegativeVolumnRate float64 `json:"negative_volumn_rate,omitempty"`
 	// CommentsList 评论列表
 	CommentsList []Comment `json:"comment_list,omitempty"`
 }
