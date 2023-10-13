@@ -443,6 +443,7 @@
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
+    - 获取评论统计指标 [ MetricsGet(clt *core.SDKClient, accessToken string, req *comment.MetricsGetRequest) (*comment.MetricsGetResult, error) ]
     - 评论操作 [ Operate(clt *core.SDKClient, accessToken string, req *comment.OperateRequest) (*comment.OperateResponseData, error) ]
     - 屏蔽词/屏蔽用户
       - 获取屏蔽词列表 [ TermsBandedGet(clt *core.SDKClient, accessToken string, req *comment.TermsBandedGetRequest) (*comment.TermsBandedGetResponseData, error) ]
