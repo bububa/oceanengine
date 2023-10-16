@@ -121,6 +121,8 @@
   - 获取低效素材 [ api.qianchuan.file.VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoEffeciencyGetRequest) ([]string, error) ]
   - 批量删除图片素材 [ api.qianchuan.file.ImageDelete(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.ImageDeleteRequest) ([]string, error) ]
   - 批量删除视频素材 [ api.qianchuan.file.VideoDelete(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoDeleteRequest) ([]string, error) ]
+  - 获取千川素材库图文 [ api.qianchuan.carousel.Get(clt *core.SDKClient, req *carousel.GetRequest, accessToken string) (*carousel.GetResult, error) ]
+  - 获取抖音号下图文 [ api.qianchuan.carousel.AwemeGet(clt *core.SDKClient, req *carousel.AwemeGetRequest, accessToken string) (*carousel.AwemeGetResult, error) ]
 - 工具
   - 查询工具
     - 获取行业列表 [ tools.IndustryGet(clt *core.SDKClient, accessToken string, req *tools.IndustryGetRequest) ([]tools.Industry, error) ]

@@ -16,6 +16,7 @@ type CompensateStatusGetRequest struct {
 	AdIDs []uint64 `json:"ad_ids,omitempty"`
 }
 
+// Encode implement GetRequest interface
 func (r CompensateStatusGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))

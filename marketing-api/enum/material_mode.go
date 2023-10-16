@@ -22,4 +22,6 @@ const (
 	MaterialMode_UNION_SPLASH MaterialMode = "UNION_SPLASH"
 	// MaterialMode_AWEME_LIVE_ROOM 直播画面类型
 	MaterialMode_AWEME_LIVE_ROOM MaterialMode = "AWEME_LIVE_ROOM"
+	// MaterialMode_CAROUSEL 图文
+	MaterialMode_CAROUSEL MaterialMode = "CAROUSEL"
 )
