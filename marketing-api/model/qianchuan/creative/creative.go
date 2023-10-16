@@ -29,6 +29,8 @@ type Creative struct {
 	ImageMaterial *ImageMaterial `json:"image_material,omitempty"`
 	// TitleMaterial 标题素材
 	TitleMaterial *TitleMaterial `json:"title_material,omitempty"`
+	// CarouselMaterial 图文信息，对应image_mode=CAROUSEL
+	CarouselMaterial *CarouselMaterial `json:"carousel_material,omitempty"`
 	// LabAdType 托管计划类型，NOT_LAB_AD：非托管计划，LAB_AD：托管计划
 	LabAdType enum.AdLabType `json:"ad_lab_type,omitempty"`
 	// VideoMaterialList 视频素材列表
