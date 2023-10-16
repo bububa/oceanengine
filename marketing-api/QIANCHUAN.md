@@ -54,6 +54,8 @@
     - 获取非ROI目标建议出价 [ SuggestBid(clt *core.SDKClient, accessToken string, req *ad.SuggestBidRequest) (*ad.SuggestBidResult, error) ]
     - 获取建议预算接口 [ SuggestBudget(clt *core.SDKClient, accessToken string, req *ad.SuggestBudgetRequest) (*ad.SuggestBudgetResult, error) ]
     - 获取预估效果接口 [ EstimateEffect(clt *core.SDKClient, accessToken string, req *ad.EstimateEffectRequest) (*ad.EstimateEffectResult, error) ]
+    - 获取计划成本保障状态 [ CompensateStatusGet(clt *core.SDKClient, accessToken string, req *ad.CompensateStatusGetRequest) ([]ad.CompensateStatus, error) ]
+    - 获取计划学习期状态 [ LearningStatusGet(clt *core.SDKClient, accessToken string, req *ad.LearningStatusGetRequest) ([]ad.LearningStatus, error) ]
   - 广告创意管理 (api/qianchuan/creative)
     - 批量更新广告创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 获取账户下创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
