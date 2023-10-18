@@ -23,7 +23,7 @@ type VideoAwemeGetRequest struct {
 	// 页码游标值，第一次拉取，请传入0
 	Cursor string `json:"cursor,omitempty"`
 	// 页面数据量
-	Count int `json:"count, omitempty"`
+	Count int `json:"count,omitempty"`
 }
 
 // VideoAwemeGetFiltering 筛选条件
