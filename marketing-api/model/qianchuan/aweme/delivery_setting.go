@@ -19,7 +19,9 @@ type DeliverySetting struct {
 	// AD_CONVERT_TYPE_SHOPPING: 商品购买
 	// AD_CONVERT_TYPE_LIVE_ROI: 商品支付ROI
 	ExternalAction qianchuan.ExternalAction `json:"external_action,omitempty"`
-	// DeliveryTime 期望曝光时长，允许值：0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、12、24注意：当营销目标为VIDEO_PROM_GOODS时，仅支持2、6、12、24
+	// 期望曝光时长，允许值：
+	// 当营销目标为VIDEO_PROM_GOODS时，支持2、6、12、24、72、120
+	// 当营销目标为LIVE_PROM_GOODS时，支持0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、12、24
 	DeliveryTime float64 `json:"delivery_time,omitempty"`
 	// BidMode 出价模式，可选值:
 	// PRICING_ACTION: 按优化目标出价
