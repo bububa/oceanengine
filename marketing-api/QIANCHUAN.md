@@ -111,6 +111,8 @@
   - 获取随心推短视频建议出价 [ SuggestBid(clt *core.SDKClient, accessToken string, req *aweme.SuggestBidRequest) (float64, error) ]
   - 获取随心推ROI建议出价 [ SuggestRoiGoal(clt *core.SDKClient, accessToken string, req *aweme.SuggestRoiGoalRequest) (float64, error) ]
   - 查询随心推使用中订单配额信息 [ OrderQuotaGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*aweme.OrderQuota, error) ]
+  - 追加随心推订单预算 [ OrderBudgetAdd(clt *core.SDKClient, accessToken string, req *aweme.OrderBudgetAddRequest) error ]
+  - 获取建议延长时长 [ OrderSuggestDeliveryTimeGet(clt *core.SDKClient, accessToken string, req *aweme.OrderSuggestDeliveryTimeGetRequest) (float64, error) ]
 - 素材管理 (api/file)
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
   - 上传视频 [ VideoAd(clt *core.SDKClient, accessToken string, req *file.VideoAdRequest) (*file.Video, error) ]
