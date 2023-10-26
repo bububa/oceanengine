@@ -22,5 +22,5 @@ type Item struct {
 	// ItemCreateTime 抖音视频发布时间
 	ItemCreateTime string `json:"item_create_time,omitempty"`
 	// CommentCount 评论数量
-	CommentCount int `json:"comment_count,omitempty"`
+	CommentCount model.Int64 `json:"comment_count,omitempty"`
 }
