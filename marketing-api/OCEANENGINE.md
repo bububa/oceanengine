@@ -442,6 +442,15 @@
     - 查询安卓应用母包 [ AndroidBasicPackageGet(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackageGetRequest) (*appmanagement.AndroidBasicPackageGetResult, error) ]
     - 更新安卓应用母包 [ AndroidBasicPackageUpdate(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackageUpdateRequest) error ]
     - 发布安卓应用母包 [ AndroidBasicPackagePublish(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackagePublishRequest) error ]
+  - RTA策略管理 (tools/rta)
+    - 获取RTA策略数据 [ GetInfo(clt *core.SDKClient, accessToken string, req *rta.GetInfoRequest) (*rta.GetInfoData, error) ]
+    - 获取可用的RTA策略 [ Get(clt *core.SDKClient, accessToken string, req *rta.GetRequest) ([]rta.RtaInfo, error) ] 
+    - 批量启停账户下RTA策略 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *rta.StatusUpdateRequest) error ]
+    - 设置账户下RTA策略生效范围 [ SetScope(clt *core.SDKClient, accessToken string, req *rta.SetScopeRequest) error ]
+    - 获取穿山甲渠道RTA联合实验数据 [ RtaExpGet(clt *core.SDKClient, accessToken string, req *rta.RtaExpGetRequest) ([]rta.Report, error) ]
+    - 获取站内媒体RTA联合实验数据（分时t+5） [ RtaExpLocalHourlyGet(clt *core.SDKClient, accessToken string, req *rta.RtaExpLocalHourlyGetRequest) ([]rta.Report, error) ]
+    - 获取站内媒体RTA联合实验数据（分天t+1）[ RtaExpLocalDailyGet(clt *core.SDKClient, accessToken string, req *rta.RtaExpLocalDailyGetRequest) ([]rta.GetRtaExpLocalDailyData, error) ]
+    - 获取RTA策略绑定信息列表 [ ScopeGet(clt *core.SDKClient, accessToken string, req *rta.ScopeGetRequest) ([]rta.Scope, error) ]
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
