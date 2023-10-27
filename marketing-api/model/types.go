@@ -101,6 +101,52 @@ func (i64 JSONInt64) Value() int64 {
 	return int64(i64)
 }
 
+// Int support string quoted number in json
+type Int int
+
+// UnmarshalJSON implement json Unmarshal interface
+func (i *Int) UnmarshalJSON(b []byte) (err error) {
+	if b[0] == '"' && b[len(b)-1] == '"' {
+		b = b[1 : len(b)-1]
+	}
+	v, _ := strconv.Atoi(string(b))
+	*i = Int(v)
+	return
+}
+
+func (i Int) Value() int {
+	return int(i)
+}
+
+func (i Int) String() string {
+	return strconv.Itoa(int(i))
+}
+
+// JSONInt support string quoted number in json and marshal to string
+type JSONInt int
+
+func JSONIntFromInt(v int) JSONInt {
+	return JSONInt(v)
+}
+
+// UnmarshalJSON implement json Unmarshal interface
+func (i *JSONInt) UnmarshalJSON(b []byte) (err error) {
+	if b[0] == '"' && b[len(b)-1] == '"' {
+		b = b[1 : len(b)-1]
+	}
+	v, _ := strconv.Atoi(string(b))
+	*i = JSONInt(v)
+	return
+}
+
+func (i JSONInt) MarshalJSON() ([]byte, error) {
+	return []byte(`"` + strconv.FormatInt(int64(i), 10) + `"`), nil
+}
+
+func (i JSONInt) Value() int {
+	return int(i)
+}
+
 // Float64 support string quoted number in json
 type Float64 float64
 
