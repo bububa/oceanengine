@@ -381,7 +381,7 @@ type CarouselMaterial struct {
 	// MaterialStatus 素材审核状态
 	MaterialStatus string `json:"material_status,omitempty"`
 	// CarouselType 图集素材类型
-	CarouselType enum.ImageMode `json:"carousel_type,omitempty"`
+	CarouselType int `json:"carousel_type,omitempty"`
 	// ImageSubject 图片主题
 	ImageSubject []file.ImageSubject `json:"image_subject,omitempty"`
 }
