@@ -345,13 +345,10 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	}
 	if body, err := debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug); err != nil {
 		debug.PrintError(err, c.debug)
-		if body != nil {
-			return model.BaseResponse{
-				Code:    httpResp.StatusCode,
-				Message: string(body),
-			}
+		return model.BaseResponse{
+			Code:    httpResp.StatusCode,
+			Message: string(body),
 		}
-		return err
 	}
 	if resp.IsError() {
 		return resp
