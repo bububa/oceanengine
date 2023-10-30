@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -60,10 +61,12 @@ func PrintJSONRequest(method string, url string, header http.Header, body []byte
 	buf := util.GetBufferPool()
 	defer util.PutBufferPool(buf)
 	json.Indent(buf, body, "", "\t")
+	headers := make([]string, 0, len(header))
+	for k := range header {
+		headers = append(headers, util.StringsJoin(k, ": ", header.Get(k)))
+	}
 
-	headerJson, _ := json.MarshalIndent(header, "", "\t")
-
-	log.Printf(format, method, url, headerJson, buf.String())
+	log.Printf(format, method, url, strings.Join(headers, "\n"), buf.String())
 }
 
 // PrintPostMultipartRequest print multipart/form-data post request with debug
@@ -82,20 +85,19 @@ func PrintPostMultipartRequest(url string, mp map[string]string, debug bool) {
 func DecodeJSONHttpResponse(r io.Reader, v interface{}, debug bool) ([]byte, error) {
 	buf := util.GetBufferPool()
 	defer util.PutBufferPool(buf)
-	if !debug {
-		tee := io.TeeReader(r, buf)
-		err := json.NewDecoder(tee).Decode(v)
+	tee := io.TeeReader(r, buf)
+	if err := json.NewDecoder(tee).Decode(v); err != nil {
 		return buf.Bytes(), err
 	}
-	body, err := io.ReadAll(r)
-	if err != nil {
-		return nil, err
+	if !debug {
+		return nil, nil
 	}
-	if err := json.Indent(buf, body, "", "\t"); err != nil {
-		return body, err
+	bs := buf.Bytes()
+	buf.Reset()
+	if err := json.Indent(buf, bs, "", "\t"); err != nil {
+		return bs, err
 	}
 
-	log.Println(util.StringsJoin("[DEBUG] [API] http response body:\n", string(buf.Bytes())))
-
-	return body, json.Unmarshal(body, v)
+	log.Println(util.StringsJoin("[DEBUG] [API] http response body:\n", string(bs)))
+	return nil, nil
 }
