@@ -31,11 +31,5 @@ func (r BaseResponse) IsError() bool {
 
 // Error implement Response interface
 func (r BaseResponse) Error() string {
-	builder := util.GetStringsBuilder()
-	builder.WriteString(strconv.Itoa(r.Code))
-	builder.WriteString(":")
-	builder.WriteString(r.Message)
-	ret := builder.String()
-	util.PutStringsBuilder(builder)
-	return ret
+	return util.StringsJoin(strconv.Itoa(r.Code), ":", r.Message)
 }

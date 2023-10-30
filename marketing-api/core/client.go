@@ -82,11 +82,7 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	if req != nil {
 		reqBytes = req.Encode()
 	}
-	builder := util.GetStringsBuilder()
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
+	reqUrl := util.StringsJoin(BASE_URL, gw)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
@@ -110,15 +106,10 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 
 // Get get api
 func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	builder := util.GetStringsBuilder()
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
+	reqUrl := util.StringsJoin(BASE_URL, gw)
 	if req != nil {
-		builder.WriteString("?")
-		builder.WriteString(req.Encode())
+		reqUrl = util.StringsJoin(reqUrl, "?", req.Encode())
 	}
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {
@@ -141,15 +132,10 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 
 // GetBytes get bytes api
 func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string) ([]byte, error) {
-	builder := util.GetStringsBuilder()
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
+	reqUrl := util.StringsJoin(BASE_URL, gw)
 	if req != nil {
-		builder.WriteString("?")
-		builder.WriteString(req.Encode())
+		reqUrl = util.StringsJoin(reqUrl, "?", req.Encode())
 	}
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {
@@ -210,11 +196,7 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 		}
 	}
 	mw.Close()
-	builder := util.GetStringsBuilder()
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
+	reqUrl := util.StringsJoin(BASE_URL, gw)
 	debug.PrintPostMultipartRequest(reqUrl, mp, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, buf)
 	if err != nil {
@@ -332,15 +314,10 @@ func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model
 
 // OpenGet get api
 func (c *SDKClient) OpenGet(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	builder := util.GetStringsBuilder()
-	builder.WriteString(OPEN_URL)
-	builder.WriteString(gw)
+	reqUrl := util.StringsJoin(OPEN_URL, gw)
 	if req != nil {
-		builder.WriteString("?")
-		builder.WriteString(req.Encode())
+		reqUrl = util.StringsJoin(reqUrl, "?", req.Encode())
 	}
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {
@@ -366,9 +343,14 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	if resp == nil {
 		resp = &model.BaseResponse{}
 	}
-	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
-	if err != nil {
+	if body, err := debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug); err != nil {
 		debug.PrintError(err, c.debug)
+		if body != nil {
+			return model.BaseResponse{
+				Code:    httpResp.StatusCode,
+				Message: string(body),
+			}
+		}
 		return err
 	}
 	if resp.IsError() {
