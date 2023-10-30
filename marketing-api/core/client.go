@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
+	"errors"
 	"io"
 	"mime/multipart"
 	"net/http"
@@ -345,10 +346,10 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	}
 	if body, err := debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug); err != nil {
 		debug.PrintError(err, c.debug)
-		return model.BaseResponse{
+		return errors.Join(model.BaseResponse{
 			Code:    httpResp.StatusCode,
 			Message: string(body),
-		}
+		}, err)
 	}
 	if resp.IsError() {
 		return resp
