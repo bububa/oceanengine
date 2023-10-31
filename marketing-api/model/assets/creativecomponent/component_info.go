@@ -123,6 +123,13 @@ func (i *ComponentInfo) UnmarshalJSON(b []byte) (err error) {
 			return
 		}
 		info.ComponentData = data
+	case enum.ComponentType_LUCKY_BOX:
+		var data LuckyBox
+		if err = json.Unmarshal(tmp.ComponentData, &data); err != nil {
+			fmt.Println(err)
+			return
+		}
+		info.ComponentData = data
 	default:
 		info.ComponentData = UnknownComponent(tmp.ComponentData)
 	}
@@ -347,8 +354,44 @@ type CouponInfo struct {
 
 // GiftPackageInfo 礼包码信息
 type GiftPackageInfo struct {
+	// Title 主标题。长度小于等于16，一个中文占2位。
+	// 当style_type=14、15时有提示文案
+	// 当style_type=16时，question回答正确有提示文案，否则报错
+	Title string `json:"title,omitempty"`
+	// Tipds 引导文案（如仅有3.4%用户获得）。长度小于等于30，一个中文占2位。当style_type=14时有提示文案
+	// 当style_type=11翻卡领游戏礼包码(不带icon)时该字段必填
+	Tips string `json:"tips,omitempty"`
+	// Code 礼包兑换码（如VIP888）。长度小于等于16，一个中文占2位。
+	Code string `json:"code,omitempty"`
+	// GiftPackageImageInfo 礼包图片信息。数量限制为3，少于3或大于3报错。
+	// 当style_type=10翻卡领游戏礼包码(带icon)时该字段必填
+	// 当style_type=14、16时gift_package_image_id和gift_package_text为三组
+	GiftPackageImageInfo []GiftPackageImageInfo `json:"gift_package_image_info,omitempty"`
+	// CardPackageImageInfo 抽卡图片信息，数量限制为1。当style_type=15时该字段必填
+	CardPackageImageInfo []CardPackageImageInfo `json:"card_package_image_info,omitempty"`
+	// CtaText 按钮文案，当style_type=14、15、16时该字段必填
+	// 枚举值：PREFER_SYSTEM_RECOMMAND-个性化文案、DOWNLOAD_AND_RECEIVE_NOW-立即下载领取、RECEIVE_NOW-立即领取、CUSTOM_CTA-自定义按钮文案
+	CtaText string `json:"cta_text,omitempty"`
+	// CtaTextCustom 当cta_text为自定义按钮文案时，该字段必填。长度小于等于12，一个中文占2位。
+	CtaTextCustom string `json:"cta_text_custom,omitempty"`
 	// CodeList 礼包码列表
 	CodeList []GiftPackageCode `json:"code_list,omitempty"`
+}
+
+// GiftPackageImageInfo 礼包图片信息。数量限制为3，少于3或大于3报错。
+type GiftPackageImageInfo struct {
+	// GiftPackageImageID 礼包图片。要求图片大小在200k以内且尺寸比例为1：1，建议参考尺寸144*144px。
+	GiftPackageImageID string `json:"gift_package_image_id,omitempty"`
+	// GiftPackageText 礼包所属文案（如史诗表情X50）。长度小于等于16，一个中文占2位。
+	GiftPackageText string `json:"gift_package_text,omitempty"`
+}
+
+// CardPackageImageInfo 抽卡图片信息，数量限制为1。当style_type=15时该字段必填
+type CardPackageImageInfo struct {
+	// CardFront 当style_type=15时该字段为默认url，支持自定义
+	CardFront string `json:"card_front,omitempty"`
+	// CardText 当style_type=15时该字段为卡牌说明，选填。若不填写，则不显示卡牌说明文案
+	CardText string `json:"card_text,omitempty"`
 }
 
 // GiftPackageCode 礼包码
@@ -464,6 +507,20 @@ type ProductCouponInfo struct {
 	AddonText string `json:"addon_text,omitempty"`
 	// CtaText 按钮文案。枚举值：PREFER_SYSTEM_RECOMMAND-个性化文案、DOWNLOAD_AND_RECEIVE_NOW-立即下载领取、RECEIVE_NOW-立即领取
 	CtaText string `json:"cta_text,omitempty"`
+	// CtaTextCustom 当cta_text为自定义按钮文案时，该字段必填。长度小于等于12，一个中文占2位。
+	CtaTextCustom string `json:"cta_text_custom,omitempty"`
+	// ProductImageInfo 商品图信息。数量上限为3。
+	// 当style_type=5-翻卡-领商品1和8翻卡-领商品(单图)时该字段必填,需传1组商品图片和商品文案，否则报错。
+	// 当style_type=9翻卡-领商品(多图)时该字段必填,需传3组商品图片和商品文案，否则报错。
+	ProductImageInfo []ProductImageInfo `json:"product_image_info,omitempty"`
+}
+
+// ProductImageInfo 商品图信息。数量上限为3。
+type ProductImageInfo struct {
+	// ProductImageID 商品图片。要求图片大小在200k以内且尺寸比例为1：1，建议参考尺寸280*280px。
+	ProductImageID string `json:"product_image_id,omitempty"`
+	// ProductName 商品文案。长度小于等于30，一个中文占2位
+	ProductName string `json:"product_name,omitempty"`
 }
 
 // OffsetTimeInfo 抵时长信息。
@@ -475,7 +532,7 @@ type OffsetTimeInfo struct {
 // UnionLightInteractive 穿山甲轻互动组件的component_data
 type UnionLightInteractive struct {
 	// StyleType 互动前玩法
-	// 枚举值：1-翻卡-领红包1、2-领红包样式2、3-领红包样式3、4-红包雨、5-翻卡-领商品1、6-答题、7-滑动
+	// 枚举值：1-翻卡-领红包1、2-领红包样式2、3-领红包样式3、4-红包雨、5-翻卡-领商品1、6-答题、7-滑动、12-宝箱雨、13-答题领红包、14-宝箱领礼包码、15-抽卡领礼包码、16-答题领礼包码场景
 	StyleType int `json:"style_type,omitempty"`
 	// ShowSeconds 出现时间
 	// 互动组件相对视频的展现时间，可输入3.0～25.0（包含）之间的数字，至多保留1位小数。
@@ -498,6 +555,19 @@ type UnionLightInteractive struct {
 	// AnswerOption 正确选项。允许值：1-选项一，2-选项二
 	// 当style_type为6-答题时，必填。
 	AnswerOption int `json:"answer_option,omitempty"`
+	// GiftPackageInfo 礼包码信息
+	GiftPackageInfo *GiftPackageInfo `json:"gift_package_info,omitempty"`
+	// Title 互动前场景主标题，自定义上传文案。
+	// 当style_type=2、3时，有默认值url:「翻卡有奖励」、当style_type=13时，有默认值url:「答题有奖励」。长度小于等于16，一个字符占两位
+	// 当style_type=8、9时，有默认值url:「翻卡有奖励」，长度小于等于12，一个字符占两位
+	// 当style_type=10、11时有默认值url：「翻卡有福利」
+	// 当style_type=14时有默认值url：「领取宝箱好礼」
+	// 当style_type=15时有默认值url：「翻卡得奖励」
+	Title string `json:"title,omitempty"`
+	// TreasureIcon 宝箱（或红包）icon。当style_type=1、2、3、4、8、9、12、14时，有默认icon URL，支持用户自定义
+	TreasureIcon string `json:"treasure_icon,omitempty"`
+	// CardBack 卡牌背面，当style_type=15时必填。有默认url，支持替换
+	CardBack string `json:"card_back,omitempty"`
 	// InteractiveType 互动后玩法。枚举值：1-红包、2-商品优惠、3-抵扣时长
 	InteractiveType int `json:"interactive_type,omitempty"`
 	// RewardInfo 红包信息。
@@ -514,6 +584,33 @@ func (u UnionLightInteractive) Type() enum.ComponentType {
 }
 
 var _ ComponentData = (*UnionLightInteractive)(nil)
+
+// LuckyBox 幸运盒子
+type LuckyBox struct {
+	// BoxUrlLogo 品牌logo图，url格式。尺寸：200px*200px，格式：jpg或png（二选一），大小：300kb
+	BoxUrlLogo string `json:"box_url_logo,omitempty"`
+	// BoxColor 提供RGB色值，如“#161823”
+	BoxColor string `json:"box_color,omitempty"`
+	// TitleFirst 标题第一段文案，默认为“预备！”。客户可以自定义文案，字符个数限制：<=3个中文字数（6个字符）
+	TitleFirst string `json:"title_first,omitempty"`
+	// Duration 倒计时时间，默认“5”。选择盒子倒计时时间 ，5-12秒；为了保证素材核心信息不被感染，建议5s之后出现
+	Duration int `json:"duration,omitempty"`
+	// TitleSecond 标题第二段文案，默认为“秒后有大量盒盒掉落”，秒固定不可配置，“后有大量盒盒掉落”文案可配置。可以自定义文案，字符个数限制：<=9个中文字数（18个字符）
+	TitleSecond string `json:"title_second,omitempty"`
+	// SubTitle 副标题文案，可以自定义文案，字符个数限制：<=14个中文字数（28个字符）
+	SubTitle string `json:"sub_title,omitempty"`
+	// SpecialBoxType 特效盒子类型，默认1金色盒子（当前只有一种类型，后续会开发其他类型）
+	SpecialBoxType int `json:"special_box_type,omitempty"`
+	// HintText 互动提示文案，用户提供自定义文案，字符个数限制：<=14个中文字数（28个字符）
+	HintText string `json:"hint_text,omitempty"`
+}
+
+// Type Implement ComponentData interface
+func (u LuckyBox) Type() enum.ComponentType {
+	return enum.ComponentType_LUCKY_BOX
+}
+
+var _ ComponentData = (*LuckyBox)(nil)
 
 // UnknownComponent 未知组件
 type UnknownComponent []byte

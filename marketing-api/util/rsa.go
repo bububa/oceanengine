@@ -9,18 +9,15 @@ import (
 	"encoding/pem"
 	"errors"
 	"io"
-	"io/ioutil"
-	mrand "math/rand"
-	"time"
 )
 
-func init() {
-	mrand.Seed(time.Now().UnixNano())
-}
+// func init() {
+// 	mrand.Seed(time.Now().UnixNano())
+// }
 
 // ReadPublicKeyFromPem read public key from pem file
 func ReadPublicKeyFromPem(r io.Reader) (*rsa.PublicKey, error) {
-	bs, err := ioutil.ReadAll(r)
+	bs, err := io.ReadAll(r)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +40,7 @@ func ParsePublicKeyFromPem(bs []byte) (*rsa.PublicKey, error) {
 
 // ReadPrivateKeyFromPem read private key from pem file
 func ReadPrivateKeyFromPem(r io.Reader) (*rsa.PrivateKey, error) {
-	bs, err := ioutil.ReadAll(r)
+	bs, err := io.ReadAll(r)
 	if err != nil {
 		return nil, err
 	}
@@ -52,13 +49,9 @@ func ReadPrivateKeyFromPem(r io.Reader) (*rsa.PrivateKey, error) {
 
 func ParsePrivateKeyFromPem(bs []byte) (*rsa.PrivateKey, error) {
 	block, _ := pem.Decode(bs)
-	privKeyI, err := x509.ParsePKCS8PrivateKey(block.Bytes)
+	privKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
 	if err != nil {
 		return nil, err
-	}
-	privKey, ok := privKeyI.(*rsa.PrivateKey)
-	if !ok {
-		return nil, errors.New("not rsa private key")
 	}
 	return privKey, nil
 }

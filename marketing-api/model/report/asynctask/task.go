@@ -18,6 +18,14 @@ type Task struct {
 	CreateTime string `json:"create_time,omitempty"`
 	// TaskStatus 任务状态。详见【附录-异步任务状态】
 	TaskStatus enum.AsyncTaskStatus `json:"task_status,omitempty"`
+	// DataTopic 可选值:
+	// BASIC_DATA 广告基础数据
+	// BIDWORD_DATA 关键词数据
+	// MATERIAL_DATA 素材数据
+	// ONE_KEY_BOOST_DATA 一键起量数据
+	// PRODUCT_DATA 产品数据
+	// QUERY_DATA 搜索词数据
+	DataTopic string `json:"data_topic,omitempty"`
 	// ErrMsg 任务失败时，这个字段表示失败原因
 	ErrMsg string `json:"err_msg,omitempty"`
 	// FileSize 任务完成时，这个字段表示生成文件的大小

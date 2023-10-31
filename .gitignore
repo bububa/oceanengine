@@ -28,3 +28,4 @@ _testmain.go
 test
 config.toml
 .vim
+.idea

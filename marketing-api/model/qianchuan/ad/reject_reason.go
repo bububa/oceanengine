@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/creative"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
@@ -41,5 +42,5 @@ type RejectReasonList struct {
 	// AdID 广告计划id
 	AdID uint64 `json:"ad_id,omitempty"`
 	// AuditRecords 审核详细内容
-	AuditRecords []AuditRecord `json:"audit_records,omitempty"`
+	AuditRecords []creative.AuditRecord `json:"audit_records,omitempty"`
 }

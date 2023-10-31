@@ -43,7 +43,7 @@ type CustomDimensions struct {
 	// StatTimeDay 细分到自然天的数据
 	StatTimeDay string `json:"stat_time_day,omitempty"`
 	// StatTimeWeek 细分到自然周的数据，周一到周日为一整周
-	StatTimeWeek int `json:"stat_time_week,omitempty"`
+	StatTimeWeek string `json:"stat_time_week,omitempty"`
 	// StatTimeMonth 细分到自然月的数据，例如2022-3，表示是3月1日到3月31日
 	StatTimeMonth string `json:"stat_time_month,omitempty"`
 	// CdpProjectID 项目ID

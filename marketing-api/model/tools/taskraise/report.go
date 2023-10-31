@@ -8,6 +8,8 @@ type Report struct {
 	ReportID uint64 `json:"report_id,omitempty"`
 	// Name 任务名字
 	Name string `json:"name,omitempty"`
+	// RaiseMode 起量模式，允许值：常规起量CUSTOM、强劲起量STRONG
+	RaiseMode enum.TaskRaiseMode `json:"raise_mode,omitempty"`
 	// StartTime 任务开始时间
 	StartTime string `json:"start_time,omitempty"`
 	// Status 任务状态，枚举值: RAISING起量中、STOP 已结束

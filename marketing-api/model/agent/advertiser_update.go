@@ -17,6 +17,8 @@ type AdvertiserUpdateRequest struct {
 	Phonenumber string `json:"phonenumber,omitempty"`
 	// Telephone 固定电话
 	Telephone string `json:"telephone,omitempty"`
+	// Note 备注
+	Note string `json:"note,omitempty"`
 }
 
 // Encode implement PostRequest interface

@@ -3,6 +3,7 @@ package promotion
 import (
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/model/file"
 	"github.com/bububa/oceanengine/marketing-api/model/v3/project"
 )
 
@@ -24,6 +25,10 @@ type Promotion struct {
 	PromotionCreateTime string `json:"promotion_create_time,omitempty"`
 	// LearningPhase 学习期状态，枚举值：DEFAULT（默认，不在学习期中）、LEARNING（学习中）、LEARNED（学习成功）、LEARN_FAILED（学习失败)
 	LearningPhase enum.LearningPhase `json:"learning_phase,omitempty"`
+	// StatusFirst 广告一级状态
+	StatusFirst enum.PromotionStatusFirst `json:"status_first,omitempty"`
+	// StatusSecond 广告二级状态
+	StatusSecond []enum.PromotionStatus `json:"status_second,omitempty"`
 	// Status 广告状态，枚举值：NOT_DELETED 不限 、ALL 不限（包含已删除）、OK 投放中、DELETED 已删除、PROJECT_OFFLINE_BUDGET 项目超出预算、PROJECT_PREOFFLINE_BUDGET 项目接近预算、TIME_NO_REACH 未到达投放时间、TIME_DONE 已完成、NO_SCHEDULE 不在投放时段、AUDIT 新建审核中、REAUDIT 修改审核中、FROZEN 已终止、AUDIT_DENY 审核不通过、OFFLINE_BUDGET 广告超出预算、OFFLINE_BALANCE 账户余额不足、PREOFFLINE_BUDGET 广告接近预算、DISABLED 已暂停、PROJECT_DISABLED 已被项目暂停、LIVE_ROOM_OFF 关联直播间不可投、PRODUCT_OFFLINE 关联商品不可投，、AWEME_ACCOUNT_DISABLED 关联抖音账号不可投、AWEME_ANCHOR_DISABLED 锚点不可投、DISABLE_BY_QUOTA 已暂停（配额达限）、CREATE 新建、ADVERTISER_OFFLINE_BUDGET 账号超出预算、ADVERTISER_PREOFFLINE_BUDGET 账号接近预算
 	Status enum.PromotionStatus `json:"status,omitempty"`
 	// OptStatus 操作状态
@@ -32,12 +37,18 @@ type Promotion struct {
 	NativeSetting *NativeSetting `json:"native_setting,omitempty"`
 	// PromotionMaterials 广告素材组合
 	PromotionMaterials *PromotionMaterial `json:"promotion_materials,omitempty"`
+	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
+	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// IsCommentDisable 广告评论，ON为启用，OFF为不启用
-	IsCommentDisable model.OnOffInt `json:"is_comment_disable,omitempty"`
+	IsCommentDisable model.ReverseOnOffInt `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
 	AdDownloadStatus model.OnOffInt `json:"ad_download_status,omitempty"`
+	// MaterialsType 素材类型
+	MaterialsType enum.MaterialsType `json:"materials_type,omitempty"`
 	// Source 广告来源
 	Source string `json:"source,omitempty"`
+	// BudgetMode 预算类型
+	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// Budget 预算
 	Budget float64 `json:"budget,omitempty"`
 	// Bid 点击出价/展示出价
@@ -48,6 +59,8 @@ type Promotion struct {
 	DeepCpaBid float64 `json:"deep_cpabid,omitempty"`
 	// RoiGoal 深度转化ROI系数
 	RoiGoal float64 `json:"roi_goal,omitempty"`
+	// ScheduleTime 广告的投放时段
+	ScheduleTime string `json:"schedule_time,omitempty"`
 	// MaterialScoreInfo 素材评级信息
 	MaterialScoreInfo *MaterialScoreInfo `json:"material_score_info,omitempty"`
 	// CreativeAutoGenerateSwitch 是否开启自动生成素材
@@ -56,6 +69,8 @@ type Promotion struct {
 	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
 	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
 	ConfigID uint64 `json:"config_id,omitempty"`
+	// BrandInfo 品牌信息
+	BrandInfo *BrandInfo `json:"brand_info,omitempty"`
 }
 
 func (p Promotion) Version() model.AdVersion {
@@ -121,10 +136,19 @@ type PromotionMaterial struct {
 	TextAbstractList []TextAbstract `json:"text_abstract_list,omitempty"`
 	// AnchorMaterialList 原生锚点素材，当 anchor_related_type = SELECT时必填，数量上限为1
 	AnchorMaterialList []AnchorMaterial `json:"anchor_material_list,omitempty"`
+	// DecorationMaterial 家装卡券素材
+	// 仅当landing_type选择LINK且命中白名单可用
+	// 需在广告平台签署协议后可用
+	DecorationMaterial []DecorationMaterial `json:"decoration_material,omitempty"`
+	// AutoExtendTraffic 智能拓流
+	// 允许值：ON开启（默认值）； OFF关闭
+	AutoExtendTraffic string `json:"auto_extend_traffic,omitempty"`
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// ComponentMaterialList 创意组件信息
 	ComponentMaterialList []ComponentMaterial `json:"component_material_list,omitempty"`
+	// MiniProgramInfo 字节小程序信息，当landing_type = MICRO_GAME且micro_promotion_type = BYTE_APP或BYTE_GAME时有效且必填
+	MiniProgramInfo *MiniProgramInfo `json:"mini_program_info,omitempty"`
 	// ExternalURLMaterialList 普通落地页链接素材，上限10个
 	// 当landing_type = APP ，且 download_type = EXTERNAL_URL时，external_url_material_list 至少传入一个
 	// 当landing_type = LINK和SHOP类型，且项目asset_type = ORANGE 时，仅允许传入支持对应优化目标的橙子落地页
@@ -132,12 +156,25 @@ type PromotionMaterial struct {
 	// 当landing_type = MICRO_GAME和WECHAT_APP类型，仅支持选择含微信小程序/小游戏的橙子建站落地页且如果多选落地页，需要所有建站对应相同的微信小游戏/微信小程序，否则报错
 	// 应用直播链路和线索自研落地页直播链路不支持该字段
 	ExternalURLMaterialList []string `json:"external_url_material_list,omitempty"`
-	// MiniProgramInfo 字节小程序信息，当landing_type = MICRO_GAME且micro_promotion_type = BYTE_APP或BYTE_GAME时有效且必填
-	MiniProgramInfo *MiniProgramInfo `json:"mini_program_info,omitempty"`
+	// ParamsType 链接类型(落地页)，DPA推广目的下必填允许值: DPA 商品库所含链接、CUSTOM 自定义链接
+	ParamsType string `json:"params_type,omitempty"`
+	// ExternalURLField 落地页链接字段选择，当params_type为DPA时必填
+	ExternalURLField string `json:"external_url_field,omitempty"`
+	// ExternalURLParams 落地页检测参数
+	ExternalURLParams string `json:"external_url_params,omitempty"`
+	// OpenURLType 直达链接类型，允许值: NONE不启用, DPA商品库所含链接, CUSTOM自定义链接商品库链接对应商品库内调起字段，如对接多种调起链接则可选择；自定义链接可自行输入调起链接。
+	// DPA推广母的下可以使用
+	OpenURLType string `json:"open_url_type,omitempty"`
+	// OpenURLField 直达链接字段选择，当dpa_open_url_type为DPA必填
+	OpenURLField string `json:"open_url_field,omitempty"`
+	// OpenURLParams 直达链接检测参数(DPA推广目的特有,在“产品库中提取的scheme地址"后面追加填写的参数)
+	OpenURLParams string `json:"open_url_params,omitempty"`
 	// WebURLMaterialList Android应用下载详情页
 	WebURLMaterialList []string `json:"web_url_material_list,omitempty"`
 	// PlayableURLMaterialList 试玩落地页素材
 	PlayableURLMaterialList []string `json:"playable_url_material_list,omitempty"`
+	// CarouselMaterialList   图集素材信息，当ad_type=ALL时，支持上限10个；当ad_type=SEARCH时，支持上限30个
+	CarouselMaterialList []CarouselMaterial `json:"carousel_material_list,omitempty"`
 	// OpenURL 直达链接，用于打开电商app，调起店铺
 	// 仅在电商店铺推广目的下有效
 	OpenURL string `json:"open_url,omitempty"`
@@ -149,6 +186,8 @@ type PromotionMaterial struct {
 	ProductInfo *ProductInfo `json:"product_info,omitempty"`
 	// CallToActionButtons 行动号召文案
 	CallToActionButtons []string `json:"call_to_action_buttons,omitempty"`
+	// IntelligentGeneration 智能生成行动号召按钮，开启后即对应的文案自动生成，可选项为OFF（默认）、ON
+	IntelligentGeneration string `json:"intelligent_generation,omitempty"`
 }
 
 // VideoMaterial 视频素材信息
@@ -189,6 +228,8 @@ type Image struct {
 
 // TitleMaterial 标题素材
 type TitleMaterial struct {
+	// MaterialID 素材ID
+	MaterialID model.Uint64 `json:"material_id,omitempty"`
 	// Title 创意标题
 	Title string `json:"title,omitempty"`
 	// BidwordList 搜索关键词列表
@@ -296,4 +337,51 @@ type AnchorMaterial struct {
 	// AnchorID 原生锚点id可使用【获取账户下的原生锚点】获得
 	// 当 anchor_related_type = SELECT时必填
 	AnchorID string `json:"anchor_id,omitempty"`
+}
+
+// DecorationMaterial 家装卡券素材
+type DecorationMaterial struct {
+	// MaterialID 素材ID
+	MaterialID model.Uint64 `json:"material_id,omitempty"`
+	// ImageMode 素材类型，仅支持传入CREATIVE_IMAGE_MODE_DECORATION_COUPON
+	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
+	// ActivityID 活动ID，image_mode为家具卡券素材时填写
+	// 通过【获取家装联盟卡券列表】接口获取
+	ActivityID string `json:"activity_id,omitempty"`
+}
+
+// BrandInfo 品牌信息
+type BrandInfo struct {
+	// YuntuCategoryID 品牌分类id
+	YuntuCategoryID int64 `json:"yuntu_category_id,omitempty"`
+	// CdpCategoryID cdp品牌id
+	CdpCategoryID int64 `json:"cdp_category_id,omitempty"`
+	// EcomCategoryID 电商品牌id
+	EcomCategoryID int64 `json:"ecom_category_id,omitempty"`
+	// BrandNameID 云图品牌id
+	BrandNameID int64 `json:"brand_name_id,omitempty"`
+	// CdpBrandID cdp品牌id
+	CdpBrandID int64 `json:"cdp_brand_id,omitempty"`
+	// CdpBrandName 云图品牌名称
+	CdpBrandName string `json:"cdp_brand_name,omitempty"`
+	// SubBrandNames 子品牌名称
+	SubBrandNames []string `json:"sub_brand_names,omitempty"`
+	// SubBrandNameIDs 子品牌id
+	SubBrandNameIDs []string `json:"sub_brand_name_ids,omitempty"`
+}
+
+// CarouselMaterial   图集素材信息
+type CarouselMaterial struct {
+	// CarouselID 图集id，可通过【获取图集素材】接口获得
+	CarouselID string `json:"carousel_id,omitempty"`
+	// ImageID 图片ID列表
+	ImageID []string `json:"image_id,omitempty"`
+	// AudioID 音频ID
+	AudioID string `json:"audio_id,omitempty"`
+	// MaterialStatus 素材审核状态
+	MaterialStatus string `json:"material_status,omitempty"`
+	// CarouselType 图集素材类型
+	CarouselType int `json:"carousel_type,omitempty"`
+	// ImageSubject 图片主题
+	ImageSubject []file.ImageSubject `json:"image_subject,omitempty"`
 }

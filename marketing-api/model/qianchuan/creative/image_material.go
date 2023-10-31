@@ -1,6 +1,6 @@
 package creative
 
-import "github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
+import "github.com/bububa/oceanengine/marketing-api/enum"
 
 // ImageMaterial 图片素材
 type ImageMaterial struct {
@@ -11,7 +11,7 @@ type ImageMaterial struct {
 	// ImageID 图片ID
 	ImageID string `json:"image_id,omitempty"`
 	// ImageMode 素材类型，见附录-枚举值
-	ImageMode qianchuan.ImageMode `json:"image_mode,omitempty"`
+	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// IsAutoGenerate 是否为派生创意标识，1：是，0：不是
 	IsAutoGenerate int `json:"is_auto_generate,omitempty"`
 }

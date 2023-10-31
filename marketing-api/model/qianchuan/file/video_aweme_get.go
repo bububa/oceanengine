@@ -5,7 +5,6 @@ import (
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/model"
-	"github.com/bububa/oceanengine/marketing-api/model/file"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
@@ -27,6 +26,8 @@ type VideoAwemeGetRequest struct {
 type VideoAwemeGetFiltering struct {
 	//ProductID 商品ID，查询关联商品的相应视频，仅短视频带货场景需入参
 	ProductID uint64 `json:"product_id,omitempty"`
+	// AwemeItemURL 抖音主页视频url
+	AwemeItemURL string `json:"aweme_item_url,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -58,7 +59,7 @@ type VideoAwemeGetResponse struct {
 // VideoAwemeGetResponseData json返回值
 type VideoAwemeGetResponseData struct {
 	// List 视频列表
-	List []file.Video `json:"video_list,omitempty"`
+	List []Video `json:"video_list,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }

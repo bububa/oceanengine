@@ -8,7 +8,7 @@ import (
 // AccessTokenRequest 获取Access Token API Request
 type AccessTokenRequest struct {
 	// AppId 开发者申请的应用APP_ID
-	AppId string `json:"app_id,omitempty"`
+	AppId uint64 `json:"app_id,omitempty"`
 	// Secret 开发者应用的私钥Secret
 	Secret string `json:"secret,omitempty"`
 	// GrantType 授权类型。允许值: "auth_code"

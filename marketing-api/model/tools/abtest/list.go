@@ -51,7 +51,7 @@ func (r ListRequest) Encode() string {
 	if r.Page > 1 {
 		values.Set("page", strconv.Itoa(r.Page))
 	}
-	if r.PageSize != 10 {
+	if r.PageSize > 10 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
 	ret := values.Encode()

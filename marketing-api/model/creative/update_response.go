@@ -1,6 +1,11 @@
 package creative
 
-import "github.com/bububa/oceanengine/marketing-api/model"
+import (
+	"strconv"
+
+	"github.com/bububa/oceanengine/marketing-api/model"
+	"github.com/bububa/oceanengine/marketing-api/util"
+)
 
 // UpdateResponse 更新创意 API Response
 type UpdateResponse struct {
@@ -23,4 +28,9 @@ type UpdateError struct {
 	CreativeID uint64 `json:"creative_id,omitempty"`
 	// ErrorMessage 更新失败的原因
 	ErrorMessage string `json:"error_message,omitempty"`
+}
+
+// Error implement error interface
+func (r UpdateError) Error() string {
+	return util.StringsJoin("广告创意ID:", strconv.FormatUint(r.CreativeID, 10), ", 错误信息", r.ErrorMessage)
 }

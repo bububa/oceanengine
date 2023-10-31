@@ -46,5 +46,5 @@ type QuotaGetResult struct {
 	// InLearning 是否在学习期
 	InLearning bool `json:"in_learning,omitempty"`
 	// MaxCost 最高月消耗
-	MaxCost int64 `json:"max_cost,omitempty"`
+	MaxCost float64 `json:"max_cost,omitempty"`
 }

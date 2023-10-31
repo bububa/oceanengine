@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"strconv"
 
+	"github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -12,6 +13,9 @@ import (
 type AvailableGetRequest struct {
 	// AdvertiserID 千川广告主账户id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// AwemeID 抖音号id
+	// 注意：在渠道品投放时，需要根据aweme_id来拉取渠道品信息
+	AwemeID uint64 `json:"aweme_id,omitempty"`
 	// Filtering 过滤器
 	Filtering *GetFiltering `json:"filtering,omitempty"`
 	// Page 页码.默认值: 1
@@ -26,12 +30,21 @@ type GetFiltering struct {
 	ProductIDs []uint64 `json:"product_ids,omitempty"`
 	// ProductName 根据商品名称筛选，长度120字符以内，中文算两个字符。
 	ProductName string `json:"product_name,omitempty"`
+	// MarketingScene 营销场景，可选值，默认FEED：
+	// FEED通投
+	// SEARCH搜索
+	// SHOPPING_MALL 商城广告
+	// 注意：如果需要获取商品是否支持新品加速信息，该字段必填，仅允许SEARCH
+	MarketingScene qianchuan.MarketingScene `json:"marketing_scene,omitempty"`
 }
 
 // Encode implement GetRequest interface
 func (r AvailableGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	if r.AwemeID > 0 {
+		values.Set("aweme_id", strconv.FormatUint(r.AwemeID, 10))
+	}
 	if r.Filtering != nil {
 		filter, _ := json.Marshal(r.Filtering)
 		values.Set("filtering", string(filter))

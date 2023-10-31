@@ -34,6 +34,10 @@ const (
 	AdStatusForSearch_LIVE_ROOM_OFF AdStatusForSearch = "LIVE_ROOM_OFF"
 	// AdStatusForSearch_FROZEN 已终止
 	AdStatusForSearch_FROZEN AdStatusForSearch = "FROZEN"
+	// AdStatusForSearch_SYSTEM_DISABLE 系统暂停
+	AdStatusForSearch_SYSTEM_DISABLE AdStatusForSearch = "SYSTEM_DISABLE"
 	// AdStatusForSearch_ALL_INCLUDE_DELETED 全部（包含已删除）
 	AdStatusForSearch_ALL_INCLUDE_DELETED AdStatusForSearch = "ALL_INCLUDE_DELETED"
+	// AdStatusForSearch_QUOTA_DISABLE 在投计划配额超限
+	AdStatusForSearch_QUOTA_DISABLE AdStatusForSearch = "QUOTA_DISABLE"
 )

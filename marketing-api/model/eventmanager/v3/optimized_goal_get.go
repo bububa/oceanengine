@@ -13,8 +13,12 @@ import (
 type OptimizedGoalGetRequest struct {
 	// AdvertiserID 广告主id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// DeliveryMode 投放模式，允许值：MANUAL手动投放(默认值）、PROCEDURAL自动投放
+	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
 	// LandingType 广告组推广目的，允许值:LINK 销售线索收集
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
+	// MarketingGoal 营销场景，允许值：VIDEO_AND_IMAGE 短视频/图片,LIVE直播
+	MarketingGoal enum.MarketingGoal `json:"marketing_goal,omitempty"`
 	// AdType 广告类型，允许值： ALL
 	AdType enum.CampaignType `json:"ad_type,omitempty"`
 	// AssetType 资产类型，允许值:THIRD_EXTERNAL 三方落地页、TETRIS_EXTERNAL 建站、APP 应用、QUICK_APP 快应用、MINI_PROGRAME字节小程序
@@ -38,8 +42,16 @@ type OptimizedGoalGetRequest struct {
 func (r OptimizedGoalGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
+	if r.DeliveryMode != "" {
+		values.Set("delivery_mode", string(r.DeliveryMode))
+	}
 	values.Set("landing_type", string(r.LandingType))
-	values.Set("app_type", r.AppType)
+	if r.MarketingGoal != "" {
+		values.Set("marketing_goal", string(r.MarketingGoal))
+	}
+	if r.AppType != "" {
+		values.Set("app_type", r.AppType)
+	}
 	values.Set("asset_type", string(r.AssetType))
 	values.Set("ad_type", string(r.AdType))
 	if r.MiniProgramID != "" {

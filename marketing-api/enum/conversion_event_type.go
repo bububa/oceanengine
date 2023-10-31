@@ -31,6 +31,8 @@ const (
 	Conversion_IN_APP_CART ConversionEventType = "in_app_cart"
 	// Conversion_IN_APP_PAY 用户完成商品下单并完成付款
 	Conversion_IN_APP_PAY ConversionEventType = "in_app_pay"
+	// Conversion_ADD_TO_CART 引流电商加购
+	Conversion_ADD_TO_CART ConversionEventType = "add_to_cart"
 	// Conversion_GAME_ADDICTION 用户在推广的应用/落地页场景下发生的关键行为/行为集合，具体行为取决于广告主业务模式。如：商务服务行业的用户下载激活app后提交简历，房地产行业的用户有看房意向；游戏行业的用户在游戏内发生关键行为或行为组合等
 	Conversion_GAME_ADDICTION ConversionEventType = "game_addiction"
 	// Conversion_CUSTOMER_EFFECTIVE 提交线索的用户进一步完成了一次有价值的行为，具体行为取决于广告主业务模式，如预约到店，完成授权，完成支付等
@@ -119,4 +121,6 @@ const (
 	Conversion_ECOM_SUCCESSFUL_PAY = "ecom_successful_pay"
 	// Conversion_ECOM_REFUND 电商退款
 	Conversion_ECOM_REFUND = "ecom_refund"
+	// Conversion_WITHDRAW_IAA 续费失败or短期退订
+	Conversion_WITHDRAW_IAA = "withdraw_iaa"
 )

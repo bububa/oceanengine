@@ -71,11 +71,11 @@ type Product struct {
 	// ThirdCategory 商品所处三级行业
 	ThirdCategory string `json:"third_category,omitempty"`
 	// FirstCategoryID 商品所处一级行业 ID
-	FirstCategoryID model.Uint64 `json:"first_category_id,omitempty"`
+	FirstCategoryID string `json:"first_category_id,omitempty"`
 	// SubCategoryID 商品所处二级行业 ID
-	SubCategoryID model.Uint64 `json:"sub_category_id,omitempty"`
+	SubCategoryID string `json:"sub_category_id,omitempty"`
 	// ThirdCategoryID 商品所处三级行业 ID
-	ThirdCategoryID model.Uint64 `json:"third_category_id,omitempty"`
+	ThirdCategoryID string `json:"third_category_id,omitempty"`
 	// BrandName 商品名称
 	BrandName string `json:"brand_name,omitempty"`
 	// Tags 商品标签
@@ -85,7 +85,7 @@ type Product struct {
 	// Videos 视频内容，小说库特有字段
 	Videos []Link `json:"videos,omitempty"`
 	// HasVideo 当前商品是否有商品视频 0：没有，1：有
-	HasVideo int `json:"has_video,omitempty"`
+	HasVideo model.Bool `json:"has_video,omitempty"`
 	// Profession 额外信息
 	Profession *Profession `json:"profession,omitempty"`
 }

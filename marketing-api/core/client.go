@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
+	"errors"
 	"io"
-	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"strings"
@@ -17,7 +17,7 @@ import (
 
 // SDKClient sdk client
 type SDKClient struct {
-	AppID      string
+	AppID      uint64
 	Secret     string
 	debug      bool
 	sandbox    bool
@@ -27,7 +27,7 @@ type SDKClient struct {
 }
 
 // NewSDKClient 创建SDKClient
-func NewSDKClient(appID string, secret string) *SDKClient {
+func NewSDKClient(appID uint64, secret string) *SDKClient {
 	return &SDKClient{
 		AppID:  appID,
 		Secret: secret,
@@ -83,12 +83,7 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	if req != nil {
 		reqBytes = req.Encode()
 	}
-	builder := util.GetStringsBuilder()
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
-	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
+	reqUrl := util.StringsJoin(BASE_URL, gw)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
@@ -106,20 +101,16 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	if c.limiter != nil {
 		c.limiter.Take()
 	}
+	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
 	return c.fetch(httpReq, resp)
 }
 
 // Get get api
 func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	builder := util.GetStringsBuilder()
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
+	reqUrl := util.StringsJoin(BASE_URL, gw)
 	if req != nil {
-		builder.WriteString("?")
-		builder.WriteString(req.Encode())
+		reqUrl = util.StringsJoin(reqUrl, "?", req.Encode())
 	}
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {
@@ -142,15 +133,10 @@ func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, ac
 
 // GetBytes get bytes api
 func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string) ([]byte, error) {
-	builder := util.GetStringsBuilder()
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
+	reqUrl := util.StringsJoin(BASE_URL, gw)
 	if req != nil {
-		builder.WriteString("?")
-		builder.WriteString(req.Encode())
+		reqUrl = util.StringsJoin(reqUrl, "?", req.Encode())
 	}
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {
@@ -173,12 +159,13 @@ func (c *SDKClient) GetBytes(gw string, req model.GetRequest, accessToken string
 		return nil, err
 	}
 	defer httpResp.Body.Close()
-	return ioutil.ReadAll(httpResp.Body)
+	return io.ReadAll(httpResp.Body)
 }
 
 // Upload multipart/form-data post
 func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
 	buf := util.GetBufferPool()
+	defer util.PutBufferPool(buf)
 	mw := multipart.NewWriter(buf)
 	params := req.Encode()
 	mp := make(map[string]string, len(params))
@@ -190,7 +177,6 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 		)
 		if v.Reader != nil {
 			if fw, err = mw.CreateFormFile(v.Key, v.Value); err != nil {
-				util.PutBufferPool(buf)
 				return err
 			}
 			r = v.Reader
@@ -201,26 +187,19 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 			util.PutStringsBuilder(builder)
 		} else {
 			if fw, err = mw.CreateFormField(v.Key); err != nil {
-				util.PutBufferPool(buf)
 				return err
 			}
 			r = strings.NewReader(v.Value)
 			mp[v.Key] = v.Value
 		}
 		if _, err = io.Copy(fw, r); err != nil {
-			util.PutBufferPool(buf)
 			return err
 		}
 	}
 	mw.Close()
-	builder := util.GetStringsBuilder()
-	builder.WriteString(BASE_URL)
-	builder.WriteString(gw)
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
+	reqUrl := util.StringsJoin(BASE_URL, gw)
 	debug.PrintPostMultipartRequest(reqUrl, mp, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, buf)
-	util.PutBufferPool(buf)
 	if err != nil {
 		return err
 	}
@@ -240,16 +219,57 @@ func (c *SDKClient) Upload(gw string, req model.UploadRequest, resp model.Respon
 	return c.fetch(httpReq, resp)
 }
 
-// AnalyticsPost 转化回传API专用
-func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp model.Response) error {
-	reqBytes := req.Encode()
-	reqUrl := util.StringsJoin(ANALYTICS_URL, gw)
-	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
+// TrackActive 转化回传API专用
+func (c *SDKClient) TrackActive(req model.TrackRequest, resp model.Response) error {
+	var (
+		reqUrl   = req.RequestURI()
+		reqBytes = req.Encode()
+	)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
 	}
 	httpReq.Header.Add("Content-Type", "application/json")
+	if token, err := req.Sign(httpReq, nil); err == nil {
+		httpReq.Header.Add("x-rs256-token", token)
+	}
+	if token := req.GetAppAccessToken(); token != "" {
+		httpReq.Header.Add("App-Access-Token", token)
+	}
+	if c.sandbox {
+		httpReq.Header.Add("X-Debug-Mode", "1")
+	}
+	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
+	if resp != nil {
+		return c.fetch(httpReq, resp)
+	}
+	httpResp, err := c.client.Do(httpReq)
+	if err != nil {
+		return err
+	}
+	defer httpResp.Body.Close()
+	if httpResp.StatusCode != 200 {
+		body, err := io.ReadAll(httpResp.Body)
+		if err != nil {
+			return err
+		}
+		return model.BaseResponse{Code: httpResp.StatusCode, Message: string(body)}
+	}
+	return nil
+}
+
+// AnalyticsPost 转化回传API专用
+func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp model.Response) error {
+	reqBytes := req.Encode()
+	reqUrl := util.StringsJoin(ANALYTICS_URL, gw)
+	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
+	if err != nil {
+		return err
+	}
+	httpReq.Header.Add("Content-Type", "application/json")
+	if token := req.GetAppAccessToken(); token != "" {
+		httpReq.Header.Add("App-Access-Token", token)
+	}
 	if token, err := req.Sign(httpReq, reqBytes); err == nil {
 		httpReq.Header.Add("x-rs256-token", token)
 	} else {
@@ -265,6 +285,7 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp m
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
+	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
 	return c.fetch(httpReq, resp)
 }
 
@@ -272,7 +293,6 @@ func (c *SDKClient) AnalyticsPost(gw string, req model.ConversionRequest, resp m
 func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model.Response) error {
 	reqBytes := req.Encode()
 	reqUrl := util.StringsJoin(ANALYTICSV1_URL, gw)
-	debug.PrintPostJSONRequest(reqUrl, reqBytes, c.debug)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
@@ -289,20 +309,16 @@ func (c *SDKClient) AnalyticsV1Post(gw string, req model.PostRequest, resp model
 	if c.sandbox {
 		httpReq.Header.Add("X-Debug-Mode", "1")
 	}
+	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
 	return c.fetch(httpReq, resp)
 }
 
 // OpenGet get api
 func (c *SDKClient) OpenGet(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	builder := util.GetStringsBuilder()
-	builder.WriteString(OPEN_URL)
-	builder.WriteString(gw)
+	reqUrl := util.StringsJoin(OPEN_URL, gw)
 	if req != nil {
-		builder.WriteString("?")
-		builder.WriteString(req.Encode())
+		reqUrl = util.StringsJoin(reqUrl, "?", req.Encode())
 	}
-	reqUrl := builder.String()
-	util.PutStringsBuilder(builder)
 	debug.PrintGetRequest(reqUrl, c.debug)
 	httpReq, err := http.NewRequest("GET", reqUrl, nil)
 	if err != nil {
@@ -328,10 +344,12 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	if resp == nil {
 		resp = &model.BaseResponse{}
 	}
-	err = debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
-	if err != nil {
+	if body, err := debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug); err != nil {
 		debug.PrintError(err, c.debug)
-		return err
+		return errors.Join(model.BaseResponse{
+			Code:    httpResp.StatusCode,
+			Message: string(body),
+		}, err)
 	}
 	if resp.IsError() {
 		return resp

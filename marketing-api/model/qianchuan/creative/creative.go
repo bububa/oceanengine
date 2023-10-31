@@ -22,13 +22,15 @@ type Creative struct {
 	// CreativeModifyTime 创意修改时间
 	CreativeModifyTime string `json:"creative_modify_time,omitempty"`
 	// ImageMode 素材类型，支持视频和图片
-	ImageMode qianchuan.ImageMode `json:"image_mode,omitempty"`
+	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// VideoMaterial 视频素材
 	VideoMaterial *VideoMaterial `json:"video_material,omitempty"`
 	// ImageMaterial 图片素材
 	ImageMaterial *ImageMaterial `json:"image_material,omitempty"`
 	// TitleMaterial 标题素材
 	TitleMaterial *TitleMaterial `json:"title_material,omitempty"`
+	// CarouselMaterial 图文信息，对应image_mode=CAROUSEL
+	CarouselMaterial *CarouselMaterial `json:"carousel_material,omitempty"`
 	// LabAdType 托管计划类型，NOT_LAB_AD：非托管计划，LAB_AD：托管计划
 	LabAdType enum.AdLabType `json:"ad_lab_type,omitempty"`
 	// VideoMaterialList 视频素材列表

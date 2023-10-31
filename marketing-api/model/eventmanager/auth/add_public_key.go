@@ -24,11 +24,24 @@ type AddPublicKeyRequest struct {
 	Signature string `json:"signature,omitepty"`
 }
 
-func NewAddPublicKeyRequest(advertiserID uint64, credential enum.Credential) (*AddPublicKeyRequest, error) {
-	privateKey, err := rsa.GenerateKey(rand.Reader, RSA_BITS)
-	if err != nil {
-		return nil, err
+// NewPrivateKey 生成新私钥，返回pem file
+func NewPrivateKey(privateKey *rsa.PrivateKey) (string, error) {
+	if privKey, err := rsa.GenerateKey(rand.Reader, RSA_BITS); err != nil {
+		return "", err
+	} else {
+		privateKey = privKey
 	}
+	buf := util.GetBufferPool()
+	defer util.PutBufferPool(buf)
+	if err := util.WritePrivateKeyPem(buf, privateKey); err != nil {
+		return "", err
+	}
+	encoded := buf.String()
+	return encoded, nil
+}
+
+// NewAddPublicKeyRequestWithPrivateKey 根据私钥生成新增公钥请求
+func NewAddPublicKeyRequestWithPrivateKey(advertiserID uint64, credential enum.Credential, privateKey *rsa.PrivateKey) (*AddPublicKeyRequest, error) {
 	publicKey := privateKey.PublicKey
 	//X509对公钥编码
 	X509PublicKey, err := x509.MarshalPKIXPublicKey(&publicKey)
@@ -53,6 +66,15 @@ func NewAddPublicKeyRequest(advertiserID uint64, credential enum.Credential) (*A
 		PubKey:       buf.String(),
 		Signature:    base64.StdEncoding.EncodeToString(sign),
 	}, nil
+}
+
+// NewAddPublicKeyRequest 生成新增公钥请求
+func NewAddPublicKeyRequest(advertiserID uint64, credential enum.Credential) (*AddPublicKeyRequest, error) {
+	privateKey, err := rsa.GenerateKey(rand.Reader, RSA_BITS)
+	if err != nil {
+		return nil, err
+	}
+	return NewAddPublicKeyRequestWithPrivateKey(advertiserID, credential, privateKey)
 }
 
 // Encode implement PostRequest interface

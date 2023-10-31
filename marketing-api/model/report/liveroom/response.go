@@ -1,6 +1,7 @@
 package liveroom
 
 import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
@@ -38,7 +39,7 @@ type ResponseList struct {
 	// RoomQrcode 直播间二维码url，仅直播状态为直播中的直播间包含该指标
 	RoomQrcode string `json:"room_qrcode,omitempty"`
 	// RoomStatus 直播间状态，"PREPARING", "LIVING", "PAUSE", "END"其中一种
-	RoomStatus string `json:"room_status,omitempty"`
+	RoomStatus enum.LiveRoomStatus `json:"room_status,omitempty"`
 	// RoomTitle 直播间标题
 	RoomTitle string `json:"room_title,omitempty"`
 	// FirstFlowCategory 一级流量来源，枚举值，0-自然流量、1-Dou+、2-竞价广告、3-品牌广告
@@ -128,5 +129,23 @@ type ResponseFields struct {
 	// LiveOnlineUcount 直播间内人数
 	LiveOnlineUcount int64 `json:"live_online_ucount,omitempty"`
 	// PerCustomerTransaction 客单价
-	PerCustomerTransaction float64 `json:"per_customer_transaction,omitempty"`
+	PerCustomerTransaction             float64 `json:"per_customer_transaction,omitempty"`
+	LiveAppActivePayCount              int64   `json:"live_app_active_pay_count,omitempty"`
+	LiveAppDownloadFinishCount         int64   `json:"live_app_download_finish_count,omitempty"`
+	LiveGroupbuyOrderCount             int64   `json:"live_groupbuy_order_count,omitempty"`
+	LiveComponentCtr                   float64 `json:"live_component_ctr,omitempty"`
+	LiveCount                          int64   `json:"live_count,omitempty"`
+	LiveAppDownloadStartCount          int64   `json:"live_app_download_start_count,omitempty"`
+	LiveAppGamePayCount                int64   `json:"live_app_game_pay_count,omitempty"`
+	LiveCardIconComponentShowCount     int64   `json:"live_card_icon_component_show_count,omitempty"`
+	StatLiveGroupbuyOrderGmv           float64 `json:"stat_live_groupbuy_order_gmv,omitempty"`
+	OrderConvertRate                   float64 `json:"order_convert_rate,omitempty"`
+	LiveCardIconComponentClickCount    int64   `json:"live_card_icon_component_click_count,omitempty"`
+	LiveFormSubmitCount                int64   `json:"live_form_submit_count,omitempty"`
+	LiveAppActiveRegisterCount         int64   `json:"live_app_active_register_count,omitempty"`
+	LiveAppActiveCount                 int64   `json:"live_app_active_count,omitempty"`
+	LiveAppAttributionNextDayOpenRate  float64 `json:"live_app_attribution_next_day_open_rate,omitempty"`
+	LiveAppAttributionNextDayOpenCount int64   `json:"live_app_attribution_next_day_open_count,omitempty"`
+	LiveAppInstallFinishCount          int64   `json:"live_app_install_finish_count,omitempty"`
+	LiveAvgWatchCount                  int64   `json:"live_avg_watch_count,omitempty"`
 }

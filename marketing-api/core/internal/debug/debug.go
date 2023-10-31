@@ -1,12 +1,13 @@
 package debug
 
 import (
-	"bytes"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
+
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // PrintError print error with debug
@@ -41,11 +42,10 @@ func PrintPostJSONRequest(url string, body []byte, debug bool) {
 	const format = "[DEBUG] [API] JSON POST %s\n" +
 		"http request body:\n%s\n"
 
-	buf := bytes.NewBuffer(make([]byte, 0, len(body)+1024))
-	if err := json.Indent(buf, body, "", "    "); err == nil {
-		body = buf.Bytes()
-	}
-	log.Printf(format, url, body)
+	buf := util.GetBufferPool()
+	defer util.PutBufferPool(buf)
+	json.Indent(buf, body, "", "    ")
+	log.Printf(format, url, buf.String())
 }
 
 // PrintJSONRequest print json request with debug
@@ -58,14 +58,15 @@ func PrintJSONRequest(method string, url string, header http.Header, body []byte
 		"http request header:\n%s\n" +
 		"http request body:\n%s\n"
 
-	buf := bytes.NewBuffer(make([]byte, 0, len(body)+1024))
-	if err := json.Indent(buf, body, "", "    "); err == nil {
-		body = buf.Bytes()
+	buf := util.GetBufferPool()
+	defer util.PutBufferPool(buf)
+	json.Indent(buf, body, "", "\t")
+	headers := make([]string, 0, len(header))
+	for k := range header {
+		headers = append(headers, util.StringsJoin(k, ": ", header.Get(k)))
 	}
 
-	headerJson, _ := json.Marshal(header)
-
-	log.Printf(format, method, url, headerJson, body)
+	log.Printf(format, method, url, strings.Join(headers, "\n"), buf.String())
 }
 
 // PrintPostMultipartRequest print multipart/form-data post request with debug
@@ -73,33 +74,30 @@ func PrintPostMultipartRequest(url string, mp map[string]string, debug bool) {
 	if !debug {
 		return
 	}
-	body, _ := json.Marshal(mp)
 	const format = "[DEBUG] [API] multipart/form-data POST %s\n" +
 		"http request body:\n%s\n"
 
-	buf := bytes.NewBuffer(make([]byte, 0, len(body)+1024))
-	if err := json.Indent(buf, body, "", "    "); err == nil {
-		body = buf.Bytes()
-	}
-	log.Printf(format, url, body)
+	bs, _ := json.MarshalIndent(mp, "", "\t")
+	log.Printf(format, url, bs)
 }
 
 // DecodeJSONHttpResponse decode json response with debug
-func DecodeJSONHttpResponse(r io.Reader, v interface{}, debug bool) error {
+func DecodeJSONHttpResponse(r io.Reader, v interface{}, debug bool) ([]byte, error) {
+	buf := util.GetBufferPool()
+	defer util.PutBufferPool(buf)
+	tee := io.TeeReader(r, buf)
+	if err := json.NewDecoder(tee).Decode(v); err != nil {
+		return buf.Bytes(), err
+	}
 	if !debug {
-		return json.NewDecoder(r).Decode(v)
+		return nil, nil
 	}
-	body, err := ioutil.ReadAll(r)
-	if err != nil {
-		return err
+	bs := buf.Bytes()
+	buf.Reset()
+	if err := json.Indent(buf, bs, "", "\t"); err != nil {
+		return bs, err
 	}
 
-	body2 := body
-	buf := bytes.NewBuffer(make([]byte, 0, len(body2)+1024))
-	if err := json.Indent(buf, body2, "", "    "); err == nil {
-		body2 = buf.Bytes()
-	}
-	log.Printf("[DEBUG] [API] http response body:\n%s\n", body2)
-
-	return json.Unmarshal(body, v)
+	log.Println(util.StringsJoin("[DEBUG] [API] http response body:\n", string(bs)))
+	return nil, nil
 }

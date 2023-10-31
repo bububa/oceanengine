@@ -31,6 +31,19 @@ type Project struct {
 	ProjectModifyTime string `json:"project_modify_time,omitempty"`
 	// Status 项目状态
 	Status enum.ProjectStatus `json:"status,omitempty"`
+	// StatusFirst 项目一级状态过滤，允许值：
+	// PROJECT_STATUS_DELETE已删除
+	// PROJECT_STATUS_DONE已完成
+	// PROJECT_STATUS_DISABLE未投放
+	// PROJECT_STATUS_ENABLE启用中
+	// 不传默认返回不限（不含已删除）
+	StatusFirst enum.ProjectStatus `json:"status_first,omitempty"`
+	// StatusSecond 项目二级状态过滤，允许值：PROJECT_STATUS_STOP 已暂停
+	// PROJECT_STATUS_BUDGET_EXCEED 项目超出预算
+	// PROJECT_STATUS_NOT_START 未达投放时间
+	// PROJECT_STATUS_NO_SCHEDULE 不在投放时段
+	// 当status_first = PROJECT_STATUS_DISABLE时传入有效
+	StatusSecond []enum.ProjectStatus `json:"status_second,omitempty"`
 	// Pricing 出价方式
 	Pricing enum.PricingType `json:"pricing,omitempty"`
 	// PackageName 应用包名
@@ -47,30 +60,60 @@ type Project struct {
 	Keywords []Keyword `json:"keywords,omitempty"`
 	// RelatedProduct 关联产品投放相关
 	RelatedProduct *RelatedProduct `json:"related_product,omitempty"`
-	// AssetType 资产类型
-	AssetType enum.AssetType `json:"asset_type,omitempty"`
-	// QuickAppId 快应用资产id
-	QuickAppId uint64 `json:"quick_app_id,omitempty"`
-	// MicroPromotionType 小程序类型
-	MicroPromotionType enum.MicroPromotionType `json:"micro_promotion_type,omitempty"`
-	// DownloadURL 下载链接
+	// DpaCategories 商品投放范围，分类列表，由【DPA商品广告-获取DPA分类】 得到
+	// 个数限制 [0, 1000]
+	// 不传和传空数组即为不限商品投放范围
+	// DPA推广目的下有效
+	DpaCategories []uint64 `json:"dpa_categories,omitempty"`
+	// DpaProductTarget 自定义筛选条件（商品投放条件）。用于圈定商品投放范围，结合商品库字段搭配判断条件，圈定商品投放范围。获取商品库元信息-商品广告-商业开放平台
+	// 数组长度限制：最大5条
+	// DPA推广目的下有效
+	DpaProductTarget []DpaProductTarget `json:"dpa_product_target,omitempty"`
+	// DownloadURL 下载链接，landing_type=APP 子目标为 DOWNLOAD 或者LAUNCH 时有效且必填
+	// - 下载、调用场景传入说明：
+	// IOS：需要为iTunes官方地址
+	// Android：需要为「应用管理中心」提供的下载链接，获取下载链接可参考【应用管理】
 	DownloadURL string `json:"download_url,omitempty"`
-	// DownloadType 下载方式，枚举值：DOWNLOAD_URL 直接下载、EXTERNAL_URL 落地页下载
+	// DownloadType 载方式，landing_type=APP 子目标为 DOWNLOAD 时有效，子目标为LAUNCH时无需传入
+	// 允许值：DOWNLOAD_URL 直接下载（默认值）、EXTERNAL_URL 落地页下载
 	DownloadType enum.DownloadType `json:"download_type,omitempty"`
-	// DownloadMode 优先从系统应用商店下载（下载模式），枚举值：APP_STORE_DELIVERY 优先商店下载、 DEFAULT 默认下载
+	// DownloadMode 优先从系统应用商店下载（下载模式），landing_type=APP 子目标为 DOWNLOAD 时有效，子目标为LAUNCH时无需传入
+	// 允许值：APP_STORE_DELIVERY 优先商店下载、 DEFAULT 默认下载（默认值）
+	// 仅安卓应用下载支持，请确保投放的应用在应用商店内已上架选择后，将优先跳转目标应用对应手机系统应用商店安装详情页，跳转失败则使用下载链接下载
 	DownloadMode enum.DownloadMode `json:"download_mode,omitempty"`
-	// LaunchType 调起方式，枚举值： DIRECT_OPEN 直接调起、EXTERNAL_OPEN 落地页调起
+	// QuickAppId 快应用资产id ，从【查询快应用信息】接口获取，仅支持已通过审核的快应用资产
+	QuickAppId uint64 `json:"quick_app_id,omitempty"`
+	// LaunchType 调起方式， landing_type = APP 且子目标为LAUNCH有效
+	// 允许值： DIRECT_OPEN 直接调起（默认值）、EXTERNAL_OPEN 落地页调起
 	LaunchType enum.LaunchType `json:"launch_type,omitempty"`
-	// OpenURL Deeplink直达链接
+	// PromotionType 投放内容，允许值：AWEME_HOME_PAGE：抖音主页（默认）LANDING_PAGE_LINK：落地页
+	// 当landing_type = NATIVE_ACTION && marketing_goal=短视频/图文时有效
+	PromotionType enum.PromotionType `json:"promotion_type,omitempty"`
+	// OpenURL Deeplink直达链接，landing_type = APP 且子目标为 LAUNCH 时有效且必填
+	// 直达链接仅支持部分App唤起（点击唤起APP），点击创意将优先跳转App，再根据投放内容跳转相关链接
 	OpenURL string `json:"open_url,omitempty"`
-	// UlinkURL ulink直达链接
+	// UlinkURL ulink直达链接，landing_type = APP 且子目标为LAUNCH 时有效
+	// 仅支持穿山甲广告位
+	// 当ad_type=SEARCH搜索广告时不支持ulink
 	UlinkURL string `json:"ulink_url,omitempty"`
-	// SubscribeURL 预约下载链接
+	// SubscribeURL 预约下载链接，landing_type = APP 且子目标为 RESERVE 时有效且必填
 	SubscribeURL string `json:"subscribe_url,omitempty"`
+	// AssetType 资产类型，landing_type = LINK 或SHOP时有效且必填
+	// 允许值： ORANGE 橙子落地页、THIRDPARTY 自研落地页
+	// ENTERPRISE 企业号落地页
+	// 企业号落地页仅landing_type = LINK&&marketing_goal= LIVE 时支持，仅当adv_id下绑定的抖音号为企业号时支持传入
+	AssetType enum.AssetType `json:"asset_type,omitempty"`
+	// MicroPromotionType 小程序类型，landing_type = MICRO_GAME 时有效且必填
+	// 允许值： WECHAT_GAME 微信小游戏、WECHAT_APP微信小程序、BYTE_GAME字节小游戏、BYTE_APP字节小程序
+	MicroPromotionType enum.MicroPromotionType `json:"micro_promotion_type,omitempty"`
+	// DpaAdType DPA广告类型，
+	// 允许值: DPA_LINK 落地页
+	// 当landing_type为dpa时有效且必填
+	DpaAdType enum.DpaAdType `json:"dpa_adtype,omitempty"`
 	// OptimizeGoal 优化目标
 	OptimizeGoal *OptimizeGoal `json:"optimize_goal,omitempty"`
 	// LandingPageStayTime 店铺停留时长，单位为毫秒
-	LandingPageStayTime int `json:"landing_page_stay_time,omitempty"`
+	LandingPageStayTime enum.LandingPageStayTime `json:"landing_page_stay_time,omitempty"`
 	// DeliveryRange 广告版位
 	DeliveryRange *DeliveryRange `json:"delivery_range,omitempty"`
 	// Audience 定向设置
@@ -105,47 +148,118 @@ func (p Project) IsProject() bool {
 
 // RelatedProduct 关联产品投放相关
 type RelatedProduct struct {
-	// ProductSetting 商品库设置，枚举值：SINGLE 启用SDPA、NO_MAP不启用
+	// ProductSetting 商品库设置
+	// 允许值：SINGLE 启用SDPA、NO_MAP不启用（默认值）
+	// 当delivery_mode选择PROCEDURAL且landing_type选择LINK时，该字段必须传入SINGLE
 	ProductSetting enum.ProductSetting `json:"product_setting,omitempty"`
-	// ProductPlatformID 商品库ID
+	// ProductPlatformID 商品库ID，当启用商品库时必填，可通过【商品广告-查询商品库】查询，创建后不可修改
+	// 当delivery_mode选择PROCEDURAL且landing_type选择LINK时，传入报错
 	ProductPlatformID uint64 `json:"product_platform_id,omitempty"`
-	// ProductID 产品ID
-	ProductID string `json:"product_id,omitempty"`
+	// 产品ID，当启用商品库时必填，可通过【商品广告-获取商品列表】 查询，创建后不可修改
+	// 当delivery_mode选择PROCEDURAL且landing_type选择LINK时，传入报错
+	ProductID model.JSONUint64 `json:"product_id,omitempty"`
+	// AssetID 物件ID，可通过【商品广告-获取投放条件列表】获取，创建后不可修改。
+	AssetID uint64 `json:"asset_id,omitempty"`
+	// Products 产品ID列表，上限为10
+	// 当delivery_mode选择PROCEDURAL且landing_type选择LINK时有效且必填
+	Products []RelatedProduct `json:"products,omitempty"`
+}
+
+// DpaProductTarget 自定义筛选条件（商品投放条件）。用于圈定商品投放范围，结合商品库字段搭配判断条件，圈定商品投放范围。获取商品库元信息-商品广告-商业开放平台
+type DpaProductTarget struct {
+	// Title 筛选字段
+	Title string `json:"title,omitempty"`
+	// Rule 定向规则，允许值：type 为int、 double、 long其中一种时支持=、 !=、 >、 <；
+	// type = string时支持=、 !=、 notEmpty
+	Rule string `json:"rule,omitempty"`
+	// Type 字段类型，允许值：int、 double、 long、 string
+	Type string `json:"type,omitempty"`
+	// Value 规则值
+	Value string `json:"value,omitempty"`
 }
 
 // OptimizeGoal 优化目标
 type OptimizeGoal struct {
-	// AssetIDs 事件管理资产id
+	// AssetIDs 事件管理资产 id，list长度上限为 1（landing_type=MICRO_GAME，小程序类型为 BYTE_GAME、BYTE_APP时上限为2）
+	// landing_type=APP 子目标为 DOWNLOAD 或者LAUNCH 时有效且必填;
+	// landing_type=LINK或SHOP或DPA 落地页类型为 THIRDPARTY 时有效且必填;
+	// landing_type=LINK 、SHOP或DPA 落地页类型为 ORANGE 时无需传入，仅需传入external_action;
+	// landing_type=MICRO_GAME 小程序类型为 WECHAT_GAME、WECHAT_APP 时无需传入，仅需传入external_action；
+	// landing_type=MICRO_GAME 小程序类型为 BYTE_APP、BYTE_GAME时有效且必填，且需要传入两个资产id，数组第一个为主资产id，第二个为备用资产id（兜底落地页，可不传）；
+	// landing_type=QUICK_APP 时有效且必填
 	AssetIDs []uint64 `json:"asset_ids,omitempty"`
 	// ConvertID 转化跟踪id
 	ConvertID uint64 `json:"convert_id,omitempty"`
-	// ExternalAction 优化目标
+	// ExternalAction 优化目标，可通过【资产-事件管理-获取可用优化目标(体验版)】查询获取
+	// landing_type=APP 子目标为 DOWNLOAD 或者LAUNCH 时有效且必填;
+	// landing_type=LINK 、SHOP、MICRO_GAME 或DPA 时有效且必填;
+	// landing_type= QUICK_APP时有效且必填；
+	// 当delivery_mode = PROCEDURAL &&landing_type = APP/MICRO_GAME时，external_action=付费时，deep_external_action不传/传空，deep_bid_type仅支持每次付费/首次付费，当external_action=付费，deep_external_action=付费ROI，deep_bid_type仅支持ROI系数
 	ExternalAction enum.AdConvertType `json:"external_action,omitempty"`
-	// DeepExternalAction 深度转化目标
+	// DeepExternalAction 深度转化目标，可通过【资产-事件管理-获取可用优化目标(体验版)】查询获取，当delivery_mode = PROCEDURAL &&landing_type = APP/MICRO_GAME时可传空/传0/「付费ROI」
 	DeepExternalAction enum.DeepExternalAction `json:"deep_external_action,omitempty"`
+	// ValueOptimizedType 目标优化类型，
+	// 允许值：OFF表示不启用，ACTION表示行为优化，VALUE表示价值优化
+	// 默认值：OFF
+	// 当前仅支持推广目的为销售线索收集（landing_type=LINK）时传入ACTION，VALUE
+	ValueOptimizedType string `json:"value_optimized_type,omitempty"`
+	// PaidSwitch 字节提供的归因方式，允许值：
+	// 1启用；2 不启用（默认值）
+	// 仅当landing_type=SHOP，external_action=AD_CONVERT_TYPE_APP_ORDER app内下单（电商）时有效
+	PaidSwitch int `json:"paid_switch,omitempty"`
 }
 
 // DeliveryRange 广告版位
 type DeliveryRange struct {
-	// InventoryCatalog 广告位大类，枚举值： MANUAL 首选媒体，UNIVERSAL_SMART 通投智选
+	// InventoryCatalog 广告位大类，允许值： MANUAL 首选媒体，UNIVERSAL_SMART 通投智选
+	// 当delivery_mode = PROCEDURAL &&landing_type = APP/MICRO_GAME/LINK时仅支持通投智选；
+	// 当 marketing_goal= LIVE时，仅支持 MANUAL首选媒体
+	// 当 ad_type=SEARCH时，仅支持 MANUAL首选媒体
+	// 当landing_type=NATIVE_ACTION时仅支持MANUAL首选媒体
 	InventoryCatalog enum.InventoryCatalog `json:"inventory_catalog,omitempty"`
-	// InventoryType 广告投放位置（首选媒体)
+	// InventoryType 广告投放位置（首选媒体），inventory_catalog = MANUAL 有效且必填，允许值：
+	// INVENTORY_FEED 今日头条
+	// INVENTORY_VIDEO_FEED 西瓜视频
+	// INVENTORY_AWEME_FEED 抖音短视频
+	// INVENTORY_TOMATO_NOVEL 番茄小说
+	// INVENTORY_UNION_SLOT 穿山甲
+	// UNION_BOUTIQUE_GAME ohayoo精品游戏
+	// INVENTORY_SEARCH 搜索广告
+	// 当 marketing_goal= LIVE时，仅支持INVENTORY_AWEME_FEED 抖音短视频INVENTORY_UNION_SLOT穿山甲;
+	// 当 ad_type=SEARCH时，仅支持 INVENTORY_SEARCH 搜索广告;
+	// 当landing_type =NATIVE_ACTION&&marketing_goal=短视频/图文时，仅支持INVENTORY_AWEME_FEED 抖音短视频；
+	// 当landing_type =NATIVE_ACTION&&marketing_goal=LIVE时，支持INVENTORY_AWEME_FEED 抖音短视频和INVENTORY_UNION_SLOT 穿山甲
 	InventoryType []enum.StatInventoryType `json:"inventory_type,omitempty"`
-	// UnionVideoType 投放形式（穿山甲视频创意类型），枚举值：ORIGINAL_VIDEO 原生视频、REWARDED_VIDEO 激励视频、SPLASH_VIDEO 开屏视频
+	// UnionVideoType 投放形式（穿山甲视频创意类型）
+	// inventory_catalog = MANUAL && inventory_type 仅有 INVENTORY_UNION_SLOT 时 有效且必填；
+	// 当 marketing_goal=LIVE时，不支持该字段；
+	// 允许值：ORIGINAL_VIDEO 原生视频、REWARDED_VIDEO 激励视频、SPLASH_VIDEO 开屏视频
 	UnionVideoType *enum.UnionVideoType `json:"union_video_type,omitempty"`
 }
 
 // Audience 定向设置
 type Audience struct {
-	// AudiencePackageID 定向包ID
+	// AudiencePackageID 定向包ID，定向包ID由【工具-定向包管理-获取定向包】获取
 	// 如果同时传定向包ID和自定义用户定向参数时，仅定向包中的定向生效
+	// 当delivery_mode = PROCEDURAL &&landing_type = APP/MICRO_GAME时不支持定向包
+	// 当landing_type=NATIVE_ACTION时仅支持抖音号定向包
+	// 当 ad_type=SEARCH时仅支持搜索定向包
 	AudiencePackageID uint64 `json:"audience_package_id,omitempty"`
-	// District 地域类型，枚举值: CITY 省市、 COUNTY 区县、REGION 行政区域、OVERSEA 海外区域、NONE 不限
+	// District 地域类型
+	// 允许值: CITY 省市、 COUNTY 区县、BUSINESS_DISTRICT商圈、REGION 行政区域、OVERSEA 海外区域、NONE 不限
+	// 使用省市示例：{"district": "CITY","city": [12]}
+	// 使用区县示例：{"district": "COUNTY","city": [130102]}
+	// 使用行政区域示例：{"district":"REGION": "city":[31], "region_versio":"1.0.0"}
+	// 使用海外区域示例：{"district":"OVERSEA": "city":[3041566], "region_versio":"1.0.0"}
+	// 当ad_type=SEARCH时不支持OVERSEA海外
 	District enum.District `json:"district,omitempty"`
-	// Geolocation 从地图添加(地图位置)
+	// Geolocation 从地图添加(地图位置)，district为"BUSINESS_DISTRICT"时填写，最多允许添加1000个
 	Geolocation []model.Geolocation `json:"geolocation,omitempty"`
-	// RegionVersion 行政区域版本号
+	// RegionVersion 行政区域版本号，通过【获取行政信息】接口获取
+	// district =REGION/OVERSEA时必填
 	RegionVersion string `json:"region_version,omitempty"`
+	// RegionRecommend 地域智能放量定向，ON为开启、OFF为关闭
+	RegionRecommend string `json:"region_recommend,omitempty"`
 	// City 地域定向省市或者区县列表，当district=CITY/COUNTY/REGION/OVERSEA时
 	// district =CITY/COUNTY时，详见【附件-city.json】
 	// district =REGION/OVERSEA时，通过【获取行政信息】接口获取
@@ -228,6 +342,21 @@ type Audience struct {
 	LaunchPrice *[]int `json:"launch_price,omitempty"`
 	// AutoExtendTargets 可放开定向，枚举值：AGE 年龄、REGION 地域、GENDER 性别、CUSTOM_AUDIENCE 自定人群-定向
 	AutoExtendTargets *[]string `json:"auto_extend_targets,omitempty"`
+	// DpaCity 地域匹配-商品所在城市开启时，仅将商品投放给位于该商品设置的可投城市的用户默认值：OFF允许值：OFF，ON（OFF表示不启用，ON表示启用）
+	// DPA推广目的下有效
+	DpaCity string `json:"dpa_city,omitempty"`
+	// DpaRtaSwitch RTA重定向开关，
+	// 默认值：OFF允许值：OFF，ON（OFF表示不启用，ON表示启用）
+	// 启用后，需通过【设置账户下RTA策略生效范围-工具-商业开放平台】绑定rta策略
+	// DPA推广目的下有效
+	DpaRtaSwitch string `json:"dpa_rta_switch,omitempty"`
+	// RtaID RTA策略ID，通过【获取可用的RTA策略】接口获取
+	// 开启RTA重定向开关时必填
+	// DPA推广目的下有效
+	RtaID uint64 `json:"rta_id,omitempty"`
+	// DpaRtaRecommedType RTA推荐逻辑，ONLY仅RTA推荐商品，MORE基于RTA推荐更多商品，开启RTA重定向开关时必填
+	// DPA推广目的下有效
+	DpaRtaRecommendType enum.DpaRtaRecommendType `json:"dpa_rta_recommend_type,omitempty"`
 }
 
 // DeliverySetting 投放设置
@@ -240,6 +369,12 @@ type DeliverySetting struct {
 	EndTime string `json:"end_time,omitempty"`
 	// ScheduleTime 投放时段
 	ScheduleTime string `json:"schedule_time,omitempty"`
+	// FilterNightSwitch 过滤夜间投放，枚举值：ON过滤开启 OFF过滤不开启
+	// 默认值：OFF过滤不开启
+	// schedule_time传入，且filter_night_switch传入ON时，以filter_night_switch为准
+	// schedule_time传入，且filter_night_switch传入OFF时，以schedule_time为准
+	// 仅当landing_type = link && delivery_mode = procedural 时传入有效
+	FilterNightSwitch string `json:"filter_night_switch,omitempty"`
 	// ProjectCustom 项目成本稳投，当ad_type=SEARCH&&bid_type=CUSTOM 稳定成本时有效，当dea有值时，不支持项目成本稳投
 	// 允许值：
 	// ON 开启（默认值），
@@ -247,9 +382,24 @@ type DeliverySetting struct {
 	ProjectCustom string `json:"project_custom,omitempty"`
 	// Bid 点击出价/展示出价，当delivery_mode = MANUAL&&项目成本稳投开启&&pricing=CPC时填写有效；取值范围：0.2-999
 	Bid float64 `json:"bid,omitempty"`
-	// DeepBidType 深度出价方式
+	// DeepBidType 深度优化方式，当转化目标中含有深度转化时，该字段必填
+	// 允许值：
+	// DEEP_BID_MIN 自定义手动出价、
+	// ROI_COEFFICIENT ROI系数出价、
+	// BID_PER_ACTION 每次付费出价、
+	// SOCIAL_ROIROI三出价
+	// 对于每次付费的转化，深度优化类型需要设置为BID_PER_ACTION（每次付费出价）
+	// FORM_BID优选表单出价（landing_type=link&&external_action=表单提交/多转化&&deep_external_action为空时，支持优选表单出价/不启用）
+	// PHONE_CONNECT_BID电话接通出价
+	// (landing_type=link&&external_action=表单提交，deep_external_action=电话接通时，deep_bid_type仅支持PHONE_CONNECT_BID）
+	// DEEP_BID_DEFAULT  不启用
 	DeepBidType enum.DeepBidType `json:"deep_bid_type,omitempty"`
-	// BidType 竞价策略，枚举值：CUSTOM 稳定成本、NO_BID 最大转化投放
+	// BidType 竞价策略，允许值：CUSTOM 稳定成本、NO_BID 最大转化投放、UPPER_CONTROL控制成本上限、CONSERVATIVE放量投放；
+	// 当delivery_mode = PROCEDURAL &&landing_type = APP/MICRO_GAME时不支持UPPER_CONTROL；
+	// 当delivery_mode = PROCEDURAL &&landing_type = LINK时不支持UPPER_CONTROL和NO_BID；
+	// 选择深度优化目标后，不支持UPPER_CONTROL；
+	// 当external_action=AD_CONVERT_TYPE_CLICK_NUM 点击量 或 AD_CONVERT_TYPE_SHOW_OFF_NUM 展示量时，不支持NO_BID；
+	// 当 ad_type=SEARCH时仅支持稳定成本和最大转化
 	BidType enum.BidType `json:"bid_type,omitempty"`
 	// BidSpeed 投放速度，允许值：BALANCE 匀速,FAST 加速
 	BidSpeed enum.BidSpeed `json:"bid_speed,omitempty"`
@@ -265,6 +415,8 @@ type DeliverySetting struct {
 	Pricing enum.PricingType `json:"pricing,omitempty"`
 	// CpaBid 目标转化出价/预期成本(注意：nobid不返回该字段)
 	CpaBid float64 `json:"cpa_bid,omitempty"`
+	// DeepCpaBid 深度优化出价，deep_bid_type = DEEP_BID_MIN 时必填。取值范围：0.1~10000元 注意：当 bid_type = NO_BID时，不填写该字段，否则会报错
+	DeepCpaBid float64 `json:"deep_cpabid,omitempty"`
 	// RoiGoal 深度转化ROI系数(注意：nobid不返回该字段)
 	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// BudgetOptimizeSwitch 支持预算择优分配，枚举值： ON 开启，OFF 不开启

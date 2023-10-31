@@ -1,8 +1,8 @@
 module github.com/bububa/oceanengine
 
-go 1.18
+go 1.20
 
 require (
 	github.com/google/go-cmp v0.5.5
-	google.golang.org/protobuf v1.27.1
+	google.golang.org/protobuf v1.30.0
 )

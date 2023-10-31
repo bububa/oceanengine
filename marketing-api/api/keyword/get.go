@@ -14,8 +14,5 @@ func Get(clt *core.SDKClient, accessToken string, req *keyword.GetRequest) ([]ke
 	if err != nil {
 		return nil, err
 	}
-	if resp.Data == nil {
-		return nil, nil
-	}
 	return resp.Data.List, nil
 }

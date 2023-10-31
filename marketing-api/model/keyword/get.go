@@ -8,6 +8,10 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
+type IListFilter interface {
+	GetID() uint64
+}
+
 // GetRequest 获取关键词列表 API Request
 type GetRequest struct {
 	// AdvertiserID 广告主ID
@@ -20,6 +24,10 @@ type GetRequest struct {
 type GetFiltering struct {
 	// AdID 待过滤的广告计划ID
 	AdID uint64 `json:"ad_id,omitempty"`
+}
+
+func (f GetFiltering) GetID() uint64 {
+	return f.AdID
 }
 
 // Encode implement GetRequest interface
@@ -39,11 +47,8 @@ func (r GetRequest) Encode() string {
 type GetResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *GetResponseData `json:"data,omitempty"`
-}
-
-// GetResponseData json返回值
-type GetResponseData struct {
-	// List 关键词列表
-	List []Keyword `json:"list,omitempty"`
+	Data struct {
+		// List 关键词列表
+		List []Keyword `json:"list,omitempty"`
+	} `json:"data,omitempty"`
 }

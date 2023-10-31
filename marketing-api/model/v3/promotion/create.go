@@ -36,6 +36,14 @@ type CreateRequest struct {
 	// Source 广告来源，字数限制：[1-10]
 	// 当landing_type = LINK、MICRO_GAME时必填
 	Source string `json:"source,omitempty"`
+	// BrandInfo 品牌信息
+	BrandInfo *BrandInfo `json:"brand_info,omitempty"`
+	// BudgetMode 预算类型(创建后不可修改), 允许值: BUDGET_MODE_DAY日预算（默认值）, BUDGET_MODE_TOTAL总预算
+	// 适用场景：
+	// delivery_mode=MANUAL
+	// 项目未开启预算择优分配，即budget_optimize_switch=OFF
+	// 项目投放时间类型schedule_type=SCHEDULE_START_END时，支持设置该时间段内的BUDGET_TOTAL总预算
+	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// Budget 预算(出价方式为OCPM时，不少于300元；24小时内修改预算操作，不能超过20次，24小时是指自然天的24小时；单次修改预算幅度不能低于100元（增加或者减少）；修改后预算金额，不能低于当前已消费金额的105%，以整百单位向上取整；取值范围: ≥ 0
 	Budget float64 `json:"budget,omitempty"`
 	// Bid 点击出价/展示出价，当pricing为CPC、CPM出价方式时必填，

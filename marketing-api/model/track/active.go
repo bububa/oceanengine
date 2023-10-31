@@ -1,8 +1,21 @@
 package track
 
 import (
+	"crypto/rsa"
+	"crypto/sha1"
+	"encoding/hex"
+	"errors"
+	"math/rand"
+	"net/http"
+	"sort"
+	"strconv"
+	"time"
+
+	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/model/conversion"
+	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
 // ActiveRequest 线索-API上报数据 API Request
@@ -37,6 +50,35 @@ type ActiveRequest struct {
 	Caid2 string `json:"caid2,omitempty"`
 	// Ext 补充数据
 	Ext map[string]string `json:"ext,omitempty"`
+	// PrivateKey
+	PrivateKey *rsa.PrivateKey `json:"-"`
+	// Credential
+	Credential enum.Credential `json:"-"`
+	// AppAccessToken
+	AppAccessToken string `json:"-"`
+}
+
+// Encode implement PostRequest interface
+func (r ActiveRequest) Encode() []byte {
+	return util.JSONMarshal(r)
+}
+
+// Sign implement ConvertionRequest interface
+func (r ActiveRequest) Sign(req *http.Request, content []byte) (string, error) {
+	if r.PrivateKey == nil || r.Credential == "" {
+		return "", errors.New("no private_key/credential")
+	}
+	return model.CredentialSign(req, content, r.PrivateKey, r.Credential)
+}
+
+// GetAppAccessToken implement ConvertionRequest interface
+func (r ActiveRequest) GetAppAccessToken() string {
+	return r.AppAccessToken
+}
+
+// RequestURI implement TrackRequest interface
+func (r ActiveRequest) RequestURI() string {
+	return core.TRACK_URL
 }
 
 // WxaActiveRequest 微信小程序线索-API上报数据 API Request
@@ -51,4 +93,55 @@ type WxaActiveRequest struct {
 	EventType string `json:"event_type,omitempty"`
 	// Props 参数包含pay_amount
 	Props *conversion.Properties `json:"props,omitempty"`
+	// Token
+	Token string `json:"-"`
+	// Gateway
+	Gateway string `json:"-"`
+	// PrivateKey
+	PrivateKey *rsa.PrivateKey `json:"-"`
+	// Credential
+	Credential enum.Credential `json:"-"`
+	// AppAccessToken
+	AppAccessToken string `json:"-"`
+}
+
+// Encode implement GetRequest interface
+func (r WxaActiveRequest) Encode() []byte {
+	return util.JSONMarshal(r)
+}
+
+// RequestURI implement TrackRequest interface
+func (r WxaActiveRequest) RequestURI() string {
+	values := util.GetUrlValues()
+	values.Set("timestamp", strconv.FormatInt(time.Now().Unix(), 10))
+	values.Set("nonce", strconv.Itoa(rand.Intn(1000)))
+	strs := make([]string, 0, 3)
+	strs = append(strs, r.Token)
+	strs = append(strs, values.Get("timestamp"))
+	strs = append(strs, values.Get("nonce"))
+	sort.Strings(strs)
+	b := util.GetBufferPool()
+	for _, s := range strs {
+		b.WriteString(s)
+	}
+	h := sha1.New()
+	h.Write(b.Bytes())
+	values.Set("signature", hex.EncodeToString(h.Sum(nil)))
+	util.PutBufferPool(b)
+	link := util.StringsJoin(r.Gateway, "?", values.Encode())
+	util.PutUrlValues(values)
+	return link
+}
+
+// Sign implement ConvertionRequest interface
+func (r WxaActiveRequest) Sign(req *http.Request, content []byte) (string, error) {
+	if r.PrivateKey == nil || r.Credential == "" {
+		return "", errors.New("no private_key/credential")
+	}
+	return model.CredentialSign(req, content, r.PrivateKey, r.Credential)
+}
+
+// GetAppAccessToken implement ConvertionRequest interface
+func (r WxaActiveRequest) GetAppAccessToken() string {
+	return r.AppAccessToken
 }

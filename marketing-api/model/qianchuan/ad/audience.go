@@ -9,12 +9,28 @@ import (
 type Audience struct {
 	// AudienceMode 人群定向模式，当promotion_way为 SIMPLE时返回，枚举值：AUTO智能推荐、CUSTOM自定义
 	AudienceMode enum.AudienceMode `json:"audience_mode,omitempty"`
+	// OrientationID 定向包ID，定向包ID由【工具-人群管理-获取定向包】获取
+	// 1、如果同时传定向包ID和自定义用户定向参数时，仅定向包中的定向生效
+	// 2、仅通投且专业推广支持，极速推广不支持
+	OrientationID uint64 `json:"orientation_id,omitempty"`
+	// DistrictType 定向or排除地域，允许值：
+	// true：排除地域
+	// false：定向地域，默认
+	// 仅直播带货+通投广告+极速推广+托管计划，支持
+	DistrictType *bool `json:"district_type,omitempty"`
 	// District 地域定向类型，配合city字段使用，允许值：CITY：省市，COUNTY：区县，NONE：不限；默认值：NONE
 	District enum.District `json:"district,omitempty"`
 	// City 具体定向的城市列表，当 district 为COUNTY，city 为必填，枚举值详见【附件-city.json】；省市传法：city: [12]，district: CITY；区县的传法：city: [130102]，district: COUNTY
 	City []uint64 `json:"city,omitempty"`
 	// LocationType 地域定向的用户状态类型，当 district 为COUNTY，CITY为必填，允许值：CURRENT：正在该地区的用户，HOME：居住在该地区的用户，TRAVEL；到该地区旅行的用户，ALL：该地区内的所有用户
 	LocationType enum.LocationType `json:"location_type,omitempty"`
+	// ExcludeLimitRegion 排除限运地区，允许值：
+	// 0：否，默认值
+	// 1：是
+	// 注意：
+	// 1、仅同时满足以下条件时，设置为“1”才有效：- 地域定向类型为“不限”/地域定向的用户状态类型为“正在该地区的用户”
+	// 2、当“可放开定向列表”为REGION且排除限运地区时，依旧会探索限运地区的目标人群
+	ExcludeLimitRegion int `json:"exclude_limit_region,omitempty"`
 	// Gender 允许值: GENDER_FEMALE：女性，GENDER_MALE：男性，NONE： 不限
 	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// Age 年龄，详见【附录-受众年龄区间】；允许值：AGE_BETWEEN_18_23, AGE_BETWEEN_24_30, AGE_BETWEEN_31_40, AGE_BETWEEN_41_49, AGE_ABOVE_50
@@ -55,4 +71,10 @@ type Audience struct {
 	RetargetingTagsExclude []uint64 `json:"retargeting_tags_exclude,omitempty"`
 	// LivePlatformTags 直播带货平台精选人群包
 	LivePlatformTags []enum.LivePlatformTag `json:"live_platform_tags,omitempty"`
+	// 	NewCUstomer 新客定向，
+	// NO_BUY 店铺未购，
+	// NONE 不限
+	// NO_BUY_BRAND：品牌未购
+	// NO_BUY_DOUYIN 抖音号未购// NewCustomer
+	NewCustomer string `json:"new_customer,omitempty"`
 }
