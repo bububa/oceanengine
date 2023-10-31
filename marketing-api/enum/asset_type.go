@@ -13,7 +13,7 @@ const (
 	// AssetType_QUICK_APP 快应用
 	AssetType_QUICK_APP AssetType = "QUICK_APP"
 	// AssetType_MINI_PROGRAME 字节小程序
-	AssetType_MINI_PROGRAM AssetType = "MINI_PROGRAM"
+	AssetType_MINI_PROGRAME AssetType = "MINI_PROGRAME"
 	// AssetType_ORANGE 橙子落地页
 	AssetType_ORANGE AssetType = "ORANGE"
 	// AssetType_THIRDPARTY 自研落地页
