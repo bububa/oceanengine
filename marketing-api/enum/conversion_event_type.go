@@ -25,6 +25,8 @@ const (
 	Conversion_CONSULT_EFFECTIVE ConversionEventType = "consult_effective"
 	// Conversion_IN_APP_ORDER 用户进入电商平台APP，并完成提交订单行为
 	Conversion_IN_APP_ORDER ConversionEventType = "in_app_order"
+	// Conversion_IN_APP_ORDER_BALANCE 支付尾款
+	Conversion_IN_APP_ORDER_BALANCE ConversionEventType = "in_app_order_balance"
 	// Conversion_IN_APP_UV 用户成功打开访问应用打开并访问通常考核吊起打开，不考核活动/商品 uv/pv
 	Conversion_IN_APP_UV ConversionEventType = "in_app_uv"
 	// Conversion_IN_APP_CART 用户将商品加入购物车
