@@ -178,6 +178,8 @@ type PromotionMaterial struct {
 	// OpenURL 直达链接，用于打开电商app，调起店铺
 	// 仅在电商店铺推广目的下有效
 	OpenURL string `json:"open_url,omitempty"`
+	// OpenURLs 电商优选直达链接组
+	OpenURLs []string `json:"open_urls,omitempty"`
 	// Ulink 直达备用链接，支持穿山甲和站内广告位
 	Ulink string `json:"ulink,omitempty"`
 	// DynamicCreateiveSwitch 动态创意开关，允许值：ON开启（默认值），OFF关闭，当ad_type=SEARCH时有效
