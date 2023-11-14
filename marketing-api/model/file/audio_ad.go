@@ -26,6 +26,7 @@ type AudioAdRequest struct {
 	AudioURL string `json:"audio_url,omitempty"`
 }
 
+// Encode implement UploadRequest interface
 func (r AudioAdRequest) Encode() []model.UploadField {
 	fields := []model.UploadField{
 		{
