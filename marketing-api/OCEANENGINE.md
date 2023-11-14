@@ -215,6 +215,7 @@
   - 创建素材清理任务 [ VideoMaterialClearTaskCreate(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskCreateRequest) (uint64, error) ]
   - 获取清理任务列表 [ VideoMaterialClearTaskGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskGetRequest) (*file.VideoMaterialClearTaskGetData, error) ]
   - 下载清理任务结果 [ VideoMaterialClearTaskResultGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskResultGetRequest) (*file.VideoMaterialClearTaskResultGetData, error) ]
+  - 上传图文内的音频素材 [ AudioAd(clt *core.SDKClient, accessToken string, req *file.AudioAdRequest) (*file.Audio, error) ]
   - 上传图集 [ CarouselCreate(clt *core.SDKClient, accessToken string, req *file.CarouselCreateRequest) (*file.Carousel, error) ]
   - 获取图集素材 [ CarouselList(clt *core.SDKClient, accessToken string, req *file.CarouselListRequest) (*file.CarouselListResult, error) ]
   - 更新图集信息 [ CarouselUpdate(clt *core.SDKClient, accessToken string, req *file.CarouselUpdateRequest) ([]file.CarouselUpdateResult, error) ]

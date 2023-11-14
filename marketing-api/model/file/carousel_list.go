@@ -30,8 +30,10 @@ type CarouselListFilter struct {
 	CarouselType []enum.ImageMode `json:"carousel_type,omitempty"`
 	// ImageIDs 图片id
 	ImageIDs []string `json:"image_ids,omitempty"`
-	// VideoID 音频id
+	// VideoID 音频id（旧版）（该字段将在12月19日下线，暂不对您的调用产生影响，请及时调整，使用下方audio_id）
 	VideoID string `json:"video_id,omitempty"`
+	// AudioID 音频id
+	AudioID string `json:"audio_id,omitempty"`
 	// StartTime 根据图集上传时间进行过滤的起始时间，与end_time搭配使用。
 	// 格式：yyyy-mm-dd
 	StartTime string `json:"start_time,omitempty"`
