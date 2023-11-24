@@ -70,7 +70,7 @@ type MiniProgram struct {
 	// MicroProgramName 字节小程序的名称，需要与资产id后面信息一致
 	MicroProgramName string `json:"micro_program_name,omitempty"`
 	// InstanceID 字节小程序资产ID，通过【工具】-【获取字节小程序/小游戏】获取
-	InstanceID string `json:"instance_id,omitempty"`
+	InstanceID uint64 `json:"instance_id,omitempty"`
 	// MiniProgramType 字节小程序类型：
 	// BYTE_APP：字节小程序
 	// BYTE_GAME：字节小游戏

@@ -19,6 +19,9 @@
     - 批量上传资质附件 [ AttachmentUpload(clt *core.SDKClient, accessToken string, req *advertiser.AttachmentUploadRequest) (uint64, error)]
     - 投放资质查询 [ DeliveryQualificationList(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryQualificationListRequest) (*advertiser.DeliveryQualificationListData, error) ]
     - 投放资质提交 [ DeliveryQualificationSubmit(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryQualificationSubmitRequest) error ]
+    - 查询推广产品资质规则配置 [ DeliveryPkgConfig(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryPkgConfigRequest) (*advertiser.IndustryConfig, error) ]
+    - 查询推广产品资质 [ DeliveryPkgGet(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryPkgGetRequest) (*advertiser.DeliveryPkg, error) ]
+    - 提交/编辑推广产品资质 [ DeliveryPkgSubmit(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryPkgSubmitRequest) (*advertiser.DeliveryPkgSubmitResult, error) ]
   - 代理商账号管理 (api/agent)
     - 广告主列表 [ AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
@@ -215,6 +218,7 @@
   - 创建素材清理任务 [ VideoMaterialClearTaskCreate(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskCreateRequest) (uint64, error) ]
   - 获取清理任务列表 [ VideoMaterialClearTaskGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskGetRequest) (*file.VideoMaterialClearTaskGetData, error) ]
   - 下载清理任务结果 [ VideoMaterialClearTaskResultGet(clt *core.SDKClient, accessToken string, req *file.VideoMaterialClearTaskResultGetRequest) (*file.VideoMaterialClearTaskResultGetData, error) ]
+  - 上传图文内的音频素材 [ AudioAd(clt *core.SDKClient, accessToken string, req *file.AudioAdRequest) (*file.Audio, error) ]
   - 上传图集 [ CarouselCreate(clt *core.SDKClient, accessToken string, req *file.CarouselCreateRequest) (*file.Carousel, error) ]
   - 获取图集素材 [ CarouselList(clt *core.SDKClient, accessToken string, req *file.CarouselListRequest) (*file.CarouselListResult, error) ]
   - 更新图集信息 [ CarouselUpdate(clt *core.SDKClient, accessToken string, req *file.CarouselUpdateRequest) ([]file.CarouselUpdateResult, error) ]
@@ -442,6 +446,15 @@
     - 查询安卓应用母包 [ AndroidBasicPackageGet(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackageGetRequest) (*appmanagement.AndroidBasicPackageGetResult, error) ]
     - 更新安卓应用母包 [ AndroidBasicPackageUpdate(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackageUpdateRequest) error ]
     - 发布安卓应用母包 [ AndroidBasicPackagePublish(clt *core.SDKClient, accessToken string, req *appmanagement.AndroidBasicPackagePublishRequest) error ]
+  - RTA策略管理 (tools/rta)
+    - 获取RTA策略数据 [ GetInfo(clt *core.SDKClient, accessToken string, req *rta.GetInfoRequest) (*rta.GetInfoData, error) ]
+    - 获取可用的RTA策略 [ Get(clt *core.SDKClient, accessToken string, req *rta.GetRequest) ([]rta.RtaInfo, error) ] 
+    - 批量启停账户下RTA策略 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *rta.StatusUpdateRequest) error ]
+    - 设置账户下RTA策略生效范围 [ SetScope(clt *core.SDKClient, accessToken string, req *rta.SetScopeRequest) error ]
+    - 获取穿山甲渠道RTA联合实验数据 [ RtaExpGet(clt *core.SDKClient, accessToken string, req *rta.RtaExpGetRequest) ([]rta.Report, error) ]
+    - 获取站内媒体RTA联合实验数据（分时t+5） [ RtaExpLocalHourlyGet(clt *core.SDKClient, accessToken string, req *rta.RtaExpLocalHourlyGetRequest) ([]rta.Report, error) ]
+    - 获取站内媒体RTA联合实验数据（分天t+1）[ RtaExpLocalDailyGet(clt *core.SDKClient, accessToken string, req *rta.RtaExpLocalDailyGetRequest) ([]rta.GetRtaExpLocalDailyData, error) ]
+    - 获取RTA策略绑定信息列表 [ ScopeGet(clt *core.SDKClient, accessToken string, req *rta.ScopeGetRequest) ([]rta.Scope, error) ]
   - 评论管理 (tools/comment)
     - 获取评论列表 [ Get(clt *core.SDKClient, accessToken string, req *comment.GetRequest) (*comment.GetResponseData, error) ]
     - 获取评论回复列表 [ ReplyGet(clt *core.SDKClient, accessToken string, req *comment.ReplyGetRequest) (*comment.ReplyGetResponseData, error) ]
