@@ -38,7 +38,7 @@ type AwemeInfoSearchResponse struct {
 	model.BaseResponse
 	// Data json返回值
 	Data struct {
-		List *AwemeInfoSearchResult `json:"list,omitempty"`
+		List []AwemeInfoSearchResult `json:"list,omitempty"`
 	} `json:"data,omitempty"`
 }
 
