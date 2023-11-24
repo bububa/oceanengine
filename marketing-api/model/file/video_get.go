@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"strconv"
 
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -44,6 +45,11 @@ type VideoGetFilter struct {
 	StartTime string `json:"start_time,omitempty"`
 	// EndTime 根据视频上传时间进行过滤的截止时间，与start_time搭配使用，格式：yyyy-mm-dd
 	EndTime string `json:"end_time,omitempty"`
+	// Labels 视频标签
+	Labels []string `json:"labels,omitempty"`
+	// Source 素材来源，详见【附录-素材来源】
+	// 枚举值大小写敏感，请严格按照定义的名称传参
+	Source []enum.MaterialSource `json:"source,omitempty"`
 }
 
 // Encode implement GetRequest interface
