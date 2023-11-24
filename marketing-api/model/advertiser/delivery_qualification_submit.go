@@ -2,6 +2,7 @@ package advertiser
 
 import (
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
@@ -24,4 +25,13 @@ type DeliverySubmitQualification struct {
 // Encode implement PostRequest interface
 func (r DeliveryQualificationSubmitRequest) Encode() []byte {
 	return util.JSONMarshal(r)
+}
+
+// DeliveryQualificationSubmitResponse 提交投放资质（新版）API Response
+type DeliveryQualificationSubmitResponse struct {
+	model.BaseResponse
+	Data struct {
+		// QualificationIDs 资质id列表
+		QualificationIDs []uint64 `json:"qualification_ids,omitempty"`
+	} `json:"data,omitempty"`
 }
