@@ -14,7 +14,7 @@ type SuggestionGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// PromotionIDs 广告计划ID列表，最多100个
 	PromotionIDs []uint64 `json:"ad_ids,omitempty"`
-	// Scenes 希望获取建议的场景，允许值：CLEAN 清理低质计划场景、POTENTIAL 获取潜力计划场景
+	// Scenes 希望获取建议的场景，允许值：CLEAN 清理低质计划场景、POTENTIAL 获取潜力计划场景, ZOMBIE 活跃度低广告（暂为白名单功能，如需获取请联系运营或销售）
 	Scenes []string `json:"scenes,omitempty"`
 }
 

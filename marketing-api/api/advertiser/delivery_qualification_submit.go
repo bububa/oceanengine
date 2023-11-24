@@ -13,6 +13,10 @@ import (
 // - 对于一份完整资质的多张图片请上传至一个资质id中，例如一份经销授权书的3张图片内容
 //  1. 错误方式：分3次调用接口，会导致资质接收不全而被拒绝
 //  2. 正确方式：将一份完整的资质调一次接口上传至一个资质中，保证审核平台能够一次收到完整的资质内容
-func DeliveryQualificationSubmit(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryQualificationSubmitRequest) error {
-	return clt.Post("v3.0/advertiser/delivery_qualification/submit/", req, nil, accessToken)
+func DeliveryQualificationSubmit(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryQualificationSubmitRequest) ([]uint64, error) {
+	var resp advertiser.DeliveryQualificationSubmitResponse
+	if err := clt.Post("v3.0/advertiser/delivery_qualification/submit/", req, &resp, accessToken); err != nil {
+		return nil, err
+	}
+	return resp.Data.QualificationIDs, nil
 }

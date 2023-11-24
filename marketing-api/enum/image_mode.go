@@ -1,5 +1,7 @@
 package enum
 
+import "strconv"
+
 // ImageMode 素材类型
 // 不符合下列素材类型尺寸比例，投放后台不显示
 type ImageMode string
@@ -39,3 +41,27 @@ const (
 	// SEARCH_DISPLAY_WINDOW_IMAGE 搜索橱窗橱窗
 	SEARCH_DISPLAY_WINDOW_IMAGE ImageMode = "SEARCH_DISPLAY_WINDOW_IMAGE"
 )
+
+// UnmarshalJSON implement json Unmarshal interface
+func (im *ImageMode) UnmarshalJSON(b []byte) (err error) {
+	if b[0] == '"' && b[len(b)-1] == '"' {
+		b = b[1 : len(b)-1]
+	}
+	str := string(b)
+	if i, err := strconv.ParseUint(str, 10, 64); err != nil {
+		*im = ImageMode(str)
+		return nil
+	} else {
+		switch i {
+		case 1:
+			*im = INFORMATION_FLOW_IMAGE
+		case 2:
+			*im = TOUTIAO_SEARCH_AD_IMAGE
+		case 3:
+			*im = SEARCH_DISPLAY_WINDOW_IMAGE
+		default:
+			*im = ImageMode(str)
+		}
+	}
+	return
+}
