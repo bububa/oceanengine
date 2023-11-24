@@ -15,7 +15,7 @@ type AdSuggestion struct {
 
 // SuggestScene 计划对应的场景
 type SuggestScene struct {
-	// Scene 场景名称，允许值：CLEAN清理低质计划场景、POTENTIAL获取潜力计划场景
+	// Scene 场景名称，允许值：CLEAN清理低质计划场景、POTENTIAL获取潜力计划场景, ZOMBIE 活跃度低广告（暂为白名单功能，如需获取请联系运营或销售）
 	Scene string `json:"scene,omitempty"`
 	// Suggestions 建议列表
 	Suggestions []Suggestion `json:"suggestions,omitempty"`
