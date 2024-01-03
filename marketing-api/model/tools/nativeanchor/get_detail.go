@@ -54,8 +54,14 @@ type Error struct {
 	AnchorID string `json:"anchor_id,omitempty"`
 	// Message 查询失败的原因
 	Message string `json:"message,omitempty"`
+	// ErrorMessage 查询失败的原因
+	ErrorMessage string `json:"error_message,omitempty"`
 }
 
 func (e Error) Error() string {
-	return util.StringsJoin("锚点ID: ", e.AnchorID, ", 错误信息: ", e.Message)
+	message := e.Message
+	if e.ErrorMessage != "" {
+		message = e.ErrorMessage
+	}
+	return util.StringsJoin("锚点ID: ", e.AnchorID, ", 错误信息: ", message)
 }
