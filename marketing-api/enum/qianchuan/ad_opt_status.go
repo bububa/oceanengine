@@ -10,4 +10,6 @@ const (
 	AdOptStatus_DISABLE AdOptStatus = "DISABLE"
 	// AdOptStatus_DELETE 删除
 	AdOptStatus_DELETE AdOptStatus = "DELETE"
+	// AdOptStatus_SYSTEM_DISABLE 系统暂停
+	AdOptStatus_SYSTEM_DISABLE AdOptStatus = "SYSTEM_DISABLE"
 )
