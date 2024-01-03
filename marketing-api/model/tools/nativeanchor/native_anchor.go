@@ -12,6 +12,8 @@ type NativeAnchor struct {
 	AnchorName string `json:"anchor_name,omitempty"`
 	// ToolTitle 锚点工具名称（内部管理展示）
 	ToolTitle string `json:"tool_title,omitempty"`
+	// AdvertiserID 广告主账户ID
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// AnchorType 锚点类型
 	AnchorType enum.AnchorType `json:"anchor_type,omitempty"`
 	// Status 锚点审核状态
@@ -20,6 +22,8 @@ type NativeAnchor struct {
 	Source string `json:"source,omitempty"`
 	// CreateTime 锚点创建日期，格式：yyyy-MM-dd
 	CreateTime string `json:"create_time,omitempty"`
+	// ModifyTime 锚点更新时间
+	ModifyTime string `json:"modify_time,omitempty"`
 	// AndroidPackageName 安卓应用包名
 	AndroidPackageName string `json:"android_package_name,omitempty"`
 	// IosPackageName ios应用包名
@@ -30,8 +34,14 @@ type NativeAnchor struct {
 	NetSerivceAnchor *NetServiceAnchor `json:"net_service_anchor,omitempty"`
 	// GameAnchor 游戏锚点
 	GameAnchor *GameAnchor `json:"game_anchor,omitempty"`
+	// PrivateChatAnchor 咨询锚点，当anchor_type=PRIVATE_CHAT时返回的锚点
+	PrivateChatAnchor *PrivateChatAnchor `json:"private_chat_anchor,omitempty"`
 	// ShoppingCartAnchor 购物车锚点
 	ShoppingCartAnchor *ShoppingCartAnchor `json:"shopping_cart_anchor,omitempty"`
+	// InsuranceEnterpriseAnchor 外跳锚点，当anchor_type=INSURANCE时返回的详情
+	InsuranceEnterpriseAnchor *InsuranceEnterpriseAnchor `json:"insurance_enterprise_anchor,omitempty"`
+	// AnchorShareType 锚点分享类型
+	AnchorShareType enum.AnchorShareType `json:"anchor_share_type,omitempty"`
 }
 
 // AppEcommerceAnchor 电商下载锚点
@@ -78,10 +88,14 @@ type AppEcommerceAnchor struct {
 
 // NetServiceAnchor 网服下载锚点
 type NetServiceAnchor struct {
-	// NetServiceType 推广内容，当前锚点必填，允许值：
-	// 'GENERAL' ：常规 （默认值）
-	// 'MICRO_APP' ：微信小程序
-	NetServiceType string `json:"net_service_type,omitempty"`
+	// 推广内容，网服锚点必填，允许值：
+	// GENERAL：常规应用下载 （默认值）
+	// 如选择“跳转微信”推广内容，则直接传入对应的跳转场景枚举：
+	// 跳转场景=添加微信号，传WECHAT_PACKAGE
+	// 跳转场景=进入微信小程序，传MICRO_APP
+	// 跳转场景=企业微信客服，传WECOM_PACKAGE
+	// QUICK_APP：快应用
+	NetServiceType enum.NetServiceType `json:"net_service_type,omitempty"`
 	// PlatformType 配置平台，net_service_type为微信小程序场景下不用传入（1:不限,2:安卓,3:iOS）不限：安卓下载链接和iOS下载链接必填；安卓：安卓下载链接必填，iOS下载链接不填写；iOS：iOS下载链接必填
 	PlatformType int `json:"platform_type,omitempty"`
 	// AndroidDownloadURL 安卓下载链接，net_service_type为微信小程序场景下不用传入
@@ -112,6 +126,13 @@ type NetServiceAnchor struct {
 	AppImages []Image `json:"app_images,omitempty"`
 	// AppDescription APP详情，1～100
 	AppDescription string `json:"app_description,omitempty"`
+	// QuickAppID 快应用ID，网服锚点类型且net_service_type为QUICK_APP必填
+	QuickAppID uint64 `json:"quick_app_id,omitempty"`
+	// NovelChapter 小说章节，非必填，填写小说章节预览，字数1~9999
+	NovelChapter string `json:"novel_chapter,omitempty"`
+	// WechatPackageID net_service_type为WECHAT_PACKAGE时，该参数代表微信号码包ID
+	// net_service_type为WECOM_PACKAGE时，该参数代表企业加粉方案ID
+	WechatPackageID uint64 `json:"wechat_package_id,omitempty"`
 }
 
 // GameAnchor 游戏锚点
@@ -152,6 +173,13 @@ type GameAnchor struct {
 	GameCharatoristic string `json:"game_charatoristic,omitempty"`
 	// OtherDescription 其他说明，长度 1～200
 	OtherDescription string `json:"other_description,omitempty"`
+	// GameBonus 游戏福利，可选择 TRUE 启用、FALSE 不启用
+	GameBonus bool `json:"game_bonus,omitempty"`
+	// GamePackageList 游戏礼包列表，当game_bonus为TRUE 时必填，数量限制0-3
+	// （排在首位的礼包，将会在搜索结果页面展示快捷入口）
+	GamePackageList []GamePackage `json:"game_package_list,omitempty"`
+	// AppOpenURL App调起链接
+	AppOpenURL string `json:"app_open_url,omitempty"`
 }
 
 // Image 商品大图，推荐比例 1：1
@@ -190,10 +218,94 @@ type ShoppingCartAnchor struct {
 	ProductTitle string `json:"product_title,omitempty"`
 	// ProductSource 商品来源，只支持填写淘宝/天猫/京东/拼多多/唯品会/得物
 	ProductSource string `json:"product_source,omitempty"`
-	// ExternalUrl 落地页链接
-	ExternalUrl string `json:"external_url,omitempty"`
-	// OpenUrl 直达链接
-	OpenUrl string `json:"open_url,omitempty"`
+	// ExternalURL 落地页链接
+	ExternalURL string `json:"external_url,omitempty"`
+	// OpenURL 直达链接
+	OpenURL string `json:"open_url,omitempty"`
 	// LinkType 跳转类型，枚举值一跳：ONE_JUMP、二跳：TWO_JUMP
 	LinkType string `json:"link_type,omitempty"`
+}
+
+// GamePackage 游戏礼包
+type GamePackage struct {
+	// GamePackageName 游戏礼包名称，字符限制0～14
+	GamePackageName string `json:"game_package_name,omitempty"`
+	// AndroidPackageCode 安卓礼包码，字符限制0～20
+	AndroidPackageCode string `json:"android_package_code,omitempty"`
+	// IosPackageCode ios礼包码，字符限制0～20
+	IosPackageCode string `json:"ios_package_code,omitempty"`
+	// Gift 礼包内的礼品配置，数量限制0～8
+	Gift []GamePackageGift `json:"gift,omitempty"`
+	// GiftStartDate 礼包使用开始期限，格式 yyyy.MM.dd
+	GiftStartDate string `json:"gift_start_date,omitempty"`
+	// GiftEndDate 礼包使用结束期限，格式 yyyy.MM.dd
+	GiftEndDate string `json:"gift_end_date,omitempty"`
+	// GameGiftRegulation 礼包使用规则，字符限制0～30
+	// 礼包码的具体兑换路径，如人物等级10级-左侧菜单-福利-输入礼包码兑换
+	GameGiftRegulation string `json:"game_gift_regulation,omitempty"`
+}
+
+// GamePackageGift 礼包内的礼品配置
+type GamePackageGift struct {
+	// GiftName 礼品名称，字符限制0～8
+	GiftName string `json:"gift_name,omitempty"`
+	// GiftImageURL 礼品图片
+	GiftImageURL string `json:"gift_image_url,omitempty"`
+	// GiftAmount 礼品数量，0～6
+	GiftAmount int `json:"gift_amount,omitempty"`
+	// GiftUnit 礼品单位 可选值:
+	// INDIVIDUAL
+	// MYRIAD
+	GiftUnit string `json:"gift_unit,omitempty"`
+}
+
+// PrivateChatAnchor 咨询锚点
+type PrivateChatAnchor struct {
+	// ChatGuide 咨询引导文案，如私信获取一对一解答，不超过9个字
+	ChatGuide string `json:"chat_guide,omitempty"`
+	// Button 按钮文案，可选私信商家、立即咨询、咨询顾问、咨询设计师、问问老师 可选值:
+	// PRIVATE_MESSAGE私信商家
+	// CONSULT_NOW立即咨询
+	// CONSULT_ADVISOR咨询顾问
+	// CONSULT_DESIGNER咨询设计师
+	// ASK_TEACHER问问老师
+	Button enum.PrivateChatAnchorButton `json:"button,omitempty"`
+}
+
+// InsuranceEnterpriseAnchor 外跳锚点，当anchor_type=INSURANCE时返回的详情
+type InsuranceEnterpriseAnchor struct {
+	// ProductImage 服务主图
+	ProductImage *Image `json:"product_image,omitempty"`
+	// ProductTitle 产品名称，1-15字
+	ProductTitle string `json:"product_title,omitempty"`
+	// DetailURL 点击按钮时的跳转链接，此处填写的跳转链接会应用到“转化按钮”与“详情介绍”，以http开头
+	DetailURL string `json:"detail_url,omitempty"`
+	// ProductTags 产品特点，最多返回3个
+	ProductTags []string `json:"product_tags,omitempty"`
+	// ProductServiceDescription 服务描述，1-6字
+	ProductServiceDescription string `json:"product_service_description,omitempty"`
+	// ConversionBtn 转化按钮，仅支持1个枚举 可选值:
+	// 查看详情 VIEW_DETIALS
+	// 立即购买 BUY_NOW
+	// 立即完善 IMPROVE_NOW
+	// 免费领取 FREE_RECEIVE
+	ConversionBtn string `json:"conversion_btn,omitempty"`
+	// ProductDescriptions 产品描述
+	ProductDescriptions []string `json:"product_descriptions,omitempty"`
+	// BannerImages 详情介绍banner,大小不超过10M的图片，尺寸1032*360px
+	BannerImages []Image `json:"banner_images,omitempty"`
+	// BannerDescription 详情介绍，1-18个字
+	BannerDescription string `json:"banner_description,omitempty"`
+	// ProductName 产品详情下的产品名称
+	ProductName string `json:"product_name,omitempty"`
+	// SingleProductInfo 单项服务名称，5-10组
+	SingleProductInfo []SingleProductInfo `json:"single_product_info,omitempty"`
+}
+
+// SingleProductInfo 单项服务名称
+type SingleProductInfo struct {
+	// SingleProductName 单项服务名称，0/15
+	SingleProductName string `json:"single_product_name,omitempty"`
+	// SingleProductDetail 服务描述，0/10
+	SingleProductDetail string `json:"single_product_detail,omitempty"`
 }

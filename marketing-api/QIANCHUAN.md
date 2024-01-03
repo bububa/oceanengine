@@ -21,6 +21,7 @@
       - 获取千川账户类型 [ TypeGet(clt *core.SDKClient, accessToken string, req *advertiser.TypeGetRequest) ([]advertiser.Advertiser, error) ]
 - 资金管理(api/qianchuan/finance)
   - 获取账户钱包信息 [ WalletGet(clt *core.SDKClient, accessToken string, req *finance.WalletGetRequest) (*finance.Wallet, error) ]
+  - 获取账户余额 [ advertiser.BalanceGet(clt *core.SDKClient, accessToken string, req *advertiser.BalanceGetRequest) (*advertiser.Balance, error) ]
   - 获取财务流水信息 [ DetailGet(clt *core.SDKClient, accessToken string, req *finance.DetailGetRequest) (*finance.DetailGetResult, error) ]
   - 创建转账交易号（方舟） [ advertiser.FundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCreateRequest) (string, error) ]
   - 提交转账交易号（方舟） [ advertiser.FundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]

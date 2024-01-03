@@ -480,7 +480,11 @@
     - 查询优选起量任务数据 [ DataGet(clt *core.SDKClient, accessToken string, req *taskraise.DataGetRequest) (*taskraise.DataGetResponseData, error) ]
   - 原生锚点管理 (tools/nativeanchor)
     - 获取账户下原生锚点 [ Get(clt *core.SDKClient, accessToken string, req *nativeanchor.GetRequest) (*nativeanchor.GetResponseData, error) ]
+    - 获取原生锚点详情 [ GetDetail(clt *core.SDKClient, accessToken string, req *nativeanchor.GetDetailRequest) (*nativeanchor.GetDetailResult, error)]
+    - 批量获取锚点预览url [ QrcodePreviewGet(clt *core.SDKClient, accessToken string, req *nativeanchor.QrcodePreviewGetRequest) (*nativeanchor.QrcodePreviewGetResult, error) ]
     - 原生锚点创建 [ Create(clt *core.SDKClient, accessToken string, req *nativeanchor.CreateRequest) (*nativeanchor.CreateResponseData, error) ]
+    - 更新原生锚点 [ Update(clt *core.SDKClient, accessToken string, req *nativeanchor.UpdateRequest) (*nativeanchor.UpdateResponseData, error) ]
+    - 删除原生锚点 [ Delete(clt *core.SDKClient, accessToken string, req *nativeanchor.DeleteRequest) error ]
   - 微信小程序/小游戏管理 (tools/wechat)
     - 获取微信小程序列表 [ AppletList(clt *core.SDKClient, accessToken string, req *wechat.AppletListRequest) (*wechat.AppletListResult, error) ]
     - 获取微信小游戏列表 [ GameList(clt *core.SDKClient, accessToken string, req *wechat.GameListRequest) (*wechat.GameListResult, error) ]
