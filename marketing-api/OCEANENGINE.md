@@ -480,6 +480,7 @@
     - 查询优选起量任务数据 [ DataGet(clt *core.SDKClient, accessToken string, req *taskraise.DataGetRequest) (*taskraise.DataGetResponseData, error) ]
   - 原生锚点管理 (tools/nativeanchor)
     - 获取账户下原生锚点 [ Get(clt *core.SDKClient, accessToken string, req *nativeanchor.GetRequest) (*nativeanchor.GetResponseData, error) ]
+    - 获取原生锚点详情 [ GetDetail(clt *core.SDKClient, accessToken string, req *nativeanchor.GetDetailRequest) (*nativeanchor.GetDetailResult, error)]
     - 原生锚点创建 [ Create(clt *core.SDKClient, accessToken string, req *nativeanchor.CreateRequest) (*nativeanchor.CreateResponseData, error) ]
   - 微信小程序/小游戏管理 (tools/wechat)
     - 获取微信小程序列表 [ AppletList(clt *core.SDKClient, accessToken string, req *wechat.AppletListRequest) (*wechat.AppletListResult, error) ]
