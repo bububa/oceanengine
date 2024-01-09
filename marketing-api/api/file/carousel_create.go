@@ -12,7 +12,7 @@ import (
 // 利用上述两步的图片、视频id塑造图集，获取出参图集mid。不同图片顺序对应不同的图集mid。
 func CarouselCreate(clt *core.SDKClient, accessToken string, req *file.CarouselCreateRequest) (*file.Carousel, error) {
 	var resp file.CarouselCreateResponse
-	if err := clt.Post("2/file/carousel/create/", req, &resp, accessToken); err != nil {
+	if err := clt.Post("2/carousel/create/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.Carousel, nil
