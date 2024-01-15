@@ -207,6 +207,18 @@ type VideoMaterial struct {
 	// MaterialStatus 素材审核状态，枚举值：
 	// MATERIAL_STATUS_OK 投放中、MATERIAL_STATUS_DELETE 已删除、MATERIAL_STATUS_PROJECT_OFFLINE_BUDGET 项目超出预算、MATERIAL_STATUS_PROJECT_PREOFFLINE_BUDGET 项目接近预算、MATERIAL_STATUS_TIME_NO_REACH 未到达投放时间、MATERIAL_STATUS_TIME_DONE 已完成、MATERIAL_STATUS_NO_SCHEDULE 不在投放时段、MATERIAL_STATUS_AUDIT 新建审核中、MATERIAL_STATUS_REAUDIT 修改审核中、MATERIAL_STATUS_OFFLINE_AUDIT 审核不通过、MATERIAL_STATUS_OFFLINE_BUDGET 广告超出预算、MATERIAL_STATUS_ OFFLINE_BALANCE 账户余额不足、MATERIAL_STATUS_ PREOFFLINE_BUGDET 广告接近预算、MATERIAL_STATUS_PROJECT_DISABLE 已被项目暂停、MATERIAL_STATUS_DISABLE 已暂停、MATERIAL_STATUS_PROMOTION_DISABLE 已被广告暂停、MATERIAL_STATUS_MATERIAL_DELETE 已删除
 	MaterialStatus enum.MaterialStatus `json:"material_status,omitempty"`
+	// VideoHpVisibility 原生广告视频素材主页可见性设置，该参数只针对非抖音视频生效可选值:
+	// ALWAYS_VISIBLE 主页始终可见
+	// HIDE_AFTER_END_DATE 指定日期后隐藏
+	// HIDE_AFTER_NO_PLAYBACK 无播放后隐藏
+	// HIDE_VIDEO_ON_HP 主页隐藏（默认值）
+	VideoHpVisibility enum.VideoHpVisibility `json:"video_hp_visibility,omitempty"`
+	// VisibleEndDate 指定日期后隐藏，传入日期格式2020-01-01，只支持设置当天及以后的日期，精确到天
+	// 仅当video_hp_visibility = HIDE_AFTER_END_DATE指定日期后时，可传入visible_end_date参数
+	VisibleEndDate string `json:"visible_end_date,omitempty"`
+	// GuideVideoID 引导视频id，白名单功能，仅游戏行业广告主投放奖励关卡广告时必填
+	// 要求：引导视频时长≥5s，文件≤100M，传入不符合要求的视频广告将无法创建成功。建议您首先调用「上传视频」接口上传引导视频，拿到引导视频的video_id ，video_id = guide_video_id
+	GuideVideoID string `json:"guide_video_id,omitempty"`
 }
 
 // ImageMaterial 创意图片素材
