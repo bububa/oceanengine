@@ -44,6 +44,8 @@ const (
 	ExtendPackageStatus_UPDATING ExtendPackageStatus = "UPDATING"
 	// ExtendPackageStatus_PUBLISHED 已发布
 	ExtendPackageStatus_PUBLISHED ExtendPackageStatus = "PUBLISHED"
+	// ExtendPackageStatus_ENABLE 已发布（默认值）
+	ExtendPackageStatus_ENABLE ExtendPackageStatus = "ENABLE"
 	// ExtendPackageStatus_CREATION_FAILED 创建失败
 	ExtendPackageStatus_CREATION_FAILED ExtendPackageStatus = "CREATION_FAILED"
 	// ExtendPackageStatus_UPDATE_FAILED 更新失败
