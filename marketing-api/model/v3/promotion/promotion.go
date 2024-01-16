@@ -184,6 +184,15 @@ type PromotionMaterial struct {
 	Ulink string `json:"ulink,omitempty"`
 	// DynamicCreateiveSwitch 动态创意开关，允许值：ON开启（默认值），OFF关闭，当ad_type=SEARCH时有效
 	DynamicCreateiveSwitch string `json:"dynamic_creative_switch,omitempty"`
+	// AdvancedDcSettings 动态创意高级设置，仅搜索广告下可设置。注意：
+	// 仅当广告类型ad_type = SEARCH搜索广告，动态创意开关dynamic_creative_switch =ON时可传入，否则报错
+	// 必须传入至少1个值，动态创意开关开启dynamic_creative_switch =ON时，此参数传空值或非允许值会报错
+	// 当ad_type = SEARCH搜索广告、动态创意开关开启dynamic_creative_switch =ON时，不传入此参数表示默认开启2个优化项
+	// 搜索周期稳投广告不支持设置此参数，传入不会生效
+	// 允许值：
+	// OPTIMIZE_SEARCH_RESULTS_PAGE优化视频、图片、标题等搜索结果页内容
+	// OPTIMIZE_LANDING_PAGE优化落地页
+	AdvancedDcSettings []enum.AdvancedDcSetting `json:"advanced_dc_settings,omitempty"`
 	// ProductInfo 产品信息
 	ProductInfo *ProductInfo `json:"product_info,omitempty"`
 	// CallToActionButtons 行动号召文案
