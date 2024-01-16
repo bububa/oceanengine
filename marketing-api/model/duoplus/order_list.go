@@ -18,6 +18,12 @@ type OrderListRequest struct {
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小，允许值：1- 100，默认值：10
 	PageSize int `json:"page_size,omitempty"`
+	// OrderByField 排序字段， 可选值:
+	// CREATE_TIME 创建时间（默认值），不传参数默认按此排序
+	// ORDER_ID 订单id
+	OrderByField string `json:"order_by_field,omitempty"`
+	// OrderByType 排序方式， 可选值:
+	OrderByType enum.OrderType `json:"order_by_type,omitempty"`
 }
 
 // OrderListFilter 筛选条件
@@ -53,6 +59,12 @@ func (r OrderListRequest) Encode() string {
 	}
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
+	}
+	if r.OrderByField != "" {
+		values.Set("order_by_field", r.OrderByField)
+	}
+	if r.OrderByType != "" {
+		values.Set("order_by_type", string(r.OrderByType))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
