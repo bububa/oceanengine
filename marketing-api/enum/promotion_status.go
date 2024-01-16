@@ -52,6 +52,10 @@ const (
 	PromotionStatus_AWEME_ACCOUNT_DISABLED PromotionStatus = "AWEME_ACCOUNT_DISABLED"
 	// PromotionStatus_AWEME_ANCHOR_DISABLED 锚点不可投
 	PromotionStatus_AWEME_ANCHOR_DISABLED PromotionStatus = "AWEME_ANCHOR_DISABLED"
+	// PromotionStatus_AWEME_ACCOUNT_OPTIMIZABLE 关联抖音号可优化
+	PromotionStatus_AWEME_ACCOUNT_OPTIMIZABLE PromotionStatus = "AWEME_ACCOUNT_OPTIMIZABLE"
+	// PromotionStatus_AWEME_VIDEO_OPTIMIZABLE 关联抖音视频可优化
+	PromotionStatus_AWEME_VIDEO_OPTIMIZABLE PromotionStatus = "AWEME_VIDEO_OPTIMIZABLE"
 	// PromotionStatus_DISABLE_BY_QUOTA 已暂停（配额达限）
 	PromotionStatus_DISABLE_BY_QUOTA PromotionStatus = "DISABLE_BY_QUOTA"
 	// PromotionStatus_CREATE 新建
