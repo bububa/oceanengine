@@ -9,7 +9,7 @@ import (
 // 更细图集信息，目前仅支持图集 file_name 和主题修改
 func CarouselUpdate(clt *core.SDKClient, accessToken string, req *file.CarouselUpdateRequest) ([]file.CarouselUpdateResult, error) {
 	var resp file.CarouselUpdateResponse
-	if err := clt.Post("2/file/carousel/update/", req, &resp, accessToken); err != nil {
+	if err := clt.Post("2/carousel/update/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.Carousels, nil
