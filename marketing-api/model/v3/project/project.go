@@ -83,6 +83,8 @@ type Project struct {
 	DownloadMode enum.DownloadMode `json:"download_mode,omitempty"`
 	// QuickAppId 快应用资产id ，从【查询快应用信息】接口获取，仅支持已通过审核的快应用资产
 	QuickAppId uint64 `json:"quick_app_id,omitempty"`
+	// MicroAppInstanceID 字节小程序/小游戏资产id
+	MicroAppInstanceID string `json:"micro_app_instance_id,omitempty"`
 	// LaunchType 调起方式， landing_type = APP 且子目标为LAUNCH有效
 	// 允许值： DIRECT_OPEN 直接调起（默认值）、EXTERNAL_OPEN 落地页调起
 	LaunchType enum.LaunchType `json:"launch_type,omitempty"`
