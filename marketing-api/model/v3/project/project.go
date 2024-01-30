@@ -431,7 +431,7 @@ type DeliverySetting struct {
 	// OFF:关闭，关闭表示周期稳投7天后投放将自动终止
 	// ON:开启，开启表示投放结束后将继续维持7天固定周期的投放，跑量更加稳定，可以延续跑量
 	// 仅支持周期稳投链路，其他链路下传入该参数不生效
-	SearchCOntinueDelivery string `json:"search_continue_delivery,omitempty"`
+	SearchContinueDelivery string `json:"search_continue_delivery,omitempty"`
 }
 
 // TrackURLSetting 监测链接设置
