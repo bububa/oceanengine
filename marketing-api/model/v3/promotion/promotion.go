@@ -35,6 +35,10 @@ type Promotion struct {
 	OptStatus enum.OptStatus `json:"opt_status,omitempty"`
 	// NativeSetting 原生广告设置
 	NativeSetting *NativeSetting `json:"native_setting,omitempty"`
+	// HasCarryMaterial 该广告是否包含搬运打压状态的素材
+	// TRUE：存在打压风险
+	// FALSE：不存在打压风险
+	HasCarryMaterial string `json:"has_carry_material,omitempty"`
 	// PromotionMaterials 广告素材组合
 	PromotionMaterials *PromotionMaterial `json:"promotion_materials,omitempty"`
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
@@ -228,6 +232,18 @@ type VideoMaterial struct {
 	// GuideVideoID 引导视频id，白名单功能，仅游戏行业广告主投放奖励关卡广告时必填
 	// 要求：引导视频时长≥5s，文件≤100M，传入不符合要求的视频广告将无法创建成功。建议您首先调用「上传视频」接口上传引导视频，拿到引导视频的video_id ，video_id = guide_video_id
 	GuideVideoID string `json:"guide_video_id,omitempty"`
+	// VideoTemplateType 商品库视频生成类型
+	VideoTemplateType enum.DpaVideoTemplateType `json:"video_template_type,omitempty"`
+	// VideoTaskIDs 自定义商品库视频模板ID
+	VideoTaskIDs []string `json:"video_task_ids,omitempty"`
+	// IsCarryMaterial 视频素材在当前账户下是否存在搬运打压风险
+	// TRUE：存在打压风险
+	// FALSE：不存在打压风险
+	IsCarryMaterial string `json:"is_carry_material,omitempty"`
+	// MaterialOptStatus 视频素材操作状态，枚举值：
+	// DISABLE 暂停
+	// ENABLE 启用
+	MaterialOptStatus enum.OptStatus `json:"material_opt_status,omitempty"`
 }
 
 // ImageMaterial 创意图片素材
@@ -240,10 +256,16 @@ type ImageMaterial struct {
 
 // Image 图片
 type Image struct {
+	// TemplateID 图片素材类型-DPA模板ID
+	TemplateID model.Uint64 `json:"template_id,omitempty"`
 	// ImageID 图片ID
 	ImageID string `json:"image_id,omitempty"`
 	// MaterialID 素材ID
 	MaterialID model.Uint64 `json:"material_id,omitempty"`
+	// MaterialOptStatus 图片素材操作状态，枚举值：
+	// DISABLE 暂停
+	// ENABLE 启用
+	MaterialOptStatus enum.OptStatus `json:"material_opt_status,omitempty"`
 	// MaterialStatus 素材审核状态，枚举值：
 	// MATERIAL_STATUS_OK 投放中、MATERIAL_STATUS_DELETE 已删除、MATERIAL_STATUS_PROJECT_OFFLINE_BUDGET 项目超出预算、MATERIAL_STATUS_PROJECT_PREOFFLINE_BUDGET 项目接近预算、MATERIAL_STATUS_TIME_NO_REACH 未到达投放时间、MATERIAL_STATUS_TIME_DONE 已完成、MATERIAL_STATUS_NO_SCHEDULE 不在投放时段、MATERIAL_STATUS_AUDIT 新建审核中、MATERIAL_STATUS_REAUDIT 修改审核中、MATERIAL_STATUS_OFFLINE_AUDIT 审核不通过、MATERIAL_STATUS_OFFLINE_BUDGET 广告超出预算、MATERIAL_STATUS_ OFFLINE_BALANCE 账户余额不足、MATERIAL_STATUS_ PREOFFLINE_BUGDET 广告接近预算、MATERIAL_STATUS_PROJECT_DISABLE 已被项目暂停、MATERIAL_STATUS_DISABLE 已暂停、MATERIAL_STATUS_PROMOTION_DISABLE 已被广告暂停、MATERIAL_STATUS_MATERIAL_DELETE 已删除
 	MaterialStatus enum.MaterialStatus `json:"material_status,omitempty"`
@@ -253,6 +275,8 @@ type Image struct {
 type TitleMaterial struct {
 	// MaterialID 素材ID
 	MaterialID model.Uint64 `json:"material_id,omitempty"`
+	// DpaWordList DPA词包ID列表
+	DpaWordList []string `json:"dpa_word_list,omitempty"`
 	// Title 创意标题
 	Title string `json:"title,omitempty"`
 	// BidwordList 搜索关键词列表
@@ -300,6 +324,18 @@ type ProductInfo struct {
 	ImageIDs []string `json:"image_ids,omitempty"`
 	// SellingPoints 产品卖点
 	SellingPoints []string `json:"selling_points,omitempty"`
+	// ProductNameType 产品名称类型，枚举值：DPA产品库字段，CUSTOM自定义
+	ProductNameType string `json:"product_name_type,omitempty"`
+	// ProductImageType 产品图片类型，枚举值：DPA产品库字段，CUSTOM自定义
+	ProductImageType string `json:"product_image_type,omitempty"`
+	// ProductSellingPointType 产品卖点类型，枚举值：DPA产品库字段，CUSTOM自定义
+	ProductSellingPointType string `json:"product_selling_point_type,omitempty"`
+	// ProductNameFields DPA产品库名称字段
+	ProductNameFields []string `json:"product_name_fields,omitempty"`
+	// ProductImageFields DPA产品库图片字段
+	ProductImageFields []string `json:"product_image_fields,omitempty"`
+	// ProductSellingPointFields DPA产品库卖点字段
+	ProductSellingPointFields []string `json:"product_selling_point_fields,omitempty"`
 }
 
 // MaterialScoreInfo 素材评级信息

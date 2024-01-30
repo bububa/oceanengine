@@ -21,6 +21,11 @@ type OptimizedGoalGetRequest struct {
 	MarketingGoal enum.MarketingGoal `json:"marketing_goal,omitempty"`
 	// AdType 广告类型，允许值： ALL
 	AdType enum.CampaignType `json:"ad_type,omitempty"`
+	// DeliveryType 投放类型，允许值
+	// NORMAL 常规投放
+	// DURATION 周期稳投
+	// 当前仅支持搜索广告，即ad_type = SEARCH下传入该枚举值有效，否则报错
+	DeliveryType enum.DeliveryType `json:"delivery_type,omitempty"`
 	// AssetType 资产类型，允许值:THIRD_EXTERNAL 三方落地页、TETRIS_EXTERNAL 建站、APP 应用、QUICK_APP 快应用、MINI_PROGRAME字节小程序
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
 	// MiniProgoramID 字节小程序资产id，当asset_type=MINI_PROGRAME时需传入

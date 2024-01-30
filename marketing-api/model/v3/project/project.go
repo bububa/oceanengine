@@ -13,6 +13,10 @@ type Project struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// DeliveryMode 投放模式，允许值：MANUAL手动投放、PROCEDURAL自动投放
 	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
+	// DeliveryType 投放类型，当前仅搜索广告ad_type = SEARCH下可设置，允许值
+	// NORMAL 常规投放（默认）
+	// DURATION 周期稳投
+	DeliveryType enum.DeliveryType `json:"delivery_type,omitempty"`
 	// LandingType 推广目的，枚举值：APP 应用推广、LINK 销售线索推广、MICRO_GAME小游戏
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// AppPromotionType 子目标，枚举值：DOWNLOAD 应用下载、LAUNCH 应用调用、RESERVE 预约下载
@@ -405,7 +409,7 @@ type DeliverySetting struct {
 	BidType enum.BidType `json:"bid_type,omitempty"`
 	// BidSpeed 投放速度，允许值：BALANCE 匀速,FAST 加速
 	BidSpeed enum.BidSpeed `json:"bid_speed,omitempty"`
-	// BudgetMode 项目预算类型， 枚举值：BUDGET_MODE_INFINITE 不限、BUDGET_MODE_DAY 日预算
+	// BudgetMode 项目预算类型， 枚举值：BUDGET_MODE_INFINITE 不限、BUDGET_MODE_DAY 日预算, BUDGET_MODE_TOTAL 总预算
 	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// Budget 项目预算
 	Budget float64 `json:"budget,omitempty"`
@@ -423,6 +427,11 @@ type DeliverySetting struct {
 	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// BudgetOptimizeSwitch 支持预算择优分配，枚举值： ON 开启，OFF 不开启
 	BudgetOptimizeSwitch enum.BudgetOptimizeSwitch `json:"budget_optimize_switch,omitempty"`
+	// SearchContinueDelivery 续投，仅当delivery_type = DURATION搜索广告周期投放时必填，允许值：
+	// OFF:关闭，关闭表示周期稳投7天后投放将自动终止
+	// ON:开启，开启表示投放结束后将继续维持7天固定周期的投放，跑量更加稳定，可以延续跑量
+	// 仅支持周期稳投链路，其他链路下传入该参数不生效
+	SearchCOntinueDelivery string `json:"search_continue_delivery,omitempty"`
 }
 
 // TrackURLSetting 监测链接设置
