@@ -33,6 +33,12 @@ type CreateRequest struct {
 	// 当 marketing_goal= LIVE时，仅支持ALL
 	// 仅当landing_type=APP/LINk&&delivery_mode=MANUAL时支持搜索广告，否则报错
 	AdType enum.CampaignType `json:"ad_type,omitempty"`
+	// DeliveryType 投放类型，不传默认为NORMAL常规投放，允许值：
+	// NORMAL 常规投放（默认值）
+	// DURATION 周期稳投（目前仅支持搜索广告）
+	// 当前仅支持搜索广告，即ad_type = SEARCH下传入该枚举值有效，否则报错
+	// 当landing_type = APP 应用推广、LINK 销售线索推广、MICRO_GAME 小程序时，允许创建周期稳投搜索广告
+	DeliveryType enum.DeliveryType `json:"delivery_type,omitempty"`
 	// Name 项目名称
 	Name string `json:"name,omitempty"`
 	// SearchBidRatio 出价系数，默认系数为1，出价系数可通过【获取快投推荐出价系数】查询，小数点后最多两位,取值范围 [1,2]

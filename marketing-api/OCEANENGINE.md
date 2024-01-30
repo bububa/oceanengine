@@ -88,6 +88,8 @@
     - 批量更新项目状态 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *project.StatusUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量删除项目 [ Delete(clt *core.SDKClient, accessToken string, req *project.DeleteRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目预算 [ BudgetUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetUpdateRequest) (*project.UpdateResponseData, error) ]
+    - 批量更新项目投放时间 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *project.ScheduleTimeUpdateRequest) (*project.UpdateResponseData, error) ]
+    - 批量更新项目投放时段 [ WeekScheduleUpdate(clt *core.SDKClient, accessToken string, req *project.WeekScheduleUpdateRequest) (*project.UpdateResponseData, error) ]
   - 广告管理模块 (api/v3/promotion)
     - 创建广告 [ Create(clt *core.SDKClient, accessToken string, req *promotion.CreateRequest) (uint64, error) ]
     - 修改广告 [ Update(clt *core.SDKClient, accessToken string, req *promotion.UpdateRequest) (*promotion.UpdateResponseData, error) ]

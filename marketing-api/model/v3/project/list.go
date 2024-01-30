@@ -30,6 +30,10 @@ type ListFilter struct {
 	IDs []uint64 `json:"ids,omitempty"`
 	// DeliveryMode 投放模式，允许值：MANUAL手动投放、PROCEDURAL自动投放
 	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
+	// DeliveryType 按投放类型过滤（当前过滤查询仅支持搜索广告），必须同时传入ad_type = SEARCH，可选值：
+	// - NORMAL 常规投放
+	// -DURATION周期稳投
+	DeliveryType enum.DeliveryType `json:"delivery_type,omitempty"`
 	// LandingType 推广目的，允许值：APP 应用推广、LINK 销售线索推广、MICRO_GAME小游戏
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// AppPromotionType 子目标，允许值：DOWNLOAD 应用下载、LAUNCH 应用调用、RESERVE 预约下载
@@ -78,6 +82,7 @@ type ListFilter struct {
 	// INVENTORY_TOMATO_NOVEL 番茄小说
 	// INVENTORY_UNION_SLOT 穿山甲
 	// UNION_BOUTIQUE_GAME ohayoo精品游戏
+	// INVENTORY_SEARCH 搜索广告位
 	InventoryType enum.StatInventoryType `json:"inventory_type,omitempty"`
 	// Platform 按平台过滤，允许值：IOS、ANDROID
 	Platform enum.AudiencePlatform `json:"platform,omitempty"`
