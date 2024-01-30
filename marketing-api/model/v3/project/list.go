@@ -81,6 +81,9 @@ type ListFilter struct {
 	InventoryType enum.StatInventoryType `json:"inventory_type,omitempty"`
 	// Platform 按平台过滤，允许值：IOS、ANDROID
 	Platform enum.AudiencePlatform `json:"platform,omitempty"`
+	// BudgetGroupID 按预算组ID过滤，仅允许传入1个，该功能白名单开放，如需使用请联系销售
+	// 您需要首先通过「创建预算组」/「获取预算组列表」接口拿到此id
+	BudgetGroupID uint64 `json:"budget_group_id,omitempty"`
 }
 
 // Encode implement GetRequest interface

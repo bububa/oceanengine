@@ -18,6 +18,10 @@ type ListRequest struct {
 	// Fields 查询字段集合，如果指定则应答结果仅返回指定字段
 	// 可参考应答参数返回的指标字段
 	Fields []string `json:"fields,omitempty"`
+	// IncludingMaterialAttributes 如需查询一个广告下是否包含搬运打压状态的视频素材，以及一个视频素材是否存在搬运风险，请传入此参数，并定义枚举值为RETURN_CARRY_DATA
+	// 可选值：RETURN_CARRY_DATA 返回视频素材的搬运属性
+	// 如果不传此参数，应答参数将不会返回搬运相关的字段：has_carry_material、is_carry_material
+	IncludingMaterialAttributes string `json:"including_material_attributes,omitempty"`
 	// Page 页数默认值: 1，page必须大于0
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小默认值:10，page_size范围为1-10
@@ -71,6 +75,10 @@ type ListFilter struct {
 	RejectReasonType enum.PromotionRejectReasonType `json:"reject_reason_type,omitempty"`
 	// LearningPhase 学习期状态 允许值：LEARNING（学习期中）、LEARNED（学习期结束）、LEARN_FAILED（学习期失败)
 	LearningPhase []enum.LearningPhase `json:"learning_phase,omitempty"`
+	// HasCarryMaterial 按素材搬运打压状态过滤
+	// TRUE：包含打压风险的广告
+	// FALSE：不包含打压风险的广告
+	HasCarryMaterial string `json:"has_carry_material,omitempty"`
 }
 
 func (f ListFilter) GetIDs() []uint64 {
@@ -97,6 +105,9 @@ func (r ListRequest) Encode() string {
 	if len(r.Fields) > 0 {
 		fields, _ := json.Marshal(r.Fields)
 		values.Set("fields", string(fields))
+	}
+	if r.IncludingMaterialAttributes != "" {
+		values.Set("including_material_attributes", r.IncludingMaterialAttributes)
 	}
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
