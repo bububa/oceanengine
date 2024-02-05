@@ -36,6 +36,12 @@ const (
 	MaterialSource_QF_FUWU MaterialSource = "QF_FUWU"
 	// MaterialSource_AIC 即创
 	MaterialSource_AIC MaterialSource = "AIC"
+	// MaterialSource_SQUARE 商品图
+	MaterialSource_SQUARE MaterialSource = "SQUARE"
+	// MaterialSource_JI_CHUANG 即创共享素材
+	MaterialSource_JI_CHUANG MaterialSource = "JI_CHUANG"
+	// MaterialSource_AWEME 抖音主页视频
+	MaterialSource_AWEME MaterialSource = "AWEME"
 	// MaterialSource_OTHERS 其他来源
 	MaterialSource_OTHERS MaterialSource = "OTHERS"
 )
