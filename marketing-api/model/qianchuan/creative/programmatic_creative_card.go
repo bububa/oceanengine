@@ -2,6 +2,10 @@ package creative
 
 // ProgrammaticCreativeCard 程序化创意推广卡片信息
 type ProgrammaticCreativeCard struct {
+	// PromotionCardID 推广卡片ID
+	PromotionCardID uint64 `json:"promotion_card_id,omitempty"`
+	// ComponentID 组件ID
+	ComponentID uint64 `json:"component_id,omitempty"`
 	// Title 推广卡片标题
 	Title string `json:"promotion_card_title,omitempty"`
 	// SellingPoints 推广卡片卖点列表
