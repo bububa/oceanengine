@@ -218,6 +218,7 @@
   - 更新视频 [ VideoUpdate(clt *core.SDKClient, accessToken string, req *file.VideoUpdateRequest) ([]file.VideoForUpdate, error) ]
   - 获取素材标签列表 [ MaterialList(clt *core.SDKClient, accessToken string, req *file.MaterialListRequest) (*file.MaterialListData, error) ]
   - 查询素材标签信息 [ MaterialDetail(clt *core.SDKClient, accessToken string, req *file.MaterialDetailRequest) ([]file.Material, error) ]
+  - 获取视频素材评估标签（新版） [ MaterialAttributesList(clt *core.SDKClient, accessToken string, req *file.MaterialAttributesListRequest) (*file.MaterialAttributesListResult, error) ]
   - 获取低效素材 [ VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *file.VideoEffeciencyGetRequest) ([]string, error) ] 
   - 批量删除图片素材 [ v3.ImageDelete(clt *core.SDKClient, accessToken string, req *v3.ImageDeleteRequest) ([]string, error) ]
   - 获取低效素材List [ RebateMaterialSearch(clt *core.SDKClient, accessToken string, req *file.RebateMaterialSearchRequest) (*file.RebateMaterialSearchResult, error) ]

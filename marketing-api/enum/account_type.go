@@ -12,4 +12,6 @@ const (
 	AccountType_BP AccountType = "BP"
 	// AccountType_STAR 星图
 	AccountType_STAR AccountType = "STAR"
+	// AccountType_AGENT 巨量方舟
+	AccountType_AGENT AccountType = "AGENT"
 )
