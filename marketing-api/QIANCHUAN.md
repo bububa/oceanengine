@@ -89,6 +89,10 @@
     - 视频互动流失数据 [ VideoUserLoseGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
     - 长周期转化价值-订单明细 [ LongTransferOrderGet(clt *core.SDKClient, accessToken string, req *report.LongTransferOrderGetRequest) (*report.LongTransferOrderGetData, error) ]
     - 全域推广数据 [ UniPromotionGet(clt *core.SDKClient, accessToken string, req *report.UniPromotionGetRequest) (*report.UniPromotionStats, error) ]
+    - 获取全域推广直播间维度数据 [ UniPromotionRoomGet(clt *core.SDKClient, accessToken string, req *report.UniPromotionDimensionGetRequest) (*report.UniPromotionDimensionGetResult, error) ]
+    - 获取全域推广抖音号维度数据 [ UniPromotionAuthorGet(clt *core.SDKClient, accessToken string, req *report.UniPromotionDimensionGetRequest) (*report.UniPromotionDimensionGetResult, error) ]
+    - 获取自定义报表可用指标和维度 [ CustomConfigGet(clt *core.SDKClient, accessToken string, req *report.CustomConfigGetRequest) (*report.CustomConfigGetResult, error) ]
+    - 自定义报表 [ CustomGet(clt *core.SDKClient, accessToken string, req *report.CustomGetRequest) (*report.CustomGetResult, error) ]
   - 直播间报表
     - 获取今日直播数据 [ LiveGet(clt *core.SDKClient, accessToken string, req *report.LiveGetRequest) (*report.LiveStat, error) ]
     - 获取今日直播间列表 [ live.RoomGet(clt *core.SDKClient, accessToken string, req *live.RoomGetRequest) (*live.RoomGetData, error) ]

@@ -16,4 +16,6 @@ const (
 	MaterialProperty_ECP_HIGH_QUALITY_MATERIAL MaterialProperty = "ECP_HIGH_QUALITY_MATERIAL"
 	// MaterialProperty_FIRST_PUBLISH_MATERIAL  首发素材
 	MaterialProperty_FIRST_PUBLISH_MATERIAL MaterialProperty = "FIRST_PUBLISH_MATERIAL"
+	// MaterialProperty_CARRY_MATERIAL 存在搬运打压风险
+	MaterialProperty_CARRY_MATERIAL MaterialProperty = "CARRY_MATERIAL"
 )

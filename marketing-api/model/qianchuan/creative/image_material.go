@@ -14,4 +14,6 @@ type ImageMaterial struct {
 	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// IsAutoGenerate 是否为派生创意标识，1：是，0：不是
 	IsAutoGenerate int `json:"is_auto_generate,omitempty"`
+	// URL 图片预览url
+	URL string `json:"url,omitempty"`
 }

@@ -16,4 +16,8 @@ type VideoMaterial struct {
 	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
 	// IsAutoGenerate 是否为派生创意标识，1：是，0：不是
 	IsAutoGenerate int `json:"is_auto_generate,omitempty"`
+	// URL 视频地址，仅限同主体进行素材预览查看，若非同主体会返回“素材所属主体与开发者主体不一致无法获取URL”，链接1小时过期
+	URL string `json:"url,omitempty"`
+	// PosterURL 视频首帧截图，仅限同主体进行素材预览查看，若非同主体会返回“素材所属主体与开发者主体不一致无法获取URL”，链接1小时过期
+	PosterURL string `json:"poster_url,omitempty"`
 }

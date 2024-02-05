@@ -46,12 +46,6 @@ type RejectReason struct {
 	MaterialReject []MaterialReject `json:"material_reject,omitempty"`
 }
 
-// RejectData 审核建议数据
-type RejectData struct {
-	// RejectItem 审核项
-	RejectItem string `json:"reject_item,omitempty"`
-}
-
 // PromotionReject 广告维度审核建议
 type PromotionReject struct {
 	// Content 审核项
@@ -70,6 +64,7 @@ type MaterialReject struct {
 	// Item 根据不同素材类型返回相应的值
 	// - CREATIVE_URL 创意详情页：web_url;external_url;playable_url
 	// - CREATIVE_TITLE 标题：title
+	//  - CREATIVE_CAROUSEL 图文素材
 	// - CREATIVE_IMAGE 图片：image_id
 	// - CREATIVE_VIDEO 视频：video_id
 	// - CALL_TO_ACTION 行动号召：号召文案
@@ -77,9 +72,13 @@ type MaterialReject struct {
 	// - PRODUCT_SELLING_POINTS 产品卖点：产品卖点文案
 	// - PRODUCT_DESCRIB 产品名称：产品名称文案
 	// CREATIVE_COMPONENT 创意组件：component_id
-	Item string `json:"item,omitempty"`
+	Item enum.MaterialType `json:"item,omitempty"`
 	// RejectReason 审核建议
 	RejectReason []string `json:"reject_reason,omitempty"`
 	// Suggestion 审核建议
 	Suggestion []string `json:"suggestion,omitempty"`
+	// AuditPlatform 审核来源类型，返回值:
+	// AD 广告审核
+	// CONTENT 内容审核
+	AuditPlatform enum.AuditPlatform `json:"ad_platform,omitempty"`
 }
