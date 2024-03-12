@@ -231,6 +231,8 @@
   - 更新图集信息 [ CarouselUpdate(clt *core.SDKClient, accessToken string, req *file.CarouselUpdateRequest) ([]file.CarouselUpdateResult, error) ]
   - 获取同主体下广告主图集素材 [ CarouselAdGet(clt *core.SDKClient, accessToken string, req *file.CarouselAdGetRequest) (*file.CarouselAdGetResult, error) ]
   - 批量删除图集 [ CarouselDelete(clt *core.SDKClient, accessToken string, req *file.CarouselDeleteRequest) (*file.CarouselDeleteResult, error) ]
+  - 【代理商】上传自产首发素材至方舟（搬运治理） [ VideoAgent(clt *core.SDKClient, accessToken string, req *file.VideoAgentRequest) (*file.Video, error) ]
+  - 【代理商】明点无效素材查询 [ RebateMaterialSearch(clt *core.SDKClient, accessToken string, req *file.RebateMaterialSearchRequest) (*file.RebateMaterialSearchResult, error) ]
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
