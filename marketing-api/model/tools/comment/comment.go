@@ -21,6 +21,11 @@ type Comment struct {
 	// HIDE: 已隐藏
 	// NOT_HIDE: 未隐藏
 	HideStatus enum.CommentHideStatus `json:"hide_status,omitempty"`
+	// LevelType 查询的评论等级，可选值:
+	// LEVEL_ALL: 所有评论（默认值）
+	// LEVEL_ONE: 一级评论
+	// LEVEL_TWO: 二级评论
+	LevelType enum.CommentLevelType `json:"level_type,omitempty"`
 	//     评论情感, 可选值:
 	// NEGATIVE: 负向评论
 	// NEUTRAL: 中性评论
