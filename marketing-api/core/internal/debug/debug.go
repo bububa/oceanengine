@@ -93,7 +93,9 @@ func DecodeJSONHttpResponse(r io.Reader, v interface{}, debug bool) ([]byte, err
 		return nil, nil
 	}
 	bs := buf.Bytes()
-	buf.Reset()
+	debugBuf := util.GetBufferPool()
+	defer util.PutBufferPool(debugBuf)
+	debugBuf.Grow(len(bs) + 300)
 	if err := json.Indent(buf, bs, "", "\t"); err != nil {
 		return bs, err
 	}
