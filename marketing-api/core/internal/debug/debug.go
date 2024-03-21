@@ -100,6 +100,6 @@ func DecodeJSONHttpResponse(r io.Reader, v interface{}, debug bool) ([]byte, err
 		return bs, err
 	}
 
-	log.Println(util.StringsJoin("[DEBUG] [API] http response body:\n", string(bs)))
+	log.Println(util.StringsJoin("[DEBUG] [API] http response body:\n", string(debugBuf.Bytes())))
 	return nil, nil
 }
