@@ -11,6 +11,8 @@
   - 广告主信息与资质管理 (api/advertiser)
     - 广告主信息 [ Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
     - 广告主公开信息 [ PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
+    - 获取广告主账户头像ID [ AvatarUpload(clt *core.SDKClient, accessToken string, req *advertiser.AvatarUploadRequest) (string, error) ]
+    - 更新广告主账户头像 [ AvatarSubmit(clt *core.SDKClient, accessToken string, req *advertiser.AvatarSubmitRequest) error ]
     - 获取广告主头像信息 [ AvatarGet(clt *core.SDK, accessToken string, advertiserID uint64) (*advertiser.AvatarGetResponseData, error) ]
     - 获取投放资质信息（新版）[ QualificationSelect(clt *core.SDKClient, accessToken string, advertiserID uint64) ([]advertiser.Qualification, error) ]
     - 批量上传投放资质 [ QualificationCreate(clt *core.SDKClient, accessToken string, req *advertiser.QualificationCreateRequest) error ]
