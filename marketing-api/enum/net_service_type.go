@@ -14,4 +14,6 @@ const (
 	NetServiceType_WECOM_PACKAGE NetServiceType = "WECOM_PACKAGE"
 	// NetServiceType_QUICK_APP 快应用
 	NetServiceType_QUICK_APP NetServiceType = "QUICK_APP"
+	// NetServiceType_WECHAT_EXTERNAL_URL 跳转场景= 跳转微信链接
+	NetServiceType_WECHAT_EXTERNAL_URL NetServiceType = "WECHAT_EXTERNAL_URL"
 )
