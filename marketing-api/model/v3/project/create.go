@@ -63,6 +63,8 @@ type CreateRequest struct {
 	DpaProductTarget []DpaProductTarget `json:"dpa_product_target,omitempty"`
 	// DownloadURL 下载链接
 	DownloadURL string `json:"download_url,omitempty"`
+	// AppName 应用名称，dpa_adtype = DPA_APP时、dpa_adtype = DPA_APP 时必填
+	AppName string `json:"app_name,omitempty"`
 	// DownloadType 下载方式，枚举值：DOWNLOAD_URL 直接下载、EXTERNAL_URL 落地页下载
 	DownloadType enum.DownloadType `json:"download_type,omitempty"`
 	// DownloadMode 优先从系统应用商店下载（下载模式），枚举值：APP_STORE_DELIVERY 优先商店下载、 DEFAULT 默认下载

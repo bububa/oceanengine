@@ -94,6 +94,7 @@ type NetServiceAnchor struct {
 	// 跳转场景=添加微信号，传WECHAT_PACKAGE
 	// 跳转场景=进入微信小程序，传MICRO_APP
 	// 跳转场景=企业微信客服，传WECOM_PACKAGE
+	// 跳转场景= 跳转微信链接, 传WECHAT_EXTERNAL_URL
 	// QUICK_APP：快应用
 	NetServiceType enum.NetServiceType `json:"net_service_type,omitempty"`
 	// PlatformType 配置平台，net_service_type为微信小程序场景下不用传入（1:不限,2:安卓,3:iOS）不限：安卓下载链接和iOS下载链接必填；安卓：安卓下载链接必填，iOS下载链接不填写；iOS：iOS下载链接必填
@@ -133,6 +134,8 @@ type NetServiceAnchor struct {
 	// WechatPackageID net_service_type为WECHAT_PACKAGE时，该参数代表微信号码包ID
 	// net_service_type为WECOM_PACKAGE时，该参数代表企业加粉方案ID
 	WechatPackageID uint64 `json:"wechat_package_id,omitempty"`
+	// WechatExternalURL 微信跳转链接，当net_service_type = WECHAT_EXTERNAL_URL时必填
+	WechatExternalURL string `json:"wechat_external_url,omitempty"`
 }
 
 // GameAnchor 游戏锚点
