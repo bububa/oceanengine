@@ -92,6 +92,7 @@
     - 批量更新项目预算 [ BudgetUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目投放时间 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *project.ScheduleTimeUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目投放时段 [ WeekScheduleUpdate(clt *core.SDKClient, accessToken string, req *project.WeekScheduleUpdateRequest) (*project.UpdateResponseData, error) ]
+    - 批量修改项目ROI系数 [ RoiGoalUpdate(clt *core.SDKClient, accessToken string, req *project.RoiGoalUpdateRequest) (*project.UpdateResponseData, error) ]
     - 创建预算组 [ BudgetGroupCreate(clt *core.SDKClient, accessToken string, req *project.BudgetGroupCreateRequest) (uint64, error) ]
     - 更新预算组 [ BudgetGroupUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetGroupUpdateRequest) (uint64, error) ]
     - 批量删除预算组 [ BudgetGroupDelete(clt *core.SDKClient, accessToken string, req *project.BudgetGroupDeleteRequest) (*project.BudgetGroupDeleteResult, error) ]
