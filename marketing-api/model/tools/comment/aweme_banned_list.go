@@ -7,16 +7,16 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
-// AwemeBandedList 获取屏蔽用户列表 API Request
-type AwemeBandedListRequest struct {
+// AwemeBannedList 获取屏蔽用户列表 API Request
+type AwemeBannedListRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// AwemeID 为绑定的抖音号添加屏蔽词, 只允许传入1个，通过【获取绑定的抖音号】 接口获取，当is_apply_to_adv不传或为false时，aweme_id生效
 	AwemeID string `json:"aweme_id,omitempty"`
 	// IsApplyToAdv 是否应用于当前账户，当is_apply_to_adv不传或为false时，aweme_id生效
 	IsApplyToAdv bool `json:"is_apply_to_adv,omitempty"`
-	// BandedType 屏蔽类型，; 允许值：CUSTOM_TYPE：自定义规则，根据昵称关键词屏蔽；AWEME_TYPE：根据抖音id屏蔽。
-	BandedType string `json:"banded_type,omitempty"`
+	// BannedType 屏蔽类型，; 允许值：CUSTOM_TYPE：自定义规则，根据昵称关键词屏蔽；AWEME_TYPE：根据抖音id屏蔽。
+	BannedType string `json:"banned_type,omitempty"`
 	// AwemeUserID 抖音用户id
 	AwemeUserID string `json:"aweme_user_id,omitempty"`
 	// NicknameKeyword 昵称关键词，最大不超过20字
@@ -28,7 +28,7 @@ type AwemeBandedListRequest struct {
 }
 
 // Encode implement GetRequest interface
-func (r AwemeBandedListRequest) Encode() string {
+func (r AwemeBannedListRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.AwemeID != "" {
@@ -37,8 +37,8 @@ func (r AwemeBandedListRequest) Encode() string {
 	if r.IsApplyToAdv {
 		values.Set("is_apply_to_adv", "true")
 	}
-	if r.BandedType != "" {
-		values.Set("banded_type", r.BandedType)
+	if r.BannedType != "" {
+		values.Set("banned_type", r.BannedType)
 	}
 	if r.AwemeUserID != "" {
 		values.Set("aweme_user_id", r.AwemeUserID)
@@ -57,29 +57,29 @@ func (r AwemeBandedListRequest) Encode() string {
 	return ret
 }
 
-// AwemeBandedListResponse 获取屏蔽用户列表 API Response
-type AwemeBandedListResponse struct {
+// AwemeBannedListResponse 获取屏蔽用户列表 API Response
+type AwemeBannedListResponse struct {
 	model.BaseResponse
 	// Data json 返回值
-	Data *AwemeBandedListResponseData `json:"data,omitempty"`
+	Data *AwemeBannedListResponseData `json:"data,omitempty"`
 }
 
-// AwemeBandedListResponseData json 返回值
-type AwemeBandedListResponseData struct {
+// AwemeBannedListResponseData json 返回值
+type AwemeBannedListResponseData struct {
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 	// List 结果列表
-	List []BandedAweme `json:"list,omitempty"`
+	List []BannedAweme `json:"list,omitempty"`
 }
 
-// BandedAweme 屏蔽用户
-type BandedAweme struct {
+// BannedAweme 屏蔽用户
+type BannedAweme struct {
 	// AwemeUserID 抖音id
 	AwemeUserID string `json:"aweme_user_id,omitempty"`
 	// AwemeName 抖音昵称
 	AwemeName string `json:"aweme_name,omitempty"`
-	// BandedType 屏蔽类型，CUSTOM_TYPE：自定义规则，根据昵称关键词屏蔽；AWEME_TYPE：根据抖音id屏蔽。
-	BandedType string `json:"banded_type,omitempty"`
+	// BannedType 屏蔽类型，CUSTOM_TYPE：自定义规则，根据昵称关键词屏蔽；AWEME_TYPE：根据抖音id屏蔽。
+	BannedType string `json:"banned_type,omitempty"`
 	// NicknameKeyword 昵称关键词
 	NicknameKeyword string `json:"nickname_keyword,omitempty"`
 }
