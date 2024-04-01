@@ -5,11 +5,11 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model/tools/comment"
 )
 
-// AwemeBandedDelete 删除屏蔽用户
+// AwemeBannedDelete 删除屏蔽用户
 // 删除屏蔽用户接口用于删除已屏蔽的抖音用户，抖音用户屏蔽需要广告主绑定抖音账号。
-func AwemeBandedDelete(clt *core.SDKClient, accessToken string, req *comment.AwemeBandedCreateRequest) (*comment.AwemeBandedCreateResponseData, error) {
-	var resp comment.AwemeBandedCreateResponse
-	err := clt.Post("v3.0/tools/comment/aweme_banded/delete/", req, &resp, accessToken)
+func AwemeBannedDelete(clt *core.SDKClient, accessToken string, req *comment.AwemeBannedCreateRequest) (*comment.AwemeBannedCreateResponseData, error) {
+	var resp comment.AwemeBannedCreateResponse
+	err := clt.Post("v3.0/tools/comment/aweme_banned/delete/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}
