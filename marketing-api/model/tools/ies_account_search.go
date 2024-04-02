@@ -26,7 +26,7 @@ func (r IesAccountSearchRequest) Encode() string {
 // IesAccountSearchResponse 获取绑定的抖音号 API Response
 type IesAccountSearchResponse struct {
 	model.BaseResponse
-	Data *IesAccount `json:"data,omitempty"`
+	Data []IesAccount `json:"data,omitempty"`
 }
 
 // IesAccount 绑定的抖音号
