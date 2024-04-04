@@ -25,6 +25,8 @@ type Video struct {
 	Format string `json:"format,omitempty"`
 	// Signature 视频md5
 	Signature string `json:"signature,omitempty"`
+	// VideoSignature 视频md5
+	VideoSignature string `json:"video_signature,omitempty"`
 	// PosterURL 视频首帧截图，仅限同主体进行素材预览查看，若非同主体会返回“素材所属主体与开发者主体不一致无法获取URL”
 	PosterURL string `json:"poster_url,omitempty"`
 	// BitRate 码率，单位bps

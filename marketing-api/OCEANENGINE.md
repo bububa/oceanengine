@@ -11,6 +11,8 @@
   - 广告主信息与资质管理 (api/advertiser)
     - 广告主信息 [ Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
     - 广告主公开信息 [ PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
+    - 获取广告主账户头像ID [ AvatarUpload(clt *core.SDKClient, accessToken string, req *advertiser.AvatarUploadRequest) (string, error) ]
+    - 更新广告主账户头像 [ AvatarSubmit(clt *core.SDKClient, accessToken string, req *advertiser.AvatarSubmitRequest) error ]
     - 获取广告主头像信息 [ AvatarGet(clt *core.SDK, accessToken string, advertiserID uint64) (*advertiser.AvatarGetResponseData, error) ]
     - 获取投放资质信息（新版）[ QualificationSelect(clt *core.SDKClient, accessToken string, advertiserID uint64) ([]advertiser.Qualification, error) ]
     - 批量上传投放资质 [ QualificationCreate(clt *core.SDKClient, accessToken string, req *advertiser.QualificationCreateRequest) error ]
@@ -90,6 +92,7 @@
     - 批量更新项目预算 [ BudgetUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目投放时间 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *project.ScheduleTimeUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目投放时段 [ WeekScheduleUpdate(clt *core.SDKClient, accessToken string, req *project.WeekScheduleUpdateRequest) (*project.UpdateResponseData, error) ]
+    - 批量修改项目ROI系数 [ RoiGoalUpdate(clt *core.SDKClient, accessToken string, req *project.RoiGoalUpdateRequest) (*project.UpdateResponseData, error) ]
     - 创建预算组 [ BudgetGroupCreate(clt *core.SDKClient, accessToken string, req *project.BudgetGroupCreateRequest) (uint64, error) ]
     - 更新预算组 [ BudgetGroupUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetGroupUpdateRequest) (uint64, error) ]
     - 批量删除预算组 [ BudgetGroupDelete(clt *core.SDKClient, accessToken string, req *project.BudgetGroupDeleteRequest) (*project.BudgetGroupDeleteResult, error) ]
@@ -231,6 +234,8 @@
   - 更新图集信息 [ CarouselUpdate(clt *core.SDKClient, accessToken string, req *file.CarouselUpdateRequest) ([]file.CarouselUpdateResult, error) ]
   - 获取同主体下广告主图集素材 [ CarouselAdGet(clt *core.SDKClient, accessToken string, req *file.CarouselAdGetRequest) (*file.CarouselAdGetResult, error) ]
   - 批量删除图集 [ CarouselDelete(clt *core.SDKClient, accessToken string, req *file.CarouselDeleteRequest) (*file.CarouselDeleteResult, error) ]
+  - 【代理商】上传自产首发素材至方舟（搬运治理） [ VideoAgent(clt *core.SDKClient, accessToken string, req *file.VideoAgentRequest) (*file.Video, error) ]
+  - 【代理商】明点无效素材查询 [ RebateMaterialSearch(clt *core.SDKClient, accessToken string, req *file.RebateMaterialSearchRequest) (*file.RebateMaterialSearchResult, error) ]
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
@@ -347,6 +352,7 @@
     - 获取快投推荐出价系数 [ tools.SearchBidRatioGet(clt *core.SDKClient, accessToken string, req *tools.SearchBidRatioGetRequest) (float64, error) ]
     - 查询白名单能力 [ GrayGet(clt *core.SDKClient, accessToken string, req *tools.GrayGetRequest) ([]tools.GrayItem, error) ]
     - 查询建议出价（巨量广告升级版） [ tools.v3.BidSuggest(clt *core.SDKClient, accessToken string, req *v3.BidSuggestRequest) (*tools.BidSuggest, error) ]
+    - 获取绑定的抖音号 [ IesAccountSearch(clt *core.SDKClient, accessToken string, req *tools.IesAccountSearchRequest) ([]tools.IesAccount, error) ]
     - 应用管理 (tools/appmanagement)
       - 查询游戏信息 [ BookingGet(clt *core.SDKClient, accessToken string, req *appmanagement.AppListRequest) (*appmanagement.AppListResponseData, error) ]
       - 查询应用信息 [ AppGet(clt *core.SDKClient, accessToken string, req *appmanagement.AppListRequest) (*appmanagement.AppListResponseData, error) ]

@@ -93,11 +93,12 @@ func DecodeJSONHttpResponse(r io.Reader, v interface{}, debug bool) ([]byte, err
 		return nil, nil
 	}
 	bs := buf.Bytes()
-	buf.Reset()
-	if err := json.Indent(buf, bs, "", "\t"); err != nil {
+	debugBuf := util.GetBufferPool()
+	defer util.PutBufferPool(debugBuf)
+	if err := json.Indent(debugBuf, bs, "", "\t"); err != nil {
 		return bs, err
 	}
 
-	log.Println(util.StringsJoin("[DEBUG] [API] http response body:\n", string(bs)))
+	log.Println(util.StringsJoin("[DEBUG] [API] http response body:\n", debugBuf.String()))
 	return nil, nil
 }
