@@ -30,7 +30,7 @@ func defaultHttpClient() *http.Client {
 		transport.MaxIdleConnsPerHost = 100
 		httpClient = &http.Client{
 			Transport: transport,
-			Timeout:   time.Second * 10,
+			Timeout:   time.Second * 60,
 		}
 	})
 	return httpClient
