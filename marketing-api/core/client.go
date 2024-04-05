@@ -9,11 +9,32 @@ import (
 	"mime/multipart"
 	"net/http"
 	"strings"
+	"sync"
+	"time"
 
 	"github.com/bububa/oceanengine/marketing-api/core/internal/debug"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
+
+var (
+	onceInit   sync.Once
+	httpClient *http.Client
+)
+
+func defaultHttpClient() *http.Client {
+	onceInit.Do(func() {
+		transport := http.DefaultTransport.(*http.Transport).Clone()
+		transport.MaxIdleConns = 100
+		transport.MaxConnsPerHost = 100
+		transport.MaxIdleConnsPerHost = 100
+		httpClient = &http.Client{
+			Transport: transport,
+			Timeout:   time.Second * 10,
+		}
+	})
+	return httpClient
+}
 
 // SDKClient sdk client
 type SDKClient struct {
@@ -31,7 +52,7 @@ func NewSDKClient(appID uint64, secret string) *SDKClient {
 	return &SDKClient{
 		AppID:  appID,
 		Secret: secret,
-		client: http.DefaultClient,
+		client: defaultHttpClient(),
 	}
 }
 
