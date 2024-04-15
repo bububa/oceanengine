@@ -30,6 +30,18 @@ const (
 	MaterialSource_BP MaterialSource = "BP"
 	// MaterialSource_E_COMMERCE 巨量千川
 	MaterialSource_E_COMMERCE MaterialSource = "E_COMMERCE"
+	// MaterialSource_DPA_MERSCHANT_CENTER 行业产品中心
+	MaterialSource_DPA_MERSCHANT_CENTER MaterialSource = "DPA_MERSCHANT_CENTER"
+	// MaterialSource_QF_FUWU 群峰服务市场
+	MaterialSource_QF_FUWU MaterialSource = "QF_FUWU"
+	// MaterialSource_AIC 即创
+	MaterialSource_AIC MaterialSource = "AIC"
+	// MaterialSource_SQUARE 商品图
+	MaterialSource_SQUARE MaterialSource = "SQUARE"
+	// MaterialSource_JI_CHUANG 即创共享素材
+	MaterialSource_JI_CHUANG MaterialSource = "JI_CHUANG"
+	// MaterialSource_AWEME 抖音主页视频
+	MaterialSource_AWEME MaterialSource = "AWEME"
 	// MaterialSource_OTHERS 其他来源
 	MaterialSource_OTHERS MaterialSource = "OTHERS"
 )

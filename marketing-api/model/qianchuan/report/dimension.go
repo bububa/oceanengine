@@ -66,6 +66,17 @@ type Dimension struct {
 	// CREATIVE_CENTER：巨量创意PC共享素材
 	// 注意：仅素材类型为视频素材时，支持
 	VideoSource enum.MaterialSource `json:"video_source,omitempty"`
+	// ImageSource 图片来源，可选值:
+	// CREATIVE_CENTER 巨量创意PC共享素材
+	// E_COMMERCE 巨量千川本地上传
+	// JI_CHUANG 即创共享素材
+	// SQUARE 商品图
+	ImageSource enum.MaterialSource `json:"image_source,omitempty"`
+	// CarouselSource 图文来源，可选值:
+	// AWEME 抖音号主页视频
+	// E_COMMERCE 巨量千川本地上传
+	// JI_CHUANG 即创共享素材
+	CarouselSource enum.MaterialSource `json:"carousel_source,omitempty"`
 	// StartDate 开始日期
 	StartDate string `json:"start_date,omitempty"`
 	// EndDate 结束日期

@@ -44,10 +44,8 @@ type ActiveRequest struct {
 	OaidMd5 string `json:"oaid_md5,omitempty"`
 	// Os 客户端的操作系统类型
 	Os enum.TrackOS `json:"os,omitempty"`
-	// Caid1 不同版本版本的中国广告协会互联网广告标识，caid1为最新版本，caid2为老版本
-	Caid1 string `json:"caid1,omitempty"`
-	// Caid2 不同版本版本的中国广告协会互联网广告标识，caid1为最新版本，caid2为老版本
-	Caid2 string `json:"caid2,omitempty"`
+	// Caid 中国广告协会互联网广告标识
+	Caid string `json:"caid,omitempty"`
 	// Ext 补充数据
 	Ext map[string]string `json:"ext,omitempty"`
 	// PrivateKey

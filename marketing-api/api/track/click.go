@@ -34,8 +34,6 @@ var DEFAULT_CLICK_FIELDS = []string{
 	"callback_url",
 	"model",
 	"union_site",
-	"caid1",
-	"caid2",
 }
 
 // Click 生成击检测链接
@@ -101,10 +99,6 @@ func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
 			values.Set("model", "__MODEL__")
 		case "union_site":
 			values.Set("union_site", "__UNION_SITE__")
-		case "caid1":
-			values.Set("caid1", "__CAID1__")
-		case "caid2":
-			values.Set("caid2", "__CAID2__")
 		}
 	}
 	parsedUrl.RawQuery = values.Encode()

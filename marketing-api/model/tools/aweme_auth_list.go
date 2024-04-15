@@ -29,6 +29,10 @@ type AwemeAuthListFilter struct {
 	// AuthStatus 授权状态， 可选值:
 	// AUTHRIZED: 授权中、AUTHRIZING: 待授权确认、INVALID: 授权失效
 	AuthStatus []enum.AwemeAuthStatus `json:"auth_status,omitempty"`
+	// AwemeIDs 按抖音号id过滤结果，最长传入50个
+	AwemeIDs []string `json:"aweme_ids,omitempty"`
+	// ItemIDs 按抖音视频id过滤结果，一次最多允许查询50个
+	ItemIDs []uint64 `json:"item_ids,omitempty"`
 }
 
 // Encode implement GetRequest interface

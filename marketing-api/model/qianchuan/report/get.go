@@ -135,10 +135,23 @@ type StatFiltering struct {
 	// LARGE_VERTICAL：竖版图片
 	// SQUARE ：商品卡方图
 	MaterialMode []enum.MaterialMode `json:"material_mode,omitempty"`
+	// ImageSource 图片来源筛选，允许值
+	// E_COMMERCE：本地上传
+	// CREATIVE_CENTER：巨量创意PC共享素材
+	// SQUARE：商品图
+	// JI_CHUANG：即创共享素材
+	ImageSource []enum.MaterialSource `json:"image_source,omitempty"`
+	// CarouselSource 图文来源
+	// JI_CHUANG：即创共享素材
+	// AWEME：抖音主页视频
+	// E_COMMERCE：本地上传
+	CarouselSource []enum.MaterialSource `json:"carousel_source,omitempty"`
 	// AnalysisType 素材建议，允许值
 	// first_publish：首发素材
 	// high_quality：优质素材
 	// low_efficiency：低效素材
+	// poor_quality：低质素材
+	// improvable：可提升素材
 	AnalysisType []string `json:"analysis_type,omitempty"`
 	// WordType 词类型，当word有传值时，必填，允许值：
 	// SEARCH_WORD搜索词

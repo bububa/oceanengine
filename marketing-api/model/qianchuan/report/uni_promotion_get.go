@@ -30,9 +30,15 @@ func (r UniPromotionGetRequest) Encode() string {
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("start_date", r.StartDate)
 	values.Set("end_date", r.EndDate)
-	values.Set("marketing_goal", string(r.MarketingGoal))
-	values.Set("lab_ad_type", string(r.LabAdType))
-	values.Set("fields", string(util.JSONMarshal(r.Fields)))
+	if r.MarketingGoal != "" {
+		values.Set("marketing_goal", string(r.MarketingGoal))
+	}
+	if r.LabAdType != "" {
+		values.Set("lab_ad_type", string(r.LabAdType))
+	}
+	if len(r.Fields) > 0 {
+		values.Set("fields", string(util.JSONMarshal(r.Fields)))
+	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
@@ -46,6 +52,13 @@ type UniPromotionGetResponse struct {
 
 // UniPromotionStats 全域推广消耗指标
 type UniPromotionStats struct {
+	// AdvertiserID 广告主id
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
+	// AwemeID 抖音号id
+	AwemeID uint64 `json:"aweme_id,omitempty"`
+	// StatDatetime 数据起始时间
+	// 注意：如果dimension为空，此处返回aweme_id
+	StatDatetime string `json:"stat_datetime,omitempty"`
 	// StatCost 整体消耗，千分之一分
 	StatCost float64 `json:"stat_cost,omitempty"`
 	// TotalPrepayAndPayOrderRoi2 整体支付ROI
@@ -56,8 +69,12 @@ type UniPromotionStats struct {
 	TotalPayOrderCountForRoi2 int64 `json:"total_pay_order_count_for_roi2,omitempty"`
 	// TotalCostPerPayOrderForRoi2 整体成交订单成本
 	TotalCostPerPayOrderForRoi2 float64 `json:"total_cost_per_pay_order_for_roi2,omitempty"`
+	// TotalPayOrderCouponAmountForRoi2 整体成交智能优惠券金额，单位元，小数点2位
+	TotalPayOrderCouponAmountForRoi2 float64 `json:"total_pay_order_coupon_amount_for_roi2,omitempty"`
 	// TotalPrepayOrderCountForRoi2 整体预售订单数
 	TotalPrepayOrderCountForRoi2 int64 `json:"total_prepay_order_count_for_roi2,omitempty"`
+	// TotalUnfinishedEstimateOrderGmvForRoi2 整体未完结预售订单预估金额，单位元，小数点2位
+	TotalUnfinishedEstimateOrderGmvForRoi2 float64 `json:"total_unfinished_estimate_order_gmv_for_roi2,omitempty"`
 	// TotalPrepayOrderGmvForRoi2 整体预售订单成本
 	TotalPrepayOrderGmvForRoi2 float64 `json:"total_prepay_order_gmv_for_roi2,omitempty"`
 }

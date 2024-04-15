@@ -28,6 +28,12 @@ type VideoAwemeGetFiltering struct {
 	ProductID uint64 `json:"product_id,omitempty"`
 	// AwemeItemURL 抖音主页视频url
 	AwemeItemURL string `json:"aweme_item_url,omitempty"`
+	// MaterialIDs 素材id，抖音主页视频用来投放才会有，限制0-50
+	// 注意：material_ids和aweme_item_id只能选择一个进行过滤，否则可能会查询不到数据
+	MaterialIDs []uint64 `json:"material_ids,omitempty"`
+	// AwemeItemIDs 抖音主页视频id，限制0-50
+	// 注意：material_ids和aweme_item_id只能选择一个进行过滤，否则可能会查询不到数据
+	AwemeItemIDs []uint64 `json:"aweme_item_id,omitempty"`
 }
 
 // Encode implement GetRequest interface
