@@ -57,7 +57,7 @@ type CustomDimensions struct {
 	// Pricing 对应项目的计费类型
 	Pricing int `json:"pricing,omitempty"`
 	// DeepExternalAction 对应项目的深度转化目标
-	DeepExternalAction int `json:"deep_external_action,omitempty"`
+	DeepExternalAction string `json:"deep_external_action,omitempty"`
 	// AdPlatformCdpProjectDownloadType 在项目中设置的下载方式
 	AdPlatformCdpProjectDownloadType string `json:"ad_platform_cdp_project_download_type,omitempty"`
 	// AdPlatformCdpProjectDownloadURL 在项目中设置的下载链接
@@ -98,4 +98,18 @@ type CustomDimensions struct {
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// AdPlatformMaterialName 素材为视频素材时，对应的视频名称
 	AdPlatformMaterialName string `json:"ad_platform_material_name,omitempty"`
+	// CampaignType
+	CampaignType enum.CampaignType `json:"campaign_type,omitempty"`
+	// Query 搜索词
+	Query string `json:"query,omitempty"`
+	// AdPlatformBidword 关键词
+	AdPlatformBidword string `json:"ad_platform_bidword"`
+	// BidwordId 关键词ID。特殊说明：0表示未知关键词，-2表示智选流量。
+	BidwordId model.Uint64 `json:"bidword_id"`
+	// RealRecallMatchType 搜索触发方式
+	RealRecallMatchType string `json:"real_recall_match_type"`
+	//BidwordSource  关键词来源
+	BidwordSource string `json:"bidword_source"`
+	//AdBidwordId 搜索广告计划粒度下关键词唯一ID
+	AdBidwordId model.Uint64 `json:"ad_bidword_id"`
 }
