@@ -25,6 +25,10 @@ type AdminInfoRequest struct {
 	// THREE_LEVEL下三级区域
 	// FOUR_LEVEL下四级区域
 	SubDistrict string `json:"sub_district,omitempty"`
+	// Version 行政区划版本 可选值:
+	// V1_0_0 旧版本（默认值）
+	// V2_3_2 新版本，行政区划版本升级说明详见「定向-按行政区域划分」变更说明
+	Version string `json:"version,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -35,6 +39,7 @@ func (r AdminInfoRequest) Encode() string {
 	values.Set("codes", string(codes))
 	values.Set("language", r.Language)
 	values.Set("sub_district", r.SubDistrict)
+	values.Set("version", r.Version)
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
