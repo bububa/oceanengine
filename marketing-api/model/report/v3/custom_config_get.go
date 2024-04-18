@@ -14,7 +14,7 @@ type CustomConfigGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// DataTopics 数据主题列表
 	// 枚举值：BASIC_DATA广告基础数据、QUERY_DATA搜索词数据、BIDWORD_DATA关键词数据、MATERIAL_DATA素材数据, PRODUCT_DATA用于表达产品数据主题
-	DataTopics []string `json:"datea_topics,omitempty"`
+	DataTopics []string `json:"data_topics,omitempty"`
 }
 
 // Encode implement GetRequest interface
