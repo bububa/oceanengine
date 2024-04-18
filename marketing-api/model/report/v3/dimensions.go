@@ -106,6 +106,8 @@ type CustomDimensions struct {
 	AdPlatformBidword string `json:"ad_platform_bidword"`
 	// BidwordId 关键词ID。特殊说明：0表示未知关键词，-2表示智选流量。
 	BidwordId model.Uint64 `json:"bidword_id"`
+	// Bidword 关键词名称。如果分组条件中包括STAT_GROUP_BY_BIDWORD_ID
+	Bidword string `json:"bidword"`
 	// RealRecallMatchType 搜索触发方式
 	RealRecallMatchType string `json:"real_recall_match_type"`
 	//BidwordSource  关键词来源
