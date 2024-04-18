@@ -1,15 +1,14 @@
 package comment
 
 import (
-	"encoding/json"
-
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
 // Reply 评论回复
 type Reply struct {
 	// ReplyToCommentID 回复的一级评论ID
-	ReplyToCommentID json.Number `json:"reply_to_comment_id,omitempty"`
+	ReplyToCommentID model.Uint64 `json:"reply_to_comment_id,omitempty"`
 	// CommentID 评论id
 	CommentID uint64 `json:"comment_id,omitempty"`
 	// Text 评论内容
