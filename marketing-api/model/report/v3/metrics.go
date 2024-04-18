@@ -141,7 +141,7 @@ type Metrics struct {
 	// DeepConvertRate 广告被用户进行深度转化的次数占转化次数的百分比。计算方式：深度转化数/转化数*100%
 	DeepConvertRate model.Float64 `json:"deep_convert_rate,omitempty"`
 	// AvgRank 关键词排名
-	AvgRank model.Int64 `json:"avg_rank"`
+	AvgRank model.Int64 `json:"avg_rank,omitempty"`
 }
 
 type CustomMetrics struct {
@@ -324,5 +324,5 @@ type CustomMetrics struct {
 	// 视频数据-播完率; 计算公式：播放完成数/播放数
 	PlayOverRate model.Float64 `json:"play_over_rate,omitempty"`
 	// AvgRank 关键词排名
-	AvgRank model.Int64 `json:"avg_rank"`
+	AvgRank model.Int64 `json:"avg_rank,omitempty"`
 }
