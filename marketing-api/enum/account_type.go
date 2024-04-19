@@ -14,4 +14,8 @@ const (
 	AccountType_STAR AccountType = "STAR"
 	// AccountType_AGENT 巨量方舟
 	AccountType_AGENT AccountType = "AGENT"
+	// AccountType_LOCAL 本地推
+	AccountType_LOCAL AccountType = "LOCAL"
+	// AccountType_DOUPLUS DOU+
+	AccountType_DOUPLUS AccountType = "DOU+"
 )
