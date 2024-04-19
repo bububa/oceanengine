@@ -14,4 +14,6 @@ const (
 	CampaignScene_PLANT_GRASS CampaignScene = "PLANT_GRASS"
 	// CampaignScene_PRODUCT_HEAT 商品加热
 	CampaignScene_PRODUCT_HEAT CampaignScene = "PRODUCT_HEAT"
+	// CampaignScene_NEW_PRODUCT_BOOST 新品起量
+	CampaignScene_NEW_PRODUCT_BOOST CampaignScene = "NEW_PRODUCT_BOOST"
 )
