@@ -17,8 +17,12 @@ type AdvertiserListRequest struct {
 	// PageSize 页面数据量. 默认值: 10
 	PageSize int `json:"page_size,omitempty"`
 	// Filtering 过滤条件
-	Filtering     *AdvertiserListFilter `json:"filtering,omitempty"`
-	AccountSource string                `json:"account_source"`
+	Filtering *AdvertiserListFilter `json:"filtering,omitempty"`
+	// AccountSource 账户类型，可选值：
+	// AD 广告主账号、默认
+	// ENTERPRISE企业号
+	// LOCAL：本地推
+	AccountSource string `json:"account_source"`
 }
 
 // AdvertiserListFilter 过滤条件
