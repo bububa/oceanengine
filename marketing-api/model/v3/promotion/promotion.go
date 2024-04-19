@@ -75,6 +75,14 @@ type Promotion struct {
 	ConfigID uint64 `json:"config_id,omitempty"`
 	// BrandInfo 品牌信息
 	BrandInfo *BrandInfo `json:"brand_info,omitempty"`
+	// ShopMultiRoiGoals 多ROI系数
+	// 条件必填，object[]，多ROI系数设置，表示引流电商多平台投放ROI系数及平台信息，广告主可按照电商平台分别确定ROI系数，分平台调控出价。list长度最长为4
+	// 多平台优选投放白名单内客户，在以下组合场景时shop_multi_roi_goals有效且必填
+	// 推广目的 = 电商（landing_type = SHOP）
+	// 投放方式 = 自动投放(delivery_mode = MANUAL)
+	// 优化目标 = APP 内下单(external_action = AD_CONVERT_TYPE_APP_ORDER)
+	// 深度优化方式 = ROI系数(deep_bid_type = ROI_DIRECT_MAIL)
+	ShopMultiRoiGoals []ShopMultiRoiGoal `json:"shop_multi_roi_goals,omitempty"`
 }
 
 func (p Promotion) Version() model.AdVersion {
