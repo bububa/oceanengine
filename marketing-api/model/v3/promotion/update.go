@@ -49,6 +49,17 @@ type UpdateRequest struct {
 	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
 	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
 	ConfigID uint64 `json:"config_id,omitempty"`
+	// 7d_retention 表示7日留存天数，单位：天，取值范围[0.01，7.00]，仅支持最多2位小数。
+	// 7d_retention适用创编场景，该场景下有效且必填
+	// landing_type = APP 应用推广
+	// ad_type = ALL 通投
+	// delivery_mode = MANUAL  手动投放
+	// external_action = AD_CONVERT_TYPE_ACTIVE 优化目标=激活
+	// deep_external_action = AD_CONVERT_TYPE_RETENTION_DAYS深度优化目标 = 留存天数
+	// delivery_setting.deep_bid_type = AD_CONVERT_TYPE_RETENTION_DAYS深度优化方式 = 留存天数
+	// delivery_range.inventory_catalog = MANUAL  广告位大类 = 首选媒体
+	// inventory_type = INVENTORY_UNION_SLOT  投放位置 只选择穿山甲
+	SevenDRetention float64 `json:"7d_retention,omitempty"`
 	// ShopMultiRoiGoals 多ROI系数
 	// 条件必填，object[]，多ROI系数设置，表示引流电商多平台投放ROI系数及平台信息，广告主可按照电商平台分别确定ROI系数，分平台调控出价。list长度最长为4
 	// 多平台优选投放白名单内客户，在以下组合场景时shop_multi_roi_goals有效且必填
