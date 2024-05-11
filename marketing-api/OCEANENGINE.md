@@ -51,6 +51,10 @@
     - 提交转账交易号（方舟）[ agent.FundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]
     - 创建退款交易号（方舟）[ agent.RefundTransferSeqCreate(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCreateRequest) (string, error) ]
     - 提交退款交易号（方舟）[ agent.RefundTransferSeqCommit(clt *core.SDKClient, accessToken string, req *agent.FundTransferSeqCommitRequest) (string, error) ]
+    - 转账-查询账户转账余额（代理） [ QueryTransferBalance(clt *core.SDKClient, accessToken string, req *agent.QueryTransferBalanceRequest) ([]agent.AccountAmountDetail, error) ]
+    - 转账-获取最大可转余额（代理） [ QueryCanTransferBalance(clt *core.SDKClient, accessToken string, req *agent.QueryCanTransferBalanceRequest) ([]agent.CanTransferDetail, error) ]
+    - 转账-发起转账（代理） [ CreateTransfer(clt *core.SDKClient, accessToken string, req *agent.CreateTransferRequest) (string, error) ]
+    - 转账-查询转账单信息（代理） [ QueryTransferDetail(clt *core.SDKClient, accessToken string, req *agent.QueryTransferDetailRequest) (*agent.TransferDetail, error) ]
 - 广告投放
   - 广告账户预算 (api)
     - 获取账户日预算 [ advertiser.BudgetGet(clt *core.SDKClient, accessToken string, req *advertiser.BudgetGetRequest) ([]advertiser.BudgetGetResponseList, error) ]
