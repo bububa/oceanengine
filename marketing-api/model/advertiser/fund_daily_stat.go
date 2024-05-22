@@ -4,6 +4,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -20,6 +21,11 @@ type FundDailyStatRequest struct {
 	Page int `json:"page,omitempty"`
 	// PageSize 页面数据量. 默认值: 10
 	PageSize int `json:"page_size,omitempty"`
+	// AccountType 账户业务类型，可选值:
+	// AD AD广告主（默认）
+	// LOCAL 本地推
+	// STAR 星图
+	AccountType enum.AccountType `json:"account_type,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -37,6 +43,9 @@ func (r FundDailyStatRequest) Encode() string {
 	}
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
+	}
+	if r.AccountType != "" {
+		values.Set("account_type", string(r.AccountType))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
@@ -66,6 +75,10 @@ type FundDailyStatResponseList struct {
 	Date string `json:"date,omitempty"`
 	// Balance 日终结余(单位元）
 	Balance float64 `json:"balance,omitempty"`
+	// GrantBalance 日终赠款结余(单位元）。包括冻结和实结订单pending部分
+	GrantBalance float64 `json:"grant_balance,omitempty"`
+	// NonGrantBalance 日终非赠款结余(单位元）。包括冻结和实结订单pending部分
+	NonGrantBalance float64 `json:"non_grant_balance,omitempty"`
 	// CashCost 现金支出(单位元)
 	CashCost float64 `json:"cash_cost,omitempty"`
 	// Cost 总支出(单位元)
@@ -78,10 +91,12 @@ type FundDailyStatResponseList struct {
 	RewardCost float64 `json:"reward_cost,omitempty"`
 	// ReturnGoodsCost 返货支出(单位元)
 	ReturnGoodsCost float64 `json:"return_goods_cost,omitempty"`
+	// SharedWalletCost 共享返货支出（单位元）
+	SharedWalletCost float64 `json:"shared_wallet_cost,omitempty"`
+	// CompanyWalletCost 账户消耗的子钱包的共享余额（单位元）
+	CompanyWalletCost float64 `json:"company_wallet_cost,omitempty"`
 	// TransferIn 总转入(单位元)
 	TransferIn float64 `json:"transfer_in,omitempty"`
 	// TransferOut 总转出(单位元)
 	TransferOut float64 `json:"transfer_out,omitempty"`
-	// CompanyWalletCost 账户消耗的子钱包的共享余额（单位元）
-	CompanyWalletCost float64 `json:"company_wallet_cost,omitempty"`
 }

@@ -24,7 +24,13 @@ type AwemeAuthListRequest struct {
 // AwemeAuthListFilter 筛选条件
 type AwemeAuthListFilter struct {
 	// AuthType 授权类型，可选值:
-	// AWEME_ACCOUNT: 抖音号授权、VIDEO_ITEM: 单视频授权
+	// AWEME_ACCOUNT 抖音号授权
+	// LIVE_ACCOUNT 直播授权
+	// VIDEO_ITEM  单视频授权
+	// AWEME_HOMEPAGE主页作品授权 new
+	// 说明：创建广告时，如果选用的aweme_id（抖音号）为「抖音号授权」，此时可以在广告下添加新的视频素材并发布到所选抖音号下进行推广；而当所选抖音号的授权类型为「主页作品授权」时，不具备此能力
+	// 抖音号授权：授权使用抖音号发布作品并推广、使用主页全部视频推广、直播间引流
+	// 主页作品授权：授权使用抖音号主页全部视频推广、直播间引流
 	AuthType []enum.AwemeAuthType `json:"auth_type,omitempty"`
 	// AuthStatus 授权状态， 可选值:
 	// AUTHRIZED: 授权中、AUTHRIZING: 待授权确认、INVALID: 授权失效
