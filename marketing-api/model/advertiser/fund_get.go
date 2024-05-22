@@ -32,17 +32,21 @@ func (r FundGetRequest) Encode() string {
 type FundGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *FundGetResponseData `json:"data,omitempty"`
+	Data *FundGetResult `json:"data,omitempty"`
 }
 
 // FundGetResponseData 账号余额
-type FundGetResponseData struct {
+type FundGetResult struct {
 	// AdvertiserID 广告主ID或代理商ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Name 账户名
 	Name string `json:"name,omitempty"`
 	// Email 联系邮箱
 	Email string `json:"email,omitempty"`
+	FundInfo
+}
+
+type FundInfo struct {
 	// Balance 账户总余额(单位元)
 	Balance model.Float64 `json:"balance,omitempty"`
 	// ValidBalance 账户可用总余额(单位元)

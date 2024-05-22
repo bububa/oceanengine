@@ -37,7 +37,8 @@
     - 获取纵横组织下所有主体信息 [ businessplatform.CompanyInfoGet(clt *core.SDKClient, accessToken string, req *businessplatform.CompanyInfoGetRequest) (*businessplatform.CompanyInfoGetData, error) ]
     - 获取主体下的账户列表 [ businessplatform.CompanyAccountGet(clt *core.SDKClient, accessToken string, req *businessplatform.CompanyAccountGetRequest) (*businessplatform.CompanyAccountGetData, error) ]
   - 资金和流水管理 (api)
-    - 查询账号余额 [ advertiser.FundGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.FundGetResponseData, error) ]
+    - 查询账号余额 [ advertiser.FundGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.FundGetResult, error) ]
+    - 批量查询账户余额 [ AccountFundGet(clt *core.SDKClient, accessToken string, req *advertiser.AccountFundGetRequest) ([]advertiser.AccountFund, error) ]
     - 查询账号日流水 [ advertiser.FundDailyStat(clt *core.SDKClient, accessToken string, req *advertiser.FundDailyStatRequest) (*advertiser.FundDailyStatResponseData, error) ]
     - 查询账号流水明细 [ advertiser.FundTransactionGet(clt *core.SDKClient, accessToken string, req *advertiser.FundTransactionGetRequest) ([]advertiser.FundTransactionGetResponseList, error) ]
     - 代理商转账 [ agent.AdvertiserRecharge(clt *core.SDKClient, accessToken string, req *agent.AdvertiserRechargeRequest) (string, error) ]
