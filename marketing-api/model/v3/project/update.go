@@ -27,7 +27,7 @@ type UpdateRequest struct {
 	// OpenURL Deeplink直达链接
 	OpenURL string `json:"open_url,omitempty"`
 	// UlinkURL ulink直达链接
-	UlinkURL string `json:"urlink_url,omitempty"`
+	UlinkURL string `json:"ulink_url,omitempty"`
 	// DpaCategories 商品投放范围，分类列表，由【DPA商品广告-获取DPA分类】 得到
 	// 个数限制 [0, 1000]
 	// 不传和传空数组即为不限商品投放范围
