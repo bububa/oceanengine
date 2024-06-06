@@ -312,6 +312,8 @@
     - 查询组件列表 [ Get(clt *core.SDKClient, accessToken string, req *creativecomponent.GetRequest) (*creativecomponent.GetResponseData, error) ]
   - 事件管理 (api/eventmanger)
     - 获取已创建资产列表 [ AssetsGet(clt *core.SDKClient, accessToken string, req *eventmanager.AssetsGetRequest) (*eventmanager.AssetsGetResponseData, error) ]
+    - 获取账户下资产列表（新） [ AllAssetsList(clt *core.SDKClient, accessToken string, req *eventmanager.AllAssetsListRequest) (*eventmanager.AllAssetsListResult, error) ]
+    - 获取已创建资产详情（新） [ AllAssetsDetail(clt *core.SDKClient, accessToken string, req *eventmanager.AllAssetsDetailRequest) ([]eventmanager.AssetDetail, error) ]
     - 获取可用优化目标 [ EventConvertOptimizedGoalGet(clt *core.SDKClient, accessToken string, req *eventmanager.EventConvertOptimizedGoalGetRequest) (*eventmanager.EventConvertOptimizedGoalGetResponseData, error) ]
     - 资产下创建事件 [ EventsCreate(clt *core.SDKClient, accessToken string, req *eventmanager.EventsCreateRequest) error ]
     - 创建事件资产 [ AssetsCreate(clt *core.SDKClient, accessToken string, req *eventmanager.AssetsCreateRequest) (uint64, error) ]
