@@ -10,10 +10,10 @@ type Product struct {
 	Title string `json:"title,omitempty"`
 	// Description 商品标题
 	Description string `json:"description,omitempty"`
-	// OfflineTime 下线时间，格式"YYYY-MM-DD"
-	OfflineTime string `json:"offline_time,omitempty"`
-	// OnlineTime 上线时间，格式"YYYY-MM-DD"
-	OnlineTime string `json:"online_time,omitempty"`
+	// OfflineTime 下线时间，格式"YYYY-MM-DD" 或 格式为十位unix时间戳类型
+	OfflineTime model.UnixTime `json:"offline_time,omitempty"`
+	// OnlineTime 上线时间，格式"YYYY-MM-DD" 或 格式为十位unix时间戳类型
+	OnlineTime model.UnixTime `json:"online_time,omitempty"`
 	// PlatformID 商品库ID
 	PlatformID uint64 `json:"platform_id,omitempty"`
 	// ProductID 商品ID

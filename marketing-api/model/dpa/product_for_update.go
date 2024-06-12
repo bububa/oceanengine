@@ -1,7 +1,5 @@
 package dpa
 
-import "time"
-
 // ProductForUpdate 商品详情
 type ProductForUpdate struct {
 	// Name 商品名称
@@ -87,15 +85,10 @@ type ProductForUpdate struct {
 }
 
 func CopyProductForUpdateFromProduct(src *Product, dist *ProductForUpdate) {
-	loc := time.Now().Location()
 	dist.Name = src.Name
 	dist.Title = src.Title
 	dist.Description = src.Description
-	if src.OfflineTime != "" {
-		if t, err := time.ParseInLocation("2006-01-02", src.OfflineTime, loc); err == nil {
-			dist.OfflineTime = t.Unix()
-		}
-	}
+	dist.OfflineTime = src.OfflineTime.Value()
 	dist.Status = src.Status
 	dist.Stock = src.Stock
 	dist.FirstCategory = src.FirstCategory
