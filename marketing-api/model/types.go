@@ -1,6 +1,9 @@
 package model
 
-import "strconv"
+import (
+	"strconv"
+	"time"
+)
 
 type AdVersion int
 
@@ -262,4 +265,39 @@ func (i ReverseOnOffInt) String() string {
 		return "OFF"
 	}
 	return "ON"
+}
+
+var timeFormats = []string{
+	"2006-01-02 15:04:05",
+	"2006-01-02",
+}
+
+// UnixTime support number/string in json
+type UnixTime int64
+
+func (ut UnixTime) Value() int64 {
+	return int64(ut)
+}
+
+func (ut UnixTime) Time() time.Time {
+	return time.Unix(int64(ut), 0)
+}
+
+func (ut *UnixTime) UnmarshalJSON(b []byte) (err error) {
+	if b[0] == '"' && b[len(b)-1] == '"' {
+		b = b[1 : len(b)-1]
+	}
+	if i, err := strconv.ParseUint(string(b), 10, 64); err == nil {
+		*ut = UnixTime(i)
+	} else {
+		loc := time.Now().Location()
+		str := string(b)
+		for _, fmt := range timeFormats {
+			if t, err := time.ParseInLocation(fmt, str, loc); err == nil {
+				*ut = UnixTime(t.Unix())
+				break
+			}
+		}
+	}
+	return nil
 }
