@@ -95,6 +95,7 @@
     - 获取项目列表 [ List(clt *core.SDKClient, accessToken string, req *project.ListRequest) (*project.ListResponseData, error) ]
     - 批量更新项目状态 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *project.StatusUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量删除项目 [ Delete(clt *core.SDKClient, accessToken string, req *project.DeleteRequest) (*project.UpdateResponseData, error) ]
+    - 批量获取项目成本保障状态 [ CostProtectStatusGet(clt *core.SDKClient, accessToken string, req *project.CostProtectStatusGetRequest) (*project.CostProtectStatusGetResult, error) ]
     - 批量更新项目预算 [ BudgetUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目投放时间 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *project.ScheduleTimeUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目投放时段 [ WeekScheduleUpdate(clt *core.SDKClient, accessToken string, req *project.WeekScheduleUpdateRequest) (*project.UpdateResponseData, error) ]
