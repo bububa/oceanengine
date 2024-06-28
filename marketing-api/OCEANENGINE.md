@@ -95,6 +95,7 @@
     - 获取项目列表 [ List(clt *core.SDKClient, accessToken string, req *project.ListRequest) (*project.ListResponseData, error) ]
     - 批量更新项目状态 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *project.StatusUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量删除项目 [ Delete(clt *core.SDKClient, accessToken string, req *project.DeleteRequest) (*project.UpdateResponseData, error) ]
+    - 批量获取项目成本保障状态 [ CostProtectStatusGet(clt *core.SDKClient, accessToken string, req *project.CostProtectStatusGetRequest) (*project.CostProtectStatusGetResult, error) ]
     - 批量更新项目预算 [ BudgetUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目投放时间 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *project.ScheduleTimeUpdateRequest) (*project.UpdateResponseData, error) ]
     - 批量更新项目投放时段 [ WeekScheduleUpdate(clt *core.SDKClient, accessToken string, req *project.WeekScheduleUpdateRequest) (*project.UpdateResponseData, error) ]
@@ -242,6 +243,10 @@
   - 批量删除图集 [ CarouselDelete(clt *core.SDKClient, accessToken string, req *file.CarouselDeleteRequest) (*file.CarouselDeleteResult, error) ]
   - 【代理商】上传自产首发素材至方舟（搬运治理） [ VideoAgent(clt *core.SDKClient, accessToken string, req *file.VideoAgentRequest) (*file.Video, error) ]
   - 【代理商】明点无效素材查询 [ RebateMaterialSearch(clt *core.SDKClient, accessToken string, req *file.RebateMaterialSearchRequest) (*file.RebateMaterialSearchResult, error) ]
+  - 【代理】返点明点化素材数据 (api/file/rebate)
+    - 创建下载任务 [ MaterialDownloadCreateTask(clt *core.SDKClient, accessToken string, req *rebate.MaterialDownloadCreateTaskRequest) (string, error) ]
+    - 查询下载任务 [ MaterialDownloadTaskList(clt *core.SDKClient, accessToken string, req *rebate.MaterialDownloadTaskListRequest) (*rebate.MaterialDonwloadTaskListResult, error) ]
+    - 下载任务结果 [ MaterialDownloadFile(clt *core.SDKClient, accessToken string, req *rebate.MaterialDownloadFileRequest) (json.RawMessage, error) ]
 - 建站管理
   - 橙子建站落地页管理 (tools/site)
     - 创建橙子建站站点 [ Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) ]
