@@ -47,6 +47,8 @@ type AssetDetail struct {
 	QuickAppPackageName string `json:"quick_app_package_name,omitempty"`
 	// MicroAppID 小程序appid，当asset_type = MINI_PROGRAME 时返回
 	MicroAppID string `json:"micro_app_id,omitempty"`
+	// MicroAppInstanceID 小程序资产id，当asset_type = MINI_PROGRAME 时返回
+	MicroAppInstanceID uint64 `json:"micro_app_instance_id,omitempty"`
 }
 
 // LandingPage 三方落地页数据

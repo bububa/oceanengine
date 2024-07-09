@@ -37,6 +37,17 @@ type ExtendPackageListV2Filter struct {
 	// "UPDATE_FAILED"：更新失败
 	// 默认值："ALL"
 	Status ExtendPackageStatus `json:"status,omitempty"`
+	// ChannelID 渠道号，可通过渠道号筛选应用分包，单次支持传入渠道号个数<=50
+	ChannelID []string `json:"channel_id,omitempty"`
+	// UpdateTime 更新时间，可通过最近更新时间筛选应用分包，传入开始时间和结束时间查询该时间范围内更新过的应用分包
+	UpdateTime *ExternalPackageListV2UpdateTime `json:"update_time,omitempty"`
+}
+
+type ExternalPackageListV2UpdateTime struct {
+	// StartTime 开始时间，示例:"2024-07-01 00:00:00"
+	StartTime string `json:"start_time,omitempty"`
+	// EndTime 结束时间，示例:"2024-07-01 00:00:00"
+	EndTime string `json:"end_time,omitempty"`
 }
 
 // Encode implement GetRequest interface
