@@ -16,12 +16,12 @@ type Response interface {
 
 // BaseResponse shared api response data fields
 type BaseResponse struct {
-	// Code 返回码
-	Code int `json:"code"`
 	// Message 返回信息
 	Message string `json:"message"`
 	// RequestID 请求的日志id，唯一标识一个请求
 	RequestID string `json:"request_id,omitempty"`
+	// Code 返回码
+	Code int `json:"code"`
 }
 
 // IsError implement Response interface

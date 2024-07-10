@@ -24,9 +24,9 @@ func (r CdpBrandGetRequest) Encode() string {
 
 // CdpBrandGetResponse 获取关联云图的广告主账户信息 API Response
 type CdpBrandGetResponse struct {
-	model.BaseResponse
 	// Data
 	Data *CdpBrandGetResult `json:"data,omitempty"`
+	model.BaseResponse
 }
 
 type CdpBrandGetResult struct {
@@ -38,24 +38,24 @@ type CdpBrandGetResult struct {
 
 // CdpBrandCategory 品牌所属类别
 type CdpBrandCategory struct {
+	// Children
+	Children *CdpBrandCategory `json:"children,omitempty"`
 	// ID 一级类别id: yuntu_category_id
 	ID string `json:"id,omitempty"`
 	// Label 一级类别标签
 	Label string `json:"label,omitempty"`
-	// Children
-	Children *CdpBrandCategory `json:"children,omitempty"`
 }
 
 // CdpBrandInfo 品牌信息
 type CdpBrandInfo struct {
-	// CdpBrandID cdp品牌id
-	CdpBrandID int64 `json:"cdp_brand_id,omitempty"`
+	// SubBrandMap 子品牌信息名称和id
+	SubBrandMap *CdpBrandInfo `json:"sub_brand_map,omitempty"`
 	// CdpBrandName cdp品牌信息
 	CdpBrandName string `json:"cdp_brand_name,omitempty"`
+	// CdpBrandID cdp品牌id
+	CdpBrandID int64 `json:"cdp_brand_id,omitempty"`
 	// EcomBrandID 电商品牌id
 	EcomBrandID int64 `json:"ecom_brand_id,omitempty"`
 	// BrandNameID 云图品牌id
 	BrandNameID int64 `json:"brand_name_id,omitempty"`
-	// SubBrandMap 子品牌信息名称和id
-	SubBrandMap *CdpBrandInfo `json:"sub_brand_map,omitempty"`
 }
