@@ -5,20 +5,20 @@
   - 获取 AccessToken [ AccessToken(clt *core.SDKClient, authCode String) (*oauth.AccessTokenResponseData, error) ]
   - 刷新 Token [ RefreshToken(clt *core.SDKClient, refreshToken string) (*oauth.AccessTokenResponseData, error)]
 - 账户管理
-    - 账户关系获取
-      - 获取千川账户下已授权抖音号 [ aweme.AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
-      - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(clt *core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
-      - 获取店铺账户关联的广告账户列表 [ shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
-      - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
-      - 广告主添加抖音号 [ tools.AwemeAuth(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthRequest) (bool, error)  ]
-      - 店铺新客定向授权 [ tools.ShopAuth(clt *core.SDKClient, accessToken string, req *tools.ShopAuthRequest) error ]
-    - 账户信息获取
-      - 获取授权 User 信息 [ oauth.UserInfo(clt *core.SDKClient, accessToken string) (*oauth.UserInfoResponseData, error) ]
-      - 获取代理商信息 [ agent.Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
-      - 获取店铺账户信息 [ shop.Get(clt *core.SDKClient, accessToken string, req *shop.GetRequest) ([]shop.Shop, error) ]
-      - 获取千川广告账户基础信息 [ advertiser.PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
-      - 获取千川广告账户全量信息 [ advertiser.Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
-      - 获取千川账户类型 [ TypeGet(clt *core.SDKClient, accessToken string, req *advertiser.TypeGetRequest) ([]advertiser.Advertiser, error) ]
+  - 账户关系获取
+    - 获取千川账户下已授权抖音号 [ aweme.AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
+    - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(clt \*core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
+    - 获取店铺账户关联的广告账户列表 [ shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
+    - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
+    - 广告主添加抖音号 [ tools.AwemeAuth(clt *core.SDKClient, accessToken string, req *tools.AwemeAuthRequest) (bool, error) ]
+    - 店铺新客定向授权 [ tools.ShopAuth(clt *core.SDKClient, accessToken string, req *tools.ShopAuthRequest) error ]
+  - 账户信息获取
+    - 获取授权 User 信息 [ oauth.UserInfo(clt *core.SDKClient, accessToken string) (*oauth.UserInfoResponseData, error) ]
+    - 获取代理商信息 [ agent.Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
+    - 获取店铺账户信息 [ shop.Get(clt *core.SDKClient, accessToken string, req *shop.GetRequest) ([]shop.Shop, error) ]
+    - 获取千川广告账户基础信息 [ advertiser.PublicInfo(clt *core.SDKClient, accessToken string, req *advertiser.PublicInfoRequest) ([]advertiser.PublicInfo, error) ]
+    - 获取千川广告账户全量信息 [ advertiser.Info(clt *core.SDKClient, accessToken string, req *advertiser.InfoRequest) ([]advertiser.Info, error) ]
+    - 获取千川账户类型 [ TypeGet(clt *core.SDKClient, accessToken string, req *advertiser.TypeGetRequest) ([]advertiser.Advertiser, error) ]
 - 资金管理(api/qianchuan/finance)
   - 获取账户钱包信息 [ WalletGet(clt *core.SDKClient, accessToken string, req *finance.WalletGetRequest) (*finance.Wallet, error) ]
   - 获取账户余额 [ advertiser.BalanceGet(clt *core.SDKClient, accessToken string, req *advertiser.BalanceGetRequest) (*advertiser.Balance, error) ]
@@ -38,7 +38,7 @@
     - 广告组列表获取 [ ListGet(clt *core.SDKClient, accessToken string, req *campaign.ListGetRequest) (*campaign.ListGetResponseData, error) ]
   - 广告计划管理 (api/qianchuan/ad)
     - 创建广告计划 [ Create(clt *core.SDKClient, accessToken string, req *ad.CreateRequest) (uint64, error) ]
-    - 更新广告计划 [ Update(clt *core.SDKClient, accessToken string, req *ad.UpdateRequest) (*ad.UpdateResponseData, error) ] 
+    - 更新广告计划 [ Update(clt *core.SDKClient, accessToken string, req *ad.UpdateRequest) (*ad.UpdateResponseData, error) ]
     - 获取计划详情 [ DetailGet(clt *core.SDKClient, accessToken string, req *ad.DetailGetRequest) (*ad.Ad, error) ]
     - 获取账户下计划列表 [ Get(clt *core.SDKClient, accessToken string, req *ad.GetRequest) (*ad.GetResponseData, error) ]
     - 更新状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *ad.UpdateStatusRequest) (*ad.UpdateResponseData, error) ]
@@ -61,6 +61,9 @@
     - 批量更新广告创意状态 [ UpdateStatus(clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 获取账户下创意列表 [ Get(clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
     - 获取计划审核建议 [ RejectReason(clt *core.SDKClient, accessToken string, req *creative.RejectReasonRequest) ([]creative.RejectReasonList, error) ]
+  - 广告素材管理 (api/ad)
+    - 获取计划下素材列表 [ MaterialGet(clt *core.SDKClient, accessToken string, req *ad.MaterialGetRequest) (*ad.MaterialGetResult, error) ]
+    - 删除广告计划下素材 [ MaterialDelete(clt *core.SDKClient, accessToken string, req *ad.MaterialDeleteRequest) error ]
   - 商品/直播间管理
     - 获取可投商品列表 [ AvailableGet(clt *core.SDKClient, accessToken string, req *product.AvailableGetRequest) (*product.AvailableGetResponseData, error) ]
     - 获取千川账户下已授权抖音号 [ AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
@@ -98,7 +101,7 @@
     - 获取今日直播间列表 [ live.RoomGet(clt *core.SDKClient, accessToken string, req *live.RoomGetRequest) (*live.RoomGetData, error) ]
     - 获取直播间详情 [ live.RoomDetailGet(clt *core.SDKClient, accessToken string, req *live.RoomDetailGetRequest) (*live.Room, error) ]
     - 获取直播间流量表现 [ live.RoomFlowPerformanceGet(clt *core.SDKClient, accessToken string, req *live.RoomFlowPerformanceGetRequest) (*live.RoomFlowPerformance, error) ]
-    - 获取直播间用户洞察 [ live.RoomUserGet(clt *core.SDKClient, accessToken string, req *live.RoomUserGetRequest) (*live.RoomUser, error)  ]
+    - 获取直播间用户洞察 [ live.RoomUserGet(clt *core.SDKClient, accessToken string, req *live.RoomUserGetRequest) (*live.RoomUser, error) ]
     - 获取直播间商品列表 [ live.RoomProductListGet(clt *core.SDKClient, accessToken string, req *live.RoomProductListGetRequest) (*live.RoomProductListData, error) ]
   - 商品竞争分析 (api/quancuan/product/analyse)
     - 获取商品竞争分析列表 [ List(clt *core.SDKClient, accessToken string, req *analyse.ListRequest) (*analyse.ListResponseData, error) ]
@@ -110,7 +113,7 @@
   - 获取随心推订单列表 [ OrderGet(clt *core.SDKClient, accessToken string, req *aweme.OrderGetRequest) (*aweme.OrderGetResult, error) ]
   - 获取随心推订单详情 [ OrderDetailGet(clt *core.SDKClient, accessToken string, req *aweme.OrderDetailGetRequest) (*aweme.Order, error) ]
   - 获取随心推订单数据 [ api/qianchuan/report.OrderGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
-  - 获取随心推兴趣标签 [ InterestActionInterestKeyword(clt *core.SDKClient, accessToken string, advertiserID uint64) ([]aweme.InterestKeyword, error) ]
+  - 获取随心推兴趣标签 [ InterestActionInterestKeyword(clt \*core.SDKClient, accessToken string, advertiserID uint64) ([]aweme.InterestKeyword, error) ]
   - 获取随心推可投视频列表 [ VideoGet(clt *core.SDKClient, accessToken string, req *aweme.VideoGetRequest) (*aweme.VideoGetResult, error) ]
   - 获取随心推投放效果预估 [ EstimateProfit(clt *core.SDKClient, accessToken string, req *aweme.EstimateProfitRequest) (*aweme.EstimateProfit, error) ]
   - 获取随心推短视频建议出价 [ SuggestBid(clt *core.SDKClient, accessToken string, req *aweme.SuggestBidRequest) (float64, error) ]
@@ -124,7 +127,7 @@
   - 获取图片素材 [ api.qianchuan.file.ImageGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.ImageGetRequest) (*file.ImageGetResponseData, error) ]
   - 获取视频素材 [ api.qianchuan.file.VideoGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoGetRequest) (*file.VideoGetResponseData, error) ]
   - 获取抖音号下的视频 [ api.qianchuan.file.VideoAwemeGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoAwemeGetRequest) (*api.qianchuan.file.VideoAwemeGetResponseData, error) ]
-  - 获取首发素材  [ api.qianchuan.file.VideoOriginalGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoOriginalGetRequest) ([]string, error) ]
+  - 获取首发素材 [ api.qianchuan.file.VideoOriginalGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoOriginalGetRequest) ([]string, error) ]
   - 获取低效素材 [ api.qianchuan.file.VideoEffeciencyGet(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoEffeciencyGetRequest) ([]string, error) ]
   - 批量删除图片素材 [ api.qianchuan.file.ImageDelete(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.ImageDeleteRequest) ([]string, error) ]
   - 批量删除视频素材 [ api.qianchuan.file.VideoDelete(clt *core.SDKClient, accessToken string, req *api.qianchuan.file.VideoDeleteRequest) ([]string, error) ]
@@ -134,7 +137,7 @@
   - 查询工具
     - 获取行业列表 [ tools.IndustryGet(clt *core.SDKClient, accessToken string, req *tools.IndustryGetRequest) ([]tools.Industry, error) ]
     - 日志查询 [ tools/log.Search(clt *core.SDKClient, accessToken string, req *log.SearchRequest) (*log.SearchResponseData, error) ]
-    - 获取定向受众预估 [ tools.EstimateAudience(clt *core.SDKClient, accessToken string, req *tools.EstimateAudienceRequest) (*tools.EstimateAudienceResult, error)  ]
+    - 获取定向受众预估 [ tools.EstimateAudience(clt *core.SDKClient, accessToken string, req *tools.EstimateAudienceRequest) (*tools.EstimateAudienceResult, error) ]
     - 获取在投计划配额信息 [ ad.QuotaGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*ad.QuotaGetResult, error) ]
     - 获取白名单能力 [ tools.GrayGet(clt *core.SDKClient, accessToken string, req *tools.GrayGetRequest) (*qianchuanTools.GrayGetResult, error) ]
     - 智能优惠券白名单 [ tools.AllowCoupon(clt *core.SDKClient, accessToken string, req *tools.AllowCouponRequest) (*tools.AllowCouponResult, error) ]

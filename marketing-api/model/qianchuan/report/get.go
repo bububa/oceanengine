@@ -111,6 +111,7 @@ type StatFiltering struct {
 	// MaterialType 素材类型，允许值：
 	// video ：视频素材
 	// image ：图片素材
+	// carousel 图文素材
 	MaterialType qianchuan.MaterialType `json:"material_type,omitempty"`
 	// VideoSource 视频来源筛选，以平台素材库接口的视频来源枚举值为准，允许值：
 	// E_COMMERCE：本地上传

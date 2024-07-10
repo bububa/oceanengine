@@ -8,4 +8,6 @@ const (
 	MaterialType_Video MaterialType = "video"
 	// MaterialType_Image 图片素材
 	MaterialType_Image MaterialType = "image"
+	// MaterialType_Carousel 图文素材
+	MaterialType_Carousel MaterialType = "carousel"
 )
