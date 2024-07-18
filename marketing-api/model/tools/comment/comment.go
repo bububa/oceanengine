@@ -55,6 +55,13 @@ type Comment struct {
 	CommentPermission enum.CommentPermission `json:"comment_permission,omitempty"`
 	// MaterialID 评论关联的视频素材id
 	MaterialID uint64 `json:"material_id,omitempty"`
+	// CommentImages 评论图片内容，返回图片url列表
+	CommentImages []string `json:"comment_images,omitempty"`
+	// CommentType 评论内容类型
+	// IMAGE_COMMENT 图片评论
+	// IMAGE_TEXT_COMMENT 图文评论
+	// TEXT_COMMENT 文字评论
+	CommentType enum.CommentType `json:"comment_type,omitempty"`
 }
 
 // UserInfo 评论用户信息
