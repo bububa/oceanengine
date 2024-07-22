@@ -125,4 +125,10 @@ const (
 	Conversion_ECOM_REFUND = "ecom_refund"
 	// Conversion_WITHDRAW_IAA 续费失败or短期退订
 	Conversion_WITHDRAW_IAA = "withdraw_iaa"
+	
+	// 穿山甲快应用LTV回传 https://bytedance.larkoffice.com/docx/RhOcdmhglov5O7x93c0cJY4jnnd
+	// Conversion_SUPPLY_ACTIVE 穿山甲快应用LTV回传调起（即打开快应用）事件回传；为避免影响当前投放，期间全量调起的回传由新的event_type （supply_active）承接
+	Conversion_SUPPLY_ACTIVE = "supply_active"
+	// Conversion_LTV0 穿山甲快应用LTV回传 LTV-0实际值，单位：分；整数，连续值，需要props参数ltv0
+	Conversion_LTV0 = "ltv0"
 )
