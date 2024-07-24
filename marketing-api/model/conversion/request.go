@@ -244,6 +244,8 @@ type Properties struct {
 	TecAgent string `json:"tec_agent,omitempty"`
 	// EcomPlatform 来源平台（PDD TB JD 微信小程序）
 	EcomPlatform string `json:"ecom_platform,omitempty"`
+	// UgEventVal 穿山甲快应用LTV回传，实时且连续地回传每个新用户调起后24小时内的全渠道变现ltv累计值 单位：分；整数
+	UgEventVal uint64 `json:"ug_event_val,omitempty"`
 }
 
 // Encode implement GetRequest interface
