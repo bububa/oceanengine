@@ -26,6 +26,14 @@ type ListRequest struct {
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小默认值:10，page_size范围为1-10
 	PageSize int `json:"page_size,omitempty"`
+	// Cursor 页码游标值：第一次拉取，传入0
+	// page与cursor同时传入时，cursor优先级大于page；同时不传入默认走page逻辑
+	// page+page_size与cursor+count为两种分页方式，返回参数只返回与入参对应的分页参数
+	Cursor int `json:"cursor,omitempty"`
+	// Count 页面数据量
+	// page与cursor同时传入时，cursor优先级大于page；同时不传入默认走page逻辑
+	// page+page_size与cursor+count为两种分页方式，返回参数只返回与入参对应的分页参数
+	Count int `json:"count,omitempty"`
 }
 
 // ListFilter 过滤条件
@@ -118,6 +126,12 @@ func (r ListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
+	if r.Cursor > 0 {
+		values.Set("cursor", strconv.Itoa(r.Cursor))
+	}
+	if r.Count > 0 {
+		values.Set("count", strconv.Itoa(r.Count))
+	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
@@ -130,6 +144,8 @@ type ListResponse struct {
 }
 
 type ListResponseData struct {
+	// CursorInfo 游标分页信息，当分页方式为cursor+count时返回
+	CursorInfo *model.PageInfo `json:"cursor_info,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 	// List 项目列表
