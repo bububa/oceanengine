@@ -7,6 +7,7 @@
 - 账户管理
   - 账户关系获取
     - 获取千川账户下已授权抖音号 [ aweme.AuthorizedGet(clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
+    - 获取千川账户下抖音号授权列表 [ advertiser.AwemeAuthListGet(clt *core.SDKClient, accessToken string, req *advertiser.AwemeAuthListGetRequest) (*advertiser.AwemeAuthListGetResult, error) ]
     - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(clt \*core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
     - 获取店铺账户关联的广告账户列表 [ shop.AdvertiserList(clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
     - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
