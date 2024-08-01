@@ -80,7 +80,13 @@
     - 获取否定词列表 [ PrivatewordsGet(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsGetRequest) (*ad.PrivateWords, error) ]
     - 全量更新否定词 [ PrivatewordsUpdate(clt *core.SDKClient, accessToken string, req *ad.PrivatewordsUpdateRequest) (*ad.PrivatewordsUpdateResult, error) ]
   - 全域推广 (api/qianchuan/uni_promotion)
+    - 新建全域推广计划 [ Create(clt *core.SDKClient, accessToken string, req *unipromotion.CreateRequest) (uint64, error) ]
+    - 编辑全域推广计划 [ Update(clt *core.SDKClient, accessToken string, req *unipromotion.UpdateRequest) (*unipromotion.UpdateResult, error) ]
+    - 更改全域推广计划状态 [ StatusUpdate(clt *core.SDKClient, accessToken string, req *unipromotion.StatusUpdateRequest) ([]unipromotion.StatusUpdateResult, error) ]
     - 获取全域推广列表 [ List(clt *core.SDKClient, accessToken string, req *unipromotion.ListRequest) (*unipromotion.ListResult, error) ]
+    - 获取全域推广计划详情 [ Detail(clt *core.SDKClient, accessToken string, req *unipromotion.DetailRequest) (*unipromotion.AdDetail, error) ]
+    - 获取全域推广计划下素材 [ MaterialGet(clt *core.SDKClient, accessToken string, req *unipromotion.MaterialGetRequest) (*unipromotion.MaterialGetResult, error) ]
+    - 删除全域推广计划下素材 [ MaterialDelete(clt *core.SDKClient, accessToken string, req *unipromotion.MaterialDeleteRequest) error ]
     - 获取可投全域推广抖音号列表 [ AuthorizedGet(clt *core.SDKClient, accessToken string, req *unipromotion.AuthorizedGetRequest) (*unipromotion.AuthorizedGetResult, error) ]
 - 数据报表 （api/qianchuan/report)
   - 广告数据报表

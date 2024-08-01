@@ -38,6 +38,17 @@ type ListRequest struct {
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小，允许值：10, 20, 50, 100, 200，默认值：10
 	PageSize int `json:"page_size,omitempty"`
+	// Filtering 过滤
+	Filtering *ListFilter `json:"filtering,omitempty"`
+}
+
+// ListFilter 过滤
+type ListFilter struct {
+	// SmartBidType 投放方式 可选值:
+	// SMART_BID_CONSERVATIVE 放量投放
+	// SMART_BID_CUSTOM 控成本投放
+	//  默认值: SMART_BID_CUSTOM
+	SmartBidType enum.SmartBidType `json:"smart_bid_type,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -59,6 +70,9 @@ func (r ListRequest) Encode() string {
 	}
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
+	}
+	if r.Filtering != nil {
+		values.Set("filtering", string(util.JSONMarshal(r.Filtering)))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
