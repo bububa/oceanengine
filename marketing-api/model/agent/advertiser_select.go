@@ -63,7 +63,7 @@ type AdvertiserSelectResponseData struct {
 	// List 广告主ID列表
 	List []uint64 `json:"list,omitempty"`
 	// AccountSource 账号列表的账号类型
-	// 枚举值：AD广告主、STAR星图、LUBAN鲁班、DOMESTIC 入海
+	// 枚举值：AD 广告主、STAR 星图、LUBAN 鲁班、DOMESTIC 入海、LOCAL 本地推账户
 	AccountSource string `json:"account_source,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
