@@ -14,13 +14,13 @@ type CustomGetRequest struct {
 	StartTime string `json:"start_time,omitempty"`
 	// EndTime 结束时间。格式为：2022-08-01 23:59:59
 	EndTime string `json:"end_time,omitempty"`
-	// DataTopics 数据主题，可选值:
+	// DataTopic 数据主题，可选值:
 	// ECP_BASIC_DATA 千川平台广告基础数据
 	// SITE_PROMOTION_POST_DATA_LIVE  全域推广-素材-直播间画面
 	// SITE_PROMOTION_POST_DATA_VIDEO  全域推广-素材-视频
 	// SITE_PROMOTION_POST_DATA_OTHER  全域推广-素材-其他创意
 	// SITE_PROMOTION_POST_DATA_TITLE  全域推广-素材-标题
-	DataTopics []string `json:"data_topics,omitempty"`
+	DataTopic string `json:"data_topic,omitempty"`
 	// Dimensions 维度列表。
 	// 可通过【获取自定义报表可用维度和指标】接口获取不同数据主题下的可用维度和指标
 	Dimensions []string `json:"dimensions,omitempty"`
@@ -69,7 +69,7 @@ type CustomGetOrderBy struct {
 func (r CustomGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	values.Set("data_topics", string(util.JSONMarshal(r.DataTopics)))
+	values.Set("data_topic", r.DataTopic)
 	values.Set("dimensions", string(util.JSONMarshal(r.Dimensions)))
 	values.Set("metrics", string(util.JSONMarshal(r.Metrics)))
 	if len(r.Filters) > 0 {
