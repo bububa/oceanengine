@@ -16,7 +16,7 @@ import (
 //   - 账户下不返回已删除的资产
 func AllAssetsList(clt *core.SDKClient, accessToken string, req *eventmanager.AllAssetsListRequest) (*eventmanager.AllAssetsListResult, error) {
 	var resp eventmanager.AllAssetsListResponse
-	if err := clt.Get("2/tools/event/all_assets/list/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("2/tools/event/all_assets/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil
