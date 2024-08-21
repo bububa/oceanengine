@@ -100,11 +100,28 @@ func (c *SDKClient) Copy() *SDKClient {
 
 // Post post api
 func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, accessToken string) error {
+	return c.post(BASE_URL, gw, req, resp, accessToken)
+}
+
+func (c *SDKClient) PostAPI(gw string, req model.PostRequest, resp model.Response, accessToken string) error {
+	return c.post(API_BASE_URL, gw, req, resp, accessToken)
+}
+
+// Get get api
+func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
+	return c.get(BASE_URL, gw, req, resp, accessToken)
+}
+
+func (c *SDKClient) GetAPI(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
+	return c.get(API_BASE_URL, gw, req, resp, accessToken)
+}
+
+func (c *SDKClient) post(base string, gw string, req model.PostRequest, resp model.Response, accessToken string) error {
 	var reqBytes []byte
 	if req != nil {
 		reqBytes = req.Encode()
 	}
-	reqUrl := util.StringsJoin(BASE_URL, gw)
+	reqUrl := util.StringsJoin(base, gw)
 	httpReq, err := http.NewRequest("POST", reqUrl, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
@@ -126,9 +143,8 @@ func (c *SDKClient) Post(gw string, req model.PostRequest, resp model.Response, 
 	return c.fetch(httpReq, resp)
 }
 
-// Get get api
-func (c *SDKClient) Get(gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	reqUrl := util.StringsJoin(BASE_URL, gw)
+func (c *SDKClient) get(base string, gw string, req model.GetRequest, resp model.Response, accessToken string) error {
+	reqUrl := util.StringsJoin(base, gw)
 	if req != nil {
 		reqUrl = util.StringsJoin(reqUrl, "?", req.Encode())
 	}
