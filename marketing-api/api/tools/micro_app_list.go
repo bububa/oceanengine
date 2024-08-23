@@ -9,7 +9,7 @@ import (
 // 获取巨量工作台上字节小程序资产列表
 func MicroAppList(clt *core.SDKClient, accessToken string, req *tools.MicroAppListRequest) (*tools.MicroAppListResult, error) {
 	var resp tools.MicroAppListResponse
-	if err := clt.Get("v3.0/tools/micro_app/list/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/tools/micro_app/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

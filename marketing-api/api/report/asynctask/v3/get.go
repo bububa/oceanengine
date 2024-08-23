@@ -9,7 +9,7 @@ import (
 // Get 获取任务列表
 func Get(clt *core.SDKClient, accessToken string, req *v3.GetRequest) (*asynctask.GetResponseData, error) {
 	var resp asynctask.GetResponse
-	if err := clt.Get("v3.0/report/custom/async_task/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/report/custom/async_task/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

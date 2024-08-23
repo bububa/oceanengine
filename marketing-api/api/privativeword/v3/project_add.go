@@ -9,7 +9,7 @@ import (
 // 2.0批量添加否定词
 func Add(clt *core.SDKClient, accessToken string, req *v3.AddRequest) (*v3.AddResponseData, error) {
 	var resp v3.AddResponse
-	if err := clt.Post("v3.0/tools/privative_word/project/add", req, &resp, accessToken); err != nil {
+	if err := clt.PostAPI("v3.0/tools/privative_word/project/add", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

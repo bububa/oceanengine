@@ -9,7 +9,7 @@ import (
 // 转账单信息，包括状态、双方账户、转账金额
 func QueryTransferDetail(clt *core.SDKClient, accessToken string, req *agent.QueryTransferDetailRequest) (*agent.TransferDetail, error) {
 	var resp agent.QueryTransferDetailResponse
-	if err := clt.Get("v3.0/cg_transfer/query_transfer_detail/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/cg_transfer/query_transfer_detail/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

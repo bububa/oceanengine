@@ -8,7 +8,7 @@ import (
 // BudgetUpdate 更新项目预算
 func BudgetUpdate(clt *core.SDKClient, accessToken string, req *project.BudgetUpdateRequest) (*project.UpdateResponseData, error) {
 	var resp project.UpdateResponse
-	if err := clt.Post("v3.0/project/budget/update/", req, &resp, accessToken); err != nil {
+	if err := clt.PostAPI("v3.0/project/budget/update/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

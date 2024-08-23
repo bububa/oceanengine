@@ -12,7 +12,7 @@ func QualificationGet(clt *core.SDKClient, accessToken string, advertiserID uint
 		AdvertiserID: advertiserID,
 	}
 	var resp advertiser.QualificationGetResponse
-	if err := clt.Get("v3.0/advertiser/qualification/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/advertiser/qualification/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

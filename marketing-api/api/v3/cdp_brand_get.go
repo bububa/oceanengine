@@ -9,7 +9,7 @@ import (
 // 仅能查询到关联云图和cdp的广告主品牌及类别信息
 func CdpBrandGet(clt *core.SDKClient, accessToken string, req *v3.CdpBrandGetRequest) (*v3.CdpBrandGetResult, error) {
 	var resp v3.CdpBrandGetResponse
-	if err := clt.Get("v3.0/cdp/brand/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/cdp/brand/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

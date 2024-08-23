@@ -8,7 +8,7 @@ import (
 // CustomGet 自定义数据报表
 func CustomGet(clt *core.SDKClient, accessToken string, req *v3.CustomGetRequest) (*v3.CustomGetResult, error) {
 	var resp v3.CustomGetResponse
-	if err := clt.Get("v3.0/report/custom/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/report/custom/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

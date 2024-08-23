@@ -9,7 +9,7 @@ import (
 // DeepBidTypeGet 获取可用深度优化方式体验版
 func DeepBidTypeGet(clt *core.SDKClient, accessToken string, req *v3.DeepBidTypeGetRequest) ([]enum.DeepBidType, error) {
 	var resp v3.DeepBidTypeGetResponse
-	if err := clt.Get("v3.0/event_manager/deep_bid_type/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/event_manager/deep_bid_type/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.DeepBidType, nil

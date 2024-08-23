@@ -8,7 +8,7 @@ import (
 // BudgetGroupList 获取预算组列表
 func BudgetGroupList(clt *core.SDKClient, accessToken string, req *project.BudgetGroupListRequest) (*project.BudgetGroupListResult, error) {
 	var resp project.BudgetGroupListResponse
-	if err := clt.Get("v3.0/budget_group/list/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/budget_group/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

@@ -7,5 +7,5 @@ import (
 
 // StickOnTop 置顶评论
 func StickOnTop(clt *core.SDKClient, accessToken string, req *comment.StickOnTopRequest) error {
-	return clt.Post("v3.0/tools/comment/stick_on_top/", req, nil, accessToken)
+	return clt.PostAPI("v3.0/tools/comment/stick_on_top/", req, nil, accessToken)
 }

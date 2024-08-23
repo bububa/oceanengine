@@ -10,7 +10,7 @@ import (
 // 快投2.0获取推荐关键词
 func Suggest(clt *core.SDKClient, accessToken string, req *v3.SuggestRequest) ([]keyword.SuggestKeyword, error) {
 	var resp keyword.SuggestResponse
-	if err := clt.Post("v3.0/sugg_words/", req, &resp, accessToken); err != nil {
+	if err := clt.PostAPI("v3.0/sugg_words/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	if resp.Data == nil {

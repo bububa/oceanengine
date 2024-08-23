@@ -8,7 +8,7 @@ import (
 // BpAssetManagementShareGet 查看微信小游戏/小程序共享范围
 func BpAssetManagementShareGet(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareGetRequest) (*wechat.BpAssetManagementShareList, error) {
 	var resp wechat.BpAssetManagementShareGetResponse
-	if err := clt.Get("v3.0/tools/bp_asset_management/share/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/tools/bp_asset_management/share/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

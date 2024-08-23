@@ -7,5 +7,5 @@ import (
 
 // AccountsRemove 删除 Adv 订阅
 func AccountsRemove(clt *core.SDKClient, accessToken string, req *subscribe.AccountsRemoveRequest) error {
-	return clt.Post("v3.0/subscribe/accounts/remove/", req, nil, accessToken)
+	return clt.PostAPI("v3.0/subscribe/accounts/remove/", req, nil, accessToken)
 }

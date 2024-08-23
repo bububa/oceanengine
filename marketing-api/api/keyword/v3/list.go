@@ -11,7 +11,7 @@ import (
 // 目前仅支持根据ad_id获取该计划下的关键词。
 func List(clt *core.SDKClient, accessToken string, req *v3.ListRequest) ([]keyword.Keyword, error) {
 	var resp keyword.GetResponse
-	if err := clt.Get("v3.0/keyword/list/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/keyword/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.List, nil

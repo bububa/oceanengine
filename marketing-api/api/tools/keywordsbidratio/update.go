@@ -7,5 +7,5 @@ import (
 
 // Update 更新优词提量系数和生效维度
 func Update(clt *core.SDKClient, accessToken string, req *keywordsbidratio.UpdateRequest) error {
-	return clt.Post("v3.0/tools/keywords_bid_ratio/update/", req, nil, accessToken)
+	return clt.PostAPI("v3.0/tools/keywords_bid_ratio/update/", req, nil, accessToken)
 }

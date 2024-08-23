@@ -9,7 +9,7 @@ import (
 // 查询订阅任务所订阅的 Adv
 func AccountsList(clt *core.SDKClient, accessToken string, req *subscribe.AccountsListRequest) (*subscribe.AccountsListResult, error) {
 	var resp subscribe.AccountsListResponse
-	if err := clt.Get("v3.0/subscribe/accounts/list/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/subscribe/accounts/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

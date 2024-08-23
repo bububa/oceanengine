@@ -9,7 +9,7 @@ import (
 // 批量获取广告当前的一键起量状态
 func StatusCurrentIDsGet(clt *core.SDKClient, accessToken string, req *v3.StatusCurrentIDsGetRequest) (*v3.StatusCurrentIDsGetResult, error) {
 	var resp v3.StatusCurrentIDsGetResponse
-	if err := clt.Get("v3.0/tools/promotion_status_current_ids/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/tools/promotion_status_current_ids/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil
