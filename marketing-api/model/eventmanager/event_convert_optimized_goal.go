@@ -13,7 +13,7 @@ type EventConvertOptimizedGoal struct {
 	// TwentyFourHourBack 24 小时历史有无回传, true 表示有，false 表示无
 	TwentyFourHourBack bool `json:"twenty_four_hour_back,omitempty"`
 	// ValueType 价值类型，Disabled 不展示、DiscriminateByGroup 人群差异价值、DynamicValue 动态回传价值、Fixed 固定价值
-	ValueType string `json:"value_type,omitempty"`
+	ValueType enum.EventConvertOptimizedGoalValueType `json:"value_type,omitempty"`
 	// AssetTypes 资产类型，:THIRD_EXTERNAL:三方落地页、TETRIS_EXTERNAL:建站、APP 应用、QUICK_APP 快应用、MINI_PROGRAME字节小程序
 	AssetTypes []enum.AssetType `json:"asset_types,omitempty"`
 	// DeepGoals 深度优化目标列表

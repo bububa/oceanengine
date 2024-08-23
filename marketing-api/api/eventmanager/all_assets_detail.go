@@ -19,5 +19,5 @@ func AllAssetsDetail(clt *core.SDKClient, accessToken string, req *eventmanager.
 	if err := clt.GetAPI("2/tools/event/all_assets/detail/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
-	return resp.Data.List, nil
+	return resp.Data.AssetList, nil
 }

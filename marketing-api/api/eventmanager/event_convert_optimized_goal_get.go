@@ -7,7 +7,7 @@ import (
 
 // EventConvertOptimizedGoalGet 获取优化目标
 // 查询事件管理下资产的优化目标
-func EventConvertOptimizedGoalGet(clt *core.SDKClient, accessToken string, req *eventmanager.EventConvertOptimizedGoalGetRequest) (*eventmanager.EventConvertOptimizedGoalGetResponseData, error) {
+func EventConvertOptimizedGoalGet(clt *core.SDKClient, accessToken string, req *eventmanager.EventConvertOptimizedGoalGetRequest) (*eventmanager.EventConvertOptimizedGoalGetResult, error) {
 	var resp eventmanager.EventConvertOptimizedGoalGetResponse
 	if err := clt.Get("2/tools/event_convert/optimized_goal/get/", req, &resp, accessToken); err != nil {
 		return nil, err
