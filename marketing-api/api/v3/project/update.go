@@ -8,7 +8,7 @@ import (
 // Update 修改项目
 func Update(clt *core.SDKClient, accessToken string, req *project.UpdateRequest) (*project.UpdateResponseData, error) {
 	var resp project.UpdateResponse
-	if err := clt.Post("v3.0/project/update/", req, &resp, accessToken); err != nil {
+	if err := clt.PostAPI("v3.0/project/update/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

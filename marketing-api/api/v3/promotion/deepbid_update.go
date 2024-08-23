@@ -8,7 +8,7 @@ import (
 // DeepBidUpdate 更新深度出价
 func DeepBidUpdate(clt *core.SDKClient, accessToken string, req *promotion.DeepBidUpdateRequest) (*promotion.UpdateResponseData, error) {
 	var resp promotion.UpdateResponse
-	err := clt.Post("v3.0/promotion/deepbid/update/", req, &resp, accessToken)
+	err := clt.PostAPI("v3.0/promotion/deepbid/update/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

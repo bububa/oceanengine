@@ -10,7 +10,7 @@ import (
 // 仅支持手动投放的广告
 func ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *promotion.ScheduleTimeUpdateRequest) (*promotion.UpdateResponseData, error) {
 	var resp promotion.UpdateResponse
-	if err := clt.Post("v3.0/promotion/schedule_time/update/", req, &resp, accessToken); err != nil {
+	if err := clt.PostAPI("v3.0/promotion/schedule_time/update/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

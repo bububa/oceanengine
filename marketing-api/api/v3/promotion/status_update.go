@@ -8,7 +8,7 @@ import (
 // StatusUpdate 更新广告状态
 func StatusUpdate(clt *core.SDKClient, accessToken string, req *promotion.StatusUpdateRequest) (*promotion.UpdateResponseData, error) {
 	var resp promotion.UpdateResponse
-	err := clt.Post("v3.0/promotion/status/update/", req, &resp, accessToken)
+	err := clt.PostAPI("v3.0/promotion/status/update/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

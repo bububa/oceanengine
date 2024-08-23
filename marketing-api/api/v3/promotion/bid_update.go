@@ -8,7 +8,7 @@ import (
 // BidUpdate 更新出价
 func BidUpdate(clt *core.SDKClient, accessToken string, req *promotion.BidUpdateRequest) (*promotion.UpdateResponseData, error) {
 	var resp promotion.UpdateResponse
-	err := clt.Post("v3.0/promotion/bid/update/", req, &resp, accessToken)
+	err := clt.PostAPI("v3.0/promotion/bid/update/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

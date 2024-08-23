@@ -12,7 +12,7 @@ import (
 // 创建关键词时会自动将优词添加为关键词，请您知悉
 func Create(clt *core.SDKClient, accessToken string, req *v3.CreateRequest) (*keyword.ResponseData, error) {
 	var resp keyword.Response
-	if err := clt.Post("v3.0/keyword/create/", req, &resp, accessToken); err != nil {
+	if err := clt.PostAPI("v3.0/keyword/create/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil
