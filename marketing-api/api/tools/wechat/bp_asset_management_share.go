@@ -10,7 +10,7 @@ import (
 // 通过该接口，将微信小游戏/小程序资产共享给指定账户
 func BpAssetManagementShare(clt *core.SDKClient, accessToken string, req *wechat.BpAssetManagementShareRequest) ([]wechat.BpAssetManagementShareError, error) {
 	var resp wechat.BpAssetManagementShareResponse
-	if err := clt.Post("v3.0/tools/bp_asset_management/share/", req, &resp, accessToken); err != nil {
+	if err := clt.PostAPI("v3.0/tools/bp_asset_management/share/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.ErrorList, nil

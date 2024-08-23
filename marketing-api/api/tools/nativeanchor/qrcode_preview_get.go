@@ -11,7 +11,7 @@ import (
 // 只有当锚点关联广告时，才可查询到预览url
 func QrcodePreviewGet(clt *core.SDKClient, accessToken string, req *nativeanchor.QrcodePreviewGetRequest) (*nativeanchor.QrcodePreviewGetResult, error) {
 	var resp nativeanchor.QrcodePreviewGetResponse
-	if err := clt.Get("v3.0/native_anchor/qrcode_preview/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/native_anchor/qrcode_preview/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

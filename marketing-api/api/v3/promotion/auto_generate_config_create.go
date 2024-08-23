@@ -9,7 +9,7 @@ import (
 // 用来保存广告主自定义的策略及物料，用于创意智能生成。创建时promotion_id选填，更新时promotion_id必填，多次更新返回的configid不变
 func AutoGenerateConfigCreate(clt *core.SDKClient, accessToken string, req *promotion.AutoGenerateConfigCreateRequest) (uint64, error) {
 	var resp promotion.AutoGenerateConfigCreateResponse
-	if err := clt.Post("v3.0/promotion/auto_generate_config/create/", req, &resp, accessToken); err != nil {
+	if err := clt.PostAPI("v3.0/promotion/auto_generate_config/create/", req, &resp, accessToken); err != nil {
 		return 0, err
 	}
 	return resp.Data.ConfigID, nil

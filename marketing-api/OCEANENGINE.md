@@ -24,6 +24,7 @@
     - 查询推广产品资质规则配置 [ DeliveryPkgConfig(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryPkgConfigRequest) (*advertiser.IndustryConfig, error) ]
     - 查询推广产品资质 [ DeliveryPkgGet(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryPkgGetRequest) (*advertiser.DeliveryPkg, error) ]
     - 提交/编辑推广产品资质 [ DeliveryPkgSubmit(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryPkgSubmitRequest) (*advertiser.DeliveryPkgSubmitResult, error) ]
+    - 批量删除推广产品资质 [ DeliveryPkgDelete(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryPkgDeleteRequest) (*advertiser.DeliveryPkgDeleteResult, error) ]
   - 代理商账号管理 (api/agent)
     - 广告主列表 [ AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
@@ -121,6 +122,10 @@
     - 获取模板（白盒策略）列表 [ creative.StrategyList(clt *core.SDKClient, accessToken string, req *creative.StrategyListRequest) (*creative.StrategyListData, error) ]
     - 获取关联云图的广告主账户信息 [ v3.CdpBrandGet(clt *core.SDKClient, accessToken string, req *v3.CdpBrandGetRequest) (*v3.CdpBrandGetResult, error) ]
     - 批量更新广告投放时段 [ ScheduleTimeUpdate(clt *core.SDKClient, accessToken string, req *promotion.ScheduleTimeUpdateRequest) (*promotion.UpdateResponseData, error) ]
+  - 搜索广告投放工具
+    - 获取蓝海流量包 [ blueflow.PackageList(clt *core.SDKClient, accessToken string, req *blueflow.PackageListRequest) ([]blueflow.Package, error) ]
+    - 获取广告下可用蓝海关键词 [ KeywordList(clt *core.SDKClient, accessToken string, req *blueflow.KeywordListRequest) ([]blueflow.Keyword, error) ]
+    - 获取推荐关键词 [ keyword.Suggest(clt *core.SDKClient, accessToken string, req *v3.SuggestRequest) ([]keyword.SuggestKeyword, error) ]
 - Dou+ 投放能力 (api/duoplus)
   - 查询订单列表 [ OrderList(clt *core.SDKClient, accessToken string, req *duoplus.OrderListRequest) (*duoplus.OrderListResult, error) ]
   - 获取订单数据报表 [ OrderReport(clt *core.SDKClient, accessToken string, req *duoplus.OrderReportRequest) (*duoplus.OrderReportResult, error) ]

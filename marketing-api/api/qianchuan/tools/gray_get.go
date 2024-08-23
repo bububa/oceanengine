@@ -10,7 +10,7 @@ import (
 // 支持客户通过接口查询广告主ID是否命中各项白名单功能
 func GrayGet(clt *core.SDKClient, accessToken string, req *tools.GrayGetRequest) (*qianchuanTools.GrayGetResult, error) {
 	var resp qianchuanTools.GrayGetResponse
-	if err := clt.Get("v3.0/qianchuan/tools/gray/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/qianchuan/tools/gray/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

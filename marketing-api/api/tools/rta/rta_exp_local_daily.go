@@ -11,7 +11,7 @@ import (
 // 注：由于数据更新时间存在波动性，建议在查询当日上午7点后尝试拉取前一天的数据
 func RtaExpLocalDailyGet(clt *core.SDKClient, accessToken string, req *rta.RtaExpLocalDailyGetRequest) ([]rta.Report, error) {
 	var resp rta.RtaExpLocalDailyGetResponse
-	if err := clt.Get("v3.0/report/rta_exp_local_daily/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/report/rta_exp_local_daily/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.Data, nil

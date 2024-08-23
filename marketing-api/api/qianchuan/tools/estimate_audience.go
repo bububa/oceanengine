@@ -10,7 +10,7 @@ import (
 // 定向中的限制与创建计划中的限制保持一致
 func EstimateAudience(clt *core.SDKClient, accessToken string, req *tools.EstimateAudienceRequest) (*tools.EstimateAudienceResult, error) {
 	var resp tools.EstimateAudienceResponse
-	if err := clt.Get("v1.0/qianchuan/tools/estimate_audience/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v1.0/qianchuan/tools/estimate_audience/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

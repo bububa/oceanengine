@@ -10,7 +10,7 @@ import (
 // 通过广告分析查询广告的建议出价，目前仅支持手动投放的广告查询建议出价
 func BidSuggest(clt *core.SDKClient, accessToken string, req *v3.BidSuggestRequest) (*tools.BidSuggest, error) {
 	var resp v3.BidSuggestResponse
-	if err := clt.Get("v3.0/tools/bids/suggest/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/tools/bids/suggest/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.Data, nil

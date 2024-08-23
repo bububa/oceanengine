@@ -10,7 +10,7 @@ import (
 // 该接口用于查询站内媒体渠道的RTA联合实验数据，支持分时t+5级别数据
 func RtaExpLocalHourlyGet(clt *core.SDKClient, accessToken string, req *rta.RtaExpLocalHourlyGetRequest) ([]rta.Report, error) {
 	var resp rta.RtaExpLocalHourlyGetResponse
-	if err := clt.Get("v3.0/report/rta_exp_local_hourly/get/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI("v3.0/report/rta_exp_local_hourly/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.Data, nil
