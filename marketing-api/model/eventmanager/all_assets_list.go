@@ -61,5 +61,5 @@ type AllAssetsListResult struct {
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 	// List 资产列表
-	List []AssetBaseInfo `json:"list,omitempty"`
+	AssetList []AssetBaseInfo `json:"asset_list,omitempty"`
 }

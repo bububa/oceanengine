@@ -74,11 +74,11 @@ func (r EventConvertOptimizedGoalGetRequest) Encode() string {
 type EventConvertOptimizedGoalGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *EventConvertOptimizedGoalGetResponseData `json:"data,omitempty"`
+	Data *EventConvertOptimizedGoalGetResult `json:"data,omitempty"`
 }
 
-// EventConvertOptimizedGoalGetResponseData json返回值
-type EventConvertOptimizedGoalGetResponseData struct {
+// EventConvertOptimizedGoalGetResult json返回值
+type EventConvertOptimizedGoalGetResult struct {
 	// AssetIDs 资产 id
 	AssetIDs []uint64 `json:"asset_ids,omitempty"`
 	// Goals 优化目标数据列表

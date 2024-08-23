@@ -9,11 +9,11 @@ import (
 
 // AllAssetsDetailRequest 获取已创建资产详情（新） API Request
 type AllAssetsDetailRequest struct {
-	// AdvertiserID 广告主 id
-	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// AssetIDs 资产id列表，list长度最长50
 	// 当账户下不存在该资产id时不会返回详情信息；当资产共享失效时，不会返回详情信息。
 	AssetIDs []uint64 `json:"asset_ids,omitempty"`
+	// AdvertiserID 广告主 id
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 }
 
 // Encode implements GetRequest interface
@@ -30,7 +30,7 @@ func (r AllAssetsDetailRequest) Encode() string {
 type AllAssetsDetailResponse struct {
 	model.BaseResponse
 	Data struct {
-		// List 资产列表
-		List []AssetDetail `json:"list,omitempty"`
+		// AssetList 资产列表
+		AssetList []AssetDetail `json:"asset_list,omitempty"`
 	} `json:"data,omitempty"`
 }
