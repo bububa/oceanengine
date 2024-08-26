@@ -1,6 +1,8 @@
 package eventmanager
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/eventmanager"
 )
@@ -14,9 +16,9 @@ import (
 // - 应答参数返回的资产范围如下：
 //   - 包含账户下创建的资产以及被共享的资产，返回结果与巨量广告平台事件资产列表&详情信息一致
 //   - 账户下不返回已删除的资产
-func AllAssetsList(clt *core.SDKClient, accessToken string, req *eventmanager.AllAssetsListRequest) (*eventmanager.AllAssetsListResult, error) {
+func AllAssetsList(ctx context.Context, clt *core.SDKClient, accessToken string, req *eventmanager.AllAssetsListRequest) (*eventmanager.AllAssetsListResult, error) {
 	var resp eventmanager.AllAssetsListResponse
-	if err := clt.GetAPI("2/tools/event/all_assets/list/", req, &resp, accessToken); err != nil {
+	if err := clt.GetAPI(ctx, "2/tools/event/all_assets/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

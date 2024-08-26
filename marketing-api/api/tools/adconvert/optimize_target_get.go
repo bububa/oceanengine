@@ -1,6 +1,8 @@
 package adconvert
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/tools/adconvert"
 )
@@ -14,9 +16,9 @@ import (
 // 下载方式为下载链接或者快应用+下载链接时，app_type必填
 // app_type为APP_ANDROID，package_name必填
 // 下载方式为落地页时，external_url必填
-func OptimizeTargetGet(clt *core.SDKClient, accessToken string, req *adconvert.OptimizeTargetGetRequest) ([]adconvert.OptimizeTarget, error) {
+func OptimizeTargetGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *adconvert.OptimizeTargetGetRequest) ([]adconvert.OptimizeTarget, error) {
 	var resp adconvert.OptimizeTargetGetResponse
-	err := clt.Get("2/tools/ad_convert/optimize_target/get/", req, &resp, accessToken)
+	err := clt.Get(ctx, "2/tools/ad_convert/optimize_target/get/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

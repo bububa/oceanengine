@@ -1,6 +1,8 @@
 package creative
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/creative"
 )
@@ -21,6 +23,6 @@ import (
 // 其中视频的时长需要>=4s，否则会报错
 // 对于不打算传的字段，不要传“”或者null，传了会校验
 // 如果计划ID下已有创意信息，需要使用update_v2接口进行修改或者新增创意素材，否则会报错
-func ProceduralCreativeCreate(clt *core.SDKClient, accessToken string, req *creative.ProceduralCreativeCreateRequest) error {
-	return clt.Post("2/creative/procedural_creative/create/", req, nil, accessToken)
+func ProceduralCreativeCreate(ctx context.Context, clt *core.SDKClient, accessToken string, req *creative.ProceduralCreativeCreateRequest) error {
+	return clt.Post(ctx, "2/creative/procedural_creative/create/", req, nil, accessToken)
 }

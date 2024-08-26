@@ -1,6 +1,8 @@
 package adconvert
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/tools/adconvert"
 )
@@ -21,9 +23,9 @@ import (
 // 创建应用下载类转化目标时，Android类应用必须要填写package_name的应用包名，并且要在平台侧的应用管理中完成上传解析才可以使用。 平台侧操作：投放平台-「资产」-「移动应用」-「新建应用」-「上传」
 // 使用时注意区分应用中文名app_name与包名package_name app_name：应用名称，例如：“计算器”、“记事本” package_name：应用包包名，例如“com.xx.xx”
 // 当前应用下载类转化目标中，仅AD_CONVERT_TYPE_ACTIVE激活、AD_CONVERT_TYPE_PAY付费，支持设置对应深度转化目标
-func Create(clt *core.SDKClient, accessToken string, req *adconvert.CreateRequest) (*adconvert.Convert, error) {
+func Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *adconvert.CreateRequest) (*adconvert.Convert, error) {
 	var resp adconvert.CreateResponse
-	if err := clt.Post("2/tools/ad_convert/create/", req, &resp, accessToken); err != nil {
+	if err := clt.Post(ctx, "2/tools/ad_convert/create/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

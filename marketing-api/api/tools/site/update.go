@@ -1,6 +1,8 @@
 package site
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/tools/site"
 )
@@ -18,6 +20,6 @@ import (
 // http://hapjs.org/app//[path][?key=value]
 // https://hapjs.org/app//[path][?key=value]
 // hap://app//[paht][?key=value]
-func Update(clt *core.SDKClient, accessToken string, req *site.UpdateRequest) error {
-	return clt.Post("2/tools/site/update/", req, nil, accessToken)
+func Update(ctx context.Context, clt *core.SDKClient, accessToken string, req *site.UpdateRequest) error {
+	return clt.Post(ctx, "2/tools/site/update/", req, nil, accessToken)
 }

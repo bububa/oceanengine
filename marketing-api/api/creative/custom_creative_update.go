@@ -1,6 +1,8 @@
 package creative
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/creative"
 )
@@ -26,9 +28,9 @@ import (
 // 其中视频的时长需要>=4s，否则会报错
 // 对于不打算传的字段，不要传“”或者null，传了会校验
 // 注意字段默认值，如果更新时候未传入带有默认值的字段，将以默认值为准
-func CustomCreativeUpdate(clt *core.SDKClient, accessToken string, req *creative.CustomCreativeUpdateRequest) (*creative.CustomCreativeCreateResponseData, error) {
+func CustomCreativeUpdate(ctx context.Context, clt *core.SDKClient, accessToken string, req *creative.CustomCreativeUpdateRequest) (*creative.CustomCreativeCreateResponseData, error) {
 	var resp creative.CustomCreativeCreateResponse
-	err := clt.Post("2/creative/custom_creative/update/", req, &resp, accessToken)
+	err := clt.Post(ctx, "2/creative/custom_creative/update/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

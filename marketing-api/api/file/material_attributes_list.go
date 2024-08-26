@@ -1,6 +1,8 @@
 package file
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/file"
 )
@@ -18,9 +20,9 @@ import (
 // 注意本接口支持在不同账户维度下查询素材的评估标签（创意生态标签介绍），能力支持情况如下：
 // - 目前仅支持视频素材，可以获取的素材信息包括在投素材和不在投素材，查询结果不区分是否在投
 // - 巨量广告或千川的「低效素材」、「同质化挤压严重」、「同质化排队素材」可搭配「创建素材清理任务」/「获取清理任务列表」/「下载清理任务结果」3个素材清理接口使用
-func MaterialAttributesList(clt *core.SDKClient, accessToken string, req *file.MaterialAttributesListRequest) (*file.MaterialAttributesListResult, error) {
+func MaterialAttributesList(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.MaterialAttributesListRequest) (*file.MaterialAttributesListResult, error) {
 	var resp file.MaterialAttributesListResponse
-	if err := clt.Get("2/file/material_attributes/list/", req, &resp, accessToken); err != nil {
+	if err := clt.Get(ctx, "2/file/material_attributes/list/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

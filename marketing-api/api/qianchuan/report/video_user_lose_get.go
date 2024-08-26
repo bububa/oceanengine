@@ -1,6 +1,8 @@
 package report
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/report"
 )
@@ -14,9 +16,9 @@ import (
 // 数据更新频率:
 // - 第二天9点可以获取前一天稳定的消耗数据；
 // - 一般历史数据都不会变，除了数据有问题有校对的情况会更新历史数据；
-func VideoUserLoseGet(clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) {
+func VideoUserLoseGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) {
 	var resp report.GetResponse
-	err := clt.Get("v1.0/qianchuan/report/video_user_lose/get/", req, &resp, accessToken)
+	err := clt.Get(ctx, "v1.0/qianchuan/report/video_user_lose/get/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

@@ -1,6 +1,8 @@
 package site
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/tools/site"
 )
@@ -12,9 +14,9 @@ import (
 
 // 新建的站点同样需要发布后才可生效投入使用！
 // 恢复删除站点后，需要再发布才可生效！
-func UpdateStatus(clt *core.SDKClient, accessToken string, req *site.UpdateStatusRequest) (*site.UpdateStatusResponseData, error) {
+func UpdateStatus(ctx context.Context, clt *core.SDKClient, accessToken string, req *site.UpdateStatusRequest) (*site.UpdateStatusResponseData, error) {
 	var resp site.UpdateStatusResponse
-	if err := clt.Post("2/tools/site/update_status/", req, &resp, accessToken); err != nil {
+	if err := clt.Post(ctx, "2/tools/site/update_status/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

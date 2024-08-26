@@ -1,6 +1,8 @@
 package creative
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/creative"
 )
@@ -25,9 +27,9 @@ import (
 // 触发审核
 // 在修改用户端可见的内容包括标题、图片/视频、来源、附加创意、落地页链接等时会触发审核；
 // 对于广告位的修改有以下情况也会触发审核：①选择了网盟广告位然后增加头条广告位；②选择了头条广告位然后增加抖音广告位；这两种情况都会触发审核。其他情况比如选了头条广告位再增加火山、西瓜不会触发审核。；
-func Update(clt *core.SDKClient, accessToken string, req *creative.UpdateRequest) (*creative.CreateResponseData, error) {
+func Update(ctx context.Context, clt *core.SDKClient, accessToken string, req *creative.UpdateRequest) (*creative.CreateResponseData, error) {
 	var resp creative.CreateResponse
-	if err := clt.Post("2/creative/update_v2/", req, &resp, accessToken); err != nil {
+	if err := clt.Post(ctx, "2/creative/update_v2/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil
