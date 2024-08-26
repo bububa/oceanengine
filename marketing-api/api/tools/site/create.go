@@ -1,9 +1,11 @@
 package site
 
 import (
+	"context"
+	"strconv"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/tools/site"
-	"strconv"
 )
 
 // Create 创建橙子建站站点
@@ -20,9 +22,9 @@ import (
 // http://hapjs.org/app//[path][?key=value]
 // https://hapjs.org/app//[path][?key=value]
 // hap://app//[paht][?key=value]
-func Create(clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) {
+func Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *site.CreateRequest) (uint64, error) {
 	var resp site.CreateResponse
-	if err := clt.Post("2/tools/site/create/", req, &resp, accessToken); err != nil {
+	if err := clt.Post(ctx, "2/tools/site/create/", req, &resp, accessToken); err != nil {
 		return 0, err
 	}
 	return strconv.ParseUint(resp.Data.SiteID, 10, 64)

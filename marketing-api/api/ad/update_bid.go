@@ -1,6 +1,8 @@
 package ad
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/ad"
 )
@@ -10,9 +12,9 @@ import (
 // 一次可以处理100个计划；
 // 修改的出价不能大于当前预算；
 // 修改计划出价时可以参考：【建议出价】
-func UpdateBid(clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) {
+func UpdateBid(ctx context.Context, clt *core.SDKClient, accessToken string, req *ad.UpdateBidRequest) (*ad.UpdateResponseData, error) {
 	var resp ad.UpdateResponse
-	err := clt.Post("2/ad/update/bid/", req, &resp, accessToken)
+	err := clt.Post(ctx, "2/ad/update/bid/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

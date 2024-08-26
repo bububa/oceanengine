@@ -1,6 +1,8 @@
 package ad
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/ad"
 )
@@ -11,9 +13,9 @@ import (
 // 单次修改预算幅度不能低于100元（增加或者减少）
 // 修改后预算金额，不能低于当前已消费金额的105%，以整百单位向上取整
 // 可能存在部分计划更新成功的情况，更新失败的计划id及原因将会在返回体中返回
-func UpdateBudget(clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) {
+func UpdateBudget(ctx context.Context, clt *core.SDKClient, accessToken string, req *ad.UpdateBudgetRequest) (*ad.UpdateResponseData, error) {
 	var resp ad.UpdateResponse
-	err := clt.Post("v1.0/qianchuan/ad/budget/update/", req, &resp, accessToken)
+	err := clt.Post(ctx, "v1.0/qianchuan/ad/budget/update/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

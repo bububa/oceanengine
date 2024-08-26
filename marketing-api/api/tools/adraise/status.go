@@ -1,6 +1,7 @@
 package adraise
 
 import (
+	"context"
 	"regexp"
 	"strconv"
 
@@ -10,9 +11,9 @@ import (
 )
 
 // Status 获取当前起量状态: 获取当前起量状态
-func Status(clt *core.SDKClient, accessToken string, req *adraise.StatusRequest) (map[uint64]enum.AdRaiseStatus, error) {
+func Status(ctx context.Context, clt *core.SDKClient, accessToken string, req *adraise.StatusRequest) (map[uint64]enum.AdRaiseStatus, error) {
 	var resp adraise.StatusResponse
-	if err := clt.Get("2/tools/ad_raise_status/get/", req, &resp, accessToken); err != nil {
+	if err := clt.Get(ctx, "2/tools/ad_raise_status/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	ret := make(map[uint64]enum.AdRaiseStatus, len(req.AdIDs))

@@ -1,6 +1,8 @@
 package asynctask
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/report/asynctask"
 )
@@ -14,9 +16,9 @@ import (
 // 搜索词报表的分组条件组合规则：STAT_GROUP_BY_BIDWORD_ID * STAT_GROUP_BY_AD_ID * STAT_GROUP_BY_QUERY * [STAT_GROUP_BY_TIME_DAY｜STAT_GROUP_BY_TIME_WEEK] * [STAT_GROUP_BY_IMAGE_MODE|STAT_GROUP_BY_PRICING]
 // 暂不支持获取当天的数据
 // 暂不支持查询小时纬度分组数据（DPA报表支持）
-func Create(clt *core.SDKClient, accessToken string, req *asynctask.CreateRequest) (*asynctask.Task, error) {
+func Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *asynctask.CreateRequest) (*asynctask.Task, error) {
 	var resp asynctask.CreateResponse
-	if err := clt.Post("2/async_task/create/", req, &resp, accessToken); err != nil {
+	if err := clt.Post(ctx, "2/async_task/create/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

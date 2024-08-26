@@ -1,6 +1,8 @@
 package file
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/file"
 )
@@ -10,9 +12,9 @@ import (
 // 注意1：建议代理商务必将自己制作的「首发素材」先通过本接口上传到方舟平台（素材才可能按照代理授权生效，否则可能会被客户先做授权保护），避免素材被其他方抢先保护。
 // 注意2：非首发素材，即使进行上传也不会生效授权保护（点此查看「首发素材」相关说明）
 // 注意3：调用接口上传的素材可在“方舟平台-优化-搬运治理页面”查看
-func VideoAgent(clt *core.SDKClient, accessToken string, req *file.VideoAgentRequest) (*file.Video, error) {
+func VideoAgent(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoAgentRequest) (*file.Video, error) {
 	var resp file.VideoAgentResponse
-	err := clt.Upload("2/file/video/agent/", req, &resp, accessToken)
+	err := clt.Upload(ctx, "2/file/video/agent/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

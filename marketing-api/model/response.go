@@ -12,6 +12,8 @@ type Response interface {
 	IsError() bool
 	// Error implement error interface
 	Error() string
+	// APIRequestID 返回请求ID
+	APIRequestID() string
 }
 
 // BaseResponse shared api response data fields
@@ -32,4 +34,9 @@ func (r BaseResponse) IsError() bool {
 // Error implement Response interface
 func (r BaseResponse) Error() string {
 	return util.StringsJoin(strconv.Itoa(r.Code), ":", r.Message)
+}
+
+// APIRequestID implement Response interface
+func (r BaseResponse) APIRequestID() string {
+	return r.RequestID
 }

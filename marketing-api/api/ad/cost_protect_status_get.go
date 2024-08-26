@@ -1,6 +1,8 @@
 package ad
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/ad"
 )
@@ -17,9 +19,9 @@ import (
 // 若广告主存在异常作弊行为，平台有权拒绝赔付并追回已赔付款项
 // 不适用于 ROI 出价、每次付费出价、自动出价、投放管家的广告计划
 // 赔付金额和实际消耗有关，总实际消耗中不包括使用「一键起量」工具期间产生的消耗
-func CostProtectStatusGet(clt *core.SDKClient, accessToken string, req *ad.CostProtectStatusGetRequest) ([]ad.CostProtectStatus, error) {
+func CostProtectStatusGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *ad.CostProtectStatusGetRequest) ([]ad.CostProtectStatus, error) {
 	var resp ad.CostProtectStatusGetResponse
-	if err := clt.Get("2/ad/cost_protect_status/get/", req, &resp, accessToken); err != nil {
+	if err := clt.Get(ctx, "2/ad/cost_protect_status/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.List, nil

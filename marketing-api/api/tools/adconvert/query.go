@@ -1,6 +1,8 @@
 package adconvert
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/tools/adconvert"
 )
@@ -14,9 +16,9 @@ import (
 // 下载方式为下载链接或者快应用+下载链接时，app_type必填
 // app_type为APP_ANDROID，package_name必填
 // 下载方式为落地页时，external_url必填
-func Query(clt *core.SDKClient, accessToken string, req *adconvert.QueryRequest) ([]adconvert.AdConvert, error) {
+func Query(ctx context.Context, clt *core.SDKClient, accessToken string, req *adconvert.QueryRequest) ([]adconvert.AdConvert, error) {
 	var resp adconvert.QueryResponse
-	err := clt.Get("2/tools/ad_convert/query/", req, &resp, accessToken)
+	err := clt.Get(ctx, "2/tools/ad_convert/query/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}
