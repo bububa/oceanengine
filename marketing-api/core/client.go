@@ -381,7 +381,11 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) (*http.Res
 	if resp == nil {
 		resp = &model.BaseResponse{}
 	}
-	if body, err := debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug); err != nil {
+	body, err := debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
+	if httpResp.ContentLength <= 0 {
+		httpResp.ContentLength = int64(len(body))
+	}
+	if err != nil {
 		debug.PrintError(err, c.debug)
 		return httpResp, errors.Join(err, model.BaseResponse{
 			Code:    httpResp.StatusCode,

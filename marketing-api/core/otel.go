@@ -10,6 +10,7 @@ import (
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/metric"
+	semconv10 "go.opentelemetry.io/otel/semconv/v1.10.0"
 	semconv "go.opentelemetry.io/otel/semconv/v1.26.0"
 	"go.opentelemetry.io/otel/trace"
 
@@ -63,6 +64,7 @@ func NewOtel(namespace string, appID uint64) *Otel {
 func (o *Otel) WithSpan(ctx context.Context, req *http.Request, resp model.Response, payload []byte, fn func(*http.Request, model.Response) (*http.Response, error)) error {
 	startTime := time.Now()
 	attrs := append(o.attrs,
+		semconv10.HTTPURLKey.String(req.URL.String()),
 		semconv.URLFull(req.URL.String()),
 		semconv.HTTPRequestMethodKey.String(req.Method),
 		semconv.URLPath(req.URL.Path),
