@@ -9,19 +9,25 @@ jobs:
   goreleaser:
     runs-on: ubuntu-latest
     env:
-      cache: ${{ github.workspace }}/go.sum
+      GOPATH: ${{ github.workspace }}
+      package: src/github.com/${{ github.repository }}
+    defaults:
+      run:
+        working-directory: ${{ env.GOPATH }}/${{ env.package }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          path: ${{ env.GOPATH }}/${{ env.package }}
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
-          go-version: "1.21"
-          cache-dependency-path: ${{ env.cache }}
+          go-version: ">=1.21.0"
+          cache-dependency-path: |
+            ${{ env.GOPATH }}/${{ env.package }}/go.mod
+            ${{ env.GOPATH }}/${{ env.package }}/go.sum
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v4
+        uses: goreleaser/goreleaser-action@v6
         with:
           # either 'goreleaser' (default) or 'goreleaser-pro'
           distribution: goreleaser
