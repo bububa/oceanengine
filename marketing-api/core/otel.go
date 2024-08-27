@@ -65,6 +65,8 @@ func (o *Otel) WithSpan(ctx context.Context, req *http.Request, resp model.Respo
 	startTime := time.Now()
 	attrs := append(o.attrs,
 		semconv10.HTTPURLKey.String(req.URL.String()),
+		semconv10.HTTPMethodKey.String(req.Method),
+		semconv10.HTTPTargetKey.String(req.URL.Path),
 		semconv.URLFull(req.URL.String()),
 		semconv.HTTPRequestMethodKey.String(req.Method),
 		semconv.URLPath(req.URL.Path),
