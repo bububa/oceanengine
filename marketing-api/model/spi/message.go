@@ -66,6 +66,8 @@ type MessageDataBase struct {
 	ProjectIDs []uint64 `json:"project_ids,omitempty"`
 	// PromotionIDs 状态发生变更的广告ids
 	PromotionIDs []uint64 `json:"promotion_ids,omitempty"`
+	// MaterialIDs 聚合周期内发生指标变更的素材列表，service_label 为report.material.activeprogram时有值
+	MaterialIDs []uint64 `json:"material_ids,omitempty"`
 	// Event 事件名称
 	Event string `json:"event,omitempty"`
 }
@@ -156,6 +158,33 @@ type EventContent struct {
 	// 当campaign_type = feed && delivery_range= union时可获取穿山甲广告配额;
 	// 当campaign_type = search && delivery_range= default时可获取搜索广告配额;
 	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
+	// QualificationType 资质类型
+	// AGENT_ARRANGEMENT 广告代投协议
+	// AUTHORIZATION_CONTRACT 委托加工/生产合同
+	// DISTRIBUTION_AUTHORIZATION 经销授权书
+	// ICP_RECORD_AUTHORIZATION icp域名备案/授权
+	// OTHER_CERTIFICATION 其他资质
+	// PATENT_CERTIFICATE 专利证书
+	// PORTRAIT_AUTHORIZATION 肖像授权书
+	// QUALITY_REPORT 鉴定/质检报告
+	// SOFTWARE_COPYRIGHT_REGISTRATION_CERTIFICATE 软件著作权登记证书
+	// TRADEMARK_REGISTRATION_CERTIFICATE 商标注册证
+	// VIDEO_MATERIAL_PRODUCTION_IP_AUTHORIZATION 广告视频/素材/作品/IP授权
+	QualificationType enum.DeliveryQualificationType `json:"qualification_type,omitempty"`
+	// QualificationID 资质ID
+	QualificationID []uint64 `json:"qualification_id,omitempty"`
+	// Status 资质状态
+	// STATUS_CONFIRM 审核通过
+	// STATUS_CONFIRM_FAIL 审核不通过
+	// STATUS_PENDING_CONFIRM 审核中
+	// STATUS_WAIT_CONFIRM 待审核
+	Status enum.DeliveryQualificationStatus `json:"status,omitempty"`
+	// MaterialIDs 聚合周期内发生指标变更的素材列表
+	MaterialIDs []uint64 `json:"material_ids,omitempty"`
+	// MaterialType 素材类型：
+	// image：图片
+	// video：视频
+	MaterialType string `json:"material_type,omitempty"`
 }
 
 // CommentUser 用户信息
