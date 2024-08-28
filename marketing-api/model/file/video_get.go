@@ -50,6 +50,8 @@ type VideoGetFilter struct {
 	// Source 素材来源，详见【附录-素材来源】
 	// 枚举值大小写敏感，请严格按照定义的名称传参
 	Source []enum.MaterialSource `json:"source,omitempty"`
+	// StarAuthorIDs 星图达人 id 检索，仅当source = STAR 时，支持通过星图达人ID进行筛选，单次最多支持传入20 个id进行检索
+	StarAuthorIDs []string `json:"star_author_ids,omitempty"`
 }
 
 // Encode implement GetRequest interface
