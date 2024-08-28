@@ -102,6 +102,7 @@ func (c *SDKClient) Copy() *SDKClient {
 		sandbox:    c.sandbox,
 		operatorIP: c.operatorIP,
 		client:     c.client,
+		tracer:     c.tracer,
 	}
 }
 
