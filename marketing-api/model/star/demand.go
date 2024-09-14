@@ -8,6 +8,8 @@ type Demand struct {
 	ID uint64 `json:"demand_id,omitempty"`
 	// Name 任务名称
 	Name string `json:"name,omitempty"`
+	// TaskCategory 所创建的星图任务类型。枚举值详见【附录-枚举值-星图任务类型】
+	TaskCategory enum.StarTaskCategory `json:"task_category,omitempty"`
 	// ComponentType 组件类型
 	ComponentType enum.StarComponentType `json:"component_type,omitempty"`
 	// UniversalSettlementType 结算方式

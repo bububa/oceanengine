@@ -25,6 +25,8 @@ type DemandListRequest struct {
 type DemandListFilter struct {
 	// ComponentType 组件类型
 	ComponentType enum.StarComponentType `json:"component_type,omitempty"`
+	// TaskCategory 星图任务类型，允许值详见【附录-枚举值-星图任务类型】
+	TaskCategory enum.StarTaskCategory `json:"task_category,omitempty"`
 	// Name 任务名称，模糊匹配
 	Name string `json:"name,omitempty"`
 	// UniversalOrderStatus 任务订单状态（订单状态，并非任务状态，意为过滤出包含该状态订单的任务）
