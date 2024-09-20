@@ -185,6 +185,8 @@ type EventContent struct {
 	// image：图片
 	// video：视频
 	MaterialType string `json:"material_type,omitempty"`
+	// IllegalMaterialIDs 违规素材id list
+	IllegalMaterialIDs []uint64 `json:"illegal_material_ids,omitempty"`
 }
 
 // CommentUser 用户信息

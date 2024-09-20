@@ -110,6 +110,12 @@ func (s *SiteDetail) UnmarshalJSON(b []byte) (err error) {
 				return err
 			}
 			detail.Bricks = append(detail.Bricks, data)
+		case XrWechataApplet, XrWechatGame:
+			var data WechatBrick
+			if err := json.Unmarshal(b, &data); err != nil {
+				return err
+			}
+			detail.Bricks = append(detail.Bricks, data)
 		}
 	}
 	*s = detail

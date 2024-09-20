@@ -14,6 +14,9 @@ const (
 
 // Link 跳转链接信息
 type Link struct {
+	// AssetID 快应用资产id，当link_type为quick_app时，必填
+	// 获取快应用资产ID可参考【获取账户下资产列表（新）】接口
+	AssetID string `json:"asset_id,omitempty"`
 	// URL 链接地址，当link_type为url时，必填
 	URL string `json:"url,omitempty"`
 	// Scheme scheme地址，当link_type为scheme时，必填
