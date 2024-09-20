@@ -17,6 +17,10 @@ const (
 	XrForm BrickType = "XrForm"
 	// XrButton 按钮组件
 	XrButton BrickType = "XrButton"
+	// XrWechataApplet 微信小游戏组件
+	XrWechataApplet BrickType = "XrWechataApplet"
+	// XrWechatGame 微信小程序组件类型
+	XrWechatGame BrickType = "XrWechatGame"
 )
 
 // Brick 站点业务数据
