@@ -31,6 +31,8 @@ type Product struct {
 	ImageURL string `json:"image_url,omitempty"`
 	// ImageURLs 扩展商品图，商品图片的补充
 	ImageURLs []Link `json:"image_urls,omitempty"`
+	// ImagesURL 扩展商品图，商品图片的补充
+	ImagesURL []Link `json:"images_url,omitempty"`
 	// Status 商品投放状态，0代表不可投放，1代表可投放
 	Status enum.ProductStatus `json:"status,omitempty"`
 	// AuditStatus 审核状态，可选值:
