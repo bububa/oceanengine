@@ -48,6 +48,8 @@ type Product struct {
 	Stock int `json:"stock,omitempty"`
 	// LandingInfo 落地页信息
 	LandingInfo *LandingInfo `json:"landing_info,omitempty"`
+	// LandingURL 落地页信息
+	LandingURL *LandingInfo `json:"landing_url,omitempty"`
 	// BrandInfo 品牌信息
 	BrandInfo *BrandInfo `json:"brand_info,omitempty"`
 	// ShopKeeperInfo 商户信息
@@ -82,6 +84,8 @@ type Product struct {
 	ExternalURL string `json:"external_url,omitempty"`
 	// Category 商品类目信息
 	Category *ProductCategory `json:"category,omitempty"`
+	// CategoryID 类目ID
+	CategoryID uint64 `json:"category_id,omitempty"`
 	// FirstCategory 商品所处一级行业
 	FirstCategory string `json:"first_category,omitempty"`
 	// SubCategory 商品所处二级行业
@@ -220,6 +224,12 @@ type PriceInfo struct {
 type Profession struct {
 	// Platform 平台信息，枚举值：淘宝 天猫 京东 其他
 	Platform string `json:"platform,omitempty"`
+	// StoreName 店铺名称
+	StoreName string `json:"store_name,omitempty"`
+	// StoreID 店铺ID
+	StoreID string `json:"store_ID,omitempty"`
+	// PriceList 商品价格
+	PriceList string `json:"price_list,omitempty"`
 	// Chapter 章节信息，结构为一个json字符串，章节名称name长度小于100；章节详细内容content长度小于5000
 	// 示例："[{"id":"0","name":"莫欺少年穷","content":"莫欺少年穷"},{"id":"1","name":"莫欺中年穷","content":"莫欺中年穷"}]"
 	Chapter string `json:"chapter,omitempty"`
