@@ -145,6 +145,8 @@ type EventContent struct {
 	AdIDs []uint64 `json:"ad_ids,omitempty"`
 	// GroupIDs 被暂停的管家项目列表
 	GroupIDs []uint64 `json:"group_ids,omitempty"`
+	// ProjectIDs 状态发生变更的项目ids
+	ProjectIDs []uint64 `json:"project_ids,omitempty"`
 	// PromotionIDs 成功占用配额的巨量引擎体验版的广告列表
 	PromotionIDs []uint64 `json:"promotion_ids,omitempty"`
 	// SumQuota 变化后在投计划配额
