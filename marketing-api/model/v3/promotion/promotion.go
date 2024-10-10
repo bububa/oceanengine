@@ -125,9 +125,11 @@ func (p Promotion) GetOptStatus() enum.AdOptStatus {
 	}
 	return ""
 }
+
 func (p Promotion) GetBudget() float64 {
 	return p.Budget
 }
+
 func (p Promotion) GetCpaBid() float64 {
 	return p.CpaBid
 }
@@ -452,6 +454,9 @@ type BrandInfo struct {
 type CarouselMaterial struct {
 	// CarouselID 图集id，可通过【获取图集素材】接口获得
 	CarouselID string `json:"carousel_id,omitempty"`
+	// ItemID 抖音图文id，需从【获取创编可用的抖音图文素材】接口获取item_id传入
+	// 注意：投放抖音图文素材时，只需要传入item_id，不要传入carousel_id（2个同时传入只会使用item_id）
+	ItemID uint64 `json:"item_id,omitempty"`
 	// ImageID 图片ID列表
 	ImageID []string `json:"image_id,omitempty"`
 	// AudioID 音频ID
@@ -460,6 +465,13 @@ type CarouselMaterial struct {
 	MaterialStatus string `json:"material_status,omitempty"`
 	// CarouselType 图集素材类型
 	CarouselType enum.ImageMode `json:"carousel_type,omitempty"`
+	// VideoHpVisibility 图文主页可见性设置（抖音图文不支持此字段）
+	// ALWAYS_VISIBLE 主页始终可见
+	// HIDE_VIDEO_ON_HP 单次展示可见（原主页隐藏）
+	VideoHpVisibility enum.VideoHpVisibility `json:"video_hp_visibility,omitempty"`
+	// IsBlueFlowRecommendMaterial 是系统推荐图文，仅有一个枚举：是 true
+	// 如果不是，不会返回这个字段
+	IsBlueFlowRecommendMaterial bool `json:"is_blue_flow_recommend_material,omitempty"`
 	// ImageSubject 图片主题
 	ImageSubject []file.ImageSubject `json:"image_subject,omitempty"`
 }

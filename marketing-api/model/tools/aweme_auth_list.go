@@ -11,10 +11,10 @@ import (
 
 // AwemeAuthListRequest 获取抖音授权关系
 type AwemeAuthListRequest struct {
-	// AdvertiserID 广告主ID
-	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Filtering 筛选条件
 	Filtering *AwemeAuthListFilter `json:"filtering,omitempty"`
+	// AdvertiserID 广告主ID
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Page 页码
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小
@@ -62,17 +62,17 @@ func (r AwemeAuthListRequest) Encode() string {
 
 // AwemeAuthListResponse 获取抖音授权关系
 type AwemeAuthListResponse struct {
-	model.BaseResponse
 	// Data json返回值
 	Data *AwemeAuthListData `json:"data,omitempty"`
+	model.BaseResponse
 }
 
 // AwemeAuthListData .
 type AwemeAuthListData struct {
-	// List .
-	List []AwemeAuthItem `json:"list,omitempty"`
 	// PageInfo .
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
+	// List .
+	List []AwemeAuthItem `json:"list,omitempty"`
 }
 
 type AwemeAuthItem struct {
@@ -113,4 +113,7 @@ type AwemeAuthVideo struct {
 	VideoCoverID string `json:"video_cover_id,omitempty"`
 	// VideoCoverURL 视频封面链接
 	VideoCoverURL string `json:"video_cover_url,omitempty"`
+	// Mid 视频素材ID
+	// （仅抖音视频会有此字段，抖音图文素材没有此字段）
+	Mid string `json:"mid,omitempty"`
 }

@@ -40,6 +40,14 @@ type CarouselListFilter struct {
 	// EndTime 根据图集上传时间进行过滤的结束时间，与start_time搭配使用。
 	// 格式：yyyy-mm-dd
 	EndTime string `json:"end_time,omitempty"`
+	// Source 图文素材来源，可选值:
+	// 本地上传：AD_SITE
+	// 组织共享：BP
+	// 账户推送：ACCOUNT_PUSH
+	// 即创：AIC
+	// MarketingAPI：OPEN_API
+	// 抖音主页：CEWEBRITY_CAROUSEL
+	Source string `json:"source,omitempty"`
 }
 
 // Encode implement GetRequest interface

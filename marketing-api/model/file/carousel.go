@@ -26,6 +26,8 @@ type Carousel struct {
 	CreateTime string `json:"create_time,omitempty"`
 	// UpdateTime 图集更新时间
 	UpdateTime string `json:"update_time,omitempty"`
+	// Source  图文素材来源
+	Source string `json:"source,omitempty"`
 }
 
 func (c *Carousel) UnmarshalJSON(data []byte) error {
@@ -41,10 +43,29 @@ func (c *Carousel) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// AwemeCarousel 抖音图文素材
+type AwemeCarousel struct {
+	// ItemID 抖音图文id，在抖音号内上传图文素材时生成的id，是抖音端图文素材的唯一id
+	ItemID uint64 `json:"item_id,omitempty"`
+	//  MaterialID 抖音图文素材id，在查询素材维度的报表（会用该id作为维度，对应「素材管理」-「获取图文素材」等相关接口中的carousel_ids.id或carousel_id）
+	MaterialID uint64 `json:"material_id,omitempty"`
+	// CarouselTitle 抖音图文标题
+	CarouselTitle string `json:"carousel_title,omitempty"`
+	// CarouselPlayURL 抖音图文播放地址，格式为：https://douyin.com/video/XXXXXX
+	CarouselPlayURL string `json:"carousel_play_url,omitempty"`
+	// CarouselCoverURL 抖音图文素材内封面图片预览url，有效期10小时
+	CarouselCoverURL string `json:"carousel_cover_url,omitempty"`
+	// Images 抖音图文素材内的图片信息，最多35张图片
+	// 按照图文本身的顺序返回，最前面的图片在最上面
+	Images []CarouselImage `json:"images,omitempty"`
+}
+
 // CarouselImage 图集图片信息，包含图片id和图片主题
 type CarouselImage struct {
 	// ImageID 图片id，根据上传广告图片接口获取
 	ImageID string `json:"image_id,omitempty"`
+	// MaterialID 素材id
+	MaterialID uint64 `json:"material_id,omitempty"`
 	// Ratio 图片比例
 	Ratio float64 `json:"ratio,omitempty"`
 	// Size 图片大小
