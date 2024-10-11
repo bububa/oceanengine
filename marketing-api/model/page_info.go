@@ -24,4 +24,6 @@ type CursorInfo struct {
 	Cursor string `json:"cursor,omitempty"`
 	// Count
 	Count int `json:"count,omitempty"`
+	// HasMore 是否有下一页
+	HasMore bool `json:"has_more,omitempty"`
 }

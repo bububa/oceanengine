@@ -129,6 +129,15 @@ func (c *SDKClient) OpenGet(ctx context.Context, gw string, req model.GetRequest
 	return c.get(ctx, OPEN_URL, gw, req, resp, accessToken)
 }
 
+// Upload multipart/form-data post
+func (c *SDKClient) Upload(ctx context.Context, gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
+	return c.upload(ctx, BASE_URL, gw, req, resp, accessToken)
+}
+
+func (c *SDKClient) UploadAPI(ctx context.Context, gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
+	return c.upload(ctx, API_BASE_URL, gw, req, resp, accessToken)
+}
+
 func (c *SDKClient) post(ctx context.Context, base string, gw string, req model.PostRequest, resp model.Response, accessToken string) error {
 	var reqBytes []byte
 	if req != nil {
@@ -217,8 +226,7 @@ func (c *SDKClient) GetBytes(ctx context.Context, gw string, req model.GetReques
 	return ret, err
 }
 
-// Upload multipart/form-data post
-func (c *SDKClient) Upload(ctx context.Context, gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
+func (c *SDKClient) upload(ctx context.Context, base string, gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
 	buf := util.GetBufferPool()
 	defer util.PutBufferPool(buf)
 	mw := multipart.NewWriter(buf)
@@ -252,7 +260,7 @@ func (c *SDKClient) Upload(ctx context.Context, gw string, req model.UploadReque
 		}
 	}
 	mw.Close()
-	reqUrl := util.StringsJoin(BASE_URL, gw)
+	reqUrl := util.StringsJoin(base, gw)
 	debug.PrintPostMultipartRequest(reqUrl, mp, c.debug)
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, reqUrl, buf)
 	if err != nil {
