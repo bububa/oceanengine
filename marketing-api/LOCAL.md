@@ -21,3 +21,9 @@
   - 获取项目数据 [ ProjectGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *report.ProjectGetRequest) (*report.ProjectGetResult, error) ]
   - 获取广告数据 [ PromotionGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *report.PromotionGetRequest) (*report.PromotionGetResult, error) ]
   - 获取素材数据 [ MaterialGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *report.MaterialGetRequest) (*report.MaterialGetResult, error) ]
+- 本地推素材管理 (local/file)
+  - 异步上传本地推视频 [ UploadTaskCreate(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.UploadTaskCreateRequest) (uint64, error) ]
+  - 查询异步上传本地推视频结果 [ VideoUploadTaskList(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoUploadTaskListRequest) ([]file.UploadTask, error) ]
+  - 上传视频 [ VideoUpload(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoUploadRequest) (*file.Video, error) ]
+  - 获取素材库视频 [ VideoGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoGetRequest) (*file.VideoGetResult, error) ]
+  - 获取抖音主页视频 [ VideoAwemeGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoAwemeGetRequest) (*file.VideoAwemeGetResult, error) ]
