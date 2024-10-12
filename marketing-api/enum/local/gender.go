@@ -4,6 +4,8 @@ package local
 type Gender string
 
 const (
+	// Gender_UNKNOWN 未知
+	Gender_UNKNOWN Gender = "UNKNOWN"
 	// Gender_FEMALE 女
 	Gender_FEMALE Gender = "FEMALE"
 	// Gender_MALE 男

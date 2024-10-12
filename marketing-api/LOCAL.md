@@ -27,3 +27,6 @@
   - 上传视频 [ VideoUpload(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoUploadRequest) (*file.Video, error) ]
   - 获取素材库视频 [ VideoGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoGetRequest) (*file.VideoGetResult, error) ]
   - 获取抖音主页视频 [ VideoAwemeGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoAwemeGetRequest) (*file.VideoAwemeGetResult, error) ]
+- 本地推线索管理 (local/clue)
+  - 获取本地推线索列表 [ LifeGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *clue.LifeGetRequest) (*clue.LifeGetResult, error) ]
+  - 本地推线索回传 [ LifeCallback(ctx context.Context, clt *core.SDKClient, accessToken string, req *clue.LifeCallbackRequest) error ]
