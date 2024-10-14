@@ -8,7 +8,7 @@
   - 账户关系获取
     - 获取千川账户下已授权抖音号 [ aweme.AuthorizedGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
     - 获取千川账户下抖音号授权列表 [ advertiser.AwemeAuthListGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *advertiser.AwemeAuthListGetRequest) (*advertiser.AwemeAuthListGetResult, error) ]
-    - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(ctx context.Context, clt *core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
+    - 获取已授权的账户（店铺/代理商）[ oauth.AdvertiserGet(ctx context.Context, clt \*core.SDKClient, accessToken string) ([]oauth.Advertiser, error) ]
     - 获取店铺账户关联的广告账户列表 [ shop.AdvertiserList(ctx context.Context, clt *core.SDKClient, accessToken string, req *shop.AdvertiserListRequest) (*shop.AdvertiserListResponseData, error) ]
     - 获取代理商账户关联的广告账户列表 [ advertiser.AdvertiserSelect(ctx context.Context, clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
     - 广告主添加抖音号 [ tools.AwemeAuth(ctx context.Context, clt *core.SDKClient, accessToken string, req *tools.AwemeAuthRequest) (bool, error) ]
@@ -62,9 +62,10 @@
     - 批量更新广告创意状态 [ UpdateStatus(ctx context.Context, clt *core.SDKClient, accessToken string, req *creative.UpdateStatusRequest) (*creative.UpdateResponseData, error) ]
     - 获取账户下创意列表 [ Get(ctx context.Context, clt *core.SDKClient, accessToken string, req *creative.GetRequest) (*creative.GetResponseData, error) ]
     - 获取计划审核建议 [ RejectReason(ctx context.Context, clt *core.SDKClient, accessToken string, req *creative.RejectReasonRequest) ([]creative.RejectReasonList, error) ]
-  - 广告素材管理 (api/ad)
-    - 获取计划下素材列表 [ MaterialGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *ad.MaterialGetRequest) (*ad.MaterialGetResult, error) ]
-    - 删除广告计划下素材 [ MaterialDelete(ctx context.Context, clt *core.SDKClient, accessToken string, req *ad.MaterialDeleteRequest) error ]
+  - 广告素材管理 (api/material)
+    - 获取账户下素材列表 [ Get(ctx context.Context, clt *core.SDKClient, accessToken string, req *material.GetRequest) (*material.GetResult, error) ]
+    - 获取计划下素材列表 [ AdMaterialGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *material.AdMaterialGetRequest) (*material.AdMaterialGetResult, error) ]
+    - 删除广告计划下素材 [ AdMaterialDelete(ctx context.Context, clt *core.SDKClient, accessToken string, req *material.AdMaterialDeleteRequest) error ]
   - 商品/直播间管理
     - 获取可投商品列表 [ AvailableGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *product.AvailableGetRequest) (*product.AvailableGetResponseData, error) ]
     - 获取千川账户下已授权抖音号 [ AuthorizedGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]
@@ -120,7 +121,7 @@
   - 获取随心推订单列表 [ OrderGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *aweme.OrderGetRequest) (*aweme.OrderGetResult, error) ]
   - 获取随心推订单详情 [ OrderDetailGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *aweme.OrderDetailGetRequest) (*aweme.Order, error) ]
   - 获取随心推订单数据 [ api/qianchuan/report.OrderGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *report.GetRequest) (*report.GetResponseData, error) ]
-  - 获取随心推兴趣标签 [ InterestActionInterestKeyword(ctx context.Context, clt *core.SDKClient, accessToken string, advertiserID uint64) ([]aweme.InterestKeyword, error) ]
+  - 获取随心推兴趣标签 [ InterestActionInterestKeyword(ctx context.Context, clt \*core.SDKClient, accessToken string, advertiserID uint64) ([]aweme.InterestKeyword, error) ]
   - 获取随心推可投视频列表 [ VideoGet(clt *core.SDKClient, accessToken string, req *aweme.VideoGetRequest) (*aweme.VideoGetResult, error) ]
   - 获取随心推投放效果预估 [ EstimateProfit(clt *core.SDKClient, accessToken string, req *aweme.EstimateProfitRequest) (*aweme.EstimateProfit, error) ]
   - 获取随心推短视频建议出价 [ SuggestBid(clt *core.SDKClient, accessToken string, req *aweme.SuggestBidRequest) (float64, error) ]
