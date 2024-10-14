@@ -1,9 +1,9 @@
-package ad
+package material
 
 import "github.com/bububa/oceanengine/marketing-api/util"
 
-// MaterialDeleteRequest 删除广告计划下素材 API Request
-type MaterialDeleteRequest struct {
+// AdMaterialDeleteRequest 删除广告计划下素材 API Request
+type AdMaterialDeleteRequest struct {
 	// MaterialIDs 待删除素材ID
 	// 注意：最大支持100个素材
 	MaterialIDs []uint64 `json:"material_ids,omitempty"`
@@ -14,6 +14,6 @@ type MaterialDeleteRequest struct {
 }
 
 // Encode implement PostRequest interface
-func (r MaterialDeleteRequest) Encode() []byte {
+func (r AdMaterialDeleteRequest) Encode() []byte {
 	return util.JSONMarshal(r)
 }

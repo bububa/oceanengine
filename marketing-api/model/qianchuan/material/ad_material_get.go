@@ -1,4 +1,4 @@
-package ad
+package material
 
 import (
 	"strconv"
@@ -7,9 +7,6 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
-
-// MaterialType 素材类型
-type MaterialType string
 
 const (
 	// MaterialType_IMAGE 图片，图文
@@ -22,10 +19,10 @@ const (
 	MaterialType_VIDEO MaterialType = "VIDEO"
 )
 
-// MaterialGetRequest 获取计划下素材列表 API Request
-type MaterialGetRequest struct {
+// AdMaterialGetRequest 获取计划下素材列表 API Request
+type AdMaterialGetRequest struct {
 	// Filtering 过滤条件
-	Filtering *MaterialGetFiltering `json:"filtering,omitempty"`
+	Filtering *AdMaterialGetFiltering `json:"filtering,omitempty"`
 	// OrderType 排序方式 可选值:
 	// ASC 升序
 	// DESC 降序 默认
@@ -42,8 +39,8 @@ type MaterialGetRequest struct {
 	PageSize int `json:"page_size,omitempty"`
 }
 
-// MaterialGetFiltering 过滤条件
-type MaterialGetFiltering struct {
+// AdMaterialGetFiltering 过滤条件
+type AdMaterialGetFiltering struct {
 	// MaterialType 素材类型 可选值:
 	// IMAGE 图片，图文
 	// TITLE 标题
@@ -98,7 +95,7 @@ type MaterialGetFiltering struct {
 }
 
 // Encode implements GetRequest interface
-func (r MaterialGetRequest) Encode() string {
+func (r AdMaterialGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("ad_id", strconv.FormatUint(r.AdID, 10))
@@ -122,114 +119,15 @@ func (r MaterialGetRequest) Encode() string {
 	return ret
 }
 
-// MaterialGetResponse 获取计划下素材列表 API Response
-type MaterialGetResponse struct {
-	Data *MaterialGetResult `json:"data,omitempty"`
+// AdMaterialGetResponse 获取计划下素材列表 API Response
+type AdMaterialGetResponse struct {
+	Data *AdMaterialGetResult `json:"data,omitempty"`
 	model.BaseResponse
 }
 
-type MaterialGetResult struct {
+type AdMaterialGetResult struct {
 	// PageInfo 分页结果
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 	// AdMaterialInfos 返回的素材信息列表
 	AdMaterialInfos []AdMaterialInfo `json:"ad_material_infos,omitempty"`
-}
-
-// AdMaterialInfo 素材信息
-type AdMaterialInfo struct {
-	// MaterialDeliveryType 素材投放状态
-	MaterialDeliveryType string `json:"material_delivery_type,omitempty"`
-	// AuditStatus 审核状态 可选值:
-	// PASS 审核通过
-	// REJECT 审核拒绝
-	// IN_PROGRESS 审核中
-	AuditStatus string `json:"audit_status,omitempty"`
-	// CreativeIDs 关联的创意id
-	CreativeIDs []uint64 `json:"creative_ids,omitempty"`
-	// IsDel 是否删除
-	IsDel bool `json:"is_del,omitempty"`
-	// IsAutoGenerate 是否派生
-	IsAutoGenerate bool `json:"is_auto_generate,omitempty"`
-}
-
-// MaterialInfo 素材信息
-type MaterialInfo struct {
-	// VideoMaterial 视频素材
-	VideoMaterial *VideoMaterial `json:"video_material,omitempty"`
-	// ImageMaterial 图片素材
-	ImageMaterial *ImageMaterial `json:"image_material,omitempty"`
-	// TitleMaterial 标题素材
-	TitleMaterial *TitleMaterial `json:"title_material,omitempty"`
-	// RoomMaterial 直播间画面用户信息
-	RoomMaterial *RoomMaterial `json:"room_material,omitempty"`
-	// MaterialType 素材类型
-	MaterialType MaterialType `json:"material_type,omitempty"`
-}
-
-// VideoMaterial 视频素材
-type VideoMaterial struct {
-	// CoverImage 视频封面图片
-	CoverImage *MaterialImage `json:"cover_image,omitempty"`
-	// VideoID 视频 id
-	VideoID string `json:"video_id,omitempty"`
-	// Title 视频标题
-	Title string `json:"title,omitempty"`
-	// Source 视频来源
-	Source enum.MaterialSource `json:"source,omitempty"`
-	// ImageMode 素材样式
-	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
-	// MaterialID 素材id
-	MaterialID uint64 `json:"material_id,omitempty"`
-	// VideoDuration 视频时长
-	VideoDuration float64 `json:"video_duration,omitempty"`
-}
-
-// ImageMaterial 图片素材
-type ImageMaterial struct {
-	// Title 标题
-	Title string `json:"title,omitempty"`
-	// MusicURL 图文音乐播放链接
-	MusicURL string `json:"music_url,omitempty"`
-	// Description 图文描述
-	Description string `json:"description,omitempty"`
-	// ImageMode 素材样式
-	ImageMode enum.MaterialMode `json:"image_mode,omitempty"`
-	// Source 来源
-	Source enum.MaterialSource `json:"source,omitempty"`
-	// Images 图片
-	Images []MaterialImage `json:"images,omitempty"`
-	// MaterialID 素材id
-	MaterialID uint64 `json:"material_id,omitempty"`
-}
-
-// TitleMaterial 标题素材
-type TitleMaterial struct {
-	// Title 标题
-	Title string `json:"title,omitempty"`
-	// MaterialID 素材id
-	MaterialID uint64 `json:"material_id,omitempty"`
-}
-
-// RoomMaterial 直播间画面用户信息
-type RoomMaterial struct {
-	// Name 直播间名称
-	Name string `json:"name,omitempty"`
-	// AwemeAvatar 头像
-	AwemeAvatar string `json:"aweme_avatar,omitempty"`
-	// ID 直播间id
-	ID uint64 `json:"id,omitempty"`
-}
-
-// MaterialImage 图片信息
-type MaterialImage struct {
-	// WebURL 图片url
-	WebURL string `json:"web_url,omitempty"`
-	// ImageURL 图片url
-	ImageURL string `json:"image_url,omitempty"`
-	// ID 图片id
-	ID string `json:"id,omitempty"`
-	// Height 图片高度
-	Height int `json:"height,omitempty"`
-	// Width 图片宽度
-	Width int `json:"width,omitempty"`
 }

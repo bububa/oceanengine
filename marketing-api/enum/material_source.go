@@ -42,6 +42,10 @@ const (
 	MaterialSource_JI_CHUANG MaterialSource = "JI_CHUANG"
 	// MaterialSource_AWEME 抖音主页视频
 	MaterialSource_AWEME MaterialSource = "AWEME"
+	// MaterialSource_JIANYING 剪映共享素材
+	MaterialSource_JIANYING MaterialSource = "JIANYING"
+	// MaterialSource_QUNFENG 群峰共享素材
+	MaterialSource_QUNFENG MaterialSource = "QUNFENG"
 	// MaterialSource_OTHERS 其他来源
 	MaterialSource_OTHERS MaterialSource = "OTHERS"
 )
