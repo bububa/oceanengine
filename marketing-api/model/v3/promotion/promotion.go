@@ -343,6 +343,12 @@ type ProductInfo struct {
 	Titles []string `json:"titles,omitempty"`
 	// ImageIDs 产品主图
 	ImageIDs []string `json:"image_ids,omitempty"`
+	// EchoTitles 关联产品名称，
+	// 该参数返回项目中的已关联产品或自动识别产品(AD平台功能)的产品名称
+	EchoTitles []string `json:"echo_titles,omitempty"`
+	// EchoImageIDs 关联产品主图，
+	// 该参数返回项目中的已关联产品或自动识别产品(AD平台功能)的产品主图
+	EchoImageIDs []string `json:"echo_image_ids,omitempty"`
 	// SellingPoints 产品卖点
 	SellingPoints []string `json:"selling_points,omitempty"`
 	// ProductNameType 产品名称类型，枚举值：DPA产品库字段，CUSTOM自定义
