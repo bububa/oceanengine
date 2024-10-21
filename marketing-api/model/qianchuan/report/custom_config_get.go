@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"strconv"
 
+	"github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -16,7 +17,11 @@ type CustomConfigGetRequest struct {
 	// SITE_PROMOTION_POST_DATA_VIDEO  全域推广-素材-视频
 	// SITE_PROMOTION_POST_DATA_OTHER  全域推广-素材-其他创意
 	// SITE_PROMOTION_POST_DATA_TITLE  全域推广-素材-标题
-	DataTopics []string `json:"data_topics,omitempty"`
+	// SITE_PROMOTION_PRODUCT_POST_DATA_IMAGE 商品全域推广-素材-图片
+	// SITE_PROMOTION_PRODUCT_POST_DATA_VIDEO 商品全域推广-素材-视频
+	// SITE_PROMOTION_PRODUCT_POST_DATA_OTHER  商品全域推广-素材-其他创意
+	// SITE_PROMOTION_PRODUCT_POST_DATA_TITLE  商品全域推广-素材-标题
+	DataTopics []qianchuan.DataTopic `json:"data_topics,omitempty"`
 	// AdvertiserID 广告主id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 }

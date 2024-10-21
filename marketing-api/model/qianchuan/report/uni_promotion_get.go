@@ -16,7 +16,9 @@ type UniPromotionGetRequest struct {
 	StartDate string `json:"start_date,omitempty"`
 	// EndDate 结束日期,格式YYYY-MM-DD,只支持查询2016-10-26及以后的日期，时间跨度不能超过30天
 	EndDate string `json:"end_date,omitempty"`
-	// MarketingGoal 按营销目标过滤，允许值：LIVE_PROM_GOODS：直播带货
+	// MarketingGoal 按营销目标过滤，允许值：
+	// LIVE_PROM_GOODS：直播带货
+	// VIDEO_PROM_GOODS：商品全域
 	MarketingGoal enum.MarketingGoal `json:"marketing_goal,omitempty"`
 	// LabAdType 推广方式，允许值：LAB_AD 托管
 	LabAdType enum.AdLabType `json:"lab_ad_type,omitempty"`

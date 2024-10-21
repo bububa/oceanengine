@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"strconv"
 
+	"github.com/bububa/oceanengine/marketing-api/enum/qianchuan"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -20,7 +21,11 @@ type CustomGetRequest struct {
 	// SITE_PROMOTION_POST_DATA_VIDEO  全域推广-素材-视频
 	// SITE_PROMOTION_POST_DATA_OTHER  全域推广-素材-其他创意
 	// SITE_PROMOTION_POST_DATA_TITLE  全域推广-素材-标题
-	DataTopic string `json:"data_topic,omitempty"`
+	// SITE_PROMOTION_PRODUCT_POST_DATA_IMAGE 商品全域推广-素材-图片
+	// SITE_PROMOTION_PRODUCT_POST_DATA_VIDEO 商品全域推广-素材-视频
+	// SITE_PROMOTION_PRODUCT_POST_DATA_OTHER  商品全域推广-素材-其他创意
+	// SITE_PROMOTION_PRODUCT_POST_DATA_TITLE  商品全域推广-素材-标题
+	DataTopic qianchuan.DataTopic `json:"data_topic,omitempty"`
 	// Dimensions 维度列表。
 	// 可通过【获取自定义报表可用维度和指标】接口获取不同数据主题下的可用维度和指标
 	Dimensions []string `json:"dimensions,omitempty"`
@@ -69,7 +74,7 @@ type CustomGetOrderBy struct {
 func (r CustomGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
-	values.Set("data_topic", r.DataTopic)
+	values.Set("data_topic", string(r.DataTopic))
 	values.Set("dimensions", string(util.JSONMarshal(r.Dimensions)))
 	values.Set("metrics", string(util.JSONMarshal(r.Metrics)))
 	if len(r.Filters) > 0 {
