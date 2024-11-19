@@ -73,6 +73,35 @@ type Project struct {
 	// 数组长度限制：最大5条
 	// DPA推广目的下有效
 	DpaProductTarget []DpaProductTarget `json:"dpa_product_target,omitempty"`
+	// DeliveryProduct 推广产品，枚举值
+	// NONE：无产品
+	// APP ：应用
+	// PRODUCT：商品
+	// WECHAT_GAME：微信小游戏
+	// WECHAT_APP：微信小程序
+	// BYTE_GAME：字节小游戏
+	// BYTE_APP：字节小程序
+	// QUICK_APP：快应用
+	// AWEME：抖音号
+	DeliveryProduct enum.DeliveryProduct `json:"delivery_product,omitempty"`
+	// DeliveryMedium 单投放载体，枚举值
+	// WECHAT_GAME：微信小游戏
+	// WECHAT_APP：微信小程序
+	// BYTE_GAME：字节小游戏
+	// BYTE_APP：字节小程序
+	// PRODUCT：商品
+	// ORANGE： 橙子落地页
+	// THIRDPARTY ：自研落地页
+	// ENTERPRISE ：企业号落地页
+	// AWEME： 抖音号
+	// QUICK_APP：快应用
+	// APP：应用
+	// LANDING_PAGE_LINK：落地页
+	DeliveryMedium enum.DeliveryMedium `json:"delivery_medium,omitempty"`
+	// MultiDeliveryMedium 多投放载体，仅当landing_type = LINK 销售线索推广目的下会返回
+	// 枚举值：
+	// ORANGE_AND_AWEME优选投放橙子落地页和抖音主页
+	MultiDeliveryMedium enum.MultiDeliveryMedium `json:"multi_delivery_medium,omitempty"`
 	// DownloadURL 下载链接，landing_type=APP 子目标为 DOWNLOAD 或者LAUNCH 时有效且必填
 	// - 下载、调用场景传入说明：
 	// IOS：需要为iTunes官方地址
