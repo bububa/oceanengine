@@ -12,6 +12,9 @@
     - 二级代理商列表 [ ChildAgentSelect(clt *core.SDKClient, accessToken string, req *agent.ChildAgentSelectRequest) ([]uint64, error) ]
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
 - 巨量星图 (api/star)
+  - 获取星广联投(星图版)任务列表 [ task.List(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.ListRequest) (*task.ListResult, error) ]
+  - 获取星广联投(星图版)任务维度数据 [ task.Detail(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.DetailRequest) (*task.Demand, error) ]
+  - 获取星广联投(星图版)视频维度数据 [ task.ItemList(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.ItemListRequest) ([]task.ItemStatInfo, error)  ]
   - 获取星图客户任务列表 [ DemandList(clt *core.SDKClient, accessToken string, req *star.DemandListRequest) (*star.DemandListResponseData, error) ]
   - 获取星图客户任务订单列表 [ DemandOrderList(clt *core.SDKClient, accessToken string, req *star.DemandOrderListRequest) (*star.DemandOrderListResponseData, error) ]
   - 获取订单投后分析报表 [ ReportOrderOverviewGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResponseData, error) ]
