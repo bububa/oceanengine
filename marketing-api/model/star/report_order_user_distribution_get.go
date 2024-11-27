@@ -27,13 +27,15 @@ func (r ReportOrderUserDistributionGetRequest) Encode() string {
 
 // ReportOrderUserDistributionGetResponse 获取订单投后受众报表 API Response
 type ReportOrderUserDistributionGetResponse struct {
-	model.BaseResponse
 	// Data json返回值
-	Data *ReportOrderUserDistributionGetResponseData `json:"data,omitempty"`
+	Data *ReportOrderUserDistributionGetResult `json:"data,omitempty"`
+	model.BaseResponse
 }
 
-// ReportOrderUserDistributionGetResponseData 返回值
-type ReportOrderUserDistributionGetResponseData struct {
+// ReportOrderUserDistributionGetResult 返回值
+type ReportOrderUserDistributionGetResult struct {
+	// UpdateTime 数据更新时间，格式%Y-%m-%d %H:%M:%S
+	UpdateTime string `json:"update_time,omitempty"`
 	// Activity 活跃度分布
 	Activity []KV `json:"activity,omitempty"`
 	// Age 年龄分布
@@ -48,8 +50,6 @@ type ReportOrderUserDistributionGetResponseData struct {
 	Interest []KV `json:"interest,omitempty"`
 	// Province 省份分布
 	Province []KV `json:"province,omitempty"`
-	// UpdateTime 数据更新时间，格式%Y-%m-%d %H:%M:%S
-	UpdateTime string `json:"update_time,omitempty"`
 }
 
 // KV .

@@ -27,13 +27,13 @@ func (r ReportOrderOverviewGetRequest) Encode() string {
 
 // ReportOrderOverviewGetResponse 获取订单投后分析报表 API Response
 type ReportOrderOverviewGetResponse struct {
-	model.BaseResponse
 	// Data json返回值
-	Data *ReportOrderOverviewGetResponseData `json:"data,omitempty"`
+	Data *ReportOrderOverviewGetResult `json:"data,omitempty"`
+	model.BaseResponse
 }
 
-// ReportOrderOverviewGetResponseData json返回值
-type ReportOrderOverviewGetResponseData struct {
+// ReportOrderOverviewGetResult json返回值
+type ReportOrderOverviewGetResult struct {
 	// Comment 舆情表现
 	Comment *CommentReport `json:"comment,omitempty"`
 	// Convert 转化表现

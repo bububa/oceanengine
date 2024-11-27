@@ -11,10 +11,10 @@ import (
 
 // DemandListRequest 获取星图客户任务列表 API Request
 type DemandListRequest struct {
-	// StarID 星图id，星图客户授权后，通过“获取已授权账户”接口，查询到账号角色为”6-星图账号“的账户id，即为星图id
-	StarID uint64 `json:"star_id,omitempty"`
 	// Filtering 过滤条件，若此字段不传，或传空则视为无限制条件
 	Filtering *DemandListFilter `json:"filtering,omitempty"`
+	// StarID 星图id，星图客户授权后，通过“获取已授权账户”接口，查询到账号角色为”6-星图账号“的账户id，即为星图id
+	StarID uint64 `json:"star_id,omitempty"`
 	// Page 页码，默认为1
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小，默认10，最大值50
@@ -23,6 +23,10 @@ type DemandListRequest struct {
 
 // DemandListFilter 过滤条件
 type DemandListFilter struct {
+	// QueryTimeRange 查询时间范围内创建的任务。
+	// 筛选时间时，开始时间必须与结束时间同时传入，开始时间必须小于等于结束时间。
+	// 若缺省默认查询全时间范围任务，若出现超时等情况请缩小查询时间范围。
+	QueryTimeRange *model.DateRange `json:"query_time_range,omitempty"`
 	// ComponentType 组件类型
 	ComponentType enum.StarComponentType `json:"component_type,omitempty"`
 	// TaskCategory 星图任务类型，允许值详见【附录-枚举值-星图任务类型】
@@ -56,13 +60,13 @@ func (r DemandListRequest) Encode() string {
 
 // DemandListResponse 获取星图客户任务列表 API Response
 type DemandListResponse struct {
-	model.BaseResponse
 	// Data json返回值
-	Data *DemandListResponseData `json:"data,omitempty"`
+	Data *DemandListResult `json:"data,omitempty"`
+	model.BaseResponse
 }
 
-// DemandListResponseData json返回值
-type DemandListResponseData struct {
+// DemandListResult json返回值
+type DemandListResult struct {
 	List     []Demand       `json:"list,omitempty"`
 	PageInfo model.PageInfo `json:"page_info"`
 }

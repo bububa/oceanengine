@@ -6,6 +6,7 @@
   - 刷新 Token [ RefreshToken(clt *core.SDKClient, refreshToken string) (*oauth.AccessTokenResponseData, error)]
 - 账号服务
   - 广告主信息与资质管理
+    - 获取星图账户信息 [ Info(clt *core.SDKClient, accessToken string, req *star.InfoRequest) ([]star.Info, error) ]
     - 修改广告主 [ agent.AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
   - 代理商账号管理 (api/agent)
     - 广告主列表 [ AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
@@ -15,9 +16,11 @@
   - 获取星广联投(星图版)任务列表 [ task.List(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.ListRequest) (*task.ListResult, error) ]
   - 获取星广联投(星图版)任务维度数据 [ task.Detail(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.DetailRequest) (*task.Demand, error) ]
   - 获取星广联投(星图版)视频维度数据 [ task.ItemList(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.ItemListRequest) ([]task.ItemStatInfo, error)  ]
-  - 获取星图客户任务列表 [ DemandList(clt *core.SDKClient, accessToken string, req *star.DemandListRequest) (*star.DemandListResponseData, error) ]
-  - 获取星图客户任务订单列表 [ DemandOrderList(clt *core.SDKClient, accessToken string, req *star.DemandOrderListRequest) (*star.DemandOrderListResponseData, error) ]
-  - 获取订单投后分析报表 [ ReportOrderOverviewGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResponseData, error) ]
-  - 获取订单投后受众报表 [ ReportOrderUserDistributionGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderUserDistributionGetRequest) (*star.ReportOrderUserDistributionGetResponseData, error) ]
-  - 获取星图订单投后线索 [ ClueList(clt *core.SDKClient, accessToken string, req *star.ClueListRequest) (*star.ClueListResponseData, error) ]
-  - 获取星图账户信息 [ Info(clt *core.SDKClient, accessToken string, req *star.InfoRequest) ([]star.Info, error) ]
+  - 获取星图客户任务列表 [ DemandList(clt *core.SDKClient, accessToken string, req *star.DemandListRequest) (*star.DemandListResult, error) ]
+  - 获取星图客户任务订单列表 [ DemandOrderList(clt *core.SDKClient, accessToken string, req *star.DemandOrderListRequest) (*star.DemandOrderListResult, error) ]
+  - 获取订单投后分析报表 [ ReportOrderOverviewGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResult, error) ]
+  - 获取订单投后受众报表 [ ReportOrderUserDistributionGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderUserDistributionGetRequest) (*star.ReportOrderUserDistributionGetResult, error) ]
+  - 获取星图订单投后线索 [ ClueGet(clt *core.SDKClient, accessToken string, req *star.ClueGetRequest) (*star.ClueGetResult, error) ]
+  - 获取任务下累计可查询的数据指标 [ ReportDataTopicConfig(ctx context.Context, clt *core.SDKClient, accessToken string, req *star.ReportDataTopicConfigRequest) ([]star.DataTopicConfig, error) ]
+  - 获取投后数据主题累计数据 [ ReportCustomDataTopicConfig(ctx context.Context, clt *core.SDKClient, accessToken string, req *star.ReportDataTopicConfigRequest) (*star.ReportCustomDataTopicConfigResult, error) ]
+  - 获取投后每日趋势数据（短视频） [ ReportCustomDataTopicDailyReport(ctx context.Context, clt *core.SDKClient, accessToken string, req *star.ReportCustomDataTopicDailyReportRequest) ([]star.ReportCustomDataTopicDailyReport, error) ]
