@@ -61,8 +61,8 @@ type Info struct {
 
 // IndustryInfo 行业信息
 type IndustryInfo struct {
-	// IndustryID 行业id
-	IndustryID uint64 `json:"industry_id,omitempty"`
 	// IndustryName 行业名称
 	IndustryName string `json:"industry_name,omitempty"`
+	// IndustryID 行业id
+	IndustryID uint64 `json:"industry_id,omitempty"`
 }

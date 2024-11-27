@@ -11,10 +11,12 @@ import (
 
 // DemandOrderListRequest 获取星图客户任务列表  API Request
 type DemandOrderListRequest struct {
-	// StarID 星图id，星图客户授权后，通过“获取已授权账户”接口，查询到账号角色为”6-星图账号“的账户id，即为星图id
-	StarID uint64 `json:"star_id,omitempty"`
 	// Filtering 过滤条件，若此字段不传，或传空则视为无限制条件
 	Filtering *DemandOrderListFilter `json:"filtering,omitempty"`
+	// StarID 星图id，星图客户授权后，通过“获取已授权账户”接口，查询到账号角色为”6-星图账号“的账户id，即为星图id
+	StarID uint64 `json:"star_id,omitempty"`
+	// DemandID 任务id，可通过“获取星图客户任务列表”获取
+	DemandID uint64 `json:"demand_id,omitempty"`
 	// Page 页码，默认为1
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小，默认10，最大值50
@@ -48,13 +50,13 @@ func (r DemandOrderListRequest) Encode() string {
 
 // DemandOrderListResponse 获取星图客户任务列表  API Response
 type DemandOrderListResponse struct {
-	model.BaseResponse
 	// Data json返回值
-	Data *DemandOrderListResponseData `json:"data,omitempty"`
+	Data *DemandOrderListResult `json:"data,omitempty"`
+	model.BaseResponse
 }
 
-// DemandOrderListResponseData json返回值
-type DemandOrderListResponseData struct {
+// DemandOrderListResult json返回值
+type DemandOrderListResult struct {
 	List     []Order        `json:"list,omitempty"`
 	PageInfo model.PageInfo `json:"page_info"`
 }

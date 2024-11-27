@@ -7,8 +7,8 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
-// ClueListRequest 获取星图订单投后线索 API Request
-type ClueListRequest struct {
+// ClueGetRequest 获取星图订单投后线索 API Request
+type ClueGetRequest struct {
 	// StarID 星图id，星图客户授权后，通过“获取已授权账户”接口，查询到账号角色为”6-星图账号“的账户id，即为星图id
 	StarID uint64 `json:"star_id,omitempty"`
 	// DemandID 任务id
@@ -22,7 +22,7 @@ type ClueListRequest struct {
 }
 
 // Encode implement GetRequest interface
-func (r ClueListRequest) Encode() string {
+func (r ClueGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("star_id", strconv.FormatUint(r.StarID, 10))
 	if r.DemandID > 0 {
@@ -42,15 +42,15 @@ func (r ClueListRequest) Encode() string {
 	return ret
 }
 
-// ClueListResponse 获取星图客户任务列表 API Response
-type ClueListResponse struct {
-	model.BaseResponse
+// ClueGetResponse 获取星图客户任务列表 API Response
+type ClueGetResponse struct {
 	// Data json返回值
-	Data *ClueListResponseData `json:"data,omitempty"`
+	Data *ClueGetResult `json:"data,omitempty"`
+	model.BaseResponse
 }
 
-// ClueListResponseData json返回值
-type ClueListResponseData struct {
+// ClueGetResult json返回值
+type ClueGetResult struct {
 	List     []Clue         `json:"list,omitempty"`
 	PageInfo model.PageInfo `json:"page_info"`
 }
