@@ -137,7 +137,7 @@ type ProductCategory struct {
 }
 
 type Link struct {
-	URL string `json:"string,omitempty"`
+	URL string `json:"url,omitempty"`
 	// TemplateID 视频模板ID
 	TemplateID string `json:"template_id,omitempty"`
 }
