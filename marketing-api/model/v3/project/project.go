@@ -59,7 +59,7 @@ type Project struct {
 	// SearchBidRatio 出价系数
 	SearchBidRatio float64 `json:"search_bid_ratio,omitempty"`
 	// AudienceExtend 定向拓展
-	AudienceExtend string `json:"audience_extend,omitempty"`
+	AudienceExtend enum.OnOff `json:"audience_extend,omitempty"`
 	// Keywords 搜索关键词列表
 	Keywords []Keyword `json:"keywords,omitempty"`
 	// RelatedProduct 关联产品投放相关
