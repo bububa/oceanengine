@@ -6,7 +6,6 @@ import (
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
-	"github.com/bububa/oceanengine/marketing-api/model/audiencepackage"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
@@ -69,5 +68,5 @@ type GetResult struct {
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 	// AudiencePackages 定向包信息
-	AudiencePackages []audiencepackage.AudiencePackage `json:"audience_packages,omitempty"`
+	AudiencePackages []AudiencePackage `json:"audience_packages,omitempty"`
 }
