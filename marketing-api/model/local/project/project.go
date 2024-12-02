@@ -121,7 +121,7 @@ type ProjectDetail struct {
 	// AutoUpdatePois 自动更新门店开启状态，仅推广全部门店项目返回，枚举值：
 	// OFF 不启用
 	// ON 启用
-	AutoUpdatePois string `json:"auto_update_pois,omitempty"`
+	AutoUpdatePois enum.OnOff `json:"auto_update_pois,omitempty"`
 	// PoiID 门店id
 	// 当项目推广单个门店时返回
 	PoiID uint64 `json:"poi_id,omitempty"`

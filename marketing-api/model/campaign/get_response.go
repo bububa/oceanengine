@@ -47,7 +47,7 @@ type Campaign struct {
 	// CampaignBudgetOptimization 支持预算择优分配允许值：
 	// ON 开启，OFF 不开启(默认值)
 	// 广告主商品类型为CAMPAIGN_DPA_MULTI_DELIVERY时不允许开启预算择优分配
-	CampaignBudgetOptimization string `json:"campaign_budget_optimization,omitempty"`
+	CampaignBudgetOptimization enum.OnOff `json:"campaign_budget_optimization,omitempty"`
 	// SmartBidType 出价方式（投放场景），campaign_budget_optimization为ON时必填，且必须为SMART_BID_NO_BID
 	SmartBidType enum.SmartBidType `json:"smart_bid_type,omitempty"`
 }

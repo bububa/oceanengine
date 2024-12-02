@@ -440,7 +440,9 @@
     - 查询深度优化方式 [ DeepbidRead(clt *core.SDKClient, accessToken string, req *adconvert.DeepbidReadRequest) ([]enum.DeepBidType, error) ]
     - 修改转化监测链接 [ TrackURLUpdateStatus(clt *core.SDKClient, accessToken string, req *adconvert.TrackURLUpdateRequest) error ]
   - 定向包管理 (audiencepackage)
-    - 获取定向包 [ Get(clt *core.SDKClient, accessToken string, req *audiencepackage.GetRequest) (*audiencepackage.GetResponseData, error) ]
+    - 定向包查询关联项目信息 [ v3.BindInfoGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *v3.BindInfoGetRequest) (*v3.BindInfoGetResult, error) ]
+    - 获取定向包 [ v3.Get(clt *core.SDKClient, accessToken string, req *v3.GetRequest) (*v3.GetResult, error) ]
+    - 获取定向包(旧) [ Get(clt *core.SDKClient, accessToken string, req *audiencepackage.GetRequest) (*audiencepackage.GetResponseData, error) ]
     - 创建定向包 [ Create(clt *core.SDKClient, accessToken string, req *audiencepackage.CreateRequest) (uint64, error) ]
     - 更新定向包 [ Update(clt *core.SDKClient, accessToken string, req *audiencepackage.UpdateRequest) (uint64, error) ]
     - 删除定向包 [ Delete(clt *core.SDKClient, accessToken string, req *audiencepackage.DeleteRequest) (uint64, error) ]

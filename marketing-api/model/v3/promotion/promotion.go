@@ -44,9 +44,9 @@ type Promotion struct {
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// IsCommentDisable 广告评论，ON为启用，OFF为不启用
-	IsCommentDisable model.ReverseOnOffInt `json:"is_comment_disable,omitempty"`
+	IsCommentDisable enum.OnOff `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
-	AdDownloadStatus model.OnOffInt `json:"ad_download_status,omitempty"`
+	AdDownloadStatus enum.OnOff `json:"ad_download_status,omitempty"`
 	// MaterialsType 素材类型
 	MaterialsType enum.MaterialsType `json:"materials_type,omitempty"`
 	// Source 广告来源
@@ -223,7 +223,7 @@ type PromotionMaterial struct {
 	// CallToActionButtons 行动号召文案
 	CallToActionButtons []string `json:"call_to_action_buttons,omitempty"`
 	// IntelligentGeneration 智能生成行动号召按钮，开启后即对应的文案自动生成，可选项为OFF（默认）、ON
-	IntelligentGeneration string `json:"intelligent_generation,omitempty"`
+	IntelligentGeneration enum.OnOff `json:"intelligent_generation,omitempty"`
 }
 
 // VideoMaterial 视频素材信息
@@ -395,7 +395,7 @@ type NativeSetting struct {
 	// IsFeedAndFavSee 主页作品列表隐藏广告内容
 	// 允选值：OFF（不隐藏），ON（隐藏）
 	// 默认值：OFF
-	IsFeedAndFavSee string `json:"is_feed_and_fav_see,omitempty"`
+	IsFeedAndFavSee enum.OnOff `json:"is_feed_and_fav_see,omitempty"`
 	// AnchorRelatedType 原生锚点启用开关，允许值:
 	// 不启用 OFF，自动生成 AUTO，手动选择 SELECT
 	// 默认值为 OFF

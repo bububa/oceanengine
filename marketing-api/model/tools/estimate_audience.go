@@ -59,7 +59,7 @@ type EstimateAudienceRequest struct {
 	// AppIDs （老版行为兴趣）APP行为定向——按APP（请注意如果投放的是"应用下载-IOS"不支持设置APP行为定向，请勿传值。）可通过【工具-查询工具-查询应用信息】获取。当app_behavior_target为APP时有值
 	AppIDs []uint64 `json:"app_ids,omitempty"`
 	// SuperiorPopularityType 媒体定向;
-	SuperiorPopularityType string `json:"superior_popularity_type,omitempty"`
+	SuperiorPopularityType enum.SuperiorPopularityType `json:"superior_popularity_type,omitempty"`
 	// FlowPackage 定向逻辑
 	FlowPackage []uint64 `json:"flow_package,omitempty"`
 	// ExcludeFlowPackage 排除定向逻辑

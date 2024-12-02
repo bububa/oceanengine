@@ -8,7 +8,9 @@ import (
 
 // CreateRequest 创建定向包 API Request
 type CreateRequest struct {
-	Audience
+	AudienceBase
+	// FilterAwemeAbnormalActive （抖音号推广特有）过滤高活跃用户; 取值：0表示不过滤，1表示过滤
+	FilterAwemeAbnormalActive *int `json:"filter_aweme_abnormal_active,omitempty"`
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Name 定向包名称

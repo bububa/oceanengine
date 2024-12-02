@@ -3,6 +3,7 @@ package advertiser
 import (
 	"strconv"
 
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -13,7 +14,7 @@ type FundGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// GrantTypeSplit 是否拆分赠款类型，允许值：
 	// 开启 ON ，关闭 OFF（默认）
-	GrantTypeSplit string `json:"grant_type_split,omitempty"`
+	GrantTypeSplit enum.OnOff `json:"grant_type_split,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -21,7 +22,7 @@ func (r FundGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.GrantTypeSplit != "" {
-		values.Set("grant_type_split", r.GrantTypeSplit)
+		values.Set("grant_type_split", string(r.GrantTypeSplit))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
