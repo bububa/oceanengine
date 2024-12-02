@@ -21,7 +21,7 @@ type AccountFundGetRequest struct {
 	// GrantTypeSplit 是否拆分赠款类型，允许值：
 	// ON 开启
 	// OFF 关闭（默认）
-	GrantTypeSplit string `json:"grant_type_split,omitempty"`
+	GrantTypeSplit enum.OnOff `json:"grant_type_split,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -30,7 +30,7 @@ func (r AccountFundGetRequest) Encode() string {
 	values.Set("account_ids", string(util.JSONMarshal(r.AccountIDs)))
 	values.Set("account_type", string(r.AccountType))
 	if r.GrantTypeSplit != "" {
-		values.Set("grant_type_split", r.GrantTypeSplit)
+		values.Set("grant_type_split", string(r.GrantTypeSplit))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)

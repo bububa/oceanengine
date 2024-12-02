@@ -30,7 +30,7 @@ type CreateRequest struct {
 	// CampaignBudgetOptimization 支持预算择优分配允许值：
 	// ON 开启，OFF 不开启(默认值)
 	// 广告主商品类型为CAMPAIGN_DPA_MULTI_DELIVERY时不允许开启预算择优分配
-	CampaignBudgetOptimization string `json:"campaign_budget_optimization,omitempty"`
+	CampaignBudgetOptimization enum.OnOff `json:"campaign_budget_optimization,omitempty"`
 	// SmartBidType 出价方式（投放场景），campaign_budget_optimization为ON时必填，且必须为SMART_BID_NO_BID
 	SmartBidType enum.SmartBidType `json:"smart_bid_type,omitempty"`
 	// UniqueFk 第三方唯一键，传该值时保证接口重试的幂等性，请注意，带有相同unique_fk的请求服务端会视为同一个广告处理。仅在创建接口传入且无法修改，如果创建时传入了已存在的唯一键值，那么会返回该唯一键值所对应的广告组ID。该值可用于内部系统会生成的唯一ID与头条ID做关联的场景，避免超时重试实际上一次创建请求又成功导致的重复创建问题，通过unique_fk可与内部系统ID实现关联并避免重复创建，可结合实际场景选择使用，广告组中的unique_fk要求不重复，与计划中的unique_fk无相关。

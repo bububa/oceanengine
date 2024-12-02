@@ -215,11 +215,12 @@ func (ooi *OnOffInt) UnmarshalJSON(b []byte) (err error) {
 	}
 	str := string(b)
 	var i int
-	if str == "ON" {
+	switch str {
+	case "ON":
 		i = 1
-	} else if str == "OFF" {
+	case "OFF":
 		i = 0
-	} else {
+	default:
 		i, _ = strconv.Atoi(str)
 	}
 	*ooi = OnOffInt(i)
@@ -245,11 +246,12 @@ func (ooi *ReverseOnOffInt) UnmarshalJSON(b []byte) (err error) {
 	}
 	str := string(b)
 	var i int
-	if str == "ON" {
+	switch str {
+	case "ON":
 		i = 0
-	} else if str == "OFF" {
+	case "OFF":
 		i = 1
-	} else {
+	default:
 		i, _ = strconv.Atoi(str)
 	}
 	*ooi = ReverseOnOffInt(i)

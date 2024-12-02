@@ -1,9 +1,15 @@
-package audiencepackage
+package v3
 
-import "github.com/bububa/oceanengine/marketing-api/enum"
+import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model/audiencepackage"
+)
 
 // AudiencePackage 定向包信息
 type AudiencePackage struct {
+	audiencepackage.AudienceBase
+	// FilterAwemeAbnormalActive （抖音号推广特有）过滤高活跃用户; 取值：0表示不过滤，1表示过滤
+	FilterAwemeAbnormalActive enum.OnOff `json:"filter_aweme_abnormal_active,omitempty"`
 	// AdvertiserID 广告主ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// InterestActionMode 行为兴趣选择，枚举值：
@@ -44,6 +50,6 @@ type AudiencePackage struct {
 	HideIfConverted enum.HideIfConverted `json:"hide_if_converted,omitempty"`
 	// ConvertedTimeDuration 过滤时间范围，详见， 【附录-过滤时间范围】，当过滤已转化用户类型选择"公司账户"时填写，教育行业专属，非教育行业不会生效
 	ConvertedTimeDuration enum.ConvertedTimeDuration `json:"converted_time_duration,omitempty"`
-	// Audience
-	Audience *Audience `json:"audience,omitempty"`
+	// CarrierRegionOptimize 运营商号段开关，枚举值：ON 开启 / OFF 关闭
+	CarrierRegionOptimize enum.OnOff `json:"carrier_region_optimize,omitempty"`
 }

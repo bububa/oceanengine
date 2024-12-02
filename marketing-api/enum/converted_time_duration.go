@@ -1,4 +1,4 @@
-package local
+package enum
 
 // ConvertedTimeDuration 过滤已转化投放时间
 type ConvertedTimeDuration string

@@ -19,7 +19,7 @@ type UpdateRequest struct {
 	// 2. deep_bid_type = DEEP_BID_DEFAULT 无深度优化方式 /BID_PER_ACTION 每次付费
 	SearchBidRatio float64 `json:"search_bid_ratio,omitempty"`
 	// AudienceExtend 定向拓展, 允许值：ON:开启（默认值）， OFF:关闭
-	AudienceExtend string `json:"audience_extend,omitempty"`
+	AudienceExtend enum.OnOff `json:"audience_extend,omitempty"`
 	// Keywords 搜索关键词列表
 	Keywords *[]Keyword `json:"keywords,omitempty"`
 	// DownloadMode 优先从系统应用商店下载（下载模式），枚举值：APP_STORE_DELIVERY 优先商店下载、 DEFAULT 默认下载

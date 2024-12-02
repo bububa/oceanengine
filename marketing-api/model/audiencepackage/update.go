@@ -73,7 +73,7 @@ type UpdateRequest struct {
 	// LocationType 位置类型;取值：CURRENT正在该地区的用户，HOME居住在该地区的用户，TRAVEL到该地区旅行的用户，ALL该地区内的所有用户;当city和district有值时返回值
 	LocationType enum.LocationType `json:"location_type,omitempty"`
 	// SuperiorPopularityType 媒体定向;
-	SuperiorPopularityType string `json:"superior_popularity_type,omitempty"`
+	SuperiorPopularityType enum.SuperiorPopularityType `json:"superior_popularity_type,omitempty"`
 	// FlowPackage 定向逻辑
 	FlowPackage []uint64 `json:"flow_package,omitempty"`
 	// ExcludeFlowPackage 排除定向逻辑

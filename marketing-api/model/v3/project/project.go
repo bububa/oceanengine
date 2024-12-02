@@ -354,17 +354,17 @@ type Audience struct {
 	// Carrier 运营商, 详见【附录-受众运营商类型】
 	Carrier *[]enum.Carrier `json:"carrier,omitempty"`
 	// HideIfExists 过滤已安装，枚举值：UNLIMITED不限、FILTER 过滤、TARGETING 定向
-	HideIfExists string `json:"hide_if_exists,omitempty"`
+	HideIfExists enum.HideIfConverted `json:"hide_if_exists,omitempty"`
 	// HideIfConverted 过滤已转化用户
 	// 枚举值：NO_EXCLUDE 不限制、PROMOTION 广告、PROJECT 推广项目、ADVERTISER 广告账户、APP 应用、CUSTOMER 客户、ORGANIZATION 组织
-	HideIfConverted string `json:"hide_if_converted,omitempty"`
+	HideIfConverted enum.HideIfConverted `json:"hide_if_converted,omitempty"`
 	// ConvertedTimeDuration 过滤时间范围，详见 【附录-过滤时间范围】
-	ConvertedTimeDuration string `json:"converted_time_duration,omitempty"`
+	ConvertedTimeDuration enum.ConvertedTimeDuration `json:"converted_time_duration,omitempty"`
 	// FilterAwemeAbnormalActive 过滤高活跃用户，即过滤关注、点赞、评论行为高活跃的用户允许值：
 	// ON 过滤
 	// OFF不过滤（默认值）
 	// 当marketing_goal= LIVE 且inventory_type非仅穿山甲时，支持该字段
-	FilterAwemeAbnormalActive *model.OnOffInt `json:"filter_aweme_abnormal_active,omitempty"`
+	FilterAwemeAbnormalActive enum.OnOff `json:"filter_aweme_abnormal_active,omitempty"`
 	// FilterAwemeFansCount 过滤高关注数用户，例如"filter_aweme_fans_count": 1000表示过滤粉丝数在1000以上的用户
 	// 允许值：1000、500、200
 	// 当marketing_goal= Live 且inventory_type非仅穿山甲时，支持该字段
@@ -373,7 +373,7 @@ type Audience struct {
 	// ON 过滤
 	// OFF不过滤（默认值）
 	// 当marketing_goal= Live 且inventory_type非仅穿山甲时，支持该字段
-	FilterOwnAwemeFans *model.OnOffInt `json:"filter_own_aweme_fans,omitempty"`
+	FilterOwnAwemeFans enum.OnOff `json:"filter_own_aweme_fans,omitempty"`
 	// DeviceBrand 手机品牌, 详见【附录-手机品牌】
 	DeviceBrand *[]string `json:"device_brand,omitempty"`
 	// LaunchPrice 手机价格，价格区间，最高11000（表示1w以上）
@@ -382,12 +382,12 @@ type Audience struct {
 	AutoExtendTargets *[]string `json:"auto_extend_targets,omitempty"`
 	// DpaCity 地域匹配-商品所在城市开启时，仅将商品投放给位于该商品设置的可投城市的用户默认值：OFF允许值：OFF，ON（OFF表示不启用，ON表示启用）
 	// DPA推广目的下有效
-	DpaCity string `json:"dpa_city,omitempty"`
+	DpaCity enum.OnOff `json:"dpa_city,omitempty"`
 	// DpaRtaSwitch RTA重定向开关，
 	// 默认值：OFF允许值：OFF，ON（OFF表示不启用，ON表示启用）
 	// 启用后，需通过【设置账户下RTA策略生效范围-工具-商业开放平台】绑定rta策略
 	// DPA推广目的下有效
-	DpaRtaSwitch string `json:"dpa_rta_switch,omitempty"`
+	DpaRtaSwitch enum.OnOff `json:"dpa_rta_switch,omitempty"`
 	// RtaID RTA策略ID，通过【获取可用的RTA策略】接口获取
 	// 开启RTA重定向开关时必填
 	// DPA推广目的下有效
@@ -417,7 +417,7 @@ type DeliverySetting struct {
 	// 允许值：
 	// ON 开启（默认值），
 	// OFF 不开启
-	ProjectCustom string `json:"project_custom,omitempty"`
+	ProjectCustom enum.OnOff `json:"project_custom,omitempty"`
 	// Bid 点击出价/展示出价，当delivery_mode = MANUAL&&项目成本稳投开启&&pricing=CPC时填写有效；取值范围：0.2-999
 	Bid float64 `json:"bid,omitempty"`
 	// DeepBidType 深度优化方式，当转化目标中含有深度转化时，该字段必填
@@ -458,12 +458,12 @@ type DeliverySetting struct {
 	// RoiGoal 深度转化ROI系数(注意：nobid不返回该字段)
 	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// BudgetOptimizeSwitch 支持预算择优分配，枚举值： ON 开启，OFF 不开启
-	BudgetOptimizeSwitch enum.BudgetOptimizeSwitch `json:"budget_optimize_switch,omitempty"`
+	BudgetOptimizeSwitch enum.OnOff `json:"budget_optimize_switch,omitempty"`
 	// SearchContinueDelivery 续投，仅当delivery_type = DURATION搜索广告周期投放时必填，允许值：
 	// OFF:关闭，关闭表示周期稳投7天后投放将自动终止
 	// ON:开启，开启表示投放结束后将继续维持7天固定周期的投放，跑量更加稳定，可以延续跑量
 	// 仅支持周期稳投链路，其他链路下传入该参数不生效
-	SearchContinueDelivery string `json:"search_continue_delivery,omitempty"`
+	SearchContinueDelivery enum.OnOff `json:"search_continue_delivery,omitempty"`
 	// ShopMultiRoiGoals 多ROI系数
 	// 条件必填，object[]，多ROI系数设置，表示引流电商多平台投放ROI系数及平台信息，广告主可按照电商平台分别确定ROI系数，分平台调控出价。list长度最长为4
 	// 多平台优选投放白名单内客户，在以下组合场景时shop_multi_roi_goals有效且必填

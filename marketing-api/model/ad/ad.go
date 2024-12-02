@@ -94,7 +94,7 @@ type Ad struct {
 	// FeedDeliverySearch 搜索快投关键词，HAS_OPEN:启用，DISABLE:不启用
 	FeedDeliverySearch string `json:"feed_delivery_search,omitempty"`
 	// IntelligentFlowSwitch 智能流量开关，ON:开启，OFF:关闭
-	IntelligentFlowSwitch string `json:"intelligent_flow_switch,omitempty"`
+	IntelligentFlowSwitch enum.OnOff `json:"intelligent_flow_switch,omitempty"`
 	// OpenUrl 直达链接(点击唤起APP)
 	OpenUrl string `json:"open_url,omitempty"`
 	// AdvancedCreativeType 附加创意类型; 允许值: ATTACHED_CREATIVE_GAME_PACKAGE游戏礼包码,ATTACHED_CREATIVE_GAME_FORM游戏表单收集,ATTACHED_CREATIVE_GAME_SUBSCRIBE游戏预约,ATTACHED_CREATIVE_NONE无推广目的为应用推广类型、下载方式选择下载链接且下载链接为安卓应用下载时才可以设置
@@ -178,11 +178,11 @@ type Ad struct {
 	// AudiencePackageID 定向包ID
 	AudiencePackageID uint64 `json:"audience_package_id,omitempty"`
 	// HideIfExists 过滤已安装，当推广目标为安卓应用下载时可填，0表示不限，1表示过滤，2表示定向。默认为不限;默认值:0; 取值: 0, 1, 2。建议促进app活跃度客户使用定向安装功能。选择定向安装时，向已安装客户展示广告；投放时优先获取直达链接，无直达链接时使用应用包名进行投放；如果无直达链接或应用包名，定向安装选项实际不生效；仅对Android链接生效。
-	HideIfExists int `json:"hide_if_exists,omitempty"`
+	HideIfExists enum.HideIfExists `json:"hide_if_exists,omitempty"`
 	// HideIfConverted 过滤已转化用户
-	HideIfConverted string `json:"hide_if_converted,omitempty"`
+	HideIfConverted enum.HideIfConverted `json:"hide_if_converted,omitempty"`
 	// ConvertedTimeDuration 过滤时间范围
-	ConvertedTimeDuration string `json:"converted_time_duration,omitempty"`
+	ConvertedTimeDuration enum.ConvertedTimeDuration `json:"converted_time_duration,omitempty"`
 	// DpaLbs 地域匹配-LBS;开启时，根据用户的地理位置信息，给用户投放位于其附近的产品 ;取值：0，1（0表示不启用，1表示启用）
 	DpaLbs *int `json:"dpa_lbs,omitempty"`
 	// DpaCity 地域匹配-商品所在城市;开启时，仅将商品投放给位于该商品设置的可投城市的用户 ;取值：0，1（0表示不启用，1表示启用）
@@ -246,7 +246,7 @@ type Ad struct {
 	// LauhchTargetType 投放类型，LIVE_CONVERT：直播间转化、APP：应用下载、EXTERNAL：线索收集
 	LaunchTargetType string `json:"launch_target_type,omitempty"`
 	// AutoUpdateKeyword 是否开启自动加词，ON 开启、OFF 关闭
-	AutoUpdateKeyword string `json:"auto_update_keyword,omitempty"`
+	AutoUpdateKeyword enum.OnOff `json:"auto_update_keyword,omitempty"`
 	// LandingPageStayTime 店铺停留时长，单位为毫秒
 	LandingPageStayTime int64 `json:"landing_page_stay_time,omitempty"`
 	// TargetCvr 目标转化率
@@ -322,7 +322,7 @@ type Audience struct {
 	// FilterOwnAwemeFans （抖音号推广特有）过滤自己的粉丝; 取值：0表示不过滤，1表示过滤
 	FilterOwnAwemeFans int `json:"filter_own_aweme_fans,omitempty"`
 	// SuperiorPopularityType 媒体定向;
-	SuperiorPopularityType string `json:"superior_popularity_type,omitempty"`
+	SuperiorPopularityType enum.SuperiorPopularityType `json:"superior_popularity_type,omitempty"`
 	// FlowPackage 定向逻辑
 	FlowPackage []uint64 `json:"flow_package,omitempty"`
 	// ExcludeFlowPackage 排除定向逻辑
@@ -352,7 +352,7 @@ type Audience struct {
 	// AutoExtendTarget 可放开定向。当auto_extend_enabled=1 时选填。详见：【附录-可开放定向】。缺省为全不选。
 	AutoExtendTarget []string `json:"auto_extend_targets,omitempty"`
 	// DpaRtaSwitch RTA重定向选项，值：ON:开启，OFF：关闭
-	DpaRtaSwitch string `json:"dpa_rta_switch,omitempty"`
+	DpaRtaSwitch enum.OnOff `json:"dpa_rta_switch,omitempty"`
 	// DpaRtaRecommendType RTA推荐逻辑，ONLY:仅RTA推荐商品，MORE：基于RTA推荐更多商品
 	DpaRtaRecommendType string `json:"dpa_rta_recommend_type,omitempty"`
 }
@@ -364,21 +364,27 @@ func (a Ad) Version() model.AdVersion {
 func (a Ad) GetID() uint64 {
 	return a.ID
 }
+
 func (a Ad) GetName() string {
 	return a.Name
 }
+
 func (a Ad) GetCampaignID() uint64 {
 	return a.CampaignID
 }
+
 func (a Ad) GetAdvertiserID() uint64 {
 	return a.AdvertiserID
 }
+
 func (a Ad) GetOptStatus() enum.AdOptStatus {
 	return a.OptStatus
 }
+
 func (a Ad) GetBudget() float64 {
 	return a.Budget
 }
+
 func (a Ad) GetCpaBid() float64 {
 	return a.CpaBid
 }

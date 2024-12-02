@@ -63,7 +63,7 @@ type Audience struct {
 	// PROJECT 项目
 	// PROMOTION 广告
 	// 当external_action=SHOW 展示量时，不支持该字段
-	HideIfConverted local.HideIfConverted `json:"hide_if_converted,omitempty"`
+	HideIfConverted enum.HideIfConverted `json:"hide_if_converted,omitempty"`
 	// ConvertedTimeDuration 过滤已转化投放时间，允许值：
 	// SEVEN_DAY 七天（默认值）
 	// ONE_MONTH 1个月
@@ -72,7 +72,7 @@ type Audience struct {
 	// TWELVE_MONTH 12个月
 	// TODAY 当天
 	// 仅当hide_if_converted设置为CUSTOMER或ORGANIZATION，该字段有效，不传默认7天，其余场景该字段无效。
-	ConvertedTimeDuration local.ConvertedTimeDuration `json:"converted_time_duration,omitempty"`
+	ConvertedTimeDuration enum.ConvertedTimeDuration `json:"converted_time_duration,omitempty"`
 }
 
 // Region 行政区域信息
