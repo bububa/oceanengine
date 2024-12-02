@@ -30,9 +30,9 @@ type CreateRequest struct {
 	// NativeSetting 原生广告设置
 	NativeSetting *NativeSetting `json:"native_setting,omitempty"`
 	// IsCommentDisable 广告评论，ON为启用，OFF为不启用
-	IsCommentDisable string `json:"is_comment_disable,omitempty"`
+	IsCommentDisable enum.OnOff `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
-	AdDownloadStatus string `json:"ad_download_status,omitempty"`
+	AdDownloadStatus enum.OnOff `json:"ad_download_status,omitempty"`
 	// Source 广告来源，字数限制：[1-10]
 	// 当landing_type = LINK、MICRO_GAME时必填
 	Source string `json:"source,omitempty"`
@@ -63,13 +63,13 @@ type CreateRequest struct {
 	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// AutoExtendTraffic 智能拓流
 	// 允许值：ON开启（默认值）； OFF关闭
-	AutoExtendTraffic string `json:"auto_extend_traffic,omitempty"`
+	AutoExtendTraffic enum.OnOff `json:"auto_extend_traffic,omitempty"`
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// CreativeAutoGenerateSwitch 是否开启自动生成素材
 	// 默认值：OFF
 	// 枚举值：ON开启、OFF不开启
-	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
+	CreativeAutoGenerateSwitch enum.OnOff `json:"creative_auto_generate_switch,omitempty"`
 	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
 	ConfigID uint64 `json:"config_id,omitempty"`
 	// 7d_retention 表示7日留存天数，单位：天，取值范围[0.01，7.00]，仅支持最多2位小数。

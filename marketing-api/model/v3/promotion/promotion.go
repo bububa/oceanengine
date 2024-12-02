@@ -70,7 +70,7 @@ type Promotion struct {
 	// CreativeAutoGenerateSwitch 是否开启自动生成素材
 	// 默认值：OFF
 	// 枚举值：ON开启、OFF不开启
-	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
+	CreativeAutoGenerateSwitch enum.OnOff `json:"creative_auto_generate_switch,omitempty"`
 	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
 	ConfigID uint64 `json:"config_id,omitempty"`
 	// BrandInfo 品牌信息
@@ -167,7 +167,7 @@ type PromotionMaterial struct {
 	DecorationMaterial []DecorationMaterial `json:"decoration_material,omitempty"`
 	// AutoExtendTraffic 智能拓流
 	// 允许值：ON开启（默认值）； OFF关闭
-	AutoExtendTraffic string `json:"auto_extend_traffic,omitempty"`
+	AutoExtendTraffic enum.OnOff `json:"auto_extend_traffic,omitempty"`
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// ComponentMaterialList 创意组件信息
@@ -208,7 +208,7 @@ type PromotionMaterial struct {
 	// Ulink 直达备用链接，支持穿山甲和站内广告位
 	Ulink string `json:"ulink,omitempty"`
 	// DynamicCreateiveSwitch 动态创意开关，允许值：ON开启（默认值），OFF关闭，当ad_type=SEARCH时有效
-	DynamicCreateiveSwitch string `json:"dynamic_creative_switch,omitempty"`
+	DynamicCreateiveSwitch enum.OnOff `json:"dynamic_creative_switch,omitempty"`
 	// AdvancedDcSettings 动态创意高级设置，仅搜索广告下可设置。注意：
 	// 仅当广告类型ad_type = SEARCH搜索广告，动态创意开关dynamic_creative_switch =ON时可传入，否则报错
 	// 必须传入至少1个值，动态创意开关开启dynamic_creative_switch =ON时，此参数传空值或非允许值会报错

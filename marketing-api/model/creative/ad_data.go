@@ -39,7 +39,7 @@ type AdData struct {
 	// AdDownloadStatus 允许客户端下载视频功能，0为开启，即允许客户端下载视频；1为关闭，即不允许客户端下载视频。默认不传值，表示允许客户端下载视频。关闭客户端下载视频功能仅对本地上传的视频有效。
 	AdDownloadStatus *int `json:"ad_download_status,omitempty"`
 	// PriorityTrail 是否优先调起试玩。当推广目的为应用推广且使用搭配试玩素材时可以开启该功能。允许值：ON开启，OFF关闭
-	PriorityTrail string `json:"priority_trail,omitempty"`
+	PriorityTrail enum.OnOff `json:"priority_trail,omitempty"`
 	// Supplements 云游戏
 	Supplements []SupplementInfo `json:"supplements,omitempty"`
 	// DynamicCreativeSwitch 启用动态创意类型,详见【附录-动态创意类型】

@@ -297,7 +297,7 @@ type Audience struct {
 	// district =REGION/OVERSEA时必填
 	RegionVersion string `json:"region_version,omitempty"`
 	// RegionRecommend 地域智能放量定向，ON为开启、OFF为关闭
-	RegionRecommend string `json:"region_recommend,omitempty"`
+	RegionRecommend enum.OnOff `json:"region_recommend,omitempty"`
 	// City 地域定向省市或者区县列表，当district=CITY/COUNTY/REGION/OVERSEA时
 	// district =CITY/COUNTY时，详见【附件-city.json】
 	// district =REGION/OVERSEA时，通过【获取行政信息】接口获取
