@@ -13,6 +13,17 @@ type UpdateRequest struct {
 	ProjectID uint64 `json:"project_id,omitempty"`
 	// Name 项目名称
 	Name string `json:"name,omitempty"`
+	// AigcDynamicCreativeSwitch
+	// 是否开启AIGC动态创意，系统将根据创意生态要求生成素材探索，不传表示不开启，枚举值：
+	// ON 开启
+	// OFF 关闭
+	// 注意：
+	// 该功能仅支持行业白名单客户使用，如需使用可咨询对接销售/运营
+	// 必须关联产品投放，才可设置该开关（即必须传入related_product结构体）
+	// 如投放短剧商品，需要开启AIGC动态创意，请确保：
+	// 关联短剧商品内包含字节小程序推广链接
+	// 短剧剧目已获取原片使用权，可通过「查询短剧商品原片授权申请状态」接口查询授权申请状态
+	AigcDynamicCreativeSwitch enum.OnOff `json:"aigc_dynamic_creative_switch,omitempty"`
 	// SearchBidRatio 出价系数，默认系数为1，出价系数可通过【获取快投推荐出价系数】查询，小数点后最多两位,取值范围 [1,2]
 	// 当符合以下所有条件时填写有效
 	// 1. bid_type != NO_BID && pricing = PRICING_OCPM
