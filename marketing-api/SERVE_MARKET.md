@@ -11,3 +11,4 @@
 - 应用市场(api/serve_market)
   - 获取应用订单数据 [ OrderGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *servemarket.OrderGetRequest) (*servemarket.OrderGetResponseData, error) ]
   - 获取用户已购功能点列表 [ ActiveFuncGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *servemarket.ActiveFuncGetRequest) ([]servemarket.OrderFunction, error) ]
+  - 获取App Access Token校验信息 [ CidVerifyToken(ctx context.Context, clt *core.SDKClient, token string) (*servemarket.CidVerifyTokenResult, error) ]
