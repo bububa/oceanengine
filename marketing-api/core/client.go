@@ -45,6 +45,7 @@ type SDKClient struct {
 	limiter    RateLimiter
 	Secret     string
 	operatorIP string
+	preReqs    []PreRequest
 	AppID      uint64
 	debug      bool
 	sandbox    bool
@@ -93,6 +94,14 @@ func (c *SDKClient) WithTracer(namespace string) {
 	c.tracer = NewOtel(namespace, c.AppID)
 }
 
+func (c *SDKClient) WithPreRequests(reqs ...PreRequest) {
+	c.preReqs = reqs
+}
+
+func (c *SDKClient) AddPreRequests(reqs ...PreRequest) {
+	c.preReqs = append(c.preReqs, reqs...)
+}
+
 // Copy 复制SDKClient
 func (c *SDKClient) Copy() *SDKClient {
 	return &SDKClient{
@@ -103,6 +112,7 @@ func (c *SDKClient) Copy() *SDKClient {
 		operatorIP: c.operatorIP,
 		client:     c.client,
 		tracer:     c.tracer,
+		preReqs:    c.preReqs,
 	}
 }
 
@@ -380,8 +390,17 @@ func (c *SDKClient) AnalyticsV1Post(ctx context.Context, gw string, req model.Po
 	return c.WithSpan(ctx, httpReq, resp, reqBytes, c.fetch)
 }
 
+type PreRequest func(httpReq *http.Request) error
+
 // fetch execute http request
 func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) (*http.Response, error) {
+	if len(c.preReqs) > 0 {
+		for _, req := range c.preReqs {
+			if err := req(httpReq); err != nil {
+				return nil, err
+			}
+		}
+	}
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return httpResp, err
