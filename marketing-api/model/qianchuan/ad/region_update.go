@@ -32,6 +32,12 @@ type RegionUpdateRequest struct {
 	// 注意：
 	// 1、当地域定向类型为“不限”/地域定向的用户状态类型为“正在该地区的用户”才支持
 	ExcludeLimitedRegion int `json:"exclude_limited_region,omitempty"`
+	// ElectricFenceRegion 电子围栏定向，可选值:
+	// 1 不支持电子围栏地区
+	// 2 支持电子围栏地区
+	ElectricFenceRegion int `json:"electric_fence_region,omitempty"`
+	// RegionVersion 行政区域版本号，可选值： 2.3.3 新版本
+	RegionVersion string `json:"region_version,omitempty"`
 }
 
 // Encode implement PostRequest interface
