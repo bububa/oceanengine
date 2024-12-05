@@ -8,6 +8,17 @@ import (
 // MaterialType 素材类型
 type MaterialType string
 
+const (
+	// MaterialType_IMAGE 图片，图文
+	MaterialType_IMAGE MaterialType = "IMAGE"
+	// MaterialType_TITLE 标题
+	MaterialType_TITLE MaterialType = "TITLE"
+	// MaterialType_LIVE_ROOM 直播间画面
+	MaterialType_LIVE_ROOM MaterialType = "LIVE_ROOM"
+	// MaterialType_VIDEO 视频
+	MaterialType_VIDEO MaterialType = "VIDEO"
+)
+
 // AdMaterialInfo 素材信息
 type AdMaterialInfo struct {
 	// MaterialInfo 素材信息

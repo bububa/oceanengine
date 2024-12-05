@@ -66,6 +66,8 @@
     - 获取账户下素材列表 [ Get(ctx context.Context, clt *core.SDKClient, accessToken string, req *material.GetRequest) (*material.GetResult, error) ]
     - 获取计划下素材列表 [ AdMaterialGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *material.AdMaterialGetRequest) (*material.AdMaterialGetResult, error) ]
     - 删除广告计划下素材 [ AdMaterialDelete(ctx context.Context, clt *core.SDKClient, accessToken string, req *material.AdMaterialDeleteRequest) error ]
+    - 计划下素材审核建议 [ Suggestion(ctx context.Context, clt *core.SDKClient, accessToken string, req *material.SuggestionRequest) (*material.SuggestionResult, error) ]
+    - 获取素材关联计划 [ AdGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *material.AdGetRequest) (*material.AdGetResult, error) ]
   - 商品/直播间管理
     - 获取可投商品列表 [ AvailableGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *product.AvailableGetRequest) (*product.AvailableGetResponseData, error) ]
     - 获取千川账户下已授权抖音号 [ AuthorizedGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResponseData, error) ]

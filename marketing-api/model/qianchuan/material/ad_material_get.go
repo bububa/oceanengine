@@ -8,17 +8,6 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
-const (
-	// MaterialType_IMAGE 图片，图文
-	MaterialType_IMAGE MaterialType = "IMAGE"
-	// MaterialType_TITLE 标题
-	MaterialType_TITLE MaterialType = "TITLE"
-	// MaterialType_LIVE_ROOM 直播间画面
-	MaterialType_LIVE_ROOM MaterialType = "LIVE_ROOM"
-	// MaterialType_VIDEO 视频
-	MaterialType_VIDEO MaterialType = "VIDEO"
-)
-
 // AdMaterialGetRequest 获取计划下素材列表 API Request
 type AdMaterialGetRequest struct {
 	// Filtering 过滤条件
