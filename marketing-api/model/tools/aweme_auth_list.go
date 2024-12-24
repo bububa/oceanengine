@@ -85,7 +85,18 @@ type AwemeAuthItem struct {
 	// AuthStatus 授权状态
 	AuthStatus enum.AwemeAuthStatus `json:"auth_status,omitempty"`
 	// SubStatus 授权子状态，返回值
-	// INVALID_CANCEL: 主动操作解除授权、INVALID_EXPIRED: 授权期限已到、INVALID_REJECT: C端拒绝授权、INVALID_TIME_OUT: 超时未确认、RENEWING: 续期待确认、RENEW_FAIL: 续期申请失效、RENEW_SUCCESS: 续期成功
+	// RENEWING 续期待确认
+	// RENEW_FAIL 续期失效
+	// RENEW_SUCCESS 续期成功
+	// INVALID_TIME_OUT 超时未确认
+	// INVALID_EXPIRED 授权期限已到
+	// INVALID_CANCEL 主动操作解除授权
+	// INVALID_REJECT 抖音号作者拒绝授权
+	// INVALID_FAILED_BY_AWEME 授权申请失败
+	// RENEW_FAILED_BY_AWEME 授权续期申请失败
+	// AWEME_REVOKE_REQUEST 创作者发起解除申请
+	// INVALID_PROCESS_TIME_OUT 超时未处理自动解除
+	// CONFIRM_REVOKE_REQUEST 同意解除授权申请
 	SubStatus enum.AwemeAuthSubStatus `json:"sub_status,omitempty"`
 	// StartTime 授权开始时间，格式为yyyy-MM-dd HH:mm:ss
 	StartTime string `json:"start_time,omitempty"`
@@ -93,6 +104,30 @@ type AwemeAuthItem struct {
 	EndTime string `json:"end_time,omitempty"`
 	// VideoInfo 授权视频信息，若为单视频授权会返回
 	VideoInfo *AwemeAuthVideo `json:"video_info,omitempty"`
+	// Note 备注信息，发起抖音授权申请时填写的希望展示给抖音号创作者的备注，创作者可在授权邀请页&授权详情页查看
+	Note string `json:"note,omitempty"`
+	// AwemeCancelReason 抖音号作者发起解除授权的原因，仅当抖音号作者发起解除授权时有值，100字以内，可能包括：
+	// 不知道该授权是怎么建立的，申请解除授权
+	// 联系不到对方，无法进行合作沟通，申请解除授权
+	// 与对方合作到期或者有纠纷，申请解除授权
+	// 其他情况（作者会填写其他文案给到）
+	AwemeCancelReason string `json:"aweme_cancel_reason,omitempty"`
+	// AwemeCancelImageList 抖音号作者发起解除授权时上传的凭证信息（选填项，抖音号作者可能不填，此时该参数返回为null）
+	AwemeCancelImageList []string `json:"aweme_cancel_image_list,omitempty"`
+	// AwemeCancelNote 抖音号作者发起解除授权时填写的联系方式（选填项，抖音号作者可能不填，此时该参数返回为null）
+	AwemeCancelNote string `json:"aweme_cancel_note,omitempty"`
+	// WarningContent 抖音授权关系警告信息，您可根据该信息及时处理，可能返回
+	// 不达门槛：表示发起授权的抖音号未达到要求，详细未达门槛信息可通过auth_threshold_info获取
+	// 即将解除：表示抖音号作者已发起解除授权申请，您需要及时联系作者或同意解除
+	WarningContent []string `json:"warning_content,omitempty"`
+	// AuthThresholdInfo 当抖音号不达授权门槛时，您可通过此结构体获取具体不达门槛的原因并及时处理
+	// 当抖音号正常时，该结构体下信息会返回为空
+	AuthThresholdInfo *AwemeAuthThresholdInfo `json:"auth_threshold_info,omitempty"`
+	// HasVideoHpVisibilityLimit 发布新视频素材到该抖音号下时，视频主页可见性只能设置「仅单次展示可见」，枚举值：
+	// true：是
+	// false：否，表示无此限制
+	// 当值返回true时，代表在创建广告时添加新视频素材到该抖音号下推广，视频的主页可见性设置只允许HIDE_VIDEO_ON_HP「仅单次展示可见」
+	HasVideoHpVisibilityLimit bool `json:"has_video_hp_visibility_limit,omitempty"`
 }
 
 // AwemeAuthVideo 授权视频信息，若为单视频授权会返回
@@ -116,4 +151,24 @@ type AwemeAuthVideo struct {
 	// Mid 视频素材ID
 	// （仅抖音视频会有此字段，抖音图文素材没有此字段）
 	Mid string `json:"mid,omitempty"`
+}
+
+// AwemeAuthThresholdInfo 当抖音号不达授权门槛时，您可通过此结构体获取具体不达门槛的原因并及时处理
+type AwemeAuthThresholdInfo struct {
+	// IsAudit 是否已成年
+	// true表示 是
+	// false 表示 否，表示未成年，会导致不达门槛A
+	IsAudit bool `json:"is_audit,omitempty"`
+	// IsRealNameCert 是否已实名
+	// true表示 是
+	// false 表示 否，表示未实名，会导致不达门槛
+	IsRealNameCert bool `json:"is_real_name_cert,omitempty"`
+	// IsSeriousViolation 是否严重违规，
+	// true表示 严重违规，会导致不达门槛
+	// false 表示 没有严重违规
+	IsSeriousViolation bool `json:"is_serious_violation,omitempty"`
+	// IsReachedRiseFansCount 有效涨粉数是否达到1000
+	// true表示 达到
+	// false 表示 否，表示没有达到1000，会导致不达门槛
+	IsReachedRiseFansCount bool `json:"is_reached_rise_fans_count,omitempty"`
 }

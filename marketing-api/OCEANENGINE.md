@@ -220,8 +220,10 @@
   - 获取 DPA 商品库视频模板 [ VideoGet(clt *core.SDKClient, accessToken string, req *dpa.VideoGetRequest) (*dpa.VideoGetResponseData, error) ]
   - 创建DPA商品（已有商品id）/修改DPA商品 [ ProductUpdate(clt *core.SDKClient, accessToken string, req *dpa.ProductUpdateRequest) (uint64, error) ]
   - 创建DPA商品（无商品id） [ ProductCreate(clt *core.SDKClient, accessToken string, req *dpa.ProductCreateRequest) (uint64, error) ]
+  - 创建/编辑升级版商品 [ ClueProductSave(ctx context.Context, clt *core.SDKClient, accessToken string, req *dpa.ClueProductSaveRequest) (*dpa.ClueProductSaveResult, error) ]
   - 批量修改DPA商品状态 [ ProductStatusBatchUpdate(clt *core.SDKClient, accessToken string, req *dpa.ProductStatusBatchUpdateRequest) (*dpa.ProductStatusBatchUpdateResponseData, error) ]
   - 删除DPA商品 [ ProductDelete(clt *core.SDKClient, accessToken string, req *dpa.ProductDeleteRequest) error ]
+  - 删除升级版商品 [ ClueProductDelete(ctx context.Context, clt *core.SDKClient, accessToken string, req *dpa.ClueProductDeleteRequest) (*dpa.ClueProductDeleteResult, error) ]
   - 查询短剧商品原片授权申请状态 [ PlayletAuthGet(clt *core.SDKClient, accessToken string, req *dpa.PlayletAuthGetRequest) (*dpa.PlayletAuthGetResult, error) ]
 - 素材管理 (api/file)
   - 上传广告主图片 [ ImageAdvertiser(clt *core.SDKClient, accessToken string, req *file.ImageAdvertiserRequest) (*file.Image, error) ]
