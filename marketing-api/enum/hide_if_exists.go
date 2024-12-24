@@ -12,7 +12,7 @@ const (
 	// HideIfExists_FILTER 过滤，仅安卓应用推广时支持，其他情况传入不生效
 	HideIfExists_FILTER HideIfExists = "FILTER"
 	// HideIfExists_TARGETING 定向
-	HideIfExists_TARGETING HideIfExists = "TARGET"
+	HideIfExists_TARGETING HideIfExists = "TARGETING"
 )
 
 // UnmarshalJSON implement json Unmarshal interface
@@ -20,19 +20,19 @@ func (he *HideIfExists) UnmarshalJSON(b []byte) (err error) {
 	if b[0] == '"' && b[len(b)-1] == '"' {
 		b = b[1 : len(b)-1]
 	}
-	var ret int
 	str := string(b)
-	switch str {
-	case "UNLIMITED":
-		ret = 0
-	case "FILTER":
-		ret = 1
-	case "TARGETING":
-		ret = 2
-	default:
-		ret, _ = strconv.Atoi(str)
+	if ret, err := strconv.Atoi(str); err == nil {
+		switch ret {
+		case 0:
+			*he = HideIfExists_UNLIMITED
+		case 1:
+			*he = HideIfExists_FILTER
+		case 2:
+			*he = HideIfExists_TARGETING
+		}
+	} else {
+		*he = HideIfExists(str)
 	}
-	*he = HideIfExists(ret)
 	return
 }
 
