@@ -27,6 +27,7 @@
     - 批量删除推广产品资质 [ DeliveryPkgDelete(clt *core.SDKClient, accessToken string, req *advertiser.DeliveryPkgDeleteRequest) (*advertiser.DeliveryPkgDeleteResult, error) ]
   - 代理商账号管理 (api/agent)
     - 广告主列表 [ AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
+    - 广告主账户信息查询 [ AdvertiserInfoQuery(ctx context.Context, clt *core.SDKClient, accessToken string, req *agent.AdvertiserInfoQueryRequest) ([]agent.AccountDetail, error) ]
     - 修改广告主 [ AdvertiserUpdate(clt *core.SDKClient, accessToken string, req *agent.AdvertiserUpdateRequest) (*agent.AdvertiserUpdateResponseData, error) ]
     - 二级代理商列表 [ ChildAgentSelect(clt *core.SDKClient, accessToken string, req *agent.ChildAgentSelectRequest) ([]uint64, error) ]
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]

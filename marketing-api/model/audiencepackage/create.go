@@ -20,7 +20,7 @@ type CreateRequest struct {
 	// LandingType 定向包推广类型
 	LandingType enum.LandingType `json:"landing_type,omitempty"`
 	// DeliveryRange 广告投放范围【附录：广告投放范围】
-	DeliverRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
+	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
 	// AdType 广告类型，允许值：
 	// ALL 所有广告（默认值）
 	// SEARCH 搜索广告
