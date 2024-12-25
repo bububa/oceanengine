@@ -31,7 +31,7 @@ type AudiencePackage struct {
 	// MarketingGoal 营销场景：VIDEO_AND_IMAGE 短视频/图片， LIVE 直播
 	MarketingGoal enum.MarketingGoal `json:"marketing_goal,omitempty"`
 	// DeliveryRange 广告投放范围【附录：广告投放范围】
-	DeliverRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
+	DeliveryRange enum.AdDeliveryRange `json:"delivery_range,omitempty"`
 	// HideIfExists 已安装用户，0表示不限，1表示过滤，2表示定向；过滤表示投放时不给安装客户展示广告，支持应用推广；定向表示投放时给安装客户展示广告；投放时优先获取直达链接，无直达链接时使用应用包名进行投放；如果无直达链接或应用包名，定向安装选项实际不生效；定向仅对Android链接生效。
 	// 过滤已安装
 	// UNLIMITED不限（默认值）
