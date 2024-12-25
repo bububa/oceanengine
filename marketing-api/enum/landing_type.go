@@ -4,6 +4,8 @@ package enum
 type LandingType string
 
 const (
+	// EXTERNAL 落地页
+	EXTENAL LandingType = "EXTERNAL"
 	// LINK 销售线索收集
 	LINK LandingType = "LINK"
 	// APP 应用推广
@@ -26,4 +28,10 @@ const (
 	QUICK_APP LandingType = "QUICK_APP"
 	// NATIVE_ACTION 原生互动
 	NATIVE_ACTION LandingType = "NATIVE_ACTION"
+	// APP_ANDROID 应用下载-安卓
+	APP_ANDROID LandingType = "APP_ANDROID"
+	// APP_IOS 应用下载-IOS
+	APP_IOS LandingType = "APP_IOS"
+	// LIVE 直播间推广
+	LIVE LandingType = "LIVE"
 )
