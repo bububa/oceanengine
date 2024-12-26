@@ -40,6 +40,11 @@
     - 获取纵横组织下所有主体信息 [ businessplatform.CompanyInfoGet(clt *core.SDKClient, accessToken string, req *businessplatform.CompanyInfoGetRequest) (*businessplatform.CompanyInfoGetData, error) ]
     - 获取主体下的账户列表 [ businessplatform.CompanyAccountGet(clt *core.SDKClient, accessToken string, req *businessplatform.CompanyAccountGetRequest) (*businessplatform.CompanyAccountGetData, error) ]
   - 资金和流水管理 (api)
+    - 工作台转账-获取可转列表 [ customercenter.CanTransferTargetList(ctx context.Context, clt *core.SDKClient, accessToken string, req *customercenter.CanTransferTargetListRequest) (*customercenter.CanTransferTargetListResult, error) ]
+    - 工作台转账-获取最大可转余额 [ customercenter.CanTransferBalanceGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *customercenter.CanTransferBalanceGetRequest) ([]customercenter.CanTransferDetail, error) ]
+    - 工作台转账-查询账户转账余额 [ customercenter.TransferBalanceGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *customercenter.TransferBalanceGetRequest) ([]customercenter.TargetAmountDetail, error) ]
+    - 工作台转账-发起转账 [ customercenter.TransferCreate(ctx context.Context, clt *core.SDKClient, accessToken string, req *customercenter.TransferCreateRequest) (string, error) ]
+    - 工作台转账-查询转账单信息 [ customercenter.TransferDetailGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *customercenter.TransferDetailGetRequest) (*customercenter.TransferDetail, error) ]
     - 查询账号余额 [ advertiser.FundGet(clt *core.SDKClient, accessToken string, advertiserID uint64) (*advertiser.FundGetResult, error) ]
     - 批量查询账户余额 [ advertiser.AccountFundGet(clt *core.SDKClient, accessToken string, req *advertiser.AccountFundGetRequest) ([]advertiser.AccountFund, error) ]
     - 查询账号日流水 [ advertiser.FundDailyStat(clt *core.SDKClient, accessToken string, req *advertiser.FundDailyStatRequest) (*advertiser.FundDailyStatResponseData, error) ]
