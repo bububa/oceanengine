@@ -12,10 +12,15 @@
     - 广告主列表 [ AdvertiserSelect(clt *core.SDKClient, accessToken string, req *agent.AdvertiserSelectRequest) (*agent.AdvertiserSelectResponseData, error) ]
     - 二级代理商列表 [ ChildAgentSelect(clt *core.SDKClient, accessToken string, req *agent.ChildAgentSelectRequest) ([]uint64, error) ]
     - 获取代理商信息 [ Info(clt *core.SDKClient, accessToken string, req *agent.InfoRequest) ([]agent.Info, error) ]
+  - 资金和流水管理
+    - 批量查询账户余额 [ advertiser.AccountFundGet(clt *core.SDKClient, accessToken string, req *advertiser.AccountFundGetRequest) ([]advertiser.AccountFund, error) ]
+    - 查询账号日流水 [ advertiser.FundDailyStat(clt *core.SDKClient, accessToken string, req *advertiser.FundDailyStatRequest) (*advertiser.FundDailyStatResponseData, error) ]
+    - 查询代理商转账记录 [ agent.TransferTransactionRecord(clt *core.SDKClient, accessToken string, req *agent.TransferTransactionRecordRequest) (*agent.TransferTransactionRecordResult, error) ]
+    - 查询账号流水明细 [ advertiser.FundTransactionGet(clt *core.SDKClient, accessToken string, req *advertiser.FundTransactionGetRequest) ([]advertiser.FundTransactionGetResponseList, error) ]
 - 巨量星图 (api/star)
   - 获取星广联投(星图版)任务列表 [ task.List(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.ListRequest) (*task.ListResult, error) ]
   - 获取星广联投(星图版)任务维度数据 [ task.Detail(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.DetailRequest) (*task.Demand, error) ]
-  - 获取星广联投(星图版)视频维度数据 [ task.ItemList(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.ItemListRequest) ([]task.ItemStatInfo, error)  ]
+  - 获取星广联投(星图版)视频维度数据 [ task.ItemList(ctx context.Context, clt *core.SDKClient, accessToken string, req *task.ItemListRequest) ([]task.ItemStatInfo, error) ]
   - 获取星图客户任务列表 [ DemandList(clt *core.SDKClient, accessToken string, req *star.DemandListRequest) (*star.DemandListResult, error) ]
   - 获取星图客户任务订单列表 [ DemandOrderList(clt *core.SDKClient, accessToken string, req *star.DemandOrderListRequest) (*star.DemandOrderListResult, error) ]
   - 获取订单投后分析报表 [ ReportOrderOverviewGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResult, error) ]
