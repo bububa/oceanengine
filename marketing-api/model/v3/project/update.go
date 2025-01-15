@@ -48,6 +48,9 @@ type UpdateRequest struct {
 	// 数组长度限制：最大5条
 	// DPA推广目的下有效
 	DpaProductTarget []DpaProductTarget `json:"dpa_product_target,omitempty"`
+	// RelatedProduct 关联产品投放相关参数
+	// 该参数结构为非必填，不传即视为原关联产品无改动
+	RelatedProduct *RelatedProduct `json:"related_product,omitempty"`
 	// Audience 定向设置
 	Audience *Audience `json:"audience,omitempty"`
 	// DeliverySetting 投放设置
