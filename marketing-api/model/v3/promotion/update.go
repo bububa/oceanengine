@@ -14,6 +14,15 @@ type UpdateRequest struct {
 	PromotionID uint64 `json:"promotion_id,omitempty"`
 	// Name 广告名称，长度是1-50个字（两个英文字符占1个字）。名称不可重复
 	Name string `json:"name,omitempty"`
+	// PromotionRelatedProduct UBP多品广告素材组合
+	// 若创建项目为UBP多品项目，广告层级支持设置该参数结构
+	// 非必传，不传则对于UBP多品项目系统根据项目层级关联产品自动生成素材
+	// 对于UBP在广告层级设置的商品，其关联素材的个数限制：
+	// 多个商品总共设置视频素材<=60个
+	// 多个商品总共设置图片素材<=50个
+	// 多个商品总共设置标题素材<=30个
+	// 多个商品总共设置落地页素材<=30个
+	PromotionRelatedProduct []RelatedProduct `json:"promotion_related_product,omitempty"`
 	// PromotionMaterials 广告素材组合
 	PromotionMaterials *PromotionMaterial `json:"promotion_materials,omitempty"`
 	// NativeSetting 原生广告设置

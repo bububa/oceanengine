@@ -241,6 +241,43 @@ type Profession struct {
 	NovelGender string `json:"novel_gender,omitempty"`
 	// NovelAuthor 书籍作者
 	NovelAuthor string `json:"novel_author,omitempty"`
+	// CharCount 全篇字数，单选，枚举值：1w-10w 10w-20w 20w+
+	CharCount string `json:"char_count,omitempty"`
+	// MonetizationMode 书籍变现模式信息，单选枚举值：付费变现混合
+	MonetizationMode string `json:"monetization_mode,omitempty"`
+	// OnlineEarning 仅对变现模式选择变现、混和的用户必填。是否包含网赚内容，单选枚举值：是、否
+	OnlineEarning string `json:"online_earning,omitempty"`
+	// PayStartChapter 仅对变现模式选择付费、混和的用户必填，起始付费章节，整数，[0,9999]
+	PayStartChapter string `json:"pay_start_chapter,omitempty"`
+	// AdStartChapter 仅对变现模式选择变现、混和的用户必填，起始广告解锁章节，整数，[0,9999]
+	AdStartChapter string `json:"ad_start_chapter,omitempty"`
+	// ChapterPrice 仅对变现模式选择付费、混和的用户必填，单章价格（不含赠送），整数，[0,9999]
+	ChapterPrice string `json:"chapter_price,omitempty"`
+	// VipType 会员类型, 单选枚举：终身、年度、月度、周/天、无
+	VipType string `json:"vip_type,omitempty"`
+	// MaxPriceLevel 最高充值档位（元），整数，[0,9999]
+	MaxPriceLevel string `json:"max_price_level,omitempty"`
+	// MinPriceLevel 最低充值档位（元），整数，[0,9999]
+	MinPriceLevel string `json:"min_price_level,omitempty"`
+	// SuggestPriceLevel 推荐充值档位（元），整数，[0,9999]
+	SuggestPriceLevel string `json:"suggest_price_level,omitempty"`
+	// HasPaidContent 变现模式，枚举：
+	// 1付费
+	// 2混合
+	HasPaidContent string `json:"has_paid_content,omitempty"`
+	// HasMotivationContent 是否包含网赚内容，枚举：
+	// 1是
+	// 2否
+	HasMotivationContent string `json:"has_motivation_content,omitempty"`
+	// MembershipTypes 会员类型，枚举值：
+	// 1终身
+	// 2年度
+	// 3月度
+	// 4周/天
+	// 5无
+	MembershipTypes string `json:"membership_types,omitempty"`
+	// StartingUnlockEpisode 起始解锁集数，正整数，最多10位
+	StartingUnlockEpisode int `json:"starting_unlock_episode,omitempty"`
 	// NovelStar 书籍收藏数
 	NovelStar string `json:"novel_star,omitempty"`
 	// NovelType 书籍付费/免费信息，枚举值：免费小说 付费小说

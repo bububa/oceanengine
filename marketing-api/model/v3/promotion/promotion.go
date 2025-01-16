@@ -481,3 +481,10 @@ type CarouselMaterial struct {
 	// ImageSubject 图片主题
 	ImageSubject []file.ImageSubject `json:"image_subject,omitempty"`
 }
+
+// RelatedProduct UBP多品广告素材组合
+type RelatedProduct struct {
+	// 商品ID
+	// UBP多品支持在广告层级设置项目层级已关联&&状态为可投状态的商品
+	UniqueProductID uint64 `json:"unique_pteroduct_id,omitempty"`
+}
