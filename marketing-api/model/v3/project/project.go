@@ -334,7 +334,7 @@ type Audience struct {
 	// AwemeFanCategories 抖音达人分类ID列表，可通过【工具-抖音达人-查询抖音类目列表】接口获取
 	AwemeFanCategories *[]uint64 `json:"aweme_fan_categories,omitempty"`
 	// AwemeFanAccounts 抖音达人ID列表，可通过【工具-抖音达人-查询抖音类目下的推荐达人】接口获取。
-	AwemeFanAccounts *[]uint64 `json:"aweme_fan_accounts,omitempty"`
+	AwemeFanAccounts *model.Uint64s `json:"aweme_fan_accounts,omitempty"`
 	// SuperiorPopularityType 媒体定向，详见【附录-媒体定向】
 	SuperiorPopularityType enum.SuperiorPopularityType `json:"superior_popularity_type,omitempty"`
 	// FlowPackage 定向逻辑，可通过【工具-穿山甲流量包-获取穿山甲流量包】
