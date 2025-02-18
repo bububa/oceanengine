@@ -99,7 +99,7 @@ type AudienceBase struct {
 	// AwemeFanCategories 抖音达人分类ID列表，与aweme_fan_behaviors同时设置才会生效（抖音达人定向）
 	AwemeFanCategories []uint64 `json:"aweme_fan_categories,omitempty"`
 	// AwemeFanAccounts 抖音达人ID列表，与aweme_fan_behaviors同时设置才会生效（抖音达人定向）
-	AwemeFanAccounts []uint64 `json:"aweme_fan_accounts,omitempty"`
+	AwemeFanAccounts model.Uint64s `json:"aweme_fan_accounts,omitempty"`
 	// BindInfo 定向包绑定计划信息
 	BindInfo []struct {
 		// AdID 计划ID
