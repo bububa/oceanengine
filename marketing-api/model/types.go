@@ -1,6 +1,8 @@
 package model
 
 import (
+	"encoding/json"
+	"fmt"
 	"strconv"
 	"time"
 )
@@ -302,4 +304,60 @@ func (ut *UnixTime) UnmarshalJSON(b []byte) (err error) {
 		}
 	}
 	return nil
+}
+
+// Uint64s support string quoted number in json
+type Uint64s []uint64
+
+// UnmarshalJSON implement json Unmarshal interface
+func (u64 *Uint64s) UnmarshalJSON(b []byte) (err error) {
+	var list []any
+	if err := json.Unmarshal(b, &list); err != nil {
+		return err
+	}
+	ret := make([]uint64, 0, len(list))
+	for idx, v := range list {
+		switch t := v.(type) {
+		case int64:
+			ret = append(ret, uint64(t))
+		case int32:
+			ret = append(ret, uint64(t))
+		case int16:
+			ret = append(ret, uint64(t))
+		case int8:
+			ret = append(ret, uint64(t))
+		case int:
+			ret = append(ret, uint64(t))
+		case uint64:
+			ret = append(ret, t)
+		case uint32:
+			ret = append(ret, uint64(t))
+		case uint16:
+			ret = append(ret, uint64(t))
+		case uint8:
+			ret = append(ret, uint64(t))
+		case uint:
+			ret = append(ret, uint64(t))
+		case string:
+			if x, err := strconv.ParseUint(t, 10, 64); err != nil {
+				return fmt.Errorf("element %d in uint64 slice is not number, got %s, %w", idx, t, err)
+			} else {
+				ret = append(ret, x)
+			}
+		case bool:
+			if t {
+				ret = append(ret, 1)
+			} else {
+				ret = append(ret, 0)
+			}
+		default:
+			return fmt.Errorf("element %d in uint64 slice is not number, got %+v", idx, t)
+		}
+	}
+	*u64 = Uint64s(ret)
+	return
+}
+
+func (u64 Uint64s) Value() []uint64 {
+	return []uint64(u64)
 }
