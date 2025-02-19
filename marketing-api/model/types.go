@@ -3,6 +3,7 @@ package model
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strconv"
 	"time"
 )
@@ -338,9 +339,13 @@ func (u64 *Uint64s) UnmarshalJSON(b []byte) (err error) {
 			ret = append(ret, uint64(t))
 		case uint:
 			ret = append(ret, uint64(t))
+		case float32:
+			ret = append(ret, uint64(t))
+		case float64:
+			ret = append(ret, uint64(t))
 		case string:
 			if x, err := strconv.ParseUint(t, 10, 64); err != nil {
-				return fmt.Errorf("element %d in uint64 slice is not number, got %s, %w", idx, t, err)
+				return fmt.Errorf("string element %d in uint64 slice can't convert to number, got %s, %w", idx, t, err)
 			} else {
 				ret = append(ret, x)
 			}
@@ -351,7 +356,7 @@ func (u64 *Uint64s) UnmarshalJSON(b []byte) (err error) {
 				ret = append(ret, 0)
 			}
 		default:
-			return fmt.Errorf("element %d in uint64 slice is not number, got %+v", idx, t)
+			return fmt.Errorf("element %d in uint64 slice cant't convert to number, got %+v, type:%s", idx, t, reflect.TypeOf(v))
 		}
 	}
 	*u64 = Uint64s(ret)
