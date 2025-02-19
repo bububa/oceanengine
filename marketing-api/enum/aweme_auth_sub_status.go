@@ -28,4 +28,8 @@ const (
 	AwemeAuthSubStatus_AWEME_REVOKE_REQUEST AwemeAuthSubStatus = "AWEME_REVOKE_REQUEST"
 	// AwemeAuthSubStatus_CONFIRM_REVOKE_REQUEST 同意解除授权申请
 	AwemeAuthSubStatus_CONFIRM_REVOKE_REQUEST AwemeAuthSubStatus = "CONFIRM_REVOKE_REQUEST"
+	// AwemeAuthSubStatus_UNQUALIFIED_AUTO_RELEASE 不达要求自动解除
+	AwemeAuthSubStatus_UNQUALIFIED_AUTO_RELEASE AwemeAuthSubStatus = "UNQUALIFIED_AUTO_RELEASE"
+	// AwemeAuthSubStatus_ENTERPRISE_AUTH_RELEASE 身份变更，不达要求
+	AwemeAuthSubStatus_ENTERPRISE_AUTH_RELEASE AwemeAuthSubStatus = "ENTERPRISE_AUTH_RELEASE"
 )
