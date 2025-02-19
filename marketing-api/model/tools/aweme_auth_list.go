@@ -39,6 +39,12 @@ type AwemeAuthListFilter struct {
 	AwemeIDs []string `json:"aweme_ids,omitempty"`
 	// ItemIDs 按抖音视频id过滤结果，一次最多允许查询50个
 	ItemIDs []uint64 `json:"item_ids,omitempty"`
+	// WarningTypes 抖音授权关系警告信息类型，您可使用此筛选查询所有可能存在问题的授权关系。支持枚举，一条授权关系可能存在多种警告类型：
+	// UNQUALIFIED 不达要求，表示发起授权的抖音号未达到要求，详细未达门槛信息可通过应答参数中的auth_threshold_info获取
+	// UNQUALIFIED_PENDING_EXPIRE 不达要求-即将解除，表示平台定期巡检并解除不符合授权要求的【个人抖音号授权关系】您可按需将您的个人抖音号升级为抖音企业机构账号或督促账号满足要求
+	// 仅当auth_type=AWEME_ACCOUNT抖音号授权时，可能会有此警告
+	// AUTHOR_REUQUEST_PENDING_EXPIRE 申请解除中，表示抖音号作者已发起解除授权申请，您需要及时联系作者或同意解除
+	WarningTypes []enum.AwemeAuthWarningType `json:"warning_types,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -82,6 +88,10 @@ type AwemeAuthItem struct {
 	AwemeID string `json:"aweme_id,omitempty"`
 	// AwemeName 抖音账号名称
 	AwemeName string `json:"aweme_name,omitempty"`
+	// AwemeUserType 可选值:
+	// ENTERPRISE 企业机构号
+	// SINGLE 个人号
+	AwemeUserType enum.AwemeUserType `json:"aweme_user_type,omitempty"`
 	// AuthStatus 授权状态
 	AuthStatus enum.AwemeAuthStatus `json:"auth_status,omitempty"`
 	// SubStatus 授权子状态，返回值
@@ -97,11 +107,18 @@ type AwemeAuthItem struct {
 	// AWEME_REVOKE_REQUEST 创作者发起解除申请
 	// INVALID_PROCESS_TIME_OUT 超时未处理自动解除
 	// CONFIRM_REVOKE_REQUEST 同意解除授权申请
+	// UNQUALIFIED_AUTO_RELEASE不达要求自动解除
+	// ENTERPRISE_AUTH_RELEASE 身份变更，不达要求
 	SubStatus enum.AwemeAuthSubStatus `json:"sub_status,omitempty"`
 	// StartTime 授权开始时间，格式为yyyy-MM-dd HH:mm:ss
 	StartTime string `json:"start_time,omitempty"`
 	// EndTime 授权结束时间，格式为yyyy-MM-dd HH:mm:ss
 	EndTime string `json:"end_time,omitempty"`
+	// ShareType 授权共享类型 可选值:
+	// SHARE_BY_ONESELF 广告账户自主授权
+	// SHARE_BY_SAME_ENTITY 客户共享授权
+	// SHARE_FROM_BP 组织共享授权
+	ShareType enum.AwemeAuthShareType `json:"share_type,omitempty"`
 	// VideoInfo 授权视频信息，若为单视频授权会返回
 	VideoInfo *AwemeAuthVideo `json:"video_info,omitempty"`
 	// Note 备注信息，发起抖音授权申请时填写的希望展示给抖音号创作者的备注，创作者可在授权邀请页&授权详情页查看
@@ -120,6 +137,16 @@ type AwemeAuthItem struct {
 	// 不达门槛：表示发起授权的抖音号未达到要求，详细未达门槛信息可通过auth_threshold_info获取
 	// 即将解除：表示抖音号作者已发起解除授权申请，您需要及时联系作者或同意解除
 	WarningContent []string `json:"warning_content,omitempty"`
+	// WarningTypes 抖音授权关系警告信息类型支持枚举，一条授权关系可能存在多种警告类型：
+	// UNQUALIFIED 不达要求，表示发起授权的抖音号未达到要求，详细未达门槛信息可通过应答参数中的auth_threshold_info获取
+	// UNQUALIFIED_PENDING_EXPIRE 不达要求-即将解除，表示平台定期巡检并解除不符合授权要求的【个人抖音号授权关系】您可按需将您的个人抖音号升级为抖音企业机构账号或督促账号满足要求
+	// 仅当auth_type=AWEME_ACCOUNT抖音号授权时，可能会有此警告
+	// AUTHOR_REUQUEST_PENDING_EXPIRE 申请解除中，表示抖音号作者已发起解除授权申请，您需要及时联系作者或同意解除
+	WarningTypes []enum.AwemeAuthWarningType `json:"warning_types,omitempty"`
+	// AuthAutoExpireDate 授权不达要求后自动解除的日期，日期格式yyyy-mm-dd
+	// 2025年2月中起，平台将分批解除不符合授权要求的【个人抖音号授权关系】，此抖音号未满足授权要求，授权关系将于auth_auto_expire_date被解除。如您仍希望保持授权关系，可按需将个人抖音号升级为抖音企业机构账号或督促账号达到要求，不达要求的具体信息可查看auth_threshold_info参数。说明详见此文档：【个人抖音号】商业合作授权定期、分批次复核启动通知
+	// 当抖音号正常时，该结构体下信息会返回为空
+	AuthAutoExpireDate string `json:"auth_auto_expire_date,omitempty"`
 	// AuthThresholdInfo 当抖音号不达授权门槛时，您可通过此结构体获取具体不达门槛的原因并及时处理
 	// 当抖音号正常时，该结构体下信息会返回为空
 	AuthThresholdInfo *AwemeAuthThresholdInfo `json:"auth_threshold_info,omitempty"`

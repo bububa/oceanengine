@@ -1,0 +1,14 @@
+package enum
+
+// AwemeAuthWarningType 抖音授权关系警告信息类型，您可使用此筛选查询所有可能存在问题的授权关系。支持枚举，一条授权关系可能存在多种警告类型：
+type AwemeAuthWarningType string
+
+const (
+	// AwemeAuthWarningType_UNQUALIFIED 不达要求，表示发起授权的抖音号未达到要求，详细未达门槛信息可通过应答参数中的auth_threshold_info获取
+	AwemeAuthWarningType_UNQUALIFIED AwemeAuthWarningType = "UNQUALIFIED"
+	// AwemeAuthWarningType_UNQUALIFIED_PENDING_EXPIRE 不达要求-即将解除，表示平台定期巡检并解除不符合授权要求的【个人抖音号授权关系】您可按需将您的个人抖音号升级为抖音企业机构账号或督促账号满足要求
+	// 仅当auth_type=AWEME_ACCOUNT抖音号授权时，可能会有此警告
+	AwemeAuthWarningType_UNQUALIFIED_PENDING_EXPIRE AwemeAuthWarningType = "UNQUALIFIED_PENDING_EXPIRE"
+	// AwemeAuthWarningType_AUTHOR_REUQUEST_PENDING_EXPIRE 申请解除中，表示抖音号作者已发起解除授权申请，您需要及时联系作者或同意解除
+	AwemeAuthWarningType_AUTHOR_REUQUEST_PENDING_EXPIRE AwemeAuthWarningType = "AUTHOR_REUQUEST_PENDING_EXPIRE"
+)
