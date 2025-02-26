@@ -19,6 +19,8 @@ type OptimizedGoalGetRequest struct {
 	AdType enum.CampaignType `json:"ad_type,omitempty"`
 	// AssetType 资产类型，允许值:THIRD_EXTERNAL 三方落地页、TETRIS_EXTERNAL 建站、APP 应用、QUICK_APP 快应用、MINI_PROGRAME字节小程序
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
+	// MultiAssetType 多投放载体，允许值：ORANGE_AND_AWEME 建站落地页和抖音主页
+	MultiAssetType enum.MultiDeliveryMedium `json:"multi_asset_type,omitempty"`
 	// SiteID 建站site_id，当asset_type为TETRIS_EXTERNAL时必填，site_id可以通过【获取橙子建站站点列表】接口获得
 	SiteID uint64 `json:"site_id,omitempty"`
 	// AssetID 三方的资产id，当asset_type为THIRD_EXTERNAL时必填

@@ -82,6 +82,11 @@ type CreateRequest struct {
 	SubscribeURL string `json:"subscribe_url,omitempty"`
 	// AssetType 资产类型 landing_type = LINK 或SHOP时有效且必填
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
+	// MultiAssetType 多投放载体
+	// 允许值：ORANGE_AND_AWEME优选投放橙子落地页和抖音主页
+	// 同时满足以下条件支持设置多投放载体：landing_type = LINK && marketing_goal = VIDEO_AND_IMAGE
+	// 注意：同时传入asset_type 和 multi_asset_type 实际会生效多投放载体投放
+	MultiAssetType enum.MultiDeliveryMedium `json:"multi_asset_type,omitempty"`
 	// 小程序类型，landing_type = MICRO_GAME 时有效且必填
 	// 允许值： WECHAT_GAME 微信小游戏、WECHAT_APP微信小程序、BYTE_GAME字节小游戏、BYTE_APP字节小程序
 	MicroPromotionType enum.MicroPromotionType `json:"micro_promotion_type,omitempty"`
