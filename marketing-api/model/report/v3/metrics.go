@@ -177,6 +177,8 @@ type CustomMetrics struct {
 	InstallFinishCost model.Float64 `json:"install_finish_cost,omitempty"`
 	// InstallFinishRate 计算方式：安卓安装完成数/安卓下载完成数
 	InstallFinishRate model.Float64 `json:"install_finish_rate,omitempty"`
+	// RedirectToShop 用户调起第三方店铺的次数
+	RedirectToShop model.Int64 `json:"redirect_to_shop,omitempty"`
 	// Active 如果您对接了API，激活数是您认可且回传成功的的激活数。如果您对接了SDK，则激活数是指用户下载您的APP后打开的次数。
 	Active model.Int64 `json:"active,omitempty"`
 	// ActiveCost 计算方式：总花费/激活数。
