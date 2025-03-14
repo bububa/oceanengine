@@ -74,6 +74,8 @@ type Metrics struct {
 	AttributionGamePay7dCount model.Int64 `json:"attribution_game_pay_7d_count,omitempty"`
 	// AttributionGamePay7dCost 用户激活应用后的7天内，在应用内完成付费的平均成本，计算方式：消耗/7日付费次数(激活时间)。
 	AttributionGamePay7dCost model.Float64 `json:"attribution_game_pay_7d_cost,omitempty"`
+	// RedirectToShop 用户调起第三方店铺的次数
+	RedirectToShop model.Int64 `json:"redirect_to_shop,omitempty"`
 	// InAppUv 用户调起APP后到达的次数，一般在DPA广告中使用
 	InAppUv model.Int64 `json:"in_app_uv,omitempty"`
 	// InAppDetailUv 用户调起APP后到达指定详情页的次数，一般在DPA广告中使用
