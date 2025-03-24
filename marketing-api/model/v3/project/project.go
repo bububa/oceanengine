@@ -62,6 +62,13 @@ type Project struct {
 	AudienceExtend enum.OnOff `json:"audience_extend,omitempty"`
 	// Keywords 搜索关键词列表
 	Keywords []Keyword `json:"keywords,omitempty"`
+	// AutoTraficExtend 智能拓流 ，允许值：ON开启； OFF关闭
+	// 仅支持ad_type = SEARCH时设置
+	// 自定义关键词和智能拓流二者必须开启一个：若keywords为空，智能拓流 auto_extend_traffic需为ON
+	// 对于搜索极速智投项目，若设置blue_flow_keyword_name蓝海关键词，智能拓流默认值为ON，且不得设置为OFF
+	AutoExtendTraffic enum.OnOff `json:"auto_extend_traffic,omitempty"`
+	// BlueFlowPackage 搜索蓝海流量投放相关参数
+	BlueFlowPackage *BlueFlowPackage `json:"blue_flow_package,omitempty"`
 	// RelatedProduct 关联产品投放相关
 	RelatedProduct *RelatedProduct `json:"related_product,omitempty"`
 	// DpaCategories 商品投放范围，分类列表，由【DPA商品广告-获取DPA分类】 得到

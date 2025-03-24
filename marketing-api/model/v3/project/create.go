@@ -50,6 +50,13 @@ type CreateRequest struct {
 	AudienceExtend enum.OnOff `json:"audience_extend,omitempty"`
 	// Keywords 搜索关键词列表
 	Keywords []Keyword `json:"keywords,omitempty"`
+	// AutoTraficExtend 智能拓流 ，允许值：ON开启； OFF关闭
+	// 仅支持ad_type = SEARCH时设置
+	// 自定义关键词和智能拓流二者必须开启一个：若keywords为空，智能拓流 auto_extend_traffic需为ON
+	// 对于搜索极速智投项目，若设置blue_flow_keyword_name蓝海关键词，智能拓流默认值为ON，且不得设置为OFF
+	AutoExtendTraffic enum.OnOff `json:"auto_extend_traffic,omitempty"`
+	// BlueFlowPackage 搜索蓝海流量投放相关参数
+	BlueFlowPackage *BlueFlowPackage `json:"blue_flow_package,omitempty"`
 	// RelatedProduct 关联产品投放相关
 	RelatedProduct *RelatedProduct `json:"related_product,omitempty"`
 	// DpaCategories 商品投放范围，分类列表，由【DPA商品广告-获取DPA分类】 得到
@@ -122,8 +129,15 @@ func (r CreateRequest) Encode() []byte {
 // CreateResponse 创建项目 API Response
 type CreateResponse struct {
 	model.BaseResponse
-	Data struct {
-		// ProjectID 项目id
-		ProjectID uint64 `json:"project_id,omitempty"`
-	} `json:"data,omitempty"`
+	Data *CreateResult `json:"data,omitempty"`
+}
+
+type CreateResult struct {
+	// ProjectID 项目id
+	ProjectID uint64 `json:"project_id,omitempty"`
+	// SuppleMentaryAgreementInfo 星广联投投放协议查看地址，仅短剧行业投放星广联投项目时会返回。建议您在开启项目投放前协同广告主仔细确认协议内容后再进行投放
+	// https://open.oceanengine.com/labels/7/docs/1815754527706187
+	SuppleMentaryAgreementInfo string `json:"supple_mentary_agreement_info,omitempty"`
+	// ErrorKeywordList 上传失败的关键词list
+	ErrorKeywordList []ErrorKeyword `json:"error_keyword_list,omitempty"`
 }

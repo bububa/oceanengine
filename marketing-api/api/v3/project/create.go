@@ -8,10 +8,10 @@ import (
 )
 
 // Create 创建项目
-func Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *project.CreateRequest) (uint64, error) {
+func Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *project.CreateRequest) (*project.CreateResult, error) {
 	var resp project.CreateResponse
 	if err := clt.PostAPI(ctx, "v3.0/project/create/", req, &resp, accessToken); err != nil {
-		return 0, err
+		return nil, err
 	}
-	return resp.Data.ProjectID, nil
+	return resp.Data, nil
 }
