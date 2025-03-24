@@ -33,6 +33,13 @@ type UpdateRequest struct {
 	AudienceExtend enum.OnOff `json:"audience_extend,omitempty"`
 	// Keywords 搜索关键词列表
 	Keywords *[]Keyword `json:"keywords,omitempty"`
+	// AutoTraficExtend 智能拓流 ，允许值：ON开启； OFF关闭
+	// 仅支持ad_type = SEARCH时设置
+	// 自定义关键词和智能拓流二者必须开启一个：若keywords为空，智能拓流 auto_extend_traffic需为ON
+	// 对于搜索极速智投项目，若设置blue_flow_keyword_name蓝海关键词，智能拓流默认值为ON，且不得设置为OFF
+	AutoExtendTraffic enum.OnOff `json:"auto_extend_traffic,omitempty"`
+	// BlueFlowPackage 搜索蓝海流量投放相关参数
+	BlueFlowPackage *BlueFlowPackage `json:"blue_flow_package,omitempty"`
 	// DownloadMode 优先从系统应用商店下载（下载模式），枚举值：APP_STORE_DELIVERY 优先商店下载、 DEFAULT 默认下载
 	DownloadMode enum.DownloadMode `json:"download_mode,omitempty"`
 	// OpenURL Deeplink直达链接

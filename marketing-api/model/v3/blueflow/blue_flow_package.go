@@ -1,5 +1,7 @@
 package blueflow
 
+import "github.com/bububa/oceanengine/marketing-api/enum"
+
 // Package 蓝海流量包信息
 type Package struct {
 	// BlueFlowPackageID 蓝海流量包ID
@@ -30,4 +32,7 @@ type Keyword struct {
 	// 是 true
 	// 否false
 	SupportBlueFlowRecommendMaterial bool `json:"support_blue_flow_recommend_material,omitempty"`
+	// BlueFlowRecommendType 关键词推荐类别
+	// 枚举值: ORDINARY普通关键词，PREFERRED优选关键词
+	BlueFlowRecommendType enum.BlueFlowRecommendType `json:"blue_flow_recommend_type,omitempty"`
 }
