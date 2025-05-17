@@ -74,6 +74,8 @@ type Metrics struct {
 	AttributionGamePay7dCount model.Int64 `json:"attribution_game_pay_7d_count,omitempty"`
 	// AttributionGamePay7dCost 用户激活应用后的7天内，在应用内完成付费的平均成本，计算方式：消耗/7日付费次数(激活时间)。
 	AttributionGamePay7dCost model.Float64 `json:"attribution_game_pay_7d_cost,omitempty"`
+	// RedirectToShop 用户调起第三方店铺的次数
+	RedirectToShop model.Int64 `json:"redirect_to_shop,omitempty"`
 	// InAppUv 用户调起APP后到达的次数，一般在DPA广告中使用
 	InAppUv model.Int64 `json:"in_app_uv,omitempty"`
 	// InAppDetailUv 用户调起APP后到达指定详情页的次数，一般在DPA广告中使用
@@ -140,6 +142,8 @@ type Metrics struct {
 	DeepConvertCost model.Float64 `json:"deep_convert_cost,omitempty"`
 	// DeepConvertRate 广告被用户进行深度转化的次数占转化次数的百分比。计算方式：深度转化数/转化数*100%
 	DeepConvertRate model.Float64 `json:"deep_convert_rate,omitempty"`
+	// AvgRank 关键词排名
+	AvgRank model.Int64 `json:"avg_rank,omitempty"`
 }
 
 type CustomMetrics struct {
@@ -173,6 +177,8 @@ type CustomMetrics struct {
 	InstallFinishCost model.Float64 `json:"install_finish_cost,omitempty"`
 	// InstallFinishRate 计算方式：安卓安装完成数/安卓下载完成数
 	InstallFinishRate model.Float64 `json:"install_finish_rate,omitempty"`
+	// RedirectToShop 用户调起第三方店铺的次数
+	RedirectToShop model.Int64 `json:"redirect_to_shop,omitempty"`
 	// Active 如果您对接了API，激活数是您认可且回传成功的的激活数。如果您对接了SDK，则激活数是指用户下载您的APP后打开的次数。
 	Active model.Int64 `json:"active,omitempty"`
 	// ActiveCost 计算方式：总花费/激活数。
@@ -321,4 +327,6 @@ type CustomMetrics struct {
 	PlayDuration3s model.Float64 `json:"play_duration_3s,omitempty"`
 	// 视频数据-播完率; 计算公式：播放完成数/播放数
 	PlayOverRate model.Float64 `json:"play_over_rate,omitempty"`
+	// AvgRank 关键词排名
+	AvgRank model.Int64 `json:"avg_rank,omitempty"`
 }

@@ -37,8 +37,8 @@ func (r AuthorizedGetRequest) Encode() string {
 
 // AuthorizedGetResponse 获取可投全域推广抖音号列表 API Response
 type AuthorizedGetResponse struct {
-	model.BaseResponse
 	Data *AuthorizedGetResult `json:"data,omitempty"`
+	model.BaseResponse
 }
 
 type AuthorizedGetResult struct {

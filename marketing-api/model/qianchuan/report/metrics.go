@@ -178,16 +178,50 @@ type Metrics struct {
 	QianchuanAuthorFIrstOrderDirectPayOrderRoi float64 `json:"qianchuan_author_first_order_direct_pay_order_roi,omitempty"`
 	// QianchuanAuthorFirstOrderLtv30 抖音号首单新客30天累计成交金额
 	QianchuanAuthorFirstOrderLtv30 float64 `json:"qianchuan_author_first_order_ltv_30,omitempty"`
-	// LiveOrderSettleAmount14d 14天结算金额
-	LiveOrderSettleAmount14d float64 `json:"live_order_settle_amount_14d,omitempty"`
-	// LiveOrderSettleCount14d 14天结算订单数
-	LiveOrderSettleCount14d int64 `json:"live_order_settle_count_14d,omitempty"`
-	// LiveOrderSettleCountRate14d 14天结算订单率
-	LiveOrderSettleCountRate14d float64 `json:"live_order_settle_count_rate_14d,omitempty"`
-	// AdLiveOrderSettleRoi14d 14天结算roi
-	AdLiveOrderSettleRoi14d float64 `json:"ad_live_order_settle_roi_14d,omitempty"`
-	// AdLiveOrderSettleCost14d 14天结算成本
-	AdLiveOrderSettleCost14d float64 `json:"ad_live_order_settle_cost_14d,omitempty"`
+	// AdAllOrderGmvSettleRate7d 直接成交金额结算率(7天)
+	AdAllOrderGmvSettleRate7d float64 `json:"ad_all_order_gmv_settle_rate_7d,omitempty"`
+	// AdAllOrderGmvSettleRate14d 直接成交金额结算率(14天)
+	AdAllOrderGmvSettleRate14d float64 `json:"ad_all_order_gmv_settle_rate_14d,omitempty"`
+	// UnfinishedEstimateOrderGmv 未完结直接预售订单预估金额
+	UnfinishedEstimateOrderGmv float64 `json:"unfinished_estimate_order_gmv,omitempty"`
+	// IndirectOrderUnfinishedEstimateGmv7Days 未完结间接预售订单预估金额
+	IndirectOrderUnfinishedEstimateGmv7Days float64 `json:"indirect_order_unfinished_estimate_gmv_7d,omitempty"`
+	// AdAllOrderSettleAmount7d 直接结算金额(7天)
+	AdAllOrderSettleAmount7d float64 `json:"ad_all_order_settle_amount_7d,omitempty"`
+	// AdAllOrderSettleCount7d 直接结算订单数(7天)
+	AdAllOrderSettleCount7d int64 `json:"ad_all_order_settle_count_7d,omitempty"`
+	// AdAllOrderCountSettleRate7d 直接订单结算率(7天)
+	AdAllOrderCountSettleRate7d float64 `json:"ad_all_order_count_settle_rate_7d,omitempty"`
+	// AdAllOrderSettleRoi7d 直接结算ROI(7天)
+	AdAllOrderSettleRoi7d float64 `json:"ad_all_order_settle_roi_7d,omitempty"`
+	// AdAllOrderSettleCost7d 直接结算成本(7天)
+	AdAllOrderSettleCost7d float64 `json:"ad_all_order_settle_cost_7d,omitempty"`
+	// AllOrderRefundCount7d 直接退款订单数(7天)
+	AllOrderRefundCount7d int64 `json:"all_order_refund_count_7d,omitempty"`
+	// AllOrderRefundAmount7d 直接退款金额(7天)
+	AllOrderRefundAmount7d float64 `json:"all_order_refund_amount_7d,omitempty"`
+	// AdOrderGmvRefundRate7d 直接退款率(7天)
+	AdOrderGmvRefundRate7d float64 `json:"ad_order_gmv_refund_rate_7d,omitempty"`
+	// AdOrderRefundRate7d 直接订单数退货率(7天)
+	AdOrderRefundRate7d float64 `json:"ad_order_refund_rate_7d,omitempty"`
+	// AdAllOrderSettleAmount14d 直接结算金额(14天)
+	AdAllOrderSettleAmount14d float64 `json:"ad_all_order_settle_amount_14d,omitempty"`
+	// AdAllOrderSettleCount14d 直接结算订单数(14天)
+	AdAllOrderSettleCount14d int64 `json:"ad_all_order_settle_count_14d,omitempty"`
+	// AdAllOrderCountSettleRate14d 直接订单结算率(14天)
+	AdAllOrderCountSettleRate14d float64 `json:"ad_all_order_count_settle_rate_14d,omitempty"`
+	// AdAllOrderSettleRoi14d 直接结算ROI(14天)
+	AdAllOrderSettleRoi14d float64 `json:"ad_all_order_settle_roi_14d,omitempty"`
+	// AdAllOrderSettleCost14d 直接结算成本(14天)
+	AdAllOrderSettleCost14d float64 `json:"ad_all_order_settle_cost_14d,omitempty"`
+	// AllOrderRefundCount14d 直接退款订单数(14天)
+	AllOrderRefundCount14d int64 `json:"all_order_refund_count_14d,omitempty"`
+	// AllOrderRefundAmount14d 直接退款金额(14天)
+	AllOrderRefundAmount14d float64 `json:"all_order_refund_amount_14d,omitempty"`
+	// AdOrderGmvRefundRate14d 直接退款率(14天)
+	AdOrderGmvRefundRate14d float64 `json:"ad_order_gmv_refund_rate_14d,omitempty"`
+	// AdOrderRefundRate14d 直接订单数退货率(14天)
+	AdOrderRefundRate14d float64 `json:"ad_order_refund_rate_14d,omitempty"`
 	// DislikeCnt 不感兴趣数
 	DislikeCnt int64 `json:"dislike_cnt,omitempty"`
 	// ReportCnt 举报数

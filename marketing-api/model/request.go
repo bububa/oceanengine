@@ -28,12 +28,12 @@ type GetRequest interface {
 
 // UploadField multipart/form-data post request field struct
 type UploadField struct {
+	// Reader upload file reader
+	Reader io.Reader
 	// Key field key
 	Key string
 	// Value field value
 	Value string
-	// Reader upload file reader
-	Reader io.Reader
 }
 
 // UploadRequest multipart/form-data reqeust interface

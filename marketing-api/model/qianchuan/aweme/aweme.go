@@ -25,4 +25,14 @@ type Aweme struct {
 	// false：未创建过计划, 可以新建
 	// true：已经创建过计划，不支持新建
 	HasRoi2GroupCreate bool `json:"has_roi2_group_create,omitempty"`
+	// HasShopPermission 是否有推商品全域推广权限
+	HasShopPermission bool `json:"has_shop_permission,omitempty"`
+	// HasLivePermission 是否有直播全域推广权限
+	HasLivePermission bool `json:"has_live_permission,omitempty"`
+	// CanControlUniprom 当前账户是该抖音号的官方巨量千川账户,对其他账户解除授权即可正常使用直播全域推广,是否需要解除授权
+	CanControlUniprom bool `json:"can_control_uniprom,omitempty"`
+	// CanApplyUniprom 抖音号是否可申请
+	CanApplyUniprom bool `json:"can_apply_uniprom,omitempty"`
+	// AnchorForbidden 抖音号是否禁用
+	AnchorForbidden bool `json:"anchor_forbidden,omitempty"`
 }

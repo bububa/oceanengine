@@ -1,6 +1,8 @@
 package star
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/star"
 )
@@ -10,10 +12,9 @@ import (
 // 结果中所有的rate均为*100后的结果，如five_s_play_rate=2750，表示有效播放率27.5%。
 // 数据为非实时更新，一般在次日凌晨产出前一天的数据；
 // 一般历史数据都不会变，除了数据有问题有校对的情况会更新历史数据。
-func ReportOrderOverviewGet(clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResponseData, error) {
+func ReportOrderOverviewGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *star.ReportOrderOverviewGetRequest) (*star.ReportOrderOverviewGetResult, error) {
 	var resp star.ReportOrderOverviewGetResponse
-	err := clt.Get("2/star/report/order_overview/get/", req, &resp, accessToken)
-	if err != nil {
+	if err := clt.GetAPI(ctx, "2/star/report/order_overview/get/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data, nil

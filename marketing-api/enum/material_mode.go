@@ -24,4 +24,6 @@ const (
 	MaterialMode_AWEME_LIVE_ROOM MaterialMode = "AWEME_LIVE_ROOM"
 	// MaterialMode_CAROUSEL 图文
 	MaterialMode_CAROUSEL MaterialMode = "CAROUSEL"
+	// MaterialMode_VIDEO 视频
+	MaterialMode_VIDEO MaterialMode = "VIDEO"
 )

@@ -24,6 +24,8 @@ type Audience struct {
 	// 1：支持电子围栏定向
 	// 2：支持电子围栏定向
 	ElectricFenceRegion int `json:"electric_fence_region,omitempty"`
+	// RegionVersion 行政区域版本号，可选值：2.3.2 新版本
+	RegionVersion string `json:"region_version,omitempty"`
 	// City 具体定向的城市列表，当 district 为COUNTY，city 为必填，枚举值详见【附件-city.json】；省市传法：city: [12]，district: CITY；区县的传法：city: [130102]，district: COUNTY
 	City []uint64 `json:"city,omitempty"`
 	// LocationType 地域定向的用户状态类型，当 district 为COUNTY，CITY为必填，允许值：CURRENT：正在该地区的用户，HOME：居住在该地区的用户，TRAVEL；到该地区旅行的用户，ALL：该地区内的所有用户

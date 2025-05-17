@@ -44,9 +44,9 @@ type Promotion struct {
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// IsCommentDisable 广告评论，ON为启用，OFF为不启用
-	IsCommentDisable model.ReverseOnOffInt `json:"is_comment_disable,omitempty"`
+	IsCommentDisable enum.OnOff `json:"is_comment_disable,omitempty"`
 	// AdDownloadStatus 客户端下载视频功能，ON为启用，OFF为不启用
-	AdDownloadStatus model.OnOffInt `json:"ad_download_status,omitempty"`
+	AdDownloadStatus enum.OnOff `json:"ad_download_status,omitempty"`
 	// MaterialsType 素材类型
 	MaterialsType enum.MaterialsType `json:"materials_type,omitempty"`
 	// Source 广告来源
@@ -70,11 +70,30 @@ type Promotion struct {
 	// CreativeAutoGenerateSwitch 是否开启自动生成素材
 	// 默认值：OFF
 	// 枚举值：ON开启、OFF不开启
-	CreativeAutoGenerateSwitch string `json:"creative_auto_generate_switch,omitempty"`
+	CreativeAutoGenerateSwitch enum.OnOff `json:"creative_auto_generate_switch,omitempty"`
 	// ConfigID 配置ID，开关打开，不传为黑盒明投派生
 	ConfigID uint64 `json:"config_id,omitempty"`
 	// BrandInfo 品牌信息
 	BrandInfo *BrandInfo `json:"brand_info,omitempty"`
+	// 7d_retention 表示7日留存天数，单位：天，取值范围[0.01，7.00]，仅支持最多2位小数。
+	// 7d_retention适用创编场景，该场景下有效且必填
+	// landing_type = APP 应用推广
+	// ad_type = ALL 通投
+	// delivery_mode = MANUAL  手动投放
+	// external_action = AD_CONVERT_TYPE_ACTIVE 优化目标=激活
+	// deep_external_action = AD_CONVERT_TYPE_RETENTION_DAYS深度优化目标 = 留存天数
+	// delivery_setting.deep_bid_type = AD_CONVERT_TYPE_RETENTION_DAYS深度优化方式 = 留存天数
+	// delivery_range.inventory_catalog = MANUAL  广告位大类 = 首选媒体
+	// inventory_type = INVENTORY_UNION_SLOT  投放位置 只选择穿山甲
+	SevenDRetention float64 `json:"7d_retention,omitempty"`
+	// ShopMultiRoiGoals 多ROI系数
+	// 条件必填，object[]，多ROI系数设置，表示引流电商多平台投放ROI系数及平台信息，广告主可按照电商平台分别确定ROI系数，分平台调控出价。list长度最长为4
+	// 多平台优选投放白名单内客户，在以下组合场景时shop_multi_roi_goals有效且必填
+	// 推广目的 = 电商（landing_type = SHOP）
+	// 投放方式 = 自动投放(delivery_mode = MANUAL)
+	// 优化目标 = APP 内下单(external_action = AD_CONVERT_TYPE_APP_ORDER)
+	// 深度优化方式 = ROI系数(deep_bid_type = ROI_DIRECT_MAIL)
+	ShopMultiRoiGoals []ShopMultiRoiGoal `json:"shop_multi_roi_goals,omitempty"`
 }
 
 func (p Promotion) Version() model.AdVersion {
@@ -106,9 +125,11 @@ func (p Promotion) GetOptStatus() enum.AdOptStatus {
 	}
 	return ""
 }
+
 func (p Promotion) GetBudget() float64 {
 	return p.Budget
 }
+
 func (p Promotion) GetCpaBid() float64 {
 	return p.CpaBid
 }
@@ -146,7 +167,7 @@ type PromotionMaterial struct {
 	DecorationMaterial []DecorationMaterial `json:"decoration_material,omitempty"`
 	// AutoExtendTraffic 智能拓流
 	// 允许值：ON开启（默认值）； OFF关闭
-	AutoExtendTraffic string `json:"auto_extend_traffic,omitempty"`
+	AutoExtendTraffic enum.OnOff `json:"auto_extend_traffic,omitempty"`
 	// Keywords 关键词列表，关键词和智能拓流二者必须开启一个，一个广告最多可添加1000个
 	Keywords []project.Keyword `json:"keywords,omitempty"`
 	// ComponentMaterialList 创意组件信息
@@ -187,7 +208,7 @@ type PromotionMaterial struct {
 	// Ulink 直达备用链接，支持穿山甲和站内广告位
 	Ulink string `json:"ulink,omitempty"`
 	// DynamicCreateiveSwitch 动态创意开关，允许值：ON开启（默认值），OFF关闭，当ad_type=SEARCH时有效
-	DynamicCreateiveSwitch string `json:"dynamic_creative_switch,omitempty"`
+	DynamicCreateiveSwitch enum.OnOff `json:"dynamic_creative_switch,omitempty"`
 	// AdvancedDcSettings 动态创意高级设置，仅搜索广告下可设置。注意：
 	// 仅当广告类型ad_type = SEARCH搜索广告，动态创意开关dynamic_creative_switch =ON时可传入，否则报错
 	// 必须传入至少1个值，动态创意开关开启dynamic_creative_switch =ON时，此参数传空值或非允许值会报错
@@ -202,7 +223,7 @@ type PromotionMaterial struct {
 	// CallToActionButtons 行动号召文案
 	CallToActionButtons []string `json:"call_to_action_buttons,omitempty"`
 	// IntelligentGeneration 智能生成行动号召按钮，开启后即对应的文案自动生成，可选项为OFF（默认）、ON
-	IntelligentGeneration string `json:"intelligent_generation,omitempty"`
+	IntelligentGeneration enum.OnOff `json:"intelligent_generation,omitempty"`
 }
 
 // VideoMaterial 视频素材信息
@@ -322,6 +343,12 @@ type ProductInfo struct {
 	Titles []string `json:"titles,omitempty"`
 	// ImageIDs 产品主图
 	ImageIDs []string `json:"image_ids,omitempty"`
+	// EchoTitles 关联产品名称，
+	// 该参数返回项目中的已关联产品或自动识别产品(AD平台功能)的产品名称
+	EchoTitles []string `json:"echo_titles,omitempty"`
+	// EchoImageIDs 关联产品主图，
+	// 该参数返回项目中的已关联产品或自动识别产品(AD平台功能)的产品主图
+	EchoImageIDs []string `json:"echo_image_ids,omitempty"`
 	// SellingPoints 产品卖点
 	SellingPoints []string `json:"selling_points,omitempty"`
 	// ProductNameType 产品名称类型，枚举值：DPA产品库字段，CUSTOM自定义
@@ -368,7 +395,7 @@ type NativeSetting struct {
 	// IsFeedAndFavSee 主页作品列表隐藏广告内容
 	// 允选值：OFF（不隐藏），ON（隐藏）
 	// 默认值：OFF
-	IsFeedAndFavSee string `json:"is_feed_and_fav_see,omitempty"`
+	IsFeedAndFavSee enum.OnOff `json:"is_feed_and_fav_see,omitempty"`
 	// AnchorRelatedType 原生锚点启用开关，允许值:
 	// 不启用 OFF，自动生成 AUTO，手动选择 SELECT
 	// 默认值为 OFF
@@ -433,6 +460,9 @@ type BrandInfo struct {
 type CarouselMaterial struct {
 	// CarouselID 图集id，可通过【获取图集素材】接口获得
 	CarouselID string `json:"carousel_id,omitempty"`
+	// ItemID 抖音图文id，需从【获取创编可用的抖音图文素材】接口获取item_id传入
+	// 注意：投放抖音图文素材时，只需要传入item_id，不要传入carousel_id（2个同时传入只会使用item_id）
+	ItemID uint64 `json:"item_id,omitempty"`
 	// ImageID 图片ID列表
 	ImageID []string `json:"image_id,omitempty"`
 	// AudioID 音频ID
@@ -441,6 +471,20 @@ type CarouselMaterial struct {
 	MaterialStatus string `json:"material_status,omitempty"`
 	// CarouselType 图集素材类型
 	CarouselType enum.ImageMode `json:"carousel_type,omitempty"`
+	// VideoHpVisibility 图文主页可见性设置（抖音图文不支持此字段）
+	// ALWAYS_VISIBLE 主页始终可见
+	// HIDE_VIDEO_ON_HP 单次展示可见（原主页隐藏）
+	VideoHpVisibility enum.VideoHpVisibility `json:"video_hp_visibility,omitempty"`
+	// IsBlueFlowRecommendMaterial 是系统推荐图文，仅有一个枚举：是 true
+	// 如果不是，不会返回这个字段
+	IsBlueFlowRecommendMaterial bool `json:"is_blue_flow_recommend_material,omitempty"`
 	// ImageSubject 图片主题
 	ImageSubject []file.ImageSubject `json:"image_subject,omitempty"`
+}
+
+// RelatedProduct UBP多品广告素材组合
+type RelatedProduct struct {
+	// 商品ID
+	// UBP多品支持在广告层级设置项目层级已关联&&状态为可投状态的商品
+	UniqueProductID uint64 `json:"unique_pteroduct_id,omitempty"`
 }

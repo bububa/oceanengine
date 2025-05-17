@@ -1,6 +1,9 @@
 package aweme
 
-import "github.com/bububa/oceanengine/marketing-api/enum"
+import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
+)
 
 // Audience 定向设置
 type Audience struct {
@@ -60,7 +63,7 @@ type Audience struct {
 	// GOODS_SHARE 下单过商品
 	Behaviors []enum.Behavior `json:"behaviors,omitempty"`
 	// AwemeFanAccounts 抖音达人ID列表
-	AwemeFanAccounts []uint64 `json:"aweme_fan_accounts,omitempty"`
+	AwemeFanAccounts model.Uint64s `json:"aweme_fan_accounts,omitempty"`
 	// AwemeFanBehaviors 抖音用户行为类型
 	AwemeFanBehaviors []enum.Behavior `json:"aweme_fan_behaviors,omitempty"`
 }

@@ -19,8 +19,12 @@ type GetRequest struct {
 	PageSize int `json:"page_size,omitempty"`
 	// Status 建站粗粒度状态
 	Status enum.SiteSearchStatus `json:"status,omitempty"`
+	// ShareType 站点来源
+	// SHARE 共享站点
+	// MY_CREATIONS账户创建站点 (默认）
 	// Filtering 过滤字段
-	Filtering *GetFiltering `json:"filtering,omitempty"`
+	ShareType enum.SiteShareType `json:"share_type,omitempty"`
+	Filtering *GetFiltering      `json:"filtering,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -39,6 +43,9 @@ func (r GetRequest) Encode() string {
 	}
 	if r.Status != "" {
 		values.Set("status", string(r.Status))
+	}
+	if r.ShareType != "" {
+		values.Set("share_type", string(r.ShareType))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)

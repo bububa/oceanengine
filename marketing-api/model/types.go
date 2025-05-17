@@ -1,6 +1,12 @@
 package model
 
-import "strconv"
+import (
+	"encoding/json"
+	"fmt"
+	"reflect"
+	"strconv"
+	"time"
+)
 
 type AdVersion int
 
@@ -212,11 +218,12 @@ func (ooi *OnOffInt) UnmarshalJSON(b []byte) (err error) {
 	}
 	str := string(b)
 	var i int
-	if str == "ON" {
+	switch str {
+	case "ON":
 		i = 1
-	} else if str == "OFF" {
+	case "OFF":
 		i = 0
-	} else {
+	default:
 		i, _ = strconv.Atoi(str)
 	}
 	*ooi = OnOffInt(i)
@@ -242,11 +249,12 @@ func (ooi *ReverseOnOffInt) UnmarshalJSON(b []byte) (err error) {
 	}
 	str := string(b)
 	var i int
-	if str == "ON" {
+	switch str {
+	case "ON":
 		i = 0
-	} else if str == "OFF" {
+	case "OFF":
 		i = 1
-	} else {
+	default:
 		i, _ = strconv.Atoi(str)
 	}
 	*ooi = ReverseOnOffInt(i)
@@ -262,4 +270,99 @@ func (i ReverseOnOffInt) String() string {
 		return "OFF"
 	}
 	return "ON"
+}
+
+var timeFormats = []string{
+	"2006-01-02 15:04:05",
+	"2006-01-02",
+}
+
+// UnixTime support number/string in json
+type UnixTime int64
+
+func (ut UnixTime) Value() int64 {
+	return int64(ut)
+}
+
+func (ut UnixTime) Time() time.Time {
+	return time.Unix(int64(ut), 0)
+}
+
+func (ut *UnixTime) UnmarshalJSON(b []byte) (err error) {
+	if b[0] == '"' && b[len(b)-1] == '"' {
+		b = b[1 : len(b)-1]
+	}
+	if i, err := strconv.ParseUint(string(b), 10, 64); err == nil {
+		*ut = UnixTime(i)
+	} else {
+		loc := time.Now().Location()
+		str := string(b)
+		for _, fmt := range timeFormats {
+			if t, err := time.ParseInLocation(fmt, str, loc); err == nil {
+				*ut = UnixTime(t.Unix())
+				break
+			}
+		}
+	}
+	return nil
+}
+
+// Uint64s support string quoted number in json
+type Uint64s []uint64
+
+// UnmarshalJSON implement json Unmarshal interface
+func (u64 *Uint64s) UnmarshalJSON(b []byte) (err error) {
+	var list []any
+	if err := json.Unmarshal(b, &list); err != nil {
+		return err
+	}
+	ret := make([]uint64, 0, len(list))
+	for idx, v := range list {
+		switch t := v.(type) {
+		case int64:
+			ret = append(ret, uint64(t))
+		case int32:
+			ret = append(ret, uint64(t))
+		case int16:
+			ret = append(ret, uint64(t))
+		case int8:
+			ret = append(ret, uint64(t))
+		case int:
+			ret = append(ret, uint64(t))
+		case uint64:
+			ret = append(ret, t)
+		case uint32:
+			ret = append(ret, uint64(t))
+		case uint16:
+			ret = append(ret, uint64(t))
+		case uint8:
+			ret = append(ret, uint64(t))
+		case uint:
+			ret = append(ret, uint64(t))
+		case float32:
+			ret = append(ret, uint64(t))
+		case float64:
+			ret = append(ret, uint64(t))
+		case string:
+			if x, err := strconv.ParseUint(t, 10, 64); err != nil {
+				return fmt.Errorf("string element %d in uint64 slice can't convert to number, got %s, %w", idx, t, err)
+			} else {
+				ret = append(ret, x)
+			}
+		case bool:
+			if t {
+				ret = append(ret, 1)
+			} else {
+				ret = append(ret, 0)
+			}
+		default:
+			return fmt.Errorf("element %d in uint64 slice cant't convert to number, got %+v, type:%s", idx, t, reflect.TypeOf(v))
+		}
+	}
+	*u64 = Uint64s(ret)
+	return
+}
+
+func (u64 Uint64s) Value() []uint64 {
+	return []uint64(u64)
 }

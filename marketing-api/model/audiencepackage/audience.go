@@ -7,6 +7,13 @@ import (
 
 // Audience 受众
 type Audience struct {
+	AudienceBase
+	// FilterAwemeAbnormalActive （抖音号推广特有）过滤高活跃用户; 取值：0表示不过滤，1表示过滤
+	FilterAwemeAbnormalActive model.OnOffInt `json:"filter_aweme_abnormal_active,omitempty"`
+}
+
+// AudienceBase 受众
+type AudienceBase struct {
 	// RetargetingTags 定向人群包列表，内容为人群包id
 	RetargetingTags []uint64 `json:"retargeting_tags,omitempty"`
 	// RetargetingTagsExclude 排除人群包列表，内容为人群包id
@@ -64,7 +71,7 @@ type Audience struct {
 	// LocationType 位置类型;取值：CURRENT正在该地区的用户，HOME居住在该地区的用户，TRAVEL到该地区旅行的用户，ALL该地区内的所有用户;当city和district有值时返回值
 	LocationType enum.LocationType `json:"location_type,omitempty"`
 	// SuperiorPopularityType 媒体定向;
-	SuperiorPopularityType string `json:"superior_popularity_type,omitempty"`
+	SuperiorPopularityType enum.SuperiorPopularityType `json:"superior_popularity_type,omitempty"`
 	// FlowPackage 定向逻辑
 	FlowPackage []uint64 `json:"flow_package,omitempty"`
 	// ExcludeFlowPackage 排除定向逻辑
@@ -79,8 +86,6 @@ type Audience struct {
 	AutoExtendEnabled int `json:"auto_extend_enabled,omitempty"`
 	// AutoExtendTarget 可放开定向。当auto_extend_enabled=1 时选填。详见：【附录-可开放定向】。缺省为全不选。
 	AutoExtendTarget []string `json:"auto_extend_targets,omitempty"`
-	// FilterAwemeAbnormalActive （抖音号推广特有）过滤高活跃用户; 取值：0表示不过滤，1表示过滤
-	FilterAwemeAbnormalActive int `json:"filter_aweme_abnormal_active,omitempty"`
 	// FilterAwemeFansCount （抖音号推广特有）过滤高关注数用户，例如"filter_aweme_fans_count": 1000表示过滤粉丝数在1000以上的用户
 	FilterAwemeFansCount int64 `json:"filter_aweme_fans_count,omitempty"`
 	// AwemeFansNumbers （抖音号推广特有）账号粉丝相似人群（添加抖音账号，会将广告投放给对应账号的相似人群粉丝）
@@ -94,7 +99,7 @@ type Audience struct {
 	// AwemeFanCategories 抖音达人分类ID列表，与aweme_fan_behaviors同时设置才会生效（抖音达人定向）
 	AwemeFanCategories []uint64 `json:"aweme_fan_categories,omitempty"`
 	// AwemeFanAccounts 抖音达人ID列表，与aweme_fan_behaviors同时设置才会生效（抖音达人定向）
-	AwemeFanAccounts []uint64 `json:"aweme_fan_accounts,omitempty"`
+	AwemeFanAccounts model.Uint64s `json:"aweme_fan_accounts,omitempty"`
 	// BindInfo 定向包绑定计划信息
 	BindInfo []struct {
 		// AdID 计划ID

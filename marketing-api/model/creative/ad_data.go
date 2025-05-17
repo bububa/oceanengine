@@ -15,7 +15,7 @@ type AdData struct {
 	// Source 广告来源，4-20个字符，当推广目的为非应用下载或者应用下载且download_type为"EXTERNAL_URL时"时必填
 	Source string `json:"source,omitempty"`
 	// EnableSmartSource 是否开启来源智能生成，允许值：ON 开启，OFF 关闭
-	EnableSmartSource string `json:"enable_smart_source,omitempty"`
+	EnableSmartSource enum.OnOff `json:"enable_smart_source,omitempty"`
 	// IesCoreUserID 品牌主页-推广抖音号，当传入此字段时表示开启抖音主页。广告视频将同步到您的主页下，在客户端点击广告头像将进入您的主页。创建后不可修改。
 	IesCoreUserID string `json:"ies_core_user_id,omitempty"`
 	// IsPresentedVideo 自动生成视频素材，利用已上传的图片与视频生成更多优质的短视频素材：1（启用），0（不启用）默认值: 0
@@ -39,7 +39,7 @@ type AdData struct {
 	// AdDownloadStatus 允许客户端下载视频功能，0为开启，即允许客户端下载视频；1为关闭，即不允许客户端下载视频。默认不传值，表示允许客户端下载视频。关闭客户端下载视频功能仅对本地上传的视频有效。
 	AdDownloadStatus *int `json:"ad_download_status,omitempty"`
 	// PriorityTrail 是否优先调起试玩。当推广目的为应用推广且使用搭配试玩素材时可以开启该功能。允许值：ON开启，OFF关闭
-	PriorityTrail string `json:"priority_trail,omitempty"`
+	PriorityTrail enum.OnOff `json:"priority_trail,omitempty"`
 	// Supplements 云游戏
 	Supplements []SupplementInfo `json:"supplements,omitempty"`
 	// DynamicCreativeSwitch 启用动态创意类型,详见【附录-动态创意类型】

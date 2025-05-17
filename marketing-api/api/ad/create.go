@@ -1,6 +1,8 @@
 package ad
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/ad"
 )
@@ -12,9 +14,9 @@ import (
 // 新版计划中去除投放内容中落地页信息（旧版计划中在计划维度）
 // 新版计划中新增广告位信息（旧版计划中在创意维度）
 // 新版计划中增加监测链接内容（旧版计划中在创意维度）
-func Create(clt *core.SDKClient, accessToken string, req *ad.CreateRequest) (uint64, error) {
+func Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *ad.CreateRequest) (uint64, error) {
 	var resp ad.CreateResponse
-	err := clt.Post("2/ad/create/", req, &resp, accessToken)
+	err := clt.Post(ctx, "2/ad/create/", req, &resp, accessToken)
 	if err != nil {
 		return 0, err
 	}

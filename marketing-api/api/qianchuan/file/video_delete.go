@@ -1,6 +1,8 @@
 package file
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/qianchuan/file"
 )
@@ -8,9 +10,9 @@ import (
 // VideoDelete 批量删除视频素材
 // 通过此接口，用户可以对素材视频进行批量删除。
 // 当素材删除失败时，会展示在video_id列表，不在此列表内的素材表示删除成功！
-func VideoDelete(clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) {
+func VideoDelete(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoDeleteRequest) ([]string, error) {
 	var resp file.VideoDeleteResponse
-	if err := clt.Post("v1.0/qianchuan/file/video/delete/", req, &resp, accessToken); err != nil {
+	if err := clt.Post(ctx, "v1.0/qianchuan/file/video/delete/", req, &resp, accessToken); err != nil {
 		return nil, err
 	}
 	return resp.Data.FailVideoIDs, nil

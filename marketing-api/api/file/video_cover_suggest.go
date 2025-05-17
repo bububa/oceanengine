@@ -1,6 +1,8 @@
 package file
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/file"
 )
@@ -11,9 +13,9 @@ import (
 // 智能封面不是实时获取，而需要先根据status判断封面获取的状态，然后再进行获取视频封面！
 // 新上传素材存在同步延迟情况，建议等待2-3分钟再尝试操作获取视频智能封面！
 // 获取封面素材仅用于当前广告主投放使用，不支持推送！
-func VideoCoverSuggest(clt *core.SDKClient, accessToken string, req *file.VideoCoverSuggestRequest) (*file.VideoCoverSuggestResponseData, error) {
+func VideoCoverSuggest(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoCoverSuggestRequest) (*file.VideoCoverSuggestResponseData, error) {
 	var resp file.VideoCoverSuggestResponse
-	err := clt.Get("2/tools/video_cover/suggest", req, &resp, accessToken)
+	err := clt.Get(ctx, "2/tools/video_cover/suggest", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

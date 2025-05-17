@@ -19,6 +19,8 @@ type ListRequest struct {
 type ListFiltering struct {
 	// PromotionID 待过滤的广告ID
 	PromotionID uint64 `json:"promotion_id,omitempty"`
+	// ProjectID 待过滤的广告ID
+	ProjectID uint64 `json:"project_id,omitempty"`
 }
 
 func (f ListFiltering) GetID() uint64 {

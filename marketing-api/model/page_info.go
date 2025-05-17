@@ -17,3 +17,13 @@ type PageInfo struct {
 	// Cursor 下一次分页拉取的游标值
 	Cursor int `json:"cursor,omitempty"`
 }
+
+// CursorInfo 分页信息
+type CursorInfo struct {
+	// Cursor 下一次分页拉取的游标值
+	Cursor string `json:"cursor,omitempty"`
+	// Count
+	Count int `json:"count,omitempty"`
+	// HasMore 是否有下一页
+	HasMore bool `json:"has_more,omitempty"`
+}

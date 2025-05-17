@@ -1,0 +1,32 @@
+# 本地推 Golang SDK
+
+- 项目管理模块 (local/project)
+  - 创建项目 [ Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *project.CreateRequest) (uint64, error) ]
+  - 更新项目 [ Update(ctx context.Context, clt *core.SDKClient, accessToken string, req *project.UpdateRequest) error ]
+  - 获取项目列表 [ List(ctx context.Context, clt *core.SDKClient, accessToken string, req *project.ListRequest) (*project.ListResult, error) ]
+  - 获取项目详情 [ Detail(ctx context.Context, clt *core.SDKClient, accessToken string, req *project.DetailRequest) (*project.ProjectDetail, error) ]
+  - 批量更新项目状态 [ StatusUpdate(ctx context.Context, clt *core.SDKClient, accessToken string, req *project.StatusUpdateRequest) (*project.UpdateResult, error) ]
+  - 获取可投商品列表 [ product.Get(ctx context.Context, clt *core.SDKClient, accessToken string, req *product.GetRequest) (*product.GetResult, error) ]
+  - 获取本地推创编可用抖音号 [ aweme.AuthorizedGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *aweme.AuthorizedGetRequest) (*aweme.AuthorizedGetResult, error) ]
+  - 查询本地推创编可用人群包 [ customaudience.Get(ctx context.Context, clt *core.SDKClient, accessToken string, req *customaudience.GetRequest) (*customaudience.GetResult, error) ]
+  - 根据多门店ID拉取门店ID [ poi.MultiPoiIDsGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *poi.MultiPoiIDsGetRequest) (*poi.MultiPoiIDsGetResult, error) ]
+- 广告管理模块 (local/promotion)
+  - 创建广告 [ Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *promotion.CreateRequest) (uint64, error) ]
+  - 更新广告 [ Update(ctx context.Context, clt *core.SDKClient, accessToken string, req *promotion.UpdateRequest) error ]
+  - 获取广告列表 [ List(ctx context.Context, clt *core.SDKClient, accessToken string, req *promotion.ListRequest) (*promotion.ListResult, error) ]
+  - 获取广告详情 [ Detail(ctx context.Context, clt *core.SDKClient, accessToken string, req *promotion.DetailRequest) (*promotion.PromotionDetail, error) ]
+  - 批量更新广告状态 [ StatusUpdate(ctx context.Context, clt *core.SDKClient, accessToken string, req *promotion.StatusUpdateRequest) (*promotion.UpdateResult, error) ]
+  - 根据门店ID查询门店下商品ID [ product.GetByPoiIDs(ctx context.Context, clt *core.SDKClient, accessToken string, req *product.GetByPoiIDsRequest) ([]uint64, error) ]
+- 本地推数据报表 (local/report)
+  - 获取项目数据 [ ProjectGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *report.ProjectGetRequest) (*report.ProjectGetResult, error) ]
+  - 获取广告数据 [ PromotionGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *report.PromotionGetRequest) (*report.PromotionGetResult, error) ]
+  - 获取素材数据 [ MaterialGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *report.MaterialGetRequest) (*report.MaterialGetResult, error) ]
+- 本地推素材管理 (local/file)
+  - 异步上传本地推视频 [ UploadTaskCreate(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.UploadTaskCreateRequest) (uint64, error) ]
+  - 查询异步上传本地推视频结果 [ VideoUploadTaskList(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoUploadTaskListRequest) ([]file.UploadTask, error) ]
+  - 上传视频 [ VideoUpload(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoUploadRequest) (*file.Video, error) ]
+  - 获取素材库视频 [ VideoGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoGetRequest) (*file.VideoGetResult, error) ]
+  - 获取抖音主页视频 [ VideoAwemeGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *file.VideoAwemeGetRequest) (*file.VideoAwemeGetResult, error) ]
+- 本地推线索管理 (local/clue)
+  - 获取本地推线索列表 [ LifeGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *clue.LifeGetRequest) (*clue.LifeGetResult, error) ]
+  - 本地推线索回传 [ LifeCallback(ctx context.Context, clt *core.SDKClient, accessToken string, req *clue.LifeCallbackRequest) error ]

@@ -3,6 +3,7 @@ package advertiser
 import (
 	"strconv"
 
+	"github.com/bububa/oceanengine/marketing-api/enum"
 	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
@@ -13,7 +14,7 @@ type FundGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// GrantTypeSplit 是否拆分赠款类型，允许值：
 	// 开启 ON ，关闭 OFF（默认）
-	GrantTypeSplit string `json:"grant_type_split,omitempty"`
+	GrantTypeSplit enum.OnOff `json:"grant_type_split,omitempty"`
 }
 
 // Encode implement GetRequest interface
@@ -21,7 +22,7 @@ func (r FundGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.GrantTypeSplit != "" {
-		values.Set("grant_type_split", r.GrantTypeSplit)
+		values.Set("grant_type_split", string(r.GrantTypeSplit))
 	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
@@ -32,17 +33,21 @@ func (r FundGetRequest) Encode() string {
 type FundGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
-	Data *FundGetResponseData `json:"data,omitempty"`
+	Data *FundGetResult `json:"data,omitempty"`
 }
 
 // FundGetResponseData 账号余额
-type FundGetResponseData struct {
+type FundGetResult struct {
 	// AdvertiserID 广告主ID或代理商ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Name 账户名
 	Name string `json:"name,omitempty"`
 	// Email 联系邮箱
 	Email string `json:"email,omitempty"`
+	FundInfo
+}
+
+type FundInfo struct {
 	// Balance 账户总余额(单位元)
 	Balance model.Float64 `json:"balance,omitempty"`
 	// ValidBalance 账户可用总余额(单位元)

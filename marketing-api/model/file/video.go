@@ -67,4 +67,6 @@ type Video struct {
 	ShareCnt int64 `json:"share_cnt,omitempty"`
 	// CommentCnt 评论数
 	CommentCnt int64 `json:"comment_cnt,omitempty"`
+	// StarAuthorID 星图达人ID
+	StarAuthorID string `json:"star_author_id,omitempty"`
 }

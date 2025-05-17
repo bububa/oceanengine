@@ -12,16 +12,18 @@ type Response interface {
 	IsError() bool
 	// Error implement error interface
 	Error() string
+	// APIRequestID 返回请求ID
+	APIRequestID() string
 }
 
 // BaseResponse shared api response data fields
 type BaseResponse struct {
-	// Code 返回码
-	Code int `json:"code"`
 	// Message 返回信息
 	Message string `json:"message"`
 	// RequestID 请求的日志id，唯一标识一个请求
 	RequestID string `json:"request_id,omitempty"`
+	// Code 返回码
+	Code int `json:"code"`
 }
 
 // IsError implement Response interface
@@ -32,4 +34,9 @@ func (r BaseResponse) IsError() bool {
 // Error implement Response interface
 func (r BaseResponse) Error() string {
 	return util.StringsJoin(strconv.Itoa(r.Code), ":", r.Message)
+}
+
+// APIRequestID implement Response interface
+func (r BaseResponse) APIRequestID() string {
+	return r.RequestID
 }

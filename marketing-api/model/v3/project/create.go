@@ -47,9 +47,16 @@ type CreateRequest struct {
 	// 2. deep_bid_type = DEEP_BID_DEFAULT 无深度优化方式 /BID_PER_ACTION 每次付费
 	SearchBidRatio float64 `json:"search_bid_ratio,omitempty"`
 	// AudienceExtend 定向拓展, 允许值：ON:开启（默认值）， OFF:关闭
-	AudienceExtend string `json:"audience_extend,omitempty"`
+	AudienceExtend enum.OnOff `json:"audience_extend,omitempty"`
 	// Keywords 搜索关键词列表
 	Keywords []Keyword `json:"keywords,omitempty"`
+	// AutoTraficExtend 智能拓流 ，允许值：ON开启； OFF关闭
+	// 仅支持ad_type = SEARCH时设置
+	// 自定义关键词和智能拓流二者必须开启一个：若keywords为空，智能拓流 auto_extend_traffic需为ON
+	// 对于搜索极速智投项目，若设置blue_flow_keyword_name蓝海关键词，智能拓流默认值为ON，且不得设置为OFF
+	AutoExtendTraffic enum.OnOff `json:"auto_extend_traffic,omitempty"`
+	// BlueFlowPackage 搜索蓝海流量投放相关参数
+	BlueFlowPackage *BlueFlowPackage `json:"blue_flow_package,omitempty"`
 	// RelatedProduct 关联产品投放相关
 	RelatedProduct *RelatedProduct `json:"related_product,omitempty"`
 	// DpaCategories 商品投放范围，分类列表，由【DPA商品广告-获取DPA分类】 得到
@@ -82,6 +89,11 @@ type CreateRequest struct {
 	SubscribeURL string `json:"subscribe_url,omitempty"`
 	// AssetType 资产类型 landing_type = LINK 或SHOP时有效且必填
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
+	// MultiAssetType 多投放载体
+	// 允许值：ORANGE_AND_AWEME优选投放橙子落地页和抖音主页
+	// 同时满足以下条件支持设置多投放载体：landing_type = LINK && marketing_goal = VIDEO_AND_IMAGE
+	// 注意：同时传入asset_type 和 multi_asset_type 实际会生效多投放载体投放
+	MultiAssetType enum.MultiDeliveryMedium `json:"multi_asset_type,omitempty"`
 	// 小程序类型，landing_type = MICRO_GAME 时有效且必填
 	// 允许值： WECHAT_GAME 微信小游戏、WECHAT_APP微信小程序、BYTE_GAME字节小游戏、BYTE_APP字节小程序
 	MicroPromotionType enum.MicroPromotionType `json:"micro_promotion_type,omitempty"`
@@ -117,8 +129,15 @@ func (r CreateRequest) Encode() []byte {
 // CreateResponse 创建项目 API Response
 type CreateResponse struct {
 	model.BaseResponse
-	Data struct {
-		// ProjectID 项目id
-		ProjectID uint64 `json:"project_id,omitempty"`
-	} `json:"data,omitempty"`
+	Data *CreateResult `json:"data,omitempty"`
+}
+
+type CreateResult struct {
+	// ProjectID 项目id
+	ProjectID uint64 `json:"project_id,omitempty"`
+	// SuppleMentaryAgreementInfo 星广联投投放协议查看地址，仅短剧行业投放星广联投项目时会返回。建议您在开启项目投放前协同广告主仔细确认协议内容后再进行投放
+	// https://open.oceanengine.com/labels/7/docs/1815754527706187
+	SuppleMentaryAgreementInfo string `json:"supple_mentary_agreement_info,omitempty"`
+	// ErrorKeywordList 上传失败的关键词list
+	ErrorKeywordList []ErrorKeyword `json:"error_keyword_list,omitempty"`
 }

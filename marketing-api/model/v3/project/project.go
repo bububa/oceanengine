@@ -59,9 +59,16 @@ type Project struct {
 	// SearchBidRatio 出价系数
 	SearchBidRatio float64 `json:"search_bid_ratio,omitempty"`
 	// AudienceExtend 定向拓展
-	AudienceExtend string `json:"audience_extend,omitempty"`
+	AudienceExtend enum.OnOff `json:"audience_extend,omitempty"`
 	// Keywords 搜索关键词列表
 	Keywords []Keyword `json:"keywords,omitempty"`
+	// AutoTraficExtend 智能拓流 ，允许值：ON开启； OFF关闭
+	// 仅支持ad_type = SEARCH时设置
+	// 自定义关键词和智能拓流二者必须开启一个：若keywords为空，智能拓流 auto_extend_traffic需为ON
+	// 对于搜索极速智投项目，若设置blue_flow_keyword_name蓝海关键词，智能拓流默认值为ON，且不得设置为OFF
+	AutoExtendTraffic enum.OnOff `json:"auto_extend_traffic,omitempty"`
+	// BlueFlowPackage 搜索蓝海流量投放相关参数
+	BlueFlowPackage *BlueFlowPackage `json:"blue_flow_package,omitempty"`
 	// RelatedProduct 关联产品投放相关
 	RelatedProduct *RelatedProduct `json:"related_product,omitempty"`
 	// DpaCategories 商品投放范围，分类列表，由【DPA商品广告-获取DPA分类】 得到
@@ -73,6 +80,35 @@ type Project struct {
 	// 数组长度限制：最大5条
 	// DPA推广目的下有效
 	DpaProductTarget []DpaProductTarget `json:"dpa_product_target,omitempty"`
+	// DeliveryProduct 推广产品，枚举值
+	// NONE：无产品
+	// APP ：应用
+	// PRODUCT：商品
+	// WECHAT_GAME：微信小游戏
+	// WECHAT_APP：微信小程序
+	// BYTE_GAME：字节小游戏
+	// BYTE_APP：字节小程序
+	// QUICK_APP：快应用
+	// AWEME：抖音号
+	DeliveryProduct enum.DeliveryProduct `json:"delivery_product,omitempty"`
+	// DeliveryMedium 单投放载体，枚举值
+	// WECHAT_GAME：微信小游戏
+	// WECHAT_APP：微信小程序
+	// BYTE_GAME：字节小游戏
+	// BYTE_APP：字节小程序
+	// PRODUCT：商品
+	// ORANGE： 橙子落地页
+	// THIRDPARTY ：自研落地页
+	// ENTERPRISE ：企业号落地页
+	// AWEME： 抖音号
+	// QUICK_APP：快应用
+	// APP：应用
+	// LANDING_PAGE_LINK：落地页
+	DeliveryMedium enum.DeliveryMedium `json:"delivery_medium,omitempty"`
+	// MultiDeliveryMedium 多投放载体，仅当landing_type = LINK 销售线索推广目的下会返回
+	// 枚举值：
+	// ORANGE_AND_AWEME优选投放橙子落地页和抖音主页
+	MultiDeliveryMedium enum.MultiDeliveryMedium `json:"multi_delivery_medium,omitempty"`
 	// DownloadURL 下载链接，landing_type=APP 子目标为 DOWNLOAD 或者LAUNCH 时有效且必填
 	// - 下载、调用场景传入说明：
 	// IOS：需要为iTunes官方地址
@@ -164,6 +200,9 @@ type RelatedProduct struct {
 	// 产品ID，当启用商品库时必填，可通过【商品广告-获取商品列表】 查询，创建后不可修改
 	// 当delivery_mode选择PROCEDURAL且landing_type选择LINK时，传入报错
 	ProductID model.JSONUint64 `json:"product_id,omitempty"`
+	// UniqueProductID 线索版产品ID，可通过【商品广告-获取线索商品列表】查询获取id（该接口下的product_id就是unique_product_id），创建后不可修改
+	// 如果投放线索版商品，只需要传入unique_product_id
+	UniqueProductID uint64 `json:"unique_product_id,omitempty"`
 	// AssetID 物件ID，可通过【商品广告-获取投放条件列表】获取，创建后不可修改。
 	AssetID uint64 `json:"asset_id,omitempty"`
 	// Products 产品ID列表，上限为10
@@ -265,7 +304,7 @@ type Audience struct {
 	// district =REGION/OVERSEA时必填
 	RegionVersion string `json:"region_version,omitempty"`
 	// RegionRecommend 地域智能放量定向，ON为开启、OFF为关闭
-	RegionRecommend string `json:"region_recommend,omitempty"`
+	RegionRecommend enum.OnOff `json:"region_recommend,omitempty"`
 	// City 地域定向省市或者区县列表，当district=CITY/COUNTY/REGION/OVERSEA时
 	// district =CITY/COUNTY时，详见【附件-city.json】
 	// district =REGION/OVERSEA时，通过【获取行政信息】接口获取
@@ -302,7 +341,7 @@ type Audience struct {
 	// AwemeFanCategories 抖音达人分类ID列表，可通过【工具-抖音达人-查询抖音类目列表】接口获取
 	AwemeFanCategories *[]uint64 `json:"aweme_fan_categories,omitempty"`
 	// AwemeFanAccounts 抖音达人ID列表，可通过【工具-抖音达人-查询抖音类目下的推荐达人】接口获取。
-	AwemeFanAccounts *[]uint64 `json:"aweme_fan_accounts,omitempty"`
+	AwemeFanAccounts *model.Uint64s `json:"aweme_fan_accounts,omitempty"`
 	// SuperiorPopularityType 媒体定向，详见【附录-媒体定向】
 	SuperiorPopularityType enum.SuperiorPopularityType `json:"superior_popularity_type,omitempty"`
 	// FlowPackage 定向逻辑，可通过【工具-穿山甲流量包-获取穿山甲流量包】
@@ -322,17 +361,17 @@ type Audience struct {
 	// Carrier 运营商, 详见【附录-受众运营商类型】
 	Carrier *[]enum.Carrier `json:"carrier,omitempty"`
 	// HideIfExists 过滤已安装，枚举值：UNLIMITED不限、FILTER 过滤、TARGETING 定向
-	HideIfExists string `json:"hide_if_exists,omitempty"`
+	HideIfExists enum.HideIfConverted `json:"hide_if_exists,omitempty"`
 	// HideIfConverted 过滤已转化用户
 	// 枚举值：NO_EXCLUDE 不限制、PROMOTION 广告、PROJECT 推广项目、ADVERTISER 广告账户、APP 应用、CUSTOMER 客户、ORGANIZATION 组织
-	HideIfConverted string `json:"hide_if_converted,omitempty"`
+	HideIfConverted enum.HideIfConverted `json:"hide_if_converted,omitempty"`
 	// ConvertedTimeDuration 过滤时间范围，详见 【附录-过滤时间范围】
-	ConvertedTimeDuration string `json:"converted_time_duration,omitempty"`
+	ConvertedTimeDuration enum.ConvertedTimeDuration `json:"converted_time_duration,omitempty"`
 	// FilterAwemeAbnormalActive 过滤高活跃用户，即过滤关注、点赞、评论行为高活跃的用户允许值：
 	// ON 过滤
 	// OFF不过滤（默认值）
 	// 当marketing_goal= LIVE 且inventory_type非仅穿山甲时，支持该字段
-	FilterAwemeAbnormalActive *model.OnOffInt `json:"filter_aweme_abnormal_active,omitempty"`
+	FilterAwemeAbnormalActive enum.OnOff `json:"filter_aweme_abnormal_active,omitempty"`
 	// FilterAwemeFansCount 过滤高关注数用户，例如"filter_aweme_fans_count": 1000表示过滤粉丝数在1000以上的用户
 	// 允许值：1000、500、200
 	// 当marketing_goal= Live 且inventory_type非仅穿山甲时，支持该字段
@@ -341,7 +380,7 @@ type Audience struct {
 	// ON 过滤
 	// OFF不过滤（默认值）
 	// 当marketing_goal= Live 且inventory_type非仅穿山甲时，支持该字段
-	FilterOwnAwemeFans *model.OnOffInt `json:"filter_own_aweme_fans,omitempty"`
+	FilterOwnAwemeFans enum.OnOff `json:"filter_own_aweme_fans,omitempty"`
 	// DeviceBrand 手机品牌, 详见【附录-手机品牌】
 	DeviceBrand *[]string `json:"device_brand,omitempty"`
 	// LaunchPrice 手机价格，价格区间，最高11000（表示1w以上）
@@ -350,12 +389,12 @@ type Audience struct {
 	AutoExtendTargets *[]string `json:"auto_extend_targets,omitempty"`
 	// DpaCity 地域匹配-商品所在城市开启时，仅将商品投放给位于该商品设置的可投城市的用户默认值：OFF允许值：OFF，ON（OFF表示不启用，ON表示启用）
 	// DPA推广目的下有效
-	DpaCity string `json:"dpa_city,omitempty"`
+	DpaCity enum.OnOff `json:"dpa_city,omitempty"`
 	// DpaRtaSwitch RTA重定向开关，
 	// 默认值：OFF允许值：OFF，ON（OFF表示不启用，ON表示启用）
 	// 启用后，需通过【设置账户下RTA策略生效范围-工具-商业开放平台】绑定rta策略
 	// DPA推广目的下有效
-	DpaRtaSwitch string `json:"dpa_rta_switch,omitempty"`
+	DpaRtaSwitch enum.OnOff `json:"dpa_rta_switch,omitempty"`
 	// RtaID RTA策略ID，通过【获取可用的RTA策略】接口获取
 	// 开启RTA重定向开关时必填
 	// DPA推广目的下有效
@@ -385,7 +424,7 @@ type DeliverySetting struct {
 	// 允许值：
 	// ON 开启（默认值），
 	// OFF 不开启
-	ProjectCustom string `json:"project_custom,omitempty"`
+	ProjectCustom enum.OnOff `json:"project_custom,omitempty"`
 	// Bid 点击出价/展示出价，当delivery_mode = MANUAL&&项目成本稳投开启&&pricing=CPC时填写有效；取值范围：0.2-999
 	Bid float64 `json:"bid,omitempty"`
 	// DeepBidType 深度优化方式，当转化目标中含有深度转化时，该字段必填
@@ -426,12 +465,20 @@ type DeliverySetting struct {
 	// RoiGoal 深度转化ROI系数(注意：nobid不返回该字段)
 	RoiGoal float64 `json:"roi_goal,omitempty"`
 	// BudgetOptimizeSwitch 支持预算择优分配，枚举值： ON 开启，OFF 不开启
-	BudgetOptimizeSwitch enum.BudgetOptimizeSwitch `json:"budget_optimize_switch,omitempty"`
+	BudgetOptimizeSwitch enum.OnOff `json:"budget_optimize_switch,omitempty"`
 	// SearchContinueDelivery 续投，仅当delivery_type = DURATION搜索广告周期投放时必填，允许值：
 	// OFF:关闭，关闭表示周期稳投7天后投放将自动终止
 	// ON:开启，开启表示投放结束后将继续维持7天固定周期的投放，跑量更加稳定，可以延续跑量
 	// 仅支持周期稳投链路，其他链路下传入该参数不生效
-	SearchContinueDelivery string `json:"search_continue_delivery,omitempty"`
+	SearchContinueDelivery enum.OnOff `json:"search_continue_delivery,omitempty"`
+	// ShopMultiRoiGoals 多ROI系数
+	// 条件必填，object[]，多ROI系数设置，表示引流电商多平台投放ROI系数及平台信息，广告主可按照电商平台分别确定ROI系数，分平台调控出价。list长度最长为4
+	// 多平台优选投放白名单内客户，在以下组合场景时shop_multi_roi_goals有效且必填
+	// 推广目的 = 电商（landing_type = SHOP）
+	// 投放方式 = 自动投放(delivery_mode = MANUAL)
+	// 优化目标 = APP 内下单(external_action = AD_CONVERT_TYPE_APP_ORDER)
+	// 深度优化方式 = ROI系数(deep_bid_type = ROI_DIRECT_MAIL)
+	ShopMultiRoiGoals []ShopMultiRoiGoal `json:"shop_multi_roi_goals,omitempty"`
 }
 
 // TrackURLSetting 监测链接设置
@@ -466,4 +513,12 @@ type Keyword struct {
 	// Bid 出价。取值范围：0.2至999.0。
 	// 当pricing为PRICING_OCPC/PRICING_OCPM时，不支持出价
 	Bid float64 `json:"bid,omitempty"`
+}
+
+// ShopMultiRoiGoals 多ROI系数
+type ShopMultiRoiGoal struct {
+	// RoiGoal ROI系数，范围(0.01,100]，精度：最多保留小数点后四位
+	RoiGoal float64 `json:"roi_goal,omitempty"`
+	// ShopPlatform ROI系数所属平台，允许值：PDD 拼多多、TB 淘宝、JD 京东、OTHER 其他
+	ShopPlatform enum.ShopPlatform `json:"shop_platform,omitempty"`
 }

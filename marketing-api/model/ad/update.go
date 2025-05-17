@@ -57,7 +57,7 @@ type UpdateRequest struct {
 	// FeedDeliverySearch 搜索快投关键词，HAS_OPEN:启用，DISABLE:不启用
 	FeedDeliverySearch string `json:"feed_delivery_search,omitempty"`
 	// IntelligentFlowSwitch 智能流量开关，ON:开启，OFF:关闭
-	IntelligentFlowSwitch string `json:"intelligent_flow_switch,omitempty"`
+	IntelligentFlowSwitch enum.OnOff `json:"intelligent_flow_switch,omitempty"`
 	// AudiencePackageID 定向包ID
 	AudiencePackageID uint64 `json:"audience_package_id,omitempty"`
 	// District 地域;取值: "CITY"省市, "COUNTY"区县, "BUSINESS_DISTRICT"商圈,"NONE"不限，省市传法："city": [12],"district": "CITY",区县的传法："city": [130102],"district": "COUNTY";暂不支持"海外"
@@ -111,7 +111,7 @@ type UpdateRequest struct {
 	// FilterOwnAwemeFans （抖音号推广特有）过滤自己的粉丝; 取值：0表示不过滤，1表示过滤
 	FilterOwnAwemeFans *int `json:"filter_own_aweme_fans,omitempty"`
 	// SuperiorPopularityType 媒体定向;
-	SuperiorPopularityType string `json:"superior_popularity_type,omitempty"`
+	SuperiorPopularityType enum.SuperiorPopularityType `json:"superior_popularity_type,omitempty"`
 	// FlowPackage 定向逻辑
 	FlowPackage *[]uint64 `json:"flow_package,omitempty"`
 	// ExcludeFlowPackage 排除定向逻辑
@@ -131,9 +131,9 @@ type UpdateRequest struct {
 	// HideIfExists 过滤已安装，当推广目标为安卓应用下载时可填，0表示不限，1表示过滤，2表示定向。默认为不限;默认值:0; 取值: 0, 1, 2。建议促进app活跃度客户使用定向安装功能。选择定向安装时，向已安装客户展示广告；投放时优先获取直达链接，无直达链接时使用应用包名进行投放；如果无直达链接或应用包名，定向安装选项实际不生效；仅对Android链接生效。
 	HideIfExists *int `json:"hide_if_exists,omitempty"`
 	// HideIfConverted 过滤已转化用户
-	HideIfConverted string `json:"hide_if_converted,omitempty"`
+	HideIfConverted enum.HideIfConverted `json:"hide_if_converted,omitempty"`
 	// ConvertedTimeDuration 过滤时间范围
-	ConvertedTimeDuration string `json:"converted_time_duration,omitempty"`
+	ConvertedTimeDuration enum.ConvertedTimeDuration `json:"converted_time_duration,omitempty"`
 	// ActivateType 新用户(新用户使用头条的时间)
 	ActivateType *[]enum.ActivateType `json:"activate_type,omitempty"`
 	// ArticleCategory 文章分类
@@ -197,7 +197,7 @@ type UpdateRequest struct {
 	// VideoPlayTrackURL 视频播放（监测链接），只允许传入1个，投放范围为穿山甲时暂不支持设置此链接
 	VideoPlayTrackURL *[]string `json:"video_play_track_url,omitempty"`
 	// AutoUpdateKeyword 否开启自动加词，允许值：ON（开启）、OFF（关闭）
-	AutoUpdateKeyword string `json:"auto_update_keyword,omitempty"`
+	AutoUpdateKeyword enum.OnOff `json:"auto_update_keyword,omitempty"`
 }
 
 // Encode implement PostRequest interface

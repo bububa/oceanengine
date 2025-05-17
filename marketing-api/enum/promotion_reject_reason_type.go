@@ -18,4 +18,6 @@ const (
 	PromotionRejectReasonType_EXAGGERATION PromotionRejectReasonType = "EXAGGERATION"
 	// PromotionRejectReasonType_ELSE 其他
 	PromotionRejectReasonType_ELSE PromotionRejectReasonType = "ELSE"
+	// PromotionRejectReasonType_ALL 不限
+	PromotionRejectReasonType_ALL PromotionRejectReasonType = "ALL"
 )

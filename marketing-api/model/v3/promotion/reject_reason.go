@@ -64,15 +64,17 @@ type MaterialReject struct {
 	// Item 根据不同素材类型返回相应的值
 	// - CREATIVE_URL 创意详情页：web_url;external_url;playable_url
 	// - CREATIVE_TITLE 标题：title
-	//  - CREATIVE_CAROUSEL 图文素材
+	// - CREATIVE_CAROUSEL 图文素材
 	// - CREATIVE_IMAGE 图片：image_id
 	// - CREATIVE_VIDEO 视频：video_id
 	// - CALL_TO_ACTION 行动号召：号召文案
 	// - PRODUCT_IMAGE 产品主图：image_id
 	// - PRODUCT_SELLING_POINTS 产品卖点：产品卖点文案
 	// - PRODUCT_DESCRIB 产品名称：产品名称文案
-	// CREATIVE_COMPONENT 创意组件：component_id
-	Item enum.MaterialType `json:"item,omitempty"`
+	// - CREATIVE_COMPONENT 创意组件：component_id
+	// - ANCHOR 锚点：anchor_id
+	// - AWEME_NICK_NAME 抖音昵称：抖音昵称
+	Item string `json:"item,omitempty"`
 	// RejectReason 审核建议
 	RejectReason []string `json:"reject_reason,omitempty"`
 	// Suggestion 审核建议

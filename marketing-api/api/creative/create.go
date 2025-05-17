@@ -1,6 +1,8 @@
 package creative
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/creative"
 )
@@ -21,9 +23,9 @@ import (
 // * 监测链接：当在计划纬度设置了转化id，如果在创建创意时不传监测链接，会自动获取转化id里监测链接；如果在创建（更新）创意时传入对应的监测链接，会取传入的监测链接，但是对于应用下载推广，即便主动传入点击监测链接，也会取转化id监测链接
 // * 对于不打算传的字段，不要传“”或者null，传了会校验
 // * 如果计划ID下已有创意信息，需要使用update_v2接口进行修改或者新增创意素材，否则会报错
-func Create(clt *core.SDKClient, accessToken string, req *creative.CreateRequest) (*creative.CreateResponseData, error) {
+func Create(ctx context.Context, clt *core.SDKClient, accessToken string, req *creative.CreateRequest) (*creative.CreateResponseData, error) {
 	var resp creative.CreateResponse
-	err := clt.Post("2/creative/create_v2/", req, &resp, accessToken)
+	err := clt.Post(ctx, "2/creative/create_v2/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

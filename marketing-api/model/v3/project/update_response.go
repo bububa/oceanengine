@@ -24,6 +24,8 @@ type UpdateResponseData struct {
 	ErrorList []UpdateError `json:"error_list,omitempty"`
 	// Errors 更新失败的广告计划列表
 	Errors []UpdateError `json:"errors,omitempty"`
+	// ErrorKeywordList
+	ErrorKeywordList []ErrorKeyword `json:"error_keywords_list,omitempty"`
 }
 
 // UpdateError 更新失败的广告项目
@@ -37,6 +39,17 @@ type UpdateError struct {
 	ErrorCode int `json:"error_code,omitempty"`
 	// ErrorMessage 错误信息
 	ErrorMessage string `json:"error_message"`
+}
+
+type ErrorKeyword struct {
+	// ErrorKeyword 失败的关键词
+	ErrorKeyword string `json:"error_keyword,omitempty"`
+	// ErrorMessage 失败原因
+	ErrorMessage string `json:"error_message,omitempty"`
+}
+
+func (e ErrorKeyword) Error() string {
+	return util.StringsJoin("Keyword:", e.ErrorKeyword, ", Message:", e.ErrorMessage)
 }
 
 // Error implement error interface

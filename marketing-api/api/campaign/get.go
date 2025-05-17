@@ -1,6 +1,8 @@
 package campaign
 
 import (
+	"context"
+
 	"github.com/bububa/oceanengine/marketing-api/core"
 	"github.com/bububa/oceanengine/marketing-api/model/campaign"
 )
@@ -11,9 +13,9 @@ import (
 // 支持filtering过滤，可按广告组ID、推广目的、广告组状态进行过滤筛选
 // 默认不获取删除的广告组，如果要获取删除的广告组，可在filtering中传入对应的status值；
 // 对于搜索广告组信息获取参见【搜索广告投放】
-func Get(clt *core.SDKClient, accessToken string, req *campaign.GetRequest) (*campaign.GetResponseData, error) {
+func Get(ctx context.Context, clt *core.SDKClient, accessToken string, req *campaign.GetRequest) (*campaign.GetResponseData, error) {
 	var resp campaign.GetResponse
-	err := clt.Get("2/campaign/get/", req, &resp, accessToken)
+	err := clt.Get(ctx, "2/campaign/get/", req, &resp, accessToken)
 	if err != nil {
 		return nil, err
 	}

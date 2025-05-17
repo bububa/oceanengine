@@ -11,31 +11,35 @@ import (
 
 // ListRequest 获取广告列表 API Request
 type ListRequest struct {
-	// AdvertiserID 广告主ID
-	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Filtering 过滤条件
 	Filtering *ListFilter `json:"filtering,omitempty"`
-	// Fields 查询字段集合，如果指定则应答结果仅返回指定字段
-	// 可参考应答参数返回的指标字段
-	Fields []string `json:"fields,omitempty"`
 	// IncludingMaterialAttributes 如需查询一个广告下是否包含搬运打压状态的视频素材，以及一个视频素材是否存在搬运风险，请传入此参数，并定义枚举值为RETURN_CARRY_DATA
 	// 可选值：RETURN_CARRY_DATA 返回视频素材的搬运属性
 	// 如果不传此参数，应答参数将不会返回搬运相关的字段：has_carry_material、is_carry_material
 	IncludingMaterialAttributes string `json:"including_material_attributes,omitempty"`
+	// Fields 查询字段集合，如果指定则应答结果仅返回指定字段
+	// 可参考应答参数返回的指标字段
+	Fields []string `json:"fields,omitempty"`
+	// AdvertiserID 广告主ID
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Page 页数默认值: 1，page必须大于0
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小默认值:10，page_size范围为1-10
 	PageSize int `json:"page_size,omitempty"`
+	// Cursor 页码游标值：第一次拉取，传入0
+	// page与cursor同时传入时，cursor优先级大于page；同时不传入默认走page逻辑
+	// page+page_size与cursor+count为两种分页方式，返回参数只返回与入参对应的分页参数
+	Cursor int `json:"cursor,omitempty"`
+	// Count 页面数据量
+	// page与cursor同时传入时，cursor优先级大于page；同时不传入默认走page逻辑
+	// page+page_size与cursor+count为两种分页方式，返回参数只返回与入参对应的分页参数
+	Count int `json:"count,omitempty"`
 }
 
 // ListFilter 过滤条件
 type ListFilter struct {
-	// IDs 按广告ID过滤，范围为1-100
-	IDs []uint64 `json:"ids,omitempty"`
 	// Name 广告名称，长度是1-50个字（两个英文字符占1个字，该字段采取模糊查询的方式）
 	Name string `json:"name,omitempty"`
-	// ProjectID 按项目id过滤
-	ProjectID uint64 `json:"project_id,omitempty"`
 	// DeliveryMode 投放模式，允许值：MANUAL手动投放 (默认值），PROCEDURAL自动投放
 	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
 	// Status 广告状态过滤，允许值：
@@ -73,23 +77,30 @@ type ListFilter struct {
 	PromotionModifyTime string `json:"promotion_modify_time,omitempty"`
 	// RejectReasonType 审核建议类型，允许值：NONE 无建议、REVIEW_REJECT 审核不通过、LOW_MATERAIL 低质素材、DISCOMFORT 引人不适、QUALITY_POOR 素材质量低、EXAGGERATION 夸大宣传、ELSE 其他
 	RejectReasonType enum.PromotionRejectReasonType `json:"reject_reason_type,omitempty"`
-	// LearningPhase 学习期状态 允许值：LEARNING（学习期中）、LEARNED（学习期结束）、LEARN_FAILED（学习期失败)
-	LearningPhase []enum.LearningPhase `json:"learning_phase,omitempty"`
 	// HasCarryMaterial 按素材搬运打压状态过滤
 	// TRUE：包含打压风险的广告
 	// FALSE：不包含打压风险的广告
 	HasCarryMaterial string `json:"has_carry_material,omitempty"`
+	// LearningPhase 学习期状态 允许值：LEARNING（学习期中）、LEARNED（学习期结束）、LEARN_FAILED（学习期失败)
+	LearningPhase []enum.LearningPhase `json:"learning_phase,omitempty"`
+	// IDs 按广告ID过滤，范围为1-100
+	IDs []uint64 `json:"ids,omitempty"`
+	// ProjectID 按项目id过滤
+	ProjectID uint64 `json:"project_id,omitempty"`
 }
 
 func (f ListFilter) GetIDs() []uint64 {
 	return f.IDs
 }
+
 func (f ListFilter) GetName() string {
 	return f.Name
 }
+
 func (f ListFilter) GetCreateTime() string {
 	return f.PromotionCreateTime
 }
+
 func (f ListFilter) GetModifyTime() string {
 	return f.PromotionModifyTime
 }
@@ -115,6 +126,12 @@ func (r ListRequest) Encode() string {
 	if r.PageSize > 0 {
 		values.Set("page_size", strconv.Itoa(r.PageSize))
 	}
+	if r.Cursor > 0 {
+		values.Set("cursor", strconv.Itoa(r.Cursor))
+	}
+	if r.Count > 0 {
+		values.Set("count", strconv.Itoa(r.Count))
+	}
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
@@ -122,13 +139,15 @@ func (r ListRequest) Encode() string {
 
 // ListResponse 获取广告列表 API Response
 type ListResponse struct {
-	model.BaseResponse
 	Data *ListResponseData `json:"data,omitempty"`
+	model.BaseResponse
 }
 
 type ListResponseData struct {
-	// List 项目列表
-	List []Promotion `json:"list,omitempty"`
+	// CursorInfo 游标分页信息，当分页方式为cursor+count时返回
+	CursorInfo *model.PageInfo `json:"cursor_info,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
+	// List 项目列表
+	List []Promotion `json:"list,omitempty"`
 }

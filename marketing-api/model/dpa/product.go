@@ -1,6 +1,9 @@
 package dpa
 
-import "github.com/bububa/oceanengine/marketing-api/model"
+import (
+	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
+)
 
 // Product 商品详情
 type Product struct {
@@ -10,28 +13,45 @@ type Product struct {
 	Title string `json:"title,omitempty"`
 	// Description 商品标题
 	Description string `json:"description,omitempty"`
-	// OfflineTime 下线时间，格式"YYYY-MM-DD"
-	OfflineTime string `json:"offline_time,omitempty"`
-	// OnlineTime 上线时间，格式"YYYY-MM-DD"
-	OnlineTime string `json:"online_time,omitempty"`
+	// OfflineTime 下线时间，格式"YYYY-MM-DD" 或 格式为十位unix时间戳类型
+	OfflineTime model.UnixTime `json:"offline_time,omitempty"`
+	// OnlineTime 上线时间，格式"YYYY-MM-DD" 或 格式为十位unix时间戳类型
+	OnlineTime model.UnixTime `json:"online_time,omitempty"`
 	// PlatformID 商品库ID
 	PlatformID uint64 `json:"platform_id,omitempty"`
 	// ProductID 商品ID
 	ProductID uint64 `json:"product_id,omitempty"`
 	// SpuID 商品spu_id
 	SpuID string `json:"spu_id,omitempty"`
+	// PoiID 商品poiID
+	PoiID string `json:"poi_id,omitempty"`
 	// OuterID 商品外部id
 	OuterID string `json:"outer_id,omitempty"`
 	// ImageURL 商品封面图片链接
 	ImageURL string `json:"image_url,omitempty"`
 	// ImageURLs 扩展商品图，商品图片的补充
 	ImageURLs []Link `json:"image_urls,omitempty"`
+	// ImagesURL 扩展商品图，商品图片的补充
+	ImagesURL []Link `json:"images_url,omitempty"`
 	// Status 商品投放状态，0代表不可投放，1代表可投放
-	Status int `json:"status,omitempty"`
+	Status enum.ProductStatus `json:"status,omitempty"`
+	// AuditStatus 审核状态，可选值:
+	// AUDIT_STATUS_APPROVE 审核通过
+	// AUDIT_STATUS_INIT 审核中
+	// AUDIT_STATUS_REJECT 审核未通过
+	AuditStatus enum.ProductAuditStatus `json:"audit_status,omitempty"`
+	// CompletionStatus 字段填充状态，可选值:
+	// AD_COMPLETED 广告场景已完善
+	// ALL_COMPLETED 必填字段已完善
+	// LEADS_COMPLETED 经营场景已完善
+	// TO_BE_COMPLETED 必填字段待完善
+	CompletionStatus enum.ProductCompletionStatus `json:"completion_status,omitempty"`
 	// Stock 商品库存状态，0代表无库存，1代表有库存
 	Stock int `json:"stock,omitempty"`
 	// LandingInfo 落地页信息
 	LandingInfo *LandingInfo `json:"landing_info,omitempty"`
+	// LandingURL 落地页信息
+	LandingURL *LandingInfo `json:"landing_url,omitempty"`
 	// BrandInfo 品牌信息
 	BrandInfo *BrandInfo `json:"brand_info,omitempty"`
 	// ShopKeeperInfo 商户信息
@@ -64,6 +84,10 @@ type Product struct {
 	Label string `json:"label,omitempty"`
 	// ExternalURL 落地页链接
 	ExternalURL string `json:"external_url,omitempty"`
+	// Category 商品类目信息
+	Category *ProductCategory `json:"category,omitempty"`
+	// CategoryID 类目ID
+	CategoryID uint64 `json:"category_id,omitempty"`
 	// FirstCategory 商品所处一级行业
 	FirstCategory string `json:"first_category,omitempty"`
 	// SubCategory 商品所处二级行业
@@ -71,17 +95,19 @@ type Product struct {
 	// ThirdCategory 商品所处三级行业
 	ThirdCategory string `json:"third_category,omitempty"`
 	// FirstCategoryID 商品所处一级行业 ID
-	FirstCategoryID string `json:"first_category_id,omitempty"`
+	FirstCategoryID model.Uint64 `json:"first_category_id,omitempty"`
 	// SubCategoryID 商品所处二级行业 ID
-	SubCategoryID string `json:"sub_category_id,omitempty"`
+	SubCategoryID model.Uint64 `json:"sub_category_id,omitempty"`
 	// ThirdCategoryID 商品所处三级行业 ID
-	ThirdCategoryID string `json:"third_category_id,omitempty"`
+	ThirdCategoryID model.Uint64 `json:"third_category_id,omitempty"`
 	// BrandName 商品名称
 	BrandName string `json:"brand_name,omitempty"`
 	// Tags 商品标签
 	Tags []string `json:"tags,omitempty"`
 	// Video 视频链接url
 	Video string `json:"video,omitempty"`
+	// VideoURL 商品视频链接
+	VideoURL string `json:"video_url,omitempty"`
 	// Videos 视频内容，小说库特有字段
 	Videos []Link `json:"videos,omitempty"`
 	// HasVideo 当前商品是否有商品视频 0：没有，1：有
@@ -90,8 +116,30 @@ type Product struct {
 	Profession *Profession `json:"profession,omitempty"`
 }
 
+// Category 商品类目信息
+type ProductCategory struct {
+	// FirstCategoryName 商品所处一级行业
+	FirstCategoryName string `json:"first_category_name,omitempty"`
+	// SubCategoryName 商品所处二级行业
+	SubCategoryName string `json:"sub_category_name,omitempty"`
+	// ThirdCategoryName 商品所处三级行业
+	ThirdCategoryName string `json:"third_category_name,omitempty"`
+	// FourthCategoryName 四级类目名称
+	FourthCategoryName string `json:"fourth_category_name,omitempty"`
+	// FirstCategoryID 商品所处一级行业 ID
+	FirstCategoryID uint64 `json:"first_category_id,omitempty"`
+	// SubCategoryID 商品所处二级行业 ID
+	SubCategoryID uint64 `json:"sub_category_id,omitempty"`
+	// ThirdCategoryID 商品所处三级行业 ID
+	ThirdCategoryID uint64 `json:"third_category_id,omitempty"`
+	// FourthCategoryID 四级类目ID
+	FourthCategoryID uint64 `json:"fourth_category_id,omitempty"`
+}
+
 type Link struct {
-	URL string `json:"string,omitempty"`
+	URL string `json:"url,omitempty"`
+	// TemplateID 视频模板ID
+	TemplateID string `json:"template_id,omitempty"`
 }
 
 // LandingInfo 落地页信息
@@ -136,6 +184,8 @@ type ShopKeeperInfo struct {
 	ShopKeeperID string `json:"shop_keeper_id,omitempty"`
 	// ShopKeeperName 商户名称
 	ShopKeeperName string `json:"shop_keeper_name,omitempty"`
+	// ShopKeeperLogo 商家logo
+	ShopKeeperLogo string `json:"shop_keeper_logo,omitempty"`
 	// ShopKeeperURL PC端商户落地页URL
 	ShopKeeperURL string `json:"shop_keeper_url,omitempty"`
 	// ShopKeeperURLMobile H5页面商户落地页URL
@@ -154,14 +204,14 @@ type ShopKeeperInfo struct {
 type PriceInfo struct {
 	// Value 商品原价，可用于素材拼接，以及动态创意标题或者素材
 	Value float64 `json:"value,omitempty"`
-	// PriceUnit 价格单位
-	PriceUnit string `json:"price_unit,omitempty"`
 	// Saving 减价
 	Saving float64 `json:"saving,omitempty"`
 	// Discount 折扣
 	Discount float64 `json:"discount,omitempty"`
 	// Price 商品现价
 	Price float64 `json:"price,omitempty"`
+	// PriceUnit 价格单位
+	PriceUnit string `json:"price_unit,omitempty"`
 	// SalesPromotion 促销活动，关于商品促销活动的描述信息
 	SalesPromotion string `json:"sales_promotion,omitempty"`
 	// DownPayment 首付
@@ -176,6 +226,12 @@ type PriceInfo struct {
 type Profession struct {
 	// Platform 平台信息，枚举值：淘宝 天猫 京东 其他
 	Platform string `json:"platform,omitempty"`
+	// StoreName 店铺名称
+	StoreName string `json:"store_name,omitempty"`
+	// StoreID 店铺ID
+	StoreID string `json:"store_ID,omitempty"`
+	// PriceList 商品价格
+	PriceList string `json:"price_list,omitempty"`
 	// Chapter 章节信息，结构为一个json字符串，章节名称name长度小于100；章节详细内容content长度小于5000
 	// 示例："[{"id":"0","name":"莫欺少年穷","content":"莫欺少年穷"},{"id":"1","name":"莫欺中年穷","content":"莫欺中年穷"}]"
 	Chapter string `json:"chapter,omitempty"`
@@ -185,6 +241,43 @@ type Profession struct {
 	NovelGender string `json:"novel_gender,omitempty"`
 	// NovelAuthor 书籍作者
 	NovelAuthor string `json:"novel_author,omitempty"`
+	// CharCount 全篇字数，单选，枚举值：1w-10w 10w-20w 20w+
+	CharCount string `json:"char_count,omitempty"`
+	// MonetizationMode 书籍变现模式信息，单选枚举值：付费变现混合
+	MonetizationMode string `json:"monetization_mode,omitempty"`
+	// OnlineEarning 仅对变现模式选择变现、混和的用户必填。是否包含网赚内容，单选枚举值：是、否
+	OnlineEarning string `json:"online_earning,omitempty"`
+	// PayStartChapter 仅对变现模式选择付费、混和的用户必填，起始付费章节，整数，[0,9999]
+	PayStartChapter string `json:"pay_start_chapter,omitempty"`
+	// AdStartChapter 仅对变现模式选择变现、混和的用户必填，起始广告解锁章节，整数，[0,9999]
+	AdStartChapter string `json:"ad_start_chapter,omitempty"`
+	// ChapterPrice 仅对变现模式选择付费、混和的用户必填，单章价格（不含赠送），整数，[0,9999]
+	ChapterPrice string `json:"chapter_price,omitempty"`
+	// VipType 会员类型, 单选枚举：终身、年度、月度、周/天、无
+	VipType string `json:"vip_type,omitempty"`
+	// MaxPriceLevel 最高充值档位（元），整数，[0,9999]
+	MaxPriceLevel string `json:"max_price_level,omitempty"`
+	// MinPriceLevel 最低充值档位（元），整数，[0,9999]
+	MinPriceLevel string `json:"min_price_level,omitempty"`
+	// SuggestPriceLevel 推荐充值档位（元），整数，[0,9999]
+	SuggestPriceLevel string `json:"suggest_price_level,omitempty"`
+	// HasPaidContent 变现模式，枚举：
+	// 1付费
+	// 2混合
+	HasPaidContent string `json:"has_paid_content,omitempty"`
+	// HasMotivationContent 是否包含网赚内容，枚举：
+	// 1是
+	// 2否
+	HasMotivationContent string `json:"has_motivation_content,omitempty"`
+	// MembershipTypes 会员类型，枚举值：
+	// 1终身
+	// 2年度
+	// 3月度
+	// 4周/天
+	// 5无
+	MembershipTypes string `json:"membership_types,omitempty"`
+	// StartingUnlockEpisode 起始解锁集数，正整数，最多10位
+	StartingUnlockEpisode int `json:"starting_unlock_episode,omitempty"`
 	// NovelStar 书籍收藏数
 	NovelStar string `json:"novel_star,omitempty"`
 	// NovelType 书籍付费/免费信息，枚举值：免费小说 付费小说
