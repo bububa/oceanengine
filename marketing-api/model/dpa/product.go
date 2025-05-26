@@ -224,6 +224,17 @@ type PriceInfo struct {
 
 // Profession 额外信息
 type Profession struct {
+	// AdCarrier 投放载体：多选，请选择该短剧商品在广告投放中所绑定的全部投放载体。
+	// 请注意：若有选择字节小程序/端原生组件，则需要入参「字节小程序推广链接」字段，若仅选择微信小程序、应用，则需要填写下方「剧目ID」字段
+	// 枚举值：字节小程序、微信小程序、端原生组件、安卓/IOS应用
+	AdCarrier string `json:"ad_carrier,omitempty"`
+	// MicroAppLink 字节小程序推广链接，说明：若当前短剧将在推广字节小程序时使用，您需要填写一条有效、且包含该短剧的字节小程序推广链接。
+	// 系统将根据链接，在抖音开放平台获取对应短剧的名称和集数，并自动在相关字段内填充保存。
+	MicroAppLink string `json:"micro_app_link,omitempty"`
+	// AlbumLink 短剧专辑链接
+	AlbumLink string `json:"album_link,omitempty"`
+	// AlbumID 剧目ID：若您暂未获得可填写的ID，您可调用「上传短剧剧目」接口，上传短剧并获取其对应的剧目ID
+	AlbumID string `json:"album_id,omitempty"`
 	// Platform 平台信息，枚举值：淘宝 天猫 京东 其他
 	Platform string `json:"platform,omitempty"`
 	// StoreName 店铺名称

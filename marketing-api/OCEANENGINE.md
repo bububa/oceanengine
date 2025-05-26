@@ -250,6 +250,8 @@
   - 删除DPA商品 [ ProductDelete(clt *core.SDKClient, accessToken string, req *dpa.ProductDeleteRequest) error ]
   - 删除升级版商品 [ ClueProductDelete(ctx context.Context, clt *core.SDKClient, accessToken string, req *dpa.ClueProductDeleteRequest) (*dpa.ClueProductDeleteResult, error) ]
   - 查询短剧商品原片授权申请状态 [ PlayletAuthGet(clt *core.SDKClient, accessToken string, req *dpa.PlayletAuthGetRequest) (*dpa.PlayletAuthGetResult, error) ]
+  - 查询短剧可投状态 [ AlbumStatusGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *dpa.AlbumStatusGetRequest) (*dpa.AlbumStatusGetResult, error) ]
+  - 上传短剧剧目 [ AlbumCreate(ctx context.Context, clt *core.SDKClient, accessToken string, req *dpa.AlbumCreateRequest) (string, error) ]
 - 素材管理 (api/file)
   - 上传广告主图片 [ ImageAdvertiser(clt *core.SDKClient, accessToken string, req *file.ImageAdvertiserRequest) (*file.Image, error) ]
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
