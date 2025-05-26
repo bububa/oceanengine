@@ -1,0 +1,17 @@
+package enum
+
+// AlbumCanNotPromotionReason 不可投原因
+type AlbumCanNotPromotionReason string
+
+const (
+	// AlbumCanNotPromotionReason_RESOURCE_NOT_EXIST 资源尚未创建或非微小短剧
+	AlbumCanNotPromotionReason_RESOURCE_NOT_EXIST AlbumCanNotPromotionReason = "RESOURCE_NOT_EXIST"
+	// AlbumCanNotPromotionReason_RESOURCE_AUDITING 资源审核中
+	AlbumCanNotPromotionReason_RESOURCE_AUDITING AlbumCanNotPromotionReason = "RESOURCE_AUDITING"
+	// AlbumCanNotPromotionReason_RESOURCE_UNDERRATING 资源可见度未达到可推广
+	AlbumCanNotPromotionReason_RESOURCE_UNDERRATING AlbumCanNotPromotionReason = "RESOURCE_UNDERRATING"
+	// AlbumCanNotPromotionReason_RESOURCE_CREATING 资源创建中
+	AlbumCanNotPromotionReason_RESOURCE_CREATING AlbumCanNotPromotionReason = "RESOURCE_CREATING"
+	// AlbumCanNotPromotionReason_RESOURCE_FAILED 资源创建失败
+	AlbumCanNotPromotionReason_RESOURCE_FAILED AlbumCanNotPromotionReason = "RESOURCE_FAILED"
+)

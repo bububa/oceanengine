@@ -250,6 +250,8 @@
   - 删除DPA商品 [ ProductDelete(clt *core.SDKClient, accessToken string, req *dpa.ProductDeleteRequest) error ]
   - 删除升级版商品 [ ClueProductDelete(ctx context.Context, clt *core.SDKClient, accessToken string, req *dpa.ClueProductDeleteRequest) (*dpa.ClueProductDeleteResult, error) ]
   - 查询短剧商品原片授权申请状态 [ PlayletAuthGet(clt *core.SDKClient, accessToken string, req *dpa.PlayletAuthGetRequest) (*dpa.PlayletAuthGetResult, error) ]
+  - 查询短剧可投状态 [ AlbumStatusGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *dpa.AlbumStatusGetRequest) (*dpa.AlbumStatusGetResult, error) ]
+  - 上传短剧剧目 [ AlbumCreate(ctx context.Context, clt *core.SDKClient, accessToken string, req *dpa.AlbumCreateRequest) (string, error) ]
 - 素材管理 (api/file)
   - 上传广告主图片 [ ImageAdvertiser(clt *core.SDKClient, accessToken string, req *file.ImageAdvertiserRequest) (*file.Image, error) ]
   - 上传广告图片 [ ImageAd(clt *core.SDKClient, accessToken string, req *file.ImageAdRequest) (*file.Image, error) ]
@@ -569,6 +571,11 @@
     - 获取字节小游戏 [ MicroGameList(clt *core.SDKClient, accessToken string, req *tools.MicroAppListRequest) (*tools.MicroAppListResult, error) ]
     - 获取字节小程序 [ MicroAppList(clt *core.SDKClient, accessToken string, req *tools.MicroAppListRequest) (*tools.MicroAppListResult, error) ]
     - 获取字节小程序/小游戏详情内容 [ AssetLinkList(clt *core.SDKClient, accessToken string, req *tools.AssetLinkListRequest) (*tools.AssetLinkListResult, error) ]
+  - 素材修复工具 (tools/rejectmaterial)
+    - 获取拒审素材修复建议 [ AIRepairGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *rejectmaterial.AIRepairGetRequest) (*rejectmaterial.AIRepairGetResult, error) ]
+    - 创建采纳「拒审素材修复建议」任务 [ AIRepairAcceptTaskCreate(ctx context.Context, clt *core.SDKClient, accessToken string, req *rejectmaterial.AIRepairAcceptTaskCreateRequest) (*rejectmaterial.AIRepairAcceptTaskCreateResult, error) ]
+    - 获取采纳素材修复建议任务结果 [ AIRepairAcceptTaskList(ctx context.Context, clt *core.SDKClient, accessToken string, req *rejectmaterial.AIRepairAcceptTaskListRequest) ([]rejectmaterial.AIRepairAcceptTask, error) ]
+    - 根据mid查询同主体账户下修复建议列表 [ AIRepairCrossAccountGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *rejectmaterial.AIRepairCrossAccountGetRequest) (*rejectmaterial.AIRepairCrossAccountGetResult, error) ]
 - 应用市场 (api/servemarket)
   - 获取应用订单数据 [ OrderGet(clt *core.SDKClient, accessToken string, req *servemarket.OrderGetRequest) (*servemarket.OrderGetResponseData, error) ]
   - 获取用户已购功能点列表 [ ActiveFuncGet(clt *core.SDKClient, accessToken string, req *servemarket.ActiveFuncGetRequest) ([]servemarket.OrderFunction, error) ]
