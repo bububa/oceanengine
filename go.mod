@@ -2,8 +2,6 @@ module github.com/bububa/oceanengine
 
 go 1.23.0
 
-toolchain go1.24.3
-
 require (
 	github.com/google/go-cmp v0.7.0
 	go.opentelemetry.io/otel v1.36.0
