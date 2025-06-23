@@ -571,6 +571,8 @@
     - 获取字节小游戏 [ MicroGameList(clt *core.SDKClient, accessToken string, req *tools.MicroAppListRequest) (*tools.MicroAppListResult, error) ]
     - 获取字节小程序 [ MicroAppList(clt *core.SDKClient, accessToken string, req *tools.MicroAppListRequest) (*tools.MicroAppListResult, error) ]
     - 获取字节小程序/小游戏详情内容 [ AssetLinkList(clt *core.SDKClient, accessToken string, req *tools.AssetLinkListRequest) (*tools.AssetLinkListResult, error) ]
+    - 查询字节小游戏归因激活时间窗 [ microgame.ConvertWindowGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *microgame.ConvertWindowGetRequest) (enum.ConvertWindow, error) ]
+    - 修改字节小游戏归因激活时间窗 [ microgame.ConvertWindowUpdate(ctx context.Context, clt *core.SDKClient, accessToken string, req *microgame.ConvertWindowUpdateRequest) error ]
   - 素材修复工具 (tools/rejectmaterial)
     - 获取拒审素材修复建议 [ AIRepairGet(ctx context.Context, clt *core.SDKClient, accessToken string, req *rejectmaterial.AIRepairGetRequest) (*rejectmaterial.AIRepairGetResult, error) ]
     - 创建采纳「拒审素材修复建议」任务 [ AIRepairAcceptTaskCreate(ctx context.Context, clt *core.SDKClient, accessToken string, req *rejectmaterial.AIRepairAcceptTaskCreateRequest) (*rejectmaterial.AIRepairAcceptTaskCreateResult, error) ]
