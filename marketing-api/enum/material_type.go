@@ -30,4 +30,8 @@ const (
 	MaterialType_AWEME_NICK_NAME MaterialType = "AWEME_NICK_NAME"
 	// MaterialType_OPEN_URL 直达链接
 	MaterialType_OPEN_URL MaterialType = "OPEN_URL"
+	// MaterialType_STRAIGHT_PLAYABLE 直玩素材
+	MaterialType_STRAIGHT_PLAYABLE MaterialType = "STRAIGHT_PLAYABLE"
+	// MaterialType_PLAYABLE_NEW 试玩素材
+	MaterialType_PLAYABLE_NEW MaterialType = "PLAYABLE_NEW"
 )
