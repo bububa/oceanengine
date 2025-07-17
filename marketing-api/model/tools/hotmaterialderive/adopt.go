@@ -7,8 +7,8 @@ import (
 
 // AdoptRequest 采纳爆款裂变视频 API Request
 type AdoptRequest struct {
-	// AdveritserID 广告主账户 ID
-	AdveritserID uint64 `json:"advertiser_id,omitempty"`
+	// AdvertiserID 广告主账户 ID
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// VideoIDs 采纳的视频 ID，有效期为 7 天（从 task 完成开始计算）单次最多 50 个
 	VideoIDs []string `json:"video_ids,omitempty"`
 }

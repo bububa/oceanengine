@@ -9,8 +9,8 @@ import (
 
 // ListRequest 获取账户下爆款裂变任务列表 API Request
 type ListRequest struct {
-	// AdveritserID 广告主账户 ID
-	AdveritserID uint64 `json:"advertiser_id,omitempty"`
+	// AdvertserID 广告主账户 ID
+	AdvertserID uint64 `json:"advertiser_id,omitempty"`
 	// Filtering 过滤项目
 	Filtering *ListFilter `json:"filtering,omitempty"`
 	// Page 页码
@@ -40,7 +40,7 @@ type ListFilter struct {
 // Encode implements GetRequest interface
 func (r ListRequest) Encode() string {
 	values := util.GetUrlValues()
-	values.Set("advertiser_id", strconv.FormatUint(r.AdveritserID, 10))
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertserID, 10))
 	if r.Filtering != nil {
 		values.Set("filtering", string(util.JSONMarshal(r.Filtering)))
 	}
