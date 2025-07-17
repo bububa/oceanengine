@@ -14,6 +14,11 @@ type Task struct {
 	CreateTime string `json:"create_time,omitempty"`
 	// ModifyTime 任务更新时间
 	ModifyTime string `json:"modify_time,omitempty"`
+	// Status 任务状态，枚举值
+	// RENDERING   执行中
+	// RENDER_SUCCESS 执行成功
+	// RENDER_FAILED 执行失败
+	Status string `json:"status,omitempty"`
 	// StatusCode 任务返回码，详见 【应答 status_code 和 message】
 	StatusCode int `json:"status_code,omitempty"`
 	// StatusMessage 任务返回信息，详见 【应答 status_code 和 message】
