@@ -21,7 +21,7 @@ type SubmitRequest struct {
 	// PRE_VIDEO_CLIP_REPLACE - 前贴扩写
 	// DERIVE_FROM_CHOSEN_HOT_MID - 自有爆款套路 （目前仅千川账户支持）
 	// DERIVE_FROM_INDUSTRY_HOT_PATTERN - 行业爆款套路（目前仅千川账户支持）
-	Stratetegies []string `json:"strategies,omitempty"`
+	Strategies []string `json:"strategies,omitempty"`
 	// ExcludeStrategies 禁止策略，范围同生效策略，优先级高于生效策略（两者都有时不生效）
 	ExcludeStrategies []string `json:"exclude_strategies,omitempty"`
 }
