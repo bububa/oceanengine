@@ -9,8 +9,8 @@ import (
 
 // ListRequest 获取账户下爆款裂变任务列表 API Request
 type ListRequest struct {
-	// AdvertserID 广告主账户 ID
-	AdvertserID uint64 `json:"advertiser_id,omitempty"`
+	// AdvertiserID 广告主账户 ID
+	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// Filtering 过滤项目
 	Filtering *ListFilter `json:"filtering,omitempty"`
 	// Page 页码
@@ -30,7 +30,7 @@ type ListFilter struct {
 	// PART_SUCCESS 任务部分成功
 	// PPOCESSING 任务处理中
 	// SUCCESS 任务成功
-	Status []string `json:"status,omitempty"`
+	Statuses []string `json:"statuses,omitempty"`
 	// StartTime 创建开始时间筛选，格式 YYYY-MM-DD HH:MM:SS
 	StartTime string `json:"start_time,omitempty"`
 	// EndTime 创建结束时间筛选，格式 YYYY-MM-DD HH:MM:SS
@@ -40,7 +40,7 @@ type ListFilter struct {
 // Encode implements GetRequest interface
 func (r ListRequest) Encode() string {
 	values := util.GetUrlValues()
-	values.Set("advertiser_id", strconv.FormatUint(r.AdvertserID, 10))
+	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	if r.Filtering != nil {
 		values.Set("filtering", string(util.JSONMarshal(r.Filtering)))
 	}
