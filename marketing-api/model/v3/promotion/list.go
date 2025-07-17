@@ -75,6 +75,20 @@ type ListFilter struct {
 	PromotionCreateTime string `json:"promotion_create_time,omitempty"`
 	// PromotionModifyTime 广告更新时间，格式yyyy-mm-dd，表示过滤出当天更新的广告项目
 	PromotionModifyTime string `json:"promotion_modify_time,omitempty"`
+	// PromotionModifyStartTime 广告更新开始时间，该筛选支持您细分到秒级查询一段时间内修改过的广告信息
+	// 格式yyyy-mm-dd hh:mm:ss
+	// 注意
+	// 必须与结束时间promotion_modify_end_time结合使用，注意时间跨度不能超过30天
+	// 开始时间<=结束时间
+	// 可以与promotion_modify_time同时使用，但不太有必要。直接使用promotion_modify_start_time、promotion_modify_end_time组合筛选即可
+	PromotionModifyStartTime string `json:"promotion_modify_start_time,omitempty"`
+	// PromotionModifyEndTime 广告更新结束时间，该筛选支持您细分到秒级查询一段时间内修改过的广告信息
+	// 格式yyyy-mm-dd hh:mm:ss
+	// 注意
+	// 必须与开始时间promotion_modify_start_time结合使用，注意时间跨度不能超过30天
+	// 开始时间<=结束时间
+	// 可以与promotion_modify_time同时使用，但不太有必要。直接使用promotion_modify_start_time、promotion_modify_end_time组合筛选即可
+	PromotionModifyEndTime string `json:"promotion_modify_end_time,omitempty"`
 	// RejectReasonType 审核建议类型，允许值：NONE 无建议、REVIEW_REJECT 审核不通过、LOW_MATERAIL 低质素材、DISCOMFORT 引人不适、QUALITY_POOR 素材质量低、EXAGGERATION 夸大宣传、ELSE 其他
 	RejectReasonType enum.PromotionRejectReasonType `json:"reject_reason_type,omitempty"`
 	// HasCarryMaterial 按素材搬运打压状态过滤
