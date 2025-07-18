@@ -50,7 +50,7 @@ type MaterialInfo struct {
 	// CoverURL 封面链接，有效期为 7 天
 	CoverURL string `json:"cover_url,omitempty"`
 	// Duration 视频时长
-	Duration int64 `json:"duration,omitempty"`
+	Duration float64 `json:"duration,omitempty"`
 	// MaterialID 素材 ID
 	MaterialID uint64 `json:"material_id,omitempty"`
 	// ImageMode 视频类型
