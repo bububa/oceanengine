@@ -92,8 +92,22 @@ type CustomDimensions struct {
 	CityName string `json:"city_name,omitempty"`
 	// MaterialID 素材的ID
 	MaterialID model.Uint64 `json:"material_id,omitempty"`
+	// VideoMaterialID 视频素材ID
+	VideoMaterialID model.Uint64 `json:"video_material_id,omitempty"`
+	// ImageMaterialID 图片索财ID
+	ImageMaterialID model.Uint64 `json:"image_material_id,omitempty"`
 	// AdPlatformMaterialContent 对应的素材标题、视频及图片内容
 	AdPlatformMaterialContent string `json:"ad_platform_material_content,omitempty"`
+	// AdPlatformVideoMaterialContent 图片内容
+	AdPlatformVideoMaterialContent string `json:"ad_platform_video_material_content,omitempty"`
+	// AdPlatformImageMaterialContent 图片内容
+	AdPlatformImageMaterialContent string `json:"ad_platform_image_material_content,omitempty"`
+	// AdPlatformCreativeComponentContent 创意组件内容
+	AdPlatformCreativeComponentContent string `json:"ad_platform_creative_component_content,omitempty"`
+	// AdPlatformCreativeComponentName 创意组件的名称
+	AdPlatformCreativeComponentName string `json:"ad_platform_creative_component_name,omitempty"`
+	// AdPlatformTitleMaterial 标题内容
+	AdPlatformTitleMaterial string `json:"ad_platform_title_material,omitempty"`
 	// ImageMode 对应的素材类型，包括标题、大图横图、竖版视频等
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// AdPlatformMaterialName 素材为视频素材时，对应的视频名称
@@ -110,8 +124,8 @@ type CustomDimensions struct {
 	Bidword string `json:"bidword"`
 	// RealRecallMatchType 搜索触发方式
 	RealRecallMatchType string `json:"real_recall_match_type"`
-	//BidwordSource  关键词来源
+	// BidwordSource  关键词来源
 	BidwordSource string `json:"bidword_source"`
-	//AdBidwordId 搜索广告计划粒度下关键词唯一ID
+	// AdBidwordId 搜索广告计划粒度下关键词唯一ID
 	AdBidwordId model.Uint64 `json:"ad_bidword_id"`
 }
