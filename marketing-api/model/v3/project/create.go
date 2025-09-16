@@ -140,4 +140,6 @@ type CreateResult struct {
 	SuppleMentaryAgreementInfo string `json:"supple_mentary_agreement_info,omitempty"`
 	// ErrorKeywordList 上传失败的关键词list
 	ErrorKeywordList []ErrorKeyword `json:"error_keyword_list,omitempty"`
+	// AutoDurationProjectCount 账户下剩余可建智能托管项目额度数量（UBA智能托管项目创建成功时返回）
+	AutioDurationProjectCount int `json:"auto_duration_project_count,omitempty"`
 }
