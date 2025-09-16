@@ -271,6 +271,8 @@ type VideoMaterial struct {
 	// DISABLE 暂停
 	// ENABLE 启用
 	MaterialOptStatus enum.OptStatus `json:"material_opt_status,omitempty"`
+	// CreateTime 素材创建时间
+	CreateTime string `json:"create_time,omitempty"`
 }
 
 // ImageMaterial 创意图片素材
@@ -279,6 +281,8 @@ type ImageMaterial struct {
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// Images 图片ID数组
 	Images []Image `json:"images,omitempty"`
+	// CreateTime 素材创建时间
+	CreateTime string `json:"create_time,omitempty"`
 }
 
 // Image 图片
@@ -486,6 +490,8 @@ type CarouselMaterial struct {
 	IsBlueFlowRecommendMaterial bool `json:"is_blue_flow_recommend_material,omitempty"`
 	// ImageSubject 图片主题
 	ImageSubject []file.ImageSubject `json:"image_subject,omitempty"`
+	// CreateTime 素材创建时间
+	CreateTime string `json:"create_time,omitempty"`
 }
 
 // RelatedProduct UBP多品广告素材组合
