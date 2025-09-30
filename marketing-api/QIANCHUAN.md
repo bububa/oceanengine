@@ -93,6 +93,10 @@
     - 获取全域推广计划下素材 [ MaterialGet(ctx context.Context, clt *core.SDKClient, accessToken string, req*unipromotion.MaterialGetRequest) (*unipromotion.MaterialGetResult, error) ]
     - 删除全域推广计划下素材 [ MaterialDelete(ctx context.Context, clt *core.SDKClient, accessToken string, req*unipromotion.MaterialDeleteRequest) error ]
     - 获取可投全域推广抖音号列表 [ AuthorizedGet(ctx context.Context, clt *core.SDKClient, accessToken string, req*unipromotion.AuthorizedGetRequest) (*unipromotion.AuthorizedGetResult, error) ]
+    - 更新商品全域推广计划名称 [ AdNameUpdate(ctx context.Context, clt *core.SDKClient, accessToken string, req*unipromotion.AdNameUpdateRequest) error ]
+    - 更新全域推广计划预算 [ AdBudgetUpdate(ctx context.Context, clt *core.SDKClient, accessToken string, req*unipromotion.AdBudgetUpdateRequest) ([]unipromotion.AdUpdateResult, error) ]
+    - 更新全域推广控成本计划支付ROI目标 [ AdRoi2GoalUpdate(ctx context.Context, clt *core.SDKClient, accessToken string, req*unipromotion.AdRoi2GoalUpdateRequest) ([]unipromotion.AdUpdateResult, error) ]
+    - 更新全域推广计划投放时间 [ AdScheduleDateUpdate(ctx context.Context, clt *core.SDKClient, accessToken string, req*unipromotion.AdScheduleDateUpdateRequest) ([]unipromotion.AdUpdateResult, error) ]
 - 数据报表 （api/qianchuan/report)
   - 广告数据报表
     - 获取广告账户数据 [ AdvertiserGet(ctx context.Context, clt *core.SDKClient, accessToken string, req*report.GetRequest) (*report.GetResponseData, error) ]
