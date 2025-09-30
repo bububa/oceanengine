@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/bububa/oceanengine/marketing-api/enum"
+	"github.com/bububa/oceanengine/marketing-api/model"
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
@@ -76,4 +77,45 @@ func (r AnalysisGetRequest) Encode() string {
 	ret := values.Encode()
 	util.PutUrlValues(values)
 	return ret
+}
+
+// AnalysisGetResponse 直播间分析报表 API Response
+type AnalysisGetResponse struct {
+	model.BaseResponse
+	Data *AnalysisGetResult `json:"data,omitempty"`
+}
+
+type AnalysisGetResult struct {
+	// List 直播间数据
+	List []Analysis `json:"list,omitempty"`
+	// PageInfo 分页信息
+	PageInfo *model.PageInfo `json:"page_info,omitempty"`
+}
+
+// Analysis 直播间数据
+type Analysis struct {
+	// AnchorAvatar 主播头像URL
+	AnchorAvatar string `json:"anchor_avatar,omitempty"`
+	// AnchorID 主播ID
+	AnchorID uint64 `json:"anchor_id,omitempty"`
+	// AnchorNick 主播昵称
+	AnchorNick string `json:"anchor_nick,omitempty"`
+	// RoomCover 直播间截图URL
+	RoomCover string `json:"room_cover,omitempty"`
+	// RoomCreateTime 直播开始时间，格式为%Y-%m-%d %H:%M:%S
+	RoomCreateTime string `json:"room_create_time,omitempty"`
+	// RoomFinishTime 直播结束时间，格式为%Y-%m-%d %H:%M:%S
+	RoomFinishTime string `json:"room_finish_time,omitempty"`
+	// RoomID 直播间ID
+	RoomID uint64 `json:"room_id,omitempty"`
+	// RoomQrcode 直播间二维码URL，仅直播状态为开播中的直播间包含该字段
+	RoomQrcode string `json:"room_qrcode,omitempty"`
+	// RoomStatus 直播间状态，枚举值：
+	// END 关播
+	// LIVING 开播
+	// PAUSE 暂停
+	// PREPARING 准备
+	RoomStatus string `json:"room_status,omitempty"`
+	// Fields 指标字段
+	Fields *Metrics `json:"fields,omitempty"`
 }
