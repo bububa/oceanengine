@@ -44,7 +44,7 @@ type GetFilter struct {
 	// AnchorStartTime 锚点创建开始日期，格式：YYYY-MM-DD
 	AnchorStartTime string `json:"anchor_start_time,omitempty"`
 	// AnchorEndTime 锚点创建结束日期，格式：YYYY-MM-DD
-	AnchorEndType string `json:"anchor_end_type,omitempty"`
+	AnchorEndTime string `json:"anchor_end_time,omitempty"`
 }
 
 // Encode implement GetRequest interface
