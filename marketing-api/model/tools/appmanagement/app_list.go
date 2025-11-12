@@ -94,14 +94,24 @@ type App struct {
 	PackageName string `json:"package_name,omitempty"`
 	// AppCloudID app id
 	AppCloudID uint64 `json:"app_cloud_id,omitempty"`
+	// AppID 鸿蒙应用ID
+	AppID string `json:"app_id,omitempty"`
 	// AppName 应用名
 	AppName string `json:"app_name,omitempty"`
+	// VersionName 版本号
+	VersionName string `json:"version_name,omitempty"`
 	// Version 版本号
 	Version string `json:"version,omitempty"`
 	// DownloadURL 下载地址
 	DownloadURL string `json:"download_url,omitempty"`
 	// IconURL icon地址
 	IconURL string `json:"icon_url,omitempty"`
+	// Status 应用当前状态
+	Status AppStatus `json:"status,omitempty"`
+	// AssetID 鸿蒙资产ID
+	AssetID string `json:"asset_id,omitempty"`
+	// VersionID 版本审核ID，每次送审产生新的ID
+	VersionID uint64 `json:"version_id,omitempty"`
 	// PublishTime 发布时间，格式：%Y-%m-%d %H:%M:%S
 	PublishTime string `json:"publish_time,omitempty"`
 	// ScheduledPublishTime 预约发布时间，格式：%Y-%m-%d %H:%M:%S

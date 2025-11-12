@@ -348,12 +348,16 @@ type Audience struct {
 	FlowPackage *[]uint64 `json:"flow_package,omitempty"`
 	// ExcludeFlowPackage 排除定向逻辑，可通过【工具-穿山甲流量包-获取穿山甲流量包】
 	ExcludeFlowPackage *[]uint64 `json:"exclude_flow_package,omitempty"`
-	// Platform 投放平台列表，枚举值：ANDROID、IOS
+	// Platform 投放平台列表，枚举值：ANDROID, IOS, HARMONY
 	Platform *[]enum.AudiencePlatform `json:"platform,omitempty"`
 	// AndroidOsv 最低安卓版本
 	AndroidOsv string `json:"android_osv,omitempty"`
 	// IosOsv 最低IOS版本
 	IosOsv string `json:"ios_osv,omitempty"`
+	// HarmonyOsv 鸿蒙版本，允许值：5.0
+	// 仅支持定向- platform为鸿蒙时进行鸿蒙版本设置，当platform为ANDROID、IOS时不支持设置
+	// 当platform为鸿蒙时有效且必填
+	HarmonyOsv string `json:"harmony_osv,omitempty"`
 	// DeviceType 设备类型，枚举值：MOBILE、PAD
 	DeviceType *[]string `json:"device_type,omitempty"`
 	// Ac 网络类型, 详见【附录-受众网络类型】

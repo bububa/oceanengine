@@ -12,6 +12,9 @@ type AwemeAuthRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// AwemeID 要授权的抖音号
 	AwemeID string `json:"aweme_id,omitempty"`
+	// AwemeShowID 抖音号，即用户在抖音端上的抖音号
+	// aweme_id和aweme_show_id至少入参一个，如果两个都入参，以aweme_id为准
+	AwemeShowID string `json:"aweme_show_id,omitempty"`
 	// Code 达人合作码
 	Code string `json:"code,omitempty"`
 	// AuthType 授权类型，可选值
@@ -21,6 +24,8 @@ type AwemeAuthRequest struct {
 	// EndTime 授权结束时间，格式为yyyy-MM-dd HH:mm:ss
 	// 如果想要不限，end_time=2099-12-31 23:59:59
 	EndTime string `json:"end_time,omitempty"`
+	// Notes 用户备注
+	Notes string `json:"notes,omitempty"`
 }
 
 // Encode implemnet PostRequest interface

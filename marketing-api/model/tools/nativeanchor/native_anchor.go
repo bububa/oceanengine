@@ -50,6 +50,8 @@ type AppEcommerceAnchor struct {
 	IosAnchorTitle string `json:"ios_anchor_title,omitempty"`
 	// AndoridAnchorTitel 安卓锚点入口标题字段，长度：1～12
 	AndroidAnchorTitle string `json:"android_anchor_title,omitempty"`
+	// HarmonyAnchorTitle 鸿蒙下载链接
+	HarmonyAnchorTitle string `json:"harmony_anchor_title,omitempty"`
 	// ProductInfo 商品大图，推荐比例 1：1
 	ProductImage *Image `json:"product_info,omitempty"`
 	// ProductName 商品名称，长度1～10
@@ -97,7 +99,12 @@ type NetServiceAnchor struct {
 	// 跳转场景= 跳转微信链接, 传WECHAT_EXTERNAL_URL
 	// QUICK_APP：快应用
 	NetServiceType enum.NetServiceType `json:"net_service_type,omitempty"`
-	// PlatformType 配置平台，net_service_type为微信小程序场景下不用传入（1:不限,2:安卓,3:iOS）不限：安卓下载链接和iOS下载链接必填；安卓：安卓下载链接必填，iOS下载链接不填写；iOS：iOS下载链接必填
+	// PlatformType APP下载配置，net_service_type为GENERAL常规应用下载时需要填入
+	// 1不限；2安卓；3IOS；4鸿蒙；5鸿蒙+安卓；6鸿蒙+IOS；7安卓+IOS
+	// 不限：安卓下载链接和iOS下载链接必填（若账号在HarmonyOS白名单中，则设置不限需要填写安卓、IOS、鸿蒙下载链接）
+	// 安卓：安卓下载链接必填
+	// iOS：iOS下载链接必填
+	// 鸿蒙：鸿蒙下载链接必填
 	PlatformType int `json:"platform_type,omitempty"`
 	// AndroidDownloadURL 安卓下载链接，net_service_type为微信小程序场景下不用传入
 	AndroidDownloadURL string `json:"android_download_url,omitempty"`
@@ -107,6 +114,10 @@ type NetServiceAnchor struct {
 	IosDownloadURL string `json:"ios_download_url,omitempty"`
 	// IosAnchorTitle iOS 锚点入口标题字段
 	IosAnchorTitle string `json:"ios_anchor_title,omitempty"`
+	// HarmonyDownloadURL 鸿蒙下载链接
+	HarmonyDownloadURL string `json:"harmony_download_url,omitempty"`
+	// harmonyAnchorTitle 鸿蒙锚点标题
+	HarmonyAnchorTitle string `json:"harmony_anchor_title,omitempty"`
 	// AppOpenURL app调起链接
 	AppOpenURL string `json:"app_open_url,omitempty"`
 	// HeadImageList 锚点头部图片list，推荐尺寸为2：1的横图
@@ -154,6 +165,8 @@ type GameAnchor struct {
 	IosDownloadURL string `json:"ios_download_url,omitempty"`
 	// IosAnchorTitle iOS锚点入口标题字段，长度1～12
 	IosAnchorTitle string `json:"ios_anchor_title,omitempty"`
+	// HarmonyDonwloadURL 鸿蒙下载链接
+	HarmonyDownloadURL string `json:"harmony_download_url,omitempty"`
 	// HeadImageList 锚点头部图片list，推荐尺寸为2：1的横图
 	HeadImageList []Image `json:"head_image_list,omitempty"`
 	// InstanceID 微信小程序ID，当前锚点类型且net_service_type为'MICRO_APP' 必填
@@ -205,6 +218,8 @@ type SiteInfo struct {
 	AndroidDownloadURL string `json:"android_download_url,omitempty"`
 	// IosDonwloadURL ios下载链接
 	IosDownloadURL string `json:"ios_download_url,omitempty"`
+	// HarmonyExternalURL 鸿蒙下载链接
+	HarmonyExternalURL string `json:"harmony_external_url,omitempty"`
 	// ExternalURL 第三方落地页
 	ExternalURL string `json:"external_url,omitempty"`
 }

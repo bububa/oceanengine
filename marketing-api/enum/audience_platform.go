@@ -8,6 +8,8 @@ const (
 	AudiencePlatform_ANDROID AudiencePlatform = "ANDROID"
 	// AudiencePlatform_IOS iOS
 	AudiencePlatform_IOS AudiencePlatform = "IOS"
+	// AudiencePlatform_HARMONY HARMONY
+	AudiencePlatform_HARMONY AudiencePlatform = "HARMONY"
 	// AudiencePlatform_PC pc
 	AudiencePlatform_PC AudiencePlatform = "PC"
 	// AudiencePlatform_IPAD iPad

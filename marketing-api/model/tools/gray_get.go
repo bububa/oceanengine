@@ -14,6 +14,10 @@ type GrayGetRequest struct {
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// GrayKeys 白名单能力key，目前仅支持单次查询1个白名单能力key
 	GrayKeys []enum.GrayKey `json:"gray_keys,omitempty"`
+	// Version 白名单能力key所属版本，可选值:
+	// OLD_VERSION 巨量广告迁移白名单（默认值）
+	// UPDATED_VERSION 巨量广告升级版能力白名单，如需查询UBA、电商多直达链接等白名单能力，请传入此枚举
+	Version string `json:"version,omitempty"`
 	// 抖音号id
 	// gray_keys = comm_roi 时，有效且必填
 	AwemeIDs []uint64 `json:"aweme_ids,omitempty"`
@@ -24,6 +28,9 @@ func (r GrayGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	values.Set("gray_keys", string(util.JSONMarshal(r.GrayKeys)))
+	if r.Version != "" {
+		values.Set("version", r.Version)
+	}
 	if len(r.AwemeIDs) > 0 {
 		values.Set("aweme_ids", string(util.JSONMarshal(r.AwemeIDs)))
 	}
