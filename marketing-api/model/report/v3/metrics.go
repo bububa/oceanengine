@@ -231,10 +231,10 @@ type CustomMetrics struct {
 	InAppPay model.Int64 `json:"in_app_pay,omitempty"`
 	// InAppOrder 用户调起APP后提交订单的次数，一般在DPA广告中使用
 	InAppOrder model.Int64 `json:"in_app_order,omitempty"`
-	// InAppPayOrderGmv 引流电商订单GMV, 当您使用“in_app_order”事件回传订单金额时，对应的GMV金额
-	InAppPayOrderGmv model.Float64 `json:"in_app_pay_order_gmv,omitempty"`
+	// InAppOrderGmv 引流电商订单GMV, 当您使用“in_app_order”事件回传订单金额时，对应的GMV金额
+	InAppOrderGmv model.Float64 `json:"in_app_order_gmv,omitempty"`
 	// InAppPayOrderRoi 引流电商订单ROI, 引流电商订单GMV/消耗"
-	InAppPayOrderRoi model.Float64 `json:"in_app_pay_order_roi,omitempty"`
+	InAppOrderRoi model.Float64 `json:"in_app_order_roi,omitempty"`
 	// InAppPayGmv 引流电商支付GMV, 当您使用“in_app_pay”事件回传支付金额时，对应的GMV金额"
 	InAppPayGmv model.Float64 `json:"in_app_pay_gmv,omitempty"`
 	// InAppPayRoi 引流电商支付ROI, 引流电商支付GMV/消耗
