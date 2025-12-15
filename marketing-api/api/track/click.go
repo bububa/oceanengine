@@ -2,8 +2,6 @@ package track
 
 import (
 	"net/url"
-
-	"github.com/bububa/oceanengine/marketing-api/model"
 )
 
 // DEFAULT_CLICK_FIELDS 默认点击检测字段
@@ -37,7 +35,7 @@ var DEFAULT_CLICK_FIELDS = []string{
 }
 
 // Click 生成击检测链接
-func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
+func Click(baseUrl string, fields []string) string {
 	if fields == nil {
 		fields = DEFAULT_CLICK_FIELDS
 	}
@@ -54,9 +52,7 @@ func Click(baseUrl string, fields []string, adVersion model.AdVersion) string {
 		case "advertiser_id":
 			values.Set("advertiser_id", "__ADVERTISER_ID__")
 		case "cid":
-			if adVersion != model.AdVersion_2 {
-				values.Set("cid", "__CID__")
-			}
+			values.Set("cid", "__CID__")
 		case "campaign_id":
 			values.Set("campaign_id", "__CAMPAIGN_ID__")
 		case "project_id":
