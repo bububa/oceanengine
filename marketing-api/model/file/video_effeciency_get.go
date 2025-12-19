@@ -8,16 +8,16 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
-// VideoEffeciencyGetRequest 获取低效素材 API Request
-type VideoEffeciencyGetRequest struct {
+// VideoEfficiencyGetRequest 获取低效素材 API Request
+type VideoEfficiencyGetRequest struct {
 	// AdvertiserID 广告主id
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// MaterialIDs 素材列表，单次最多可查询100个
 	MaterialIDs []string `json:"material_ids,omitempty"`
 }
 
-// Encode implement GetRequest interfacd
-func (r VideoEffeciencyGetRequest) Encode() string {
+// Encode implement GetRequest interface
+func (r VideoEfficiencyGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("advertiser_id", strconv.FormatUint(r.AdvertiserID, 10))
 	ids, _ := json.Marshal(r.MaterialIDs)
@@ -27,8 +27,8 @@ func (r VideoEffeciencyGetRequest) Encode() string {
 	return ret
 }
 
-// VideoEffeciencyGetResponse 获取低效素材 API Response
-type VideoEffeciencyGetResponse struct {
+// VideoEfficiencyGetResponse 获取低效素材 API Response
+type VideoEfficiencyGetResponse struct {
 	model.BaseResponse
 	// Data json返回值
 	Data struct {
