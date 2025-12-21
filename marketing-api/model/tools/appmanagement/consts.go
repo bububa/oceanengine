@@ -22,6 +22,8 @@ const (
 	AppStatus_AUDIT_DOING AppStatus = "AUDIT_DOING"
 	// AppStatus_AUDIT_REJECTED 审核失败
 	AppStatus_AUDIT_REJECTED AppStatus = "AUDIT_REJECTED"
+	// AppStatus_AUDIT_ACCEPTED 审核成功
+	AppStatus_AUDIT_ACCEPTED AppStatus = "AUDIT_ACCEPTED"
 	// AppStatus_BOOKING 预约中
 	AppStatus_BOOKING AppStatus = "BOOKING"
 	// AppStatus_ENABLE 已发布（默认）

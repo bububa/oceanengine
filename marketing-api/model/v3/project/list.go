@@ -73,6 +73,20 @@ type ListFilter struct {
 	ProjectCreateTime string `json:"project_create_time,omitempty"`
 	// ProjectModifyTime 项目更新时间，格式yyyy-mm-dd，表示过滤出当天更新的广告项目
 	ProjectModifyTime string `json:"project_modify_time,omitempty"`
+	// ProjectModifyStartTime 项目更新开始时间，该筛选支持您细分到秒级查询一段时间内修改过的项目信息
+	// 格式yyyy-mm-dd hh:mm:ss
+	// 注意
+	// 必须与结束时间project_modify_end_time结合使用，注意时间跨度不能超过30天
+	// 开始时间<=结束时间
+	// 可以与project_modify_time同时使用，但不太有必要。直接使用project_modify_start_time、project_modify_end_time组合筛选即可
+	ProjectModifyStartTime string `json:"project_modify_start_time,omitempty"`
+	// ProjectModifyEndTime 项目更新结束时间，该筛选支持您细分到秒级查询一段时间内修改过的项目信息
+	// 格式yyyy-mm-dd hh:mm:ss
+	// 注意
+	// 必须与开始时间project_modify_start_time结合使用，注意时间跨度不能超过30天
+	// 开始时间<=结束时间
+	// 可以与project_modify_time同时使用，但不太有必要。直接使用project_modify_start_time、project_modify_end_time组合筛选即可
+	ProjectModifyEndTime string `json:"project_modify_end_time,omitempty"`
 	// Pricing 按计费方式过滤，允许值：PRCING_OCPM OCPM
 	Pricing enum.PricingType `json:"pricing,omitempty"`
 	// InventoryType 按首选位置过滤，允许值

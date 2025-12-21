@@ -34,6 +34,12 @@ const (
 	// GrayKey_BAN_UPDATE_BLACKLIST_1_0_EXCEPT_LIVE 白名单id为766，允许巨量广告编辑直播链路以外的计划，禁止编辑直播链路广告计划
 	GrayKey_BAN_UPDATE_BLACKLIST_1_0_EXCEPT_LIVE GrayKey = "ban_update_blacklist_1_0_except_live"
 
+	// GrayKey_XIAOSHUO 白名单id为570，允许巨量广告创建landing_type为线索的项目
+	GrayKey_XIAOSHUO GrayKey = "xiaoshuo"
+
+	// GrayKey_UBA 白名单id为506，游戏粒度自动化投放（UBA）
+	GrayKey_UBA GrayKey = "uba"
+
 	// GrayKey_UBA_INTERNET_SERVICE 白名单id为506，游戏粒度自动化投放（UBA）
 	GrayKey_UBA_INTERNET_SERVICE GrayKey = "uba_internet_service"
 
@@ -42,6 +48,9 @@ const (
 
 	// GrayKey_MOREAPP 多平台优选投放
 	GrayKey_MOREAPP GrayKey = "moreapp"
+
+	// GrayKey_TONGXIN_YUNYINGSHANG_HAOMA_DINGXIANG 白名单id为1686，支持通信行业运营商号段设置地域定向
+	GrayKey_TONGXIN_YUNYINGSHANG_HAOMA_DINGXIANG GrayKey = "tongxin_yunyingshang_haoma_dingxiang"
 
 	// GrayKey_MallLongBid 商城广告支持长效出价
 	// 对应字段external_action、deep_external_action和deep_bid_type

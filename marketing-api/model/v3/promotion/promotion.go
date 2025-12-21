@@ -200,6 +200,12 @@ type PromotionMaterial struct {
 	PlayableURLMaterialList []string `json:"playable_url_material_list,omitempty"`
 	// CarouselMaterialList   图集素材信息，当ad_type=ALL时，支持上限10个；当ad_type=SEARCH时，支持上限30个
 	CarouselMaterialList []CarouselMaterial `json:"carousel_material_list,omitempty"`
+	// TrialPlayMaterialList 试玩素材信息，满足下述条件时支持对广告设置试玩素材
+	// 最多设置10个，视频/图片/图文/试玩/直玩素材至少上传1种类型的素材
+	TrialPlayMaterialList []PlayMaterial `json:"trial_play_material_list,omitempty"`
+	// InstantPlayMaterialList 直玩素材信息，满足下述条件时支持对广告设置直玩素材
+	// 最多设置10个，视频/图片/图文/试玩/直玩素材至少上传1种类型的素材
+	InstantPlayMaterialList []PlayMaterial `json:"instant_play_material_list,omitempty"`
 	// OpenURL 直达链接，用于打开电商app，调起店铺
 	// 仅在电商店铺推广目的下有效
 	OpenURL string `json:"open_url,omitempty"`
@@ -265,6 +271,8 @@ type VideoMaterial struct {
 	// DISABLE 暂停
 	// ENABLE 启用
 	MaterialOptStatus enum.OptStatus `json:"material_opt_status,omitempty"`
+	// CreateTime 素材创建时间
+	CreateTime string `json:"create_time,omitempty"`
 }
 
 // ImageMaterial 创意图片素材
@@ -273,6 +281,8 @@ type ImageMaterial struct {
 	ImageMode enum.ImageMode `json:"image_mode,omitempty"`
 	// Images 图片ID数组
 	Images []Image `json:"images,omitempty"`
+	// CreateTime 素材创建时间
+	CreateTime string `json:"create_time,omitempty"`
 }
 
 // Image 图片
@@ -480,6 +490,8 @@ type CarouselMaterial struct {
 	IsBlueFlowRecommendMaterial bool `json:"is_blue_flow_recommend_material,omitempty"`
 	// ImageSubject 图片主题
 	ImageSubject []file.ImageSubject `json:"image_subject,omitempty"`
+	// CreateTime 素材创建时间
+	CreateTime string `json:"create_time,omitempty"`
 }
 
 // RelatedProduct UBP多品广告素材组合
@@ -487,4 +499,18 @@ type RelatedProduct struct {
 	// 商品ID
 	// UBP多品支持在广告层级设置项目层级已关联&&状态为可投状态的商品
 	UniqueProductID uint64 `json:"unique_pteroduct_id,omitempty"`
+}
+
+// PlayMaterial 试玩/直玩素材信息
+type PlayMaterial struct {
+	// ImageMode 素材类型，枚举值：
+	// 横屏试玩素材 IMAGE_MODE_TRIAL_PLAY
+	// 竖屏试玩素材 IMAGE_MODE_TRIAL_PLAY_VERTICAL
+	// 直玩素材：IMAGE_MODE_INSTANT_PLAY
+	ImageMode enum.PlayMaterialImageMode `json:"image_mode,omitempty"`
+	// AppPlayURI 试玩素材uri，可通过【获取试玩/直玩素材列表】获取可用于创编的素材
+	AppPlayURI string `json:"app_play_uri,omitempty"`
+	// GuideVideoID 引导视频ID，引导视频时长≥5s，文件≤100M
+	// 通过【上传视频】接口上传引导视频，获取引导视频的video_id
+	GuideVideoID string `json:"guide_videio_id,omitempty"`
 }

@@ -125,6 +125,8 @@ const (
 	Conversion_ECOM_REFUND = "ecom_refund"
 	// Conversion_WITHDRAW_IAA 续费失败or短期退订
 	Conversion_WITHDRAW_IAA = "withdraw_iaa"
+	// Conversion_WITHDRAW 通信存量业务退订
+	Conversion_WITHDRAW = "withdraw"
 	
 	// 穿山甲快应用LTV回传 https://bytedance.larkoffice.com/docx/RhOcdmhglov5O7x93c0cJY4jnnd
 	// Conversion_SUPPLY_ACTIVE 穿山甲快应用LTV回传调起（即打开快应用）事件回传；为避免影响当前投放，期间全量调起的回传由新的event_type （supply_active）承接
