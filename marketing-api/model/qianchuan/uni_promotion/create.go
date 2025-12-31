@@ -21,6 +21,10 @@ type CreateRequest struct {
 	CreativeSetting *CreativeSetting `json:"creative_setting,omitempty"`
 	// ProgrammaticCreativeMediaList 程序化创意信息
 	ProgrammaticCreativeMediaList []ProgrammaticCreativeMedia `json:"programmatic_creative_media_list,omitempty"`
+	// MultiProductCreativeList 商品全域创意素材信息
+	// 支持0-100个素材+0-30个标题+1个投放卡片
+	// 注意：对于无号商家，仅支持投放商品卡体裁
+	MultiProductCreativeList []MultiProductCreative `json:"multi_product_creative_list,omitempty"`
 }
 
 // Encode implements PostRequest interface

@@ -1,5 +1,7 @@
 package unipromotion
 
+import "github.com/bububa/oceanengine/marketing-api/enum"
+
 // CreativeSetting 创意设置
 type CreativeSetting struct {
 	// SmartSelectMaterial 智能优选视频
@@ -15,6 +17,9 @@ type CreativeSetting struct {
 	// 达人（bind_type不为OFFICIAL或SELF）
 	// 1、不支持设置，传了亦无效
 	HideInAweme bool `json:"hide_in_aweme,omitempty"`
+	// CreativeType 创意类型，可选值:
+	// PROGRAMMATIC_CREATIVE 程序化创意
+	CreativeType enum.CreativeMaterialMode `json:"creative_type,omitempty"`
 	// CreativeCombineTypelive 直播间画面是否开启
 	CreativeCombineTypeLive bool `json:"creative_combine_type_live,omitempty"`
 	// CreativeCombineType 自选投放视频
