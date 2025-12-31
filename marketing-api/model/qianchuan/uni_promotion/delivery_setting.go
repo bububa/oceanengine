@@ -22,12 +22,39 @@ type DeliverySetting struct {
 	// SCHEDULE_FROM_NOW从今天起长期投放
 	// SCHEDULE_START_END设置开始和结束日期
 	LiveScheduleType enum.LiveScheduleType `json:"live_schedule_type,omitempty"`
+	// VideoScheduleType 商品全域投放时间选择方式，可选值:
+	// SCHEDULE_FROM_NOW从今天起长期投放
+	// SCHEDULE_START_END设置开始和结束日期
+	VideoScheduleType enum.VideoScheduleType `json:"video_schedule_type,omitempty"`
 	// StartTime 投放开始时间
 	// 注意：当schedule_type=SCHEDULE_START_END时必填
 	StartTime string `json:"start_time,omitempty"`
 	// EndTime 投放结束时间
 	// 注意：当schedule_type=SCHEDULE_START_END时必填
 	EndTime string `json:"end_time,omitempty"`
+	// DailyDeliveryTime 每日投放时长，0.5h～24.0h，步进0.5h
+	// 注意：仅当marketing_goal=LIVE_PROM_GOODS&smart_bid_type=SMART_BID_CONSERVATIVE时支持，其余场景报错
+	DailyDeliveryTime float64 `json:"daily_delivery_time,omitempty"`
+	// MinEstimateConvert 预估最小转化
+	// 注意：
+	// 可通过【获取全域建议预算】接口获取预估值， 如果需要生效成本保障，需要传入正确的预估建议。
+	// 如果传入的预算为建议预算，该字段必填
+	MinEstimateConvert int64 `json:"min_estimate_convert,omitempty"`
+	// EstimateConvert 预估转化
+	// 注意：
+	// 可通过【获取全域建议预算】接口获取预估值， 如果需要生效成本保障，需要传入正确的预估建议。
+	// 如果传入的预算为建议预算，该字段必填
+	EstimateConvert int64 `json:"estimate_convert,omitempty"`
+	// EstimateROIGoal 预估roi
+	// 注意：
+	// 可通过【获取全域建议预算】接口获取预估值， 如果需要生效成本保障，需要传入正确的预估建议。
+	// 如果传入的预算为建议预算，该字段必填
+	EstimateROIGoal float64 `json:"estimate_roi_goal,omitempty"`
+	// MinEstimateROIGoal 预估最小roi
+	// 注意：
+	// 可通过【获取全域建议预算】接口获取预估值， 如果需要生效成本保障，需要传入正确的预估建议。
+	// 如果传入的预算为建议预算，该字段必填
+	MinEstimateROIGoal float64 `json:"min_estimate_roi_goal,omitempty"`
 	// ExternalAction 转化目标
 	// AD_CONVERT_TYPE_LIVE_SUCCESSORDER_PAY 直播间成交
 	ExternalAction qianchuan.ExternalAction `json:"external_action,omitempty"`
