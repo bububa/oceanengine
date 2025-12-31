@@ -12,6 +12,15 @@ import (
 type MaterialGetRequest struct {
 	// Filtering 过滤条件
 	Filtering *MaterialGetFilter `json:"filtering,omitempty"`
+	// Fields 需要查询的消耗指标，见返回参数，默认stat_cost_for_roi2
+	Fields []string `json:"fields,omitempty"`
+	// OrderType 排序方式，允许值：
+	// ASC 升序（默认）
+	// DESC 降序
+	OrderType enum.OrderType `json:"order_type,omitempty"`
+	// OrderField 排序字段，默认「stat_cost_for_roi2」倒序，同时支持根据消耗指标排序
+	// 注意：排序字段必须在fields中
+	OrderField string `json:"order_field,omitempty"`
 	// AdvertiserID 千川广告账户ID
 	AdvertiserID uint64 `json:"advertiser_id,omitempty"`
 	// AdID 计划id
@@ -30,15 +39,18 @@ type MaterialGetFilter struct {
 	// TITLE 标题
 	// VIDEO 视频
 	MaterialType string `json:"material_type,omitempty"`
-	// VideoType  视频类型，仅material_type=VIDEO时支持，可选值:
-	// ALL 全部
-	// CUSTOM 自选投放视频
-	// AUTO 智能优选视频
-	VideoType string `json:"video_type,omitempty"`
-	// MaterialStatus  投放状态，仅material_type=VIDEO/TITLE时支持，可选值:
+	// MaterialSelectType 素材类型，可选值:
+	// ALL 全部素材
+	// CUSTOM 自选投放素材
+	// AUTO 智能优选素材
+	// 注意：对于直播全域计划，仅material_type=VIDEO支持；对于商品全域计划，material_type=VIDEO/TITLE/IMAGE/CAROUSEL时均支持
+	MaterialSelectType string `json:"material_select_type,omitempty"`
 	// DELIVERY_OK 投放中，默认
 	// DELETED 已删除
+	// EXCLUDE 已排除
+	// DELIVERY_NOT 不可投
 	// ALL 全部
+	// 注意：仅material_type=VIDEO/TITLE/CAROUSEL时支持
 	MaterialStatus string `json:"material_status,omitempty"`
 	// AnalysisType 素材评估，仅material_type=VIDEO时支持
 	// 首发素材 FIRST_PUBLISH_MATERIAL
@@ -51,6 +63,9 @@ type MaterialGetFilter struct {
 	// SearchKeyword 搜索关键词，支持根据视频mid进行搜索
 	// 注意：仅material_type=VIDEO时支持
 	SearchKeyword string `json:"search_keyword,omitempty"`
+	// ProductKeyword 商品搜索关键词，支持根据商品名称/id进行搜索
+	// 注意：仅当marketing_goal=VIDEO_PROM_GOODS支持
+	ProductKeyword string `json:"product_keyword,omitempty"`
 }
 
 // Encode implements GetRequest interface
@@ -60,6 +75,15 @@ func (r MaterialGetRequest) Encode() string {
 	values.Set("ad_id", strconv.FormatUint(r.AdID, 10))
 	if r.Filtering != nil {
 		values.Set("filtering", string(util.JSONMarshal(r.Filtering)))
+	}
+	if r.Fields != nil {
+		values.Set("fields", string(util.JSONMarshal(r.Fields)))
+	}
+	if r.OrderType != "" {
+		values.Set("order_type", string(r.OrderType))
+	}
+	if r.OrderField != "" {
+		values.Set("order_field", r.OrderField)
 	}
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
