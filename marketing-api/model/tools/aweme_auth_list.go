@@ -155,6 +155,8 @@ type AwemeAuthItem struct {
 	// false：否，表示无此限制
 	// 当值返回true时，代表在创建广告时添加新视频素材到该抖音号下推广，视频的主页可见性设置只允许HIDE_VIDEO_ON_HP「仅单次展示可见」
 	HasVideoHpVisibilityLimit bool `json:"has_video_hp_visibility_limit,omitempty"`
+	// OpenID 抖音号openID，非抖音号开放平台openID
+	OpenID string `json:"open_id,omitempty"`
 }
 
 // AwemeAuthVideo 授权视频信息，若为单视频授权会返回
