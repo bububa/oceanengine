@@ -10,6 +10,8 @@ const (
 	LinkType_SCHEME LinkType = "scheme"
 	// LinkType_QUICK_APP 快应用地址
 	LinkType_QUICK_APP LinkType = "quickApp"
+	// LinkType_MicroApp 小程序地址
+	LinkType_MicroApp LinkType = "microApp"
 )
 
 // Link 跳转链接信息
@@ -27,4 +29,20 @@ type Link struct {
 	LinkType LinkType `json:"link_type,omitempty"`
 	// Description 应用描述，为了展示效果，推荐12个中文字符长度
 	Description string `json:"description,omitempty"`
+	// MicroApp 字节小程序/小游戏地址详情，当且仅当：link_type=microApp时，有效且必填
+	MicroApp *MicroApp `json:"micro_app,omitempty"`
+}
+
+// MicroApp 字节小程序/小游戏地址详情
+type MicroApp struct {
+	// AppID 小程序AppID
+	AppID string `json:"app_id,omitempty"`
+	// DefaultURL 兜底链接
+	DefaultURL string `json:"default_url,omitempty"`
+	// MicroGame 是否跳转小游戏
+	MicroGame string `json:"micro_game,omitempty"`
+	// StartProgram 小程序启动页面
+	StartProgram string `json:"start_program,omitempty"`
+	// StartParam 小程序启动参数
+	StartParam string `json:"start_param,omitempty"`
 }
