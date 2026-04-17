@@ -59,6 +59,10 @@ type ProjectGetFilter struct {
 	CampaignType local.AdType `json:"campaign_type,omitempty"`
 	// ExternalAction 优化目标
 	ExternalAction local.ExternalAction `json:"external_action,omitempty"`
+	// DeliveryMode 投放模式，不传，默认查询全部，可选值:
+	// CDP_AUTO_MODE 自动投放
+	// MANUAL_MODE 手动投放
+	DeliveryMode local.DeliveryMode `json:"devlivery_mode,omitempty"`
 }
 
 // Encode implements GetRequest interface

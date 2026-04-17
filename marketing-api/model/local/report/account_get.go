@@ -9,56 +9,55 @@ import (
 	"github.com/bububa/oceanengine/marketing-api/util"
 )
 
-// MaterialGetRequest 获取素材数据 API Request
-type MaterialGetRequest struct {
-	// LocalAccountID 本地推广告账户ID
+// AccountGetRequest 查询账户数据 API Request
+type AccountGetRequest struct {
+	// LocalAccountID 本地推投放账户ID
 	LocalAccountID uint64 `json:"local_account_id,omitempty"`
-	// TimeGranularity 时间粒度，允许值：
-	// TIME_GRANULARITY_DAILY 天维度（默认值）
-	// TIME_GRANULARITY_HOURLY 小时维度
-	// TIME_GRANULARITY_TOTAL 汇总
+	// TimeGranularity 时间粒度，如果不传，返回查询日期内的聚合数据，允许值：
+	// TIME_GRANULARITY_DAILY（按天维度），会返回账户每天的数据
+	// TIME_GRANULARITY_HOURLY（按小时维度），会返回账户每小时的数
+	// TIME_GRANULARITY_TOTAL（汇总），会返回账户汇总的数据
 	TimeGranularity enum.TimeGranularity `json:"time_granularity,omitempty"`
-	// StartDate 查询起始日期，格式：yyyy-mm-dd
+	// StartDate 投放开始时间，格式 2021-04-05，开始时间不得早于今日-365天
 	StartDate string `json:"start_date,omitempty"`
-	// EndDate 查询结束日期，格式：yyyy-mm-dd
-	// 当time_granularity = TIME_GRANULARITY_DAILY/TIME_GRANULARITY_TOTAL时，时间跨度不能超过365天
-	// 当time_granularity = TIME_GRANULARITY_HOURLY时，时间跨度不能超过7天
+	// EndDate 投放结束时间，格式 2021-04-05
+	// 若不传time_granularity，则时间跨度不能超过365天；
+	// 若传time_granularity为TIME_GRANULARITY_DAILY时，则时间跨度不能超过365天；
+	// 若传time_granularity为TIME_GRANULARITY_TOTAL时，则时间跨度不能超过365天；
+	// 若传time_granularity为TIME_GRANULARITY_HOURLY时，则时间跨度不能超过7天
 	EndDate string `json:"end_date,omitempty"`
-	// OrderType 排序方式，允许值：
-	// ASC 升序（默认值）
-	// DESC 降序
-	OrderType enum.OrderType `json:"order_type,omitempty"`
-	// OrderField 排序字段，允许值可参考应答返回数据指标
-	OrderField string `json:"order_field,omitempty"`
 	// Metrics 指标集，允许值可参考应答返回数据指标
 	Metrics []string `json:"metrics,omitempty"`
-	// Filtering 过滤器
-	Filtering *MaterialGetFilter `json:"filtering,omitempty"`
+	// OrderType 排序方式，允许值：
+	// ASC：升序
+	// DESC：降序（默认）
+	OrderType enum.OrderType `json:"order_type,omitempty"`
+	// OrderField 排序字段，允许值参考数据指标，默认根据时间排序
+	// 注意：如果根据指标排序，order_field必须在metrics范围内
+	OrderField string `json:"order_field,omitempty"`
+	// Filtering 过滤条件
+	Filtering *AccountGetFilter `json:"filtering,omitempty"`
 	// Page 页码，默认值：1
 	Page int `json:"page,omitempty"`
 	// PageSize 页面大小，允许值：10（默认值）、20、50、100
 	PageSize int `json:"page_size,omitempty"`
 }
 
-type MaterialGetFilter struct {
-	// MaterialIDs 素材ID
-	MaterialIDs []uint64 `json:"material_ids,omitempty"`
-	// MaterialType 素材类型，允许值：
-	// CASURAL 图文
-	// VIDEO 视频
-	MaterialType enum.MaterialMode `json:"material_type,omitempty"`
-	// CampaignType 广告类型，允许值：
-	// GENERAL 通投广告
-	// SEARCHING 线索广告
-	CampaignType local.AdType `json:"campaign_type,omitempty"`
-	// PromotionIDs 单元ID
-	PromotionIDs []uint64 `json:"promotion_ids,omitempty"`
+type AccountGetFilter struct {
+	// MarketingGoal 营销场景，允许值：
+	// LIVE 直播
+	// VIDEO_IMAGE 短视频/图文
+	MarketingGoal local.MarketingGoal `json:"marketing_goal,omitempty"`
 	// LocalDeliveryScene 营销目的，不传，默认查询全部，可选值:
 	// CLUE 获取线索
 	// CONTENT_HEATING 线上互动
 	// POI_CUSTOMER 线下到店
 	// PURCHASE 团购成交
 	LocalDeliveryScene local.LocalDeliveryScene `json:"local_delivery_scene,omitempty"`
+	// CampaignType 单元类型，不传，默认查询全部，可选值:
+	// GENERAL 通投
+	// SEARCHING 搜索
+	CampaignType local.AdType `json:"campaign_type,omitempty"`
 	// ExternalAction 优化目标，不传，默认查询全部，可选值:
 	// CLUE_ACQUISITION 获取线索
 	// FOLLOW_ACTION 粉丝增长
@@ -81,7 +80,7 @@ type MaterialGetFilter struct {
 }
 
 // Encode implements GetRequest interface
-func (r MaterialGetRequest) Encode() string {
+func (r AccountGetRequest) Encode() string {
 	values := util.GetUrlValues()
 	values.Set("local_account_id", strconv.FormatUint(r.LocalAccountID, 10))
 	if r.TimeGranularity != "" {
@@ -110,15 +109,15 @@ func (r MaterialGetRequest) Encode() string {
 	return ret
 }
 
-// MaterialGetResponse 获取素材数据 API Response
-type MaterialGetResponse struct {
+// AccountGetResponse 查询账户数据 API Response
+type AccountGetResponse struct {
 	model.BaseResponse
-	Data *MaterialGetResult `json:"data,omitempty"`
+	Data *AccountGetResult `json:"data,omitempty"`
 }
 
-type MaterialGetResult struct {
+type AccountGetResult struct {
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
-	// MaterialList
-	MaterialList []Report `json:"material_list,omitempty"`
+	// DataList
+	DataList []Report `json:"project_list,omitempty"`
 }

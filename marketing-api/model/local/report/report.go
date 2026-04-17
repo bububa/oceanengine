@@ -2,6 +2,8 @@ package report
 
 // Report 报表
 type Report struct {
+	// LocalAccountID 本地推投放账户id
+	LocalAccountID uint64 `json:"local_account_id,omitempty"`
 	// ProjectID 项目ID
 	ProjectID uint64 `json:"project_id,omitempty"`
 	// ProjectName 项目名称
