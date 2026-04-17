@@ -116,7 +116,7 @@ type Product struct {
 	Profession *Profession `json:"profession,omitempty"`
 }
 
-// Category 商品类目信息
+// ProductCategory 商品类目信息
 type ProductCategory struct {
 	// FirstCategoryName 商品所处一级行业
 	FirstCategoryName string `json:"first_category_name,omitempty"`
@@ -237,6 +237,16 @@ type Profession struct {
 	AlbumID string `json:"album_id,omitempty"`
 	// Platform 平台信息，枚举值：淘宝 天猫 京东 其他
 	Platform string `json:"platform,omitempty"`
+	// PlatformV2 平台信息，枚举值：淘宝拼多多京东唯品会阿里健康微信小程序其他，请填写数组json序列化后的字符串，支持多选，示例：[\"阿里健康\",\"淘宝\"]
+	// 调整内容：
+	// 【字段名】由platform更新为platform_v2
+	// 新增支持多选，填写枚举格式调整，需要填写数组json序列化后的字符串
+	PlatformV2 string `json:"platform_v2,omitempty"`
+	// BrandTypeChoose 品牌类型选择，可选枚举：
+	// 标准品牌：被品牌库收录的品牌，可通过品牌查询列表接口获取
+	// 自定义品牌：实际有品牌，但在「标准品牌」接口范围中无法搜索到，可入参此选项
+	// 无品牌：实际经营商品无品牌，入参当前枚举可不填写品牌名称（非实际情况不建议）
+	BrandTypeChoose string `json:"brand_type_choose,omitempty"`
 	// StoreName 店铺名称
 	StoreName string `json:"store_name,omitempty"`
 	// StoreID 店铺ID
