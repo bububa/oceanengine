@@ -1,0 +1,43 @@
+package enum
+
+// StdProjectStatusSecond 标准项目二级状态
+type StdProjectStatusSecond string
+
+const (
+	// StdProjectStatusSecond_AVATAR_DISABLED 账户头像不可投
+	StdProjectStatusSecond_AVATAR_DISABLED StdProjectStatusSecond = "AVATAR_DISABLED"
+	// StdProjectStatusSecond_AUDIT_STATUS 新建审核中
+	StdProjectStatusSecond_AUDIT_STATUS StdProjectStatusSecond = "AUDIT_STATUS"
+	// StdProjectStatusSecond_AWEME_ACCOUNT_DISABLED 抖音账号不可投放
+	StdProjectStatusSecond_AWEME_ACCOUNT_DISABLED StdProjectStatusSecond = "AWEME_ACCOUNT_DISABLED"
+	// StdProjectStatusSecond_PROMOTION_APP_UNAVAILABLE 应用不可投放
+	StdProjectStatusSecond_PROMOTION_APP_UNAVAILABLE StdProjectStatusSecond = "PROMOTION_APP_UNAVAILABLE"
+	// StdProjectStatusSecond_REAUDIT_STATUS 修改审核中
+	StdProjectStatusSecond_REAUDIT_STATUS StdProjectStatusSecond = "REAUDIT_STATUS"
+	// StdProjectStatusSecond_OFFLINE_AUDIT_STATUS 审核不通过
+	StdProjectStatusSecond_OFFLINE_AUDIT_STATUS StdProjectStatusSecond = "OFFLINE_AUDIT_STATUS"
+	// StdProjectStatusSecond_DISABLE 手动暂停
+	StdProjectStatusSecond_DISABLE StdProjectStatusSecond = "DISABLE"
+	// StdProjectStatusSecond_SYSTEM_DISABLE_STATUS 系统暂停
+	StdProjectStatusSecond_SYSTEM_DISABLE_STATUS StdProjectStatusSecond = "SYSTEM_DISABLE_STATUS"
+	// StdProjectStatusSecond_ADV_OFFLINE_BUDGET 账户超出预算
+	StdProjectStatusSecond_ADV_OFFLINE_BUDGET StdProjectStatusSecond = "ADV_OFFLINE_BUDGET"
+	// StdProjectStatusSecond_PROJECT_OFFLINE_BUDGET 项目超出预算
+	StdProjectStatusSecond_PROJECT_OFFLINE_BUDGET StdProjectStatusSecond = "PROJECT_OFFLINE_BUDGET"
+	// StdProjectStatusSecond_TIME_NO_REACH 未达投放时间
+	StdProjectStatusSecond_TIME_NO_REACH StdProjectStatusSecond = "TIME_NO_REACH"
+	// StdProjectStatusSecond_PROJECT_REACH_DAILY_DELIVERY_STATUS 已达投放时长
+	StdProjectStatusSecond_PROJECT_REACH_DAILY_DELIVERY_STATUS StdProjectStatusSecond = "PROJECT_REACH_DAILY_DELIVERY_STATUS"
+	// StdProjectStatusSecond_NO_SCHEDUAL 不在投放时段
+	StdProjectStatusSecond_NO_SCHEDUAL StdProjectStatusSecond = "NO_SCHEDUAL"
+	// StdProjectStatusSecond_LIVE_ROOM_OFF 关联直播间不可投
+	StdProjectStatusSecond_LIVE_ROOM_OFF StdProjectStatusSecond = "LIVE_ROOM_OFF"
+	// StdProjectStatusSecond_PRODUCT_OFFLINE 关联商品不可投
+	StdProjectStatusSecond_PRODUCT_OFFLINE StdProjectStatusSecond = "PRODUCT_OFFLINE"
+	// StdProjectStatusSecond_LACK_BASIC_MATERIAL_STATUS 素材待补充
+	StdProjectStatusSecond_LACK_BASIC_MATERIAL_STATUS StdProjectStatusSecond = "LACK_BASIC_MATERIAL_STATUS"
+	// StdProjectStatusSecond_SHARED_WALLET_OFFLINE_BUDGET 共享钱包超出预算
+	StdProjectStatusSecond_SHARED_WALLET_OFFLINE_BUDGET StdProjectStatusSecond = "SHARED_WALLET_OFFLINE_BUDGET"
+	// StdProjectStatusSecond_PROMOTION_OFFLINE_BALANCE 账户余额不足
+	StdProjectStatusSecond_PROMOTION_OFFLINE_BALANCE StdProjectStatusSecond = "PROMOTION_OFFLINE_BALANCE"
+)

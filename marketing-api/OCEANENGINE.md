@@ -131,6 +131,9 @@
     - 更新预算组 [ BudgetGroupUpdate(clt *core.SDKClient, accessToken string, req*project.BudgetGroupUpdateRequest) (uint64, error) ]
     - 批量删除预算组 [ BudgetGroupDelete(clt *core.SDKClient, accessToken string, req*project.BudgetGroupDeleteRequest) (*project.BudgetGroupDeleteResult, error) ]
     - 获取预算组列表 [ BudgetGroupList(clt *core.SDKClient, accessToken string, req*project.BudgetGroupListRequest) (*project.BudgetGroupListResult, error) ]
+  - 智擎版标准投放能力 (api/v3/stdproject)
+    - 获取标准项目列表 [ List(ctx context.Context, clt *core.SDKClient, accessToken string, req*stdproject.ListRequest) (*stdproject.ListResponseData, error) ]
+    - 获取投放项目下素材 [ MaterialGet(ctx context.Context, clt *core.SDKClient, accessToken string, req*stdproject.MaterialGetRequest) (*stdproject.MaterialGetResponseData, error) ]
   - 广告管理模块 (api/v3/promotion)
     - 创建广告 [ Create(clt *core.SDKClient, accessToken string, req*promotion.CreateRequest) (uint64, error) ]
     - 修改广告 [ Update(clt *core.SDKClient, accessToken string, req*promotion.UpdateRequest) (*promotion.UpdateResponseData, error) ]
