@@ -317,12 +317,20 @@ type CustomMetrics struct {
 	AttributionMicroGame3dLtv model.Float64 `json:"attribution_micro_game_3d_ltv,omitempty"`
 	// AttributionMicroGame7dLtv 小游戏激活后七日LTV-所选时间范围内的激活用户在激活后七日内的变现金额
 	AttributionMicroGame7dLtv model.Float64 `json:"attribution_micro_game_7d_ltv,omitempty"`
+	// AttributionMicroGame14dLtv 小游戏激活后14日LTV-所选时间范围内的激活用户在激活后14日内的变现金额
+	AttributionMicroGame14dLtv model.Float64 `json:"attribution_micro_game_14d_ltv,omitempty"`
+	// AttributionMicroGame30dLtv 小游戏激活后30日LTV-所选时间范围内的激活用户在激活后30日内的变现金额
+	AttributionMicroGame30dLtv model.Float64 `json:"attribution_micro_game_30d_ltv,omitempty"`
 	// AttributionMicroGame0dRoi 小游戏当日广告变现ROI-所选时间范围内的激活用户在激活当日的广告变现ROI，计算公式是：当日LTV / 所选时间的消耗
 	AttributionMicroGame0dRoi model.Float64 `json:"attribution_micro_game_0d_roi,omitempty"`
 	// AttributionMicroGame3dRoi 小游戏激活后三日广告变现ROI-所选时间范围内的激活用户在激活后三日内的广告变现ROI，计算公式是：三日LTV / 所选时间的消耗
 	AttributionMicroGame3dRoi model.Float64 `json:"attribution_micro_game_3d_roi,omitempty"`
 	// AttributionMicroGame7dRoi 小游戏激活后七日广告变现ROI-所选时间范围内的激活用户在激活后七日内的广告变现ROI，计算公式是：七日LTV / 所选时间的消耗
 	AttributionMicroGame7dRoi model.Float64 `json:"attribution_micro_game_7d_roi,omitempty"`
+	// AttributionMicroGame14dRoi 小游戏激活后14日广告变现ROI-所选时间范围内的激活用户在激活后14日内的广告变现ROI，计算公式是：14日LTV / 所选时间的消耗
+	AttributionMicroGame14dRoi model.Float64 `json:"attribution_micro_game_14d_roi,omitempty"`
+	// AttributionMicroGame30dRoi 小游戏激活后30日广告变现ROI-所选时间范围内的激活用户在激活后30日内的广告变现ROI，计算公式是：30日LTV / 所选时间的消耗
+	AttributionMicroGame30dRoi model.Float64 `json:"attribution_micro_game_30d_roi,omitempty"`
 	// 播放3s; 广告播放时间大于等于3秒的数量，如果视频总时长不足3秒，则记录播放完成的次数
 	PlayDuration3s model.Float64 `json:"play_duration_3s,omitempty"`
 	// 视频数据-播完率; 计算公式：播放完成数/播放数
